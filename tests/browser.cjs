@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{
  const page=await browser.newPage({viewport:{width:1440,height:1000}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  try{
-  await page.goto(`http://127.0.0.1:${server.address().port}/`,{waitUntil:'domcontentloaded'});
+  await page.goto(`http://127.0.0.1:${server.address().port}/legacy.html`,{waitUntil:'domcontentloaded'});
   await page.waitForSelector('body[data-public-ready="true"]');
   await page.waitForFunction(()=>document.querySelectorAll('#countyMap .county-path').length>=20);
   assert.equal(await page.locator('#apiKey').count(),0,'no public API key input');

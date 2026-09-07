@@ -5,6 +5,10 @@ import re
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
+try:
+    from research_model import prepare
+except ModuleNotFoundError:
+    from scripts.research_model import prepare
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -54,7 +58,17 @@ def build(now=None):
     source = source.replace('</body>', '<script type="application/json" id="publicPollBootstrap">' + payload + '</script>\n<script src="public-polls.js"></script>\n</body>')
     if re.search(r'(?:sk-ant-api\w*-|ghp_|github_pat_)[A-Za-z0-9_\-]{20,}', source):
         raise ValueError('Potential credential in source; refusing public build')
-    (dist / 'index.html').write_text(source, encoding='utf-8')
+    # Retain the original advanced workspace at a separate route, not hidden in the new DOM.
+    source = source.replace('</head>', '<style>.legacy-notice{position:relative;z-index:999;padding:12px 24px;background:#fff3df;color:#714416;font:14px system-ui}.legacy-notice a{color:#174fa8}</style></head>', 1)
+    source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
+    (dist / 'legacy.html').write_text(source, encoding='utf-8')
+    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs'):
+        shutil.copy2(ROOT / 'site' / name, dist / name)
+    model_data = prepare(ROOT, now)
+    model_data['feed_checked_at'] = feed['checked_at']
+    model_data['publication_pause_start'] = config['publication_pause_start']
+    model_data['publication_pause_end'] = config['publication_pause_end']
+    (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)

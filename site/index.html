@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="2026 台灣縣市長選舉觀測：互動地圖、原始民調、情境推估與可重現的模型驗證。">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <title>台灣選舉觀測 | 2026 縣市長選舉</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="vendor/d3.min.js"></script>
+  <script defer src="vendor/topojson.min.js"></script>
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳至主要內容</a>
+  <header class="topbar">
+    <a class="brand" href="?view=overview">台灣選舉觀測<span>2026</span></a>
+    <nav aria-label="主要導覽">
+      <a href="?view=overview" data-view="overview">總覽</a>
+      <a href="?view=counties" data-view="counties">縣市</a>
+      <a href="?view=polls" data-view="polls">民調</a>
+      <a href="?view=scenario" data-view="scenario">情境</a>
+      <a href="?view=validation" data-view="validation">驗證</a>
+      <a href="?view=methods" data-view="methods">方法</a>
+    </nav>
+    <button id="share">分享情境</button>
+  </header>
+  <main id="main" tabindex="-1">
+    <div id="loading" role="status">正在讀取模型與民調資料…</div>
+    <div id="page"></div>
+  </main>
+  <footer class="footer">
+    <span>獨立研究專案，非中選會官方網站。</span>
+    <span><a href="https://db.cec.gov.tw/ElecTable" target="_blank" rel="noopener">中選會資料庫</a> · <a href="legacy.html">舊版進階工作台</a> · <a href="THIRD_PARTY.md">資料與授權</a></span>
+  </footer>
+  <div id="notice" role="status" aria-live="polite"></div>
+  <dialog id="shareDialog"><h2>分享目前情境</h2><p>連結包含假設與縣市設定，不包含個人資料。相同資料版本可重現結果；新版資料可能改變結果。</p><label>情境連結<input id="shareUrl" readonly></label><div class="actions"><button id="copyLink">複製連結</button><button id="closeShare">關閉</button></div></dialog>
+  <noscript>此互動網站需要 JavaScript。可直接前往頁尾的中選會資料庫查閱官方資料。</noscript>
+</body>
+</html>

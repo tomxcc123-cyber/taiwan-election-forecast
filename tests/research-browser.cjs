@@ -1,0 +1,28 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const root=path.resolve(__dirname,'../dist'),qa=path.resolve(__dirname,'../qa/research');fs.mkdirSync(qa,{recursive:true});
+let failure=false;
+const server=http.createServer((req,res)=>{const pathname=new URL(req.url,'http://localhost').pathname;if(pathname==='/polls.json'&&failure){res.writeHead(503);res.end();return;}const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':decodeURIComponent(pathname)));if(!file.startsWith(root+path.sep)||!fs.existsSync(file)){res.writeHead(404);res.end();return;}res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.css':'text/css','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json'})[path.extname(file)]||'text/plain');fs.createReadStream(file).pipe(res);});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({channel:'chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1100}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{const url=`http://127.0.0.1:${server.address().port}/`;await page.goto(url);await page.waitForSelector('body[data-ready=true]');
+ assert.equal(await page.locator('.county-path').count(),22);assert.equal(await page.locator('main').count(),1);
+ await page.screenshot({path:path.join(qa,'overview-desktop.png'),fullPage:true});
+ await page.locator('.topbar [data-view=counties]').click();await page.locator('#countySearch').fill('新竹');assert.equal(await page.locator('#countyTable tbody tr').count(),2);
+ await page.locator('[data-county="新竹縣"]').click();assert.ok((await page.locator('#historyPanel').innerText()).includes('新竹縣'));
+ await page.selectOption('#historyType','president');assert.ok((await page.locator('#historyPanel').innerText()).includes('2024'));await page.selectOption('#historyYear','2020');
+ await page.locator('.topbar [data-view=polls]').click();await page.selectOption('#pollCounty','連江縣');assert.equal(await page.locator('.poll-row').count(),0);await page.selectOption('#pollCounty','all');assert.ok(await page.locator('.poll-row').count()>0);
+ await page.locator('#eligibleOnly').check();assert.equal(await page.locator('.poll-row').count(),0);await page.locator('#eligibleOnly').uncheck();
+ failure=true;await page.locator('#reloadPolls').click();await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('保留'));failure=false;
+ await page.screenshot({path:path.join(qa,'polls-desktop.png'),fullPage:true});
+ await page.locator('.topbar [data-view=scenario]').click();const before=await page.evaluate(()=>ForecastApp.result.summary[0].mean);
+ await page.locator('#tactical').fill('50');await page.waitForFunction(x=>ForecastApp.result.state.tactical===50&&ForecastApp.result.summary[0].mean!==x,before);
+ await page.locator('#flow').fill('50');await page.waitForFunction(()=>ForecastApp.result.state.flow===50);await page.locator('[data-map=flow]').click();
+ await page.selectOption('#flip','1');assert.equal(await page.evaluate(()=>ForecastApp.result.counties.find(c=>c.name===ForecastApp.result.state.county).probability[1]),1);
+ const expected=await page.evaluate(()=>ForecastApp.result.summary);const shared=page.url();await page.goto(shared);await page.waitForSelector('body[data-ready=true]');assert.deepEqual(await page.evaluate(()=>ForecastApp.result.summary),expected);
+ await page.locator('#share').click();assert.ok(await page.locator('#shareDialog').isVisible());await page.locator('#closeShare').click();
+ await page.screenshot({path:path.join(qa,'scenario-desktop.png'),fullPage:true});await page.locator('#resetScenario').click();assert.equal(await page.evaluate(()=>ForecastApp.result.state.tactical),0);
+ for(const view of ['overview','counties','polls','scenario','validation','methods']){await page.locator(`.topbar [data-view=${view}]`).click();for(const width of [390,768]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${view} overflow at ${width}`);if(width===390)await page.screenshot({path:path.join(qa,`${view}-mobile.png`),fullPage:true});}}
+ await page.setViewportSize({width:1440,height:1100});await page.locator('.topbar [data-view=validation]').click();await page.screenshot({path:path.join(qa,'validation-desktop.png'),fullPage:true});
+ await page.locator('.topbar [data-view=methods]').click();const downloadPromise=page.waitForEvent('download');await page.locator('#export').click();const download=await downloadPromise;assert.ok(download.suggestedFilename().endsWith('.json'));
+ assert.deepEqual(errors,[]);console.log('PASS: six pages, 22 counties, history filters, poll filters and failure recovery, sliders, forced results, URL roundtrip, export, mobile layouts, no runtime errors');
+}finally{await browser.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});
