@@ -1,0 +1,431 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-07T01:09:53+00:00",
+  "last_success_at": null,
+  "index_checked_at": "2026-09-07T01:09:53+00:00",
+  "updated_at": "2026-09-07T01:09:53+00:00",
+  "latest_fieldwork_date": "2026-05-26",
+  "status": "degraded",
+  "baseline_cutoff": "2026-06-27",
+  "sources": [
+    {
+      "name": "TVBS 民意調查中心",
+      "url": "https://www.tvbs.com.tw/poll-center",
+      "discovered": 15,
+      "validated_reports": 5
+    }
+  ],
+  "records": [
+    {
+      "id": "a5b77b8599050b083e7ff592",
+      "county": "台北市",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260527/87ed4a7009e43fa1cea459b7f1785f83.pdf",
+      "report_title": "2026台北市長選情民調",
+      "field_start": "2026-05-21",
+      "date": "2026-05-26",
+      "sample_n": 901,
+      "population": "20 歲以上台北市民",
+      "method": "市內電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.3,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": false,
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 58.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 30.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 13.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "5d5506e8f9143bf670424fcc2725290e1669d4b7966327b81a9d2562e024ba1b",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "625d2ee0f87c95806bd469ba",
+      "county": "嘉義市",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260505/ba57d93fe28a36bb606732d0c49fbe1f.pdf",
+      "report_title": "2026嘉義市長選情民調",
+      "field_start": "2026-04-24",
+      "date": "2026-04-30",
+      "sample_n": 948,
+      "population": "20 歲以上嘉義市民",
+      "method": "市內電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.2,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": false,
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "張啟楷",
+          "support": 37.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "王美惠",
+          "support": 43.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 20.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "c0f0a4fbd756bde344f11606b41887b259c81fd9e0382c4e1db88e967f6b2c38",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "d5bfc637128ae246985c32ab",
+      "county": "宜蘭縣",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260323/19c44cdc976c0baac442963d0f74e3bd.pdf",
+      "report_title": "2026宜蘭縣長選情民調",
+      "field_start": "2026-03-13",
+      "date": "2026-03-19",
+      "sample_n": 1042,
+      "population": "20 歲以上宜蘭縣民",
+      "method": "市內電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": true,
+      "question_number": 3,
+      "candidates": [
+        {
+          "name": "吳宗憲",
+          "support": 35.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "林國漳",
+          "support": 38.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 27.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "42b13642e78b0436e73f8bf8253dfed4308540c2804786f37ab8a8500599d77a",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "a39619064631f747fd7dc766",
+      "county": "宜蘭縣",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260323/19c44cdc976c0baac442963d0f74e3bd.pdf",
+      "report_title": "2026宜蘭縣長選情民調",
+      "field_start": "2026-03-13",
+      "date": "2026-03-19",
+      "sample_n": 1042,
+      "population": "20 歲以上宜蘭縣民",
+      "method": "市內電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": true,
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "吳宗憲",
+          "support": 28.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "林國漳",
+          "support": 33.0,
+          "bloc": "dpp"
+        },
+        {
+          "name": "陳琬惠",
+          "support": 8.0,
+          "bloc": "third"
+        }
+      ],
+      "undecided": 31.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "42b13642e78b0436e73f8bf8253dfed4308540c2804786f37ab8a8500599d77a",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "2c8255525396cf74d0e9de2e",
+      "county": "台南市",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260316/17c65a48cf4cb9fa94dd118ac0b13662.pdf",
+      "report_title": "2026台南市長選情民調",
+      "field_start": "2026-03-09",
+      "date": "2026-03-12",
+      "sample_n": 1052,
+      "population": "20 歲以上台南市民",
+      "method": "市內電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": false,
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "陳亭妃",
+          "support": 53.0,
+          "bloc": "dpp"
+        },
+        {
+          "name": "謝龍介",
+          "support": 30.0,
+          "bloc": "blue"
+        }
+      ],
+      "undecided": 17.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "286f35e7858045d18101cce46580fe0ac0caa24ab978b71d61191745eab5323c",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "d7d41d903028a9b5b01d98ad",
+      "county": "新竹市",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260206/008741205265e8613fa0d2ba0607b0ce.pdf",
+      "report_title": "2026新竹市長可能人選民調",
+      "field_start": "2026-01-29",
+      "date": "2026-02-04",
+      "sample_n": 953,
+      "population": "20 歲以上新竹市民",
+      "method": "電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.2,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": true,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "高虹安",
+          "support": 50.0,
+          "bloc": null
+        },
+        {
+          "name": "林志潔",
+          "support": 28.0,
+          "bloc": null
+        }
+      ],
+      "undecided": 22.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "c21e0744ff9df7e6b11320d058a7ce83c7830221880b50fca71a62412c20237e",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "05ad2d30f6ad75a945e1e350",
+      "county": "新竹市",
+      "source": "TVBS 民意調查中心",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260206/008741205265e8613fa0d2ba0607b0ce.pdf",
+      "report_title": "2026新竹市長可能人選民調",
+      "field_start": "2026-01-29",
+      "date": "2026-02-04",
+      "sample_n": 953,
+      "population": "20 歲以上新竹市民",
+      "method": "電話後四碼電腦隨機抽樣,人員電話訪問",
+      "margin_of_error": 3.2,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "supervisor": null,
+      "population_size": null,
+      "sample_note": "報告總樣本；投票意向子樣本量未另列",
+      "multiple_matchups": true,
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "高虹安",
+          "support": 48.0,
+          "bloc": null
+        },
+        {
+          "name": "林志潔",
+          "support": 25.0,
+          "bloc": null
+        },
+        {
+          "name": "王婉諭",
+          "support": 6.0,
+          "bloc": null
+        }
+      ],
+      "undecided": 20.0,
+      "retrieved_at": "2026-09-07T01:09:53+00:00",
+      "report_sha256": "c21e0744ff9df7e6b11320d058a7ce83c7830221880b50fca71a62412c20237e",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    }
+  ],
+  "polls": [],
+  "failures": [
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260130/a77f38bdee0ceef8c988b182d179b754.pdf",
+      "message": "Vote-intention totals cannot be parsed safely"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260123/e81df25f05002ab1c3e1dbf68d1d320b.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260121/f549e8011d885ed630573b7f936eff9c.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251230/1c884e75f849d60fb83311e57f18c352.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251215/fcec2c7a4c138f591e0a2ce680a491da.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251208/f76262efaa46dd37ae3df58e65b2d1eb.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251230/7f85b1bca9aaaba0aa86f0cded95d365.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251124/b598691bc21b681281b8b75489a1deef.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20250930/47eff2bda3a7f080df5c17a6cc9fffa0.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "TVBS",
+      "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20250917/b821fdad1c8903f8437d790b84d6d5de.pdf",
+      "message": "Vote-intention question has an unsupported table header"
+    }
+  ],
+  "reports": {
+    "https://www-asset.tvbs.com.tw/poll_center/2026/20260527/87ed4a7009e43fa1cea459b7f1785f83.pdf": {
+      "sha256": "5d5506e8f9143bf670424fcc2725290e1669d4b7966327b81a9d2562e024ba1b",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-09-07T01:09:53+00:00"
+    },
+    "https://www-asset.tvbs.com.tw/poll_center/2026/20260505/ba57d93fe28a36bb606732d0c49fbe1f.pdf": {
+      "sha256": "c0f0a4fbd756bde344f11606b41887b259c81fd9e0382c4e1db88e967f6b2c38",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-09-07T01:09:53+00:00"
+    },
+    "https://www-asset.tvbs.com.tw/poll_center/2026/20260323/19c44cdc976c0baac442963d0f74e3bd.pdf": {
+      "sha256": "42b13642e78b0436e73f8bf8253dfed4308540c2804786f37ab8a8500599d77a",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-09-07T01:09:53+00:00"
+    },
+    "https://www-asset.tvbs.com.tw/poll_center/2026/20260206/008741205265e8613fa0d2ba0607b0ce.pdf": {
+      "sha256": "c21e0744ff9df7e6b11320d058a7ce83c7830221880b50fca71a62412c20237e",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-09-07T01:09:53+00:00"
+    },
+    "https://www-asset.tvbs.com.tw/poll_center/2026/20260316/17c65a48cf4cb9fa94dd118ac0b13662.pdf": {
+      "sha256": "286f35e7858045d18101cce46580fe0ac0caa24ab978b71d61191745eab5323c",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-09-07T01:09:53+00:00"
+    }
+  },
+  "history": [
+    {
+      "date": "2026-09-07T01:09:53+00:00",
+      "county": "台北市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260527/87ed4a7009e43fa1cea459b7f1785f83.pdf",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-09-07T01:09:53+00:00",
+      "county": "嘉義市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260505/ba57d93fe28a36bb606732d0c49fbe1f.pdf",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-09-07T01:09:53+00:00",
+      "county": "宜蘭縣",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260323/19c44cdc976c0baac442963d0f74e3bd.pdf",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-09-07T01:09:53+00:00",
+      "county": "台南市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260316/17c65a48cf4cb9fa94dd118ac0b13662.pdf",
+      "kind": "report_added"
+    },
+    {
+      "date": "2026-09-07T01:09:53+00:00",
+      "county": "新竹市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260206/008741205265e8613fa0d2ba0607b0ce.pdf",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-09-06T12:28:17+00:00",
+      "county": "台北市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260527/87ed4a7009e43fa1cea459b7f1785f83.pdf",
+      "kind": "report_added"
+    },
+    {
+      "date": "2026-09-06T12:28:17+00:00",
+      "county": "嘉義市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260505/ba57d93fe28a36bb606732d0c49fbe1f.pdf",
+      "kind": "report_added"
+    },
+    {
+      "date": "2026-09-06T12:28:17+00:00",
+      "county": "宜蘭縣",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260323/19c44cdc976c0baac442963d0f74e3bd.pdf",
+      "kind": "report_added"
+    },
+    {
+      "date": "2026-09-06T12:28:17+00:00",
+      "county": "新竹市",
+      "source_url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260206/008741205265e8613fa0d2ba0607b0ce.pdf",
+      "kind": "report_added"
+    }
+  ],
+  "coverage_note": "目前自動來源為 TVBS 原始報告，不代表所有機構或所有縣市都有近期民調。"
+}
