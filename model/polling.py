@@ -35,16 +35,19 @@ def match_records(feed, roster, as_of):
                     raise ValueError('民調人選與登記名單不符，或姓名字形尚未核對')
                 matched.append(names[key]); support.append(float(c['support']))
             n, undecided = float(row['sample_n']), float(row['undecided'])
+            nonvote = float(row.get('nonvote',0))
             if (len(matched) < 2 or len(set(matched)) != len(matched) or n < 100
-                    or not np.isfinite([n, undecided, *support]).all()
+                    or not np.isfinite([n, undecided, nonvote, *support]).all()
                     or min(support) < 0 or max(support) > 100 or not 0 <= undecided <= 100
-                    or sum(support) < 20 or abs(sum(support)+undecided-100) > 3):
+                    or not 0 <= nonvote <= 100
+                    or sum(support) < 20 or abs(sum(support)+undecided+nonvote-100) > 3):
                 raise ValueError('比例、樣本或未表態資料無效')
             sample = (row['county'], row['source_url'], row['field_start'], row['date'])
-            if sample in samples or any(c == row['county'] and s == row['source'] and start <= e and end >= b
+            pollster = row.get('pollster_id',row['source'])
+            if sample in samples or any(c == row['county'] and s == pollster and start <= e and end >= b
                                         for c, s, b, e in occupied):
                 raise ValueError('同來源重複題目或重疊訪問區間，保留較新紀錄')
-            samples.add(sample); occupied.append((row['county'], row['source'], start, end))
+            samples.add(sample); occupied.append((row['county'], pollster, start, end))
             accepted.append({**row, 'race_id': race['race_id'], 'candidate_ids': matched,
                              'supports': support, 'partial_ballot': len(matched) < len(race['candidates']),
                              'field_mid': (start+end)/2})
@@ -78,7 +81,7 @@ def observation_matrices(records, candidates, settings):
                     + (row['undecided']/100 * settings['undecided_sd'])**2
                     + (settings['partial_ballot_sd']**2 if row['partial_ballot'] else 0))
         matrices.append(matrix); ys.append(h @ np.log(q)); variances.append(variance)
-        groups.extend([row['source']]*(k-1))
+        groups.extend([row.get('pollster_id',row['source'])]*(k-1))
         metadata.extend([row]*(k-1))
     if not matrices:
         return np.zeros((0, len(candidates))), np.zeros(0), np.zeros((0, 0)), [], []

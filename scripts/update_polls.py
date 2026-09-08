@@ -7,6 +7,7 @@ import hashlib
 import io
 import json
 import os
+import sys
 import re
 import time
 import unicodedata
@@ -19,8 +20,10 @@ import pdfplumber
 from lxml import html
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from scripts import formosa
 INDEX = 'https://www.tvbs.com.tw/poll-center'
-ALLOWED_HOSTS = {'www.tvbs.com.tw', 'www-asset.tvbs.com.tw'}
+ALLOWED_HOSTS = {'www.tvbs.com.tw', 'www-asset.tvbs.com.tw'} | formosa.HOSTS
 COUNTIES = ['台北市','新北市','桃園市','台中市','台南市','高雄市','基隆市','新竹市',
             '新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','屏東縣',
             '宜蘭縣','花蓮縣','台東縣','澎湖縣','金門縣','連江縣']
@@ -225,7 +228,9 @@ def parse_report(text, entry, now=None):
 def classify(record, config):
     r = copy.deepcopy(record)
     r['model_eligible'] = False
-    if r['date'] <= config['baseline_cutoff']:
+    if r.get('nonvote', 0):
+        r['exclusion_reason'] = '舊版三方模型不支援獨立不投票類別；候選人模型另行檢查'
+    elif r['date'] <= config['baseline_cutoff']:
         r['exclusion_reason'] = '基線日期以前的資料，僅供查閱，避免重複加權'
     elif r['multiple_matchups'] or '可能人選' in r['report_title']:
         r['exclusion_reason'] = '同份報告含多組對陣，不自動合併'
@@ -265,12 +270,59 @@ def atomic_json(path, value):
     os.replace(temp, path)
 
 
-def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None):
+def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_formosa=False):
     checked = now or stamp()
     today = datetime.fromisoformat(checked).date()
     records = {r['id']: r for r in previous.get('records', [])}
     reports = copy.deepcopy(previous.get('reports', {}))
     failures, changed = [], []
+    extra_sources = []
+    source_review = []
+    if include_formosa:
+        reviewed = json.loads((ROOT/'data/reviewed-poll-sources.json').read_text(encoding='utf-8'))
+        source_review = reviewed['source_review']
+        seed_entries = []
+        for entry in reviewed['reports']:
+            seed_entries.append({'url':entry['url'],'title':entry['title']})
+            if date.fromisoformat(reviewed['reviewed_at'][:10]) > today:
+                continue
+            for q in entry['questions']:
+                candidates=[{'name':n,'support':v,'bloc':b} for n,v,b in zip(q['names'],q['supports'],q['blocs'])]
+                row=formosa.record(entry,entry['county'],entry['field_start'],entry['date'],entry['sample_n'],q['number'],candidates,q['undecided'],q['nonvote'],len(entry['questions'])>1,entry['method'],today)
+                row.update(retrieved_at=reviewed['reviewed_at'],ingestion='reviewed_original_page_facts')
+                if row['id'] not in records:
+                    records[row['id']]=row
+                    changed.append({'date':checked,'county':row['county'],'source_url':row['source_url'],'kind':'reviewed_report_added'})
+        formosa_entries={e['url']:e for e in seed_entries}
+        formosa_index_ok=False
+        try:
+            for entry in formosa.discover(get(formosa.INDEX)):
+                formosa_entries[entry['url']]=entry
+            formosa_index_ok=True
+        except Exception as exc:
+            failures.append({'source':'美麗島','url':formosa.INDEX,'message':str(exc)[:180]})
+        formosa_good=0
+        # A denied/unavailable index does not trigger a burst of retries against the same site.
+        if formosa_index_ok:
+            for entry in formosa_entries.values():
+                try:
+                    raw=get(entry['url']);digest=hashlib.sha256(raw).hexdigest()
+                    parsed=formosa.parse(raw,entry,today)
+                    old=reports.get(entry['url'],{})
+                    if old.get('sha256')!=digest or old.get('parser_version')!=formosa.VERSION:
+                        records={k:r for k,r in records.items() if r['source_url']!=entry['url']}
+                        for row in parsed:
+                            row.update(retrieved_at=checked,report_sha256=digest,ingestion='automatic_original_html')
+                            records[row['id']]=row
+                        changed.append({'date':checked,'county':parsed[0]['county'],'source_url':entry['url'],'kind':'report_updated'})
+                    reports[entry['url']]={'sha256':digest,'parser_version':formosa.VERSION,'status':'valid','checked_at':checked}
+                    formosa_good+=1
+                except Exception as exc:
+                    failures.append({'source':'美麗島','url':entry['url'],'message':str(exc)[:180]})
+        extra_sources.append({'name':formosa.SOURCE,'url':formosa.INDEX,'discovered':len(formosa_entries),
+            'validated_reports':formosa_good,'index_ok':formosa_index_ok,
+            'status':'checked' if formosa_index_ok else 'unavailable',
+            'note':'本輪自動擷取通過數不含先前核對的存檔；失敗保留最後有效資料。'})
     entries = []
     index_ok = False
     try:
@@ -313,10 +365,11 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None):
         'index_checked_at': checked if index_ok else previous.get('index_checked_at'),
         'updated_at': checked if changed else previous.get('updated_at'),
         'latest_fieldwork_date': latest, 'status': status, 'baseline_cutoff': config['baseline_cutoff'],
-        'sources': [{'name': 'TVBS 民意調查中心', 'url': INDEX, 'discovered': len(entries), 'validated_reports': good}],
+        'sources': [{'name': 'TVBS 民意調查中心', 'url': INDEX, 'discovered': len(entries), 'validated_reports': good, 'index_ok':index_ok}] + extra_sources,
+        'source_review':source_review,
         'records': classified, 'polls': model_rows(classified), 'failures': failures,
         'reports': reports, 'history': (changed + previous.get('history', []))[:100],
-        'coverage_note': '目前自動來源為 TVBS 原始報告，不代表所有機構或所有縣市都有近期民調。',
+        'coverage_note': '來源包括TVBS原始報告與美麗島原始問卷。部分為已核對存檔；自動抓取失敗會明示，不代表所有機構或所有縣市都有近期民調。' if include_formosa else '目前自動來源為 TVBS 原始報告，不代表所有機構或所有縣市都有近期民調。',
     }
 
 
@@ -338,7 +391,7 @@ def main():
         path.write_bytes(raw)
         return raw
 
-    result = update(config, previous, get=get)
+    result = update(config, previous, get=get, include_formosa=True)
     if args.offline:
         print(json.dumps({'offline_test': True, 'records': len(result['records']), 'failures': len(result['failures'])}))
         return

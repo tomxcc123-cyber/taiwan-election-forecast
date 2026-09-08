@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-08T10:00:00+00:00",
+  "retrieval_method": "Original publisher pages inspected with web retrieval; structured factual extraction, not raw HTML",
+  "reports": [
+    {"url":"https://my-formosa.com.tw/DOC_224921.htm","title":"美麗島民調：2026新北市長選舉選情民調","county":"新北市","field_start":"2026-04-08","date":"2026-04-10","sample_n":1075,"method":"CATI；住宅電話753、行動電話322；雙架構加權","questions":[{"number":3,"names":["李四川","蘇巧慧"],"supports":[35.5,34.5],"blocs":["blue","dpp"],"undecided":19.6,"nonvote":10.3}]},
+    {"url":"https://my-formosa.com.tw/DOC_224420.htm","title":"美麗島民調：2026宜蘭縣長選舉可能人選支持度民調","county":"宜蘭縣","field_start":"2026-03-16","date":"2026-03-18","sample_n":1070,"method":"CATI；住宅電話隨機抽樣；加權","questions":[{"number":2,"names":["吳宗憲","林國漳","陳琬惠"],"supports":[26.6,33.0,7.9],"blocs":["blue","dpp","third"],"undecided":25.0,"nonvote":7.5},{"number":3,"names":["吳宗憲","林國漳"],"supports":[33.0,35.8],"blocs":["blue","dpp"],"undecided":23.5,"nonvote":7.7},{"number":4,"names":["陳琬惠","林國漳"],"supports":[26.7,35.8],"blocs":["blue","dpp"],"undecided":25.9,"nonvote":11.5}]},
+    {"url":"https://my-formosa.com.tw/DOC_224580.htm","title":"美麗島民調：2026新竹縣長選舉可能人選支持度民調","county":"新竹縣","field_start":"2026-03-23","date":"2026-03-25","sample_n":1072,"method":"CATI；住宅電話隨機抽樣；加權","questions":[{"number":2,"names":["徐欣瑩","鄭朝方"],"supports":[44.7,27.0],"blocs":["blue","dpp"],"undecided":12.1,"nonvote":16.2},{"number":3,"names":["陳見賢","鄭朝方"],"supports":[39.7,31.2],"blocs":["blue","dpp"],"undecided":14.1,"nonvote":15.0}]},
+    {"url":"https://my-formosa.com.tw/DOC_223267.htm","title":"美麗島民調：2026台中市長選舉可能人選支持度民調","county":"台中市","field_start":"2026-01-21","date":"2026-01-23","sample_n":1069,"method":"CATI；住宅電話隨機抽樣；加權","questions":[{"number":2,"names":["江啟臣","何欣純"],"supports":[43.9,29.4],"blocs":["blue","dpp"],"undecided":20.3,"nonvote":6.4},{"number":3,"names":["楊瓊瓔","何欣純"],"supports":[32.7,33.7],"blocs":["blue","dpp"],"undecided":22.3,"nonvote":11.3}]}
+  ],
+  "source_review": [
+    {"name":"聯合報","status":"reviewed_not_integrated","note":"本輪找到國政民調及其他機構轉載，未當成新增縣市候選人調查。","url":"https://udn.com/news/story/124652/9377860"},
+    {"name":"中時／艾普羅","status":"access_limited","note":"找到台中選情調查報導線索，原站存取受限，未依二手摘要直接入模。","url":"https://www.chinatimes.com/"},
+    {"name":"ETtoday","status":"pending_original_verification","note":"找到選情調查转载線索，尚未核對完整原始問卷與樣本口徑，未自動接入。","url":"https://www.ettoday.net/"}
+  ]
+}

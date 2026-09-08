@@ -12,7 +12,7 @@ from .polling import match_records
 from .joint import infer
 from .validation import evaluate
 
-VERSION = '2026.09-cec-joint.1'
+VERSION = '2026.09-multisource.1'
 
 
 def validate_joint(history, settings=None):

@@ -3,7 +3,7 @@
   'use strict';
   let feed=null, busy=false, offline=false, failure=false, selected='all';
   const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const sourceURL=value=>{try{const u=new URL(value);return u.protocol==='https:'&&['www.tvbs.com.tw','www-asset.tvbs.com.tw'].includes(u.hostname)?u.href:'#';}catch{return '#';}};
+  const sourceURL=value=>{try{const u=new URL(value);return u.protocol==='https:'&&['www.tvbs.com.tw','www-asset.tvbs.com.tw','my-formosa.com.tw','www.my-formosa.com.tw'].includes(u.hostname)?u.href:'#';}catch{return '#';}};
   const displayTime=value=>value?new Date(value).toLocaleString('zh-TW',{timeZone:'Asia/Taipei',hour12:false}):'尚無成功紀錄';
   const valid=data=>{
     if(data?.schema_version!==1||!Array.isArray(data.records)||!Array.isArray(data.polls)||data.polls.length>100||data.records.length>10000)throw Error('資料格式不符');
@@ -14,7 +14,7 @@
       if(!/^[a-f0-9]{24}$/.test(r.id)||recordIDs.has(r.id)||!APP.order.includes(r.county)||!Array.isArray(r.candidates)||r.candidates.length<2||r.candidates.length>5||sourceURL(r.source_url)==='#')throw Error('來源紀錄無效');
       recordIDs.add(r.id);
       if(!r.candidates.every(c=>typeof c.name==='string'&&c.name.length<=30&&Number.isFinite(c.support)&&c.support>=0&&c.support<=100))throw Error('候選人資料無效');
-      if(!Number.isFinite(r.undecided)||r.undecided<0||r.undecided>100||Math.abs(r.candidates.reduce((s,c)=>s+c.support,r.undecided)-100)>2)throw Error('來源總和無效');
+      if(!Number.isFinite(r.nonvote??0)||(r.nonvote??0)<0||(r.nonvote??0)>100||!Number.isFinite(r.undecided)||r.undecided<0||r.undecided>100||Math.abs(r.candidates.reduce((s,c)=>s+c.support,r.undecided+(r.nonvote??0))-100)>2)throw Error('來源總和無效');
       if(!Number.isFinite(Date.parse(r.date))||!Number.isFinite(Date.parse(r.field_start)))throw Error('來源日期無效');
     }
     const ids=new Set();
@@ -51,7 +51,7 @@
     const records=feed.records.filter(r=>selected==='all'||r.county===selected);
     document.getElementById('publicPollRecords').innerHTML=records.length?records.map(r=>{
       const details=[['調查期間',`${r.field_start} 至 ${r.date}`],['有效樣本',`${r.sample_n}；${r.sample_note}`],['調查母體',r.population],['抽樣方式',r.method],['抽樣誤差',`±${r.margin_of_error} 個百分點（${r.confidence_level}% 信心水準）；不是勝率誤差`],['經費來源',r.funding],['主持人',r.supervisor||'原報告未列，未推定'],['母體人數',r.population_size||'原報告未列，未推定']];
-      return `<article class="public-poll-record"><h3>${esc(r.county)} <a href="${esc(sourceURL(r.source_url))}" target="_blank" rel="noopener noreferrer">${esc(r.source)} · ${esc(r.date)}</a></h3><div class="public-poll-values">${r.candidates.map(c=>`<span>${esc(c.name)}<strong>${esc(c.support)}%</strong></span>`).join('')}<span>未決定<strong>${esc(r.undecided)}%</strong></span></div><p>${r.model_eligible?'通過模型納入條件；同機構同縣市只採最新一期':esc(r.exclusion_reason)}</p><details><summary>調查方法與來源</summary><dl>${details.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></details></article>`;
+      return `<article class="public-poll-record"><h3>${esc(r.county)} <a href="${esc(sourceURL(r.source_url))}" target="_blank" rel="noopener noreferrer">${esc(r.source)} · ${esc(r.date)}</a></h3><div class="public-poll-values">${r.candidates.map(c=>`<span>${esc(c.name)}<strong>${esc(c.support)}%</strong></span>`).join('')}<span>未決定<strong>${esc(r.undecided)}%</strong></span>${r.nonvote!=null?`<span>不投票／廢票<strong>${esc(r.nonvote)}%</strong></span>`:''}</div><p>${r.model_eligible?'通過模型納入條件；同機構同縣市只採最新一期':esc(r.exclusion_reason)}</p><details><summary>調查方法與來源</summary><dl>${details.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('')}</dl></details></article>`;
     }).join(''):'<p class="public-poll-empty">此縣市尚無可用的自動來源資料，不以模擬值代替民調。</p>';
     document.getElementById('publicPollAudit').innerHTML=`<summary>更新紀錄與未納入報告（${feed.failures.length}）</summary><p>資料異動：${esc(feed.updated_at?displayTime(feed.updated_at):'尚無')}。完整校驗成功：${esc(displayTime(feed.last_success_at))}。</p>`+
       feed.failures.slice(0,30).map(f=>`<p><a href="${esc(sourceURL(f.url))}" target="_blank" rel="noopener noreferrer">原始報告</a>：未通過解析或連線檢查，保留上一份有效資料。<br><small>${esc(f.message)}</small></p>`).join('')+
