@@ -64,8 +64,10 @@ def build(now=None):
     source = source.replace('</head>', '<style>.legacy-notice{position:relative;z-index:999;padding:12px 24px;background:#fff3df;color:#714416;font:14px system-ui}.legacy-notice a{color:#174fa8}</style></head>', 1)
     source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
-    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs', 'candidate-research.mjs'):
+    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs', 'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
+    old_index = (ROOT / 'site/index.html').read_text(encoding='utf-8').replace('src="candidate-app.mjs"', 'src="app.mjs"')
+    (dist / 'research-legacy.html').write_text(old_index, encoding='utf-8')
     model_data = prepare(ROOT, now)
     from model.data import digest, load_dataset
     from model.roster import load_roster
@@ -89,11 +91,18 @@ def build(now=None):
     model_data['publication_pause_end'] = config['publication_pause_end']
     (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
+    from model.product import build_product
+    product = build_product(ROOT, now, feed)
+    product['publication_pause_start'] = config['publication_pause_start']
+    product['publication_pause_end'] = config['publication_pause_end']
+    product['fingerprint'] = digest({k:v for k,v in product.items() if k != 'fingerprint'})
+    (dist / 'candidate-model.json').write_text(json.dumps(product, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')
     shutil.copy2(ROOT / 'THIRD_PARTY.md', dist / 'THIRD_PARTY.md')
-    print('Built dist/index.html:', len(feed['records']), 'poll questions;', len(feed['polls']), 'new model inputs')
+    print('Built dist/index.html:', product['model_version'], ';', len(feed['records']),
+          'archived questions;', product['diagnostics']['included_reports'], 'candidate-model inputs')
 
 
 if __name__ == '__main__':

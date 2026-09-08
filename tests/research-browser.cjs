@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'../dist'),qa=path.resolve(__dirname,'../qa/re
 let failure=false;
 const server=http.createServer((req,res)=>{const pathname=new URL(req.url,'http://localhost').pathname;if(pathname==='/polls.json'&&failure){res.writeHead(503);res.end();return;}const file=path.resolve(root,'.'+(pathname==='/'?'/index.html':decodeURIComponent(pathname)));if(!file.startsWith(root+path.sep)||!fs.existsSync(file)){res.writeHead(404);res.end();return;}res.setHeader('Content-Type',({'.html':'text/html; charset=utf-8','.css':'text/css','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json'})[path.extname(file)]||'text/plain');fs.createReadStream(file).pipe(res);});
 (async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const browser=await chromium.launch({channel:'chrome',headless:true});const page=await browser.newPage({viewport:{width:1440,height:1100}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
-try{const url=`http://127.0.0.1:${server.address().port}/`;await page.goto(url);await page.waitForSelector('body[data-ready=true]');
+try{const url=`http://127.0.0.1:${server.address().port}/`;await page.goto(url+'research-legacy.html');await page.waitForSelector('body[data-ready=true]');
  assert.equal(await page.locator('.county-path').count(),22);assert.equal(await page.locator('main').count(),1);
  await page.screenshot({path:path.join(qa,'overview-desktop.png'),fullPage:true});
  await page.locator('.topbar [data-view=counties]').click();await page.locator('#countySearch').fill('新竹');assert.equal(await page.locator('#countyTable tbody tr').count(),2);

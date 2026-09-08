@@ -30,9 +30,9 @@ export function drawMap(element, geo, results, selected, mode, onSelect, deltas)
     const path=d3.geoPath(projection);
     const paths=svg.append('g').selectAll('path').data(features).join('path').attr('d',path).attr('class',f=>'county-path'+(name(f)===selected?' selected':''))
       .attr('data-county',name).attr('tabindex',0).attr('role','button')
-      .attr('aria-label',f=>{const c=results.find(c=>c.name===name(f));return `${name(f)}，${LABELS[c.winner]}領先，勝率${pct(c.probability[c.winner])}`;})
+      .attr('aria-label',f=>{const c=results.find(c=>c.name===name(f));return `${name(f)}，${c.leaderLabel||LABELS[c.winner]}領先，勝率${pct(c.leaderProbability??c.probability[c.winner])}`;})
       .attr('aria-pressed',f=>String(name(f)===selected))
-      .attr('fill',f=>{const c=results.find(c=>c.name===name(f));if(mode==='flow'){const v=deltas?.[c.name]||0;return d3.interpolateRgb('#edf0f4',v>=0?COLORS[0]:COLORS[1])(Math.min(1,Math.abs(v)/12));}return mode==='probability'?d3.interpolateRgb('#edf0f4',COLORS[c.winner])(.2+.8*c.probability[c.winner]):RATING_COLORS[rating(c)];})
+      .attr('fill',f=>{const c=results.find(c=>c.name===name(f));if(mode==='flow'){const v=deltas?.[c.name]||0;return d3.interpolateRgb('#edf0f4',v>=0?COLORS[0]:COLORS[1])(Math.min(1,Math.abs(v)/12));}if(c.leaderLabel)return mode==='probability'?d3.interpolateRgb('#edf0f4',c.leaderColor)(.2+.8*c.leaderProbability):c.leaderColor;return mode==='probability'?d3.interpolateRgb('#edf0f4',COLORS[c.winner])(.2+.8*c.probability[c.winner]):RATING_COLORS[rating(c)];})
       .on('click',(e,f)=>onSelect(name(f))).on('keydown',(e,f)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onSelect(name(f));}});
     paths.append('title').text(f=>name(f));return path;
   };

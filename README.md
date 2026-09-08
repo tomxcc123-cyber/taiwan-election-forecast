@@ -1,6 +1,8 @@
 # 台灣選舉預測公開版
 
-2026-09研究版以獨立的「總覽、縣市、民調、情境、驗證、方法」六個功能頁取代疊加的舊版首頁。原 v12 + v14 功能保留於 `legacy.html`，兩個版本的模型與情境狀態不互相覆蓋。公開網站與資料庫為唯讀；使用者模擬不寫入共用資料。此目錄是唯一的發布根目錄，不要上傳原工作區、下載資料夾、PDF 或瀏覽器設定。
+目前主站為 `2026.09-candidate-joint.1` 候選人級聯合研究版。81名登記參選人、22縣市接入同一模型，透過「總覽、縣市、民調、情境、驗證、方法」六個功能頁展示。登記不等於資格審定；預測尚未完成跨週期校準。完整實作與限制見 [成品交付說明](docs/PRODUCT_RELEASE.md)。
+
+前一版三方研究頁保留於 `research-legacy.html`，原 v12 + v14 工作台保留於 `legacy.html`，模型與情境狀態不互相覆蓋。公開網站與資料庫為唯讀；使用者模擬不寫入共用資料。此目錄是唯一的發布根目錄，不要上傳原工作區、下載資料夾、PDF 或瀏覽器設定。
 
 正式網站：https://tomxcc123-cyber.github.io/taiwan-election-forecast/
 
@@ -21,12 +23,12 @@ GitHub Pages 不需要在前端填 API 金鑰。排程使用倉庫內建 GITHUB_
 - 第一個已實作來源是 **TVBS 官方民調中心首頁中的 2026 縣市長報告**，最多 30 份。尚未宣称覆蓋所有機構或完整歷史分頁。
 - 從官方索引找 PDF，再從原始問卷表擷取全體支持度。排除施政滿意度、政黨認同、交叉表及初選題目。
 - 記錄調查開始及結束日、樣本、抽樣方式、誤差、母體文字、經費、原始來源。來源沒有披露的欄位保留缺值，不杜撰主持人或母體人數。
-- 多組對陣分開存檔，不混算。候選人組合、陣營、總和、日期不符時，不進入模型。
-- 只把 2026-06-27 專案基線之後、且與模型候選人組合完全相符的民調加入模型。同機構同縣市只用最新一期，避免原有逐筆加權機制重複放大樣本。
+- 多組對陣分開存檔，不混算。新模型以登記名單中的姓名精確配對，另行檢查日期、來源、樣本、合計及重複訪問，不沿用舊三方模型的可用旗標。
+- 同機構、同縣市的訪問期間重疊或報告重複時保留最新題目。不同期題目保留並以共享機構與時間協方差聯合更新。不完整對決僅提供列名人選的相對支持，額外增加選項誤差；不把未列人選當作零支持。
 - 更新失敗保留舊資料。網站明示降級、來源檢查過期、最新调查過舊，不把今日抓取當成今日調查。格式大幅變更可能仍需維護程式，但日常抓取與匯入無須人工。
 - 每位使用者的頁面每十分鐘讀取一次已發布的資料。瀏覽器不直接爬原始站點，避免 CORS 與前端洩漏權杖。
-- 新版使用 logistic-normal 測量更新及6,000次全台／區域相關誤差模擬；參數公開但尚未經台灣同口徑候選人資料校準。六月得票基準仍為先驗中心，不冒充重新訓練的候選人模型。舊版仍保留原啟發式模型。
-- 驗證頁的樣本外MAE/RMSE僅針對歷史KMT/DPP得票基線，不代表2026聯盟情境勝率的準確率。其他陣營假設整合為單一候選人，不能用於多人分散參選的真實席次推估。
+- 主站使用歷史候選人ridge基本面、動態高斯近似民調更新，以及2,000次候選人級聯合抽樣。每次抽樣先判定各縣市勝方，再彙總22席；無黨籍及小黨候選人不合併成虛構參選人。
+- 驗證頁同時比較基本面與同一聯合引擎在無民調、零外推條件下的2022整屆留出結果。只有一個測試週期；這不代表動態民調似然或2026勝率已經校準。超參數仍是公開研究假設，不是已估計的真實效應。
 
 ## 發布限制
 
@@ -44,18 +46,22 @@ python -m unittest discover -s tests -v
 python scripts/update_polls.py
 python scripts/build.py
 node tests/model.mjs
+node tests/candidate-engine.mjs
 # Requires Playwright with Chrome installed:
+node tests/candidate-browser.cjs
 node tests/research-browser.cjs
 node tests/browser.cjs
-python -m http.server 8080 --directory dist
+python scripts/serve_product.py
 ```
 
 `dist/index.html` 是預览，不是公開網址。部署內容只包含 `dist`，不含 `.cache` 原始報告、測試資料、工作文件或憑證。
 
 ## 結構
 
-- `site/index.html`、`styles.css`、`app.mjs`：新版頁面與導覽。
-- `site/forecast.mjs`：純函式模型；`charts.mjs`：真實地圖及區間／分布圖。
+- `site/index.html`、`styles.css`、`candidate-app.mjs`：主站頁面與導覽。
+- `model/product.py`、`joint.py`、`polling.py`：獨立候選人級模型、聯合推論及民調配對；`dist/candidate-model.json`為同版模型輸出。
+- `site/candidate-engine.mjs`：聯合抽樣上的票流、條件篩選與席次統計；`charts.mjs`：真實縣市地圖。
+- `site/app.mjs`、`forecast.mjs`：保留的三方研究頁與舊模型，不再作為主站預測。
 - `scripts/research_model.py`：歷史資料提取、時間切分回測與基準追溯。
 - `site/base.html`：保留的原網站，建置為 `legacy.html`；公開版保護由 `scripts/build.py` 注入。
 - `site/public-polls.*`：自動更新狀態、資料來源與民調清單。

@@ -1,0 +1,26 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),http=require('node:http');
+const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'playwright');
+const root=path.resolve(__dirname,'../dist'),qa=path.resolve(__dirname,'../qa/candidate-product');fs.mkdirSync(qa,{recursive:true});let fail=false;
+const server=http.createServer((req,res)=>{const p=new URL(req.url,'http://localhost').pathname;if(fail&&p==='/candidate-model.json'){res.writeHead(503);res.end();return;}const file=path.resolve(root,'.'+(p==='/'?'/index.html':decodeURIComponent(p)));if(!file.startsWith(root+path.sep)||!fs.existsSync(file)){res.writeHead(404);res.end();return;}res.setHeader('Content-Type',({'.html':'text/html;charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.json':'application/json','.css':'text/css'})[path.extname(file)]||'text/plain');fs.createReadStream(file).pipe(res);});
+(async()=>{await new Promise(r=>server.listen(0,'127.0.0.1',r));const b=await chromium.launch({channel:'chrome',headless:true}),page=await b.newPage({viewport:{width:1440,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+try{const url=process.env.CANDIDATE_URL||`http://127.0.0.1:${server.address().port}/`;await page.goto(url,{waitUntil:'networkidle'});await page.waitForSelector('body[data-ready=true]');assert.equal(await page.locator('.county-path').count(),22);assert.equal(await page.evaluate(()=>CandidateApp.data.schema_version),2);
+await page.screenshot({path:path.join(qa,'overview-desktop.png'),fullPage:true});
+await page.locator('.county-path[data-county="新竹縣"]').press('Enter');assert.equal(await page.evaluate(()=>CandidateApp.result.state.county),'新竹縣');
+await page.locator('.topbar [data-view=scenario]').click();await page.selectOption('#county','台北市');
+const before=await page.evaluate(()=>CandidateApp.result.counties.find(r=>r.name==='台北市').candidates);
+await page.locator('#boost').fill('10');await page.locator('#flow').fill('40');await page.locator('#tactical').fill('25');
+const after=await page.evaluate(()=>CandidateApp.result.counties.find(r=>r.name==='台北市').candidates);assert.notDeepEqual(before,after);
+await page.locator('[data-mode=flow]').click();assert.ok((await page.locator('.map-figure figcaption').innerText()).includes('變化'));
+const saved=await page.evaluate(()=>CandidateApp.result.summary);await page.reload({waitUntil:'networkidle'});await page.waitForSelector('body[data-ready=true]');assert.deepEqual(await page.evaluate(()=>CandidateApp.result.summary),saved);
+await page.selectOption('#constraintMode','lock');assert.equal(await page.evaluate(()=>CandidateApp.result.counties.find(r=>r.name==='台北市').candidates[0].probability),1);
+await page.locator('#reset').click();
+const likely=await page.evaluate(()=>CandidateApp.result.counties.find(r=>r.name==='台北市').candidates.reduce((a,b)=>a.probability>b.probability?a:b).candidate_id);
+await page.selectOption('#constraintCandidate',likely);assert.equal(await page.locator('#constraintCandidate').inputValue(),likely);
+await page.selectOption('#constraintMode','condition');assert.equal(await page.evaluate(id=>CandidateApp.result.counties.find(r=>r.name==='台北市').candidates.find(c=>c.candidate_id===id).probability,likely),1);
+assert.ok(await page.evaluate(()=>CandidateApp.result.simulations>=100&&CandidateApp.result.simulations<=CandidateApp.data.simulations));await page.locator('#reset').click();
+await page.locator('.topbar [data-view=counties]').click();await page.locator('#search').fill('新竹');assert.equal(await page.locator('#countyTable tbody tr').count(),2);await page.locator('[data-county="新竹市"]').click();assert.ok((await page.locator('#registrationPanel').innerText()).includes('何志勇'));
+for(const view of ['overview','counties','polls','scenario','validation','methods']){await page.locator(`.topbar [data-view=${view}]`).click();for(const width of [390,768]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${view} overflow at ${width}`);if(width===390)await page.screenshot({path:path.join(qa,view+'-mobile.png'),fullPage:true});}}
+await page.locator('.topbar [data-view=polls]').click();assert.ok((await page.locator('#page').innerText()).includes('候選人模型納入'));if(!process.env.CANDIDATE_URL){fail=true;await page.locator('#reloadPolls').click();await page.waitForFunction(()=>document.querySelector('#notice').textContent.includes('保留'));fail=false;}
+await page.locator('.topbar [data-view=methods]').click();const dl=page.waitForEvent('download');await page.locator('#export').click();assert.ok((await dl).suggestedFilename().startsWith('candidate-forecast'));
+assert.deepEqual(errors,[]);console.log(JSON.stringify({passed:true,model:await page.evaluate(()=>CandidateApp.data.model_version),polls:await page.evaluate(()=>CandidateApp.data.diagnostics.included_reports),errors}));
+}finally{await b.close();await new Promise(r=>server.close(r));}})().catch(e=>{console.error(e);server.close();process.exitCode=1;});

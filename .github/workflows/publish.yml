@@ -49,6 +49,7 @@ jobs:
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
+          if [ -f dist/candidate-model.json ]; then node tests/candidate-engine.mjs; fi
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
