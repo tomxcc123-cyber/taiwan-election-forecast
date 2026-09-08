@@ -77,7 +77,9 @@ def observation_matrices(records, candidates, settings):
         effective_n = row['sample_n'] * min(sum(row['supports'])/100, 1) / settings['design_effect']
         # Published weighted percentages are NOT converted to invented raw counts.
         variance = h @ np.diag(1/(effective_n*q)) @ h.T
-        variance += np.eye(k-1)*(settings['poll_extra_sd']**2
+        tvbs = row.get('pollster_id','').lower() == 'tvbs' or row.get('source') == 'TVBS'
+        extra_sd = settings.get('tvbs_poll_extra_sd',settings['poll_extra_sd']) if tvbs else settings['poll_extra_sd']
+        variance += np.eye(k-1)*(extra_sd**2
                     + (row['undecided']/100 * settings['undecided_sd'])**2
                     + (settings['partial_ballot_sd']**2 if row['partial_ballot'] else 0))
         matrices.append(matrix); ys.append(h @ np.log(q)); variances.append(variance)

@@ -1,0 +1,5862 @@
+{
+  "schema_version": 1,
+  "cec_data_hash": "80f0a76b750bbddc80b4785b64d305e18bb1825f277e656dcdf67514b27ce127",
+  "sources": [
+    {
+      "file": "2014九合一.zip",
+      "sha256": "cf0b8cc2d7073be248b9776e5c3e0cd8044505c94b4f4b2e0870d3e37dd485d1"
+    },
+    {
+      "file": "2018九合一.zip",
+      "sha256": "8f5837fbf54792a59fa3d5970bbbcf6e146a26a5fefae3fa22f3f2883be6bf2e"
+    },
+    {
+      "file": "2022九合一选举.zip",
+      "sha256": "6eac14c1df56110b175d590996390e7ba10d04c5bd98776f16239d8d1c2381a7"
+    },
+    {
+      "file": "TVBS_九合一历史民调_建模CSV包.zip",
+      "sha256": "58aa0a69289ceb78d38933a04e8840a141c06a67099d4a85bb694e6c49e19f6e"
+    },
+    {
+      "file": "TVBS_2014_2018_2022九合一历史民调_整理建模版.xlsx",
+      "sha256": "17f9052d920ec7bce04270ff7b27eda2fe7991ae33def4d1bd67cdf21757ccee",
+      "comparison": "All 292 candidate support and undecided values agree with CSV; not counted twice."
+    }
+  ],
+  "source_report_count": 58,
+  "records": [
+    {
+      "id": "TVBS-2014-南投縣-20140514-541be38c",
+      "year": 2014,
+      "county": "南投縣",
+      "race_id": "local-executive-2014-county-f86a4b628d2b",
+      "election_date": "2014-11-29",
+      "date": "2014-05-14",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141203095505976.pdf",
+      "source_sha256": "399f98d49fcc57dcb032c4007ebde4b7103193e04f174139ce0dea502084aa1d",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 843,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍南投縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 21.0,
+      "unlisted_or_rounding": 10.0,
+      "candidates": [
+        {
+          "name": "林明溱",
+          "support": 41.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f"
+        },
+        {
+          "name": "李文忠",
+          "support": 28.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f",
+        "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+      ],
+      "supports": [
+        41.0,
+        28.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前",
+        "未列選項差額超過捨入容許值"
+      ],
+      "source_note": "表中未列候选人/四舍五入差额约10.0个百分点；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-南投縣-20140717-541be38c",
+      "year": 2014,
+      "county": "南投縣",
+      "race_id": "local-executive-2014-county-f86a4b628d2b",
+      "election_date": "2014-11-29",
+      "date": "2014-07-17",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141203095505976.pdf",
+      "source_sha256": "399f98d49fcc57dcb032c4007ebde4b7103193e04f174139ce0dea502084aa1d",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 807,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍南投縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 34.0,
+      "unlisted_or_rounding": 4.0,
+      "candidates": [
+        {
+          "name": "林明溱",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f"
+        },
+        {
+          "name": "李文忠",
+          "support": 28.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f",
+        "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+      ],
+      "supports": [
+        34.0,
+        28.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前",
+        "未列選項差額超過捨入容許值"
+      ],
+      "source_note": "表中未列候选人/四舍五入差额约4.0个百分点；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-南投縣-20141017-541be38c",
+      "year": 2014,
+      "county": "南投縣",
+      "race_id": "local-executive-2014-county-f86a4b628d2b",
+      "election_date": "2014-11-29",
+      "date": "2014-10-17",
+      "field_start": "2014-10-15",
+      "field_mid": 735522.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141203095505976.pdf",
+      "source_sha256": "399f98d49fcc57dcb032c4007ebde4b7103193e04f174139ce0dea502084aa1d",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 906,
+      "document_sample_n": 906,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍南投縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 31.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林明溱",
+          "support": 38.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f"
+        },
+        {
+          "name": "李文忠",
+          "support": 32.0,
+          "candidate_id": "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-f86a4b628d2b-50f2cad6a32f",
+        "local-executive-2014-county-f86a4b628d2b-3678c8beb6d1"
+      ],
+      "supports": [
+        38.0,
+        32.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-台中市-20131216-a630218d",
+      "year": 2014,
+      "county": "台中市",
+      "race_id": "local-executive-2014-county-39a14e2e8228",
+      "election_date": "2014-11-29",
+      "date": "2013-12-16",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014101409542394.pdf",
+      "source_sha256": "505fe7d7f98ed97178ad9fafdad34955ee0ec002d63b9027ea3dd0ea47059b94",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 858,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台中市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 11.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林佳龍",
+          "support": 48.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "胡志強",
+          "support": 41.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-938dd656b505"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2014-county-39a14e2e8228-938dd656b505"
+      ],
+      "supports": [
+        48.0,
+        41.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台中市-20140206-a630218d",
+      "year": 2014,
+      "county": "台中市",
+      "race_id": "local-executive-2014-county-39a14e2e8228",
+      "election_date": "2014-11-29",
+      "date": "2014-02-06",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014101409542394.pdf",
+      "source_sha256": "505fe7d7f98ed97178ad9fafdad34955ee0ec002d63b9027ea3dd0ea47059b94",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 838,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台中市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 22.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林佳龍",
+          "support": 47.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "胡志強",
+          "support": 31.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-938dd656b505"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2014-county-39a14e2e8228-938dd656b505"
+      ],
+      "supports": [
+        47.0,
+        31.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台中市-20140711-a630218d",
+      "year": 2014,
+      "county": "台中市",
+      "race_id": "local-executive-2014-county-39a14e2e8228",
+      "election_date": "2014-11-29",
+      "date": "2014-07-11",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014101409542394.pdf",
+      "source_sha256": "505fe7d7f98ed97178ad9fafdad34955ee0ec002d63b9027ea3dd0ea47059b94",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 804,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台中市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 26.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林佳龍",
+          "support": 42.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "胡志強",
+          "support": 33.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-938dd656b505"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2014-county-39a14e2e8228-938dd656b505"
+      ],
+      "supports": [
+        42.0,
+        33.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台中市-20140929-a630218d",
+      "year": 2014,
+      "county": "台中市",
+      "race_id": "local-executive-2014-county-39a14e2e8228",
+      "election_date": "2014-11-29",
+      "date": "2014-09-29",
+      "field_start": "2014-09-25",
+      "field_mid": 735503.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014101409542394.pdf",
+      "source_sha256": "505fe7d7f98ed97178ad9fafdad34955ee0ec002d63b9027ea3dd0ea47059b94",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1119,
+      "document_sample_n": 1119,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台中市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 26.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林佳龍",
+          "support": 44.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "胡志強",
+          "support": 30.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-938dd656b505"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2014-county-39a14e2e8228-938dd656b505"
+      ],
+      "supports": [
+        44.0,
+        30.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-台中市-20141029-a630218d",
+      "year": 2014,
+      "county": "台中市",
+      "race_id": "local-executive-2014-county-39a14e2e8228",
+      "election_date": "2014-11-29",
+      "date": "2014-10-29",
+      "field_start": "2014-10-27",
+      "field_mid": 735534.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141030191527870.pdf",
+      "source_sha256": "0ab2d0cdb731436ed1fb810916d5a831af03c274e628c597543ab1be0d660b95",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1127,
+      "document_sample_n": 1127,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台中市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林佳龍",
+          "support": 45.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "胡志強",
+          "support": 30.0,
+          "candidate_id": "local-executive-2014-county-39a14e2e8228-938dd656b505"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2014-county-39a14e2e8228-938dd656b505"
+      ],
+      "supports": [
+        45.0,
+        30.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-台北市-20140305-f90ffd54",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-03-05",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1112,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "連勝文",
+          "support": 43.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        },
+        {
+          "name": "柯文哲",
+          "support": 42.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-1630548e8e46",
+        "local-executive-2014-county-e35db3914937-da2a07c929e2"
+      ],
+      "supports": [
+        43.0,
+        42.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台北市-20140422-f90ffd54",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-04-22",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 807,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 15.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "連勝文",
+          "support": 47.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        },
+        {
+          "name": "柯文哲",
+          "support": 38.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-1630548e8e46",
+        "local-executive-2014-county-e35db3914937-da2a07c929e2"
+      ],
+      "supports": [
+        47.0,
+        38.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台北市-20140606-f90ffd54",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-06-06",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 867,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 45.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "連勝文",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-da2a07c929e2",
+        "local-executive-2014-county-e35db3914937-1630548e8e46"
+      ],
+      "supports": [
+        45.0,
+        39.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台北市-20140621-f90ffd54",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-06-21",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 946,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 19.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 47.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "連勝文",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-da2a07c929e2",
+        "local-executive-2014-county-e35db3914937-1630548e8e46"
+      ],
+      "supports": [
+        47.0,
+        34.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台北市-20140820-f90ffd54",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-08-20",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1047,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 23.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 44.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "連勝文",
+          "support": 33.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-da2a07c929e2",
+        "local-executive-2014-county-e35db3914937-1630548e8e46"
+      ],
+      "supports": [
+        44.0,
+        33.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台北市-20140917-1c9a37f8",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-09-17",
+      "field_start": "2014-09-15",
+      "field_mid": 735492.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140919190200499.pdf",
+      "source_sha256": "884e6fcf63e89e024bb284d2a9b35f4b6e92a6cefe994149e8f7ed32aadab734",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1107,
+      "document_sample_n": 1107,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 19.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 45.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "連勝文",
+          "support": 33.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        },
+        {
+          "name": "馮光遠",
+          "support": 2.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-d47b55e2b98b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-da2a07c929e2",
+        "local-executive-2014-county-e35db3914937-1630548e8e46",
+        "local-executive-2014-county-e35db3914937-d47b55e2b98b"
+      ],
+      "supports": [
+        45.0,
+        33.0,
+        2.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-台北市-20141021-1c9a37f8",
+      "year": 2014,
+      "county": "台北市",
+      "race_id": "local-executive-2014-county-e35db3914937",
+      "election_date": "2014-11-29",
+      "date": "2014-10-21",
+      "field_start": "2014-10-17",
+      "field_mid": 735525.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141023235234546.pdf",
+      "source_sha256": "439d7135f8f6f67780280e9419c96caf45e383723aab79c43eb6c435ee97aea7",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1219,
+      "document_sample_n": 1219,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 47.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "連勝文",
+          "support": 32.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-1630548e8e46"
+        },
+        {
+          "name": "馮光遠",
+          "support": 2.0,
+          "candidate_id": "local-executive-2014-county-e35db3914937-d47b55e2b98b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-e35db3914937-da2a07c929e2",
+        "local-executive-2014-county-e35db3914937-1630548e8e46",
+        "local-executive-2014-county-e35db3914937-d47b55e2b98b"
+      ],
+      "supports": [
+        47.0,
+        32.0,
+        2.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-台南市-20141003-5296dd7c",
+      "year": 2014,
+      "county": "台南市",
+      "race_id": "local-executive-2014-county-2555d8a05557",
+      "election_date": "2014-11-29",
+      "date": "2014-10-03",
+      "field_start": "2014-10-01",
+      "field_mid": 735508.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014102018082448.pdf",
+      "source_sha256": "b95e1af8e1f434a460d3c3458f2d95e53d302507293416bb16720edc7c296513",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 807,
+      "document_sample_n": 807,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在台南市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後兩碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 17.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "賴清德",
+          "support": 67.0,
+          "candidate_id": "local-executive-2014-county-2555d8a05557-c0a05b81bd00"
+        },
+        {
+          "name": "黃秀霜",
+          "support": 16.0,
+          "candidate_id": "local-executive-2014-county-2555d8a05557-0d1380220a8f"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2555d8a05557-c0a05b81bd00",
+        "local-executive-2014-county-2555d8a05557-0d1380220a8f"
+      ],
+      "supports": [
+        67.0,
+        16.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": "抽样为电话后两码，区别于多数后四码"
+    },
+    {
+      "id": "TVBS-2014-台東縣-20131128-e896fcd7",
+      "year": 2014,
+      "county": "台東縣",
+      "race_id": "local-executive-2014-county-2f29ef121b19",
+      "election_date": "2014-11-29",
+      "date": "2013-11-28",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140821213301439.pdf",
+      "source_sha256": "34424f3e634658fa4780f67d0acb5726188b8f3574f92ec969e24064a8b26928",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 800,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台東縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "黃健庭",
+          "support": 49.0,
+          "candidate_id": "local-executive-2014-county-2f29ef121b19-5ab1376bc9aa"
+        },
+        {
+          "name": "劉櫂豪",
+          "support": 26.0,
+          "candidate_id": "local-executive-2014-county-2f29ef121b19-92e977e81ff3"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2f29ef121b19-5ab1376bc9aa",
+        "local-executive-2014-county-2f29ef121b19-92e977e81ff3"
+      ],
+      "supports": [
+        49.0,
+        26.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-台東縣-20140819-e896fcd7",
+      "year": 2014,
+      "county": "台東縣",
+      "race_id": "local-executive-2014-county-2f29ef121b19",
+      "election_date": "2014-11-29",
+      "date": "2014-08-19",
+      "field_start": "2014-08-15",
+      "field_mid": 735462.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140821213301439.pdf",
+      "source_sha256": "34424f3e634658fa4780f67d0acb5726188b8f3574f92ec969e24064a8b26928",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 803,
+      "document_sample_n": 803,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍台東縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 29.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃健庭",
+          "support": 44.0,
+          "candidate_id": "local-executive-2014-county-2f29ef121b19-5ab1376bc9aa"
+        },
+        {
+          "name": "劉櫂豪",
+          "support": 27.0,
+          "candidate_id": "local-executive-2014-county-2f29ef121b19-92e977e81ff3"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2f29ef121b19-5ab1376bc9aa",
+        "local-executive-2014-county-2f29ef121b19-92e977e81ff3"
+      ],
+      "supports": [
+        44.0,
+        27.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-嘉義市-20140109-d49f272e",
+      "year": 2014,
+      "county": "嘉義市",
+      "race_id": "local-executive-2014-county-c7cf2c480cf8",
+      "election_date": "2014-11-29",
+      "date": "2014-01-09",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014073018270230.pdf",
+      "source_sha256": "f2e612eb0f67170596a0c4b26ee1cfe268a074aeb7eb12299791a7d37c999d56",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 821,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在嘉義市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 10.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "涂醒哲",
+          "support": 46.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4"
+        },
+        {
+          "name": "陳以真",
+          "support": 44.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4",
+        "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+      ],
+      "supports": [
+        46.0,
+        44.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-嘉義市-20140218-d49f272e",
+      "year": 2014,
+      "county": "嘉義市",
+      "race_id": "local-executive-2014-county-c7cf2c480cf8",
+      "election_date": "2014-11-29",
+      "date": "2014-02-18",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014073018270230.pdf",
+      "source_sha256": "f2e612eb0f67170596a0c4b26ee1cfe268a074aeb7eb12299791a7d37c999d56",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1027,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在嘉義市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 17.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "涂醒哲",
+          "support": 43.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4"
+        },
+        {
+          "name": "陳以真",
+          "support": 40.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4",
+        "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+      ],
+      "supports": [
+        43.0,
+        40.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-嘉義市-20140724-d49f272e",
+      "year": 2014,
+      "county": "嘉義市",
+      "race_id": "local-executive-2014-county-c7cf2c480cf8",
+      "election_date": "2014-11-29",
+      "date": "2014-07-24",
+      "field_start": "2014-07-21",
+      "field_mid": 735436.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2014073018270230.pdf",
+      "source_sha256": "f2e612eb0f67170596a0c4b26ee1cfe268a074aeb7eb12299791a7d37c999d56",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 805,
+      "document_sample_n": 805,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在嘉義市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 26.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳以真",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+        },
+        {
+          "name": "涂醒哲",
+          "support": 35.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143",
+        "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4"
+      ],
+      "supports": [
+        39.0,
+        35.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-嘉義市-20140923-448f1a25",
+      "year": 2014,
+      "county": "嘉義市",
+      "race_id": "local-executive-2014-county-c7cf2c480cf8",
+      "election_date": "2014-11-29",
+      "date": "2014-09-23",
+      "field_start": "2014-09-19",
+      "field_mid": 735497.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140929181800633.pdf",
+      "source_sha256": "6b3e7d565a7ce67eabe3ecf855e0e3222e456657bf6b9b5014e2cb5c1dff8b7f",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1006,
+      "document_sample_n": 1006,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在嘉義市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 26.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳以真",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143"
+        },
+        {
+          "name": "涂醒哲",
+          "support": 33.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4"
+        },
+        {
+          "name": "陳秀麗",
+          "support": 2.0,
+          "candidate_id": "local-executive-2014-county-c7cf2c480cf8-6b25bcf4f60d"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-c7cf2c480cf8-83d2f65eb143",
+        "local-executive-2014-county-c7cf2c480cf8-81d2fe637fb4",
+        "local-executive-2014-county-c7cf2c480cf8-6b25bcf4f60d"
+      ],
+      "supports": [
+        39.0,
+        33.0,
+        2.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-基隆市-20140731-a7cf2b5b",
+      "year": 2014,
+      "county": "基隆市",
+      "race_id": "local-executive-2014-county-b1067dd41531",
+      "election_date": "2014-11-29",
+      "date": "2014-07-31",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140929181739770.pdf",
+      "source_sha256": "bfc1bf306e2db55c68c2967fd6883e6c483e78a6e461d969347265a627a44f39",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 807,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍基隆市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林右昌",
+          "support": 44.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-2d8e176a4d43"
+        },
+        {
+          "name": "黃景泰",
+          "support": 19.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-7bacee6fa10f"
+        },
+        {
+          "name": "謝立功",
+          "support": 13.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-4943eebd0265"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-b1067dd41531-2d8e176a4d43",
+        "local-executive-2014-county-b1067dd41531-7bacee6fa10f",
+        "local-executive-2014-county-b1067dd41531-4943eebd0265"
+      ],
+      "supports": [
+        44.0,
+        19.0,
+        13.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-基隆市-20140925-a7cf2b5b",
+      "year": 2014,
+      "county": "基隆市",
+      "race_id": "local-executive-2014-county-b1067dd41531",
+      "election_date": "2014-11-29",
+      "date": "2014-09-25",
+      "field_start": "2014-09-23",
+      "field_mid": 735500.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140929181739770.pdf",
+      "source_sha256": "bfc1bf306e2db55c68c2967fd6883e6c483e78a6e461d969347265a627a44f39",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 803,
+      "document_sample_n": 803,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍基隆市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 31.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林右昌",
+          "support": 42.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-2d8e176a4d43"
+        },
+        {
+          "name": "謝立功",
+          "support": 15.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-4943eebd0265"
+        },
+        {
+          "name": "黃景泰",
+          "support": 12.0,
+          "candidate_id": "local-executive-2014-county-b1067dd41531-7bacee6fa10f"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-b1067dd41531-2d8e176a4d43",
+        "local-executive-2014-county-b1067dd41531-4943eebd0265",
+        "local-executive-2014-county-b1067dd41531-7bacee6fa10f"
+      ],
+      "supports": [
+        42.0,
+        15.0,
+        12.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-宜蘭縣-20131125-25e62397",
+      "year": 2014,
+      "county": "宜蘭縣",
+      "race_id": "local-executive-2014-county-2f3ede12c290",
+      "election_date": "2014-11-29",
+      "date": "2013-11-25",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140915120507316.pdf",
+      "source_sha256": "cab8de3d5f909ed1f59268ae353f497f59d6f431421dbcc358151ddeaa1d6e20",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 885,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍宜蘭縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林聰賢",
+          "support": 61.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-faca2076fa19"
+        },
+        {
+          "name": "邱淑媞",
+          "support": 15.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2f3ede12c290-faca2076fa19",
+        "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+      ],
+      "supports": [
+        61.0,
+        15.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-宜蘭縣-20140220-25e62397",
+      "year": 2014,
+      "county": "宜蘭縣",
+      "race_id": "local-executive-2014-county-2f3ede12c290",
+      "election_date": "2014-11-29",
+      "date": "2014-02-20",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140915120507316.pdf",
+      "source_sha256": "cab8de3d5f909ed1f59268ae353f497f59d6f431421dbcc358151ddeaa1d6e20",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 987,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍宜蘭縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 30.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林聰賢",
+          "support": 50.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-faca2076fa19"
+        },
+        {
+          "name": "邱淑媞",
+          "support": 20.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2f3ede12c290-faca2076fa19",
+        "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+      ],
+      "supports": [
+        50.0,
+        20.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-宜蘭縣-20140826-25e62397",
+      "year": 2014,
+      "county": "宜蘭縣",
+      "race_id": "local-executive-2014-county-2f3ede12c290",
+      "election_date": "2014-11-29",
+      "date": "2014-08-26",
+      "field_start": "2014-08-22",
+      "field_mid": 735469.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140915120507316.pdf",
+      "source_sha256": "cab8de3d5f909ed1f59268ae353f497f59d6f431421dbcc358151ddeaa1d6e20",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 811,
+      "document_sample_n": 811,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍宜蘭縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 32.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林聰賢",
+          "support": 51.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-faca2076fa19"
+        },
+        {
+          "name": "邱淑媞",
+          "support": 17.0,
+          "candidate_id": "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-2f3ede12c290-faca2076fa19",
+        "local-executive-2014-county-2f3ede12c290-1cf7a8621dcb"
+      ],
+      "supports": [
+        51.0,
+        17.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-屏東縣-20131206-2ef6b22a",
+      "year": 2014,
+      "county": "屏東縣",
+      "race_id": "local-executive-2014-county-780b480cd047",
+      "election_date": "2014-11-29",
+      "date": "2013-12-06",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140801150524567.pdf",
+      "source_sha256": "7f1e903a3b5bb7fad410746b21a180947641caf470a63f26ebfc82095d1f0bc1",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 805,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在屏東縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "潘孟安",
+          "support": 67.0,
+          "candidate_id": "local-executive-2014-county-780b480cd047-66de77220b1b"
+        },
+        {
+          "name": "簡太郎",
+          "support": 9.0,
+          "candidate_id": "local-executive-2014-county-780b480cd047-f91d776009dd"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-780b480cd047-66de77220b1b",
+        "local-executive-2014-county-780b480cd047-f91d776009dd"
+      ],
+      "supports": [
+        67.0,
+        9.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-屏東縣-20140730-2ef6b22a",
+      "year": 2014,
+      "county": "屏東縣",
+      "race_id": "local-executive-2014-county-780b480cd047",
+      "election_date": "2014-11-29",
+      "date": "2014-07-30",
+      "field_start": "2014-07-28",
+      "field_mid": 735443.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140801150524567.pdf",
+      "source_sha256": "7f1e903a3b5bb7fad410746b21a180947641caf470a63f26ebfc82095d1f0bc1",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 804,
+      "document_sample_n": 804,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在屏東縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 30.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "潘孟安",
+          "support": 55.0,
+          "candidate_id": "local-executive-2014-county-780b480cd047-66de77220b1b"
+        },
+        {
+          "name": "簡太郎",
+          "support": 16.0,
+          "candidate_id": "local-executive-2014-county-780b480cd047-f91d776009dd"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-780b480cd047-66de77220b1b",
+        "local-executive-2014-county-780b480cd047-f91d776009dd"
+      ],
+      "supports": [
+        55.0,
+        16.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-彰化縣-20131220-8ea0c8ef",
+      "year": 2014,
+      "county": "彰化縣",
+      "race_id": "local-executive-2014-county-1175fce2e312",
+      "election_date": "2014-11-29",
+      "date": "2013-12-20",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140731201750476.pdf",
+      "source_sha256": "7b8a72dc07ee7182a93e181d0714de1815eb0d6c044866c62134cda760a659ab",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 834,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在彰化縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "魏明谷",
+          "support": 42.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-728a702e2977"
+        },
+        {
+          "name": "林滄敏",
+          "support": 38.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-67d3099e4bb7"
+        },
+        {
+          "name": "黃文玲",
+          "support": 4.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-9ce216d03602"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1175fce2e312-728a702e2977",
+        "local-executive-2014-county-1175fce2e312-67d3099e4bb7",
+        "local-executive-2014-county-1175fce2e312-9ce216d03602"
+      ],
+      "supports": [
+        42.0,
+        38.0,
+        4.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-彰化縣-20140512-8ea0c8ef",
+      "year": 2014,
+      "county": "彰化縣",
+      "race_id": "local-executive-2014-county-1175fce2e312",
+      "election_date": "2014-11-29",
+      "date": "2014-05-12",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140731201750476.pdf",
+      "source_sha256": "7b8a72dc07ee7182a93e181d0714de1815eb0d6c044866c62134cda760a659ab",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1016,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在彰化縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 28.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林滄敏",
+          "support": 40.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-67d3099e4bb7"
+        },
+        {
+          "name": "魏明谷",
+          "support": 28.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-728a702e2977"
+        },
+        {
+          "name": "黃文玲",
+          "support": 4.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-9ce216d03602"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1175fce2e312-67d3099e4bb7",
+        "local-executive-2014-county-1175fce2e312-728a702e2977",
+        "local-executive-2014-county-1175fce2e312-9ce216d03602"
+      ],
+      "supports": [
+        40.0,
+        28.0,
+        4.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-彰化縣-20140715-8ea0c8ef",
+      "year": 2014,
+      "county": "彰化縣",
+      "race_id": "local-executive-2014-county-1175fce2e312",
+      "election_date": "2014-11-29",
+      "date": "2014-07-15",
+      "field_start": "2014-07-11",
+      "field_mid": 735427.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140731201750476.pdf",
+      "source_sha256": "7b8a72dc07ee7182a93e181d0714de1815eb0d6c044866c62134cda760a659ab",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 804,
+      "document_sample_n": 804,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在彰化縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 33.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "林滄敏",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-67d3099e4bb7"
+        },
+        {
+          "name": "魏明谷",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-728a702e2977"
+        },
+        {
+          "name": "黃文玲",
+          "support": 3.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-9ce216d03602"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1175fce2e312-67d3099e4bb7",
+        "local-executive-2014-county-1175fce2e312-728a702e2977",
+        "local-executive-2014-county-1175fce2e312-9ce216d03602"
+      ],
+      "supports": [
+        34.0,
+        29.0,
+        3.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-彰化縣-20141003-8ea0c8ef",
+      "year": 2014,
+      "county": "彰化縣",
+      "race_id": "local-executive-2014-county-1175fce2e312",
+      "election_date": "2014-11-29",
+      "date": "2014-10-03",
+      "field_start": "2014-10-02",
+      "field_mid": 735508.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141014095549959.pdf",
+      "source_sha256": "a320273b8f7335266357a715ab1b1eb54d6b7cfcfb9280ffa062b13add1f60f9",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 885,
+      "document_sample_n": 885,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在彰化縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 36.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林滄敏",
+          "support": 30.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-67d3099e4bb7"
+        },
+        {
+          "name": "魏明谷",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-728a702e2977"
+        },
+        {
+          "name": "黃文玲",
+          "support": 5.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-9ce216d03602"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1175fce2e312-67d3099e4bb7",
+        "local-executive-2014-county-1175fce2e312-728a702e2977",
+        "local-executive-2014-county-1175fce2e312-9ce216d03602"
+      ],
+      "supports": [
+        30.0,
+        29.0,
+        5.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-彰化縣-20141031-8ea0c8ef",
+      "year": 2014,
+      "county": "彰化縣",
+      "race_id": "local-executive-2014-county-1175fce2e312",
+      "election_date": "2014-11-29",
+      "date": "2014-10-31",
+      "field_start": "2014-10-30",
+      "field_mid": 735536.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141103180639710.pdf",
+      "source_sha256": "91ce62b2c448d6577b422fd6fc24e973af9af5c9daeeff0e1054c55b0566f898",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1107,
+      "document_sample_n": 1107,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在彰化縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 33.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "林滄敏",
+          "support": 31.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-67d3099e4bb7"
+        },
+        {
+          "name": "魏明谷",
+          "support": 31.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-728a702e2977"
+        },
+        {
+          "name": "黃文玲",
+          "support": 4.0,
+          "candidate_id": "local-executive-2014-county-1175fce2e312-9ce216d03602"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1175fce2e312-67d3099e4bb7",
+        "local-executive-2014-county-1175fce2e312-728a702e2977",
+        "local-executive-2014-county-1175fce2e312-9ce216d03602"
+      ],
+      "supports": [
+        31.0,
+        31.0,
+        4.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-新北市-20140103-49533eb1",
+      "year": 2014,
+      "county": "新北市",
+      "race_id": "local-executive-2014-county-a46602cecd9b",
+      "election_date": "2014-11-29",
+      "date": "2014-01-03",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141105153919282.pdf",
+      "source_sha256": "2d534c9ee5aa18bd16f983783e5ff4e577c31c6afcfdda067315a36877a185f3",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 966,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 7.0,
+      "unlisted_or_rounding": 4.0,
+      "candidates": [
+        {
+          "name": "朱立倫",
+          "support": 67.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-1525753518d8"
+        },
+        {
+          "name": "游錫堃",
+          "support": 22.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a46602cecd9b-1525753518d8",
+        "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+      ],
+      "supports": [
+        67.0,
+        22.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前",
+        "未列選項差額超過捨入容許值"
+      ],
+      "source_note": "表中未列候选人/四舍五入差额约4.0个百分点；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-新北市-20140415-49533eb1",
+      "year": 2014,
+      "county": "新北市",
+      "race_id": "local-executive-2014-county-a46602cecd9b",
+      "election_date": "2014-11-29",
+      "date": "2014-04-15",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141105153919282.pdf",
+      "source_sha256": "2d534c9ee5aa18bd16f983783e5ff4e577c31c6afcfdda067315a36877a185f3",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 907,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 11.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "朱立倫",
+          "support": 60.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-1525753518d8"
+        },
+        {
+          "name": "游錫堃",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a46602cecd9b-1525753518d8",
+        "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+      ],
+      "supports": [
+        60.0,
+        29.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-新北市-20140701-49533eb1",
+      "year": 2014,
+      "county": "新北市",
+      "race_id": "local-executive-2014-county-a46602cecd9b",
+      "election_date": "2014-11-29",
+      "date": "2014-07-01",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141105153919282.pdf",
+      "source_sha256": "2d534c9ee5aa18bd16f983783e5ff4e577c31c6afcfdda067315a36877a185f3",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 960,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 20.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "朱立倫",
+          "support": 52.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-1525753518d8"
+        },
+        {
+          "name": "游錫堃",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a46602cecd9b-1525753518d8",
+        "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+      ],
+      "supports": [
+        52.0,
+        29.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-新北市-20141103-49533eb1",
+      "year": 2014,
+      "county": "新北市",
+      "race_id": "local-executive-2014-county-a46602cecd9b",
+      "election_date": "2014-11-29",
+      "date": "2014-11-03",
+      "field_start": "2014-10-29",
+      "field_mid": 735537.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141105153919282.pdf",
+      "source_sha256": "2d534c9ee5aa18bd16f983783e5ff4e577c31c6afcfdda067315a36877a185f3",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 826,
+      "document_sample_n": 826,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新北市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 23.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "朱立倫",
+          "support": 49.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-1525753518d8"
+        },
+        {
+          "name": "游錫堃",
+          "support": 28.0,
+          "candidate_id": "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a46602cecd9b-1525753518d8",
+        "local-executive-2014-county-a46602cecd9b-b07bada9b49b"
+      ],
+      "supports": [
+        49.0,
+        28.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-新竹市-20140822-35640f6e",
+      "year": 2014,
+      "county": "新竹市",
+      "race_id": "local-executive-2014-county-3bbf653c4d64",
+      "election_date": "2014-11-29",
+      "date": "2014-08-22",
+      "field_start": "2014-08-20",
+      "field_mid": 735466.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "bd72d7b99eed2e83996ad6b376da5e83.pdf",
+      "source_sha256": "45d53ae9d8c0571181fd3e9721f56d927cb7064b706b115cf946bbff2b989c87",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 808,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新竹市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "許明財",
+          "support": 40.0,
+          "candidate_id": "local-executive-2014-county-3bbf653c4d64-f978432afbc4"
+        },
+        {
+          "name": "蔡仁堅",
+          "support": 20.0,
+          "candidate_id": "local-executive-2014-county-3bbf653c4d64-94143c4a97a4"
+        },
+        {
+          "name": "林智堅",
+          "support": 16.0,
+          "candidate_id": "local-executive-2014-county-3bbf653c4d64-77648220606d"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-3bbf653c4d64-f978432afbc4",
+        "local-executive-2014-county-3bbf653c4d64-94143c4a97a4",
+        "local-executive-2014-county-3bbf653c4d64-77648220606d"
+      ],
+      "supports": [
+        40.0,
+        20.0,
+        16.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-新竹市-20140822-cbbbcf22",
+      "year": 2014,
+      "county": "新竹市",
+      "race_id": "local-executive-2014-county-3bbf653c4d64",
+      "election_date": "2014-11-29",
+      "date": "2014-08-22",
+      "field_start": "2014-08-20",
+      "field_mid": 735466.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "bd72d7b99eed2e83996ad6b376da5e83.pdf",
+      "source_sha256": "45d53ae9d8c0571181fd3e9721f56d927cb7064b706b115cf946bbff2b989c87",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": null,
+      "document_sample_n": 808,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍新竹市會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 20.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "許明財",
+          "support": 51.0,
+          "candidate_id": "local-executive-2014-county-3bbf653c4d64-f978432afbc4"
+        },
+        {
+          "name": "林智堅",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-3bbf653c4d64-77648220606d"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-3bbf653c4d64-f978432afbc4",
+        "local-executive-2014-county-3bbf653c4d64-77648220606d"
+      ],
+      "supports": [
+        51.0,
+        29.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2014-桃園市-20140506-4d70f8b6",
+      "year": 2014,
+      "county": "桃園市",
+      "race_id": "local-executive-2014-county-eed891611f5f",
+      "election_date": "2014-11-29",
+      "date": "2014-05-06",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140922173051867.pdf",
+      "source_sha256": "068fbaa6565d15368c6d32ec7f731b9318e65d744afffc0170be6ab2eb08217f",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 928,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在桃園縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 22.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "吳志揚",
+          "support": 50.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-660f641fbaf8"
+        },
+        {
+          "name": "鄭文燦",
+          "support": 28.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-eed891611f5f-660f641fbaf8",
+        "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+      ],
+      "supports": [
+        50.0,
+        28.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-桃園市-20140604-4d70f8b6",
+      "year": 2014,
+      "county": "桃園市",
+      "race_id": "local-executive-2014-county-eed891611f5f",
+      "election_date": "2014-11-29",
+      "date": "2014-06-04",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140922173051867.pdf",
+      "source_sha256": "068fbaa6565d15368c6d32ec7f731b9318e65d744afffc0170be6ab2eb08217f",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1061,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在桃園縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "吳志揚",
+          "support": 42.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-660f641fbaf8"
+        },
+        {
+          "name": "鄭文燦",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-eed891611f5f-660f641fbaf8",
+        "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+      ],
+      "supports": [
+        42.0,
+        34.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-桃園市-20140918-4d70f8b6",
+      "year": 2014,
+      "county": "桃園市",
+      "race_id": "local-executive-2014-county-eed891611f5f",
+      "election_date": "2014-11-29",
+      "date": "2014-09-18",
+      "field_start": "2014-09-17",
+      "field_mid": 735493.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140922173051867.pdf",
+      "source_sha256": "068fbaa6565d15368c6d32ec7f731b9318e65d744afffc0170be6ab2eb08217f",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 871,
+      "document_sample_n": 871,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在桃園縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "吳志揚",
+          "support": 46.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-660f641fbaf8"
+        },
+        {
+          "name": "鄭文燦",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-eed891611f5f-660f641fbaf8",
+        "local-executive-2014-county-eed891611f5f-6e6a4670c431"
+      ],
+      "supports": [
+        46.0,
+        29.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-澎湖縣-20131203-5e518640",
+      "year": 2014,
+      "county": "澎湖縣",
+      "race_id": "local-executive-2014-county-1fa460ca48ae",
+      "election_date": "2014-11-29",
+      "date": "2013-12-03",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140821213227819.pdf",
+      "source_sha256": "346d7d7d7dd72305aec5bd4e3c807e56755dde2f85c040e16709b4f4ef1c337c",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 819,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍澎湖縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 21.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳光復",
+          "support": 47.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-85e0eb396249"
+        },
+        {
+          "name": "蘇崑雄",
+          "support": 32.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-32e615435329"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1fa460ca48ae-85e0eb396249",
+        "local-executive-2014-county-1fa460ca48ae-32e615435329"
+      ],
+      "supports": [
+        47.0,
+        32.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-澎湖縣-20140815-5e518640",
+      "year": 2014,
+      "county": "澎湖縣",
+      "race_id": "local-executive-2014-county-1fa460ca48ae",
+      "election_date": "2014-11-29",
+      "date": "2014-08-15",
+      "field_start": "2014-08-13",
+      "field_mid": 735459.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140821213227819.pdf",
+      "source_sha256": "346d7d7d7dd72305aec5bd4e3c807e56755dde2f85c040e16709b4f4ef1c337c",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 811,
+      "document_sample_n": 811,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍澎湖縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "蘇崑雄",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-32e615435329"
+        },
+        {
+          "name": "陳光復",
+          "support": 36.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-85e0eb396249"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1fa460ca48ae-32e615435329",
+        "local-executive-2014-county-1fa460ca48ae-85e0eb396249"
+      ],
+      "supports": [
+        39.0,
+        36.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-澎湖縣-20141027-5e518640",
+      "year": 2014,
+      "county": "澎湖縣",
+      "race_id": "local-executive-2014-county-1fa460ca48ae",
+      "election_date": "2014-11-29",
+      "date": "2014-10-27",
+      "field_start": "2014-10-23",
+      "field_mid": 735531.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141028180658816.pdf",
+      "source_sha256": "6a256b2962c2222e72b6595c55578626d61f0e0aedb7c9463335eaf9e6b8bd67",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 913,
+      "document_sample_n": 913,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍澎湖縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 27.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳光復",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-85e0eb396249"
+        },
+        {
+          "name": "蘇崑雄",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-1fa460ca48ae-32e615435329"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-1fa460ca48ae-85e0eb396249",
+        "local-executive-2014-county-1fa460ca48ae-32e615435329"
+      ],
+      "supports": [
+        39.0,
+        34.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-花蓮縣-20141002-29353890",
+      "year": 2014,
+      "county": "花蓮縣",
+      "race_id": "local-executive-2014-county-a0b9b4804c8c",
+      "election_date": "2014-11-29",
+      "date": "2014-10-02",
+      "field_start": "2014-09-30",
+      "field_mid": 735507.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141020180755385.pdf",
+      "source_sha256": "2f218e0c945a839a3b976a194a0c132f60ac39987c18500b6af2b01a7e76dc8f",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": null,
+      "document_sample_n": 805,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在花蓮縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 20.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "徐榛蔚",
+          "support": 43.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-9f6feef62251"
+        },
+        {
+          "name": "蔡啟塔",
+          "support": 29.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-0544abedbd8c"
+        },
+        {
+          "name": "柯賜海",
+          "support": 8.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-671cf243ef0c"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a0b9b4804c8c-9f6feef62251",
+        "local-executive-2014-county-a0b9b4804c8c-0544abedbd8c",
+        "local-executive-2014-county-a0b9b4804c8c-671cf243ef0c"
+      ],
+      "supports": [
+        43.0,
+        29.0,
+        8.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2014-花蓮縣-20141002-4663ecab",
+      "year": 2014,
+      "county": "花蓮縣",
+      "race_id": "local-executive-2014-county-a0b9b4804c8c",
+      "election_date": "2014-11-29",
+      "date": "2014-10-02",
+      "field_start": "2014-09-30",
+      "field_mid": 735507.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141020180755385.pdf",
+      "source_sha256": "2f218e0c945a839a3b976a194a0c132f60ac39987c18500b6af2b01a7e76dc8f",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 805,
+      "turnout_screen": true,
+      "population": "20 歲以上戶籍設在花蓮縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "傅崐萁",
+          "support": 59.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-ceb4b60a72fb"
+        },
+        {
+          "name": "蔡啟塔",
+          "support": 17.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-0544abedbd8c"
+        },
+        {
+          "name": "柯賜海",
+          "support": 7.0,
+          "candidate_id": "local-executive-2014-county-a0b9b4804c8c-671cf243ef0c"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-a0b9b4804c8c-ceb4b60a72fb",
+        "local-executive-2014-county-a0b9b4804c8c-0544abedbd8c",
+        "local-executive-2014-county-a0b9b4804c8c-671cf243ef0c"
+      ],
+      "supports": [
+        59.0,
+        17.0,
+        7.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-苗栗縣-20140709-b0ea09fe",
+      "year": 2014,
+      "county": "苗栗縣",
+      "race_id": "local-executive-2014-county-cff72749bf92",
+      "election_date": "2014-11-29",
+      "date": "2014-07-09",
+      "field_start": "2014-07-07",
+      "field_mid": 735422.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2015010512364433.pdf",
+      "source_sha256": "2169b69caff55a0b8dde0c44cbb1b3139dd9dab912937b87cd7537c761c04b0f",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 803,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍苗栗縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 33.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "徐耀昌",
+          "support": 40.0,
+          "candidate_id": "local-executive-2014-county-cff72749bf92-31bcc6be2d9f"
+        },
+        {
+          "name": "康世儒",
+          "support": 17.0,
+          "candidate_id": "local-executive-2014-county-cff72749bf92-7c54005c6096"
+        },
+        {
+          "name": "吳宜臻",
+          "support": 10.0,
+          "candidate_id": "local-executive-2014-county-cff72749bf92-78c8ac0aa158"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-cff72749bf92-31bcc6be2d9f",
+        "local-executive-2014-county-cff72749bf92-7c54005c6096",
+        "local-executive-2014-county-cff72749bf92-78c8ac0aa158"
+      ],
+      "supports": [
+        40.0,
+        17.0,
+        10.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-金門縣-20131121-76be0c6a",
+      "year": 2014,
+      "county": "金門縣",
+      "race_id": "local-executive-2014-county-70749066df2a",
+      "election_date": "2014-11-29",
+      "date": "2013-11-21",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140915120544475.pdf",
+      "source_sha256": "a37da96608b173f7817d7d900a8dac70a9af333dd770151c2ac7c6c694133a33",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 848,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍金門縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "",
+      "undecided": 36.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "李沃士",
+          "support": 39.0,
+          "candidate_id": "local-executive-2014-county-70749066df2a-958cffbe694d"
+        },
+        {
+          "name": "陳福海",
+          "support": 25.0,
+          "candidate_id": "local-executive-2014-county-70749066df2a-951d199e5f96"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-70749066df2a-958cffbe694d",
+        "local-executive-2014-county-70749066df2a-951d199e5f96"
+      ],
+      "supports": [
+        39.0,
+        25.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-金門縣-20140910-aa8b0b7b",
+      "year": 2014,
+      "county": "金門縣",
+      "race_id": "local-executive-2014-county-70749066df2a",
+      "election_date": "2014-11-29",
+      "date": "2014-09-10",
+      "field_start": "2014-09-05",
+      "field_mid": 735483.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20140915120544475.pdf",
+      "source_sha256": "a37da96608b173f7817d7d900a8dac70a9af333dd770151c2ac7c6c694133a33",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 807,
+      "document_sample_n": 807,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍金門縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100；其他候選人因比例過低未列出",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 39.0,
+      "unlisted_or_rounding": 2.0,
+      "candidates": [
+        {
+          "name": "李沃士",
+          "support": 31.0,
+          "candidate_id": "local-executive-2014-county-70749066df2a-958cffbe694d"
+        },
+        {
+          "name": "陳福海",
+          "support": 25.0,
+          "candidate_id": "local-executive-2014-county-70749066df2a-951d199e5f96"
+        },
+        {
+          "name": "洪志恒",
+          "support": 3.0,
+          "candidate_id": "local-executive-2014-county-70749066df2a-b86ecc5fb8f9"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-70749066df2a-958cffbe694d",
+        "local-executive-2014-county-70749066df2a-951d199e5f96",
+        "local-executive-2014-county-70749066df2a-b86ecc5fb8f9"
+      ],
+      "supports": [
+        31.0,
+        25.0,
+        3.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2014-雲林縣-20131209-96a49f6a",
+      "year": 2014,
+      "county": "雲林縣",
+      "race_id": "local-executive-2014-county-343b71f65d13",
+      "election_date": "2014-11-29",
+      "date": "2013-12-09",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141118153411996.pdf",
+      "source_sha256": "bd127e47558d65ba85c20e59b4f90aed60c38ddd085f3f0be0dd5c61d700c07e",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 810,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍雲林縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 33.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "李進勇",
+          "support": 48.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-d6c171229847"
+        },
+        {
+          "name": "張麗善",
+          "support": 20.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-343b71f65d13-d6c171229847",
+        "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+      ],
+      "supports": [
+        48.0,
+        20.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-雲林縣-20140721-96a49f6a",
+      "year": 2014,
+      "county": "雲林縣",
+      "race_id": "local-executive-2014-county-343b71f65d13",
+      "election_date": "2014-11-29",
+      "date": "2014-07-21",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141118153411996.pdf",
+      "source_sha256": "bd127e47558d65ba85c20e59b4f90aed60c38ddd085f3f0be0dd5c61d700c07e",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 804,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍雲林縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 32.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "李進勇",
+          "support": 35.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-d6c171229847"
+        },
+        {
+          "name": "張麗善",
+          "support": 34.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-343b71f65d13-d6c171229847",
+        "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+      ],
+      "supports": [
+        35.0,
+        34.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2014-雲林縣-20141007-96a49f6a",
+      "year": 2014,
+      "county": "雲林縣",
+      "race_id": "local-executive-2014-county-343b71f65d13",
+      "election_date": "2014-11-29",
+      "date": "2014-10-07",
+      "field_start": "2014-10-06",
+      "field_mid": 735512.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "20141118153411996.pdf",
+      "source_sha256": "bd127e47558d65ba85c20e59b4f90aed60c38ddd085f3f0be0dd5c61d700c07e",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 972,
+      "document_sample_n": 972,
+      "turnout_screen": true,
+      "population": "20 歲以上設籍雲林縣會去投票的民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 40.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "李進勇",
+          "support": 33.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-d6c171229847"
+        },
+        {
+          "name": "張麗善",
+          "support": 27.0,
+          "candidate_id": "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2014-county-343b71f65d13-d6c171229847",
+        "local-executive-2014-county-343b71f65d13-6154f3cbb8fe"
+      ],
+      "supports": [
+        33.0,
+        27.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台中市-20180720-a5791a0f",
+      "year": 2018,
+      "county": "台中市",
+      "race_id": "local-executive-2018-county-39a14e2e8228",
+      "election_date": "2018-11-24",
+      "date": "2018-07-20",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "a5cf416c139b8e59f1b2951bd150adb5.pdf",
+      "source_sha256": "546b20d982e46fffbbb180dfa47bd11addd9b646813e01b6a8bd5b21b2aa02ba",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 930,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台中市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 28.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 39.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "林佳龍",
+          "support": 33.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-727550e8fba5"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2018-county-39a14e2e8228-727550e8fba5"
+      ],
+      "supports": [
+        39.0,
+        33.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-台中市-20180906-0b6935a8",
+      "year": 2018,
+      "county": "台中市",
+      "race_id": "local-executive-2018-county-39a14e2e8228",
+      "election_date": "2018-11-24",
+      "date": "2018-09-06",
+      "field_start": "2018-09-04",
+      "field_mid": 736942.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "a5cf416c139b8e59f1b2951bd150adb5.pdf",
+      "source_sha256": "546b20d982e46fffbbb180dfa47bd11addd9b646813e01b6a8bd5b21b2aa02ba",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 863,
+      "document_sample_n": 1015,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台中市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 38.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "林佳龍",
+          "support": 35.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "宋原通",
+          "support": 3.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-2cb63e84e410"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2018-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2018-county-39a14e2e8228-2cb63e84e410"
+      ],
+      "supports": [
+        38.0,
+        35.0,
+        3.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台中市-20181022-0b6935a8",
+      "year": 2018,
+      "county": "台中市",
+      "race_id": "local-executive-2018-county-39a14e2e8228",
+      "election_date": "2018-11-24",
+      "date": "2018-10-22",
+      "field_start": "2018-10-19",
+      "field_mid": 736987.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "a6658f22bd81bccc67c6894326b732fa.pdf",
+      "source_sha256": "710f84afeb72f6126b2102d8a0fd6b92f6778708a2c30132c11038a6391b48b3",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 920,
+      "document_sample_n": 1075,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台中市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 19.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 44.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "林佳龍",
+          "support": 36.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-727550e8fba5"
+        },
+        {
+          "name": "宋原通",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-39a14e2e8228-2cb63e84e410"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2018-county-39a14e2e8228-727550e8fba5",
+        "local-executive-2018-county-39a14e2e8228-2cb63e84e410"
+      ],
+      "supports": [
+        44.0,
+        36.0,
+        1.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台北市-20180531-493ca57a",
+      "year": 2018,
+      "county": "台北市",
+      "race_id": "local-executive-2018-county-e35db3914937",
+      "election_date": "2018-11-24",
+      "date": "2018-05-31",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "217f3afc21cc5e07331420c33b652512.pdf",
+      "source_sha256": "950f435e3e0776811ee317639c71ad06c7a2ec4e6e5c94d32362db4b2e1d371a",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1032,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台北市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 22.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "丁守中",
+          "support": 33.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3721caf03609"
+        },
+        {
+          "name": "柯文哲",
+          "support": 31.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "姚文智",
+          "support": 13.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-b51ce13a002e"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-e35db3914937-3721caf03609",
+        "local-executive-2018-county-e35db3914937-da2a07c929e2",
+        "local-executive-2018-county-e35db3914937-b51ce13a002e"
+      ],
+      "supports": [
+        33.0,
+        31.0,
+        13.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-台北市-20180712-28d9b0e4",
+      "year": 2018,
+      "county": "台北市",
+      "race_id": "local-executive-2018-county-e35db3914937",
+      "election_date": "2018-11-24",
+      "date": "2018-07-12",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "217f3afc21cc5e07331420c33b652512.pdf",
+      "source_sha256": "950f435e3e0776811ee317639c71ad06c7a2ec4e6e5c94d32362db4b2e1d371a",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 770,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台北市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 0.9000000000000057,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 40.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "丁守中",
+          "support": 30.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3721caf03609"
+        },
+        {
+          "name": "姚文智",
+          "support": 11.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-b51ce13a002e"
+        },
+        {
+          "name": "李錫錕",
+          "support": 0.1,
+          "candidate_id": "local-executive-2018-county-e35db3914937-1be2f4580575"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-e35db3914937-da2a07c929e2",
+        "local-executive-2018-county-e35db3914937-3721caf03609",
+        "local-executive-2018-county-e35db3914937-b51ce13a002e",
+        "local-executive-2018-county-e35db3914937-1be2f4580575"
+      ],
+      "supports": [
+        40.0,
+        30.0,
+        11.0,
+        0.1
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-台北市-20180914-7635fdc9",
+      "year": 2018,
+      "county": "台北市",
+      "race_id": "local-executive-2018-county-e35db3914937",
+      "election_date": "2018-11-24",
+      "date": "2018-09-14",
+      "field_start": "2018-09-12",
+      "field_mid": 736950.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "217f3afc21cc5e07331420c33b652512.pdf",
+      "source_sha256": "950f435e3e0776811ee317639c71ad06c7a2ec4e6e5c94d32362db4b2e1d371a",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 878,
+      "document_sample_n": 1001,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台北市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 0.9000000000000057,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 37.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "丁守中",
+          "support": 32.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3721caf03609"
+        },
+        {
+          "name": "姚文智",
+          "support": 11.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-b51ce13a002e"
+        },
+        {
+          "name": "李錫錕",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-1be2f4580575"
+        },
+        {
+          "name": "吳蕚洋",
+          "support": 0.1,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3419893ddec5"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-e35db3914937-da2a07c929e2",
+        "local-executive-2018-county-e35db3914937-3721caf03609",
+        "local-executive-2018-county-e35db3914937-b51ce13a002e",
+        "local-executive-2018-county-e35db3914937-1be2f4580575",
+        "local-executive-2018-county-e35db3914937-3419893ddec5"
+      ],
+      "supports": [
+        37.0,
+        32.0,
+        11.0,
+        1.0,
+        0.1
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台北市-20181025-28d9b0e4",
+      "year": 2018,
+      "county": "台北市",
+      "race_id": "local-executive-2018-county-e35db3914937",
+      "election_date": "2018-11-24",
+      "date": "2018-10-25",
+      "field_start": "2018-10-22",
+      "field_mid": 736990.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59edf77e3eccc7aa1ea39635d40cba0b.pdf",
+      "source_sha256": "9a62f2c6c1a78fc29b0b8b54081f754929ff9f44236b91a2ed2c6c7121719dae",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 970,
+      "document_sample_n": 1105,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台北市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 13.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "柯文哲",
+          "support": 40.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-da2a07c929e2"
+        },
+        {
+          "name": "丁守中",
+          "support": 33.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3721caf03609"
+        },
+        {
+          "name": "姚文智",
+          "support": 12.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-b51ce13a002e"
+        },
+        {
+          "name": "李錫錕",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-1be2f4580575"
+        },
+        {
+          "name": "吳蕚洋",
+          "support": 0.0,
+          "candidate_id": "local-executive-2018-county-e35db3914937-3419893ddec5"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-e35db3914937-da2a07c929e2",
+        "local-executive-2018-county-e35db3914937-3721caf03609",
+        "local-executive-2018-county-e35db3914937-b51ce13a002e",
+        "local-executive-2018-county-e35db3914937-1be2f4580575",
+        "local-executive-2018-county-e35db3914937-3419893ddec5"
+      ],
+      "supports": [
+        40.0,
+        33.0,
+        12.0,
+        1.0,
+        0.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台南市-20180706-fbf5947b",
+      "year": 2018,
+      "county": "台南市",
+      "race_id": "local-executive-2018-county-2555d8a05557",
+      "election_date": "2018-11-24",
+      "date": "2018-07-06",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "f707fd09ffd3f4fcd27279e99af3598e.pdf",
+      "source_sha256": "9c60d1ae8e85be59d5f8831f7a75ef1f6fab3950f878b9aa60d8a65bada933af",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 675,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台南市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃偉哲",
+          "support": 39.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-07452ec06203"
+        },
+        {
+          "name": "高思博",
+          "support": 17.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-93379b10488b"
+        },
+        {
+          "name": "蘇煥智",
+          "support": 8.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-67452c3c62ad"
+        },
+        {
+          "name": "林義豐",
+          "support": 7.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-3e3979947fcf"
+        },
+        {
+          "name": "許忠信",
+          "support": 5.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-a36fa54a09b6"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-2555d8a05557-07452ec06203",
+        "local-executive-2018-county-2555d8a05557-93379b10488b",
+        "local-executive-2018-county-2555d8a05557-67452c3c62ad",
+        "local-executive-2018-county-2555d8a05557-3e3979947fcf",
+        "local-executive-2018-county-2555d8a05557-a36fa54a09b6"
+      ],
+      "supports": [
+        39.0,
+        17.0,
+        8.0,
+        7.0,
+        5.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-台南市-20180903-22163db0",
+      "year": 2018,
+      "county": "台南市",
+      "race_id": "local-executive-2018-county-2555d8a05557",
+      "election_date": "2018-11-24",
+      "date": "2018-09-03",
+      "field_start": "2018-08-31",
+      "field_mid": 736938.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "f707fd09ffd3f4fcd27279e99af3598e.pdf",
+      "source_sha256": "9c60d1ae8e85be59d5f8831f7a75ef1f6fab3950f878b9aa60d8a65bada933af",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 681,
+      "document_sample_n": 859,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願台南市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 31.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃偉哲",
+          "support": 33.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-07452ec06203"
+        },
+        {
+          "name": "高思博",
+          "support": 14.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-93379b10488b"
+        },
+        {
+          "name": "林義豐",
+          "support": 13.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-3e3979947fcf"
+        },
+        {
+          "name": "蘇煥智",
+          "support": 6.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-67452c3c62ad"
+        },
+        {
+          "name": "許忠信",
+          "support": 3.0,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-a36fa54a09b6"
+        },
+        {
+          "name": "陳永和",
+          "support": 0.4,
+          "candidate_id": "local-executive-2018-county-2555d8a05557-f00ca44c6392"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-2555d8a05557-07452ec06203",
+        "local-executive-2018-county-2555d8a05557-93379b10488b",
+        "local-executive-2018-county-2555d8a05557-3e3979947fcf",
+        "local-executive-2018-county-2555d8a05557-67452c3c62ad",
+        "local-executive-2018-county-2555d8a05557-a36fa54a09b6",
+        "local-executive-2018-county-2555d8a05557-f00ca44c6392"
+      ],
+      "supports": [
+        33.0,
+        14.0,
+        13.0,
+        6.0,
+        3.0,
+        0.4
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-台東縣-20181010-92cdf3cf",
+      "year": 2018,
+      "county": "台東縣",
+      "race_id": "local-executive-2018-county-2f29ef121b19",
+      "election_date": "2018-11-24",
+      "date": "2018-10-10",
+      "field_start": "2018-10-03",
+      "field_mid": 736973.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "c63bc6f0a9cd7ea7c35dd54eb17968a4.pdf",
+      "source_sha256": "8ce3fcdf80eac22bf0b85e5eee14b72477bd69476699280a76df16aa24faa253",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 803,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台東縣民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "饒慶鈴",
+          "support": 40.0,
+          "candidate_id": "local-executive-2018-county-2f29ef121b19-7c663e471fbd"
+        },
+        {
+          "name": "劉櫂豪",
+          "support": 31.0,
+          "candidate_id": "local-executive-2018-county-2f29ef121b19-92e977e81ff3"
+        },
+        {
+          "name": "鄺麗貞",
+          "support": 5.0,
+          "candidate_id": "local-executive-2018-county-2f29ef121b19-78587406f5f1"
+        },
+        {
+          "name": "黃裕斌",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-2f29ef121b19-2da2c682b9d5"
+        },
+        {
+          "name": "彭權國",
+          "support": 0.2,
+          "candidate_id": "local-executive-2018-county-2f29ef121b19-5131d244a46a"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-2f29ef121b19-7c663e471fbd",
+        "local-executive-2018-county-2f29ef121b19-92e977e81ff3",
+        "local-executive-2018-county-2f29ef121b19-78587406f5f1",
+        "local-executive-2018-county-2f29ef121b19-2da2c682b9d5",
+        "local-executive-2018-county-2f29ef121b19-5131d244a46a"
+      ],
+      "supports": [
+        40.0,
+        31.0,
+        5.0,
+        1.0,
+        0.2
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-嘉義市-20181014-9aedab96",
+      "year": 2018,
+      "county": "嘉義市",
+      "race_id": "local-executive-2018-county-c7cf2c480cf8",
+      "election_date": "2018-11-24",
+      "date": "2018-10-14",
+      "field_start": "2018-10-10",
+      "field_mid": 736979.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "ae625898aa3c9833574c1366979aead7.pdf",
+      "source_sha256": "5176d995495ee09eac683eb39a9acd2032c8e04ff2c18639ee4709fb71c9d368",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 803,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票嘉義市民眾；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 20.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃敏惠",
+          "support": 35.0,
+          "candidate_id": "local-executive-2018-county-c7cf2c480cf8-afffd2114102"
+        },
+        {
+          "name": "涂醒哲",
+          "support": 29.0,
+          "candidate_id": "local-executive-2018-county-c7cf2c480cf8-81d2fe637fb4"
+        },
+        {
+          "name": "蕭淑麗",
+          "support": 15.0,
+          "candidate_id": "local-executive-2018-county-c7cf2c480cf8-ea5f457b5434"
+        },
+        {
+          "name": "黃宏成",
+          "support": 1.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-c7cf2c480cf8-afffd2114102",
+        "local-executive-2018-county-c7cf2c480cf8-81d2fe637fb4",
+        "local-executive-2018-county-c7cf2c480cf8-ea5f457b5434",
+        null
+      ],
+      "supports": [
+        35.0,
+        29.0,
+        15.0,
+        1.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "部分人選與最終名單不符或字形待核對",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-宜蘭縣-20181007-5d1ccb87",
+      "year": 2018,
+      "county": "宜蘭縣",
+      "race_id": "local-executive-2018-county-2f3ede12c290",
+      "election_date": "2018-11-24",
+      "date": "2018-10-07",
+      "field_start": "2018-10-04",
+      "field_mid": 736972.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dead473869d61dc3d1d7dfcde3c41dae.pdf",
+      "source_sha256": "64a20b1378a954a4c5156c1dbedf4c48f39b2319ad5748175fb7ee2cd0e7d679",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 830,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票宜蘭縣民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 28.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林姿妙",
+          "support": 47.0,
+          "candidate_id": "local-executive-2018-county-2f3ede12c290-df4019ea5089"
+        },
+        {
+          "name": "陳歐珀",
+          "support": 19.0,
+          "candidate_id": "local-executive-2018-county-2f3ede12c290-44ec45a5211d"
+        },
+        {
+          "name": "林信華",
+          "support": 5.0,
+          "candidate_id": "local-executive-2018-county-2f3ede12c290-7a11483936e0"
+        },
+        {
+          "name": "陳秋境",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-2f3ede12c290-de518a97cccb"
+        },
+        {
+          "name": "林錦坤",
+          "support": 0.0,
+          "candidate_id": "local-executive-2018-county-2f3ede12c290-04288a175070"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-2f3ede12c290-df4019ea5089",
+        "local-executive-2018-county-2f3ede12c290-44ec45a5211d",
+        "local-executive-2018-county-2f3ede12c290-7a11483936e0",
+        "local-executive-2018-county-2f3ede12c290-de518a97cccb",
+        "local-executive-2018-county-2f3ede12c290-04288a175070"
+      ],
+      "supports": [
+        47.0,
+        19.0,
+        5.0,
+        1.0,
+        0.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-新竹縣-20180629-5df0d906",
+      "year": 2018,
+      "county": "新竹縣",
+      "race_id": "local-executive-2018-county-3db00425a6dd",
+      "election_date": "2018-11-24",
+      "date": "2018-06-29",
+      "field_start": "2018-06-26",
+      "field_mid": 736872.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "55e418da7d5fdb17326bf808e72122cd.pdf",
+      "source_sha256": "2b6131fa8244fb663fbc921bfb36e9ef7ee8052acac44c53c49ee09447452c97",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": null,
+      "document_sample_n": 1024,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票新竹縣民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 21.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "徐欣瑩",
+          "support": 27.0,
+          "candidate_id": "local-executive-2018-county-3db00425a6dd-59629a87b724"
+        },
+        {
+          "name": "林為洲",
+          "support": 24.0,
+          "candidate_id": null
+        },
+        {
+          "name": "楊文科",
+          "support": 20.0,
+          "candidate_id": "local-executive-2018-county-3db00425a6dd-1c5de82bc7f3"
+        },
+        {
+          "name": "鄭朝方",
+          "support": 8.0,
+          "candidate_id": "local-executive-2018-county-3db00425a6dd-af0e2074c510"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-3db00425a6dd-59629a87b724",
+        null,
+        "local-executive-2018-county-3db00425a6dd-1c5de82bc7f3",
+        "local-executive-2018-county-3db00425a6dd-af0e2074c510"
+      ],
+      "supports": [
+        27.0,
+        24.0,
+        20.0,
+        8.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2018-桃園市-20180711-20046323",
+      "year": 2018,
+      "county": "桃園市",
+      "race_id": "local-executive-2018-county-eed891611f5f",
+      "election_date": "2018-11-24",
+      "date": "2018-07-11",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "d95ec5b9ac1401f308e3c669530d966a.pdf",
+      "source_sha256": "4a74ccefc3f729e4ffca1b7b43bf5c8ab050ca93d4ea0ec46cdcca2a20135982",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 677,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 22.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "鄭文燦",
+          "support": 56.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-6e6a4670c431"
+        },
+        {
+          "name": "陳學聖",
+          "support": 20.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-6770ae94fdc7"
+        },
+        {
+          "name": "朱梅雪",
+          "support": 2.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-c367781fb471"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-eed891611f5f-6e6a4670c431",
+        "local-executive-2018-county-eed891611f5f-6770ae94fdc7",
+        "local-executive-2018-county-eed891611f5f-c367781fb471"
+      ],
+      "supports": [
+        56.0,
+        20.0,
+        2.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-桃園市-20180910-7cf44c4a",
+      "year": 2018,
+      "county": "桃園市",
+      "race_id": "local-executive-2018-county-eed891611f5f",
+      "election_date": "2018-11-24",
+      "date": "2018-09-10",
+      "field_start": "2018-09-09",
+      "field_mid": 736946.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "d95ec5b9ac1401f308e3c669530d966a.pdf",
+      "source_sha256": "4a74ccefc3f729e4ffca1b7b43bf5c8ab050ca93d4ea0ec46cdcca2a20135982",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 677,
+      "document_sample_n": 801,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "鄭文燦",
+          "support": 54.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-6e6a4670c431"
+        },
+        {
+          "name": "陳學聖",
+          "support": 17.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-6770ae94fdc7"
+        },
+        {
+          "name": "楊麗環",
+          "support": 6.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-0952b3b7ae77"
+        },
+        {
+          "name": "朱梅雪",
+          "support": 0.1,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-c367781fb471"
+        },
+        {
+          "name": "吳富彤",
+          "support": 0.0,
+          "candidate_id": "local-executive-2018-county-eed891611f5f-1e2ae630d307"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-eed891611f5f-6e6a4670c431",
+        "local-executive-2018-county-eed891611f5f-6770ae94fdc7",
+        "local-executive-2018-county-eed891611f5f-0952b3b7ae77",
+        "local-executive-2018-county-eed891611f5f-c367781fb471",
+        "local-executive-2018-county-eed891611f5f-1e2ae630d307"
+      ],
+      "supports": [
+        54.0,
+        17.0,
+        6.0,
+        0.1,
+        0.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-高雄市-20180704-79830c22",
+      "year": 2018,
+      "county": "高雄市",
+      "race_id": "local-executive-2018-county-800c9be4cf11",
+      "election_date": "2018-11-24",
+      "date": "2018-07-04",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "0218b8a9082d8a963dca4bd3259228d8.pdf",
+      "source_sha256": "aa22087fe4df2de9de203171f748ec9fbe0001b6fd05129e61e2f8bdbdd7bd68",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 815,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願高雄市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "",
+      "undecided": 28.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳其邁",
+          "support": 40.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-daf568a1f097"
+        },
+        {
+          "name": "韓國瑜",
+          "support": 32.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-77d139ce8849"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-800c9be4cf11-daf568a1f097",
+        "local-executive-2018-county-800c9be4cf11-77d139ce8849"
+      ],
+      "supports": [
+        40.0,
+        32.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2018-高雄市-20180911-7da879fe",
+      "year": 2018,
+      "county": "高雄市",
+      "race_id": "local-executive-2018-county-800c9be4cf11",
+      "election_date": "2018-11-24",
+      "date": "2018-09-11",
+      "field_start": "2018-09-06",
+      "field_mid": 736945.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "0218b8a9082d8a963dca4bd3259228d8.pdf",
+      "source_sha256": "aa22087fe4df2de9de203171f748ec9fbe0001b6fd05129e61e2f8bdbdd7bd68",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 879,
+      "document_sample_n": 1019,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願高雄市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳其邁",
+          "support": 39.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-daf568a1f097"
+        },
+        {
+          "name": "韓國瑜",
+          "support": 35.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-77d139ce8849"
+        },
+        {
+          "name": "蘇盈貴",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-60b79025ad8a"
+        },
+        {
+          "name": "璩美鳳",
+          "support": 0.1,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-fa8a2a8427c0"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-800c9be4cf11-daf568a1f097",
+        "local-executive-2018-county-800c9be4cf11-77d139ce8849",
+        "local-executive-2018-county-800c9be4cf11-60b79025ad8a",
+        "local-executive-2018-county-800c9be4cf11-fa8a2a8427c0"
+      ],
+      "supports": [
+        39.0,
+        35.0,
+        1.0,
+        0.1
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2018-高雄市-20181016-7da879fe",
+      "year": 2018,
+      "county": "高雄市",
+      "race_id": "local-executive-2018-county-800c9be4cf11",
+      "election_date": "2018-11-24",
+      "date": "2018-10-16",
+      "field_start": "2018-10-14",
+      "field_mid": 736982.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "311d800af08b582203de97c49f471cba.pdf",
+      "source_sha256": "4566b2ca3f03b69573bb6fc52f73021164783c51bcc535beb9d4900d1842b45a",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 870,
+      "document_sample_n": 1009,
+      "turnout_screen": true,
+      "population": "20 歲以上有投票意願高雄市民；表中百分比因四捨五入加總可能不等於 100",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 21.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "韓國瑜",
+          "support": 42.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-77d139ce8849"
+        },
+        {
+          "name": "陳其邁",
+          "support": 35.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-daf568a1f097"
+        },
+        {
+          "name": "璩美鳳",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-fa8a2a8427c0"
+        },
+        {
+          "name": "蘇盈貴",
+          "support": 1.0,
+          "candidate_id": "local-executive-2018-county-800c9be4cf11-60b79025ad8a"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2018-county-800c9be4cf11-77d139ce8849",
+        "local-executive-2018-county-800c9be4cf11-daf568a1f097",
+        "local-executive-2018-county-800c9be4cf11-fa8a2a8427c0",
+        "local-executive-2018-county-800c9be4cf11-60b79025ad8a"
+      ],
+      "supports": [
+        42.0,
+        35.0,
+        1.0,
+        1.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-台中市-20210423-252856f2",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2021-04-23",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "hypothetical",
+      "sample_n": 866,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20 歲以上台中市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 20.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 53.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "蔡其昌",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+      ],
+      "supports": [
+        53.0,
+        27.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "假设候选组合；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台中市-20210423-78d2fa52",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2021-04-23",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "hypothetical",
+      "sample_n": 866,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20 歲以上台中市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 59.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "何欣純",
+          "support": 17.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        null
+      ],
+      "supports": [
+        59.0,
+        17.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "假设候选组合；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台中市-20210423-a5791a0f",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2021-04-23",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "hypothetical",
+      "sample_n": 866,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20 歲以上台中市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 51.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "林佳龍",
+          "support": 31.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        null
+      ],
+      "supports": [
+        51.0,
+        31.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "假设候选组合；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台中市-20220218-252856f2",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-02-18",
+      "field_start": "2022-02-14",
+      "field_mid": 738202.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": 934,
+      "document_sample_n": 934,
+      "turnout_screen": false,
+      "population": "20歲以上台中市民（原報告註明111/2/18未以投票意願篩選）",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 13.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 57.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "蔡其昌",
+          "support": 30.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+      ],
+      "supports": [
+        57.0,
+        30.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級"
+      ],
+      "source_note": "样本母体口径有历史变更；假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-台中市-20220218-78d2fa52",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-02-18",
+      "field_start": "2022-02-14",
+      "field_mid": 738202.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": 934,
+      "document_sample_n": 934,
+      "turnout_screen": false,
+      "population": "20歲以上台中市民（原報告註明111/2/18未以投票意願篩選）",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 60.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "何欣純",
+          "support": 24.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        null
+      ],
+      "supports": [
+        60.0,
+        24.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對"
+      ],
+      "source_note": "样本母体口径有历史变更；假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-台中市-20220218-a5791a0f",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-02-18",
+      "field_start": "2022-02-14",
+      "field_mid": 738202.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "96d200403f97caf22235e52f84b82058.pdf",
+      "source_sha256": "3c79f07a8721a04b0f78ad8895d1f56a2cc24310113e6c2ecbe57d1c693fd0dd",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": 934,
+      "document_sample_n": 934,
+      "turnout_screen": false,
+      "population": "20歲以上台中市民（原報告註明111/2/18未以投票意願篩選）",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 13.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 52.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "林佳龍",
+          "support": 35.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        null
+      ],
+      "supports": [
+        52.0,
+        35.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對"
+      ],
+      "source_note": "样本母体口径有历史变更；假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-台中市-20220218-c0e8676b",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-02-18",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dc1f118d153b6240ee27db639bde9e1d.pdf",
+      "source_sha256": "53ce5de1bd09c2dc25820cd7ebb4fd110b9a7fb7d06097698828168a2fb83aaa",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "hypothetical",
+      "sample_n": 934,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台中市民（原報告註明111/2/18未以投票意願篩選）",
+      "method": "",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 52.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "蔡其昌",
+          "support": 25.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+        },
+        {
+          "name": "蔡炳坤",
+          "support": 4.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2022-county-39a14e2e8228-b99c9aad61c8",
+        null
+      ],
+      "supports": [
+        52.0,
+        25.0,
+        4.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；假设候选组合；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台中市-20220704-252856f2",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-07-04",
+      "field_start": "2022-06-27",
+      "field_mid": 738336.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dc1f118d153b6240ee27db639bde9e1d.pdf",
+      "source_sha256": "53ce5de1bd09c2dc25820cd7ebb4fd110b9a7fb7d06097698828168a2fb83aaa",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 930,
+      "document_sample_n": 1071,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台中市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 23.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 55.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "蔡其昌",
+          "support": 22.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+      ],
+      "supports": [
+        55.0,
+        22.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-台中市-20220704-c0e8676b",
+      "year": 2022,
+      "county": "台中市",
+      "race_id": "local-executive-2022-county-39a14e2e8228",
+      "election_date": "2022-11-26",
+      "date": "2022-07-04",
+      "field_start": "2022-06-27",
+      "field_mid": 738336.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dc1f118d153b6240ee27db639bde9e1d.pdf",
+      "source_sha256": "53ce5de1bd09c2dc25820cd7ebb4fd110b9a7fb7d06097698828168a2fb83aaa",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": 930,
+      "document_sample_n": 1071,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台中市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 17.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "盧秀燕",
+          "support": 56.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-840d6e4333d3"
+        },
+        {
+          "name": "蔡其昌",
+          "support": 24.0,
+          "candidate_id": "local-executive-2022-county-39a14e2e8228-b99c9aad61c8"
+        },
+        {
+          "name": "蔡炳坤",
+          "support": 4.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-39a14e2e8228-840d6e4333d3",
+        "local-executive-2022-county-39a14e2e8228-b99c9aad61c8",
+        null
+      ],
+      "supports": [
+        56.0,
+        24.0,
+        4.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-台北市-20200415-7dc1bc84",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2020-04-15",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 927,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台北市民（原報告註明111/6/24及以前未以投票意願篩選）",
+      "method": "",
+      "undecided": 7.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "陳時中",
+          "support": 49.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "蔣萬安",
+          "support": 35.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 9.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+      ],
+      "supports": [
+        49.0,
+        35.0,
+        9.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20200918-7dc1bc84",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2020-09-18",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1045,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台北市民（原報告註明111/6/24及以前未以投票意願篩選）",
+      "method": "",
+      "undecided": 4.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 50.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "陳時中",
+          "support": 37.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 9.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+      ],
+      "supports": [
+        50.0,
+        37.0,
+        9.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20210322-7dc1bc84",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2021-03-22",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 1035,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台北市民（原報告註明111/6/24及以前未以投票意願篩選）",
+      "method": "",
+      "undecided": 9.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 43.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "陳時中",
+          "support": 35.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 12.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+      ],
+      "supports": [
+        43.0,
+        35.0,
+        12.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20220119-7dc1bc84",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2022-01-19",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 822,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台北市民（原報告註明111/6/24及以前未以投票意願篩選）",
+      "method": "",
+      "undecided": 12.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 40.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "陳時中",
+          "support": 29.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 19.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+      ],
+      "supports": [
+        40.0,
+        29.0,
+        19.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20220624-7dc1bc84",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2022-06-24",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 964,
+      "document_sample_n": null,
+      "turnout_screen": false,
+      "population": "20歲以上台北市民（原報告註明111/6/24及以前未以投票意願篩選）",
+      "method": "",
+      "undecided": 18.0,
+      "unlisted_or_rounding": 1.0,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 39.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 24.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        },
+        {
+          "name": "陳時中",
+          "support": 18.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe",
+        "local-executive-2022-county-e35db3914937-8261fca6d612"
+      ],
+      "supports": [
+        39.0,
+        24.0,
+        18.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "样本母体口径有历史变更；数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20220826-298bdb85",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2022-08-26",
+      "field_start": "2022-08-22",
+      "field_mid": 738391.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "7569e00cceb45817eaef57be2d7fe2ee.pdf",
+      "source_sha256": "f3ad19cc5e21fa1ddcb3148db0bffa0783ce2c16e95955183533ce26ac2a347f",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 945,
+      "document_sample_n": 1032,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台北市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 14.0,
+      "unlisted_or_rounding": 0.5,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 36.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 26.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        },
+        {
+          "name": "陳時中",
+          "support": 23.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "童文薰",
+          "support": 0.3,
+          "candidate_id": "local-executive-2022-county-e35db3914937-efb90a1bf585"
+        },
+        {
+          "name": "蘇煥智",
+          "support": 0.2,
+          "candidate_id": "local-executive-2022-county-e35db3914937-67452c3c62ad"
+        },
+        {
+          "name": "李文",
+          "support": 0.0,
+          "candidate_id": null
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-efb90a1bf585",
+        "local-executive-2022-county-e35db3914937-67452c3c62ad",
+        null
+      ],
+      "supports": [
+        36.0,
+        26.0,
+        23.0,
+        0.3,
+        0.2,
+        0.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "部分人選與最終名單不符或字形待核對"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-台北市-20221002-3bd86e57",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2022-10-02",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 905,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台北市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 15.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 40.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 23.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        },
+        {
+          "name": "陳時中",
+          "support": 22.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "張家豪",
+          "support": 1.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-cefc2e78520b"
+        },
+        {
+          "name": "童文薰",
+          "support": 0.1,
+          "candidate_id": "local-executive-2022-county-e35db3914937-efb90a1bf585"
+        },
+        {
+          "name": "謝立康",
+          "support": 0.1,
+          "candidate_id": "local-executive-2022-county-e35db3914937-3136edf390d7"
+        },
+        {
+          "name": "鄭匡宇",
+          "support": 0.1,
+          "candidate_id": "local-executive-2022-county-e35db3914937-22f147bd82ce"
+        },
+        {
+          "name": "蘇煥智",
+          "support": 0.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-67452c3c62ad"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-cefc2e78520b",
+        "local-executive-2022-county-e35db3914937-efb90a1bf585",
+        "local-executive-2022-county-e35db3914937-3136edf390d7",
+        "local-executive-2022-county-e35db3914937-22f147bd82ce",
+        "local-executive-2022-county-e35db3914937-67452c3c62ad"
+      ],
+      "supports": [
+        40.0,
+        23.0,
+        22.0,
+        1.0,
+        0.1,
+        0.1,
+        0.1,
+        0.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-台北市-20221030-298bdb85",
+      "year": 2022,
+      "county": "台北市",
+      "race_id": "local-executive-2022-county-e35db3914937",
+      "election_date": "2022-11-26",
+      "date": "2022-10-30",
+      "field_start": "2022-10-27",
+      "field_mid": 738456.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "59bcb38394674fa11b78714d073a3e92.pdf",
+      "source_sha256": "7fce87c5a8730504baf1b62a03dca6dcf88bdaf83ba5d7d13490743810fc91d8",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1055,
+      "document_sample_n": 1158,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台北市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 14.0,
+      "unlisted_or_rounding": 0.5999999999999943,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 37.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-18b5923f8040"
+        },
+        {
+          "name": "陳時中",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-8261fca6d612"
+        },
+        {
+          "name": "黃珊珊",
+          "support": 21.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-62db3b1c54fe"
+        },
+        {
+          "name": "童文薰",
+          "support": 0.3,
+          "candidate_id": "local-executive-2022-county-e35db3914937-efb90a1bf585"
+        },
+        {
+          "name": "蘇煥智",
+          "support": 0.1,
+          "candidate_id": "local-executive-2022-county-e35db3914937-67452c3c62ad"
+        },
+        {
+          "name": "張家豪",
+          "support": 0.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-cefc2e78520b"
+        },
+        {
+          "name": "謝立康",
+          "support": 0.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-3136edf390d7"
+        },
+        {
+          "name": "鄭匡宇",
+          "support": 0.0,
+          "candidate_id": "local-executive-2022-county-e35db3914937-22f147bd82ce"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-e35db3914937-18b5923f8040",
+        "local-executive-2022-county-e35db3914937-8261fca6d612",
+        "local-executive-2022-county-e35db3914937-62db3b1c54fe",
+        "local-executive-2022-county-e35db3914937-efb90a1bf585",
+        "local-executive-2022-county-e35db3914937-67452c3c62ad",
+        "local-executive-2022-county-e35db3914937-cefc2e78520b",
+        "local-executive-2022-county-e35db3914937-3136edf390d7",
+        "local-executive-2022-county-e35db3914937-22f147bd82ce"
+      ],
+      "supports": [
+        37.0,
+        27.0,
+        21.0,
+        0.3,
+        0.1,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-台南市-20220708-31d5b07c",
+      "year": 2022,
+      "county": "台南市",
+      "race_id": "local-executive-2022-county-2555d8a05557",
+      "election_date": "2022-11-26",
+      "date": "2022-07-08",
+      "field_start": "2022-07-04",
+      "field_mid": 738342.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dd2c1815e6fe8ac29935713b23f4786c.pdf",
+      "source_sha256": "4c8e51ad9b7ee4e721cd1efbeaaa8e15579849d8961040b19cfca8e6d488c031",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 804,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台南市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 19.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃偉哲",
+          "support": 50.0,
+          "candidate_id": "local-executive-2022-county-2555d8a05557-07452ec06203"
+        },
+        {
+          "name": "謝龍介",
+          "support": 31.0,
+          "candidate_id": "local-executive-2022-county-2555d8a05557-163dd006b2cc"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-2555d8a05557-07452ec06203",
+        "local-executive-2022-county-2555d8a05557-163dd006b2cc"
+      ],
+      "supports": [
+        50.0,
+        31.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-台南市-20220708-da753402",
+      "year": 2022,
+      "county": "台南市",
+      "race_id": "local-executive-2022-county-2555d8a05557",
+      "election_date": "2022-11-26",
+      "date": "2022-07-08",
+      "field_start": "2022-07-04",
+      "field_mid": 738342.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "dd2c1815e6fe8ac29935713b23f4786c.pdf",
+      "source_sha256": "4c8e51ad9b7ee4e721cd1efbeaaa8e15579849d8961040b19cfca8e6d488c031",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": null,
+      "document_sample_n": 804,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票台南市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 16.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃偉哲",
+          "support": 47.0,
+          "candidate_id": "local-executive-2022-county-2555d8a05557-07452ec06203"
+        },
+        {
+          "name": "謝龍介",
+          "support": 30.0,
+          "candidate_id": "local-executive-2022-county-2555d8a05557-163dd006b2cc"
+        },
+        {
+          "name": "林義豐",
+          "support": 7.0,
+          "candidate_id": "local-executive-2022-county-2555d8a05557-3e3979947fcf"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-2555d8a05557-07452ec06203",
+        "local-executive-2022-county-2555d8a05557-163dd006b2cc",
+        "local-executive-2022-county-2555d8a05557-3e3979947fcf"
+      ],
+      "supports": [
+        47.0,
+        30.0,
+        7.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-嘉義市-20221205-d9068f7f",
+      "year": 2022,
+      "county": "嘉義市",
+      "race_id": "local-executive-2022-county-c7cf2c480cf8",
+      "election_date": "2022-12-18",
+      "date": "2022-12-05",
+      "field_start": "2022-12-03",
+      "field_mid": 738493.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "e4c510acc6d12a8e4f1e95b092ad5cdd.pdf",
+      "source_sha256": "5a6f55e19479d8748392c8f47f8013ce9b9b9fc79bab746c15223f76ad7f9a5e",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 1080,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票嘉義市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 17.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "黃敏惠",
+          "support": 59.0,
+          "candidate_id": "local-executive-2022-county-c7cf2c480cf8-afffd2114102"
+        },
+        {
+          "name": "李俊俋",
+          "support": 22.0,
+          "candidate_id": "local-executive-2022-county-c7cf2c480cf8-f2a7d5e8fef7"
+        },
+        {
+          "name": "黃宏成",
+          "support": 2.0,
+          "candidate_id": null
+        },
+        {
+          "name": "陳泰山",
+          "support": 0.3,
+          "candidate_id": "local-executive-2022-county-c7cf2c480cf8-7df09a2f2fc7"
+        },
+        {
+          "name": "鄭凱升",
+          "support": 0.2,
+          "candidate_id": "local-executive-2022-county-c7cf2c480cf8-b7194966a17f"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-c7cf2c480cf8-afffd2114102",
+        "local-executive-2022-county-c7cf2c480cf8-f2a7d5e8fef7",
+        null,
+        "local-executive-2022-county-c7cf2c480cf8-7df09a2f2fc7",
+        "local-executive-2022-county-c7cf2c480cf8-b7194966a17f"
+      ],
+      "supports": [
+        59.0,
+        22.0,
+        2.0,
+        0.3,
+        0.2
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "部分人選與最終名單不符或字形待核對",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-新竹市-20220722-b20a73de",
+      "year": 2022,
+      "county": "新竹市",
+      "race_id": "local-executive-2022-county-3bbf653c4d64",
+      "election_date": "2022-11-26",
+      "date": "2022-07-22",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "8643a3f7f22c96f341f8b597a5268507.pdf",
+      "source_sha256": "928c1662b808d3c598ef28ca354648cbb870ab9eb74397d7af7fb4c0036011c7",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 885,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票新竹市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林耕仁",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-d3d22f05af6a"
+        },
+        {
+          "name": "高虹安",
+          "support": 26.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-7c24e9a21682"
+        },
+        {
+          "name": "沈慧虹",
+          "support": 23.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-969c726c372f"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-3bbf653c4d64-d3d22f05af6a",
+        "local-executive-2022-county-3bbf653c4d64-7c24e9a21682",
+        "local-executive-2022-county-3bbf653c4d64-969c726c372f"
+      ],
+      "supports": [
+        27.0,
+        26.0,
+        23.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-新竹市-20221026-e104dd03",
+      "year": 2022,
+      "county": "新竹市",
+      "race_id": "local-executive-2022-county-3bbf653c4d64",
+      "election_date": "2022-11-26",
+      "date": "2022-10-26",
+      "field_start": "2022-10-21",
+      "field_mid": 738451.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "8643a3f7f22c96f341f8b597a5268507.pdf",
+      "source_sha256": "928c1662b808d3c598ef28ca354648cbb870ab9eb74397d7af7fb4c0036011c7",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 950,
+      "document_sample_n": 1082,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票新竹市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 17.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "高虹安",
+          "support": 34.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-7c24e9a21682"
+        },
+        {
+          "name": "沈慧虹",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-969c726c372f"
+        },
+        {
+          "name": "林耕仁",
+          "support": 21.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-d3d22f05af6a"
+        },
+        {
+          "name": "黃源甫",
+          "support": 1.0,
+          "candidate_id": "local-executive-2022-county-3bbf653c4d64-b1edf40b9657"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-3bbf653c4d64-7c24e9a21682",
+        "local-executive-2022-county-3bbf653c4d64-969c726c372f",
+        "local-executive-2022-county-3bbf653c4d64-d3d22f05af6a",
+        "local-executive-2022-county-3bbf653c4d64-b1edf40b9657"
+      ],
+      "supports": [
+        34.0,
+        27.0,
+        21.0,
+        1.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-桃園市-20220714-057fcefc",
+      "year": 2022,
+      "county": "桃園市",
+      "race_id": "local-executive-2022-county-eed891611f5f",
+      "election_date": "2022-11-26",
+      "date": "2022-07-14",
+      "field_start": null,
+      "field_mid": null,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "060be1a02fab3ff6057eae8500654860.pdf",
+      "source_sha256": "022a8954fc3790927aaaf6f3c3ac5b749a4b63af4d8ab66db7b4bc422f0a8562",
+      "published_at": null,
+      "quality_tier": "C",
+      "provenance": "carried_forward_trend",
+      "matchup_type": "listed_field",
+      "sample_n": 969,
+      "document_sample_n": null,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "",
+      "undecided": 26.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "林智堅",
+          "support": 36.0,
+          "candidate_id": null
+        },
+        {
+          "name": "張善政",
+          "support": 33.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-fc2def8006c2"
+        },
+        {
+          "name": "賴香伶",
+          "support": 5.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+        }
+      ],
+      "candidate_ids": [
+        null,
+        "local-executive-2022-county-eed891611f5f-fc2def8006c2",
+        "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+      ],
+      "supports": [
+        36.0,
+        33.0,
+        5.0
+      ],
+      "partial_ballot": true,
+      "eligible": false,
+      "reasons": [
+        "後續報告趨勢回填，原波次方法未核對",
+        "未達核心資料品質層級",
+        "部分人選與最終名單不符或字形待核對",
+        "訪問區間不完整或非選前"
+      ],
+      "source_note": "数值来自后续报告趋势表"
+    },
+    {
+      "id": "TVBS-2022-桃園市-20220816-48d170d6",
+      "year": 2022,
+      "county": "桃園市",
+      "race_id": "local-executive-2022-county-eed891611f5f",
+      "election_date": "2022-11-26",
+      "date": "2022-08-16",
+      "field_start": "2022-08-15",
+      "field_mid": 738382.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "060be1a02fab3ff6057eae8500654860.pdf",
+      "source_sha256": "022a8954fc3790927aaaf6f3c3ac5b749a4b63af4d8ab66db7b4bc422f0a8562",
+      "published_at": null,
+      "quality_tier": "B",
+      "provenance": "document_current",
+      "matchup_type": "hypothetical",
+      "sample_n": null,
+      "document_sample_n": 1054,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 23.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "張善政",
+          "support": 36.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-fc2def8006c2"
+        },
+        {
+          "name": "鄭運鵬",
+          "support": 25.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-4e924e9e6fc0"
+        },
+        {
+          "name": "鄭寶清",
+          "support": 10.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-ba15532d3e81"
+        },
+        {
+          "name": "賴香伶",
+          "support": 7.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-eed891611f5f-fc2def8006c2",
+        "local-executive-2022-county-eed891611f5f-4e924e9e6fc0",
+        "local-executive-2022-county-eed891611f5f-ba15532d3e81",
+        "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+      ],
+      "supports": [
+        36.0,
+        25.0,
+        10.0,
+        7.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "假設候選組合",
+        "未達核心資料品質層級",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": "假设候选组合"
+    },
+    {
+      "id": "TVBS-2022-桃園市-20220816-a45620a3",
+      "year": 2022,
+      "county": "桃園市",
+      "race_id": "local-executive-2022-county-eed891611f5f",
+      "election_date": "2022-11-26",
+      "date": "2022-08-16",
+      "field_start": "2022-08-15",
+      "field_mid": 738382.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "060be1a02fab3ff6057eae8500654860.pdf",
+      "source_sha256": "022a8954fc3790927aaaf6f3c3ac5b749a4b63af4d8ab66db7b4bc422f0a8562",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 873,
+      "document_sample_n": 1054,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "張善政",
+          "support": 39.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-fc2def8006c2"
+        },
+        {
+          "name": "鄭運鵬",
+          "support": 28.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-4e924e9e6fc0"
+        },
+        {
+          "name": "賴香伶",
+          "support": 8.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-eed891611f5f-fc2def8006c2",
+        "local-executive-2022-county-eed891611f5f-4e924e9e6fc0",
+        "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+      ],
+      "supports": [
+        39.0,
+        28.0,
+        8.0
+      ],
+      "partial_ballot": true,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-桃園市-20220908-48d170d6",
+      "year": 2022,
+      "county": "桃園市",
+      "race_id": "local-executive-2022-county-eed891611f5f",
+      "election_date": "2022-11-26",
+      "date": "2022-09-08",
+      "field_start": "2022-09-01",
+      "field_mid": 738402.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "1bab197efef9e2d40e9753c8192a7158.pdf",
+      "source_sha256": "4b0ae5a29900eb7eba2e3140e67079afac0da1e9f01ec0081182e0e5d0c9b0ce",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 1164,
+      "document_sample_n": 1377,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "張善政",
+          "support": 36.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-fc2def8006c2"
+        },
+        {
+          "name": "鄭運鵬",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-4e924e9e6fc0"
+        },
+        {
+          "name": "鄭寶清",
+          "support": 8.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-ba15532d3e81"
+        },
+        {
+          "name": "賴香伶",
+          "support": 5.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-eed891611f5f-fc2def8006c2",
+        "local-executive-2022-county-eed891611f5f-4e924e9e6fc0",
+        "local-executive-2022-county-eed891611f5f-ba15532d3e81",
+        "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+      ],
+      "supports": [
+        36.0,
+        27.0,
+        8.0,
+        5.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-桃園市-20221020-48d170d6",
+      "year": 2022,
+      "county": "桃園市",
+      "race_id": "local-executive-2022-county-eed891611f5f",
+      "election_date": "2022-11-26",
+      "date": "2022-10-20",
+      "field_start": "2022-10-16",
+      "field_mid": 738446.0,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "9eea29d70aed55cbf8fa6d19938246ae.pdf",
+      "source_sha256": "02af264aa640607c54815595584aec7cdaf1f0549de5c6388dcdc0d9b523c2bf",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": 945,
+      "document_sample_n": 1109,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票桃園市民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 24.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "張善政",
+          "support": 38.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-fc2def8006c2"
+        },
+        {
+          "name": "鄭運鵬",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-4e924e9e6fc0"
+        },
+        {
+          "name": "鄭寶清",
+          "support": 6.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-ba15532d3e81"
+        },
+        {
+          "name": "賴香伶",
+          "support": 5.0,
+          "candidate_id": "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-eed891611f5f-fc2def8006c2",
+        "local-executive-2022-county-eed891611f5f-4e924e9e6fc0",
+        "local-executive-2022-county-eed891611f5f-ba15532d3e81",
+        "local-executive-2022-county-eed891611f5f-8ed1eddcee3b"
+      ],
+      "supports": [
+        38.0,
+        27.0,
+        6.0,
+        5.0
+      ],
+      "partial_ballot": false,
+      "eligible": true,
+      "reasons": [],
+      "source_note": ""
+    },
+    {
+      "id": "TVBS-2022-苗栗縣-20221103-4423e85e",
+      "year": 2022,
+      "county": "苗栗縣",
+      "race_id": "local-executive-2022-county-cff72749bf92",
+      "election_date": "2022-11-26",
+      "date": "2022-11-03",
+      "field_start": "2022-10-31",
+      "field_mid": 738460.5,
+      "source": "TVBS",
+      "pollster_id": "tvbs",
+      "source_file": "2240f9a6cc5948c98dcadaa157acc158.pdf",
+      "source_sha256": "38450527f92a9fb800cfe66c8f3def310c4f525bb67e397be0b0f314125ece30",
+      "published_at": null,
+      "quality_tier": "A",
+      "provenance": "document_current",
+      "matchup_type": "listed_field",
+      "sample_n": null,
+      "document_sample_n": 907,
+      "turnout_screen": true,
+      "population": "20 歲以上會去投票苗栗縣民；表中百分比因四捨五入加總可能不等於 100。",
+      "method": "電話後四碼電腦隨機抽樣，人員電話訪問",
+      "undecided": 25.0,
+      "unlisted_or_rounding": 0.0,
+      "candidates": [
+        {
+          "name": "鍾東錦",
+          "support": 27.0,
+          "candidate_id": "local-executive-2022-county-cff72749bf92-c1d69c92176d"
+        },
+        {
+          "name": "徐定禎",
+          "support": 22.0,
+          "candidate_id": "local-executive-2022-county-cff72749bf92-683d5d33d48b"
+        },
+        {
+          "name": "謝褔弘",
+          "support": 14.0,
+          "candidate_id": null
+        },
+        {
+          "name": "宋國鼎",
+          "support": 13.0,
+          "candidate_id": "local-executive-2022-county-cff72749bf92-0d5eb6ba31d3"
+        },
+        {
+          "name": "吳盛聖",
+          "support": 0.0,
+          "candidate_id": "local-executive-2022-county-cff72749bf92-1a2912df6e5c"
+        }
+      ],
+      "candidate_ids": [
+        "local-executive-2022-county-cff72749bf92-c1d69c92176d",
+        "local-executive-2022-county-cff72749bf92-683d5d33d48b",
+        null,
+        "local-executive-2022-county-cff72749bf92-0d5eb6ba31d3",
+        "local-executive-2022-county-cff72749bf92-1a2912df6e5c"
+      ],
+      "supports": [
+        27.0,
+        22.0,
+        14.0,
+        13.0,
+        0.0
+      ],
+      "partial_ballot": false,
+      "eligible": false,
+      "reasons": [
+        "部分人選與最終名單不符或字形待核對",
+        "支持度題目子樣本數缺失；不以總樣本代替"
+      ],
+      "source_note": ""
+    }
+  ],
+  "audit": {
+    "waves": 100,
+    "candidate_rows": 292,
+    "eligible_waves": 35,
+    "excluded_reasons": {
+      "後續報告趨勢回填，原波次方法未核對": 46,
+      "未達核心資料品質層級": 55,
+      "訪問區間不完整或非選前": 46,
+      "未列選項差額超過捨入容許值": 3,
+      "支持度題目子樣本數缺失；不以總樣本代替": 14,
+      "假設候選組合": 13,
+      "部分人選與最終名單不符或字形待核對": 12
+    },
+    "by_year": [
+      {
+        "year": 2014,
+        "waves": 54,
+        "eligible": 21
+      },
+      {
+        "year": 2018,
+        "waves": 18,
+        "eligible": 8
+      },
+      {
+        "year": 2022,
+        "waves": 28,
+        "eligible": 6
+      }
+    ]
+  },
+  "verification": "CSV relational, date, mass, exact roster and PDF-presence/hash checks; report spot checks, not independent verification of every extracted cell.",
+  "availability": "Original publication dates unknown. Fieldwork-cutoff retrospective validation only; trend carry-forwards excluded. XLSX is a parallel presentation, not extra samples.",
+  "data_hash": "5f6347d13d2fff7ce7c596502e85e1f38814084ef26c2cdd57f97fdabd68ce4e"
+}

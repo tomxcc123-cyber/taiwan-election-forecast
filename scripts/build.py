@@ -64,7 +64,7 @@ def build(now=None):
     source = source.replace('</head>', '<style>.legacy-notice{position:relative;z-index:999;padding:12px 24px;background:#fff3df;color:#714416;font:14px system-ui}.legacy-notice a{color:#174fa8}</style></head>', 1)
     source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
-    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs', 'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs'):
+    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs', 'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs', 'historical-polls-ui.mjs'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     old_index = (ROOT / 'site/index.html').read_text(encoding='utf-8').replace('src="candidate-app.mjs"', 'src="app.mjs"')
     (dist / 'research-legacy.html').write_text(old_index, encoding='utf-8')
@@ -98,11 +98,14 @@ def build(now=None):
     product['fingerprint'] = digest({k:v for k,v in product.items() if k != 'fingerprint'})
     (dist / 'candidate-model.json').write_text(json.dumps(product, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     current_research = {'schema_version':1, 'model_version':product['model_version'],
+        'model_fingerprint':product['fingerprint'],
+        'historical_polling':{**product['historical_polling'], 'records':json.loads((ROOT/'data/historical-polls-tvbs.json').read_text(encoding='utf-8'))['records']},
         'data_hash':product['training_data_hash'], 'audit':product['training']['audit'],
         'backtest':product['validation']['fundamentals'], 'training':product['training'],
         'surveys':json.loads((ROOT/'data/survey-source-audit.json').read_text(encoding='utf-8'))}
     (dist / 'candidate-validation.json').write_text(json.dumps(current_research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     shutil.copy2(ROOT/'data/candidate-history-cec.json', dist/'candidate-history-cec.json')
+    shutil.copy2(ROOT/'data/historical-polls-tvbs.json', dist/'historical-polls-tvbs.json')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')

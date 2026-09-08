@@ -11,8 +11,9 @@ from .simulation import simulate
 from .polling import match_records
 from .joint import infer
 from .validation import evaluate
+from .historical_polling import build_research
 
-VERSION = '2026.09-multisource.1'
+VERSION = '2026.09-historical-polls.1'
 
 
 def validate_joint(history, settings=None):
@@ -42,6 +43,8 @@ def build_product(root, now, feed, settings=None):
     if as_of[:10] < roster['as_of']:
         raise ValueError('Forecast date precedes registration snapshot')
     history = historical['races']
+    polling_research = build_research(root, historical)
+    settings = {'tvbs_poll_extra_sd':polling_research['fit']['applied_value'], **(settings or {})}
     training = eligible_cec_transitions(history)
     if len(training) != 44 or audit_dataset(historical)['research_eligible_count'] != 66:
         raise ValueError('CEC release requires 66 audited races and 44 comparable transitions')
@@ -78,6 +81,8 @@ def build_product(root, now, feed, settings=None):
     payload = {'schema_version':2, 'model_version':VERSION, 'generated_at':as_of,
                'election_date':'2026-11-28', 'roster_as_of':roster['as_of'],
                'candidate_set_version':roster['data_hash'], 'training_data_hash':historical['data_hash'],
+               'historical_poll_hash':polling_research['data_hash'],
+               'historical_polling':{k:v for k,v in polling_research.items() if k!='records'},
                'feed_checked_at':feed['checked_at'], 'feed_hash':digest(feed['records']),
                'simulations':posterior['settings']['simulations'], 'counties':counties,
                'poll_audit':audit, 'settings':posterior['settings'], 'diagnostics':posterior['diagnostics'],
@@ -95,7 +100,7 @@ def build_product(root, now, feed, settings=None):
                                for r in history if r['source']['checks'].get('inventory_warnings')]},
                'limitations':['候選人級研究預測，尚未完成機率校準。',
                               '登記名單尚待資格審定；歷史66場已核對上傳中選會表內票數，未逐檔比對線上原檔雜湊。',
-                              '動態誤差、機構偏差及未表態誤差尺度為明示假設，非台灣資料估計值。',
+                              'TVBS額外誤差以2014與2018合格歷史波次估計；動態、機構及未表態尺度仍為明示假設。2022僅作留出檢驗。',
                               '少數人選題目只提供相對支持訊號，未列人選保留基本面不確定性。',
                               '已收到TEDS選後微觀調查，但未作同屆選前輸入；尚無完整人口聯合分布，不聲稱完成MRP或因果策略投票分析。']}
     payload['fingerprint'] = digest(payload)

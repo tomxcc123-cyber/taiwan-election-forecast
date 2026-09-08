@@ -73,4 +73,4 @@ def infer(prior_simulation, records, as_of, election_date, settings=None):
             'diagnostics': {'observation_contrasts': len(y), 'included_reports': len(records),
                             'innovation_mahalanobis': innovation_score, 'horizon_days': horizon,
                             'minimum_eigenvalue': float(values.min()),
-                            'inference': 'Gaussian moment approximation; hyperparameters assumed, not calibrated'}}
+                            'inference': 'Gaussian moment approximation; parameter provenance disclosed separately, not probability-calibrated'}}
