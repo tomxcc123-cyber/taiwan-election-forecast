@@ -3,6 +3,7 @@ import argparse
 import json
 import re
 import shutil
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 try:
@@ -11,6 +12,7 @@ except ModuleNotFoundError:
     from scripts.research_model import prepare
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 
 def paused(config, now):
@@ -62,9 +64,26 @@ def build(now=None):
     source = source.replace('</head>', '<style>.legacy-notice{position:relative;z-index:999;padding:12px 24px;background:#fff3df;color:#714416;font:14px system-ui}.legacy-notice a{color:#174fa8}</style></head>', 1)
     source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
-    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs'):
+    for name in ('index.html', 'styles.css', 'forecast.mjs', 'charts.mjs', 'app.mjs', 'candidate-research.mjs'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     model_data = prepare(ROOT, now)
+    from model.data import digest, load_dataset
+    from model.roster import load_roster
+    from model.pipeline import run
+    historical = load_dataset(ROOT / 'data/candidate-history.json')
+    roster = load_roster(ROOT / 'data/registration-roster-2026.json', historical)
+    research = run(historical, now.isoformat())
+    # Only historical validation is public. Experimental 2026 candidate probabilities stay offline.
+    research.pop('experimental_registration_forecast', None)
+    research['registration_roster'] = {'candidate_count': roster['candidate_count'],
+                                     'county_count': roster['county_count'], 'as_of': roster['as_of']}
+    for gate in research['release']['gates']:
+        if gate['id'] == 'registered_roster_import':
+            gate.update(passed=True, reason='Registered entrants imported; final qualification pending.')
+    research['artifact_hash'] = digest({k: v for k, v in research.items() if k != 'artifact_hash'})
+    model_data['candidate_research'] = research
+    model_data['registration_roster'] = roster
+    (dist / 'candidate-research.json').write_text(json.dumps(research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     model_data['feed_checked_at'] = feed['checked_at']
     model_data['publication_pause_start'] = config['publication_pause_start']
     model_data['publication_pause_end'] = config['publication_pause_end']
