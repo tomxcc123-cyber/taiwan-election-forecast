@@ -97,6 +97,12 @@ def build(now=None):
     product['publication_pause_end'] = config['publication_pause_end']
     product['fingerprint'] = digest({k:v for k,v in product.items() if k != 'fingerprint'})
     (dist / 'candidate-model.json').write_text(json.dumps(product, ensure_ascii=False, allow_nan=False), encoding='utf-8')
+    current_research = {'schema_version':1, 'model_version':product['model_version'],
+        'data_hash':product['training_data_hash'], 'audit':product['training']['audit'],
+        'backtest':product['validation']['fundamentals'], 'training':product['training'],
+        'surveys':json.loads((ROOT/'data/survey-source-audit.json').read_text(encoding='utf-8'))}
+    (dist / 'candidate-validation.json').write_text(json.dumps(current_research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
+    shutil.copy2(ROOT/'data/candidate-history-cec.json', dist/'candidate-history-cec.json')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')

@@ -102,3 +102,15 @@ def previous_race(races, target):
     earlier = [r for r in races if r["county_id"] == target["county_id"]
                and r["office"] == target["office"] and r["year"] < target["year"]]
     return max(earlier, key=lambda r: r["year"]) if earlier else None
+
+
+def eligible_cec_transitions(history):
+    """Both ends must be audited; no silent fallback to an eight-year lag."""
+    eligible = []
+    for race in history:
+        prior = previous_race(history, race)
+        if prior is None or race['year']-prior['year'] != 4:
+            continue
+        if all(r.get('counts_verified') and audit_race(r)['research_eligible'] for r in (race, prior)):
+            eligible.append(race)
+    return eligible

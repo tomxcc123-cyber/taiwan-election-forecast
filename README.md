@@ -1,6 +1,6 @@
 # 台灣選舉預測公開版
 
-目前主站為 `2026.09-candidate-joint.1` 候選人級聯合研究版。81名登記參選人、22縣市接入同一模型，透過「總覽、縣市、民調、情境、驗證、方法」六個功能頁展示。登記不等於資格審定；預測尚未完成跨週期校準。完整實作與限制見 [成品交付說明](docs/PRODUCT_RELEASE.md)。
+目前主站為 `2026.09-cec-joint.1` 候選人級聯合研究版。使用上傳中選會2014、2018、2022共66場、271筆原始候選人票數重新訓練；81名2026登記參選人、22縣市接入同一模型，透過六個功能頁展示。登記不等於資格審定；預測尚未完成跨週期校準。最新成果與限制見 [官方票數重訓說明](docs/CEC_RETRAINING.md)，模型數學見 [初版成品說明](docs/PRODUCT_RELEASE.md)。
 
 前一版三方研究頁保留於 `research-legacy.html`，原 v12 + v14 工作台保留於 `legacy.html`，模型與情境狀態不互相覆蓋。公開網站與資料庫為唯讀；使用者模擬不寫入共用資料。此目錄是唯一的發布根目錄，不要上傳原工作區、下載資料夾、PDF 或瀏覽器設定。
 
@@ -60,6 +60,9 @@ python scripts/serve_product.py
 
 - `site/index.html`、`styles.css`、`candidate-app.mjs`：主站頁面與導覽。
 - `model/product.py`、`joint.py`、`polling.py`：獨立候選人級模型、聯合推論及民調配對；`dist/candidate-model.json`為同版模型輸出。
+- `scripts/import_cec_history.py`：唯讀解析中選會XLS、逐投票所及鄉鎮區校驗；`data/candidate-history-cec.json`為新版完整票數，不覆寫舊版歷史。
+- `dist/candidate-validation.json`：與新版模型配對的66場資料審計及22場留出測試；`candidate-research.json`只供舊版研究頁使用。
+- `data/survey-source-audit.json`：TEDS選後調查用途審計，不包含受訪者資料，也不作同屆選前民調輸入。
 - `site/candidate-engine.mjs`：聯合抽樣上的票流、條件篩選與席次統計；`charts.mjs`：真實縣市地圖。
 - `site/app.mjs`、`forecast.mjs`：保留的三方研究頁與舊模型，不再作為主站預測。
 - `scripts/research_model.py`：歷史資料提取、時間切分回測與基準追溯。

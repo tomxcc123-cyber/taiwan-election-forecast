@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "assessed_at": "2026-09-08",
+  "microdata_published": false,
+  "notice": "僅公開資料用途審計；受訪者資料、聯絡封面檔及原始問卷檔不隨網站發布。選後調查不得冒充同屆選前民調。",
+  "datasets": [
+    {"id": "E10137", "label": "TEDS2014 三都市調查", "cities": ["台北市", "台中市", "高雄市"], "timing": "選後調查；含獨立樣本與複訪", "included_in_forecast": false, "reason": "可用於回溯行為研究，尚未建立跨期可移植性驗證；複訪不可當成新增獨立受訪者。", "doi": "10.6141/TW-SRDA-E10137-1"},
+    {"id": "D00196", "label": "TEDS2018 九合一面訪", "cities": ["台北市", "台中市", "高雄市"], "field_start": "2019-01-13", "field_end": "2019-05-15", "timing": "2018選舉後訪問", "included_in_forecast": false, "reason": "選後回憶不等於選前支持；封面接觸紀錄與成功問卷必須分開，未以接觸人次訓練。", "doi": "10.6141/TW-SRDA-D00196-1"},
+    {"id": "D00237", "label": "TEDS2022-T 三都市電話調查", "cities": ["台北市", "台中市", "高雄市"], "field_start": "2022-12-09", "field_end": "2022-12-29", "timing": "2022選舉後訪問", "included_in_forecast": false, "reason": "供歷史投票行為分析；未把選後自報投票或政黨認同直接轉成2026支持率。", "doi": "10.6141/TW-SRDA-D00237-1"}
+  ]
+}
