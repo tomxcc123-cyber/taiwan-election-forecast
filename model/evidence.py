@@ -60,9 +60,12 @@ def attach_evidence(product, feed, root):
         polls = [p for p in accepted if p['county'] == r['name']]
         recent = [p for p in polls if 0 <= (today-date.fromisoformat(p['date'])).days <= 60]
         sources = {p.get('pollster_id') or p['source'] for p in recent}
-        risks = [e['id'] for e in events if e['county'] == r['name']]
+        local_evidence = [e['id'] for e in events if e['county'] == r['name']]
+        applied = set(product.get('support_model', {}).get('applied_evidence', []))
+        risks = [eid for eid in local_evidence if eid not in applied]
         grade = 'D' if risks else 'A' if len(sources) >= 2 else 'B' if sources else 'C'
         r['quality']['evidence'] = {'grade': grade, 'recent_questions': len(recent),
+            'support_proxy_evidence': [eid for eid in local_evidence if eid in applied],
             'recent_pollsters': len(sources), 'unmodeled_evidence': risks,
             'reason': '已知跨黨支持尚未建模' if risks else
                       '近期有多機構配對民調' if grade == 'A' else

@@ -51,6 +51,7 @@ jobs:
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
           if [ -f dist/candidate-model.json ]; then node tests/candidate-engine.mjs; fi
           if [ -f dist/candidate-model.json ]; then node tests/evidence-ui.mjs; fi
+          if [ -f dist/candidate-model.json ]; then node tests/scenario-studio.mjs; fi
       - name: Preserve daily baseline and version history
         run: |
           python scripts/archive_forecast.py

@@ -1,14 +1,15 @@
 """Joint experimental draws, keeping separate independent candidates and seat scopes."""
 import numpy as np
+from hashlib import sha256
 from .fundamentals import fit, features, softmax, utilities
 
 SEED = sum(map(ord, "taiwan-candidate-shadow-v1"))
 
 
 def simulate(fitted, targets, history, training, residual_sd, draws=2000, seed=SEED,
-             bootstrap_count=100, national_sd=0.15, regional_sd=0.10):
+             bootstrap_count=100, national_sd=0.15, regional_sd=0.10, support_proxy_sd=0.0):
     if (draws < 100 or bootstrap_count < 1 or not targets
-            or any(not np.isfinite(x) or x < 0 for x in (residual_sd, national_sd, regional_sd))):
+            or any(not np.isfinite(x) or x < 0 for x in (residual_sd, national_sd, regional_sd, support_proxy_sd))):
         raise ValueError("Invalid simulation settings")
     targets = [{**r, "candidates": sorted(r["candidates"], key=lambda c: c["candidate_id"])}
                for r in sorted(targets, key=lambda r: r["race_id"])]
@@ -33,6 +34,10 @@ def simulate(fitted, targets, history, training, residual_sd, draws=2000, seed=S
         means = np.array([x / np.array(b["scale"]) @ b["coefficients"] for b in bootstrap])
         noise = rng.normal(0, residual_sd, (draws, len(r["candidates"])))
         for j, c in enumerate(r["candidates"]):
+            if c.get('organization_evidence') and support_proxy_sd:
+                proxy_seed = int.from_bytes(sha256(f"{seed}:{c['candidate_id']}:support-proxy".encode()).digest()[:8], 'big')
+                proxy_rng = np.random.default_rng(proxy_seed)
+                noise[:, j] += proxy_rng.normal(0, support_proxy_sd, draws)
             if c["party"]:
                 noise[:, j] += national[c["party"]] + regional[r["region"], c["party"]]
         shares = softmax(means[choices] + noise)
@@ -42,7 +47,7 @@ def simulate(fitted, targets, history, training, residual_sd, draws=2000, seed=S
             "assumptions": {"residual_sd": residual_sd, "national_sd": national_sd,
                             "regional_sd": regional_sd, "bootstrap_count": bootstrap_count,
                             "seed": seed, "correlation_parameters_estimated": False,
-                            "intervals_calibrated": False}}
+                            "support_proxy_sd": support_proxy_sd, "intervals_calibrated": False}}
 
 
 def condition_on_winner(simulation, race_id, candidate_id, minimum_ess=100):

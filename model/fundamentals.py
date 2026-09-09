@@ -23,6 +23,11 @@ def target_clr(race, floor=ZERO_FLOOR_PCT):
     return center(np.log(np.maximum([c["share_pct"] for c in race["candidates"]], floor)))
 
 
+def organization_parties(candidate):
+    return sorted(({candidate['party']} if candidate['party'] in KNOWN_PARTIES else set())
+                  | {p for p in candidate.get('organization_parties', []) if p in KNOWN_PARTIES})
+
+
 def features(race, history):
     prior = previous_race(history, race)
     if prior is None:
@@ -32,11 +37,12 @@ def features(race, history):
         matches = [c for c in prior["candidates"] if c["name"] == candidate["name"]
                    and identity_ok(c["name"])]
         old = matches[0] if len(matches) == 1 else None
-        party = candidate["party"] if candidate["party"] in KNOWN_PARTIES else None
-        nominees = sum(c["party"] == party for c in race["candidates"]) if party else 1
-        party_share = prior["party_shares_pct"].get(party, 0) / nominees if party else 0
+        parties = organization_parties(candidate)
+        # Each historical party pool is allocated once, even if several candidates share a link.
+        party_share = sum(prior['party_shares_pct'].get(p, 0) /
+                          sum(p in organization_parties(c) for c in race['candidates']) for p in parties)
         rows.append([np.log1p(old["share_pct"] if old else 0), np.log1p(party_share),
-                     int(bool(old and old["winner"])), int(old is None), int(party is not None)])
+                     int(bool(old and old["winner"])), int(old is None), int(bool(parties))])
     return center(np.array(rows, dtype=float))
 
 

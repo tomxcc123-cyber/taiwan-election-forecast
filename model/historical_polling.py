@@ -13,6 +13,7 @@ from .simulation import simulate
 from .polling import day, observation_matrices
 from .joint import SETTINGS, infer, structure
 from .validation import evaluate
+from .refinement import select_fit
 
 GRID = (.08, .12, .18, .25, .35, .5, .7, 1.0)
 
@@ -105,7 +106,8 @@ def validate_history(history, poll_data, fitted):
     transitions = eligible_cec_transitions(history)
     train = [r for r in transitions if r['year']==2018]
     test = [r for r in transitions if r['year']==2022]
-    prior = simulate(fit(train,history),test,history,train,residual_scale(train,history),draws=2000)
+    fundamental_fit = select_fit(train, history)
+    prior = simulate(fundamental_fit,test,history,train,residual_scale(train,history,alpha=fundamental_fit['alpha']),draws=2000)
     settings = {'tvbs_poll_extra_sd':fitted['value']}
     reports = []
     for horizon in (90,30,14):
@@ -124,6 +126,7 @@ def validate_history(history, poll_data, fitted):
             'baselines':report['baselines'], 'details':report['details'],
             'reliability_bins':report['reliability_bins']})
     return {'test_year':2022,'test_cycles':1,'training_years':[2014,2018],
+        'fundamental_selection': fundamental_fit['selection'],
         'roster_condition':'Final listed historical candidates are known retrospectively.',
         'availability':'Fieldwork-end cutoffs, NOT verified publication-time backtests.',
         'not_independent':'The same 22 elections recur at all three horizons; do not count as 66 test elections.',

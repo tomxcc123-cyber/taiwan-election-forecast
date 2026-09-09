@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "reviewed_at": "2026-09-09",
-  "coverage": "首批核對新竹市與嘉義縣；未列出的縣市不代表沒有跨黨支持。",
+  "coverage": "已核對新竹市、嘉義縣及嘉義市的部分支持關係；未列出的縣市不代表沒有跨黨支持。",
   "events": [
     {
       "id": "hsinchu-kmt-support-20260722",
@@ -28,6 +28,19 @@
       "source_name": "中央社登記現場報導",
       "model_status": "not_estimated",
       "note": "現任朴子市長身分不等於前屆縣長得票。跨黨支持尚未估計，不將無黨籍直接視為沒有基本盤。"
+    },
+    {
+      "id": "chiayi-city-kmt-support-20260709",
+      "county": "嘉義市",
+      "candidate": "張啓楷",
+      "date": "2026-07-09",
+      "type": "documented_support",
+      "supporting_party": "KMT",
+      "title": "國民黨主席公開支持張啓楷參選嘉義市長",
+      "source_url": "https://www.kmt.org.tw/2026/07/blog-post_420.html",
+      "source_name": "國民黨公開活動紀錄",
+      "model_status": "not_estimated",
+      "note": "正式黨籍仍為民眾黨；公開支持關係與正式提名分列，未假定全部國民黨選票會轉移。"
     }
   ]
 }

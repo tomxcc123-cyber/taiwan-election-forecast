@@ -1,3 +1,4 @@
+import {ruleFields,applyMatrix,applyStrategy} from './scenario-rules.mjs';
 export const GROUPS=['KMT','DPP','TPP','IND','OTHER'];
 export const NAMES={KMT:'國民黨',DPP:'民進黨',TPP:'民眾黨',IND:'無黨籍',OTHER:'其他政黨'};
 export const COLORS={KMT:'#2864c8',DPP:'#14805e',TPP:'#087f8c',IND:'#737b89',OTHER:'#a34c79'};
@@ -16,22 +17,21 @@ export function validate(data){
 export function cleanState(input,data){
  const s={county:data.counties.some(r=>r.name===input?.county)?input.county:data.counties[0].name,edits:{},constraints:{}};
  for(const r of data.counties){const ids=r.candidates.map(c=>c.candidate_id),e=input?.edits?.[r.race_id],c=input?.constraints?.[r.race_id];
-  if(e){const edit={boostId:ids.includes(e.boostId)?e.boostId:ids[0],boost:bound(e.boost,-20,20),from:ids.includes(e.from)?e.from:ids[0],to:ids.includes(e.to)?e.to:ids[1]||ids[0],flow:bound(e.flow,0,100),tactical:bound(e.tactical,0,100)};s.edits[r.race_id]=edit;}
+  if(e){const edit={boostId:ids.includes(e.boostId)?e.boostId:ids[0],boost:bound(e.boost,-20,20),from:ids.includes(e.from)?e.from:ids[0],to:ids.includes(e.to)?e.to:ids[1]||ids[0],flow:bound(e.flow,0,100),tactical:bound(e.tactical,0,100),...ruleFields(e,ids)};s.edits[r.race_id]=edit;}
   if(c&&ids.includes(c.candidate)&&['lock','condition'].includes(c.mode))s.constraints[r.race_id]={candidate:c.candidate,mode:c.mode};
  }
  return s;
 }
 export function adjust(row,race,edit){
- const a=row.map(x=>x/sum(row)*100);if(!edit)return a;
+ let a=row.map(x=>x/sum(row)*100);if(!edit)return a;const original=[...a];
  const ids=race.candidates.map(c=>c.candidate_id),j=ids.indexOf(edit.boostId);
  if(a.length>1){const change=Math.max(-a[j],Math.min(100-a[j],edit.boost)),others=100-a[j];
   a.forEach((v,k)=>{if(k!==j)a[k]=others>1e-9?v-change*v/others:-change/(a.length-1);});a[j]+=change;
  }
  const from=ids.indexOf(edit.from),to=ids.indexOf(edit.to);
  if(from!==to){const flow=a[from]*edit.flow/100;a[from]-=flow;a[to]+=flow;}
- // Perceived ranking is fixed before simulation, never the future draw's winner.
- const order=race.candidates.map((c,i)=>i).sort((i,j)=>race.candidates[j].mean-race.candidates[i].mean||ids[i].localeCompare(ids[j]));
- for(const donor of order.slice(2)){const flow=a[donor]*edit.tactical/100;a[donor]-=flow;a[order[1]]+=flow;}
+ a=applyMatrix(original,a,ids,edit.matrix,edit.matrixMode);
+ a=applyStrategy(a,race,edit);
  return a.map(v=>Math.max(0,v)/sum(a)*100);
 }
 const quantile=(a,p)=>{const t=(a.length-1)*p,i=Math.floor(t);return a[i]+(a[Math.ceil(t)]-a[i])*(t-i);};

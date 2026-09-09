@@ -23,7 +23,7 @@ class EvidenceTests(unittest.TestCase):
         attach_evidence(product, {'records': []}, ROOT)
         self.assertEqual(before, [r['candidates'] for r in product['counties']])
         risks = {r['name'] for r in product['counties'] if r['quality']['evidence']['grade'] == 'D'}
-        self.assertEqual(risks, {'新竹市', '嘉義縣'})
+        self.assertEqual(risks, {'新竹市', '嘉義縣', '嘉義市'})
 
     def test_distinguishes_reports_questions_and_eligible_dates(self):
         product = self.make_product()

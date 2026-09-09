@@ -13,16 +13,21 @@ from .joint import infer
 from .validation import evaluate
 from .historical_polling import build_research
 from .evidence import attach_evidence
+from .refinement import select_fit, support_roster
 
-VERSION = '2026.09-evidence-lab.1'
+VERSION = '2026.09-scenario-studio.1'
 
 
 def validate_joint(history, settings=None):
     eligible=eligible_cec_transitions(history)
     train=[r for r in eligible if r['year']==2018]
     test=[r for r in eligible if r['year']==2022]
-    prior=simulate(fit(train,history),test,history,train,residual_scale(train,history),draws=2000)
+    selected=select_fit(train,history)
+    prior=simulate(selected,test,history,train,residual_scale(train,history,alpha=selected['alpha']),draws=2000)
     fundamental_report=evaluate(prior,history)
+    proposed = fit(train, history, alpha=selected['selection']['proposed_alpha'])
+    proposed_report = evaluate(simulate(proposed,test,history,train,
+        residual_scale(train,history,alpha=proposed['alpha']),draws=2000),history)
     # Equal terminal dates mean zero extrapolation, not a claim of historical publication dates.
     posterior=infer(prior,[],'2022-12-31','2022-12-31',settings)
     shares,winners,offset={},{},0
@@ -33,7 +38,10 @@ def validate_joint(history, settings=None):
                      'draws':posterior['settings']['simulations']},history)
     return {'scope':'same joint inference engine, no polls, zero forecast horizon, retrospective listed roster',
             'training_years':[2018],'test_year':2022,'test_cycles':1,
-            'training_races':len(train), 'fundamentals':fundamental_report,
+            'training_races':len(train), 'selection':selected['selection'],
+            'tuning_proposal_metrics':proposed_report['metrics'],
+            'development_holdout_notice':'2022 has been inspected during development; this is not a newly blinded or preregistered test.',
+            'fundamentals':fundamental_report,
             'polling_likelihood_validated_on_real_elections':False,**report}
 
 
@@ -49,11 +57,15 @@ def build_product(root, now, feed, settings=None):
     training = eligible_cec_transitions(history)
     if len(training) != 44 or audit_dataset(historical)['research_eligible_count'] != 66:
         raise ValueError('CEC release requires 66 audited races and 44 comparable transitions')
-    fitted = fit(training, history)
-    sd = residual_scale(training, history)
-    prior = simulate(fitted, roster['races'], history, training, sd, draws=2000)
+    fitted = select_fit(training, history)
+    sd = residual_scale(training, history, alpha=fitted['alpha'])
+    contextual_roster, support_ids = support_roster(roster, root, as_of)
+    # This extra CLR uncertainty is a disclosed research assumption, not a fitted endorsement effect.
+    prior = simulate(fitted, contextual_roster['races'], history, training, sd, draws=2000, support_proxy_sd=.35)
+    plain_prior = simulate(fitted, roster['races'], history, training, sd, draws=2000)
     records, audit = match_records(feed, roster, as_of)
     posterior = infer(prior, records, as_of, '2026-11-28', settings)
+    plain_posterior = infer(plain_prior, records, as_of, '2026-11-28', settings)
     counties, offset = [], 0
     for race in posterior['races']:
         k = len(race['candidates'])
@@ -65,11 +77,18 @@ def build_product(root, now, feed, settings=None):
                        'p05': float(np.quantile(normalized[:,j], .05)*100),
                        'p95': float(np.quantile(normalized[:,j], .95)*100),
                        'probability': float(np.mean(winners == j))} for j,c in enumerate(race['candidates'])]
+        plain_values = softmax(plain_posterior['draws'][:,offset:offset+k])
+        plain_winners = np.argmax(plain_values, axis=1)
         counties.append({'name':race['county'], 'race_id':race['race_id'], 'region':race['region'],
                          'candidates':candidates, 'draws':quantized.tolist(),
                          'poll_ids':[r['id'] for r in records if r['county'] == race['county']],
                          'history_series':[r for r in history if r['county']==race['county']],
                          'history':next(r for r in history if r['county']==race['county'] and r['year']==2022)})
+        counties[-1]['support_comparison'] = [{'candidate_id': c['candidate_id'],
+            'without_proxy_mean':float(plain_values[:,j].mean()*100),
+            'without_proxy_probability':float(np.mean(plain_winners==j)),
+            'with_proxy_mean':c['mean'], 'with_proxy_probability':c['probability']}
+            for j,c in enumerate(candidates)]
         previous=previous_race(history,race)
         previous_names={c['name']:c for c in previous['candidates']}
         counties[-1]['quality']={'party_changes':[c['name'] for c in race['candidates']
@@ -87,6 +106,10 @@ def build_product(root, now, feed, settings=None):
                'feed_checked_at':feed['checked_at'], 'feed_hash':digest(feed['records']),
                'simulations':posterior['settings']['simulations'], 'counties':counties,
                'poll_audit':audit, 'settings':posterior['settings'], 'diagnostics':posterior['diagnostics'],
+               'support_model':{'applied_evidence':support_ids, 'extra_clr_sd':.35,
+                   'status':'research_covariate_proxy_not_causal_effect',
+                   'historical_support_relationships_validated':False,
+                   'note':'支持關係借用具名政黨的歷史組織特徵，非票數直接相加；係數移植與額外誤差均未獲跨期支持關係資料驗證。正式黨籍及席次分類不變。'},
                'release':{'research_publication_allowed':True, 'calibrated_forecast':False,
                           'candidate_status':'registered_pending_review'},
                'validation':validate_joint(history,settings),

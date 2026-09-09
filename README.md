@@ -1,6 +1,8 @@
 # 台灣選舉預測公開版
 
-最新版本為 `2026.09-evidence-lab.1`：[證據與情境實驗室交付說明](docs/EVIDENCE_LAB_RELEASE.md)。新增七頁導覽、每日基準存檔與版本對比、資料等級、來源證據、六個快速敏感度情境及驗證成績單。本輪不改基本面係數，不宣稱重新訓練出事件效果或完成勝率校準。
+最新版本為 `2026.09-scenario-studio.1`：[模型與兵推工作台交付說明](docs/SCENARIO_STUDIO_RELEASE.md)。新增 A/B/C 方案、同步票流矩陣、流失票再分配、接近程度調節、敏感度曲線及方案匯入匯出。模型新增可追溯的組織支持代理與有／無代理對照；縣市分組交叉驗證未支持換參數，保留原正則化強度，不宣稱準確率已提升。
+
+[前版證據實驗室](docs/EVIDENCE_LAB_RELEASE.md)保留每日存檔、資料等級、来源證據與版本比較。
 
 [前版歷史民調訓練](docs/HISTORICAL_POLLS_TRAINING.md)保留：29個2014／2018波次用於TVBS誤差訓練、6個2022波次用於留出檢驗；線上保留0.12誤差下限。
 
@@ -54,6 +56,7 @@ python scripts/build.py
 node tests/model.mjs
 node tests/candidate-engine.mjs
 node tests/evidence-ui.mjs
+node tests/scenario-studio.mjs
 # Requires Playwright with Chrome installed:
 node tests/candidate-browser.cjs
 node tests/research-browser.cjs
