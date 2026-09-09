@@ -50,6 +50,17 @@ jobs:
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
           if [ -f dist/candidate-model.json ]; then node tests/candidate-engine.mjs; fi
+          if [ -f dist/candidate-model.json ]; then node tests/evidence-ui.mjs; fi
+      - name: Preserve daily baseline and version history
+        run: |
+          python scripts/archive_forecast.py
+          if [ -f data/forecast-history.json ]; then
+            git add data/forecast-history.json
+            if ! git diff --cached --quiet; then
+              git commit -m "Archive daily forecast baseline"
+              git push origin HEAD:main
+            fi
+          fi
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

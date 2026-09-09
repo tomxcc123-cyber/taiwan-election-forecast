@@ -21,6 +21,7 @@ export const RATING_COLORS=['#2864c8','#6c94d8','#c3d4f0','#d0d5dd','#bde0d4','#
 export function drawMap(element, geo, results, selected, mode, onSelect, deltas) {
   const d3=window.d3, topojson=window.topojson;
   const svg=d3.select(element).attr('viewBox','0 0 640 490');svg.selectAll('*').remove();
+  const riskPattern=svg.append('defs').append('pattern').attr('id','evidence-risk').attr('width',8).attr('height',8).attr('patternUnits','userSpaceOnUse');riskPattern.append('rect').attr('width',8).attr('height',8).attr('fill','#edf0f4');riskPattern.append('path').attr('d','M-2,2L2,-2M0,8L8,0M6,10L10,6').attr('stroke','#8993a2').attr('stroke-width',2);
   const features=topojson.feature(geo,geo.objects.map).features;
   const name=f=>f.properties.name.replaceAll('臺','台');
   const offshore=['金門縣','澎湖縣','連江縣'];
@@ -30,11 +31,11 @@ export function drawMap(element, geo, results, selected, mode, onSelect, deltas)
     const path=d3.geoPath(projection);
     const paths=svg.append('g').selectAll('path').data(features).join('path').attr('d',path).attr('class',f=>'county-path'+(name(f)===selected?' selected':''))
       .attr('data-county',name).attr('tabindex',0).attr('role','button')
-      .attr('aria-label',f=>{const c=results.find(c=>c.name===name(f));return `${name(f)}，${c.leaderLabel||LABELS[c.winner]}領先，勝率${pct(c.leaderProbability??c.probability[c.winner])}`;})
+      .attr('aria-label',f=>{const c=results.find(c=>c.name===name(f));return c.quality?.evidence?.grade==='D'?`${name(f)}，已知模型缺項，暫不評級`:`${name(f)}，${c.leaderLabel||LABELS[c.winner]}模型傾向，勝率${pct(c.leaderProbability??c.probability[c.winner])}`;})
       .attr('aria-pressed',f=>String(name(f)===selected))
-      .attr('fill',f=>{const c=results.find(c=>c.name===name(f));if(mode==='flow'){const v=deltas?.[c.name]||0;return d3.interpolateRgb('#edf0f4',v>=0?COLORS[0]:COLORS[1])(Math.min(1,Math.abs(v)/12));}if(c.leaderLabel)return mode==='probability'?d3.interpolateRgb('#edf0f4',c.leaderColor)(.2+.8*c.leaderProbability):c.leaderColor;return mode==='probability'?d3.interpolateRgb('#edf0f4',COLORS[c.winner])(.2+.8*c.probability[c.winner]):RATING_COLORS[rating(c)];})
+      .attr('fill',f=>{const c=results.find(c=>c.name===name(f));if(mode==='flow'){const v=deltas?.[c.name]||0;return d3.interpolateRgb('#edf0f4',v>=0?COLORS[0]:COLORS[1])(Math.min(1,Math.abs(v)/12));}if(c.quality?.evidence?.grade==='D')return 'url(#evidence-risk)';if(c.leaderLabel)return mode==='probability'?d3.interpolateRgb('#edf0f4',c.leaderColor)(.2+.8*c.leaderProbability):c.leaderColor;return mode==='probability'?d3.interpolateRgb('#edf0f4',COLORS[c.winner])(.2+.8*c.probability[c.winner]):RATING_COLORS[rating(c)];})
       .on('click',(e,f)=>onSelect(name(f))).on('keydown',(e,f)=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();onSelect(name(f));}});
-    paths.append('title').text(f=>name(f));return path;
+    paths.append('title').text(f=>{const c=results.find(c=>c.name===name(f));return c.quality?.evidence?`${name(f)} · ${c.quality.evidence.grade}級：${c.quality.evidence.reason}`:name(f);});return path;
   };
   const path=add(mainland,projection);
   const labels=['新北市','桃園市','苗栗縣','台中市','南投縣','雲林縣','嘉義縣','台南市','高雄市','屏東縣','宜蘭縣','花蓮縣','台東縣'];

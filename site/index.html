@@ -19,8 +19,9 @@
     <nav aria-label="主要導覽">
       <a href="?view=overview" data-view="overview">總覽</a>
       <a href="?view=counties" data-view="counties">縣市</a>
+      <a href="?view=updates" data-view="updates">動態</a>
       <a href="?view=polls" data-view="polls">民調</a>
-      <a href="?view=scenario" data-view="scenario">情境</a>
+      <a href="?view=scenario" data-view="scenario">兵推</a>
       <a href="?view=validation" data-view="validation">驗證</a>
       <a href="?view=methods" data-view="methods">方法</a>
     </nav>
@@ -37,5 +38,6 @@
   <div id="notice" role="status" aria-live="polite"></div>
   <dialog id="shareDialog"><h2>分享目前情境</h2><p>連結包含假設與縣市設定，不包含個人資料。相同資料版本可重現結果；新版資料可能改變結果。</p><label>情境連結<input id="shareUrl" readonly></label><div class="actions"><button id="copyLink">複製連結</button><button id="closeShare">關閉</button></div></dialog>
   <noscript>此互動網站需要 JavaScript。可直接前往頁尾的中選會資料庫查閱官方資料。</noscript>
+  <dialog id="presetDialog" aria-labelledby="presetTitle"><h2 id="presetTitle">確認實驗假設</h2><p id="presetDescription"></p><p class="warning">此數值是敏感度假設，不是事件的實證效果或真人民調。</p><div class="actions"><button id="applyPreset" class="primary">從基準套用</button><button id="cancelPreset">取消</button></div></dialog>
 </body>
 </html>

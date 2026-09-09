@@ -12,8 +12,9 @@ from .polling import match_records
 from .joint import infer
 from .validation import evaluate
 from .historical_polling import build_research
+from .evidence import attach_evidence
 
-VERSION = '2026.09-historical-polls.1'
+VERSION = '2026.09-evidence-lab.1'
 
 
 def validate_joint(history, settings=None):
@@ -103,6 +104,7 @@ def build_product(root, now, feed, settings=None):
                               'TVBS額外誤差以2014與2018合格歷史波次估計；動態、機構及未表態尺度仍為明示假設。2022僅作留出檢驗。',
                               '少數人選題目只提供相對支持訊號，未列人選保留基本面不確定性。',
                               '已收到TEDS選後微觀調查，但未作同屆選前輸入；尚無完整人口聯合分布，不聲稱完成MRP或因果策略投票分析。']}
+    attach_evidence(payload, feed, root)
     payload['fingerprint'] = digest(payload)
     return payload
 

@@ -1,10 +1,12 @@
 # 台灣選舉預測公開版
 
-最新版本為 `2026.09-historical-polls.1`：[歷史民調訓練與交付報告](docs/HISTORICAL_POLLS_TRAINING.md)。100個歷史波次／情境去重審核後，29個2014／2018波次用於TVBS誤差訓練、6個2022波次用於留出檢驗。網站新增歷史資料篩選、支持度散點圖及90／30／14天截點回測。邊界擬合不支持收窄誤差，線上保留0.12下限，不宣稱完成勝率校準。
+最新版本為 `2026.09-evidence-lab.1`：[證據與情境實驗室交付說明](docs/EVIDENCE_LAB_RELEASE.md)。新增七頁導覽、每日基準存檔與版本對比、資料等級、來源證據、六個快速敏感度情境及驗證成績單。本輪不改基本面係數，不宣稱重新訓練出事件效果或完成勝率校準。
+
+[前版歷史民調訓練](docs/HISTORICAL_POLLS_TRAINING.md)保留：29個2014／2018波次用於TVBS誤差訓練、6個2022波次用於留出檢驗；線上保留0.12誤差下限。
 
 [多來源民調更新與限制](docs/MULTISOURCE_POLLS.md)：美麗島4份原始問卷、8題已核對，2026累計存檔15題、入模3題。美麗島自動索引請求受限時保留已核對資料，來源狀態明示；聯合報、中時、ETtoday尚未完成接入，不能視為已覆蓋。
 
-主站沿用候選人級聯合研究架構。使用上傳中選會2014、2018、2022共66場、271筆原始候選人票數重新訓練；81名2026登記參選人、22縣市接入同一模型，透過六個功能頁展示。登記不等於資格審定；預測尚未完成跨週期校準。基本面成果與限制見 [官方票數重訓說明](docs/CEC_RETRAINING.md)，模型數學見 [初版成品說明](docs/PRODUCT_RELEASE.md)。
+主站沿用候選人級聯合研究架構。使用上傳中選會2014、2018、2022共66場、271筆原始候選人票數重新訓練；81名2026登記參選人、22縣市接入同一模型，透過七個功能頁展示。登記不等於資格審定；預測尚未完成跨週期校準。基本面成果與限制見 [官方票數重訓說明](docs/CEC_RETRAINING.md)，模型數學見 [初版成品說明](docs/PRODUCT_RELEASE.md)。
 
 前一版三方研究頁保留於 `research-legacy.html`，原 v12 + v14 工作台保留於 `legacy.html`，模型與情境狀態不互相覆蓋。公開網站與資料庫為唯讀；使用者模擬不寫入共用資料。此目錄是唯一的發布根目錄，不要上傳原工作區、下載資料夾、PDF 或瀏覽器設定。
 
@@ -51,6 +53,7 @@ python scripts/update_polls.py
 python scripts/build.py
 node tests/model.mjs
 node tests/candidate-engine.mjs
+node tests/evidence-ui.mjs
 # Requires Playwright with Chrome installed:
 node tests/candidate-browser.cjs
 node tests/research-browser.cjs
