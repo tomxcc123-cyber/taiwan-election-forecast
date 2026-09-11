@@ -4,11 +4,12 @@ RC2 improved winner accuracy and margin error but degraded candidate-share MAE o
 some high-disagreement third-party/faction races. RC3 treats model disagreement
 as an observable uncertainty signal. The compositional challenger is used only
 inside a reliability envelope selected on 2018; outside the envelope the system
-falls back to the legacy direct candidate model.
+falls back to the direct candidate model.
 
-Selection is completed on 2018 only. 2022 remains the untouched time holdout.
-A log-utility noise scale for winner probabilities is also selected on 2018 and
-then frozen before 2022 evaluation.
+The candidate chain is explicitly chronological:
+- audited/transcribed 2009/2010 -> 2014 training races;
+- 2014 labels -> 2018 gate/calibration selection;
+- 2018 labels -> untouched 2022 final holdout.
 
 No public site assets are written by this script.
 """
@@ -19,9 +20,9 @@ from pathlib import Path
 
 import numpy as np
 
-from model.data import eligible_cec_transitions
 from model.fundamentals import fit as fit_legacy, softmax, utilities
 from scripts.validate_earlier_partisan_cycle import build_rows as build_r4_rows, evaluate as evaluate_r4
+from scripts.validate_extended_candidate_cycles import load_extended_history, target_races
 from scripts.validate_release_candidate import norm_county, normalize, point_metrics
 from scripts.validate_release_candidate_v2 import (
     blend,
@@ -55,17 +56,18 @@ def r4_maps(root):
     )
 
 
-def cycle_candidate_rows(history, target_year, r4_map, nonmajor_map, third_rows):
-    eligible = eligible_cec_transitions(history)
-    training = [r for r in eligible if int(r["year"]) == target_year - 4]
-    targets = [r for r in eligible if int(r["year"]) == target_year]
+def cycle_candidate_rows(history, training, targets, r4_map, nonmajor_map, third_rows):
     if not training or not targets:
-        raise RuntimeError(f"Missing eligible transition into {target_year}")
+        raise RuntimeError("Missing chronological candidate training/target races")
+    if max(int(r["year"]) for r in training) >= min(int(r["year"]) for r in targets):
+        raise RuntimeError("Temporal leakage in candidate training chain")
     legacy = fit_legacy(training, history, alpha=.1)
     feature_map = race_map(third_rows)
     out = []
     for race in targets:
         county = norm_county(race["county"])
+        if county not in nonmajor_map or county not in feature_map:
+            raise RuntimeError(f"Missing nonmajor inputs for {county}")
         legacy_share = normalize(softmax(utilities(legacy, race, history)))
         actual = normalize([c["share_pct"] for c in race["candidates"]])
         rc_share, meta = compose_candidate_prediction(
@@ -91,7 +93,7 @@ def cycle_candidate_rows(history, target_year, r4_map, nonmajor_map, third_rows)
             "faction_propensity": float(tr.get("faction_propensity", 0.0)),
             "allocation_mode": meta["mode"],
         })
-    return training, targets, out
+    return out
 
 
 def gate_score(row, family):
@@ -192,7 +194,7 @@ def select_sigma(rows18):
 
 def main():
     root = Path(__file__).resolve().parents[1]
-    third_rows, excluded, history = build_third_rows(root)
+    third_rows, excluded, _ = build_third_rows(root)
     by_year = {y: [r for r in third_rows if r["target_year"] == y] for y in (2014, 2018, 2022)}
 
     selected_model, model_grid = choose_third_model(third_rows)
@@ -212,12 +214,20 @@ def main():
     nm22 = {norm_county(r["county"]): float(v) for r, v in zip(by_year[2022], nonmajor22)}
     r4_18, r4_22 = r4_maps(root)
 
-    tr18, tg18, rows18 = cycle_candidate_rows(history, 2018, r4_18, nm18, by_year[2018])
+    history, _ = load_extended_history(root)
+    races14, ex14 = target_races(history, 2014)
+    races18, ex18 = target_races(history, 2018)
+    races22, ex22 = target_races(history, 2022)
+    if min(len(races14), len(races18), len(races22)) < 20:
+        raise RuntimeError(f"Insufficient chronological county coverage: {len(races14)}, {len(races18)}, {len(races22)}")
+
+    rows18 = cycle_candidate_rows(history, races14, races18, r4_18, nm18, by_year[2018])
     selected_gate, gate_grid, legacy18 = select_gate(rows18)
     selected18, rc_count18 = apply_gate(rows18, selected_gate["family"], selected_gate["threshold"])
     selected18_metrics = point_metrics(selected18)
 
-    tr22, tg22, rows22 = cycle_candidate_rows(history, 2022, r4_22, nm22, by_year[2022])
+    # Every hyperparameter is frozen here; 2022 is final time holdout.
+    rows22 = cycle_candidate_rows(history, races18, races22, r4_22, nm22, by_year[2022])
     selected22, rc_count22 = apply_gate(rows22, selected_gate["family"], selected_gate["threshold"])
     selected22_metrics = point_metrics(selected22)
     legacy22_rows = [{"race_id": r["race_id"], "county": r["county"],
@@ -257,7 +267,8 @@ def main():
         "winner_accuracy_not_worse_than_legacy": selected22_metrics["winner_accuracy"] >= legacy22["winner_accuracy"],
         "margin_mae_not_worse_than_legacy": selected22_metrics["margin_mae_pp"] <= legacy22["margin_mae_pp"],
         "brier_not_worse_than_legacy": prob22["brier"] <= legacy_prob22["brier"],
-        "strict_2022_time_holdout": max(r["year"] for r in tr22) < min(r["year"] for r in tg22),
+        "strict_2018_selection_cycle": max(int(r["year"]) for r in races14) < min(int(r["year"]) for r in races18),
+        "strict_2022_time_holdout": max(int(r["year"]) for r in races18) < min(int(r["year"]) for r in races22),
         "public_model_has_fallback": rc_count22 < len(rows22),
     }
     public_release_allowed = all(gates.values())
@@ -268,10 +279,14 @@ def main():
         "release_allowed": public_release_allowed,
         "selection_cycle": 2018,
         "holdout_cycle": 2022,
+        "coverage": {"2014": len(races14), "2018": len(races18), "2022": len(races22)},
+        "chronological_exclusions": {"2014": ex14, "2018": ex18, "2022": ex22},
         "third_party": {
             "selected_model": {"name": selected_model["name"], "alpha": selected_model["alpha"],
                                "features": selected_model["features"]},
             "selected_blend": selected_blend,
+            "model_grid": model_grid,
+            "blend_grid": blend_grid,
         },
         "gate": {
             "selected": selected_gate,
@@ -300,7 +315,8 @@ def main():
         "notes": [
             "All gate family/threshold and uncertainty sigma choices are selected on 2018 only.",
             "2022 outcomes are used only once as the final strict time holdout.",
-            "The model explicitly falls back to the legacy direct candidate model when structural/candidate models disagree beyond the validated envelope.",
+            "The model falls back to the direct candidate model when structural/candidate models disagree beyond the 2018-validated envelope.",
+            "The older 2009/2010 layer is used only to make the 2014 candidate training rows chronologically valid.",
             "This release test does not use contemporary 2026 polls and does not modify the public website.",
         ],
     }
@@ -309,6 +325,7 @@ def main():
     (out / "release-candidate-v3-validation.json").write_text(
         json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
     print(json.dumps({
+        "coverage": result["coverage"],
         "selected_gate": selected_gate,
         "2018_selected": selected18_metrics,
         "2022_legacy": legacy22,
