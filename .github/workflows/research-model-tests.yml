@@ -11,6 +11,7 @@ on:
       - 'scripts/validate_earlier_partisan_cycle.py'
       - 'scripts/validate_release_candidate.py'
       - 'scripts/validate_release_candidate_v2.py'
+      - 'scripts/validate_release_candidate_v3.py'
       - 'scripts/validate_extended_candidate_cycles.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
@@ -62,6 +63,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_release_candidate_v2.py
+      - name: Validate selective release candidate v3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate_v3.py
       - name: Validate candidate model over two strict time cycles
         env:
           PYTHONPATH: .
