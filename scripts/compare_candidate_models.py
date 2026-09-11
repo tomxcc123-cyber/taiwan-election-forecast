@@ -36,6 +36,12 @@ def _metrics(predicted, actual):
     }
 
 
+def _prediction_vector(by_name, model_name, test_rows):
+    rows = by_name[model_name]["predictions"]
+    mapping = {x["county_id"]: x["candidate_adjusted_dpp2"] for x in rows}
+    return [mapping[r["county_id"]] for r in test_rows]
+
+
 def main():
     root = Path(__file__).resolve().parents[1]
     frozen = json.loads((root / "data/baseline/processed/candidate-effect-frozen-baseline-panel.json")
@@ -69,14 +75,28 @@ def main():
     legacy_pred = [legacy_by_county[r["county_id"]] for r in test_rows]
 
     by_name = {x["model"]: x for x in residual_artifact["ablation"]}
-    c2 = by_name["C2_plus_prior_winner"]["predictions"]
-    c5 = by_name["C5_previous_share_challenger"]["predictions"]
-    c2_by_county = {x["county_id"]: x["candidate_adjusted_dpp2"] for x in c2}
-    c5_by_county = {x["county_id"]: x["candidate_adjusted_dpp2"] for x in c5}
-    c2_pred = [c2_by_county[r["county_id"]] for r in test_rows]
-    c5_pred = [c5_by_county[r["county_id"]] for r in test_rows]
+    residual_names = [
+        "C2_plus_prior_winner",
+        "C5_previous_share_challenger",
+        "C6_party_pool_challenger",
+        "C7_legacy_hybrid_challenger",
+    ]
+    residual_pred = {name: _prediction_vector(by_name, name, test_rows) for name in residual_names}
 
     high = [i for i, r in enumerate(test_rows) if float(r.get("major_party_coverage", 1)) >= .80]
+    models = {
+        "R4_frozen_baseline": _metrics(baseline, actual),
+        "Legacy_fundamentals_direct": _metrics(legacy_pred, actual),
+    }
+    high_models = {
+        "R4_frozen_baseline": _metrics([baseline[i] for i in high], [actual[i] for i in high]),
+        "Legacy_fundamentals_direct": _metrics([legacy_pred[i] for i in high], [actual[i] for i in high]),
+    }
+    for name, pred in residual_pred.items():
+        models[f"CandidateEffect_{name}"] = _metrics(pred, actual)
+        high_models[f"CandidateEffect_{name}"] = _metrics(
+            [pred[i] for i in high], [actual[i] for i in high])
+
     result = {
         "schema_version": 1,
         "mode": "shadow_research_only",
@@ -85,18 +105,10 @@ def main():
         "train_cycle": 2018,
         "test_cycle": 2022,
         "rows": len(test_rows),
-        "models": {
-            "R4_frozen_baseline": _metrics(baseline, actual),
-            "CandidateEffect_C2": _metrics(c2_pred, actual),
-            "CandidateEffect_C5_challenger": _metrics(c5_pred, actual),
-            "Legacy_fundamentals_direct": _metrics(legacy_pred, actual),
-        },
-        "high_reliability": {
-            "rows": len(high),
-            "R4_frozen_baseline": _metrics([baseline[i] for i in high], [actual[i] for i in high]),
-            "CandidateEffect_C2": _metrics([c2_pred[i] for i in high], [actual[i] for i in high]),
-            "CandidateEffect_C5_challenger": _metrics([c5_pred[i] for i in high], [actual[i] for i in high]),
-            "Legacy_fundamentals_direct": _metrics([legacy_pred[i] for i in high], [actual[i] for i in high]),
+        "models": models,
+        "high_reliability": {"rows": len(high), **high_models},
+        "candidate_effect_alpha": {
+            name: by_name[name]["selected_alpha"] for name in residual_names
         },
         "legacy_model": {
             "alpha": legacy["alpha"],
@@ -106,7 +118,7 @@ def main():
         "notes": [
             "Legacy candidate probabilities are renormalized over exactly one DPP and one KMT candidate.",
             "All models are evaluated on the exact same 2022 county rows.",
-            "C5 remains a challenger because raw prior candidate share is structurally confounded.",
+            "C5-C7 are challengers because they import prior structural context into the candidate residual layer.",
             "This comparison does not evaluate third-party vote allocation or winner probabilities.",
         ],
     }
