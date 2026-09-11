@@ -1,8 +1,8 @@
 """Candidate Effect 3.0: a downstream residual model on top of Partisan Baseline 4.
 
-The structural baseline is never refit here.  Candidate effects are learned as
+The structural baseline is never refit here. Candidate effects are learned as
 signed shifts in KMT-DPP log-odds using only candidate information available
-before the target election.  Third-party vote allocation remains a separate
+before the target election. Third-party vote allocation remains a separate
 model.
 """
 from __future__ import annotations
@@ -53,8 +53,10 @@ def fit(rows, features=None, alpha=10.0):
     w = w / w.sum()
 
     # Do not center: feature value zero means no observed candidate asymmetry.
-    scale = np.sqrt(np.sum(w[:, None] * x*x, axis=0))
-    scale = np.where(scale > 1e-8, scale, 1.0)
+    raw_scale = np.sqrt(np.sum(w[:, None] * x*x, axis=0))
+    feature_status = ["observed" if value > 1e-8 else "no_training_variation"
+                      for value in raw_scale]
+    scale = np.where(raw_scale > 1e-8, raw_scale, 1.0)
     z = x / scale
     sw = np.sqrt(w)
     a = np.vstack([z * sw[:, None], np.sqrt(alpha) * np.eye(len(features))])
@@ -69,6 +71,7 @@ def fit(rows, features=None, alpha=10.0):
         "features": list(features),
         "scale": scale.tolist(),
         "coefficients": beta.tolist(),
+        "feature_status": feature_status,
         "residual_sd_logit": float(np.sqrt(np.sum(w * residual**2))),
         "training_years": sorted({int(r["target_year"]) for r in rows}),
         "training_rows": len(rows),
@@ -125,5 +128,6 @@ def select_alpha(rows, features=None, grid=DEFAULT_ALPHA_GRID):
 
 
 def coefficient_table(model):
-    return [{"feature": name, "coefficient_logit": float(value)}
-            for name, value in zip(model["features"], model["coefficients"])]
+    return [{"feature": name, "coefficient_logit": float(value), "status": status}
+            for name, value, status in zip(model["features"], model["coefficients"],
+                                           model.get("feature_status", ["unknown"]*len(model["features"])))]
