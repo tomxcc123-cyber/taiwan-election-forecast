@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "target_year": 2026,
+  "source": {
+    "kind": "user_supplied_standardized_election_workbook",
+    "filename": "election_standardization_summary_v2_chiayi2022.xlsx",
+    "sheet": "CountyFeatures2026",
+    "note": "County-level 2024 presidential shares were standardized from the user's election-data package; DPP two-party relative lean is recomputed here."
+  },
+  "presidential_2024_national_two_party_dpp_share": 0.5446034138503896,
+  "organization_bridge": {
+    "organization_feature_vintage": 2018,
+    "source_file": "data/baseline/processed/later-cycle-derived-features-2022.json",
+    "policy": "Carry forward the last frozen county organization snapshot until audited 2022 council/township-mayor aggregates are committed. Public Beta bridge only; not Stable."
+  },
+  "rows": [
+    {"target_year":2026,"county":"臺北市","region":"北北基","pres_2024_dpp":0.381255,"pres_2024_kmt":0.380839,"pres_2024_tpp":0.237906,"presidential_relative_lean":-0.044330481639927366},
+    {"target_year":2026,"county":"新北市","region":"北北基","pres_2024_dpp":0.385937,"pres_2024_kmt":0.351663,"pres_2024_tpp":0.2624,"presidential_relative_lean":-0.021369953980541423},
+    {"target_year":2026,"county":"桃園市","region":"桃竹苗","pres_2024_dpp":0.352712,"pres_2024_kmt":0.34115,"pres_2024_tpp":0.306137,"presidential_relative_lean":-0.03627178594743474},
+    {"target_year":2026,"county":"臺中市","region":"中彰投","pres_2024_dpp":0.375832,"pres_2024_kmt":0.323662,"pres_2024_tpp":0.300506,"presidential_relative_lean":-0.007312171895490827},
+    {"target_year":2026,"county":"臺南市","region":"雲嘉南","pres_2024_dpp":0.509544,"pres_2024_kmt":0.256077,"pres_2024_tpp":0.234379,"presidential_relative_lean":0.12092692034890751},
+    {"target_year":2026,"county":"高雄市","region":"高屏","pres_2024_dpp":0.488948,"pres_2024_kmt":0.292295,"pres_2024_tpp":0.218756,"presidential_relative_lean":0.08125563384667778},
+    {"target_year":2026,"county":"新竹縣","region":"桃竹苗","pres_2024_dpp":0.274188,"pres_2024_kmt":0.370298,"pres_2024_tpp":0.355514,"presidential_relative_lean":-0.11916670925168615},
+    {"target_year":2026,"county":"苗栗縣","region":"桃竹苗","pres_2024_dpp":0.288071,"pres_2024_kmt":0.411812,"pres_2024_tpp":0.300118,"presidential_relative_lean":-0.1330046180516632},
+    {"target_year":2026,"county":"彰化縣","region":"中彰投","pres_2024_dpp":0.381071,"pres_2024_kmt":0.32931,"pres_2024_tpp":0.289619,"presidential_relative_lean":-0.008171555453275858},
+    {"target_year":2026,"county":"南投縣","region":"中彰投","pres_2024_dpp":0.359486,"pres_2024_kmt":0.379967,"pres_2024_tpp":0.260547,"presidential_relative_lean":-0.05845216421045302},
+    {"target_year":2026,"county":"雲林縣","region":"雲嘉南","pres_2024_dpp":0.445369,"pres_2024_kmt":0.293293,"pres_2024_tpp":0.261337,"presidential_relative_lean":0.058336767179634985},
+    {"target_year":2026,"county":"嘉義縣","region":"雲嘉南","pres_2024_dpp":0.476902,"pres_2024_kmt":0.292759,"pres_2024_tpp":0.230339,"presidential_relative_lean":0.07502262930367443},
+    {"target_year":2026,"county":"屏東縣","region":"高屏","pres_2024_dpp":0.475094,"pres_2024_kmt":0.308428,"pres_2024_tpp":0.216479,"presidential_relative_lean":0.061753523159675194},
+    {"target_year":2026,"county":"宜蘭縣","region":"宜花東","pres_2024_dpp":0.447413,"pres_2024_kmt":0.289901,"pres_2024_tpp":0.262686,"presidential_relative_lean":0.06221132179819433},
+    {"target_year":2026,"county":"花蓮縣","region":"宜花東","pres_2024_dpp":0.247805,"pres_2024_kmt":0.505021,"pres_2024_tpp":0.247174,"presidential_relative_lean":-0.21543704605756625},
+    {"target_year":2026,"county":"臺東縣","region":"宜花東","pres_2024_dpp":0.274065,"pres_2024_kmt":0.493174,"pres_2024_tpp":0.232761,"presidential_relative_lean":-0.18739399149307978},
+    {"target_year":2026,"county":"澎湖縣","region":"離島","pres_2024_dpp":0.386042,"pres_2024_kmt":0.366337,"pres_2024_tpp":0.247621,"presidential_relative_lean":-0.03150828493265001},
+    {"target_year":2026,"county":"基隆市","region":"北北基","pres_2024_dpp":0.34774,"pres_2024_kmt":0.386263,"pres_2024_tpp":0.265997,"presidential_relative_lean":-0.07084513220848893},
+    {"target_year":2026,"county":"新竹市","region":"桃竹苗","pres_2024_dpp":0.347909,"pres_2024_kmt":0.309044,"pres_2024_tpp":0.343047,"presidential_relative_lean":-0.01502367222503731},
+    {"target_year":2026,"county":"嘉義市","region":"雲嘉南","pres_2024_dpp":0.432581,"pres_2024_kmt":0.314019,"pres_2024_tpp":0.2534,"presidential_relative_lean":0.03479787197870232},
+    {"target_year":2026,"county":"金門縣","region":"離島","pres_2024_dpp":0.100171,"pres_2024_kmt":0.613983,"pres_2024_tpp":0.285846,"presidential_relative_lean":-0.40433814893553927},
+    {"target_year":2026,"county":"連江縣","region":"離島","pres_2024_dpp":0.105212,"pres_2024_kmt":0.626725,"pres_2024_tpp":0.268063,"presidential_relative_lean":-0.40085880195073154}
+  ]
+}
