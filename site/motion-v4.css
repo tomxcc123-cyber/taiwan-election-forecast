@@ -1,0 +1,29 @@
+/* Fourth-stage motion: genuine archived forecast timeline and replay. */
+.forecast-timeline{margin:0 0 24px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(180deg,#fff,#fbfcfe);overflow:hidden;box-shadow:0 14px 38px rgba(24,38,55,.045)}
+.timeline-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.timeline-title{display:flex;align-items:baseline;gap:10px;min-width:0}.timeline-title strong{font-size:14px}.timeline-title span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.timeline-actions{display:flex;gap:8px;align-items:center}.timeline-actions button{min-height:32px;padding:5px 10px;font-size:12px}
+.timeline-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.42fr);gap:18px;padding:15px 16px 16px}
+.timeline-track{min-width:0}.timeline-track input[type=range]{width:100%;accent-color:var(--blue)}
+.timeline-meta{display:flex;justify-content:space-between;gap:12px;margin-top:2px;font-size:11px;color:var(--muted)}
+.timeline-progress{height:3px;margin-top:9px;background:var(--soft);overflow:hidden;border-radius:999px}.timeline-progress>span{display:block;height:100%;width:var(--timeline-progress,0%);background:var(--blue);transition:width 260ms cubic-bezier(.22,1,.36,1)}
+.timeline-detail{border-left:1px solid var(--line);padding-left:18px;min-width:0}.timeline-detail-top{display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:8px}.timeline-detail h3{font-size:15px}.timeline-date{font-variant-numeric:tabular-nums;font-size:12px;color:var(--muted);white-space:nowrap}.timeline-model{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:10px}
+.timeline-candidates{display:grid;gap:7px}.timeline-candidate{display:grid;grid-template-columns:minmax(88px,1fr) minmax(70px,1.35fr) 52px;gap:8px;align-items:center;font-size:12px}.timeline-candidate-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.timeline-candidate-bar{height:7px;background:var(--soft);border-radius:999px;overflow:hidden}.timeline-candidate-bar span{display:block;height:100%;width:var(--candidate-prob,0%);background:linear-gradient(90deg,#7aa8e8,#2864c8);border-radius:inherit;transition:width 420ms cubic-bezier(.22,1,.36,1)}.timeline-candidate b{text-align:right;font-variant-numeric:tabular-nums}
+.timeline-flips{margin-top:10px;font-size:11px;color:var(--muted)}.timeline-flips strong{color:var(--ink)}
+.timeline-live{display:inline-flex;align-items:center;gap:5px}.timeline-live::before{content:"";width:6px;height:6px;border-radius:50%;background:#14805e;box-shadow:0 0 0 0 rgba(20,128,94,.25);animation:timeline-live-pulse 1.8s ease-out infinite}
+
+.county-path.timeline-changed{animation:timeline-county-flip 780ms cubic-bezier(.22,1,.36,1) both}
+.map-figure.timeline-replay #countyMap{animation:timeline-map-beat 420ms cubic-bezier(.22,1,.36,1)}
+.forecast-timeline.is-playing .timeline-progress>span{box-shadow:0 0 14px rgba(40,100,200,.35)}
+.forecast-timeline.is-playing [data-timeline-play]{background:var(--blue);color:#fff;border-color:var(--blue)}
+
+body.war-room .forecast-timeline{background:linear-gradient(180deg,rgba(10,24,39,.9),rgba(7,18,30,.92));border-color:#263b52;box-shadow:0 16px 48px rgba(0,0,0,.18)}
+body.war-room .timeline-head,body.war-room .timeline-detail{border-color:#26364a}body.war-room .timeline-candidate-bar,body.war-room .timeline-progress{background:#142438}body.war-room .timeline-model,body.war-room .timeline-date,body.war-room .timeline-meta,body.war-room .timeline-flips{color:#8fa1b7}body.war-room .timeline-candidate-bar span{background:linear-gradient(90deg,#4b86c5,#67c1ff)}
+
+@keyframes timeline-county-flip{0%{filter:brightness(1);transform:scale(1)}35%{filter:brightness(1.38) drop-shadow(0 0 8px rgba(255,255,255,.75));transform:scale(1.035)}100%{filter:none;transform:scale(1)}}
+@keyframes timeline-map-beat{0%{opacity:.82;filter:saturate(.82)}100%{opacity:1;filter:none}}
+@keyframes timeline-live-pulse{70%{box-shadow:0 0 0 8px rgba(20,128,94,0)}100%{box-shadow:0 0 0 0 rgba(20,128,94,0)}}
+
+@media(max-width:900px){.timeline-body{grid-template-columns:1fr}.timeline-detail{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:13px}}
+@media(max-width:760px){.timeline-head{align-items:flex-start}.timeline-title{display:grid;gap:2px}.timeline-actions{flex:none}.timeline-actions button{padding:4px 7px}.timeline-candidate{grid-template-columns:86px minmax(60px,1fr) 46px}.forecast-timeline{border-radius:8px}}
+@media(prefers-reduced-motion:reduce){.timeline-progress>span,.timeline-candidate-bar span{transition:none}.county-path.timeline-changed,.map-figure.timeline-replay #countyMap,.timeline-live::before{animation:none!important}}
