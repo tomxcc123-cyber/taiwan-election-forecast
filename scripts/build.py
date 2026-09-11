@@ -27,7 +27,6 @@ def build(now=None):
     if feed.get('schema_version') != 1 or not isinstance(feed.get('records'), list):
         raise ValueError('Invalid poll archive; refusing to replace public site')
     dist = ROOT / 'dist'
-    # Only the build-owned output directory can be cleared, including paused builds.
     if dist.exists():
         assert dist.resolve().parent == ROOT.resolve() and dist.name == 'dist'
         shutil.rmtree(dist)
@@ -38,14 +37,12 @@ def build(now=None):
         print('Built paused publication: no forecast assets or polls in artifact')
         return
     source = (ROOT / 'site/base.html').read_text(encoding='utf-8')
-    # The cloud feed replaces the legacy file importer, retaining manual/private scenarios.
     start = source.index('async function loadExternalPolls(manual=false){')
     end = source.index('function clearExternalPolls(){', start)
     source = source[:start] + 'async function loadExternalPolls(){return window.PublicPolls?.reload() ?? 0;}\n' + source[end:]
     source = source.replace("const LS_KEY = 'tw2026_admin_map_updates_v2';", "const LS_KEY = 'tw2026_public_private_scenarios_v1';")
     source = source.replace('  initApiPanel();', '  /* Public build has no browser-side API credentials. */')
     source = source.replace('tw2026_admin_map_api_config_v2', 'tw2026_public_api_disabled_v1')
-    # Keep the local assistant, but disallow the inherited paid API pathway in public build.
     source = source.replace("if(!cfg.enabled)", "if(true)")
     source = re.sub(r'<title>.*?</title>', '<title>2026 台灣選舉預測 | 自動民調追蹤</title>', source, count=1)
     security = '<meta name="referrer" content="strict-origin-when-cross-origin">\n<meta http-equiv="Content-Security-Policy" content="default-src \'self\'; script-src \'self\' \'unsafe-inline\'; style-src \'self\' \'unsafe-inline\'; img-src \'self\' data: blob:; connect-src \'self\' https://zh.wikipedia.org https://cdn.jsdelivr.net https://raw.githubusercontent.com; font-src \'self\'; object-src \'none\'; base-uri \'self\'; form-action \'none\'">\n'
@@ -60,7 +57,6 @@ def build(now=None):
     source = source.replace('</body>', '<script type="application/json" id="publicPollBootstrap">' + payload + '</script>\n<script src="public-polls.js"></script>\n</body>')
     if re.search(r'(?:sk-ant-api\w*-|ghp_|github_pat_)[A-Za-z0-9_\-]{20,}', source):
         raise ValueError('Potential credential in source; refusing public build')
-    # Retain the original advanced workspace at a separate route, not hidden in the new DOM.
     source = source.replace('</head>', '<style>.legacy-notice{position:relative;z-index:999;padding:12px 24px;background:#fff3df;color:#714416;font:14px system-ui}.legacy-notice a{color:#174fa8}</style></head>', 1)
     source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
@@ -83,7 +79,6 @@ def build(now=None):
     historical = load_dataset(ROOT / 'data/candidate-history.json')
     roster = load_roster(ROOT / 'data/registration-roster-2026.json', historical)
     research = run(historical, now.isoformat())
-    # Only historical validation is public. Experimental 2026 candidate probabilities stay offline.
     research.pop('experimental_registration_forecast', None)
     research['registration_roster'] = {'candidate_count': roster['candidate_count'],
                                      'county_count': roster['county_count'], 'as_of': roster['as_of']}
@@ -99,7 +94,7 @@ def build(now=None):
     model_data['publication_pause_end'] = config['publication_pause_end']
     (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
-    from model.product import build_product
+    from model.v4_product import build_product
     product = build_product(ROOT, now, feed)
     product['publication_pause_start'] = config['publication_pause_start']
     product['publication_pause_end'] = config['publication_pause_end']
@@ -110,17 +105,21 @@ def build(now=None):
         'historical_polling':{**product['historical_polling'], 'records':json.loads((ROOT/'data/historical-polls-tvbs.json').read_text(encoding='utf-8'))['records']},
         'data_hash':product['training_data_hash'], 'audit':product['training']['audit'],
         'backtest':product['validation']['fundamentals'], 'training':product['training'],
+        'v4_validation':product['v4_validation'],
         'surveys':json.loads((ROOT/'data/survey-source-audit.json').read_text(encoding='utf-8'))}
     (dist / 'candidate-validation.json').write_text(json.dumps(current_research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     shutil.copy2(ROOT/'data/candidate-history-cec.json', dist/'candidate-history-cec.json')
     shutil.copy2(ROOT/'data/historical-polls-tvbs.json', dist/'historical-polls-tvbs.json')
     shutil.copy2(ROOT/'data/forecast-history.json', dist/'forecast-history.json')
+    shutil.copy2(ROOT/'model/releases/v4-public-beta.1.json', dist/'v4-public-beta.1.json')
+    shutil.copy2(ROOT/'docs/MODEL_CARD_V4_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_PUBLIC_BETA.md')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')
     shutil.copy2(ROOT / 'THIRD_PARTY.md', dist / 'THIRD_PARTY.md')
     print('Built dist/index.html:', product['model_version'], ';', len(feed['records']),
-          'archived questions;', product['diagnostics']['included_reports'], 'candidate-model inputs')
+          'archived questions;', product['diagnostics']['included_reports'], 'candidate-model inputs;',
+          product['diagnostics']['structural_mode_counts'])
 
 
 if __name__ == '__main__':
