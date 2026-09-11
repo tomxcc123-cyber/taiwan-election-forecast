@@ -68,7 +68,7 @@ The current panel has no audited variation in `verified_incumbency_signal` and n
 
 ## Fair comparison with the legacy direct candidate model
 
-The legacy model and Candidate Effect models are now evaluated on the exact same 19 counties and the same target: DPP share among DPP+KMT votes. Legacy full-race probabilities are renormalized over exactly one DPP and one KMT candidate before scoring.
+The legacy model and Candidate Effect models are evaluated on the exact same 19 counties and the same target: DPP share among DPP+KMT votes. Legacy full-race probabilities are renormalized over exactly one DPP and one KMT candidate before scoring.
 
 | Model | 2022 MAE | RMSE | Bias | High-coverage MAE |
 |---|---:|---:|---:|---:|
@@ -105,6 +105,8 @@ Untouched 2022 holdout:
 
 This is the best leakage-safe two-party MAE currently observed in the research branch. It is still a challenger rather than a promoted reference model because the stacking rule has only one historical selection cycle. A second time-cycle validation is required before promotion.
 
+The next validation fold is explicitly defined as: construct a pre-2014 structural/candidate information set from the user-supplied 2009/2010 local executive, council and township data plus the 2012 presidential anchor; generate 2014 county-OOF structural and direct-candidate predictions; choose a blend using only that 2014 OOF fold; then apply it once to 2018. The 2009/2010 source material has been ingested offline, but its canonical repository import is still a release gate.
+
 The stack does not solve third-party contamination. Hsinchu City remains a major failure because a strong TPP candidate changes the observed KMT/DPP ratio; that requires a separate compositional Third Party / Faction model.
 
 ## Interpretation
@@ -129,7 +131,8 @@ Candidate Effect 3.0 does not allocate TPP/independent/other vote share. Strong 
 
 ## Remaining release gates
 
-- validate stacking on an earlier historical time cycle;
+- import the audited 2009/2010 aggregate and candidate-history inputs canonically into the repository;
+- validate stacking on the 2014 -> 2018 historical time cycle;
 - add independently verified incumbency for historical races;
 - generate earlier candidate-residual history so C4 has actual training variation;
 - audit candidate aliases beyond exact-name matching;
