@@ -1,0 +1,85 @@
+name: Research model tests
+
+on:
+  pull_request:
+    paths:
+      - 'model/**'
+      - 'tests/**'
+      - 'scripts/run_candidate_effect_research.py'
+      - 'scripts/compare_candidate_models.py'
+      - 'scripts/stack_candidate_models.py'
+      - 'scripts/validate_earlier_partisan_cycle.py'
+      - 'scripts/validate_release_candidate.py'
+      - 'scripts/validate_release_candidate_v2.py'
+      - 'scripts/validate_release_candidate_v3.py'
+      - 'scripts/validate_extended_candidate_cycles.py'
+      - 'scripts/audit_public_beta_release.py'
+      - 'data/baseline/**'
+      - 'data/candidate-history-cec.json'
+      - 'data/candidate-history-2009-2010.json'
+      - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
+      - 'docs/CANDIDATE_EFFECT_3.md'
+      - 'docs/ELECTION_ENVIRONMENT_1.md'
+      - 'docs/MODEL_ARCHITECTURE_4.md'
+      - 'docs/MODEL_CARD_V4_PUBLIC_BETA.md'
+      - '.github/workflows/research-model-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run offline model unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Validate earlier Partisan Baseline cycle
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_earlier_partisan_cycle.py
+      - name: Run Candidate Effect 3.0 research holdout
+        env:
+          PYTHONPATH: .
+        run: python scripts/run_candidate_effect_research.py
+      - name: Compare legacy and residual candidate models
+        env:
+          PYTHONPATH: .
+        run: python scripts/compare_candidate_models.py
+      - name: Run OOF-stacked candidate challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/stack_candidate_models.py
+      - name: Validate full compositional release candidate v1
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate.py
+      - name: Validate conservative release candidate v2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate_v2.py
+      - name: Validate selective release candidate v3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate_v3.py
+      - name: Validate candidate model over two strict time cycles
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_extended_candidate_cycles.py
+      - name: Audit frozen v4 Public Beta release
+        env:
+          PYTHONPATH: .
+        run: python scripts/audit_public_beta_release.py
+      - name: Upload research-only artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-effect-v3-research
+          path: .cache/candidate-effect-v3
+          if-no-files-found: error

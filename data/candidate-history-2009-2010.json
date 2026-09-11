@@ -1,0 +1,1479 @@
+{
+  "schema_version": 1,
+  "source": {
+    "kind": "historical_web_transcription",
+    "years": [
+      2009,
+      2010
+    ],
+    "notice": "Research extension to create a true pre-2014 candidate-history cycle. Exact votes are transcribed from published result tables; CEC metadata is the authoritative election reference. This file is not a substitute for raw CEC workbook hash verification."
+  },
+  "races": [
+    {
+      "race_id": "local-executive-2009-historical-73a08af8bb9a",
+      "county_id": "historical-73a08af8bb9a",
+      "county": "基隆市",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 42.0805433633422,
+        "IND": 2.813571268381764,
+        "KMT": 55.10588536827604
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-73a08af8bb9a-e7bbfdb0f4f9",
+          "name": "林右昌",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 65673,
+          "share_pct": 42.0805433633422,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-73a08af8bb9a-b44cffbbe478",
+          "name": "李步輝",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 4391,
+          "share_pct": 2.813571268381764,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-73a08af8bb9a-cb0a681ba46f",
+          "name": "張通榮",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 86001,
+          "share_pct": 55.10588536827604,
+          "winner": true,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 156065,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-61054ec09ec1",
+      "county_id": "historical-61054ec09ec1",
+      "county": "宜蘭縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 54.25541866812005,
+        "KMT": 45.74458133187995
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-61054ec09ec1-aa03c7049a47",
+          "name": "林聰賢",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 133394,
+          "share_pct": 54.25541866812005,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-61054ec09ec1-5dfbc001b3b0",
+          "name": "呂國華",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 112469,
+          "share_pct": 45.74458133187995,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 245863,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-8def606b927f",
+      "county_id": "historical-8def606b927f",
+      "county": "桃園市",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "OTHER": 2.083372822999473,
+        "DPP": 45.69104467775601,
+        "KMT": 52.22558249924452
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-8def606b927f-b9d847a88809",
+          "name": "吳富彤",
+          "party": null,
+          "party_name": "客家黨",
+          "legacy_bloc": "OTHER",
+          "votes": 15807,
+          "share_pct": 2.083372822999473,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-8def606b927f-6d41bbe7655d",
+          "name": "鄭文燦",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 346678,
+          "share_pct": 45.69104467775601,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-8def606b927f-44e344fd2f43",
+          "name": "吳志揚",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 396237,
+          "share_pct": 52.22558249924452,
+          "winner": true,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 758722,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-dd8c2846e881",
+      "county_id": "historical-dd8c2846e881",
+      "county": "新竹縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 38.48754476674492,
+        "IND": 30.95870305121668,
+        "DPP": 30.5537521820384
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-dd8c2846e881-3fd2b1430498",
+          "name": "邱鏡淳",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 97151,
+          "share_pct": 38.48754476674492,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-dd8c2846e881-7a295977801c",
+          "name": "張碧琴",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 76254,
+          "share_pct": 30.20948879393592,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-dd8c2846e881-0faf80c40d10",
+          "name": "彭紹瑾",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 77126,
+          "share_pct": 30.5537521820384,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-dd8c2846e881-930a2edcbecb",
+          "name": "曾錦祥",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 1893,
+          "share_pct": 0.7492142572807593,
+          "winner": false,
+          "ballot_number": 4,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 252424,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-761bcb38ccf1",
+      "county_id": "historical-761bcb38ccf1",
+      "county": "新竹市",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 55.63432717938078,
+        "IND": 3.046891330127339,
+        "DPP": 41.31878149049188
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-761bcb38ccf1-7b17fdbf51ac",
+          "name": "許明財",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 92667,
+          "share_pct": 55.63432717938078,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-761bcb38ccf1-88b3988ce535",
+          "name": "林修二",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 5074,
+          "share_pct": 3.046891330127339,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-761bcb38ccf1-d9c971904655",
+          "name": "劉俊秀",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 68822,
+          "share_pct": 41.31878149049188,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 166563,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-d9cf669f28cf",
+      "county_id": "historical-d9cf669f28cf",
+      "county": "苗栗縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 33.59809839121364,
+        "KMT": 63.78928405071127,
+        "IND": 2.612617558075089
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-d9cf669f28cf-ed51e94770c3",
+          "name": "楊長鎮",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 95469,
+          "share_pct": 33.59809839121364,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-d9cf669f28cf-41fb0bb66d13",
+          "name": "劉政鴻",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 181256,
+          "share_pct": 63.78928405071127,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-d9cf669f28cf-a956ef650c63",
+          "name": "李佳穆",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 7413,
+          "share_pct": 2.612617558075089,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 284138,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-b8442ba3d424",
+      "county_id": "historical-b8442ba3d424",
+      "county": "彰化縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 43.63135509706599,
+        "KMT": 54.89027325823144,
+        "IND": 1.4783716447025689
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-b8442ba3d424-73b50fd3a4a2",
+          "name": "翁金珠",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 276897,
+          "share_pct": 43.63135509706599,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-b8442ba3d424-475319bfc78b",
+          "name": "卓伯源",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 348341,
+          "share_pct": 54.89027325823144,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-b8442ba3d424-6c9a55047bfa",
+          "name": "張春男",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 9402,
+          "share_pct": 1.4783716447025689,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 634640,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-c7179e5e757b",
+      "county_id": "historical-c7179e5e757b",
+      "county": "南投縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 9.37384874952843,
+        "DPP": 39.753064401123855,
+        "KMT": 50.87308684934772
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-c7179e5e757b-fde1608118f5",
+          "name": "陳振盛",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 22170,
+          "share_pct": 8.234994818301751,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-c7179e5e757b-aa1fa448f7c2",
+          "name": "李文忠",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 107023,
+          "share_pct": 39.753064401123855,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-c7179e5e757b-d0c0b4ba06f6",
+          "name": "李朝卿",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 136951,
+          "share_pct": 50.87308684934772,
+          "winner": true,
+          "ballot_number": 3,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-c7179e5e757b-ea57960cc027",
+          "name": "張俊宏",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 3073,
+          "share_pct": 1.1388539312266785,
+          "winner": false,
+          "ballot_number": 4,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 269217,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-ceeef6d0d1fb",
+      "county_id": "historical-ceeef6d0d1fb",
+      "county": "雲林縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 65.36854487051935,
+        "KMT": 34.63145512948066
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-ceeef6d0d1fb-18343d2f738b",
+          "name": "蘇治芬",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 229958,
+          "share_pct": 65.36854487051935,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-ceeef6d0d1fb-926b4b47450a",
+          "name": "吳威志",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 121832,
+          "share_pct": 34.63145512948066,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 351790,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-302152d459f9",
+      "county_id": "historical-302152d459f9",
+      "county": "嘉義縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 3.418250745296893,
+        "KMT": 40.66943210243445,
+        "DPP": 55.91231715226866
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-302152d459f9-0622ee740786",
+          "name": "翁玉隆",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 2874,
+          "share_pct": 0.9060195181197644,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-302152d459f9-a1208c4d4f78",
+          "name": "翁重鈞",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 128973,
+          "share_pct": 40.66943210243445,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-302152d459f9-fb3d29438f43",
+          "name": "蕭登標",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 7955,
+          "share_pct": 2.5122312271771283,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-302152d459f9-29cfa76962fd",
+          "name": "張花冠",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 177333,
+          "share_pct": 55.91231715226866,
+          "winner": true,
+          "ballot_number": 4,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 317135,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-1a0509d2e52f",
+      "county_id": "historical-1a0509d2e52f",
+      "county": "嘉義市",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 52.19732605725461,
+        "IND": 2.089811312678193,
+        "DPP": 45.71286263006767
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-1a0509d2e52f-ad934c10c9fe",
+          "name": "黃敏惠",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 69962,
+          "share_pct": 52.19732605725461,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-1a0509d2e52f-f11c1d963599",
+          "name": "林聖芬",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 2801,
+          "share_pct": 2.089811312678193,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-1a0509d2e52f-b1fd4f876bb6",
+          "name": "涂醒哲",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 61268,
+          "share_pct": 45.71286263006767,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 134031,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-98575023b269",
+      "county_id": "historical-98575023b269",
+      "county": "屏東縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 59.327606536086916,
+        "KMT": 40.672393463913084
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-98575023b269-ea2324524eff",
+          "name": "曹啟鴻",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 270402,
+          "share_pct": 59.327606536086916,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-98575023b269-b70da130e97e",
+          "name": "周典論",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 185384,
+          "share_pct": 40.672393463913084,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 455786,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-62f19aa88720",
+      "county_id": "historical-62f19aa88720",
+      "county": "臺東縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 47.40756410914854,
+        "KMT": 52.59243589085146
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-62f19aa88720-8ff1bb524b7d",
+          "name": "劉櫂豪",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 50802,
+          "share_pct": 47.40756410914854,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-62f19aa88720-f0abb5312c84",
+          "name": "黃健庭",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 56354,
+          "share_pct": 52.59243589085146,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 107156,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-098e5af8e877",
+      "county_id": "historical-098e5af8e877",
+      "county": "花蓮縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 74.55809661899426,
+        "KMT": 25.441903381005734
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-098e5af8e877-b96ee670f4ba",
+          "name": "傅崐萁",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 85532,
+          "share_pct": 56.37250444869176,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-098e5af8e877-724c95b1e4f8",
+          "name": "張志明",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 27595,
+          "share_pct": 18.18559217030251,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-098e5af8e877-9825bb8435c7",
+          "name": "杜麗華",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 38603,
+          "share_pct": 25.441903381005734,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 151730,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-d79f09805da6",
+      "county_id": "historical-d79f09805da6",
+      "county": "澎湖縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 48.07122631235025,
+        "KMT": 49.367239164669136,
+        "IND": 2.5615345229806154
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-d79f09805da6-487ff3ad5900",
+          "name": "蔡見興",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 22069,
+          "share_pct": 48.07122631235025,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-d79f09805da6-8e3d09940c28",
+          "name": "王乾發",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 22664,
+          "share_pct": 49.367239164669136,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-d79f09805da6-16db484f61a5",
+          "name": "曾炳坤",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 1177,
+          "share_pct": 2.5615345229806154,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 45910,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-51f932348f18",
+      "county_id": "historical-51f932348f18",
+      "county": "金門縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 62.72727272727273,
+        "KMT": 37.27272727272727
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-1e121e208357",
+          "name": "梁國棟",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 245,
+          "share_pct": 0.6399937304075235,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-32aceefad721",
+          "name": "翁天慶",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 231,
+          "share_pct": 0.603448275862069,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-f1fa57aa7b2f",
+          "name": "楊榮祥",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 356,
+          "share_pct": 0.9299895506792059,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-45d1734297aa",
+          "name": "吳成典",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 11501,
+          "share_pct": 30.04440961337513,
+          "winner": false,
+          "ballot_number": 4,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-dab23df00825",
+          "name": "李沃士",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 14269,
+          "share_pct": 37.27272727272727,
+          "winner": true,
+          "ballot_number": 5,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-90664f54536c",
+          "name": "陳水在",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 11442,
+          "share_pct": 29.89028213166144,
+          "winner": false,
+          "ballot_number": 6,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-51f932348f18-0e8ace347774",
+          "name": "許敬民",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 236,
+          "share_pct": 0.6165099268547545,
+          "winner": false,
+          "ballot_number": 7,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 38280,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2009-historical-1e57943f8934",
+      "county_id": "historical-1e57943f8934",
+      "county": "連江縣",
+      "region": "historical",
+      "year": 2009,
+      "office": "local_executive",
+      "election_date": "2009-12-05",
+      "available_at": "2009-12-05",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 98.57716161984677,
+        "IND": 1.4228383801532287
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2009-historical-1e57943f8934-f981368525fe",
+          "name": "楊綏生",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 3135,
+          "share_pct": 57.17256548686793,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-1e57943f8934-c14c18aca84d",
+          "name": "陳財能",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 78,
+          "share_pct": 1.4228383801532287,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2009-historical-1e57943f8934-7951947e94bc",
+          "name": "劉增應",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 2269,
+          "share_pct": 41.40459613297884,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 5482,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "ca9356e2d1cdde43ef4f7115f4898bf5",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/2009年中華民國縣市長暨縣市議員選舉",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2010-historical-58701cb1a92d",
+      "county_id": "historical-58701cb1a92d",
+      "county": "臺北市",
+      "region": "historical",
+      "year": 2010,
+      "office": "local_executive",
+      "election_date": "2010-11-27",
+      "available_at": "2010-11-27",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 0.5406842224773598,
+        "KMT": 55.64803464499985,
+        "DPP": 43.81128113252279
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2010-historical-58701cb1a92d-04604d834718",
+          "name": "吳炎成",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 1832,
+          "share_pct": 0.12777665985830027,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-58701cb1a92d-5d011718286e",
+          "name": "郝龍斌",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 797865,
+          "share_pct": 55.64803464499985,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-58701cb1a92d-33765aeb4ca4",
+          "name": "蕭淑華",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 2238,
+          "share_pct": 0.15609707868102654,
+          "winner": false,
+          "ballot_number": 3,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-58701cb1a92d-c1c2f4a2950b",
+          "name": "吳武明",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 3672,
+          "share_pct": 0.2568104839380329,
+          "winner": false,
+          "ballot_number": 4,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-58701cb1a92d-c8070584a7c1",
+          "name": "蘇貞昌",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 628129,
+          "share_pct": 43.81128113252279,
+          "winner": false,
+          "ballot_number": 5,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 1433736,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "e613c42ee1eddb1fc8c7a75a420ef033",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/中華民國歷任直轄市長得票率",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2010-historical-7b208551df26",
+      "county_id": "historical-7b208551df26",
+      "county": "新北市",
+      "region": "historical",
+      "year": 2010,
+      "office": "local_executive",
+      "election_date": "2010-11-27",
+      "available_at": "2010-11-27",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 52.60880064533916,
+        "DPP": 47.39119935466084
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2010-historical-7b208551df26-fd75471d45df",
+          "name": "朱立倫",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 1115536,
+          "share_pct": 52.60880064533916,
+          "winner": true,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-7b208551df26-abd13e9c483a",
+          "name": "蔡英文",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 1004900,
+          "share_pct": 47.39119935466084,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 2120436,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "e613c42ee1eddb1fc8c7a75a420ef033",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/中華民國歷任直轄市長得票率",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2010-historical-86bc8b50f6a5",
+      "county_id": "historical-86bc8b50f6a5",
+      "county": "臺中市",
+      "region": "historical",
+      "year": 2010,
+      "office": "local_executive",
+      "election_date": "2010-11-27",
+      "available_at": "2010-11-27",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "DPP": 48.88129860720503,
+        "KMT": 51.11870139279497
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2010-historical-86bc8b50f6a5-90cebeaff931",
+          "name": "蘇嘉全",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 698358,
+          "share_pct": 48.88129860720503,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-86bc8b50f6a5-5f974d211dd3",
+          "name": "胡志強",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 730284,
+          "share_pct": 51.11870139279497,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 1428642,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "e613c42ee1eddb1fc8c7a75a420ef033",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/中華民國歷任直轄市長得票率",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2010-historical-3ee1c4d2707e",
+      "county_id": "historical-3ee1c4d2707e",
+      "county": "臺南市",
+      "region": "historical",
+      "year": 2010,
+      "office": "local_executive",
+      "election_date": "2010-11-27",
+      "available_at": "2010-11-27",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "KMT": 39.586660857057985,
+        "DPP": 60.413339142942015
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2010-historical-3ee1c4d2707e-99d0f7931fd3",
+          "name": "郭添財",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 406196,
+          "share_pct": 39.586660857057985,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-3ee1c4d2707e-409069846046",
+          "name": "賴清德",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 619897,
+          "share_pct": 60.413339142942015,
+          "winner": true,
+          "ballot_number": 2,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 1026093,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "e613c42ee1eddb1fc8c7a75a420ef033",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/中華民國歷任直轄市長得票率",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    },
+    {
+      "race_id": "local-executive-2010-historical-3d10444528aa",
+      "county_id": "historical-3d10444528aa",
+      "county": "高雄市",
+      "region": "historical",
+      "year": 2010,
+      "office": "local_executive",
+      "election_date": "2010-11-27",
+      "available_at": "2010-11-27",
+      "boundary_version": "modern-compatible-prior-cycle",
+      "roster_verified": true,
+      "source_verified": false,
+      "counts_verified": true,
+      "party_shares_pct": {
+        "IND": 26.681285794718974,
+        "KMT": 20.522854147994163,
+        "DPP": 52.79586005728686
+      },
+      "candidates": [
+        {
+          "candidate_id": "local-executive-2010-historical-3d10444528aa-d4660a55cdd1",
+          "name": "楊秋興",
+          "party": null,
+          "party_name": "無黨籍",
+          "legacy_bloc": "IND",
+          "votes": 414950,
+          "share_pct": 26.681285794718974,
+          "winner": false,
+          "ballot_number": 1,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-3d10444528aa-2b49010a91a2",
+          "name": "黃昭順",
+          "party": "KMT",
+          "party_name": "中國國民黨",
+          "legacy_bloc": "KMT",
+          "votes": 319171,
+          "share_pct": 20.522854147994163,
+          "winner": false,
+          "ballot_number": 2,
+          "identity_verified": true
+        },
+        {
+          "candidate_id": "local-executive-2010-historical-3d10444528aa-dcdedc3a7440",
+          "name": "陳菊",
+          "party": "DPP",
+          "party_name": "民主進步黨",
+          "legacy_bloc": "DPP",
+          "votes": 821089,
+          "share_pct": 52.79586005728686,
+          "winner": true,
+          "ballot_number": 3,
+          "identity_verified": true
+        }
+      ],
+      "valid_votes": 1555210,
+      "source_locator": "CEC historical election database; candidate totals cross-checked against published election tables",
+      "source": {
+        "kind": "web_transcribed_cec_crosscheck",
+        "cec_theme_id": "e613c42ee1eddb1fc8c7a75a420ef033",
+        "cec_url": "https://db.cec.gov.tw/ElecTable/Election/ElecProfiles",
+        "crosscheck_url": "https://zh.wikipedia.org/wiki/中華民國歷任直轄市長得票率",
+        "notice": "Candidate vote totals transcribed from published tables and checked against CEC election metadata; raw CEC workbook was not hash-verified."
+      }
+    }
+  ]
+}
