@@ -29,11 +29,22 @@ CANDIDATE_ABLATIONS = [
     ("C4_plus_prior_candidate_residual", ["repeat_candidate_signal", "prior_winner_signal",
                                            "verified_incumbency_signal",
                                            "prior_candidate_residual_signal"]),
-    # Challenger only: raw previous vote share mixes candidate and old structural context.
+    # Challengers below deliberately import old structural context to test why
+    # the legacy direct-candidate model performs well. They are not clean
+    # candidate-quality features and cannot replace C4 without a new decision.
     ("C5_previous_share_challenger", ["repeat_candidate_signal", "prior_winner_signal",
                                        "verified_incumbency_signal",
                                        "prior_candidate_residual_signal",
                                        "previous_candidate_share_signal"]),
+    ("C6_party_pool_challenger", ["repeat_candidate_signal", "prior_winner_signal",
+                                   "verified_incumbency_signal",
+                                   "prior_candidate_residual_signal",
+                                   "previous_party_pool_signal"]),
+    ("C7_legacy_hybrid_challenger", ["repeat_candidate_signal", "prior_winner_signal",
+                                      "verified_incumbency_signal",
+                                      "prior_candidate_residual_signal",
+                                      "previous_candidate_share_signal",
+                                      "previous_party_pool_signal"]),
 ]
 REFERENCE_SPEC = "C4_plus_prior_candidate_residual"
 
@@ -143,8 +154,8 @@ def run(panel, train_year=2018, test_year=2022, alpha_grid=DEFAULT_ALPHA_GRID):
         "ablation": ablation,
         "reference_result": reference,
         "notes": [
-            "C0-C5 specifications are predeclared; the 2022 holdout is not used to select one.",
-            "C4 is the reference architecture; C5 raw previous share is a confounded challenger.",
+            "C0-C7 specifications are predeclared; the 2022 holdout is not used to select one.",
+            "C4 is the reference architecture; C5-C7 import confounded old structural context as challengers.",
             "Partisan Baseline predictions are frozen before Candidate Effect is fitted.",
             "Training residual labels must come from county-out-of-fold structural predictions.",
             "The later-cycle test must come from an untouched time-holdout structural prediction.",
