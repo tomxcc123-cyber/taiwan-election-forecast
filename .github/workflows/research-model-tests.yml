@@ -10,6 +10,7 @@ on:
       - 'scripts/stack_candidate_models.py'
       - 'scripts/validate_earlier_partisan_cycle.py'
       - 'scripts/validate_release_candidate.py'
+      - 'scripts/validate_release_candidate_v2.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
@@ -51,10 +52,14 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/stack_candidate_models.py
-      - name: Validate full compositional release candidate
+      - name: Validate full compositional release candidate v1
         env:
           PYTHONPATH: .
         run: python scripts/validate_release_candidate.py
+      - name: Validate conservative release candidate v2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate_v2.py
       - name: Upload research-only artifacts
         uses: actions/upload-artifact@v4
         with:
