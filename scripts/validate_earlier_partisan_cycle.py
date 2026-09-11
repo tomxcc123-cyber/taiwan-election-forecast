@@ -1,10 +1,9 @@
-"""Validate Partisan Baseline R4 on an earlier historical cycle.
+"""Validate Partisan Baseline R4 on earlier historical cycles.
 
-This script rebuilds 2014/2018/2022 structural rows from source-derived
-historical aggregates plus audited CEC local-executive outcomes.  It first checks
-that the derived-feature implementation reproduces the established 2018->2022
-R4 result closely enough to be considered the same specification; only then is
-2014->2018 interpreted as a second time-cycle test.
+The script rebuilds 2014/2018/2022 structural rows from source-derived
+historical aggregates plus audited CEC local-executive outcomes.  It also
+separates realized cycle-wide Election Environment shocks from county residuals.
+Realized shocks are diagnostics only and are never legal same-cycle predictors.
 
 Research-only: never edits public site forecasts.
 """
@@ -15,8 +14,9 @@ from pathlib import Path
 
 import numpy as np
 
-from model.partisan_baseline import fit, predict
 from model.baseline_validation import structural_metrics
+from model.election_environment import diagnose_cycle, historical_environment_scale
+from model.partisan_baseline import fit, predict
 
 R4_FEATURES = [
     "previous_local_dpp2",
@@ -90,8 +90,6 @@ def build_rows(root):
         row["information_weight"] = row["major_party_coverage"]
 
         if year == 2014:
-            # The user-supplied 2009/2010 local-executive aggregate already
-            # supplies these lagged fields. Missing DPP/KMT pairs remain missing.
             if row.get("previous_local_dpp2") is None:
                 excluded.append({"target_year": year, "county": county,
                                  "reason": "prior_local_missing_major_party"})
@@ -126,6 +124,7 @@ def evaluate(train, test):
     return {
         "r4": structural_metrics(pred, test),
         "carry": structural_metrics(carry, test),
+        "environment": diagnose_cycle(pred, test),
         "predictions": [
             {"county": r["county"], "actual": float(r["target_dpp2"]),
              "r4": float(p), "carry": float(c),
@@ -142,8 +141,10 @@ def main():
     by_year = {y: [r for r in rows if int(r["target_year"]) == y] for y in (2014, 2018, 2022)}
     earlier = evaluate(by_year[2014], by_year[2018])
     current = evaluate(by_year[2018], by_year[2022])
+    environment_scale = historical_environment_scale([
+        earlier["environment"], current["environment"]
+    ])
 
-    # Existing frozen R4 values are the reference consistency check.
     frozen = json.loads((root / "data/baseline/processed/candidate-effect-frozen-baseline-panel.json")
                         .read_text(encoding="utf-8"))
     ref = {norm_county(r["county"]): float(r["baseline_dpp2"])
@@ -158,7 +159,7 @@ def main():
     }
 
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "mode": "shadow_research_only",
         "release_allowed": False,
         "features": R4_FEATURES,
@@ -166,10 +167,17 @@ def main():
         "excluded": excluded,
         "2014_to_2018": earlier,
         "2018_to_2022_rebuild": current,
+        "historical_environment_scale": environment_scale,
+        "future_environment_policy": {
+            "point_mean_logit": 0.0,
+            "allow_realized_historical_shock_as_future_point_adjustment": False,
+            "uncertainty_challenger_sd_logit": environment_scale["rms_shock_logit"],
+            "reason": "No ex-ante environment predictor has passed multi-cycle validation."
+        },
         "r4_consistency_vs_frozen_2022": consistency,
         "interpretation_gate": (
-            "earlier-cycle result is directly comparable only if the rebuilt 2018->2022 "
-            "specification closely reproduces the frozen R4 reference"
+            "The realized cycle shock is outcome-dependent and diagnostic only. "
+            "Without an ex-ante validated predictor it may widen uncertainty but may not shift a future point forecast."
         ),
     }
     out = root / ".cache/candidate-effect-v3"
@@ -180,7 +188,10 @@ def main():
         "rows_by_year": result["rows_by_year"],
         "2014_to_2018_R4_MAE": earlier["r4"]["mae_pp"],
         "2014_to_2018_carry_MAE": earlier["carry"]["mae_pp"],
+        "2018_environment": earlier["environment"],
         "2018_to_2022_rebuild_R4_MAE": current["r4"]["mae_pp"],
+        "2022_environment": current["environment"],
+        "environment_scale": environment_scale,
         "consistency": consistency,
         "release_allowed": False,
     }, ensure_ascii=False, indent=2))
