@@ -1,8 +1,8 @@
 # HB-TLEF v4.0 Public Beta 1 — Model Card
 
-Status: **Public Beta candidate; not deployed.**
+Status: **Public Beta; public research release deployed on 2026-09-11.**
 
-This document describes the frozen research candidate intended to replace the older county/city executive forecast core after publication review. It does not change the public website and it must not be described as a stable or fully calibrated forecast model.
+This document describes the frozen HB-TLEF v4.0 research core now published for public inspection and historical validation. The live 2026 website forecast pipeline has not yet been migrated to this core because the 2026 structural feature layer is still being integrated. Accordingly, current live 2026 point estimates must not be described as v4 outputs. This release must not be described as a stable or fully calibrated forecast model.
 
 ## 1. Forecast object
 
@@ -49,7 +49,7 @@ The chronological candidate chain covers all 22 counties/cities in 2014, 2018 an
 
 The 2018 cycle is used for architecture parameter selection. The 2022 cycle is the main later time holdout for the frozen numeric parameters. On 2022, the selective v4 beta produces:
 
-| Metric | Legacy comparator | v4 Public Beta candidate |
+| Metric | Legacy comparator | v4 Public Beta |
 | --- | ---: | ---: |
 | Race-balanced candidate-share MAE | 6.085 pp | **5.981 pp** |
 | Winner accuracy | 14/22 (63.6%) | **14/22 (63.6%)** |
@@ -77,7 +77,9 @@ The baseline does not ingest current 2026 polls, current campaign events, future
 
 ## 6. Public presentation rules
 
-A public beta page should show the exact model version, generation time, candidate set timestamp, point estimates, uncertainty interval/probability, and whether a county used compositional mode or fallback mode. It must say `Public Beta` and must not use language such as “calibrated probability” or “stable model” until the stable gates pass.
+The v4 research core, release manifest and model card are now public. Until the 2026 structural feature rows and product adapter are completed, the public website must explicitly distinguish the v4 research release from the existing live 2026 forecast engine.
+
+A future v4-powered 2026 forecast page should show the exact model version, generation time, candidate set timestamp, point estimates, uncertainty interval/probability, and whether a county used compositional mode or fallback mode. It must say `Public Beta` and must not use language such as “calibrated probability” or “stable model” until the stable gates pass.
 
 The site should expose enough information for a reader to distinguish three things: structural baseline, candidate/poll updates, and final simulated forecast. This separation is essential for interpretability and for later backtesting.
 
