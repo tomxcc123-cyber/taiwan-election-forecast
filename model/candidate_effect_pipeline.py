@@ -1,7 +1,8 @@
 """Offline Candidate Effect 3.0 runner on a frozen Partisan Baseline panel.
 
-The training fold chooses shrinkage internally; the 2022 holdout is evaluated
-once.  This runner never writes public site forecasts.
+All candidate specifications are predeclared. Shrinkage is selected inside the
+historical training cycle; the later holdout is reported once and is not used to
+choose the specification. This runner never writes public site forecasts.
 """
 from __future__ import annotations
 
@@ -12,12 +13,29 @@ from pathlib import Path
 
 import numpy as np
 
-from .candidate_effect import (DEFAULT_ALPHA_GRID, DEFAULT_FEATURES,
-                               adjust_baseline, coefficient_table, fit,
-                               point_metrics, select_alpha)
+from .candidate_effect import (DEFAULT_ALPHA_GRID, adjust_baseline,
+                               coefficient_table, fit, point_metrics,
+                               select_alpha)
 
 TRAIN_BASELINE_SCOPE = "county_oof"
 TEST_BASELINE_SCOPE = "time_holdout"
+
+CANDIDATE_ABLATIONS = [
+    ("C0_frozen_baseline", []),
+    ("C1_repeat_candidate", ["repeat_candidate_signal"]),
+    ("C2_plus_prior_winner", ["repeat_candidate_signal", "prior_winner_signal"]),
+    ("C3_plus_verified_incumbency", ["repeat_candidate_signal", "prior_winner_signal",
+                                      "verified_incumbency_signal"]),
+    ("C4_plus_prior_candidate_residual", ["repeat_candidate_signal", "prior_winner_signal",
+                                           "verified_incumbency_signal",
+                                           "prior_candidate_residual_signal"]),
+    # Challenger only: raw previous vote share mixes candidate and old structural context.
+    ("C5_previous_share_challenger", ["repeat_candidate_signal", "prior_winner_signal",
+                                       "verified_incumbency_signal",
+                                       "prior_candidate_residual_signal",
+                                       "previous_candidate_share_signal"]),
+]
+REFERENCE_SPEC = "C4_plus_prior_candidate_residual"
 
 
 def load_panel(path: Path):
@@ -58,10 +76,47 @@ def _high_reliability(rows, predicted, cutoff=.80):
     return point_metrics(np.asarray(ps), list(rs))
 
 
-def run(panel, train_year=2018, test_year=2022, features=None,
-        alpha_grid=DEFAULT_ALPHA_GRID):
-    if features is None:
-        features = DEFAULT_FEATURES
+def _prediction_rows(test, baseline, adjusted):
+    return [
+        {"county_id": r["county_id"], "county": r.get("county"),
+         "baseline_dpp2": float(b), "candidate_adjusted_dpp2": float(p),
+         "actual_dpp2": float(r["target_dpp2"]),
+         "major_party_coverage": float(r.get("major_party_coverage", 1.0))}
+        for r, b, p in zip(test, baseline, adjusted)
+    ]
+
+
+def _evaluate_spec(name, features, train, test, alpha_grid):
+    baseline = np.array([float(r["baseline_dpp2"]) for r in test], dtype=float)
+    if not features:
+        return {
+            "model": name,
+            "features": [],
+            "selected_alpha": None,
+            "alpha_selection": None,
+            "coefficients": [],
+            "metrics": point_metrics(baseline, test),
+            "high_reliability_metrics": _high_reliability(test, baseline),
+            "predictions": _prediction_rows(test, baseline, baseline),
+        }
+
+    selection = select_alpha(train, features=features, grid=alpha_grid)
+    fitted = fit(train, features=features, alpha=selection["selected_alpha"])
+    adjusted = adjust_baseline(fitted, test)
+    return {
+        "model": name,
+        "features": list(features),
+        "selected_alpha": selection["selected_alpha"],
+        "alpha_selection": selection,
+        "coefficients": coefficient_table(fitted),
+        "fitted_model": fitted,
+        "metrics": point_metrics(adjusted, test),
+        "high_reliability_metrics": _high_reliability(test, adjusted),
+        "predictions": _prediction_rows(test, baseline, adjusted),
+    }
+
+
+def run(panel, train_year=2018, test_year=2022, alpha_grid=DEFAULT_ALPHA_GRID):
     rows = panel["rows"]
     train = [r for r in rows if int(r["target_year"]) == int(train_year)]
     test = [r for r in rows if int(r["target_year"]) == int(test_year)]
@@ -69,10 +124,9 @@ def run(panel, train_year=2018, test_year=2022, features=None,
         raise ValueError("Need a historical training cycle and a later untouched holdout")
     _assert_baseline_scopes(train, test)
 
-    selection = select_alpha(train, features=features, grid=alpha_grid)
-    fitted = fit(train, features=features, alpha=selection["selected_alpha"])
-    adjusted = adjust_baseline(fitted, test)
-    baseline = np.array([float(r["baseline_dpp2"]) for r in test], dtype=float)
+    ablation = [_evaluate_spec(name, features, train, test, alpha_grid)
+                for name, features in CANDIDATE_ABLATIONS]
+    reference = next(item for item in ablation if item["model"] == REFERENCE_SPEC)
 
     return {
         "schema_version": 1,
@@ -85,29 +139,16 @@ def run(panel, train_year=2018, test_year=2022, features=None,
         "test_year": int(test_year),
         "training_baseline_scope": TRAIN_BASELINE_SCOPE,
         "test_baseline_scope": TEST_BASELINE_SCOPE,
-        "features": list(features),
-        "alpha_selection": selection,
-        "fitted_model": fitted,
-        "coefficients": coefficient_table(fitted),
-        "holdout": {
-            "baseline_metrics": point_metrics(baseline, test),
-            "candidate_adjusted_metrics": point_metrics(adjusted, test),
-            "baseline_high_reliability": _high_reliability(test, baseline),
-            "candidate_adjusted_high_reliability": _high_reliability(test, adjusted),
-            "predictions": [
-                {"county_id": r["county_id"], "county": r.get("county"),
-                 "baseline_dpp2": float(b), "candidate_adjusted_dpp2": float(p),
-                 "actual_dpp2": float(r["target_dpp2"]),
-                 "major_party_coverage": float(r.get("major_party_coverage", 1.0))}
-                for r, b, p in zip(test, baseline, adjusted)
-            ],
-        },
+        "reference_specification": REFERENCE_SPEC,
+        "ablation": ablation,
+        "reference_result": reference,
         "notes": [
+            "C0-C5 specifications are predeclared; the 2022 holdout is not used to select one.",
+            "C4 is the reference architecture; C5 raw previous share is a confounded challenger.",
             "Partisan Baseline predictions are frozen before Candidate Effect is fitted.",
             "Training residual labels must come from county-out-of-fold structural predictions.",
             "The later-cycle test must come from an untouched time-holdout structural prediction.",
-            "No candidate feature is allowed to modify structural-baseline coefficients.",
-            "Alpha is selected only inside the historical training cycle by county holdout.",
+            "Alpha is selected separately for each specification only inside the training cycle.",
             "Previous listed winner is not automatically treated as verified incumbency.",
             "Third-party vote allocation is outside this two-party candidate-effect model.",
             "No result from this runner is promoted automatically to the public website.",
