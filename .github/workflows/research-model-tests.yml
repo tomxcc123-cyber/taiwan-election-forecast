@@ -1,0 +1,28 @@
+name: Research model tests
+
+on:
+  pull_request:
+    paths:
+      - 'model/**'
+      - 'tests/**'
+      - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
+      - 'docs/CANDIDATE_EFFECT_3.md'
+      - '.github/workflows/research-model-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Run offline model unit tests
+        run: python -m unittest discover -s tests -v
