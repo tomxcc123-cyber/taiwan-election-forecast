@@ -42,25 +42,34 @@ Low major-party coverage is not a clean measurement of KMT-DPP structure. Strong
 
 The clearest example is 2022 Hsinchu City: the TPP candidate won 45.02% while KMT received 18.07%, so the observed DPP share among KMT+DPP votes becomes artificially high as a structural label. This is a candidate/third-party disruption problem rather than evidence of a sudden deep-green baseline.
 
-Remaining high-coverage residuals are strongly associated with candidate incumbency. A downstream diagnostic adding only a signed incumbent-candidate indicator (DPP incumbent +1; KMT incumbent -1; otherwise 0), with alpha selected inside the 2018 training fold, gives:
+Remaining high-coverage residuals are visibly associated with candidate incumbency. A **joint diagnostic** that allows the structural regression to use a signed incumbent-candidate indicator (DPP incumbent +1; KMT incumbent -1; otherwise 0) gives:
 
 - 2022 MAE: **4.910 pp**
 - High-reliability MAE: **4.038 pp**
 - RMSE: **6.495 pp**
 
-This is **not** promoted into Partisan Baseline. It is evidence that candidate effects must be estimated downstream.
+That result must not be interpreted as a validated fixed incumbency bonus, because the candidate term is allowed to interact with the structural regression during fitting.
 
-The candidate-incumbency diagnostic materially reduces errors in, among others, Chiayi City, Yunlin, Taichung, New Taipei, Hsinchu County, Hualien and Taitung. It is less successful in a few cases such as Penghu, showing that incumbency is not a universal fixed bonus and should be regularized together with candidate history.
+A stricter **two-stage separation test** was therefore run: first produce leave-one-county-out R4 structural predictions for 2018; then fit only an incumbency coefficient to those out-of-fold residuals; finally apply that residual model to untouched 2022 R4 predictions. Internal 2018 CV chose strong shrinkage (`alpha=10`), leaving only a small incumbency coefficient. The strict two-stage 2022 result is:
+
+- MAE: **5.792 pp**
+- High-reliability MAE: **5.395 pp**
+- RMSE: **7.271 pp**
+
+This is only a modest improvement over R4. The correct conclusion is therefore not “add a fixed incumbency bonus,” but rather: **candidate effects are real, yet incumbency alone is too weak and heterogeneous to estimate reliably from one training cycle.** Candidate history, repeat-candidate performance, prior winner status and other candidate-level information must be estimated in the downstream Candidate Effect model.
+
+The descriptive 2022 residual pattern remains informative: KMT incumbent-candidate races tend to have lower DPP residuals, while DPP incumbent-candidate races tend to have higher DPP residuals. Exceptions such as Penghu reinforce the need for shrinkage and candidate-specific history.
 
 ## Reliability weighting
 
-The predeclared high-reliability cutoff remains `major-party coverage >= 0.80`. Stronger continuous down-weighting of low-coverage labels improved 2018 high-reliability leave-one-out error modestly, but this remains a challenger and is not promoted solely because of its 2022 score.
+The predeclared high-reliability cutoff remains `major-party coverage >= 0.80`. Stronger continuous down-weighting of low-coverage labels improves 2018 high-reliability leave-one-out error modestly as the coverage exponent rises, but this remains a challenger and is not promoted solely because of its 2022 score.
 
 ## Model decision
 
 1. Keep **R4_faction** as the current structural reference model.
 2. Do not treat low-major-party-coverage races as clean structural labels.
-3. Keep incumbency, repeat-candidate history and candidate-specific prior performance in the downstream Candidate Effect model.
-4. Keep 2006/2009/2010 data for persistence, faction and organization diagnostics rather than equal-weight target labels.
-5. Retain rejected challengers in the research record to prevent result-shopping.
-6. Keep `release_allowed = false`; no public-site promotion.
+3. Do not hard-code a universal incumbency bonus into Partisan Baseline.
+4. Keep incumbency, repeat-candidate history and candidate-specific prior performance in the downstream Candidate Effect model.
+5. Keep 2006/2009/2010 data for persistence, faction and organization diagnostics rather than equal-weight target labels.
+6. Retain rejected challengers in the research record to prevent result-shopping.
+7. Keep `release_allowed = false`; no public-site promotion.
