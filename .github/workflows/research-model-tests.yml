@@ -6,6 +6,7 @@ on:
       - 'model/**'
       - 'tests/**'
       - 'scripts/run_candidate_effect_research.py'
+      - 'scripts/compare_candidate_models.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
@@ -33,6 +34,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/run_candidate_effect_research.py
+      - name: Compare legacy and residual candidate models
+        env:
+          PYTHONPATH: .
+        run: python scripts/compare_candidate_models.py
       - name: Upload research-only artifacts
         uses: actions/upload-artifact@v4
         with:
