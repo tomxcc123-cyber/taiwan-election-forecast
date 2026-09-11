@@ -52,6 +52,15 @@ def build_pair_features(race, history, *, prior_candidate_effects: Mapping[str, 
         p: math.log1p(float(old[p].get("share_pct", 0.0))) if old[p] is not None else 0.0
         for p in MAJOR_PARTIES
     }
+    # Legacy fundamentals gains useful information from the prior named-party
+    # pool even when the current candidate is new.  In this strict one-DPP/
+    # one-KMT pair layer there is one nominee per major party, so the legacy
+    # per-nominee allocation reduces to the prior party share itself.
+    previous_party_pool = {
+        p: math.log1p(float(prior.get("party_shares_pct", {}).get(p, 0.0)))
+        for p in MAJOR_PARTIES
+    }
+
     effects = prior_candidate_effects or {}
     prior_effect = {
         p: float(effects.get(current[p]["name"], 0.0)) if old[p] is not None else 0.0
@@ -67,9 +76,10 @@ def build_pair_features(race, history, *, prior_candidate_effects: Mapping[str, 
         "prior_winner_signal": old_winner["DPP"] - old_winner["KMT"],
         "prior_candidate_residual_signal": prior_effect["DPP"] - prior_effect["KMT"],
         "verified_incumbency_signal": incumbent,
-        # Challenger only: raw previous vote share is structurally confounded and
-        # therefore is not part of Candidate Effect 3.0's default feature set.
+        # Challengers below carry old structural context and therefore remain
+        # outside the clean Candidate Effect reference specification.
         "previous_candidate_share_signal": previous_share["DPP"] - previous_share["KMT"],
+        "previous_party_pool_signal": previous_party_pool["DPP"] - previous_party_pool["KMT"],
         "dpp_candidate_name": current["DPP"]["name"],
         "kmt_candidate_name": current["KMT"]["name"],
         "prior_race_id": prior["race_id"],
