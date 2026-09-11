@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "model_id": "HB-TLEF-v4.0-public-beta.1",
+  "display_name": "HB-TLEF v4.0 Public Beta 1",
+  "release_status": "public_beta_candidate",
+  "deployed": false,
+  "frozen_on": "2026-09-11",
+  "scope": "Taiwan county/city executive election candidate vote shares and winner probabilities",
+  "architecture": {
+    "partisan_baseline": "Partisan Baseline 4.0A weighted regularized KMT-DPP structural model",
+    "two_party_stack": {
+      "space": "logit",
+      "r4_weight": 0.9,
+      "legacy_weight": 0.1,
+      "selection_cycle": 2018
+    },
+    "nonmajor_mass": {
+      "model": "T3_roster_type",
+      "alpha": 0.3,
+      "features": [
+        "previous_nonmajor_share",
+        "council_independent_share",
+        "town_independent_share",
+        "town_available",
+        "faction_propensity",
+        "log_nonmajor_candidate_count",
+        "has_tpp_candidate",
+        "log_independent_candidate_count",
+        "log_minor_party_candidate_count"
+      ],
+      "blend_space": "share",
+      "model_weight": 0.7,
+      "carry_weight": 0.3,
+      "selection_cycle": 2018
+    },
+    "reliability_gate": {
+      "score": "tv_disagreement + nonmajor_jump",
+      "threshold": 0.075,
+      "inside_envelope": "use compositional structural/candidate correction",
+      "outside_envelope": "fallback to direct candidate fundamentals",
+      "selection_cycle": 2018
+    },
+    "winner_probability": {
+      "method": "Monte Carlo Gaussian perturbation of log point shares",
+      "sigma": 0.95,
+      "draws_per_race_validation": 12000,
+      "sigma_selection_metric": "multiclass Brier score",
+      "selection_cycle": 2018
+    }
+  },
+  "historical_validation": {
+    "coverage": {
+      "2014": 22,
+      "2018": 22,
+      "2022": 22,
+      "2014_predecessor_years": [2009, 2010]
+    },
+    "selection_cycle_2018": {
+      "race_balanced_mae_pp": 8.593333013618164,
+      "winner_correct": 12,
+      "winner_total": 22,
+      "winner_accuracy": 0.5454545454545454,
+      "margin_mae_pp": 19.9753524240369
+    },
+    "holdout_2022": {
+      "candidate_mae_pp": 6.344675263271289,
+      "race_balanced_mae_pp": 5.980760687770487,
+      "winner_correct": 14,
+      "winner_total": 22,
+      "winner_accuracy": 0.6363636363636364,
+      "margin_mae_pp": 11.276881146986554,
+      "brier": 0.5006833608711262,
+      "log_loss": 0.9624498938050223,
+      "probability_argmax_accuracy": 0.6818181818181818
+    },
+    "legacy_2022_comparator": {
+      "race_balanced_mae_pp": 6.084627934963427,
+      "winner_correct": 14,
+      "winner_total": 22,
+      "winner_accuracy": 0.6363636363636364,
+      "margin_mae_pp": 11.685929240485802,
+      "brier": 0.5026451654040404
+    }
+  },
+  "release_policy": {
+    "public_beta_allowed": true,
+    "stable_allowed": false,
+    "stable_blockers": [
+      "2022 point winner accuracy is 14/22 (63.6%), below the predeclared 15/22 research target",
+      "the RC3 fallback architecture was proposed after inspection of RC2 2022 failure diagnostics, so 2022 is not a pristine architecture-blind test",
+      "2009/2010 source rows are web-transcribed and cross-checked but source_verified=false; raw workbook hash verification is incomplete",
+      "winner probabilities have only limited cross-cycle calibration evidence"
+    ]
+  },
+  "publication_rules": {
+    "label": "Public Beta",
+    "must_disclose_uncalibrated_probability": true,
+    "must_disclose_fallback_behavior": true,
+    "must_publish_model_card": true,
+    "must_publish_version_and_generated_at": true,
+    "must_not_call_stable": true,
+    "must_not_modify_public_site_until_explicit_promotion": true
+  },
+  "data_policy": {
+    "baseline_excludes_current_polls": true,
+    "baseline_excludes_2026_outcomes": true,
+    "polling_is_downstream": true,
+    "blue_white_transfer_is_scenario_layer": true,
+    "tpp_and_independent_are_not_collapsed_in_interpretation": true
+  }
+}
