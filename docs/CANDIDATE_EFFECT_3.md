@@ -18,67 +18,79 @@ The structural model is never refit with candidate features.
 
 ## Why a separate layer is necessary
 
-The Partisan Baseline 4.0A backtest shows that lagged council, township and faction information improves the 2022 structural two-party MAE, but important high-coverage residuals remain. A joint diagnostic using a signed incumbent indicator produced a large apparent gain, while the stricter two-stage test produced only a modest gain. This means candidate effects exist but are heterogeneous and must not be encoded as a universal incumbency bonus.
+The Partisan Baseline 4.0A backtest shows that lagged council, township and faction information improves the 2022 structural two-party MAE, but important high-coverage residuals remain. A joint diagnostic using a signed incumbent indicator produced a large apparent gain, while the stricter two-stage test produced only a modest gain. Candidate effects therefore exist but are heterogeneous and must not be encoded as a universal incumbency bonus.
 
-The current candidate-level `fundamentals.py` already contains useful historical signals — previous candidate share, previous listed winner, exact-name continuity and named-party history — but it predicts the whole race directly. Candidate Effect 3.0 instead uses such signals only to explain residuals around the frozen structural baseline.
+The legacy `fundamentals.py` contains useful candidate-history signals, but predicts the whole race directly. Candidate Effect 3.0 instead uses candidate information only to explain residuals around a frozen structural baseline.
 
-## Reference features
+## Features and ablation
 
-The first residual model reserves four pre-election feature channels:
+All signals are signed from the DPP perspective. The predeclared sequence is:
 
-- `repeat_candidate_signal`: DPP repeat candidate minus KMT repeat candidate.
-- `prior_winner_signal`: DPP repeat winner minus KMT repeat winner. This is not automatically called incumbency.
-- `prior_candidate_residual_signal`: signed prior candidate over/under-performance relative to the prior frozen structural baseline.
-- `verified_incumbency_signal`: +1 for a verified DPP incumbent candidate, -1 for a verified KMT incumbent candidate, 0 otherwise.
+- C0: frozen R4 structural baseline.
+- C1: `repeat_candidate_signal`.
+- C2: + `prior_winner_signal`.
+- C3: + separately `verified_incumbency_signal`.
+- C4: + `prior_candidate_residual_signal` (reference architecture).
+- C5: + `previous_candidate_share_signal`, retained as a challenger because raw prior vote is structurally confounded.
 
-All features are signed from the DPP perspective. Positive values should, other things equal, move DPP two-party share upward; negative values move it downward.
+`previous_winner` is not silently relabeled as verified incumbency. Verified incumbency must be supplied independently.
 
 ## Estimation
 
-The first implementation uses zero-intercept weighted ridge regression.
+The implementation uses zero-intercept weighted ridge regression. A cycle-wide residual belongs to structural/election-environment modeling, not candidate quality. Feature columns are scaled but not centered, so zero retains the meaning "no observed candidate asymmetry".
 
-The intercept is fixed at zero because a nationwide cycle-wide residual should be handled by the structural/election-environment layer, not silently relabeled as candidate quality.
-
-Feature columns are scaled but not centered. Therefore feature value zero retains the semantic meaning "no observed candidate asymmetry".
-
-Shrinkage is selected only inside the historical training cycle with leave-one-county-out validation over the predeclared grid:
+Shrinkage is selected only inside the 2018 training cycle by leave-one-county-out validation over:
 
 `0.3, 1, 3, 10, 30`
 
-The later election cycle is evaluated once and is not used to tune alpha.
+2018 structural labels are themselves county-out-of-fold R4 predictions; 2022 structural inputs are untouched time-holdout R4 predictions. The pipeline rejects in-sample structural labels.
 
-## Training protocol
+## First empirical 2018 -> 2022 holdout
 
-Initial protocol:
+The automatically generated panel contains 16 training counties and 19 2022 holdout counties. All 35 structural rows passed the KMT/DPP matchup adapter. The full repository test suite and Candidate Effect research runner completed successfully in isolated CI.
 
-1. Build leakage-safe Partisan Baseline predictions for the training cycle using only earlier data.
-2. Generate out-of-fold structural predictions for each training county.
-3. Compute candidate residual labels from those frozen structural predictions.
-4. Build candidate features using only candidate information available before that election.
-5. Select candidate-effect shrinkage inside the training cycle.
-6. Refit Candidate Effect on the full training cycle residual panel.
-7. Apply it to the untouched later-cycle structural predictions.
-8. Compare structural-only and candidate-adjusted MAE/RMSE, including the high-major-party-coverage subset.
+| Specification | Selected alpha | 2022 MAE | RMSE | High-coverage MAE |
+|---|---:|---:|---:|---:|
+| C0 frozen R4 | — | 5.909 | 7.368 | 5.547 |
+| C1 repeat candidate | 30 | 5.855 | 7.320 | 5.484 |
+| C2 + previous winner | 30 | **5.800** | **7.281** | **5.412** |
+| C3 + verified incumbency | 30 | 5.800 | 7.281 | 5.412 |
+| C4 + prior candidate residual | 30 | 5.800 | 7.281 | 5.412 |
+| C5 + previous-share challenger | 30 | **5.753** | **7.240** | **5.356** |
 
-For the first full experiment, 2018 is the candidate-effect training cycle and 2022 is the untouched holdout.
+Relative to C0, C2 improves overall MAE by about 0.108 pp and high-coverage MAE by about 0.136 pp. C5 improves overall MAE by about 0.155 pp and high-coverage MAE by about 0.191 pp, but it remains a challenger rather than the reference model because previous candidate vote share mixes person-specific performance with the old election's structural environment.
+
+Every fitted candidate specification selects the maximum predeclared shrinkage (`alpha=30`). This is substantive evidence that candidate-history effects are weakly identified with only one training cycle and should be strongly pooled toward zero.
+
+The current panel has no audited variation in `verified_incumbency_signal` and no earlier-cycle estimate for `prior_candidate_residual_signal`; both are therefore explicitly reported as `no_training_variation`. C3 and C4 cannot yet improve on C2. This is a data limitation, not evidence that those concepts have zero effect.
+
+## Interpretation
+
+Exact-name repeat candidacy and previous-winner status add a small but reproducible amount of information beyond R4. The gain is much smaller than the earlier joint incumbency diagnostic, confirming that the large apparent incumbency effect was partly structural-model interaction rather than a portable fixed bonus.
+
+For 2022, repeat/winner history modestly improves several KMT repeat-winner races such as New Taipei, Taichung, Yunlin and Chiayi City, but the adjustment is deliberately tiny under strong shrinkage. It can also worsen races such as Pingtung or Penghu, reinforcing the decision not to hard-code a large incumbency bonus.
 
 ## Third-party races
 
-Candidate Effect 3.0 does not allocate TPP/independent/other vote share. Strong third-party races can contaminate the observed KMT-DPP ratio, so low-major-party-coverage races remain down-weighted and are evaluated separately. A future Third Party / Faction model will handle the full compositional vote allocation.
+Candidate Effect 3.0 does not allocate TPP/independent/other vote share. Strong third-party races can contaminate the observed KMT/DPP ratio even when both major-party candidates are present. Such races remain down-weighted by major-party coverage and require a separate Third Party / Faction compositional model.
 
 ## Relationship to the legacy candidate model
 
-`model/fundamentals.py` remains a useful challenger. It directly models candidate-centered log-ratio outcomes using previous candidate share, party history and previous winner status. Candidate Effect 3.0 does not delete that model; instead, the two approaches should be compared under the same 2018 -> 2022 holdout.
+`model/fundamentals.py` remains a challenger. It directly models candidate-centered log-ratio outcomes using previous candidate share, party history and previous-winner status. Candidate Effect 3.0 does not delete that model; the two approaches should ultimately be compared under the same leakage-safe historical holdout.
 
-Promotion rule: candidate residual modeling must beat the frozen R4 structural baseline on the untouched holdout without relying on target-cycle tuning. A single descriptive incumbency effect is insufficient for promotion.
+## Current decision
 
-## Release gate
+1. Keep R4 as the structural baseline.
+2. Use C2 as the currently estimable conservative candidate-history adjustment; do not promote C5 solely because it has the lowest 2022 error.
+3. Keep C4 as the intended architecture once verified incumbency and earlier candidate residuals have real training variation.
+4. Do not encode a universal incumbency bonus.
+5. Keep `release_allowed = false` and do not modify the public site.
 
-`release_allowed = false` until:
+## Remaining release gates
 
-- the canonical candidate-effect panel is committed with provenance;
-- 2018 out-of-fold structural labels are reproducible;
-- candidate identity/continuity checks are audited;
-- the 2022 holdout shows stable incremental gain;
-- third-party contamination is handled explicitly;
-- public-site integration is reviewed separately.
+- add independently verified incumbency for historical races;
+- generate earlier candidate-residual history so C4 has actual training variation;
+- audit candidate aliases beyond exact-name matching;
+- explicitly model third-party vote allocation;
+- validate Candidate Effect over more than one historical training cycle;
+- review public-site integration separately.
