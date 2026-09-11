@@ -13,6 +13,7 @@ on:
       - 'scripts/validate_release_candidate_v2.py'
       - 'scripts/validate_release_candidate_v3.py'
       - 'scripts/validate_extended_candidate_cycles.py'
+      - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'data/candidate-history-2009-2010.json'
@@ -20,6 +21,7 @@ on:
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
       - 'docs/MODEL_ARCHITECTURE_4.md'
+      - 'docs/MODEL_CARD_V4_PUBLIC_BETA.md'
       - '.github/workflows/research-model-tests.yml'
   workflow_dispatch:
 
@@ -71,6 +73,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_extended_candidate_cycles.py
+      - name: Audit frozen v4 Public Beta release
+        env:
+          PYTHONPATH: .
+        run: python scripts/audit_public_beta_release.py
       - name: Upload research-only artifacts
         uses: actions/upload-artifact@v4
         with:
