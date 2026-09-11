@@ -2,6 +2,7 @@ import unittest
 
 from model.candidate_effect import (adjust_baseline, fit, residual_target_logit,
                                     select_alpha)
+from model.candidate_effect_pipeline import run
 
 
 class CandidateEffectTests(unittest.TestCase):
@@ -53,6 +54,25 @@ class CandidateEffectTests(unittest.TestCase):
         result = select_alpha(rows, grid=(1.0, 10.0))
         self.assertIn(result["selected_alpha"], (1.0, 10.0))
         self.assertEqual(len(result["candidates"]), 2)
+
+    def test_pipeline_rejects_in_sample_structural_training_labels(self):
+        rows = []
+        for i in range(4):
+            rows.append({
+                "target_year": 2018, "county_id": f"train{i}",
+                "baseline_scope": "in_sample", "baseline_dpp2": .50,
+                "target_dpp2": .50, "information_weight": 1.0,
+                "repeat_candidate_signal": 0, "prior_winner_signal": 0,
+                "prior_candidate_residual_signal": 0, "verified_incumbency_signal": 0,
+            })
+        rows.append({
+            "target_year": 2022, "county_id": "test", "baseline_scope": "time_holdout",
+            "baseline_dpp2": .50, "target_dpp2": .50, "information_weight": 1.0,
+            "repeat_candidate_signal": 0, "prior_winner_signal": 0,
+            "prior_candidate_residual_signal": 0, "verified_incumbency_signal": 0,
+        })
+        with self.assertRaises(ValueError):
+            run({"schema_version": 1, "rows": rows}, alpha_grid=(10.0,))
 
 
 if __name__ == "__main__":
