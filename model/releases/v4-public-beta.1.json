@@ -2,9 +2,15 @@
   "schema_version": 1,
   "model_id": "HB-TLEF-v4.0-public-beta.1",
   "display_name": "HB-TLEF v4.0 Public Beta 1",
-  "release_status": "public_beta_candidate",
-  "deployed": false,
+  "release_status": "public_beta",
+  "deployed": true,
   "frozen_on": "2026-09-11",
+  "deployed_on": "2026-09-11",
+  "deployment_scope": {
+    "public_research_release": true,
+    "live_2026_forecast_core": false,
+    "note": "The audited v4 research core, model card and validation are public. The live 2026 forecast pipeline remains on the existing scenario/candidate product until 2026 structural feature integration is completed."
+  },
   "scope": "Taiwan county/city executive election candidate vote shares and winner probabilities",
   "architecture": {
     "partisan_baseline": "Partisan Baseline 4.0A weighted regularized KMT-DPP structural model",
