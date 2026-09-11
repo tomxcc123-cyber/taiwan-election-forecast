@@ -60,6 +60,12 @@ This is only a modest improvement over R4. The correct conclusion is therefore n
 
 The descriptive 2022 residual pattern remains informative: KMT incumbent-candidate races tend to have lower DPP residuals, while DPP incumbent-candidate races tend to have higher DPP residuals. Exceptions such as Penghu reinforce the need for shrinkage and candidate-specific history.
 
+## Candidate Effect 3.0 handoff
+
+Candidate-effect work now proceeds in a separate module. The structural R4 prediction is frozen first; Candidate Effect 3.0 then models only the log-odds residual around that baseline. Its initial feature channels are exact-name repeat-candidate status, previous-winner status, previously estimated candidate residual and separately verified incumbency. Previous-winner status is **not** automatically treated as incumbency.
+
+This separation is intentional: a cycle-wide error belongs to structural/election-environment modeling, while a repeatable person-specific residual belongs to Candidate Effect. The candidate-effect model therefore uses a zero intercept and strong regularization, with shrinkage selected only inside the historical training cycle.
+
 ## Reliability weighting
 
 The predeclared high-reliability cutoff remains `major-party coverage >= 0.80`. Stronger continuous down-weighting of low-coverage labels improves 2018 high-reliability leave-one-out error modestly as the coverage exponent rises, but this remains a challenger and is not promoted solely because of its 2022 score.
