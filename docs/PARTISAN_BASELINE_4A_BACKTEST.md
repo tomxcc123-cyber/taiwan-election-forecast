@@ -4,7 +4,7 @@ Mode: shadow research only. Public site unchanged.
 
 ## Reference result
 
-The current reference model is **R4_faction**:
+The current structural reference model is **R4_faction**:
 
 `previous_local_dpp2 + presidential_relative_lean + council_vote_advantage + council_independent_share + town_vote_advantage + town_independent_share + town_available + faction_propensity`
 
@@ -42,29 +42,21 @@ Low major-party coverage is not a clean measurement of KMT-DPP structure. Strong
 
 The clearest example is 2022 Hsinchu City: the TPP candidate won 45.02% while KMT received 18.07%, so the observed DPP share among KMT+DPP votes becomes artificially high as a structural label. This is a candidate/third-party disruption problem rather than evidence of a sudden deep-green baseline.
 
-Remaining high-coverage residuals are visibly associated with candidate incumbency. A **joint diagnostic** that allows the structural regression to use a signed incumbent-candidate indicator (DPP incumbent +1; KMT incumbent -1; otherwise 0) gives:
+## Candidate-effect handoff
 
-- 2022 MAE: **4.910 pp**
-- High-reliability MAE: **4.038 pp**
-- RMSE: **6.495 pp**
+Candidate-effect work is now implemented in a separate downstream module. The structural R4 prediction is frozen first; Candidate Effect 3.0 models only the log-odds residual around that baseline. Previous-winner status is not automatically treated as verified incumbency.
 
-That result must not be interpreted as a validated fixed incumbency bonus, because the candidate term is allowed to interact with the structural regression during fitting.
+A strict residual-model ablation shows only modest incremental gains from repeat-candidate and previous-winner history. All candidate residual specifications choose very strong shrinkage, which argues against a universal fixed candidate or incumbency bonus.
 
-A stricter **two-stage separation test** was therefore run: first produce leave-one-county-out R4 structural predictions for 2018; then fit only an incumbency coefficient to those out-of-fold residuals; finally apply that residual model to untouched 2022 R4 predictions. Internal 2018 CV chose strong shrinkage (`alpha=10`), leaving only a small incumbency coefficient. The strict two-stage 2022 result is:
+The legacy direct candidate model remains complementary: on the same 19-county 2022 KMT-DPP two-party target it records MAE **5.666 pp**, better than R4's 5.909. Because the legacy and structural models have different biases, a stacking challenger was tested with its rule selected exclusively on 2018 county-out-of-fold predictions.
 
-- MAE: **5.792 pp**
-- High-reliability MAE: **5.395 pp**
-- RMSE: **7.271 pp**
+The 2018 OOF selection chooses a **90% R4 / 10% legacy blend on the logit scale**. Applied unchanged to the untouched 2022 holdout, it records:
 
-This is only a modest improvement over R4. The correct conclusion is therefore not “add a fixed incumbency bonus,” but rather: **candidate effects are real, yet incumbency alone is too weak and heterogeneous to estimate reliably from one training cycle.** Candidate history, repeat-candidate performance, prior winner status and other candidate-level information must be estimated in the downstream Candidate Effect model.
+- overall MAE: **5.416 pp**;
+- RMSE: **6.842 pp**;
+- high-reliability MAE: **4.960 pp**.
 
-The descriptive 2022 residual pattern remains informative: KMT incumbent-candidate races tend to have lower DPP residuals, while DPP incumbent-candidate races tend to have higher DPP residuals. Exceptions such as Penghu reinforce the need for shrinkage and candidate-specific history.
-
-## Candidate Effect 3.0 handoff
-
-Candidate-effect work now proceeds in a separate module. The structural R4 prediction is frozen first; Candidate Effect 3.0 then models only the log-odds residual around that baseline. Its initial feature channels are exact-name repeat-candidate status, previous-winner status, previously estimated candidate residual and separately verified incumbency. Previous-winner status is **not** automatically treated as incumbency.
-
-This separation is intentional: a cycle-wide error belongs to structural/election-environment modeling, while a repeatable person-specific residual belongs to Candidate Effect. The candidate-effect model therefore uses a zero intercept and strong regularization, with shrinkage selected only inside the historical training cycle.
+This is currently the best leakage-safe two-party result in the research branch, but it is **not** promoted into Partisan Baseline. It is a downstream candidate-layer challenger and requires validation on a second historical time cycle.
 
 ## Reliability weighting
 
@@ -72,10 +64,11 @@ The predeclared high-reliability cutoff remains `major-party coverage >= 0.80`. 
 
 ## Model decision
 
-1. Keep **R4_faction** as the current structural reference model.
-2. Do not treat low-major-party-coverage races as clean structural labels.
-3. Do not hard-code a universal incumbency bonus into Partisan Baseline.
-4. Keep incumbency, repeat-candidate history and candidate-specific prior performance in the downstream Candidate Effect model.
-5. Keep 2006/2009/2010 data for persistence, faction and organization diagnostics rather than equal-weight target labels.
-6. Retain rejected challengers in the research record to prevent result-shopping.
-7. Keep `release_allowed = false`; no public-site promotion.
+1. Keep **R4_faction** as the structural reference model.
+2. Keep the OOF-selected 90/10 logit stack as a downstream challenger only.
+3. Do not treat low-major-party-coverage races as clean structural labels.
+4. Do not hard-code a universal incumbency bonus into Partisan Baseline.
+5. Keep incumbency, repeat-candidate history and candidate-specific prior performance in Candidate Effect.
+6. Keep 2006/2009/2010 data for persistence, faction and organization diagnostics and for constructing earlier historical folds.
+7. Require a second historical time-cycle test before promoting any stack.
+8. Keep `release_allowed = false`; no public-site promotion.
