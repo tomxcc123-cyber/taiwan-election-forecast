@@ -53,7 +53,8 @@ def rolling_holdout(rows, test_year, features, alpha=1.0):
         "reliability": reliability_metrics(pred, test),
         "predictions": [
             {"county_id": r["county_id"], "actual_dpp2": float(r["target_dpp2"]),
-             "predicted_dpp2": float(p), "error_pp": float((p-r["target_dpp2"])*100)}
+             "predicted_dpp2": float(p),
+             "error_pp": float((p-float(r["target_dpp2"]))*100)}
             for p, r in zip(pred, test)
         ],
     }
