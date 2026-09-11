@@ -2,6 +2,10 @@
 
 The target is the latent KMT-DPP structure, represented as logit(DPP two-party
 share). Candidate, polling, coalition, and campaign effects belong downstream.
+
+The default feature set reflects the first empirical backtest. Older-cycle
+history remains available for diagnostics/trend challengers, but it is not
+forced into the reference model as an equal-weight label source.
 """
 from __future__ import annotations
 
@@ -9,17 +13,12 @@ import numpy as np
 
 DEFAULT_FEATURES = [
     "previous_local_dpp2",
-    "presidential_anchor_dpp2",
     "presidential_relative_lean",
     "council_vote_advantage",
-    "council_seat_advantage",
-    "council_nomination_advantage",
-    "council_persistence_advantage",
-    "town_control_advantage",
+    "council_independent_share",
     "town_vote_advantage",
-    "town_persistence_advantage",
     "town_independent_share",
-    "structural_trend",
+    "town_available",
     "faction_propensity",
 ]
 
