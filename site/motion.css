@@ -1,0 +1,118 @@
+/* Motion system: dynamic but data-first. Keeps the site usable with reduced motion. */
+:root{
+  --motion-fast:140ms;
+  --motion-base:260ms;
+  --motion-slow:520ms;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-spring:cubic-bezier(.2,.8,.2,1.08);
+}
+
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+
+/* Initial shell entrance */
+.topbar{animation:motion-header-in var(--motion-slow) var(--ease-out) both}
+.footer{animation:motion-footer-in 560ms var(--ease-out) both;animation-delay:120ms}
+
+/* Dynamic page content inserted by candidate-app.mjs */
+#page.motion-page-enter{animation:motion-page-in 460ms var(--ease-out) both}
+#page.motion-page-exit{animation:motion-page-out 170ms ease-in both;pointer-events:none}
+
+/* Shared reveal classes applied by motion.mjs */
+.motion-reveal{opacity:0;transform:translateY(14px) scale(.995)}
+.motion-reveal.motion-visible{animation:motion-reveal-in 540ms var(--ease-out) forwards;animation-delay:var(--motion-delay,0ms)}
+
+/* Cards/panels get depth on interaction without turning into floating tiles */
+.panel,.summary-band,.map-desk,.poll-row,.check-list>div,.prose section{
+  transition:transform var(--motion-base) var(--ease-out),box-shadow var(--motion-base) var(--ease-out),border-color var(--motion-base) ease,background-color var(--motion-base) ease;
+}
+.panel:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 34px rgba(24,38,55,.075);
+  border-color:#c8d3df;
+}
+
+/* Navigation has a moving underline feel. */
+.topbar nav a{position:relative;transition:color var(--motion-fast) ease,background-color var(--motion-fast) ease}
+.topbar nav a::after{
+  content:"";position:absolute;left:16%;right:16%;bottom:-1px;height:2px;
+  background:currentColor;transform:scaleX(0);transform-origin:center;
+  transition:transform var(--motion-base) var(--ease-out);opacity:.55;
+}
+.topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
+.topbar nav a[aria-current=page]::after{transform:scaleX(1);opacity:1}
+
+/* Buttons */
+button{transition:transform var(--motion-fast) var(--ease-out),box-shadow var(--motion-fast) ease,background-color var(--motion-fast) ease,border-color var(--motion-fast) ease}
+button:hover:not(:disabled){transform:translateY(-1px)}
+button:active:not(:disabled){transform:translateY(0) scale(.98)}
+button.primary:hover,button[aria-pressed=true]:hover{box-shadow:0 7px 20px rgba(40,100,200,.2)}
+
+/* Map: the key motion surface */
+.county-path{
+  transform-box:fill-box;transform-origin:center;
+  transition:transform 190ms var(--ease-out),filter 190ms ease,stroke-width 150ms ease,opacity 180ms ease,fill 320ms var(--ease-out);
+}
+.county-path:hover,.county-path:focus{transform:scale(1.025);filter:drop-shadow(0 4px 5px rgba(20,32,48,.22));z-index:2}
+.county-path.selected{animation:motion-county-selected 650ms var(--ease-out) both;filter:drop-shadow(0 5px 7px rgba(20,32,48,.24))}
+.map-figure svg:hover .county-path:not(:hover):not(.selected){opacity:.78}
+.map-label{transition:opacity 180ms ease,transform 180ms var(--ease-out)}
+
+/* Charts draw into view; supported SVG paths are tagged by motion.mjs. */
+.motion-chart-path{stroke-dasharray:var(--motion-path-length,900);stroke-dashoffset:var(--motion-path-length,900);animation:motion-line-draw 900ms var(--ease-out) forwards}
+.chart circle,.map-figure circle{transition:r 160ms var(--ease-out),opacity 160ms ease,transform 160ms var(--ease-out)}
+.chart circle:hover{r:5}
+
+/* Numeric movement. */
+.big-prob,.numeral,.poll-values b,.poll-meta strong,.interval-row strong,output{
+  font-variant-numeric:tabular-nums;
+}
+.motion-number-pop{animation:motion-number-pop 440ms var(--ease-spring) both}
+
+/* Segmented controls behave like mode-switches, not static buttons. */
+.segmented button{position:relative;overflow:hidden}
+.segmented button[aria-pressed=true]::before{
+  content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 18%,rgba(255,255,255,.2) 50%,transparent 82%);
+  transform:translateX(-120%);animation:motion-sheen 720ms var(--ease-out) both;
+}
+
+/* Loading state */
+#loading:not(:empty){position:relative;padding-left:28px}
+#loading:not(:empty)::before{
+  content:"";position:absolute;left:0;top:52px;width:10px;height:10px;border-radius:50%;background:var(--blue);
+  box-shadow:0 0 0 0 rgba(40,100,200,.28);animation:motion-pulse 1.35s ease-out infinite;
+}
+
+/* Dialog */
+dialog[open]{animation:motion-dialog-in 240ms var(--ease-out) both}
+dialog[open]::backdrop{animation:motion-backdrop-in 180ms ease both}
+
+/* Toast */
+#notice:not(:empty){animation:motion-toast-in 260ms var(--ease-spring) both}
+
+@keyframes motion-header-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:none}}
+@keyframes motion-footer-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes motion-page-in{from{opacity:0;transform:translateY(10px);filter:blur(2px)}to{opacity:1;transform:none;filter:none}}
+@keyframes motion-page-out{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-5px)}}
+@keyframes motion-reveal-in{from{opacity:0;transform:translateY(14px) scale(.995)}to{opacity:1;transform:none}}
+@keyframes motion-county-selected{0%{transform:scale(1)}45%{transform:scale(1.045)}100%{transform:scale(1.02)}}
+@keyframes motion-line-draw{to{stroke-dashoffset:0}}
+@keyframes motion-number-pop{0%{transform:translateY(6px);opacity:.3}55%{transform:translateY(-1px);opacity:1}100%{transform:none;opacity:1}}
+@keyframes motion-sheen{to{transform:translateX(120%)}}
+@keyframes motion-pulse{0%{box-shadow:0 0 0 0 rgba(40,100,200,.3)}70%{box-shadow:0 0 0 11px rgba(40,100,200,0)}100%{box-shadow:0 0 0 0 rgba(40,100,200,0)}}
+@keyframes motion-dialog-in{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes motion-backdrop-in{from{background:#10182000}to{background:#10182066}}
+@keyframes motion-toast-in{from{opacity:0;transform:translate(-50%,10px) scale(.96)}to{opacity:1;transform:translate(-50%,0) scale(1)}}
+
+@media(max-width:760px){
+  .panel:hover{transform:none;box-shadow:none}
+  .county-path:hover,.county-path:focus{transform:scale(1.012)}
+  .motion-reveal{transform:translateY(8px)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .motion-reveal{opacity:1;transform:none}
+  .motion-chart-path{stroke-dashoffset:0}
+}
