@@ -5,6 +5,9 @@ on:
     paths:
       - 'model/**'
       - 'tests/**'
+      - 'scripts/run_candidate_effect_research.py'
+      - 'data/baseline/**'
+      - 'data/candidate-history-cec.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - '.github/workflows/research-model-tests.yml'
@@ -26,3 +29,13 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run offline model unit tests
         run: python -m unittest discover -s tests -v
+      - name: Run Candidate Effect 3.0 research holdout
+        env:
+          PYTHONPATH: .
+        run: python scripts/run_candidate_effect_research.py
+      - name: Upload research-only artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-effect-v3-research
+          path: .cache/candidate-effect-v3
+          if-no-files-found: error
