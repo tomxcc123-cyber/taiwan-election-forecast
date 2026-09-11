@@ -10,6 +10,7 @@
 #countyMap.motion-map-refresh{animation:motion-map-refresh 480ms cubic-bezier(.22,1,.36,1) both}
 
 .motion-focus-outline{pointer-events:none!important;fill:none!important;stroke:#ffffff!important;stroke-width:5px!important;stroke-linejoin:round;vector-effect:non-scaling-stroke;opacity:.88;filter:drop-shadow(0 0 5px rgba(255,255,255,.9));stroke-dasharray:14 8;animation:motion-focus-dash 1.4s linear infinite,motion-focus-breathe 1.8s ease-in-out infinite}
+.motion-map-pulse{position:absolute;z-index:5;width:12px;height:12px;margin:-6px 0 0 -6px;border:1px solid rgba(61,145,232,.7);border-radius:50%;pointer-events:none;box-shadow:0 0 16px rgba(61,145,232,.25);animation:motion-map-pulse 600ms cubic-bezier(.22,1,.36,1) forwards}
 
 .inspector.motion-inspector-swap{animation:motion-inspector-swap 430ms cubic-bezier(.22,1,.36,1) both}
 .scenario-controls input[type=range]:active{filter:drop-shadow(0 0 6px rgba(40,100,200,.32))}
@@ -40,13 +41,15 @@ body.war-room #notice{background:#dcecff;color:#07111d;box-shadow:0 12px 35px rg
 body.war-room .seatbar{box-shadow:0 0 18px rgba(75,153,230,.13)}
 body.war-room .chart{filter:drop-shadow(0 5px 12px rgba(0,0,0,.18))}
 body.war-room .big-prob{text-shadow:0 0 24px currentColor}
+body.war-room .motion-map-pulse{border-color:rgba(125,205,255,.95);box-shadow:0 0 26px rgba(79,183,255,.6)}
 
 @keyframes motion-map-scan{from{transform:translateY(-110%)}to{transform:translateY(110%)}}
 @keyframes motion-map-refresh{0%{opacity:.72;transform:scale(.985);filter:blur(1px)}100%{opacity:1;transform:scale(1);filter:none}}
 @keyframes motion-focus-dash{to{stroke-dashoffset:-44}}
 @keyframes motion-focus-breathe{0%,100%{opacity:.55}50%{opacity:1}}
 @keyframes motion-inspector-swap{0%{opacity:.25;transform:translateX(14px)}100%{opacity:1;transform:none}}
+@keyframes motion-map-pulse{0%{opacity:.95;transform:scale(.35)}70%{opacity:.35}100%{opacity:0;transform:scale(7)}}
 
 @media(max-width:1100px){#warRoom{padding:5px 9px;font-size:0}#warRoom::after{content:"戰情";font-size:12px}#warRoom::before{display:none}}
-@media(max-width:760px){#warRoom{order:1;margin-left:auto}body.war-room .topbar{backdrop-filter:blur(10px)}.motion-focus-outline{stroke-width:3.5px!important}}
-@media(prefers-reduced-motion:reduce){.motion-focus-outline{animation:none}.map-figure.motion-scan::before,#countyMap.motion-map-refresh,.inspector.motion-inspector-swap{animation:none}}
+@media(max-width:760px){#warRoom{order:1;margin-left:auto}.topbar nav{overflow-x:auto;scrollbar-width:none}.topbar nav::-webkit-scrollbar{display:none}body.war-room .topbar{backdrop-filter:blur(10px)}.motion-focus-outline{stroke-width:3.5px!important}.motion-map-pulse{display:none}}
+@media(prefers-reduced-motion:reduce){.motion-focus-outline{animation:none}.motion-map-pulse{display:none}.map-figure.motion-scan::before,#countyMap.motion-map-refresh,.inspector.motion-inspector-swap{animation:none}}
