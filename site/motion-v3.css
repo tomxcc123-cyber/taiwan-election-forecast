@@ -1,0 +1,44 @@
+/* Third-stage motion: map command center, county camera zoom, fullscreen operations. */
+.map-figure{--zoom-scale:1;--zoom-x:50%;--zoom-y:50%}
+.map-figure.is-zoomed #countyMap{transform:scale(var(--zoom-scale));transform-origin:var(--zoom-x) var(--zoom-y)}
+.map-figure.is-zoomed{cursor:zoom-out}
+
+.map-commandbar{position:absolute;right:14px;top:14px;z-index:6;display:flex;gap:8px;align-items:center;padding:6px;border:1px solid rgba(210,220,232,.9);border-radius:8px;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(24,38,55,.1)}
+.map-commandbar button{min-height:32px;padding:5px 9px;font-size:12px;background:rgba(255,255,255,.9)}
+.map-commandbar .map-focus-label{font-size:12px;color:var(--muted);padding:0 4px;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.map-figure:fullscreen{background:#07111d;padding:28px;display:grid;place-items:center}
+.map-figure:fullscreen #countyMap{width:min(88vw,1180px);height:min(82vh,860px);max-width:none}
+.map-figure:fullscreen figcaption{position:absolute;left:28px;bottom:22px;right:28px;color:#9fb0c4;justify-content:center}
+.map-figure:fullscreen .map-commandbar{position:fixed;right:24px;top:22px;background:rgba(7,17,29,.78);border-color:#32485f;color:#e7edf6}
+.map-figure:fullscreen .map-commandbar button{background:#0c1928;color:#e7edf6;border-color:#31465f}
+.map-figure:fullscreen .map-focus-label{color:#9fb0c4}
+.map-figure:fullscreen #countyMap{filter:saturate(1.18) contrast(1.06) drop-shadow(0 20px 40px rgba(0,0,0,.35))}
+.map-figure:fullscreen::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 50%,rgba(40,100,200,.08),transparent 42%),repeating-linear-gradient(180deg,rgba(255,255,255,.012) 0,rgba(255,255,255,.012) 1px,transparent 1px,transparent 4px)}
+
+.map-figure.motion-camera-zoom #countyMap{animation:motion-camera-settle 620ms cubic-bezier(.22,1,.36,1)}
+.map-figure.motion-camera-reset #countyMap{animation:motion-camera-reset 480ms cubic-bezier(.22,1,.36,1)}
+
+.map-target-ring{position:absolute;z-index:5;width:38px;height:38px;border:1px solid rgba(40,100,200,.4);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0}
+.map-target-ring::before,.map-target-ring::after{content:"";position:absolute;background:rgba(40,100,200,.45)}
+.map-target-ring::before{left:50%;top:-8px;width:1px;height:54px}
+.map-target-ring::after{top:50%;left:-8px;height:1px;width:54px}
+.map-figure.is-zoomed .map-target-ring{opacity:.7;animation:motion-target-ring 1.6s ease-in-out infinite}
+
+body.war-room .map-commandbar{background:rgba(7,17,29,.72);border-color:#2a4158;box-shadow:0 10px 30px rgba(0,0,0,.22)}
+body.war-room .map-commandbar button{background:#0c1928;color:#e7edf6;border-color:#31465f}
+body.war-room .map-focus-label{color:#91a7be}
+body.war-room .map-target-ring{border-color:rgba(110,195,255,.55)}
+body.war-room .map-target-ring::before,body.war-room .map-target-ring::after{background:rgba(110,195,255,.45)}
+
+@keyframes motion-camera-settle{0%{filter:blur(1.2px) saturate(.9)}60%{filter:blur(0) saturate(1.08)}100%{filter:none}}
+@keyframes motion-camera-reset{0%{filter:blur(.8px)}100%{filter:none}}
+@keyframes motion-target-ring{0%,100%{transform:translate(-50%,-50%) scale(.9);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.08);opacity:.9}}
+
+@media(max-width:760px){
+  .map-commandbar{right:8px;top:8px;padding:4px;gap:4px}.map-commandbar .map-focus-label{display:none}.map-commandbar button{min-height:30px;padding:4px 7px;font-size:11px}.map-figure.is-zoomed #countyMap{--zoom-scale:1.35}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .map-figure.motion-camera-zoom #countyMap,.map-figure.motion-camera-reset #countyMap,.map-target-ring{animation:none!important}
+}
