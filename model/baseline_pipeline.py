@@ -2,6 +2,10 @@
 
 Input is a prebuilt, leakage-audited county panel JSON. The runner produces
 research artifacts only and never edits site/ or current public forecasts.
+
+The ablation order below matches the first empirical run. Candidate-specific
+terms (incumbency, repeat-candidate history, campaign context) are intentionally
+excluded from the partisan baseline and belong in the downstream candidate model.
 """
 from __future__ import annotations
 
@@ -13,28 +17,40 @@ from pathlib import Path
 from .baseline_validation import run_ablation
 
 ABLATION_SPECS = [
-    ("B0_previous_local", ["previous_local_dpp2"]),
-    ("B1_long_local", ["previous_local_dpp2", "historical_local_level", "structural_trend"]),
-    ("B2_plus_president", ["previous_local_dpp2", "historical_local_level", "structural_trend",
-                            "presidential_anchor_dpp2", "presidential_relative_lean"]),
-    ("B4_plus_council", ["previous_local_dpp2", "historical_local_level", "structural_trend",
-                          "presidential_anchor_dpp2", "presidential_relative_lean",
-                          "council_vote_advantage", "council_seat_advantage",
-                          "council_nomination_advantage", "council_persistence_advantage"]),
-    ("B5_plus_township", ["previous_local_dpp2", "historical_local_level", "structural_trend",
-                           "presidential_anchor_dpp2", "presidential_relative_lean",
-                           "council_vote_advantage", "council_seat_advantage",
-                           "council_nomination_advantage", "council_persistence_advantage",
-                           "town_control_advantage", "town_vote_advantage",
-                           "town_persistence_advantage", "town_independent_share"]),
-    ("B7_plus_faction", ["previous_local_dpp2", "historical_local_level", "structural_trend",
-                          "presidential_anchor_dpp2", "presidential_relative_lean",
-                          "council_vote_advantage", "council_seat_advantage",
-                          "council_nomination_advantage", "council_persistence_advantage",
-                          "town_control_advantage", "town_vote_advantage",
-                          "town_persistence_advantage", "town_independent_share",
-                          "faction_propensity"]),
+    ("R1_pres", [
+        "previous_local_dpp2", "presidential_relative_lean",
+    ]),
+    ("R2_council", [
+        "previous_local_dpp2", "presidential_relative_lean",
+        "council_vote_advantage", "council_independent_share",
+    ]),
+    ("R3_township", [
+        "previous_local_dpp2", "presidential_relative_lean",
+        "council_vote_advantage", "council_independent_share",
+        "town_vote_advantage", "town_independent_share", "town_available",
+    ]),
+    ("R4_faction", [
+        "previous_local_dpp2", "presidential_relative_lean",
+        "council_vote_advantage", "council_independent_share",
+        "town_vote_advantage", "town_independent_share", "town_available",
+        "faction_propensity",
+    ]),
+    ("R5_local_trend_challenger", [
+        "previous_local_dpp2", "presidential_relative_lean",
+        "council_vote_advantage", "council_independent_share",
+        "town_vote_advantage", "town_independent_share", "town_available",
+        "faction_propensity", "lag_local_trend",
+    ]),
+    ("R6_org_trends_challenger", [
+        "previous_local_dpp2", "presidential_relative_lean",
+        "council_vote_advantage", "council_independent_share",
+        "town_vote_advantage", "town_independent_share", "town_available",
+        "faction_propensity", "lag_local_trend",
+        "council_advantage_trend", "town_advantage_trend", "town_trend_available",
+    ]),
 ]
+
+REFERENCE_MODEL = "R4_faction"
 
 
 def load_panel(path: Path):
@@ -55,13 +71,18 @@ def run(panel, alpha=1.0):
         "created_at": datetime.now(timezone.utc).isoformat(),
         "panel_as_of": panel.get("as_of"),
         "alpha": alpha,
+        "reference_model": REFERENCE_MODEL,
         "release_allowed": False,
         "ablation": ablations,
         "notes": [
             "All feature construction must occur in an as-of-specific panel builder before this runner.",
-            "Polls, current candidate ratings, coalition scenarios, and campaign events are excluded.",
-            "B6 reliability weighting is carried by each row's predeclared information_weight, not a post-hoc feature.",
-            "B8 full hierarchical partial pooling is intentionally deferred until B0-B7 data value is demonstrated.",
+            "Polls, current candidate ratings, coalition scenarios, campaign events and candidate incumbency are excluded.",
+            "Carry-forward previous local share is a separate benchmark; it is not relabeled as a fitted model.",
+            "Major-party coverage and label reliability belong in each row's predeclared information_weight.",
+            "Direct presidential-swing extrapolation was rejected in the first empirical stress test.",
+            "Older cycles are retained for diagnostics and challenger trends rather than forced in as equal-weight target labels.",
+            "Candidate incumbency materially explains remaining high-coverage residuals and must be handled downstream.",
+            "Full hierarchical partial pooling remains deferred until the reference data pipeline is stable.",
         ],
     }
 
