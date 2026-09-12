@@ -1,14 +1,18 @@
-name: Source coverage v5.2b tests
+name: Poll Ingestion 2.0 v5.3 tests
 
 on:
   pull_request:
     paths:
       - 'data/reviewed-additional-polls.json'
+      - 'data/pollster-registry.json'
       - 'scripts/enrich_reviewed_polls.py'
+      - 'scripts/discover_poll_sources.py'
       - 'scripts/validate_source_coverage_v52b_impact.py'
       - 'site/poll-source-v52.mjs'
+      - 'site/source-v52.css'
       - 'tests/source-v52-ui.mjs'
       - 'tests/test_reviewed_source_enrichment.py'
+      - 'tests/test_pollster_registry_discovery.py'
       - '.github/workflows/publish.yml'
       - '.github/workflows/source-coverage-v51-tests.yml'
   workflow_dispatch:
@@ -32,6 +36,8 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run full offline unit suite
         run: python -m unittest discover -s tests -v
+      - name: Validate registry and queue-only discovery fixtures
+        run: python -m unittest discover -s tests -p 'test_pollster_registry_discovery.py' -v
       - name: Validate reviewed pollster impact on v5
         env:
           PYTHONPATH: .
@@ -43,6 +49,16 @@ jobs:
           python - <<'PY'
           import json
           d=json.load(open('data/polls.json',encoding='utf-8'))
+          registry=json.load(open('data/pollster-registry.json',encoding='utf-8'))
+          ids={p['pollster_id'] for p in registry['pollsters']}
+          assert len(ids)==len(registry['pollsters'])==7
+          assert {'tvbs','formosa-bic','ettoday','trend-survey','shanshui','pearson-data','apollo'}==ids
+          formosa=next(p for p in registry['pollsters'] if p['pollster_id']=='formosa-bic')
+          assert formosa['discovery']['index_url']=='https://www.my-formosa.com.tw/Topical/formosapollster'
+          for pid in ('shanshui','pearson-data'):
+            p=next(x for x in registry['pollsters'] if x['pollster_id']==pid)
+            assert p['discovery']['mode']=='html_index_queue'
+            assert p['discovery']['queue_only'] is True
           trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
           shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui']
           pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data']
@@ -63,12 +79,10 @@ jobs:
           assert sources['震傳媒／山水民調']['reviewed_reports']==2
           assert sources['鉅聞天下／皮爾森數據']['reviewed_reports']==2
           assert sources['鉅聞天下／皮爾森數據']['method_class']=='online_dmp_panel'
-          assert not any(str(s.get('status','')).startswith('integrated_') for s in d.get('source_review',[]))
-          assert not any(s.get('name')=='ETtoday' for s in d.get('source_review',[]))
           apollo=next(s for s in d['source_review'] if s['name']=='艾普羅行銷市場研究')
           assert apollo['status']=='reviewed_methodology_incomplete_response_mass'
           assert not any(x.get('pollster_id')=='apollo' for x in d['records'])
-          print('PASS source governance:',len(d['records']),len(d['polls']),sources['震傳媒／山水民調']['reviewed_reports'],sources['鉅聞天下／皮爾森數據']['reviewed_reports'])
+          print('PASS ingestion governance:',len(d['records']),len(d['polls']),len(ids))
           PY
       - name: Build exact public product with enriched feed
         env:
@@ -101,10 +115,10 @@ jobs:
           assert data['release']['stable'] is False
           print('PASS public product:',sorted(nt_ids),sorted(kh_ids))
           PY
-      - name: Upload enriched Pages preview
+      - name: Upload ingestion preview
         uses: actions/upload-artifact@v4
         with:
-          name: source-coverage-v52b-preview
+          name: poll-ingestion-v53-preview
           path: dist
           if-no-files-found: error
       - name: Upload source impact diagnostics

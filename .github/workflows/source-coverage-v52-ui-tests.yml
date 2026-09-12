@@ -1,4 +1,4 @@
-name: Source coverage v5.2 UI tests
+name: Poll Ingestion 2.0 source UI tests
 
 on:
   pull_request:
@@ -7,7 +7,10 @@ on:
       - 'site/source-v52.css'
       - 'site/index.html'
       - 'scripts/build.py'
+      - 'scripts/discover_poll_sources.py'
+      - 'data/pollster-registry.json'
       - 'tests/source-v52-ui.mjs'
+      - 'tests/test_pollster_registry_discovery.py'
       - '.github/workflows/source-coverage-v52-ui-tests.yml'
   workflow_dispatch:
 
@@ -28,8 +31,10 @@ jobs:
         with:
           node-version: '22'
       - run: pip install -r requirements.txt
-      - name: Validate Source Coverage v5.2 pure UI logic
+      - name: Validate Poll Ingestion 2.0 pure UI logic
         run: node tests/source-v52-ui.mjs
+      - name: Validate queue-only discovery logic
+        run: python -m unittest discover -s tests -p 'test_pollster_registry_discovery.py' -v
       - name: Build exact public product
         env:
           PYTHONPATH: .
@@ -40,11 +45,14 @@ jobs:
           node tests/candidate-engine.mjs
           node tests/evidence-ui.mjs
           node tests/scenario-studio.mjs
-      - name: Assert observatory shipped
+      - name: Assert ingestion observatory shipped
         run: |
           test -f dist/poll-source-v52.mjs
           test -f dist/source-v52.css
           grep -q 'poll-source-v52.mjs' dist/index.html
           grep -q 'source-v52.css' dist/index.html
           grep -q '民調來源觀測站' dist/poll-source-v52.mjs
+          grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
+          grep -q '待核驗發現' dist/poll-source-v52.mjs
+          grep -q '發現 ≠ 入模' dist/poll-source-v52.mjs
           grep -q '人工核驗後收錄' dist/poll-source-v52.mjs
