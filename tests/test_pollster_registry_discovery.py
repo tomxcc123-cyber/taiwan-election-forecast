@@ -34,11 +34,11 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
 
     def test_zmedia_discovery_finds_mayoral_pages_not_issue_noise(self):
         pollster = self.pollsters['shanshui']
-        raw = '''<html><body>
+        raw = '''<html><head><meta charset="utf-8"></head><body>
           <a href="/Document/PoolDetail/41952">震傳媒民調（一）／李四川絕對優勢不再？ 新北5％內決勝負！</a>
           <a href="/Document/PoolDetail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a>
           <a href="/Document/PoolDetail/50002">震傳媒民調（三）／54.5%高市民對賴總統施政表示滿意</a>
-        </body></html>'''.encode()
+        </body></html>'''.encode('utf-8')
         rows = discover_from_html(raw, pollster['discovery']['index_urls'][0], pollster, self.config['matchups'])
         self.assertEqual({r['county'] for r in rows}, {'新北市', '台北市'})
         self.assertTrue(any(r['url'].endswith('/50001') for r in rows))
@@ -46,11 +46,11 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
 
     def test_bigmedia_discovery_requires_vote_intention_signal(self):
         pollster = self.pollsters['pearson-data']
-        raw = '''<html><body>
+        raw = '''<html><head><meta charset="utf-8"></head><body>
           <a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a>
           <a href="/article/9990000000001">2026《鉅聞民調》台北市長選舉／蔣萬安52%對沈伯洋39%　選情進入決勝期</a>
           <a href="/article/9990000000002">2026《鉅聞民調》高雄市長選舉／賴清德滿意度未過半　成賴瑞隆困局</a>
-        </body></html>'''.encode()
+        </body></html>'''.encode('utf-8')
         rows = discover_from_html(raw, pollster['discovery']['index_urls'][0], pollster, self.config['matchups'])
         self.assertEqual({r['url'].rsplit('/', 1)[-1] for r in rows}, {'1786278801544', '9990000000001'})
 
@@ -82,10 +82,10 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         shanshui = self.pollsters['shanshui']
         pearson = self.pollsters['pearson-data']
         pages = {
-            shanshui['discovery']['index_urls'][0]: b'<a href="/Document/PoolDetail/41952">\xe9\x9c\x87\xe5\x82\xb3\xe5\xaa\x92\xe6\xb0\x91\xe8\xaa\xbf\xef\xbc\x88\xe4\xb8\x80\xef\xbc\x89\xef\xbc\x8f\xe6\x9d\x8e\xe5\x9b\x9b\xe5\xb7\x9d\xe6\x96\xb0\xe5\x8c\x975%\xe5\x85\xa7\xe6\xb1\xba\xe5\x8b\x9d\xe8\xb2\xa0</a>',
-            shanshui['discovery']['index_urls'][1]: '<a href="/Document/PoolDetail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a>'.encode(),
-            pearson['discovery']['index_urls'][0]: '''<a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a>
-              <a href="/article/9990000000001">2026《鉅聞民調》台北市長選舉／蔣萬安52%對沈伯洋39%　選情進入決勝期</a>'''.encode(),
+            shanshui['discovery']['index_urls'][0]: '''<html><head><meta charset="utf-8"></head><body><a href="/Document/PoolDetail/41952">震傳媒民調（一）／李四川絕對優勢不再？ 新北5％內決勝負！</a></body></html>'''.encode('utf-8'),
+            shanshui['discovery']['index_urls'][1]: '''<html><head><meta charset="utf-8"></head><body><a href="/Document/PoolDetail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a></body></html>'''.encode('utf-8'),
+            pearson['discovery']['index_urls'][0]: '''<html><head><meta charset="utf-8"></head><body><a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a>
+              <a href="/article/9990000000001">2026《鉅聞民調》台北市長選舉／蔣萬安52%對沈伯洋39%　選情進入決勝期</a></body></html>'''.encode('utf-8'),
         }
         out = merge_discovery(feed, self.registry, self.config, pages, '2026-09-12T10:30:00+00:00')
         self.assertEqual(out['records'], before_records)
@@ -110,7 +110,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         pages = {
             shanshui['discovery']['index_urls'][0]: b'',
             shanshui['discovery']['index_urls'][1]: b'',
-            pearson['discovery']['index_urls'][0]: '<a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a>'.encode(),
+            pearson['discovery']['index_urls'][0]: '''<html><head><meta charset="utf-8"></head><body><a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a></body></html>'''.encode('utf-8'),
         }
         out = merge_discovery(feed, self.registry, self.config, pages, '2026-09-12T10:30:00+00:00')
         self.assertEqual(out['records'], feed['records'])
