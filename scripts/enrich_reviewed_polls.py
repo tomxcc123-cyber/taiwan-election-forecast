@@ -144,6 +144,13 @@ def _review_rows(reviewed: dict) -> list[dict]:
     return rows
 
 
+def _reviewed_source_groups(reviewed: dict) -> dict[str, list[dict]]:
+    groups: dict[str, list[dict]] = {}
+    for entry in reviewed.get("reports", []):
+        groups.setdefault(entry["source"], []).append(entry)
+    return groups
+
+
 def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) -> dict:
     out = copy.deepcopy(feed)
     today = today or date.today()
@@ -175,23 +182,33 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out["polls"] = model_rows(classified)
     out["latest_fieldwork_date"] = max((r["date"] for r in classified), default=None)
 
-    source_names = {s.get("name") for s in out.get("sources", [])}
-    for entry in reviewed.get("reports", []):
-        if entry["source"] in source_names:
+    source_groups = _reviewed_source_groups(reviewed)
+    sources = out.setdefault("sources", [])
+    for source_name, entries in source_groups.items():
+        existing = next((s for s in sources if s.get("name") == source_name), None)
+        method_classes = {e["method_class"] for e in entries}
+        method_class = next(iter(method_classes)) if len(method_classes) == 1 else "mixed"
+        if existing is not None:
+            if existing.get("status") == "reviewed_seed_only":
+                existing.update(
+                    url=entries[0]["source_url"],
+                    reviewed_reports=len(entries),
+                    method_class=method_class,
+                    note="多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。",
+                )
             continue
-        out.setdefault("sources", []).append(
+        sources.append(
             {
-                "name": entry["source"],
-                "url": entry["source_url"],
+                "name": source_name,
+                "url": entries[0]["source_url"],
                 "discovered": 0,
                 "validated_reports": 0,
-                "reviewed_reports": 1,
+                "reviewed_reports": len(entries),
                 "status": "reviewed_seed_only",
-                "method_class": entry["method_class"],
+                "method_class": method_class,
                 "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。",
             }
         )
-        source_names.add(entry["source"])
 
     # The UI labels source_review rows as not integrated. Keep that list only
     # for genuinely non-integrated sources; integrated sources belong in sources.
@@ -210,7 +227,9 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out["source_review"] = unresolved
 
     coverage = out.get("coverage_note", "").rstrip()
-    addition = "另含經多來源方法核對的新台灣國策智庫／趨勢民調 reviewed seed；刊載媒體不另建立 pollster 權重。"
+    old_addition = "另含經多來源方法核對的新台灣國策智庫／趨勢民調 reviewed seed；刊載媒體不另建立 pollster 權重。"
+    coverage = coverage.replace(old_addition, "").strip()
+    addition = "另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。"
     if addition not in coverage:
         out["coverage_note"] = (coverage + (" " if coverage else "") + addition).strip()
 
@@ -239,19 +258,16 @@ def main() -> None:
     reviewed = json.loads(SEED_PATH.read_text(encoding="utf-8"))
     result = enrich(feed, config, reviewed)
     atomic_json(FEED_PATH, result)
-    admitted = [
-        r
-        for r in result["records"]
+    reviewed_records = [
+        r for r in result["records"]
         if r.get("ingestion") == "reviewed_multi_source_methodology"
-        and r.get("model_eligible")
     ]
+    legacy_admitted = [r for r in reviewed_records if r.get("model_eligible")]
     print(
         json.dumps(
             {
-                "reviewed_seed_records": len(
-                    [r for r in result["records"] if r.get("ingestion") == "reviewed_multi_source_methodology"]
-                ),
-                "reviewed_seed_model_inputs": len(admitted),
+                "reviewed_seed_records": len(reviewed_records),
+                "reviewed_seed_legacy_model_inputs": len(legacy_admitted),
                 "model_inputs_total": len(result["polls"]),
                 "latest_fieldwork_date": result["latest_fieldwork_date"],
             },
