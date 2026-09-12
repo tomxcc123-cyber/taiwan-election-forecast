@@ -1,14 +1,14 @@
-"""Production-safe strong-fragmentation poll gate for HB-TLEF v4.1 Public Beta.
+"""Production-safe strong-fragmentation poll gate for HB-TLEF Public Beta.
 
-The structural model remains the prior.  When an already-accepted, full-field
+The structural model remains the prior. When an already-accepted, full-field
 TVBS poll shows >=40% of decided support for non-KMT/DPP candidates, the latest
 such poll in that county recenters the posterior draw cloud to the poll's full
-named-candidate vector.  The within-race draw shape is retained in centered log
+named-candidate vector. The within-race draw shape is retained in centered log
 ratio space, so this is a center override rather than a zero-variance forecast.
 
-This rule is intentionally narrow.  Partial-ballot polls, unmatched rosters,
+This rule is intentionally narrow. Partial-ballot polls, unmatched rosters,
 non-TVBS polls, and weaker fragmentation continue through the existing joint
-Gaussian polling likelihood.  The 40% threshold is frozen from the 2018-selected
+Gaussian polling likelihood. The 40% threshold is frozen from the 2018-selected
 research challenger and must not be tuned on 2022 diagnostics.
 """
 from __future__ import annotations
@@ -121,7 +121,6 @@ def find_triggers(product, feed):
                 break
             supports[candidate["candidate_id"]] = support
         if not valid or len(supports) != len(candidates):
-            # Hard override is intentionally limited to full-field polls.
             continue
         vector = np.asarray([supports[c["candidate_id"]] for c in candidates], dtype=float)
         decided = float(vector.sum())
@@ -187,7 +186,10 @@ def apply_live_fragmentation_gate(product, feed):
             "center_total_variation": tv,
         }
         county["fragmentation_gate"] = gate_meta
-        county.setdefault("v4_structural", {})["fragmentation_live"] = gate_meta
+        structural = county.get("v5_structural")
+        if structural is None:
+            structural = county.setdefault("v4_structural", {})
+        structural["fragmentation_live"] = gate_meta
         applied.append(gate_meta)
 
     product["fragmentation_gate"] = {
