@@ -15,6 +15,7 @@ on:
       - 'scripts/validate_extended_candidate_cycles.py'
       - 'scripts/validate_fragmentation_poll_gate.py'
       - 'scripts/validate_fragmentation_poll_gate_v2.py'
+      - 'scripts/validate_fragmentation_poll_gate_v3.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
@@ -84,6 +85,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_fragmentation_poll_gate_v2.py
+      - name: Validate repaired-roster stacked-prior fragmentation challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v3.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .
