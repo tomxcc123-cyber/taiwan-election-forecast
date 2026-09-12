@@ -1,0 +1,148 @@
+{
+  "schema_version": 1,
+  "model_id": "HB-TLEF-v5.0-public-beta.1",
+  "display_name": "HB-TLEF v5.0 Public Beta 1",
+  "release_status": "public_beta",
+  "deployed": false,
+  "frozen_on": "2026-09-12",
+  "deployment_scope": {
+    "public_research_release": true,
+    "live_2026_forecast_core": true,
+    "note": "v5 replaces the selective v4 structural/fallback center with one integrated pre-poll prior: R4 structural offset + ridge-shrunk candidate residual offset + T3 non-major mass + legacy within-nonmajor allocation, followed by the existing joint polling likelihood and strong-fragmentation gate."
+  },
+  "scope": "Taiwan county/city executive election candidate vote shares and winner probabilities",
+  "architecture": {
+    "major_party_center": {
+      "structural_offset": "Partisan Baseline 4.0A weighted regularized KMT-DPP model",
+      "candidate_residual_offset": {
+        "alpha": 1.0,
+        "features": [
+          "repeat_candidate_signal",
+          "prior_winner_signal",
+          "previous_candidate_share_signal",
+          "previous_party_pool_signal"
+        ],
+        "feature_selection_cycle": 2018,
+        "application": "additive logit residual offset on top of the R4 structural center"
+      }
+    },
+    "nonmajor_mass": {
+      "model": "T3_roster_type",
+      "alpha": 0.3,
+      "model_weight": 0.7,
+      "carry_weight": 0.3,
+      "allocation": "legacy candidate fundamentals only within the non-major pool"
+    },
+    "turnout": {
+      "included_in_vote_share_center": false,
+      "reason": "cycle-centered turnout produced negligible 2022 improvement after the v5.0 availability/cycle proxy was removed, and no earlier independent temporal cycle was available to validate a stable effect"
+    },
+    "polling": {
+      "stage": "downstream likelihood after the integrated pre-poll prior",
+      "historical_poll_calibration": "existing audited TVBS historical layer",
+      "strong_fragmentation_gate": {
+        "source_scope": "already-accepted full-field TVBS polls only",
+        "strong_nonmajor_threshold": 0.4,
+        "action": "recenter the posterior draw cloud to the full named-candidate poll vector in CLR space",
+        "confirmatory_holdout": false
+      }
+    },
+    "winner_probability": {
+      "method": "joint Monte Carlo candidate-share simulation after structural and polling updates",
+      "simulations": 2000,
+      "calibrated": false
+    }
+  },
+  "historical_validation": {
+    "coverage": {
+      "2014": 22,
+      "2018": 22,
+      "2022": 22,
+      "candidate_history_predecessor_years": [2009, 2010],
+      "raw_2006_integrated": false
+    },
+    "candidate_offset_selection_2018": {
+      "baseline_r4_mae_pp": 7.356993939352726,
+      "selected_offset_mae_pp": 7.209684507379751,
+      "selected_spec": "O4_party_pool",
+      "selected_features": [
+        "repeat_candidate_signal",
+        "prior_winner_signal",
+        "previous_candidate_share_signal",
+        "previous_party_pool_signal"
+      ]
+    },
+    "candidate_offset_chronological_2022": {
+      "baseline_r4_mae_pp": 5.908634075972335,
+      "integrated_offset_mae_pp": 4.8470669370965584,
+      "baseline_winner_correct": 15,
+      "integrated_winner_correct": 16,
+      "winner_total": 19,
+      "high_reliability_baseline_mae_pp": 5.547141577469532,
+      "high_reliability_integrated_mae_pp": 4.236363059317063,
+      "project_wide_pristine_holdout": false,
+      "note": "The candidate-offset feature scope was selected on 2018 and frozen before this v5.2 scoring, but 2022 had already been inspected elsewhere in the broader project."
+    },
+    "end_to_end_development_2022": {
+      "v4_1_fragmentation_candidate_mae_pp": 4.849701209725156,
+      "v4_1_fragmentation_race_balanced_mae_pp": 4.979098557746527,
+      "v4_1_fragmentation_winner_correct": 16,
+      "v5_candidate_mae_pp": 4.624980807562542,
+      "v5_race_balanced_mae_pp": 4.59689498669155,
+      "v5_winner_correct": 17,
+      "winner_total": 22,
+      "v5_winner_accuracy": 0.7727272727272727,
+      "v4_1_fragmentation_margin_mae_pp": 10.436646547916881,
+      "v5_margin_mae_pp": 9.636860439411267,
+      "confirmatory_holdout": false,
+      "reason_not_confirmatory": "The fragmentation architecture itself was developed after inspection of earlier 2022 errors."
+    },
+    "confirmatory_reference_2022": {
+      "model": "v4.0 selective RC3 before post-holdout fragmentation development",
+      "race_balanced_mae_pp": 5.980760687770487,
+      "winner_correct": 14,
+      "winner_total": 22,
+      "winner_accuracy": 0.6363636363636364,
+      "margin_mae_pp": 11.276881146986554,
+      "confirmatory_holdout": true
+    },
+    "production_isomorphic_shadow_2026": {
+      "as_of": "2026-09-12T04:35:30+00:00",
+      "leader_changes_vs_v4_1": 1,
+      "largest_mean_shift_pp": 11.254374772274371,
+      "leader_change": "高雄市：柯志恩 -> 賴瑞隆",
+      "fragmentation_triggers_public": 0,
+      "fragmentation_triggers_shadow": 0
+    }
+  },
+  "release_policy": {
+    "public_beta_allowed": true,
+    "stable_allowed": false,
+    "stable_blockers": [
+      "end-to-end 2022 v5.3 metrics are development diagnostics, not a pristine architecture-blind holdout",
+      "winner probabilities remain uncalibrated across multiple independent election cycles",
+      "raw 2006 local-executive files are not in the auditable repository and are not claimed as integrated",
+      "2026 council/township organization inputs still use the disclosed 2022 bridge",
+      "hard fragmentation override is validated only for already-accepted full-field TVBS polls"
+    ]
+  },
+  "publication_rules": {
+    "label": "Public Beta",
+    "must_disclose_uncalibrated_probability": true,
+    "must_distinguish_confirmatory_and_development_validation": true,
+    "must_disclose_turnout_exclusion": true,
+    "must_disclose_raw_2006_not_integrated": true,
+    "must_publish_model_card": true,
+    "must_publish_version_and_generated_at": true,
+    "must_not_call_stable": true
+  },
+  "data_policy": {
+    "baseline_excludes_current_polls": true,
+    "baseline_excludes_2026_outcomes": true,
+    "polling_is_downstream": true,
+    "candidate_offset_uses_only_prior_candidate_history_features": true,
+    "turnout_not_interpreted_as_party_mobilization": true,
+    "fragmentation_hard_gate_uses_only_already_accepted_live_poll_records": true,
+    "tpp_and_independent_are_not_collapsed_in_interpretation": true
+  }
+}
