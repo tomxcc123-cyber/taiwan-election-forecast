@@ -76,3 +76,6 @@ def build_incumbency_map(history: Sequence[Mapping], *,
                       "county": race.get("county"), "incumbent_party": party,
                       **provenance})
     return mapping, audit
+
+
+# Kept in the research branch until the full historical holdout suite passes.
