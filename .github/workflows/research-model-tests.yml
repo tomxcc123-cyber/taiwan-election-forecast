@@ -18,6 +18,7 @@ on:
       - 'scripts/validate_fragmentation_poll_gate_v3.py'
       - 'scripts/validate_integrated_prior_v5.py'
       - 'scripts/validate_integrated_prior_v5_1.py'
+      - 'scripts/validate_integrated_offset_v5_2.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
@@ -99,6 +100,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_integrated_prior_v5_1.py
+      - name: Validate offset-residual candidate fusion v5.2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_offset_v5_2.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .
