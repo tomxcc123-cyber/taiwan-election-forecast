@@ -5,6 +5,9 @@ on:
     paths:
       - 'model/**'
       - 'tests/**'
+      - 'scripts/ettoday.py'
+      - 'scripts/update_polls.py'
+      - 'scripts/validate_ettoday_live_impact.py'
       - 'scripts/run_candidate_effect_research.py'
       - 'scripts/compare_candidate_models.py'
       - 'scripts/stack_candidate_models.py'
@@ -27,6 +30,7 @@ on:
       - 'data/candidate-history-2009-2010.json'
       - 'data/historical-polls-tvbs.json'
       - 'data/polls.json'
+      - 'data/reviewed-ettoday-polls.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
@@ -51,6 +55,10 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run offline model unit tests
         run: python -m unittest discover -s tests -v
+      - name: Validate ETtoday ingestion and live v5 impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_ettoday_live_impact.py
       - name: Validate earlier Partisan Baseline cycle
         env:
           PYTHONPATH: .
