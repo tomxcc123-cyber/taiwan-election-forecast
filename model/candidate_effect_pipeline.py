@@ -1,4 +1,4 @@
-"""Offline Candidate Effect 3.0 runner on a frozen Partisan Baseline panel.
+"""Offline Candidate Effect 3.x runner on a frozen Partisan Baseline panel.
 
 All candidate specifications are predeclared. Shrinkage is selected inside the
 historical training cycle; the later holdout is reported once and is not used to
@@ -29,9 +29,12 @@ CANDIDATE_ABLATIONS = [
     ("C4_plus_prior_candidate_residual", ["repeat_candidate_signal", "prior_winner_signal",
                                            "verified_incumbency_signal",
                                            "prior_candidate_residual_signal"]),
-    # Challengers below deliberately import old structural context to test why
-    # the legacy direct-candidate model performs well. They are not clean
-    # candidate-quality features and cannot replace C4 without a new decision.
+    ("C8_verified_incumbency_replaces_winner", ["repeat_candidate_signal",
+                                                  "verified_incumbency_signal"]),
+    ("C9_incumbency_history_hybrid", ["repeat_candidate_signal",
+                                       "verified_incumbency_signal",
+                                       "previous_candidate_share_signal",
+                                       "previous_party_pool_signal"]),
     ("C5_previous_share_challenger", ["repeat_candidate_signal", "prior_winner_signal",
                                        "verified_incumbency_signal",
                                        "prior_candidate_residual_signal",
@@ -141,7 +144,7 @@ def run(panel, train_year=2018, test_year=2022, alpha_grid=DEFAULT_ALPHA_GRID):
 
     return {
         "schema_version": 1,
-        "model_version": "2026.09-candidate-effect-shadow.1",
+        "model_version": "2026.09-candidate-effect-shadow.2",
         "mode": "shadow_research_only",
         "release_allowed": False,
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -154,13 +157,13 @@ def run(panel, train_year=2018, test_year=2022, alpha_grid=DEFAULT_ALPHA_GRID):
         "ablation": ablation,
         "reference_result": reference,
         "notes": [
-            "C0-C7 specifications are predeclared; the 2022 holdout is not used to select one.",
-            "C4 is the reference architecture; C5-C7 import confounded old structural context as challengers.",
+            "C8-C9 test verified incumbency as a replacement for stale regular-election winner status.",
+            "C4 remains the reference until cross-cycle evidence supports promotion of an incumbency challenger.",
             "Partisan Baseline predictions are frozen before Candidate Effect is fitted.",
             "Training residual labels must come from county-out-of-fold structural predictions.",
             "The later-cycle test must come from an untouched time-holdout structural prediction.",
             "Alpha is selected separately for each specification only inside the training cycle.",
-            "Previous listed winner is not automatically treated as verified incumbency.",
+            "Exceptional recall/by-election incumbency requires explicit provenance-backed overrides.",
             "Third-party vote allocation is outside this two-party candidate-effect model.",
             "No result from this runner is promoted automatically to the public website.",
         ],
