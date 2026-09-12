@@ -35,6 +35,8 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Fetch original reports
         run: python scripts/update_polls.py
+      - name: Merge reviewed fail-closed sources
+        run: python scripts/enrich_reviewed_polls.py
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
@@ -67,7 +69,15 @@ jobs:
           path: dist
       - name: Report degraded sources
         run: |
-          python -c "import json; d=json.load(open('data/polls.json')); print('Source status:',d['status']); print('Skipped/failed:',len(d['failures'])); print('Newest fieldwork:',d['latest_fieldwork_date'])"
+          python - <<'PY'
+          import json
+          d=json.load(open('data/polls.json',encoding='utf-8'))
+          reviewed=sum(1 for r in d['records'] if r.get('ingestion')=='reviewed_multi_source_methodology')
+          print('Source status:',d['status'])
+          print('Skipped/failed:',len(d['failures']))
+          print('Reviewed seed records:',reviewed)
+          print('Newest fieldwork:',d['latest_fieldwork_date'])
+          PY
 
   deploy:
     needs: update
