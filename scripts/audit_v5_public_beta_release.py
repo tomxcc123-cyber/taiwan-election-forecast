@@ -38,6 +38,9 @@ def main():
     selected = v53["candidate_offset"]
     m = v53["metrics"]["v5_offset_with_fragmentation_poll"]
     old = v53["metrics"]["v3_stacked_with_fragmentation_poll"]
+    fragmentation = manifest["architecture"]["polling"]["strong_fragmentation_gate"]
+    winner_probability = manifest["architecture"]["winner_probability"]
+    data_policy = manifest["data_policy"]
 
     checks = {
         "model_id_matches_code": manifest["model_id"] == MODEL_ID == "HB-TLEF-v5.0-public-beta.1",
@@ -62,9 +65,13 @@ def main():
         "manifest_dev_margin_matches": close(dev["v5_margin_mae_pp"], m["margin_mae_pp"]),
         "development_not_mislabeled_confirmatory": dev["confirmatory_holdout"] is False,
         "fragmentation_threshold_unchanged": close(
-            manifest["architecture"]["polling"]["strong_fragmentation_gate"]["strong_nonmajor_threshold"],
+            fragmentation["strong_nonmajor_threshold"],
             v3["frozen_settings"]["strong_nonmajor_threshold"],
         ),
+        "fragmentation_public_override_disabled": fragmentation.get("operational_mode") == "shadow_only" and data_policy.get("fragmentation_hard_gate_public_effect") is False,
+        "fragmentation_freshness_disclosed": int(fragmentation.get("freshness_days", 0)) == 60,
+        "organization_vintage_is_2018": int(data_policy.get("organization_feature_vintage_2026", -1)) == 2018,
+        "parameter_uncertainty_not_overclaimed": winner_probability.get("parameter_uncertainty_fully_propagated") is False,
         "turnout_excluded": manifest["architecture"]["turnout"]["included_in_vote_share_center"] is False,
         "raw_2006_not_claimed": manifest["historical_validation"]["coverage"]["raw_2006_integrated"] is False,
         "shadow_as_of_matches": shadow_manifest["as_of"] == shadow["as_of"],
@@ -76,7 +83,7 @@ def main():
     }
 
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "model_id": manifest["model_id"],
         "public_beta_allowed": all(checks.values()),
         "stable_allowed": False,
@@ -87,6 +94,9 @@ def main():
             "end_to_end_2022_winner_correct": m["winner_correct"],
             "end_to_end_2022_winner_total": m["winner"]["total"],
             "end_to_end_confirmatory_holdout": False,
+            "fragmentation_public_mode": fragmentation["operational_mode"],
+            "organization_feature_vintage_2026": data_policy["organization_feature_vintage_2026"],
+            "parameter_uncertainty_fully_propagated": winner_probability["parameter_uncertainty_fully_propagated"],
             "shadow_2026_leader_changes": shadow["leader_changes"],
             "shadow_2026_max_mean_shift_pp": shadow["max_mean_shift_pp"],
         },
