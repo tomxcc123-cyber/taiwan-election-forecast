@@ -6,6 +6,7 @@ const safe=value=>{try{const u=new URL(value);return u.protocol==='https:'?esc(u
 export const methodLabel=value=>METHOD_LABELS[value]||value||'方法未分類';
 export const verificationLabel=value=>VERIFY_LABELS[value]||value||'一般資料校驗';
 export const reviewLabel=value=>REVIEW_LABELS[value]||value||'待處理';
+export const ingestionLabel=record=>String(record?.ingestion||'').startsWith('reviewed_')?`人工核驗後收錄（${verificationLabel(record.verification_status||record.ingestion)}）；不是本輪自動原始報告解析成功。`:'原始報告自動解析並校驗。';
 export function sourceState(source){
   if(source.status==='reviewed_seed_only')return {key:'reviewed',label:'人工核驗種子'};
   if(source.index_ok===false||source.status==='unavailable')return {key:'degraded',label:'來源受限'};
@@ -51,9 +52,13 @@ function enhanceCards(feed,model){
     const old=card.querySelector('.poll-provenance');if(old)old.remove();
     const r=matchRecord(card,feed,used);if(!r)return;used.add(r.id);
     const meta=card.querySelector('.meta');if(meta)meta.insertAdjacentHTML('afterend',recordTags(r,audit.get(r.id)));
-    const details=card.querySelector('details');if(details&&!details.dataset.sourceV52){
-      details.dataset.sourceV52='1';
-      details.insertAdjacentHTML('beforeend',`<dl class="provenance-dl"><dt>調查機構 ID</dt><dd>${esc(r.pollster_id||'未建立')}</dd><dt>方法類型</dt><dd>${esc(methodLabel(r.method_class))}</dd><dt>核驗狀態</dt><dd>${esc(verificationLabel(r.verification_status||r.ingestion))}</dd><dt>發布日期</dt><dd>${esc(r.published_at||'未提供')}</dd></dl>`);
+    const details=card.querySelector('details');if(details){
+      const paragraphs=details.querySelectorAll(':scope > p');
+      if(paragraphs[1])paragraphs[1].textContent=ingestionLabel(r);
+      if(!details.dataset.sourceV52){
+        details.dataset.sourceV52='1';
+        details.insertAdjacentHTML('beforeend',`<dl class="provenance-dl"><dt>調查機構 ID</dt><dd>${esc(r.pollster_id||'未建立')}</dd><dt>方法類型</dt><dd>${esc(methodLabel(r.method_class))}</dd><dt>核驗狀態</dt><dd>${esc(verificationLabel(r.verification_status||r.ingestion))}</dd><dt>發布日期</dt><dd>${esc(r.published_at||'未提供')}</dd></dl>`);
+      }
     }
   });
 }
@@ -72,7 +77,7 @@ async function apply(force=false){
     const {feed,model}=await load(force);
     if(view==='polls'){
       const anchor=document.querySelector('#sourceStatus');if(!anchor)return;
-      document.querySelector('#pollSourceObservatory')?.remove();anchor.insertAdjacentHTML('beforebegin',observatoryHTML(feed,model));enhanceCards(feed,model);
+      document.querySelector('#pollSourceObservatory')?.remove();anchor.insertAdjacentHTML('beforebegin',observatoryHTML(feed,model));anchor.hidden=true;enhanceCards(feed,model);
     }else{
       const prose=document.querySelector('.prose');if(!prose||document.querySelector('#sourceGovernanceV52'))return;
       const s=coverageStats(feed,model);prose.insertAdjacentHTML('beforeend',`<section id="sourceGovernanceV52"><h2>民調來源治理 · v5.2</h2><p>目前識別 ${s.sourceCount} 個 pollster、${s.methodCount} 類調查方法，候選人 likelihood 實際納入 ${s.included} 題。來源狀態分成自動核驗、人工核驗種子、待核驗／受限與刊載媒體四層；資料不足時不以剩餘百分比自行推定未表態。</p><p><a href="?view=polls">查看來源觀測站與每題 provenance</a></p></section>`);
