@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-09-12T10:20:00+00:00",
+  "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
+  "pollsters": [
+    {
+      "pollster_id": "tvbs",
+      "name": "TVBS 民意調查中心",
+      "source_label": "TVBS 民意調查中心",
+      "publisher": "TVBS",
+      "status": "automatic_parser",
+      "method_classes": ["telephone_cati"],
+      "model_uncertainty": "tvbs_specific",
+      "discovery": {
+        "mode": "managed_by_update_polls",
+        "index_url": "https://www.tvbs.com.tw/poll-center"
+      }
+    },
+    {
+      "pollster_id": "formosa-bic",
+      "name": "畢肯市場研究股份有限公司",
+      "source_label": "美麗島電子報／畢肯",
+      "publisher": "美麗島電子報",
+      "status": "automatic_parser_plus_reviewed_seed",
+      "method_classes": ["dual_frame_cati", "telephone_cati"],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "managed_by_update_polls",
+        "index_url": "https://my-formosa.com/DOC_221784.htm"
+      }
+    },
+    {
+      "pollster_id": "ettoday",
+      "name": "東森民調雲股份有限公司",
+      "source_label": "ETtoday 民調雲",
+      "publisher": "ETtoday",
+      "status": "automatic_discovery_plus_reviewed_seed",
+      "method_classes": ["closed_online_panel"],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "managed_by_update_polls",
+        "index_url": "https://feeds.feedburner.com/ettoday/newslist"
+      }
+    },
+    {
+      "pollster_id": "trend-survey",
+      "name": "趨勢民意調查股份有限公司",
+      "source_label": "新台灣國策智庫／趨勢民調",
+      "publisher": "凱達格蘭基金會－新台灣國策智庫",
+      "status": "reviewed_seed_only",
+      "method_classes": ["telephone_cati"],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "not_automated",
+        "index_url": "https://braintrust.tw/"
+      }
+    },
+    {
+      "pollster_id": "shanshui",
+      "name": "山水民意研究股份有限公司",
+      "source_label": "震傳媒／山水民調",
+      "publisher": "震傳媒",
+      "status": "reviewed_seed_plus_auto_discovery",
+      "method_classes": ["landline_cati", "dual_frame_cati"],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "html_index_queue",
+        "index_urls": [
+          "https://www.zmedia.com.tw/Document/Pool",
+          "https://www.zmedia.com.tw/Document/Pool?page=2"
+        ],
+        "article_path_pattern": "^/Document/PoolDetail/[0-9]+$",
+        "markers": ["震傳媒民調"],
+        "queue_only": true
+      }
+    },
+    {
+      "pollster_id": "pearson-data",
+      "name": "皮爾森數據",
+      "source_label": "鉅聞天下／皮爾森數據",
+      "publisher": "鉅聞天下新聞網",
+      "status": "reviewed_seed_plus_auto_discovery",
+      "method_classes": ["online_dmp_panel"],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "html_index_queue",
+        "index_urls": [
+          "https://www.bigmedia.com.tw/category/%E9%89%85%E8%81%9E%E6%B0%91%E8%AA%BF"
+        ],
+        "article_path_pattern": "^/article/[0-9]+$",
+        "markers": ["鉅聞民調"],
+        "queue_only": true
+      }
+    },
+    {
+      "pollster_id": "apollo",
+      "name": "艾普羅行銷市場研究",
+      "source_label": "艾普羅行銷市場研究",
+      "publisher": null,
+      "status": "fail_closed_incomplete_response_mass",
+      "method_classes": ["telephone_cati"],
+      "model_uncertainty": "not_admitted",
+      "discovery": {
+        "mode": "not_automated",
+        "index_url": null
+      }
+    }
+  ]
+}
