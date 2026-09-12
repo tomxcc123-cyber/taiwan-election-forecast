@@ -1,0 +1,82 @@
+name: Source coverage v5.1 tests
+
+on:
+  pull_request:
+    paths:
+      - 'data/reviewed-additional-polls.json'
+      - 'scripts/enrich_reviewed_polls.py'
+      - 'tests/test_reviewed_source_enrichment.py'
+      - '.github/workflows/publish.yml'
+      - '.github/workflows/source-coverage-v51-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - name: Run full offline unit suite
+        run: python -m unittest discover -s tests -v
+      - name: Enrich current feed with reviewed sources
+        run: python scripts/enrich_reviewed_polls.py
+      - name: Assert source governance
+        run: |
+          python - <<'PY'
+          import json
+          d=json.load(open('data/polls.json',encoding='utf-8'))
+          trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
+          assert len(trend)==1, trend
+          r=trend[0]
+          assert r['model_eligible'] is True, r.get('exclusion_reason')
+          assert [c['name'] for c in r['candidates']]==['江啟臣','何欣純']
+          assert abs(sum(c['support'] for c in r['candidates'])+r['undecided']+r.get('nonvote',0)-100)<1e-9
+          assert any(p.get('pollster_id')=='trend-survey' and p.get('county')=='台中市' for p in d['polls'])
+          assert not any(str(s.get('status','')).startswith('integrated_') for s in d.get('source_review',[]))
+          assert not any(s.get('name')=='ETtoday' for s in d.get('source_review',[]))
+          apollo=next(s for s in d['source_review'] if s['name']=='艾普羅行銷市場研究')
+          assert apollo['status']=='reviewed_methodology_incomplete_response_mass'
+          assert not any(r.get('pollster_id')=='apollo' for r in d['records'])
+          print('PASS source governance:',r['id'],r['date'],len(d['polls']))
+          PY
+      - name: Build exact public product with enriched feed
+        env:
+          PYTHONPATH: .
+        run: python scripts/build.py
+      - name: Validate browser model artifacts
+        run: |
+          node tests/model.mjs
+          node tests/candidate-engine.mjs
+          node tests/evidence-ui.mjs
+          node tests/scenario-studio.mjs
+      - name: Assert enriched poll reaches candidate product
+        run: |
+          python - <<'PY'
+          import json
+          data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
+          feed=json.load(open('dist/polls.json',encoding='utf-8'))
+          assert data['model_id']=='HB-TLEF-v5.0-public-beta.1'
+          assert data['feed_checked_at']==feed['checked_at']
+          trend=next(r for r in feed['records'] if r.get('pollster_id')=='trend-survey' and r['county']=='台中市')
+          taichung=next(r for r in data['counties'] if r['name']=='台中市')
+          assert trend['id'] in taichung['poll_ids'], (trend['id'],taichung['poll_ids'])
+          assert data['release']['stable'] is False
+          print('PASS public product:',trend['id'],taichung['poll_ids'])
+          PY
+      - name: Upload enriched Pages preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-coverage-v51-preview
+          path: dist
+          if-no-files-found: error
