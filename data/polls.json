@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-12T07:32:07+00:00",
+  "checked_at": "2026-09-12T10:16:47+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-12T07:32:07+00:00",
-  "updated_at": "2026-09-12T06:40:00+00:00",
+  "index_checked_at": "2026-09-12T10:16:47+00:00",
+  "updated_at": "2026-09-12T07:40:00+00:00",
   "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
@@ -43,6 +43,26 @@
       "reviewed_reports": 1,
       "status": "reviewed_seed_only",
       "method_class": "telephone_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+    },
+    {
+      "name": "震傳媒／山水民調",
+      "url": "https://www.zmedia.com.tw/Document/PoolDetail/41952",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 2,
+      "status": "reviewed_seed_only",
+      "method_class": "landline_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+    },
+    {
+      "name": "鉅聞天下／皮爾森數據",
+      "url": "https://www.bigmedia.com.tw/article/1784338752250",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 2,
+      "status": "reviewed_seed_only",
+      "method_class": "online_dmp_panel",
       "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
     }
   ],
@@ -159,9 +179,158 @@
       "nonvote": 0.0,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T06:40:00+00:00",
+      "retrieved_at": "2026-09-12T07:40:00+00:00",
       "model_eligible": true,
       "exclusion_reason": null
+    },
+    {
+      "id": "718cbf318ec00cf1c1ace27d",
+      "county": "高雄市",
+      "source": "鉅聞天下／皮爾森數據",
+      "pollster_id": "pearson-data",
+      "pollster": "皮爾森數據",
+      "publisher": "鉅聞天下新聞網",
+      "source_url": "https://www.bigmedia.com.tw/article/1786278801544",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4004777",
+        "https://newtalk.tw/news/view/2026-08-10/1052483"
+      ],
+      "report_title": "鉅聞天下／皮爾森數據：2026高雄市長選舉調查（8月波次）",
+      "field_start": "2026-07-27",
+      "date": "2026-08-01",
+      "published_at": "2026-08-10",
+      "sample_n": 1608,
+      "population": "高雄市年滿20歲以上網路人口",
+      "population_size": null,
+      "method": "網路主動發放；DMP依性別、年齡、居住地比例分層隨機抽樣；以網路行為與資料庫標籤雙重認證唯一性；比率估計法反覆修正加權",
+      "method_class": "online_dmp_panel",
+      "sampling_frame": "皮爾森數據DMP之高雄市20歲以上網路人口",
+      "weighting": "ratio_estimation_with_dmp_population_correction",
+      "margin_of_error": 2.4,
+      "confidence_level": 95.0,
+      "funding": "鉅聞天下新聞網",
+      "supervisor": null,
+      "sample_note": "公開方法資料中的有效樣本；reviewed seed 不宣稱本輪自動抓取成功",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 46.14,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 47.78,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 4.24,
+      "nonvote": 1.84,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "64156a026faa16f5b3d52230",
+      "county": "高雄市",
+      "source": "震傳媒／山水民調",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/43287",
+      "verification_urls": [
+        "https://www.bigmedia.com.tw/article/1786341177893"
+      ],
+      "report_title": "震傳媒／山水民調：2026高雄市長選舉支持度（7月波次）",
+      "field_start": "2026-07-18",
+      "date": "2026-07-20",
+      "published_at": "2026-07-23",
+      "sample_n": 1069,
+      "population": "設籍高雄市、年滿20歲民眾",
+      "population_size": null,
+      "method": "CATI電話訪問；住宅電話為抽樣架構；系統抽樣加尾2碼隨機；依地區、性別、年齡、教育程度加權",
+      "method_class": "landline_cati",
+      "sampling_frame": "高雄市住宅電話",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "震傳媒",
+      "supervisor": null,
+      "sample_note": "公開方法資料中的有效樣本；reviewed seed 不宣稱本輪自動抓取成功",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 31.6,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 39.6,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 28.8,
+      "nonvote": 0.0,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "model_eligible": true,
+      "exclusion_reason": null
+    },
+    {
+      "id": "5da673162e008e11d5f3a3cd",
+      "county": "新北市",
+      "source": "鉅聞天下／皮爾森數據",
+      "pollster_id": "pearson-data",
+      "pollster": "皮爾森數據",
+      "publisher": "鉅聞天下新聞網",
+      "source_url": "https://www.bigmedia.com.tw/article/1784338752250",
+      "verification_urls": [
+        "https://newtalk.tw/news/view/2026-07-20/1048180",
+        "https://news.tvbs.com.tw/politics/3264552"
+      ],
+      "report_title": "鉅聞天下／皮爾森數據：2026新北市長選舉調查（7月波次）",
+      "field_start": "2026-07-06",
+      "date": "2026-07-11",
+      "published_at": "2026-07-20",
+      "sample_n": 1766,
+      "population": "新北市年滿20歲以上網路人口",
+      "population_size": null,
+      "method": "網路主動發放；DMP依性別、年齡、居住地比例分層隨機抽樣；以網路行為與資料庫標籤雙重認證唯一性；比率估計法反覆修正加權",
+      "method_class": "online_dmp_panel",
+      "sampling_frame": "皮爾森數據DMP之新北市20歲以上網路人口",
+      "weighting": "ratio_estimation_with_dmp_population_correction",
+      "margin_of_error": 2.3,
+      "confidence_level": 95.0,
+      "funding": "鉅聞天下新聞網",
+      "supervisor": null,
+      "sample_note": "公開方法資料中的有效樣本；reviewed seed 不宣稱本輪自動抓取成功",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "李四川",
+          "support": 50.85,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 44.06,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 3.4,
+      "nonvote": 1.7,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
     {
       "id": "fb5afa8077f274de0e8079cf",
@@ -247,6 +416,55 @@
       "undecided": 13.0,
       "retrieved_at": "2026-09-07T01:09:53+00:00",
       "report_sha256": "5d5506e8f9143bf670424fcc2725290e1669d4b7966327b81a9d2562e024ba1b",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "3e837a213e580f5e817b1e7d",
+      "county": "新北市",
+      "source": "震傳媒／山水民調",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/41952",
+      "verification_urls": [
+        "https://www.bigmedia.com.tw/article/1777980989226"
+      ],
+      "report_title": "震傳媒／山水民調：2026新北市長選舉支持度（5月波次）",
+      "field_start": "2026-04-29",
+      "date": "2026-05-01",
+      "published_at": "2026-05-05",
+      "sample_n": 1070,
+      "population": "設籍新北市、年滿20歲民眾",
+      "population_size": null,
+      "method": "CATI電話訪問；住宅電話為抽樣架構；系統抽樣加尾2碼隨機；依地區、性別、年齡、教育程度加權",
+      "method_class": "landline_cati",
+      "sampling_frame": "新北市住宅電話",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "震傳媒",
+      "supervisor": null,
+      "sample_note": "公開方法資料中的有效樣本；reviewed seed 不宣稱本輪自動抓取成功",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "李四川",
+          "support": 39.6,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 34.8,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 25.6,
+      "nonvote": 0.0,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-09-12T07:40:00+00:00",
       "model_eligible": false,
       "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
     },
@@ -810,6 +1028,20 @@
   ],
   "polls": [
     {
+      "id": "64156a026faa16f5b3d52230",
+      "county": "高雄市",
+      "source": "震傳媒／山水民調",
+      "date": "2026-07-20",
+      "sample_n": 1069,
+      "undecided": 28.8,
+      "pollster_id": "shanshui",
+      "method_class": "landline_cati",
+      "blue": 31.6,
+      "dpp": 39.6,
+      "third": 0,
+      "other": 0
+    },
+    {
       "id": "3fae7f019d1a5e84cd18a92c",
       "county": "台中市",
       "source": "新台灣國策智庫／趨勢民調",
@@ -928,6 +1160,30 @@
     }
   },
   "history": [
+    {
+      "date": "2026-09-12T10:16:47+00:00",
+      "county": "高雄市",
+      "source_url": "https://www.bigmedia.com.tw/article/1786278801544",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-09-12T10:16:47+00:00",
+      "county": "新北市",
+      "source_url": "https://www.bigmedia.com.tw/article/1784338752250",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-09-12T10:16:47+00:00",
+      "county": "高雄市",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/43287",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-09-12T10:16:47+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/41952",
+      "kind": "reviewed_additional_poll_added"
+    },
     {
       "date": "2026-09-12T06:53:22+00:00",
       "county": "台中市",
@@ -1049,5 +1305,5 @@
       "kind": "report_added"
     }
   ],
-  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的新台灣國策智庫／趨勢民調 reviewed seed；刊載媒體不另建立 pollster 權重。"
+  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。"
 }
