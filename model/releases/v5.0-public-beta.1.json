@@ -9,7 +9,7 @@
   "deployment_scope": {
     "public_research_release": true,
     "live_2026_forecast_core": true,
-    "note": "v5 replaces the selective v4 structural/fallback center with one integrated pre-poll prior: R4 structural offset + ridge-shrunk candidate residual offset + T3 non-major mass + legacy within-nonmajor allocation, followed by the existing joint polling likelihood and strong-fragmentation gate."
+    "note": "v5 replaces the selective v4 structural/fallback center with one integrated pre-poll prior: R4 structural offset + ridge-shrunk candidate residual offset + T3 non-major mass + legacy within-nonmajor allocation, followed by the joint polling likelihood. The former strong-fragmentation hard override is retained only as a shadow diagnostic and no longer mutates the public posterior."
   },
   "scope": "Taiwan county/city executive election candidate vote shares and winner probabilities",
   "architecture": {
@@ -44,14 +44,17 @@
       "strong_fragmentation_gate": {
         "source_scope": "already-accepted full-field TVBS polls only",
         "strong_nonmajor_threshold": 0.4,
-        "action": "recenter the posterior draw cloud to the full named-candidate poll vector in CLR space",
+        "freshness_days": 60,
+        "operational_mode": "shadow_only",
+        "action": "compute the counterfactual CLR recentering for diagnostics only; do not alter public posterior draws or winner probabilities",
         "confirmatory_holdout": false
       }
     },
     "winner_probability": {
       "method": "joint Monte Carlo candidate-share simulation after structural and polling updates",
       "simulations": 2000,
-      "calibrated": false
+      "calibrated": false,
+      "parameter_uncertainty_fully_propagated": false
     }
   },
   "historical_validation": {
@@ -121,10 +124,10 @@
     "stable_allowed": false,
     "stable_blockers": [
       "end-to-end 2022 v5.3 metrics are development diagnostics, not a pristine architecture-blind holdout",
-      "winner probabilities remain uncalibrated across multiple independent election cycles",
+      "winner probabilities remain uncalibrated across multiple independent election cycles and structural/candidate/T3 parameter uncertainty is not fully propagated",
       "raw 2006 local-executive files are not in the auditable repository and are not claimed as integrated",
-      "2026 council/township organization inputs still use the disclosed 2022 bridge",
-      "hard fragmentation override is validated only for already-accepted full-field TVBS polls"
+      "2026 council/township organization inputs still carry forward the disclosed 2018 organization snapshot pending audited 2022 council/township aggregates",
+      "strong-fragmentation 40% rule remains only a shadow diagnostic; no independently validated deterministic override is used in the public posterior"
     ]
   },
   "publication_rules": {
@@ -143,7 +146,9 @@
     "polling_is_downstream": true,
     "candidate_offset_uses_only_prior_candidate_history_features": true,
     "turnout_not_interpreted_as_party_mobilization": true,
-    "fragmentation_hard_gate_uses_only_already_accepted_live_poll_records": true,
+    "fragmentation_hard_gate_public_effect": false,
+    "fragmentation_shadow_uses_only_already_accepted_recent_full_field_tvbs_records": true,
+    "organization_feature_vintage_2026": 2018,
     "tpp_and_independent_are_not_collapsed_in_interpretation": true
   }
 }
