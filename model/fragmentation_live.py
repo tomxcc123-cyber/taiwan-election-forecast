@@ -5,8 +5,8 @@ support for non-KMT/DPP candidates could re-center the public posterior a
 second time after that same poll had already entered the joint likelihood.
 That deterministic second-stage override is disabled for public forecasts.
 
-The frozen 40% rule remains as a research diagnostic only.  A qualifying poll
-must also be no more than 60 days old relative to the product build time.  We
+The frozen 40% rule remains as a research diagnostic only. A qualifying poll
+must also be no more than 60 days old relative to the product build time. We
 compute the counterfactual re-centering and report its total-variation move,
 but never mutate public draws, candidate means, intervals, or probabilities.
 """
@@ -121,12 +121,7 @@ def _fresh_enough(row, product):
 
 
 def find_triggers(product, feed):
-    """Return latest qualifying shadow diagnostic by county.
-
-    This function identifies the old hard-gate condition but does not imply
-    public application.  Only accepted, complete-list, recent TVBS records are
-    eligible for the diagnostic.
-    """
+    """Return latest qualifying shadow diagnostic by county."""
     accepted = _accepted_ids(product)
     counties = _county_lookup(product)
     selected = {}
@@ -230,4 +225,16 @@ def apply_live_fragmentation_gate(product, feed):
     release = product.setdefault("release", {})
     release["fragmentation_gate_live"] = False
     release["fragmentation_gate_shadow_only"] = True
+    release["deployment_mode"] = "v5 unified structural/candidate/T3 prior + joint polling; TVBS 40% fragmentation is shadow diagnostic only"
+    product["uncertainty_governance"] = {
+        "probability_calibrated_across_independent_cycles": False,
+        "structural_parameter_uncertainty_fully_propagated": False,
+        "candidate_offset_parameter_uncertainty_fully_propagated": False,
+        "t3_parameter_uncertainty_fully_propagated": False,
+        "status": "conditional_probability_public_beta",
+        "note": "Forecast draws include historical candidate-share variation and polling uncertainty, but do not yet re-fit R4/candidate/T3 parameters within every simulation draw."
+    }
+    limitations = list(product.get("limitations", []))
+    replacement = "2026 地方組織特徵目前承接 2018 organization snapshot；2022 組織聚合資料尚未審計接入。TVBS 40% fragmentation 規則只作 60 天內完整名單民調的 shadow diagnostic，不再 hard override 公開 posterior。"
+    product["limitations"] = [replacement if "2026 地方組織特徵" in str(item) else item for item in limitations]
     return product
