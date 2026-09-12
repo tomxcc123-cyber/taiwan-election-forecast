@@ -70,10 +70,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_integrated_end_to_end_v5_3.py
-      - name: Reproduce production-isomorphic 2026 shadow
+      - name: Reproduce frozen production-isomorphic 2026 shadow
         env:
           PYTHONPATH: .
-        run: python scripts/build_v5_shadow_product.py
+        run: python scripts/build_v5_shadow_product.py --at 2026-09-12T04:35:30+00:00
       - name: Audit v5 release manifest
         env:
           PYTHONPATH: .
