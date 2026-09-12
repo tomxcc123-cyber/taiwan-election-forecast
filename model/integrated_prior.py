@@ -1,9 +1,11 @@
 """Research helpers for an integrated local-election prior.
 
-This module deliberately moves candidate-history and lagged turnout information
-into the same regularized major-party head as the structural R4 features.  It
-is research-only until chronological ablations pass.  Polls remain an
-observation/likelihood layer rather than target leakage into fundamentals.
+This module moves candidate-history information into the same regularized
+major-party head as the structural R4 features. Turnout is available in two
+forms: the original diagnostic form (kept only to audit a suspected cycle-
+availability artifact) and a safer cycle-centered form for follow-up research.
+Polls remain an observation/likelihood layer rather than target leakage into
+fundamentals.
 """
 from __future__ import annotations
 
@@ -37,6 +39,11 @@ TURNOUT_FEATURES = [
     "turnout_trend_available",
 ]
 
+SAFE_TURNOUT_FEATURES = [
+    "previous_turnout_relative",
+    "turnout_relative_trend",
+]
+
 INTEGRATED_FEATURES = R4_FEATURES + CANDIDATE_FEATURES + TURNOUT_FEATURES
 
 
@@ -55,11 +62,11 @@ def _turnout(race: Mapping | None) -> float | None:
 
 
 def lagged_turnout_features(history: Sequence[Mapping], race: Mapping) -> dict:
-    """Return leakage-safe aggregate turnout history available before ``race``.
+    """Original leakage-safe turnout diagnostic.
 
-    Aggregate turnout is not interpreted as party-specific mobilization.  The
-    availability flags let the ridge shrink unavailable early-cycle values to
-    zero rather than silently imputing future information.
+    These availability-coded fields are retained to reproduce v5.0 diagnostics,
+    but should not be promoted without further validation because data
+    availability can proxy election cycle.
     """
     prior = previous_race(history, race)
     prior2 = previous_race(history, prior) if prior is not None else None
@@ -73,6 +80,48 @@ def lagged_turnout_features(history: Sequence[Mapping], race: Mapping) -> dict:
     }
 
 
+def _cycle_turnout_mean(history: Sequence[Mapping], year: int) -> float | None:
+    values = []
+    for item in history:
+        if item.get("office") != "local_executive" or int(item.get("year", -1)) != int(year):
+            continue
+        value = _turnout(item)
+        if value is not None:
+            values.append(value)
+    return (sum(values) / len(values)) if values else None
+
+
+def _relative_turnout(history: Sequence[Mapping], race: Mapping | None) -> float | None:
+    if race is None:
+        return None
+    value = _turnout(race)
+    if value is None:
+        return None
+    mean = _cycle_turnout_mean(history, int(race["year"]))
+    if mean is None:
+        return None
+    return float(value - mean)
+
+
+def cycle_centered_turnout_features(history: Sequence[Mapping], race: Mapping) -> dict:
+    """Return safer lagged turnout signals with election-cycle level removed.
+
+    The feature is a county's turnout deviation from the mean of the same
+    previous election year, plus the change in that relative deviation from the
+    preceding cycle. Missing earlier data are neutralized at zero and no
+    availability dummy is emitted, reducing the risk that the model learns a
+    calendar/cycle indicator rather than a turnout relationship.
+    """
+    prior = previous_race(history, race)
+    prior2 = previous_race(history, prior) if prior is not None else None
+    rel1 = _relative_turnout(history, prior)
+    rel2 = _relative_turnout(history, prior2)
+    return {
+        "previous_turnout_relative": 0.0 if rel1 is None else float(rel1),
+        "turnout_relative_trend": 0.0 if rel1 is None or rel2 is None else float(rel1 - rel2),
+    }
+
+
 def enrich_major_row(row: Mapping, race: Mapping, history: Sequence[Mapping]) -> dict:
     """Attach candidate-history and turnout features to one R4-style row."""
     pair = build_pair_features(race, history)
@@ -80,6 +129,7 @@ def enrich_major_row(row: Mapping, race: Mapping, history: Sequence[Mapping]) ->
     for name in CANDIDATE_FEATURES:
         enriched[name] = float(pair[name])
     enriched.update(lagged_turnout_features(history, race))
+    enriched.update(cycle_centered_turnout_features(history, race))
     enriched["dpp_candidate_name"] = pair["dpp_candidate_name"]
     enriched["kmt_candidate_name"] = pair["kmt_candidate_name"]
     enriched["candidate_prior_race_id"] = pair["prior_race_id"]
