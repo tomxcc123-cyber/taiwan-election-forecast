@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Merge carefully reviewed non-automatic poll facts into the live poll feed.
 
-This stage runs *after* automatic source retrieval.  It never claims that a
-reviewed seed was fetched live.  Automatic records from the same pollster,
+This stage runs *after* automatic source retrieval. It never claims that a
+reviewed seed was fetched live. Automatic records from the same pollster,
 county and fieldwork end date take precedence over reviewed seeds.
 """
 
@@ -102,7 +102,7 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         "supervisor": entry.get("supervisor"),
         "sample_note": entry.get(
             "sample_note",
-            "公開方法資料中的有效樣本； reviewed seed 不宣稱本輪自動抓取成功",
+            "公開方法資料中的有效樣本；reviewed seed 不宣稱本輪自動抓取成功",
         ),
         "multiple_matchups": bool(entry.get("multiple_matchups", False)),
         "question_number": int(entry.get("question_number", 1)),
@@ -193,7 +193,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
         )
         source_names.add(entry["source"])
 
-    # The UI labels source_review rows as not integrated.  Keep that list only
+    # The UI labels source_review rows as not integrated. Keep that list only
     # for genuinely non-integrated sources; integrated sources belong in sources.
     unresolved = [
         row
@@ -202,7 +202,10 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
         and row.get("name") != "ETtoday"
     ]
     replacements = {row["name"]: row for row in _review_rows(reviewed)}
-    unresolved = [row for row in unresolved if row.get("name") not in {"中時／艾普羅", "聯合報"}]
+    # Remove both legacy aliases and any already-normalized replacement rows so
+    # running this stage repeatedly cannot duplicate source-review entries.
+    drop_names = set(replacements) | {"中時／艾普羅"}
+    unresolved = [row for row in unresolved if row.get("name") not in drop_names]
     unresolved.extend(replacements.values())
     out["source_review"] = unresolved
 
