@@ -137,6 +137,7 @@ def discover_from_html(raw: bytes, index_url: str, pollster: dict, matchups: dic
     path_re = re.compile(cfg["article_path_pattern"])
     markers = [compact(x) for x in cfg.get("markers", [])]
     cues = [compact(x) for x in cfg.get("title_cues", ["支持", "領先", "選情", "膠著", "決勝", "對決"])]
+    exclude_cues = [compact(x) for x in cfg.get("exclude_cues", [])]
     host = urlparse(index_url).hostname
     found = {}
     anchors = doc.xpath("//a[@href]")
@@ -151,6 +152,8 @@ def discover_from_html(raw: bytes, index_url: str, pollster: dict, matchups: dic
         title = clean_title(anchor.text_content())
         ctitle = compact(title)
         if markers and not any(marker in ctitle for marker in markers):
+            continue
+        if exclude_cues and any(cue in ctitle for cue in exclude_cues):
             continue
         county, candidate_hits = infer_county(title, matchups)
         if not county:

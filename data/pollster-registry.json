@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-12T10:53:00+00:00",
+  "updated_at": "2026-09-12T10:58:00+00:00",
   "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
   "pollsters": [
     {
@@ -72,8 +72,9 @@
         "article_path_pattern": "^/Document/(?:Pool)?Detail/[0-9]+$",
         "markers": ["震傳媒民調"],
         "title_cues": ["選舉", "連任", "決勝", "對決", "選情", "膠著"],
+        "exclude_cues": ["2028總統", "施政滿意", "施政表示滿意", "誰較有利", "對選情無影響"],
         "queue_only": true,
-        "url_note": "Index links use /Document/Detail/<id> and redirect to /Document/PoolDetail/<id>; reviewed records preserve the final URL and list the index alias for de-duplication."
+        "url_note": "Index links use /Document/Detail/<id> and redirect to /Document/PoolDetail/<id>; reviewed records preserve the final URL and list the index alias for de-duplication. Issue polls about job approval, 2028 presidential preference, or event effects on election advantage are excluded from the vote-intention discovery queue."
       }
     },
     {
