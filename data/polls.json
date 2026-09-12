@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-12T10:16:47+00:00",
+  "checked_at": "2026-09-12T10:37:17+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-12T10:16:47+00:00",
+  "index_checked_at": "2026-09-12T10:37:17+00:00",
   "updated_at": "2026-09-12T07:40:00+00:00",
   "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
@@ -53,7 +53,14 @@
       "reviewed_reports": 2,
       "status": "reviewed_seed_only",
       "method_class": "landline_cati",
-      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
+      "auto_discovery": true,
+      "auto_discovery_status": "checked",
+      "auto_discovery_checked_at": "2026-09-12T10:37:28+00:00",
+      "auto_discovered": 0,
+      "auto_known": 0,
+      "auto_pending": 0,
+      "registry_pollster_id": "shanshui"
     },
     {
       "name": "鉅聞天下／皮爾森數據",
@@ -63,7 +70,14 @@
       "reviewed_reports": 2,
       "status": "reviewed_seed_only",
       "method_class": "online_dmp_panel",
-      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
+      "auto_discovery": true,
+      "auto_discovery_status": "checked",
+      "auto_discovery_checked_at": "2026-09-12T10:37:28+00:00",
+      "auto_discovered": 2,
+      "auto_known": 1,
+      "auto_pending": 1,
+      "registry_pollster_id": "pearson-data"
     }
   ],
   "source_review": [
@@ -80,7 +94,20 @@
       "url": "https://udn.com/vote2026/index"
     }
   ],
-  "discovery_queue": [],
+  "discovery_queue": [
+    {
+      "pollster_id": "pearson-data",
+      "source": "鉅聞天下／皮爾森數據",
+      "publisher": "鉅聞天下新聞網",
+      "title": "2026《鉅聞民調》新北市長選舉/都是「北漂」人!傳統綠營優勢區三重、新莊、蘆洲 李四川、蘇巧慧呈現膠著",
+      "county": "新北市",
+      "url": "https://www.bigmedia.com.tw/article/1784791841053",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-09-12T10:37:28+00:00",
+      "last_seen_at": "2026-09-12T10:37:28+00:00"
+    }
+  ],
   "records": [
     {
       "id": "fb01d4dfead1ac092347695d",
@@ -1161,6 +1188,12 @@
   },
   "history": [
     {
+      "date": "2026-09-12T10:37:28+00:00",
+      "county": "新北市",
+      "source_url": "https://www.bigmedia.com.tw/article/1784791841053",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
       "date": "2026-09-12T10:16:47+00:00",
       "county": "高雄市",
       "source_url": "https://www.bigmedia.com.tw/article/1786278801544",
@@ -1305,5 +1338,11 @@
       "kind": "report_added"
     }
   ],
-  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。"
+  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
+  "discovery_checked_at": "2026-09-12T10:37:28+00:00",
+  "pollster_registry": {
+    "schema_version": 1,
+    "updated_at": "2026-09-12T10:25:00+00:00",
+    "registered_pollsters": 7
+  }
 }
