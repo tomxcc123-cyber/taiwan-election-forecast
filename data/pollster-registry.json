@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-12T10:25:00+00:00",
+  "updated_at": "2026-09-12T10:40:00+00:00",
   "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
   "pollsters": [
     {
@@ -11,10 +11,7 @@
       "status": "automatic_parser",
       "method_classes": ["telephone_cati"],
       "model_uncertainty": "tvbs_specific",
-      "discovery": {
-        "mode": "managed_by_update_polls",
-        "index_url": "https://www.tvbs.com.tw/poll-center"
-      }
+      "discovery": {"mode": "managed_by_update_polls", "index_url": "https://www.tvbs.com.tw/poll-center"}
     },
     {
       "pollster_id": "formosa-bic",
@@ -24,10 +21,7 @@
       "status": "automatic_parser_plus_reviewed_seed",
       "method_classes": ["dual_frame_cati", "telephone_cati"],
       "model_uncertainty": "generic_non_tvbs",
-      "discovery": {
-        "mode": "managed_by_update_polls",
-        "index_url": "https://www.my-formosa.com.tw/Topical/formosapollster"
-      }
+      "discovery": {"mode": "managed_by_update_polls", "index_url": "https://www.my-formosa.com.tw/Topical/formosapollster"}
     },
     {
       "pollster_id": "ettoday",
@@ -37,10 +31,7 @@
       "status": "automatic_discovery_plus_reviewed_seed",
       "method_classes": ["closed_online_panel"],
       "model_uncertainty": "generic_non_tvbs",
-      "discovery": {
-        "mode": "managed_by_update_polls",
-        "index_url": "https://feeds.feedburner.com/ettoday/newslist"
-      }
+      "discovery": {"mode": "managed_by_update_polls", "index_url": "https://feeds.feedburner.com/ettoday/newslist"}
     },
     {
       "pollster_id": "trend-survey",
@@ -50,10 +41,7 @@
       "status": "reviewed_seed_only",
       "method_classes": ["telephone_cati"],
       "model_uncertainty": "generic_non_tvbs",
-      "discovery": {
-        "mode": "not_automated",
-        "index_url": "https://braintrust.tw/"
-      }
+      "discovery": {"mode": "not_automated", "index_url": "https://braintrust.tw/"}
     },
     {
       "pollster_id": "shanshui",
@@ -65,13 +53,11 @@
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "html_index_queue",
-        "index_urls": [
-          "https://www.zmedia.com.tw/Document/Pool",
-          "https://www.zmedia.com.tw/Document/Pool?page=2"
-        ],
-        "article_path_pattern": "^/Document/PoolDetail/[0-9]+$",
+        "index_urls": ["https://www.zmedia.com.tw/Document/Pool", "https://www.zmedia.com.tw/Document/Pool?page=2"],
+        "article_path_pattern": "^/Document/(?:Pool)?Detail/[0-9]+$",
         "markers": ["震傳媒民調"],
-        "queue_only": true
+        "queue_only": true,
+        "url_note": "Index links use /Document/Detail/<id> and redirect to /Document/PoolDetail/<id>; reviewed records preserve the final URL and list the index alias for de-duplication."
       }
     },
     {
@@ -84,9 +70,7 @@
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "html_index_queue",
-        "index_urls": [
-          "https://www.bigmedia.com.tw/category/%E9%89%85%E8%81%9E%E6%B0%91%E8%AA%BF"
-        ],
+        "index_urls": ["https://www.bigmedia.com.tw/category/%E9%89%85%E8%81%9E%E6%B0%91%E8%AA%BF"],
         "article_path_pattern": "^/article/[0-9]+$",
         "markers": ["鉅聞民調"],
         "queue_only": true
@@ -100,10 +84,7 @@
       "status": "fail_closed_incomplete_response_mass",
       "method_classes": ["telephone_cati"],
       "model_uncertainty": "not_admitted",
-      "discovery": {
-        "mode": "not_automated",
-        "index_url": null
-      }
+      "discovery": {"mode": "not_automated", "index_url": null}
     }
   ]
 }
