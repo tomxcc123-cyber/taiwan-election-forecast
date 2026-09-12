@@ -184,9 +184,10 @@ def merge_discovery(feed: dict, registry: dict, config: dict, pages: dict[str, b
     managed = {p["pollster_id"] for p in discovery_pollsters(registry)}
     preserved = [q for q in out.get("discovery_queue", []) if q.get("pollster_id") not in managed]
     known = known_urls(out)
-    previous_urls = {q.get("url") for q in out.get("discovery_queue", []) if q.get("url")}
+    previous_by_url = {q.get("url"): q for q in out.get("discovery_queue", []) if q.get("url")}
     new_queue = []
     failures = list(out.get("failures", []))
+    all_source_failures = []
     source_by_name = {s.get("name"): s for s in out.get("sources", [])}
     history = list(out.get("history", []))
 
@@ -206,18 +207,21 @@ def merge_discovery(feed: dict, registry: dict, config: dict, pages: dict[str, b
                     "message": str(exc)[:180],
                 })
         failures.extend(source_failures)
+        all_source_failures.extend(source_failures)
         pending = []
         for entry in entries.values():
             if entry["url"] in known:
                 continue
+            prior = previous_by_url.get(entry["url"], {})
             queued = {
                 **entry,
                 "status": "discovered_unverified",
                 "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-                "discovered_at": checked,
+                "discovered_at": prior.get("discovered_at", checked),
+                "last_seen_at": checked,
             }
             pending.append(queued)
-            if entry["url"] not in previous_urls:
+            if entry["url"] not in previous_by_url:
                 history.insert(0, {
                     "date": checked,
                     "county": entry["county"],
@@ -263,27 +267,13 @@ def merge_discovery(feed: dict, registry: dict, config: dict, pages: dict[str, b
         "registered_pollsters": len(registry.get("pollsters", [])),
     }
     out["history"] = history[:100]
-    if any(f.get("source", "").endswith(" discovery") for f in source_failures if isinstance(f, dict)):
+    if all_source_failures:
         out["status"] = "degraded" if out.get("records") else "unavailable"
     addition = "山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。"
     coverage = out.get("coverage_note", "").rstrip()
     if addition not in coverage:
         out["coverage_note"] = (coverage + (" " if coverage else "") + addition).strip()
     return out
-
-
-def discover_live(feed: dict, registry: dict, config: dict, checked: str | None = None) -> dict:
-    checked = checked or stamp()
-    pages = {}
-    for pollster in discovery_pollsters(registry):
-        hosts = allowed_hosts(pollster)
-        for index_url in pollster["discovery"].get("index_urls", []):
-            try:
-                pages[index_url] = fetch(index_url, hosts)
-            except Exception as exc:
-                pages[index_url] = b""
-                # merge_discovery will convert this into a source-specific failure.
-    return merge_discovery(feed, registry, config, pages, checked)
 
 
 def main() -> None:
@@ -304,17 +294,9 @@ def main() -> None:
                 pages[index_url] = b""
     result = merge_discovery(feed, registry, config, pages, checked)
     if fetch_errors:
-        failures = list(result.get("failures", []))
-        known_failure_urls = {f.get("url") for f in failures}
-        for pollster in discovery_pollsters(registry):
-            for index_url in pollster["discovery"].get("index_urls", []):
-                if index_url in fetch_errors and index_url not in known_failure_urls:
-                    failures.append({
-                        "source": f"{pollster['source_label']} discovery",
-                        "url": index_url,
-                        "message": fetch_errors[index_url],
-                    })
-        result["failures"] = failures
+        for failure in result.get("failures", []):
+            if failure.get("url") in fetch_errors and str(failure.get("source", "")).endswith(" discovery"):
+                failure["message"] = fetch_errors[failure["url"]]
         result["status"] = "degraded" if result.get("records") else "unavailable"
     atomic_json(FEED_PATH, result)
     print(json.dumps({
