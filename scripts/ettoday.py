@@ -86,9 +86,12 @@ def discover(raw: bytes):
 
 def article_text(raw: bytes) -> str:
     try:
-        doc = html.fromstring(raw)
-    except Exception as exc:
-        raise InvalidETtodayReport("ETtoday article is not parseable HTML") from exc
+        # ETtoday pages are UTF-8. Decode explicitly instead of relying on libxml's
+        # fallback byte-encoding guess when a cached/synthetic page lacks meta charset.
+        decoded = raw.decode("utf-8", errors="strict")
+        doc = html.fromstring(decoded)
+    except (UnicodeDecodeError, ValueError, etree.ParserError) as exc:
+        raise InvalidETtodayReport("ETtoday article is not valid UTF-8 HTML") from exc
     text = unicodedata.normalize("NFKC", doc.text_content())
     text = re.sub(r"[ \t\r\f\v]+", " ", text)
     text = re.sub(r"\n+", "\n", text)
