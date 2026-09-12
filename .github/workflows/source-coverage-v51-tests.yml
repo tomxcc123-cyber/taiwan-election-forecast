@@ -1,4 +1,4 @@
-name: Poll Ingestion 2.0 v5.3 tests
+name: Poll Ingestion 2.0 v5.4 tests
 
 on:
   pull_request:
@@ -8,6 +8,7 @@ on:
       - 'scripts/enrich_reviewed_polls.py'
       - 'scripts/discover_poll_sources.py'
       - 'scripts/validate_source_coverage_v52b_impact.py'
+      - 'scripts/validate_source_coverage_v54_taipei_impact.py'
       - 'site/poll-source-v52.mjs'
       - 'site/source-v52.css'
       - 'tests/source-v52-ui.mjs'
@@ -38,10 +39,14 @@ jobs:
         run: python -m unittest discover -s tests -v
       - name: Validate registry and queue-only discovery fixtures
         run: python -m unittest discover -s tests -p 'test_pollster_registry_discovery.py' -v
-      - name: Validate reviewed pollster impact on v5
+      - name: Validate cumulative reviewed pollster impact on v5
         env:
           PYTHONPATH: .
         run: python scripts/validate_source_coverage_v52b_impact.py
+      - name: Validate incremental Taipei Shanshui impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_source_coverage_v54_taipei_impact.py
       - name: Enrich current feed with reviewed sources
         run: python scripts/enrich_reviewed_polls.py
       - name: Assert source governance
@@ -53,18 +58,18 @@ jobs:
           ids={p['pollster_id'] for p in registry['pollsters']}
           assert len(ids)==len(registry['pollsters'])==7
           assert {'tvbs','formosa-bic','ettoday','trend-survey','shanshui','pearson-data','apollo'}==ids
-          formosa=next(p for p in registry['pollsters'] if p['pollster_id']=='formosa-bic')
-          assert formosa['discovery']['index_url']=='https://www.my-formosa.com.tw/Topical/formosapollster'
-          for pid in ('shanshui','pearson-data'):
-            p=next(x for x in registry['pollsters'] if x['pollster_id']==pid)
-            assert p['discovery']['mode']=='html_index_queue'
-            assert p['discovery']['queue_only'] is True
           trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
           shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui']
           pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data']
           assert len(trend)==1, trend
-          assert len(shanshui)==2, shanshui
+          assert len(shanshui)==3, shanshui
           assert len(pearson)==2, pearson
+          taipei=next(r for r in shanshui if r['county']=='台北市')
+          assert taipei['date']=='2026-06-22'
+          assert taipei['sample_n']==1074
+          assert taipei['model_eligible'] is False
+          assert [c['name'] for c in taipei['candidates']]==['蔣萬安','沈伯洋']
+          assert abs(sum(c['support'] for c in taipei['candidates'])+taipei['undecided']+taipei.get('nonvote',0)-100)<=1
           r=trend[0]
           assert r['model_eligible'] is True, r.get('exclusion_reason')
           assert [c['name'] for c in r['candidates']]==['江啟臣','何欣純']
@@ -72,17 +77,21 @@ jobs:
           assert all(abs(sum(c['support'] for c in x['candidates'])+x['undecided']+x.get('nonvote',0)-100)<=1 for x in shanshui+pearson)
           assert all(x.get('nonvote',0)>0 for x in pearson)
           assert all(x['model_eligible'] is False for x in pearson)
+          nt_pearson=[x for x in pearson if x['county']=='新北市']
+          assert len(nt_pearson)==1
+          assert 'https://www.bigmedia.com.tw/article/1784791841053' in nt_pearson[0]['verification_urls']
           assert any(p.get('pollster_id')=='trend-survey' and p.get('county')=='台中市' for p in d['polls'])
           assert any(p.get('pollster_id')=='shanshui' and p.get('county')=='高雄市' for p in d['polls'])
+          assert not any(p.get('pollster_id')=='shanshui' and p.get('county')=='台北市' for p in d['polls'])
           assert not any(p.get('pollster_id')=='pearson-data' for p in d['polls'])
           sources={s['name']:s for s in d['sources']}
-          assert sources['震傳媒／山水民調']['reviewed_reports']==2
+          assert sources['震傳媒／山水民調']['reviewed_reports']==3
           assert sources['鉅聞天下／皮爾森數據']['reviewed_reports']==2
           assert sources['鉅聞天下／皮爾森數據']['method_class']=='online_dmp_panel'
           apollo=next(s for s in d['source_review'] if s['name']=='艾普羅行銷市場研究')
           assert apollo['status']=='reviewed_methodology_incomplete_response_mass'
           assert not any(x.get('pollster_id')=='apollo' for x in d['records'])
-          print('PASS ingestion governance:',len(d['records']),len(d['polls']),len(ids))
+          print('PASS source governance:',len(d['records']),len(d['polls']),len(ids))
           PY
       - name: Build exact public product with enriched feed
         env:
@@ -104,8 +113,11 @@ jobs:
           assert data['model_id']=='HB-TLEF-v5.0-public-beta.1'
           assert data['feed_checked_at']==feed['checked_at']
           trend=next(r for r in feed['records'] if r.get('pollster_id')=='trend-survey' and r['county']=='台中市')
+          taipei_poll=next(r for r in feed['records'] if r.get('pollster_id')=='shanshui' and r['county']=='台北市')
           taichung=next(r for r in data['counties'] if r['name']=='台中市')
+          taipei=next(r for r in data['counties'] if r['name']=='台北市')
           assert trend['id'] in taichung['poll_ids'], (trend['id'],taichung['poll_ids'])
+          assert taipei_poll['id'] in taipei['poll_ids'], (taipei_poll['id'],taipei['poll_ids'])
           new_taipei=next(r for r in data['counties'] if r['name']=='新北市')
           kaohsiung=next(r for r in data['counties'] if r['name']=='高雄市')
           nt_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='新北市'}
@@ -113,17 +125,19 @@ jobs:
           assert len(nt_ids)==2 and nt_ids.issubset(set(new_taipei['poll_ids'])), (nt_ids,new_taipei['poll_ids'])
           assert len(kh_ids)==2 and kh_ids.issubset(set(kaohsiung['poll_ids'])), (kh_ids,kaohsiung['poll_ids'])
           assert data['release']['stable'] is False
-          print('PASS public product:',sorted(nt_ids),sorted(kh_ids))
+          print('PASS public product:',taipei_poll['id'],sorted(nt_ids),sorted(kh_ids))
           PY
       - name: Upload ingestion preview
         uses: actions/upload-artifact@v4
         with:
-          name: poll-ingestion-v53-preview
+          name: poll-ingestion-v54-preview
           path: dist
           if-no-files-found: error
       - name: Upload source impact diagnostics
         uses: actions/upload-artifact@v4
         with:
-          name: source-coverage-v52b-impact
-          path: .cache/candidate-effect-v3/source-coverage-v52b-impact.json
+          name: source-coverage-v54-impact
+          path: |
+            .cache/candidate-effect-v3/source-coverage-v52b-impact.json
+            .cache/candidate-effect-v3/source-coverage-v54-taipei-impact.json
           if-no-files-found: error
