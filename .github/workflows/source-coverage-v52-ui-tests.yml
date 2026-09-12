@@ -6,6 +6,7 @@ on:
       - 'site/poll-source-v52.mjs'
       - 'site/source-v52.css'
       - 'site/index.html'
+      - 'scripts/build.py'
       - 'tests/source-v52-ui.mjs'
       - '.github/workflows/source-coverage-v52-ui-tests.yml'
   workflow_dispatch:
@@ -46,3 +47,4 @@ jobs:
           grep -q 'poll-source-v52.mjs' dist/index.html
           grep -q 'source-v52.css' dist/index.html
           grep -q '民調來源觀測站' dist/poll-source-v52.mjs
+          grep -q '人工核驗後收錄' dist/poll-source-v52.mjs
