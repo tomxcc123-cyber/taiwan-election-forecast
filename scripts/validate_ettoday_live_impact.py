@@ -1,8 +1,13 @@
-"""Validate that the reviewed ETtoday Kaohsiung wave is admitted and moves HB-TLEF v5.
+"""Validate that reviewed ETtoday Kaohsiung waves are admitted and move HB-TLEF v5.
 
-This is an ingestion regression, not parameter tuning.  Both forecasts are run at
+This is an ingestion regression, not parameter tuning. Both forecasts are run at
 one fixed timestamp; the only intended input difference is the reviewed ETtoday
 records layered on top of the committed poll archive.
+
+`model_eligible` in data/polls.json is the inherited legacy three-bloc cutoff.
+The v5 candidate likelihood independently admits roster-matched, non-overlapping
+current-cycle observations, so both June and August ETtoday waves are expected in
+the v5 poll audit while only the August wave passes the legacy 2026-06-27 cutoff.
 """
 from __future__ import annotations
 
@@ -64,18 +69,30 @@ def main():
         a for a in after["poll_audit"]
         if a.get("source") == "ETtoday 民調雲" and a.get("included")
     ]
-    et_records = [r for r in augmented["records"] if r.get("pollster_id") == "ettoday"]
-    latest = max(et_records, key=lambda r: r["date"])
+    et_records = sorted(
+        [r for r in augmented["records"] if r.get("pollster_id") == "ettoday"],
+        key=lambda r: r["date"],
+    )
+    latest = et_records[-1]
     result = {
         "schema_version": 1,
         "as_of": AS_OF,
         "model_version": after["model_version"],
         "latest_fieldwork_date": augmented["latest_fieldwork_date"],
         "ettoday_records": len(et_records),
+        "ettoday_record_status": [
+            {
+                "date": r["date"],
+                "legacy_model_eligible": r["model_eligible"],
+                "exclusion_reason": r.get("exclusion_reason"),
+                "sample_n": r["sample_n"],
+            }
+            for r in et_records
+        ],
         "latest_ettoday": {
             "date": latest["date"],
             "sample_n": latest["sample_n"],
-            "model_eligible": latest["model_eligible"],
+            "legacy_model_eligible": latest["model_eligible"],
             "supports": {c["name"]: c["support"] for c in latest["candidates"]},
             "undecided": latest["undecided"],
             "method_class": latest.get("method_class"),
@@ -87,10 +104,10 @@ def main():
 
     if latest["date"] != "2026-08-30" or latest["sample_n"] != 1283 or not latest["model_eligible"]:
         raise SystemExit("Latest reviewed ETtoday wave was not classified as expected")
-    if len(accepted) != 1:
-        raise SystemExit(f"Expected exactly one accepted ETtoday live wave, got {len(accepted)}")
+    if len(accepted) != 2:
+        raise SystemExit(f"Expected two non-overlapping ETtoday v5 observations, got {len(accepted)}")
     if not any(abs(r["mean_delta_pp"]) > 1e-6 for r in rows):
-        raise SystemExit("ETtoday wave entered the audit but did not move the v5 posterior")
+        raise SystemExit("ETtoday observations entered the audit but did not move the v5 posterior")
 
 
 if __name__ == "__main__":
