@@ -6,25 +6,27 @@
   <meta name="description" content="2026 台灣縣市長選舉觀測：互動地圖、原始民調、情境推估與可重現的模型驗證。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <meta name="ui-build" content="2026-09-12-source-v5.2">
+  <meta name="ui-build" content="2026-09-12-governance-v5.6">
   <title>台灣選舉觀測 | 2026 縣市長選舉</title>
-  <link rel="stylesheet" href="styles.css?v=20260912-52">
-  <link rel="stylesheet" href="motion.css?v=20260912-52">
-  <link rel="stylesheet" href="motion-v2.css?v=20260912-52">
-  <link rel="stylesheet" href="motion-v3.css?v=20260912-52">
-  <link rel="stylesheet" href="motion-v4.css?v=20260912-52">
-  <link rel="stylesheet" href="source-v52.css?v=20260912-52">
+  <link rel="stylesheet" href="styles.css?v=20260912-56">
+  <link rel="stylesheet" href="motion.css?v=20260912-56">
+  <link rel="stylesheet" href="motion-v2.css?v=20260912-56">
+  <link rel="stylesheet" href="motion-v3.css?v=20260912-56">
+  <link rel="stylesheet" href="motion-v4.css?v=20260912-56">
+  <link rel="stylesheet" href="source-v52.css?v=20260912-56">
+  <link rel="stylesheet" href="governance-v56.css?v=20260912-56">
   <style>
-    .release-strip{margin:0;padding:12px 24px;background:#eef5ff;border-bottom:1px solid #c9daf4;color:#17365d;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}.release-strip .release-note{margin-left:.55rem;color:#52657d}@media(max-width:720px){.release-strip{padding:11px 16px}.release-strip .release-note{display:block;margin:.25rem 0 0}}
+    .release-strip{margin:0;border-bottom:1px solid #dfe4eb;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}@media(max-width:720px){.release-strip{padding:9px 16px!important}}
   </style>
   <script defer src="vendor/d3.min.js"></script>
   <script defer src="vendor/topojson.min.js"></script>
-  <script type="module" src="candidate-app.mjs?v=20260912-52"></script>
-  <script type="module" src="poll-source-v52.mjs?v=20260912-52"></script>
-  <script type="module" src="motion.mjs?v=20260912-52"></script>
-  <script type="module" src="motion-v2.mjs?v=20260912-52"></script>
-  <script type="module" src="motion-v3.mjs?v=20260912-52"></script>
-  <script type="module" src="motion-v4.mjs?v=20260912-52"></script>
+  <script type="module" src="candidate-app.mjs?v=20260912-56"></script>
+  <script type="module" src="poll-source-v52.mjs?v=20260912-56"></script>
+  <script type="module" src="governance-v56.mjs?v=20260912-56"></script>
+  <script type="module" src="motion.mjs?v=20260912-56"></script>
+  <script type="module" src="motion-v2.mjs?v=20260912-56"></script>
+  <script type="module" src="motion-v3.mjs?v=20260912-56"></script>
+  <script type="module" src="motion-v4.mjs?v=20260912-56"></script>
 </head>
 <body>
   <a class="skip" href="#main">跳至主要內容</a>
@@ -43,10 +45,11 @@
     <button id="share">分享情境</button>
   </header>
   <div class="release-strip" role="note">
-    <strong>HB-TLEF v5.0 Public Beta 1 已正式接管 2026 線上預測。</strong>
+    <strong>HB-TLEF v5.0 Public Beta 1</strong>
+    <span class="gov-chip">現行模型</span>
+    <span class="gov-chip warn">勝率未跨屆校準</span>
+    <span class="gov-chip neutral">TVBS 40% hard gate：shadow only</span>
     <a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">模型卡</a>
-    · <a href="v5.0-public-beta.1.json" target="_blank" rel="noopener">Release manifest</a>
-    <span class="release-note">Source Coverage v5.2 新增民調來源觀測站：區分 pollster、刊載媒體、調查方法、核驗層級與入模狀態；資料不完整時維持 fail-closed。本次只更新資料透明度介面，不調整 v5 核心參數。2022 完整候選人層的 4.597pp／17-22 仍為開發診斷；版本維持 Public Beta，非 Stable。</span>
   </div>
   <main id="main" tabindex="-1">
     <div id="loading" role="status">正在讀取 HB-TLEF v5.0 模型與民調資料…</div>

@@ -62,6 +62,7 @@ def build(now=None):
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
     for name in (
         'index.html', 'styles.css', 'source-v52.css', 'poll-source-v52.mjs',
+        'governance-v56.css', 'governance-v56.mjs',
         'forecast.mjs', 'charts.mjs', 'app.mjs',
         'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs',
         'historical-polls-ui.mjs', 'evidence-ui.mjs', 'scenario-rules.mjs',

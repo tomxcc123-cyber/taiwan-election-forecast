@@ -1,8 +1,10 @@
+import copy
 import unittest
 
 import numpy as np
 
 from model.fragmentation_live import (
+    MAX_TRIGGER_AGE_DAYS,
     STRONG_NONMAJOR_THRESHOLD,
     apply_live_fragmentation_gate,
     find_triggers,
@@ -13,6 +15,7 @@ class FragmentationLiveTests(unittest.TestCase):
     def product(self):
         draws = [[500000, 350000, 150000] for _ in range(200)]
         return {
+            "generated_at": "2026-11-20T12:00:00+00:00",
             "counties": [{
                 "name": "新竹市",
                 "candidates": [
@@ -25,14 +28,15 @@ class FragmentationLiveTests(unittest.TestCase):
             }],
             "poll_audit": [{"id": "p1", "included": True}],
             "diagnostics": {},
+            "release": {},
         }
 
-    def feed(self, supports=(25, 32, 43), source="TVBS 民意調查中心"):
+    def feed(self, supports=(25, 32, 43), source="TVBS 民意調查中心", date="2026-10-30"):
         return {"records": [{
             "id": "p1",
             "county": "新竹市",
             "source": source,
-            "date": "2026-10-30",
+            "date": date,
             "sample_n": 1000,
             "candidates": [
                 {"name": "林耕仁", "support": supports[0]},
@@ -41,7 +45,7 @@ class FragmentationLiveTests(unittest.TestCase):
             ],
         }]}
 
-    def test_strong_full_field_tvbs_triggers(self):
+    def test_strong_full_field_tvbs_is_detected_for_shadow(self):
         triggers = find_triggers(self.product(), self.feed())
         self.assertEqual(len(triggers), 1)
         self.assertGreaterEqual(triggers[0]["nonmajor_decided_share"], STRONG_NONMAJOR_THRESHOLD)
@@ -57,17 +61,25 @@ class FragmentationLiveTests(unittest.TestCase):
     def test_weak_fragmentation_does_not_trigger(self):
         self.assertEqual(find_triggers(self.product(), self.feed((45, 40, 15))), [])
 
-    def test_gate_recenters_full_vector_and_preserves_valid_draws(self):
+    def test_stale_fragmentation_poll_does_not_enter_shadow_gate(self):
+        self.assertEqual(MAX_TRIGGER_AGE_DAYS, 60)
+        self.assertEqual(find_triggers(self.product(), self.feed(date="2026-08-01")), [])
+
+    def test_shadow_gate_never_mutates_public_forecast(self):
         product = self.product()
+        before = copy.deepcopy(product["counties"])
         result = apply_live_fragmentation_gate(product, self.feed())
-        county = result["counties"][0]
-        draws = np.asarray(county["draws"], dtype=int)
-        self.assertTrue(np.all(draws.sum(axis=1) == 1_000_000))
-        means = np.asarray([c["mean"] for c in county["candidates"]]) / 100
-        np.testing.assert_allclose(means, np.asarray([.25, .32, .43]), atol=2e-3)
-        self.assertEqual(county["candidates"][2]["probability"], 1.0)
-        self.assertEqual(result["fragmentation_gate"]["triggered_count"], 1)
-        self.assertEqual(result["diagnostics"]["strong_fragmentation_gate_count"], 1)
+        self.assertEqual(result["counties"], before)
+        self.assertEqual(result["fragmentation_gate"]["status"], "shadow_only")
+        self.assertEqual(result["fragmentation_gate"]["triggered_count"], 0)
+        self.assertEqual(result["fragmentation_gate"]["shadow_trigger_count"], 1)
+        shadow = result["fragmentation_gate"]["shadow_triggers"][0]
+        self.assertFalse(shadow["public_forecast_mutated"])
+        self.assertGreater(shadow["counterfactual_center_total_variation"], 0)
+        self.assertEqual(result["diagnostics"]["strong_fragmentation_gate_count"], 0)
+        self.assertEqual(result["diagnostics"]["strong_fragmentation_shadow_count"], 1)
+        self.assertFalse(result["release"]["fragmentation_gate_live"])
+        self.assertTrue(result["release"]["fragmentation_gate_shadow_only"])
 
 
 if __name__ == "__main__":

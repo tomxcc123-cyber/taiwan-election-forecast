@@ -9,10 +9,12 @@ on:
       - 'model/releases/v5.0-public-beta.1.json'
       - 'tests/test_integrated_prior.py'
       - 'tests/test_v5_product.py'
+      - 'tests/test_fragmentation_live.py'
       - 'tests/test_ettoday.py'
       - 'tests/test_reviewed_source_enrichment.py'
       - 'tests/test_pollster_registry_discovery.py'
       - 'tests/source-v52-ui.mjs'
+      - 'tests/governance-v56-ui.mjs'
       - 'scripts/ettoday.py'
       - 'scripts/update_polls.py'
       - 'scripts/enrich_reviewed_polls.py'
@@ -35,6 +37,8 @@ on:
       - 'site/evidence-ui.mjs'
       - 'site/poll-source-v52.mjs'
       - 'site/source-v52.css'
+      - 'site/governance-v56.mjs'
+      - 'site/governance-v56.css'
       - 'docs/MODEL_CARD_V5_PUBLIC_BETA.md'
       - '.github/workflows/publish.yml'
       - '.github/workflows/v5-release-tests.yml'
@@ -114,27 +118,40 @@ jobs:
           node tests/evidence-ui.mjs
           node tests/scenario-studio.mjs
           node tests/source-v52-ui.mjs
+          node tests/governance-v56-ui.mjs
       - name: Assert v5 release files and public product
         run: |
           test -f dist/v5.0-public-beta.1.json
           test -f dist/MODEL_CARD_V5_PUBLIC_BETA.md
+          test -f dist/governance-v56.mjs
+          test -f dist/governance-v56.css
           grep -q 'HB-TLEF v5.0 Public Beta 1' dist/index.html
+          grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
+          grep -q '確認性參考' dist/governance-v56.mjs
           python - <<'PY'
           import json
           data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
           feed=json.load(open('dist/polls.json',encoding='utf-8'))
           registry=json.load(open('data/pollster-registry.json',encoding='utf-8'))
+          manifest=json.load(open('dist/v5.0-public-beta.1.json',encoding='utf-8'))
           assert data['model_id']=='HB-TLEF-v5.0-public-beta.1'
           assert data['release']['public_beta'] is True
           assert data['release']['stable'] is False
           assert data['release']['integrated_prior'] is True
           assert data['release']['turnout_vote_share_center'] is False
+          assert data['release']['fragmentation_gate_live'] is False
+          assert data['release']['fragmentation_gate_shadow_only'] is True
+          assert data['fragmentation_gate']['status']=='shadow_only'
+          assert data['fragmentation_gate']['triggered_count']==0
+          assert data['fragmentation_gate']['max_age_days']==60
           assert data['structural_model']['turnout_vote_share_center'] is False
+          assert data['structural_model']['current_features']['organization_bridge']['organization_feature_vintage']==2018
+          assert manifest['data_policy']['organization_feature_vintage_2026']==2018
+          assert manifest['architecture']['winner_probability']['parameter_uncertainty_fully_propagated'] is False
           assert 'candidate_residual_offset' in data['structural_model']
           assert data['structural_model']['mode_counts'].get('integrated_r4_candidate_t3',0) > 0
           assert len(data['counties']) == 22
-          assert 'fragmentation_gate' in data
           assert 'v5_validation' in data
           ids={r.get('pollster_id') for r in feed['records']}
           assert {'ettoday','trend-survey','shanshui','pearson-data'}.issubset(ids), ids
@@ -148,7 +165,7 @@ jobs:
           assert 'https://www.bigmedia.com.tw/article/1784791841053' in pearson_nt[0].get('verification_urls',[])
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='shanshui')['discovery']['queue_only'] is True
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='pearson-data')['discovery']['queue_only'] is True
-          print(data['model_id'], taipei_poll['id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['triggered_count'], sorted(x for x in ids if x))
+          print(data['model_id'], taipei_poll['id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['status'], sorted(x for x in ids if x))
           PY
       - name: Upload v5 release diagnostics
         uses: actions/upload-artifact@v4
