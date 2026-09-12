@@ -19,6 +19,7 @@ on:
       - 'scripts/validate_integrated_prior_v5.py'
       - 'scripts/validate_integrated_prior_v5_1.py'
       - 'scripts/validate_integrated_offset_v5_2.py'
+      - 'scripts/validate_integrated_end_to_end_v5_3.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
@@ -104,6 +105,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_integrated_offset_v5_2.py
+      - name: Validate end-to-end integrated prior v5.3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_end_to_end_v5_3.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .
