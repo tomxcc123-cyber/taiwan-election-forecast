@@ -4459,6 +4459,643 @@
           ]
         }
       ]
+    },
+    {
+      "generated_at": "2026-09-12T04:37:35.068030+00:00",
+      "fingerprint": "fe4a4b91d0374590d53604b5c96582c7eddebe7bb0bd9f143b699fab7002cfeb",
+      "model_version": "2026.09-HB-TLEF-v4.1-public-beta.2",
+      "inputs": {
+        "feed_hash": "c6851db4ebbbade31b1d81b0a244b88869dcc05c2c316788785e58dda7381b21",
+        "candidate_set_version": "e8a709c8f820c6c2ebf4aeafc20184ccf4f197b72dd7545b3ad680e9bb5dce66",
+        "training_data_hash": "80f0a76b750bbddc80b4785b64d305e18bb1825f277e656dcdf67514b27ce127",
+        "historical_poll_hash": "5f6347d13d2fff7ce7c596502e85e1f38814084ef26c2cdd57f97fdabd68ce4e",
+        "context_hash": "b09f2f9166e39dd137b045e623cdf01abe274dd4cdb35926ed994305d606d325"
+      },
+      "poll_ids": [
+        "2c8255525396cf74d0e9de2e",
+        "46dbae3c5a8cd5db99ac48b0",
+        "a5b77b8599050b083e7ff592"
+      ],
+      "counties": [
+        {
+          "name": "台北市",
+          "race_id": "local-executive-2026-county-e35db3914937",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
+              "name": "郭璽",
+              "mean": 3.8060426581531708,
+              "probability": 0.0045
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
+              "name": "蔣萬安",
+              "mean": 55.39263129927365,
+              "probability": 0.8275
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
+              "name": "林志成",
+              "mean": 3.6879056304194338,
+              "probability": 0.005
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
+              "name": "沈伯洋",
+              "mean": 30.18759091314007,
+              "probability": 0.1565
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
+              "name": "蕭文乾",
+              "mean": 3.707589470317796,
+              "probability": 0.0025
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
+              "name": "唐新民",
+              "mean": 3.2182400286958694,
+              "probability": 0.004
+            }
+          ]
+        },
+        {
+          "name": "新北市",
+          "race_id": "local-executive-2026-county-a46602cecd9b",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
+              "name": "蘇巧慧",
+              "mean": 48.85636925893151,
+              "probability": 0.467
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
+              "name": "李四川",
+              "mean": 50.4241894135243,
+              "probability": 0.533
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
+              "name": "蘇輝湟",
+              "mean": 0.7194413275441931,
+              "probability": 0.0
+            }
+          ]
+        },
+        {
+          "name": "基隆市",
+          "race_id": "local-executive-2026-county-b1067dd41531",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
+              "name": "童子瑋",
+              "mean": 38.09766161906918,
+              "probability": 0.344
+            },
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
+              "name": "謝國樑",
+              "mean": 58.05983254384791,
+              "probability": 0.6545
+            },
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
+              "name": "魏造文",
+              "mean": 3.842505837082911,
+              "probability": 0.0015
+            }
+          ]
+        },
+        {
+          "name": "桃園市",
+          "race_id": "local-executive-2026-county-eed891611f5f",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
+              "name": "黃世杰",
+              "mean": 41.74755534999999,
+              "probability": 0.3705
+            },
+            {
+              "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
+              "name": "張善政",
+              "mean": 58.25244464999999,
+              "probability": 0.6295
+            }
+          ]
+        },
+        {
+          "name": "新竹縣",
+          "race_id": "local-executive-2026-county-3db00425a6dd",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
+              "name": "徐欣瑩",
+              "mean": 54.191626266581174,
+              "probability": 0.5915
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
+              "name": "鄭朝方",
+              "mean": 42.395313392392445,
+              "probability": 0.4055
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
+              "name": "朱定瑀",
+              "mean": 3.41306034102637,
+              "probability": 0.003
+            }
+          ]
+        },
+        {
+          "name": "新竹市",
+          "race_id": "local-executive-2026-county-3bbf653c4d64",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
+              "name": "高虹安",
+              "mean": 51.91921945718755,
+              "probability": 0.56
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
+              "name": "何志勇",
+              "mean": 4.569028282366247,
+              "probability": 0.005
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
+              "name": "莊競程",
+              "mean": 43.511752260446215,
+              "probability": 0.435
+            }
+          ]
+        },
+        {
+          "name": "宜蘭縣",
+          "race_id": "local-executive-2026-county-2f3ede12c290",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
+              "name": "林國漳",
+              "mean": 43.176279304347744,
+              "probability": 0.4705
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
+              "name": "陳宏毅",
+              "mean": 3.9970288959586786,
+              "probability": 0.0055
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
+              "name": "劉燦輝",
+              "mean": 4.274332584546511,
+              "probability": 0.006
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
+              "name": "吳宗憲",
+              "mean": 44.48707607367003,
+              "probability": 0.5155
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
+              "name": "楊鉯婷",
+              "mean": 4.065283141477027,
+              "probability": 0.0025
+            }
+          ]
+        },
+        {
+          "name": "苗栗縣",
+          "race_id": "local-executive-2026-county-cff72749bf92",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
+              "name": "陳品安",
+              "mean": 48.685557700000004,
+              "probability": 0.4855
+            },
+            {
+              "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
+              "name": "鍾東錦",
+              "mean": 51.314442299999996,
+              "probability": 0.5145
+            }
+          ]
+        },
+        {
+          "name": "台中市",
+          "race_id": "local-executive-2026-county-39a14e2e8228",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
+              "name": "何欣純",
+              "mean": 49.092520384212506,
+              "probability": 0.495
+            },
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
+              "name": "江啟臣",
+              "mean": 49.83617330251809,
+              "probability": 0.505
+            },
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
+              "name": "洪麗華",
+              "mean": 1.0713063132693967,
+              "probability": 0.0
+            }
+          ]
+        },
+        {
+          "name": "彰化縣",
+          "race_id": "local-executive-2026-county-1175fce2e312",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
+              "name": "邱建富",
+              "mean": 2.5830402614743497,
+              "probability": 0.001
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
+              "name": "陳素月",
+              "mean": 45.918140729444424,
+              "probability": 0.471
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
+              "name": "魏平政",
+              "mean": 48.9114656868137,
+              "probability": 0.526
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
+              "name": "陳重嘉",
+              "mean": 2.5873533222675316,
+              "probability": 0.002
+            }
+          ]
+        },
+        {
+          "name": "南投縣",
+          "race_id": "local-executive-2026-county-f86a4b628d2b",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
+              "name": "温世政",
+              "mean": 41.50734435,
+              "probability": 0.3775
+            },
+            {
+              "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
+              "name": "許淑華",
+              "mean": 58.49265564999999,
+              "probability": 0.6225
+            }
+          ]
+        },
+        {
+          "name": "雲林縣",
+          "race_id": "local-executive-2026-county-343b71f65d13",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
+              "name": "張嘉郡",
+              "mean": 41.90254811275943,
+              "probability": 0.424
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
+              "name": "林佳瑜",
+              "mean": 3.908585256372523,
+              "probability": 0.0055
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
+              "name": "吳炳輝",
+              "mean": 3.8950610405163575,
+              "probability": 0.0025
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
+              "name": "劉建國",
+              "mean": 50.2938055903517,
+              "probability": 0.568
+            }
+          ]
+        },
+        {
+          "name": "嘉義市",
+          "race_id": "local-executive-2026-county-c7cf2c480cf8",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
+              "name": "王義成",
+              "mean": 3.933213538765102,
+              "probability": 0.003
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
+              "name": "王美惠",
+              "mean": 41.62055913116372,
+              "probability": 0.454
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
+              "name": "黃宏成台灣阿成世界偉人財神總統",
+              "mean": 3.5680321963293578,
+              "probability": 0.0045
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
+              "name": "陳愷璜",
+              "mean": 4.041596453192222,
+              "probability": 0.007
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
+              "name": "張啓楷",
+              "mean": 46.8365986805496,
+              "probability": 0.5315
+            }
+          ]
+        },
+        {
+          "name": "嘉義縣",
+          "race_id": "local-executive-2026-county-364b2e14f33d",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
+              "name": "蔡易餘",
+              "mean": 52.587137549999994,
+              "probability": 0.537
+            },
+            {
+              "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
+              "name": "吳品叡",
+              "mean": 47.41286245,
+              "probability": 0.463
+            }
+          ]
+        },
+        {
+          "name": "台南市",
+          "race_id": "local-executive-2026-county-2555d8a05557",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
+              "name": "葉人文",
+              "mean": 4.408444399924245,
+              "probability": 0.007
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
+              "name": "謝龍介",
+              "mean": 37.082408360134934,
+              "probability": 0.2815
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
+              "name": "蕭燐洪",
+              "mean": 4.734982536851693,
+              "probability": 0.006
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
+              "name": "陳亭妃",
+              "mean": 53.77416470308912,
+              "probability": 0.7055
+            }
+          ]
+        },
+        {
+          "name": "高雄市",
+          "race_id": "local-executive-2026-county-800c9be4cf11",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
+              "name": "賴瑞隆",
+              "mean": 41.55484128392031,
+              "probability": 0.4395
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
+              "name": "張靜",
+              "mean": 3.5730514032860796,
+              "probability": 0.0035
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
+              "name": "洪方隆",
+              "mean": 3.8066936954945856,
+              "probability": 0.005
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
+              "name": "柯志恩",
+              "mean": 47.42686709296061,
+              "probability": 0.546
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
+              "name": "王肇民",
+              "mean": 3.6385465243384063,
+              "probability": 0.006
+            }
+          ]
+        },
+        {
+          "name": "屏東縣",
+          "race_id": "local-executive-2026-county-780b480cd047",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
+              "name": "周春米",
+              "mean": 51.5822809,
+              "probability": 0.528
+            },
+            {
+              "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
+              "name": "蘇清泉",
+              "mean": 48.4177191,
+              "probability": 0.472
+            }
+          ]
+        },
+        {
+          "name": "花蓮縣",
+          "race_id": "local-executive-2026-county-a0b9b4804c8c",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
+              "name": "游淑貞",
+              "mean": 75.69619146904662,
+              "probability": 0.9315
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
+              "name": "魏嘉賢",
+              "mean": 7.982219513245214,
+              "probability": 0.023
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
+              "name": "張峻",
+              "mean": 8.144123611551555,
+              "probability": 0.0235
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
+              "name": "羅佩秦",
+              "mean": 8.177465406156587,
+              "probability": 0.022
+            }
+          ]
+        },
+        {
+          "name": "台東縣",
+          "race_id": "local-executive-2026-county-2f29ef121b19",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
+              "name": "王志偉",
+              "mean": 2.448843498327227,
+              "probability": 0.001
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
+              "name": "李吳穎智",
+              "mean": 2.4430791832405396,
+              "probability": 0.0015
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
+              "name": "吳秀華",
+              "mean": 53.2255374815082,
+              "probability": 0.5815
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
+              "name": "陳瑩",
+              "mean": 41.882539836924046,
+              "probability": 0.416
+            }
+          ]
+        },
+        {
+          "name": "澎湖縣",
+          "race_id": "local-executive-2026-county-1fa460ca48ae",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
+              "name": "葉竹林",
+              "mean": 5.41006767064408,
+              "probability": 0.015
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
+              "name": "周倪安",
+              "mean": 4.403339662475727,
+              "probability": 0.007
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
+              "name": "許智富",
+              "mean": 4.166367222376119,
+              "probability": 0.006
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
+              "name": "陳振中",
+              "mean": 41.149317164641595,
+              "probability": 0.4795
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
+              "name": "陳盡川",
+              "mean": 4.239940107588117,
+              "probability": 0.006
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
+              "name": "吳淑瑾",
+              "mean": 40.63096817227437,
+              "probability": 0.4865
+            }
+          ]
+        },
+        {
+          "name": "金門縣",
+          "race_id": "local-executive-2026-county-70749066df2a",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
+              "name": "洪和成",
+              "mean": 6.370471455688355,
+              "probability": 0.0145
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
+              "name": "張火木",
+              "mean": 6.844624157198771,
+              "probability": 0.0225
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
+              "name": "梁文韜",
+              "mean": 6.462973716340981,
+              "probability": 0.017
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
+              "name": "陳玉珍",
+              "mean": 61.19044566116466,
+              "probability": 0.8905
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
+              "name": "黃世團",
+              "mean": 6.399876784721443,
+              "probability": 0.018
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
+              "name": "李文良",
+              "mean": 6.229025233359849,
+              "probability": 0.0195
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
+              "name": "張國威",
+              "mean": 6.502582991525936,
+              "probability": 0.018
+            }
+          ]
+        },
+        {
+          "name": "連江縣",
+          "race_id": "local-executive-2026-county-2a330ebd3aa7",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
+              "name": "曹爾元",
+              "mean": 8.275267849999999,
+              "probability": 0.012
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
+              "name": "王忠銘",
+              "mean": 91.72473215,
+              "probability": 0.988
+            }
+          ]
+        }
+      ]
     }
   ]
 }
