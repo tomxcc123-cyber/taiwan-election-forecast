@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-12T05:25:32+00:00",
+  "checked_at": "2026-09-12T06:14:52+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-12T05:25:32+00:00",
-  "updated_at": "2026-09-08T14:14:53+00:00",
-  "latest_fieldwork_date": "2026-05-26",
+  "index_checked_at": "2026-09-12T06:14:52+00:00",
+  "updated_at": "2026-09-12T06:14:52+00:00",
+  "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
   "sources": [
@@ -23,6 +23,17 @@
       "index_ok": false,
       "status": "unavailable",
       "note": "本輪自動擷取通過數不含先前核對的存檔；失敗保留最後有效資料。"
+    },
+    {
+      "name": "ETtoday 民調雲",
+      "url": "https://feeds.feedburner.com/ettoday/newslist",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 2,
+      "index_ok": true,
+      "status": "checked",
+      "method_class": "closed_online_panel",
+      "note": "封閉式會員網路問卷另保留method_class；目前使用通用非TVBS民調不確定性，尚未宣稱已估計ETtoday house effect。"
     }
   ],
   "source_review": [
@@ -40,12 +51,113 @@
     },
     {
       "name": "ETtoday",
-      "status": "pending_original_verification",
-      "note": "找到選情調查转载線索，尚未核對完整原始問卷與樣本口徑，未自動接入。",
+      "status": "integrated_with_reviewed_seed_and_live_discovery",
+      "note": "已接入ETtoday民調雲封閉式會員網路調查。原文可自動解析時優先使用；來源暫時不可用時保留已核對波次，未通過解析的新文章列入待核驗佇列。",
       "url": "https://www.ettoday.net/"
     }
   ],
+  "discovery_queue": [],
   "records": [
+    {
+      "id": "fb01d4dfead1ac092347695d",
+      "county": "高雄市",
+      "source": "ETtoday 民調雲",
+      "pollster_id": "ettoday",
+      "publisher": "ETtoday 新聞雲",
+      "source_url": "https://news.tvbs.com.tw/politics/4020643",
+      "original_publisher_url": "https://www.ettoday.net/",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4020643",
+        "https://udn.com/vote2026/story/124652/9748998"
+      ],
+      "report_title": "ETtoday民調雲：2026高雄市長選舉支持度（8月波次）",
+      "field_start": "2026-08-22",
+      "date": "2026-08-30",
+      "published_at": "2026-09-11",
+      "sample_n": 1283,
+      "population": "設籍高雄市38個行政區且年滿20歲以上民眾",
+      "population_size": 406434,
+      "method": "EDM及手機簡訊通知；封閉式網路問卷；自建會員資料庫分層比例抽樣；比例估計法（raking ratio estimation）加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "ETtoday民調雲自建會員資料庫",
+      "weighting": "raking_ratio_estimation",
+      "margin_of_error": 2.74,
+      "confidence_level": 95,
+      "funding": "東森民調雲股份有限公司",
+      "supervisor": "謝惠玲",
+      "sample_note": "公布之加權全體有效樣本；封閉式會員網路樣本",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 43.8,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 43.5,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 12.5,
+      "nonvote": 0.0,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_pollster_facts",
+      "retrieved_at": "2026-09-12T05:40:00+00:00",
+      "model_eligible": true,
+      "exclusion_reason": null
+    },
+    {
+      "id": "fb5afa8077f274de0e8079cf",
+      "county": "高雄市",
+      "source": "ETtoday 民調雲",
+      "pollster_id": "ettoday",
+      "publisher": "ETtoday 新聞雲",
+      "source_url": "https://news.tvbs.com.tw/politics/3238125",
+      "original_publisher_url": "https://www.ettoday.net/",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/3238125",
+        "https://news.tvbs.com.tw/politics/3240226"
+      ],
+      "report_title": "ETtoday民調雲：2026高雄市長選舉支持度（6月波次）",
+      "field_start": "2026-06-16",
+      "date": "2026-06-19",
+      "published_at": "2026-06-23",
+      "sample_n": 1070,
+      "population": "設籍高雄市38個行政區且年滿20歲以上民眾",
+      "population_size": 406101,
+      "method": "EDM及手機簡訊通知；封閉式網路問卷；自建會員資料庫分層比例抽樣；比例估計法加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "ETtoday民調雲自建會員資料庫",
+      "weighting": "raking_ratio_estimation",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "東森民調雲股份有限公司",
+      "supervisor": "謝惠玲",
+      "sample_note": "公布之加權全體有效樣本；封閉式會員網路樣本",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 46.8,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 42.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 10.9,
+      "nonvote": 0.0,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_pollster_facts",
+      "retrieved_at": "2026-09-12T05:40:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
     {
       "id": "a5b77b8599050b083e7ff592",
       "county": "台北市",
@@ -641,7 +753,22 @@
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     }
   ],
-  "polls": [],
+  "polls": [
+    {
+      "id": "fb01d4dfead1ac092347695d",
+      "county": "高雄市",
+      "source": "ETtoday 民調雲",
+      "date": "2026-08-30",
+      "sample_n": 1283,
+      "undecided": 12.5,
+      "pollster_id": "ettoday",
+      "method_class": "closed_online_panel",
+      "blue": 43.8,
+      "dpp": 43.5,
+      "third": 0,
+      "other": 0
+    }
+  ],
   "failures": [
     {
       "source": "美麗島",
@@ -732,6 +859,18 @@
     }
   },
   "history": [
+    {
+      "date": "2026-09-12T06:14:52+00:00",
+      "county": "高雄市",
+      "source_url": "https://news.tvbs.com.tw/politics/3238125",
+      "kind": "reviewed_ettoday_added"
+    },
+    {
+      "date": "2026-09-12T06:14:52+00:00",
+      "county": "高雄市",
+      "source_url": "https://news.tvbs.com.tw/politics/4020643",
+      "kind": "reviewed_ettoday_added"
+    },
     {
       "date": "2026-09-08T14:14:53+00:00",
       "county": "新北市",
@@ -835,5 +974,5 @@
       "kind": "report_added"
     }
   ],
-  "coverage_note": "來源包括TVBS原始報告與美麗島原始問卷。部分為已核對存檔；自動抓取失敗會明示，不代表所有機構或所有縣市都有近期民調。"
+  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。"
 }
