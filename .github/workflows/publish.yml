@@ -37,6 +37,8 @@ jobs:
         run: python scripts/update_polls.py
       - name: Merge reviewed fail-closed sources
         run: python scripts/enrich_reviewed_polls.py
+      - name: Discover additional first-party poll pages
+        run: python scripts/discover_poll_sources.py
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
@@ -76,6 +78,9 @@ jobs:
           print('Source status:',d['status'])
           print('Skipped/failed:',len(d['failures']))
           print('Reviewed seed records:',reviewed)
+          print('Discovery queue:',len(d.get('discovery_queue',[])))
+          print('Discovery checked:',d.get('discovery_checked_at'))
+          print('Registered pollsters:',d.get('pollster_registry',{}).get('registered_pollsters'))
           print('Newest fieldwork:',d['latest_fieldwork_date'])
           PY
 
