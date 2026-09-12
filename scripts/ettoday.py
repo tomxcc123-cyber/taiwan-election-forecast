@@ -86,8 +86,6 @@ def discover(raw: bytes):
 
 def article_text(raw: bytes) -> str:
     try:
-        # ETtoday pages are UTF-8. Decode explicitly instead of relying on libxml's
-        # fallback byte-encoding guess when a cached/synthetic page lacks meta charset.
         decoded = raw.decode("utf-8", errors="strict")
         doc = html.fromstring(decoded)
     except (UnicodeDecodeError, ValueError, etree.ParserError) as exc:
@@ -95,7 +93,9 @@ def article_text(raw: bytes) -> str:
     text = unicodedata.normalize("NFKC", doc.text_content())
     text = re.sub(r"[ \t\r\f\v]+", " ", text)
     text = re.sub(r"\n+", "\n", text)
-    if len(text) < 400:
+    # Length is only a corruption guard. Admission is controlled by explicit
+    # fieldwork/sample/methodology/candidate/mass checks below.
+    if len(text) < 250:
         raise InvalidETtodayReport("ETtoday article text is unexpectedly short")
     return text
 
@@ -136,6 +136,22 @@ def _support_fragment(text: str) -> str:
     return fragment
 
 
+def _candidate_support(fragment: str, name: str):
+    # Do not accept an arbitrary percentage several words after a candidate's
+    # name: in prose matchup descriptions that can be the opponent's result.
+    pattern = (
+        re.escape(canonical(name))
+        + r"(?:獲得|支持度(?:為)?|為|則(?:獲得|以)?)?[:：]?"
+        + r"(\d+(?:\.\d+)?)%"
+    )
+    values = [float(x) for x in re.findall(pattern, fragment)]
+    if not values:
+        raise InvalidETtodayReport(f"Configured candidate support missing or ambiguous: {name}")
+    if len(set(values)) != 1:
+        raise InvalidETtodayReport(f"Multiple conflicting support values for candidate: {name}")
+    return values[0]
+
+
 def parse(raw: bytes, entry: dict, today: date, expected_matchups: dict):
     text = article_text(raw)
     context = canonical(entry.get("title", "") + text[:1800])
@@ -158,12 +174,10 @@ def parse(raw: bytes, entry: dict, today: date, expected_matchups: dict):
     if "封閉式網路問卷" not in text or not ("EDM" in text and "手機簡訊" in text):
         raise InvalidETtodayReport("Unsupported ETtoday survey mode")
     fragment = _support_fragment(text)
-    candidates = []
-    for name, bloc in expected.items():
-        m = re.search(re.escape(canonical(name)) + r".{0,30}?(\d+(?:\.\d+)?)%", fragment)
-        if not m:
-            raise InvalidETtodayReport(f"Configured candidate missing from ETtoday vote question: {name}")
-        candidates.append({"name": name, "support": float(m.group(1)), "bloc": bloc})
+    candidates = [
+        {"name": name, "support": _candidate_support(fragment, name), "bloc": bloc}
+        for name, bloc in expected.items()
+    ]
     undecided = _number([
         r"另有\s*(\d+(?:\.\d+)?)%[^。]{0,50}(?:尚未決定|不知道|沒有意見|未表態)",
         r"(\d+(?:\.\d+)?)%[^。]{0,30}(?:尚未決定|未表態)",
