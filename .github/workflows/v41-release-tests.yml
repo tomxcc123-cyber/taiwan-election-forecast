@@ -1,4 +1,4 @@
-name: HB-TLEF v4.1 release tests
+name: HB-TLEF v4.1 compatibility tests
 
 on:
   pull_request:
@@ -9,9 +9,6 @@ on:
       - 'tests/test_fragmentation_live.py'
       - 'scripts/validate_fragmentation_poll_gate*.py'
       - 'scripts/audit_v41_public_beta_release.py'
-      - 'scripts/build.py'
-      - 'site/index.html'
-      - 'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md'
       - '.github/workflows/v41-release-tests.yml'
   workflow_dispatch:
 
@@ -19,7 +16,7 @@ permissions:
   contents: read
 
 jobs:
-  release:
+  legacy-v41:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -28,9 +25,6 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
       - run: pip install -r requirements.txt
       - name: Run full offline unit suite
         run: python -m unittest discover -s tests -v
@@ -50,31 +44,27 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_release_candidate_v3.py
-      - name: Audit v4.1 release manifest
+      - name: Audit frozen v4.1 manifest
         env:
           PYTHONPATH: .
         run: python scripts/audit_v41_public_beta_release.py
-      - name: Build exact Pages artifact
+      - name: Build v4.1 compatibility product directly
         env:
           PYTHONPATH: .
-        run: python scripts/build.py
-      - name: Validate browser model artifacts
         run: |
-          node tests/model.mjs
-          node tests/candidate-engine.mjs
-          node tests/evidence-ui.mjs
-          node tests/scenario-studio.mjs
-      - name: Assert release files are public
-        run: |
-          test -f dist/v4.1-public-beta.2.json
-          test -f dist/MODEL_CARD_V4_1_PUBLIC_BETA.md
-          grep -q 'HB-TLEF v4.1 Public Beta 2' dist/index.html
           python - <<'PY'
           import json
-          data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
+          from datetime import datetime
+          from pathlib import Path
+          from model.v41_product import build_product
+          root=Path('.')
+          feed=json.loads((root/'data/polls.json').read_text(encoding='utf-8'))
+          now=datetime.fromisoformat(feed['checked_at'])
+          data=build_product(root,now,feed)
           assert data['model_id']=='HB-TLEF-v4.1-public-beta.2'
           assert data['release']['public_beta'] is True
           assert data['release']['stable'] is False
+          assert len(data['counties'])==22
           assert 'fragmentation_gate' in data
           print(data['model_id'], data['fragmentation_gate']['triggered_count'])
           PY
