@@ -1,10 +1,13 @@
-name: Source coverage v5.1 tests
+name: Source coverage v5.2b tests
 
 on:
   pull_request:
     paths:
       - 'data/reviewed-additional-polls.json'
       - 'scripts/enrich_reviewed_polls.py'
+      - 'scripts/validate_source_coverage_v52b_impact.py'
+      - 'site/poll-source-v52.mjs'
+      - 'tests/source-v52-ui.mjs'
       - 'tests/test_reviewed_source_enrichment.py'
       - '.github/workflows/publish.yml'
       - '.github/workflows/source-coverage-v51-tests.yml'
@@ -16,7 +19,7 @@ permissions:
 jobs:
   source-coverage:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v5
@@ -29,6 +32,10 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run full offline unit suite
         run: python -m unittest discover -s tests -v
+      - name: Validate reviewed pollster impact on v5
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_source_coverage_v52b_impact.py
       - name: Enrich current feed with reviewed sources
         run: python scripts/enrich_reviewed_polls.py
       - name: Assert source governance
@@ -37,18 +44,31 @@ jobs:
           import json
           d=json.load(open('data/polls.json',encoding='utf-8'))
           trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
+          shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui']
+          pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data']
           assert len(trend)==1, trend
+          assert len(shanshui)==2, shanshui
+          assert len(pearson)==2, pearson
           r=trend[0]
           assert r['model_eligible'] is True, r.get('exclusion_reason')
           assert [c['name'] for c in r['candidates']]==['江啟臣','何欣純']
           assert abs(sum(c['support'] for c in r['candidates'])+r['undecided']+r.get('nonvote',0)-100)<1e-9
+          assert all(abs(sum(c['support'] for c in x['candidates'])+x['undecided']+x.get('nonvote',0)-100)<=1 for x in shanshui+pearson)
+          assert all(x.get('nonvote',0)>0 for x in pearson)
+          assert all(x['model_eligible'] is False for x in pearson)
           assert any(p.get('pollster_id')=='trend-survey' and p.get('county')=='台中市' for p in d['polls'])
+          assert any(p.get('pollster_id')=='shanshui' and p.get('county')=='高雄市' for p in d['polls'])
+          assert not any(p.get('pollster_id')=='pearson-data' for p in d['polls'])
+          sources={s['name']:s for s in d['sources']}
+          assert sources['震傳媒／山水民調']['reviewed_reports']==2
+          assert sources['鉅聞天下／皮爾森數據']['reviewed_reports']==2
+          assert sources['鉅聞天下／皮爾森數據']['method_class']=='online_dmp_panel'
           assert not any(str(s.get('status','')).startswith('integrated_') for s in d.get('source_review',[]))
           assert not any(s.get('name')=='ETtoday' for s in d.get('source_review',[]))
           apollo=next(s for s in d['source_review'] if s['name']=='艾普羅行銷市場研究')
           assert apollo['status']=='reviewed_methodology_incomplete_response_mass'
-          assert not any(r.get('pollster_id')=='apollo' for r in d['records'])
-          print('PASS source governance:',r['id'],r['date'],len(d['polls']))
+          assert not any(x.get('pollster_id')=='apollo' for x in d['records'])
+          print('PASS source governance:',len(d['records']),len(d['polls']),sources['震傳媒／山水民調']['reviewed_reports'],sources['鉅聞天下／皮爾森數據']['reviewed_reports'])
           PY
       - name: Build exact public product with enriched feed
         env:
@@ -60,7 +80,8 @@ jobs:
           node tests/candidate-engine.mjs
           node tests/evidence-ui.mjs
           node tests/scenario-studio.mjs
-      - name: Assert enriched poll reaches candidate product
+          node tests/source-v52-ui.mjs
+      - name: Assert enriched polls reach candidate product
         run: |
           python - <<'PY'
           import json
@@ -71,12 +92,24 @@ jobs:
           trend=next(r for r in feed['records'] if r.get('pollster_id')=='trend-survey' and r['county']=='台中市')
           taichung=next(r for r in data['counties'] if r['name']=='台中市')
           assert trend['id'] in taichung['poll_ids'], (trend['id'],taichung['poll_ids'])
+          new_taipei=next(r for r in data['counties'] if r['name']=='新北市')
+          kaohsiung=next(r for r in data['counties'] if r['name']=='高雄市')
+          nt_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='新北市'}
+          kh_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='高雄市'}
+          assert len(nt_ids)==2 and nt_ids.issubset(set(new_taipei['poll_ids'])), (nt_ids,new_taipei['poll_ids'])
+          assert len(kh_ids)==2 and kh_ids.issubset(set(kaohsiung['poll_ids'])), (kh_ids,kaohsiung['poll_ids'])
           assert data['release']['stable'] is False
-          print('PASS public product:',trend['id'],taichung['poll_ids'])
+          print('PASS public product:',sorted(nt_ids),sorted(kh_ids))
           PY
       - name: Upload enriched Pages preview
         uses: actions/upload-artifact@v4
         with:
-          name: source-coverage-v51-preview
+          name: source-coverage-v52b-preview
           path: dist
+          if-no-files-found: error
+      - name: Upload source impact diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-coverage-v52b-impact
+          path: .cache/candidate-effect-v3/source-coverage-v52b-impact.json
           if-no-files-found: error
