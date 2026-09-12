@@ -1,4 +1,4 @@
-"""Fetch official reports; publish facts only, never infer missing poll results."""
+"""Fetch official/reviewed poll reports; publish facts only, never infer missing results."""
 from __future__ import annotations
 
 import argparse
@@ -21,9 +21,10 @@ from lxml import html
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from scripts import formosa
+from scripts import ettoday, formosa
+
 INDEX = 'https://www.tvbs.com.tw/poll-center'
-ALLOWED_HOSTS = {'www.tvbs.com.tw', 'www-asset.tvbs.com.tw'} | formosa.HOSTS
+ALLOWED_HOSTS = {'www.tvbs.com.tw', 'www-asset.tvbs.com.tw'} | formosa.HOSTS | ettoday.HOSTS
 COUNTIES = ['台北市','新北市','桃園市','台中市','台南市','高雄市','基隆市','新竹市',
             '新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','屏東縣',
             '宜蘭縣','花蓮縣','台東縣','澎湖縣','金門縣','連江縣']
@@ -115,7 +116,6 @@ def roc_dates(text):
 
 
 def party_for(name, question):
-    # Use only explicit attribution in the question, never voter cross-tabs or name guesses.
     q = canonical(question)
     for pattern, bloc in [
         (r'國民黨(?:和|與|、)民眾黨(?:共同)?支持的' + re.escape(name), 'blue'),
@@ -149,7 +149,6 @@ def parse_report(text, entry, now=None):
     n = int(sample[1].replace(',', ''))
     if not 100 <= n <= 100000 or not 0 < float(moe[1]) < 15:
         raise InvalidReport('Implausible sample size or margin of error')
-    # Top-level questionnaire tables only; explicitly exclude cross-tab rows.
     blocks = re.split(r'(?m)^表\s*(\d+)\s*[、，,]', text)
     questions = []
     for i in range(1, len(blocks), 2):
@@ -214,10 +213,11 @@ def parse_report(text, entry, now=None):
                              ','.join(sorted(c['name'] for c in question['candidates']))])
         records.append({
             'id': hashlib.sha256(identity.encode()).hexdigest()[:24],
-            'county': counties[0], 'source': 'TVBS 民意調查中心', 'source_url': entry['url'],
-            'report_title': entry['title'], 'field_start': start, 'date': end, 'sample_n': n,
-            'population': sample[2].strip(), 'method': method[1].strip(), 'margin_of_error': float(moe[1]),
-            'confidence_level': 95, 'funding': funding[1].strip(),
+            'county': counties[0], 'source': 'TVBS 民意調查中心', 'pollster_id': 'tvbs',
+            'publisher': 'TVBS', 'source_url': entry['url'], 'report_title': entry['title'],
+            'field_start': start, 'date': end, 'sample_n': n,
+            'population': sample[2].strip(), 'method': method[1].strip(), 'method_class': 'telephone_cati',
+            'margin_of_error': float(moe[1]), 'confidence_level': 95, 'funding': funding[1].strip(),
             'supervisor': None, 'population_size': None,
             'sample_note': '報告總樣本；投票意向子樣本量未另列',
             'multiple_matchups': len(questions) > 1, **question,
@@ -247,15 +247,15 @@ def classify(record, config):
 
 
 def model_rows(records):
-    # At most one latest poll per pollster/county prevents repeated survey releases
-    # from acquiring unbounded influence in the inherited sequential blend model.
     latest = {}
     for r in sorted(records, key=lambda p: (p['date'], p['id'])):
         if r['model_eligible']:
-            latest[(r['source'], r['county'])] = r
+            latest[(r.get('pollster_id', r['source']), r['county'])] = r
     rows = []
     for r in latest.values():
         row = {k: r[k] for k in ('id', 'county', 'source', 'date', 'sample_n', 'undecided')}
+        row['pollster_id'] = r.get('pollster_id', r['source'])
+        row['method_class'] = r.get('method_class')
         row.update(blue=0, dpp=0, third=0, other=0)
         for c in r['candidates']:
             row[c['bloc']] += c['support']
@@ -270,7 +270,14 @@ def atomic_json(path, value):
     os.replace(temp, path)
 
 
-def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_formosa=False):
+def _replace_review(items, name, value):
+    out = [x for x in items if x.get('name') != name]
+    out.append(value)
+    return out
+
+
+def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None,
+           include_formosa=False, include_ettoday=False):
     checked = now or stamp()
     today = datetime.fromisoformat(checked).date()
     records = {r['id']: r for r in previous.get('records', [])}
@@ -278,6 +285,8 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_
     failures, changed = [], []
     extra_sources = []
     source_review = []
+    discovery_queue = []
+
     if include_formosa:
         reviewed = json.loads((ROOT/'data/reviewed-poll-sources.json').read_text(encoding='utf-8'))
         source_review = reviewed['source_review']
@@ -302,7 +311,6 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_
         except Exception as exc:
             failures.append({'source':'美麗島','url':formosa.INDEX,'message':str(exc)[:180]})
         formosa_good=0
-        # A denied/unavailable index does not trigger a burst of retries against the same site.
         if formosa_index_ok:
             for entry in formosa_entries.values():
                 try:
@@ -323,6 +331,59 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_
             'validated_reports':formosa_good,'index_ok':formosa_index_ok,
             'status':'checked' if formosa_index_ok else 'unavailable',
             'note':'本輪自動擷取通過數不含先前核對的存檔；失敗保留最後有效資料。'})
+
+    if include_ettoday:
+        reviewed_et = json.loads((ROOT/'data/reviewed-ettoday-polls.json').read_text(encoding='utf-8'))
+        seed_count = 0
+        if date.fromisoformat(reviewed_et['reviewed_at'][:10]) <= today:
+            for entry in reviewed_et['reports']:
+                try:
+                    row = ettoday.reviewed_record(entry, today)
+                    row['retrieved_at'] = reviewed_et['reviewed_at']
+                    seed_count += 1
+                    if row['id'] not in records:
+                        records[row['id']] = row
+                        changed.append({'date':checked,'county':row['county'],'source_url':row['source_url'],'kind':'reviewed_ettoday_added'})
+                except Exception as exc:
+                    failures.append({'source':'ETtoday reviewed seed','url':entry.get('verification_urls',[''])[0],'message':str(exc)[:180]})
+        et_entries = []
+        et_index_ok = False
+        try:
+            et_entries = ettoday.discover(get(ettoday.INDEX))
+            et_index_ok = True
+        except Exception as exc:
+            failures.append({'source':'ETtoday','url':ettoday.INDEX,'message':str(exc)[:180]})
+        et_good = 0
+        if et_index_ok:
+            for entry in et_entries:
+                try:
+                    raw = get(entry['url']); digest = hashlib.sha256(raw).hexdigest()
+                    parsed = ettoday.parse(raw, entry, today, config['matchups'])
+                    old = reports.get(entry['url'], {})
+                    for row in parsed:
+                        row.update(retrieved_at=checked, report_sha256=digest, ingestion='automatic_original_html')
+                        records[row['id']] = row
+                    reports[entry['url']]={'sha256':digest,'parser_version':ettoday.VERSION,'status':'valid','checked_at':checked}
+                    if old.get('sha256') != digest or old.get('parser_version') != ettoday.VERSION:
+                        changed.append({'date':checked,'county':parsed[0]['county'],'source_url':entry['url'],'kind':'ettoday_original_verified'})
+                    et_good += 1
+                except Exception as exc:
+                    message = str(exc)[:180]
+                    failures.append({'source':'ETtoday','url':entry['url'],'message':message})
+                    discovery_queue.append({'source':'ETtoday','title':entry.get('title'),'county':entry.get('county'),
+                                            'url':entry.get('url'),'status':'discovered_unverified','reason':message})
+        source_review = _replace_review(source_review, 'ETtoday', {
+            'name':'ETtoday',
+            'status':'integrated_with_reviewed_seed_and_live_discovery',
+            'note':'已接入ETtoday民調雲封閉式會員網路調查。原文可自動解析時優先使用；來源暫時不可用時保留已核對波次，未通過解析的新文章列入待核驗佇列。',
+            'url':'https://www.ettoday.net/'
+        })
+        extra_sources.append({'name':ettoday.SOURCE,'url':ettoday.INDEX,'discovered':len(et_entries),
+            'validated_reports':et_good,'reviewed_reports':seed_count,'index_ok':et_index_ok,
+            'status':'checked' if et_index_ok else 'reviewed_seed_only',
+            'method_class':'closed_online_panel',
+            'note':'封閉式會員網路問卷另保留method_class；目前使用通用非TVBS民調不確定性，尚未宣稱已估計ETtoday house effect。'})
+
     entries = []
     index_ok = False
     try:
@@ -344,7 +405,6 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_
                     failures.append({'source': 'TVBS', 'url': url, 'message': old['message']})
                 continue
             parsed = parse_report(pdf_text(raw), entry, now=today)
-            # Replace a report only after its entire replacement passes validation.
             records = {k: r for k, r in records.items() if r['source_url'] != url}
             for r in parsed:
                 r.update(retrieved_at=checked, report_sha256=digest)
@@ -355,27 +415,36 @@ def update(config, previous, get=fetch, pdf_text=extract_pdf, now=None, include_
         except Exception as exc:
             message = str(exc)[:180]
             failures.append({'source': 'TVBS', 'url': url, 'message': message})
-            # Do not cache download failures, and retry changed/invalid documents next run.
+
     classified = sorted((classify(r, config) for r in records.values()), key=lambda r: (r['date'], r['id']), reverse=True)
     latest = max((r['date'] for r in classified), default=None)
     status = 'ok' if index_ok and not failures else ('degraded' if classified else 'unavailable')
+    source_list = [{'name': 'TVBS 民意調查中心', 'url': INDEX, 'discovered': len(entries),
+                    'validated_reports': good, 'index_ok':index_ok}] + extra_sources
+    if include_ettoday:
+        coverage = ('來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；'
+                    'ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。')
+    elif include_formosa:
+        coverage = '來源包括TVBS原始報告與美麗島原始問卷。部分為已核對存檔；自動抓取失敗會明示，不代表所有機構或所有縣市都有近期民調。'
+    else:
+        coverage = '目前自動來源為 TVBS 原始報告，不代表所有機構或所有縣市都有近期民調。'
     return {
         'schema_version': 1, 'checked_at': checked,
         'last_success_at': checked if index_ok and not failures else previous.get('last_success_at'),
         'index_checked_at': checked if index_ok else previous.get('index_checked_at'),
         'updated_at': checked if changed else previous.get('updated_at'),
         'latest_fieldwork_date': latest, 'status': status, 'baseline_cutoff': config['baseline_cutoff'],
-        'sources': [{'name': 'TVBS 民意調查中心', 'url': INDEX, 'discovered': len(entries), 'validated_reports': good, 'index_ok':index_ok}] + extra_sources,
-        'source_review':source_review,
+        'sources': source_list, 'source_review':source_review,
+        'discovery_queue': discovery_queue,
         'records': classified, 'polls': model_rows(classified), 'failures': failures,
         'reports': reports, 'history': (changed + previous.get('history', []))[:100],
-        'coverage_note': '來源包括TVBS原始報告與美麗島原始問卷。部分為已核對存檔；自動抓取失敗會明示，不代表所有機構或所有縣市都有近期民調。' if include_formosa else '目前自動來源為 TVBS 原始報告，不代表所有機構或所有縣市都有近期民調。',
+        'coverage_note': coverage,
     }
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--offline', action='store_true', help='Use cached PDFs/index; never claim a live source check')
+    parser.add_argument('--offline', action='store_true', help='Use cached source payloads; never claim a live source check')
     args = parser.parse_args()
     config = json.loads((ROOT / 'config.json').read_text(encoding='utf-8'))
     target = ROOT / 'data/polls.json'
@@ -391,13 +460,13 @@ def main():
         path.write_bytes(raw)
         return raw
 
-    result = update(config, previous, get=get, include_formosa=True)
+    result = update(config, previous, get=get, include_formosa=True, include_ettoday=True)
     if args.offline:
         print(json.dumps({'offline_test': True, 'records': len(result['records']), 'failures': len(result['failures'])}))
         return
     atomic_json(target, result)
     print(json.dumps({k: result[k] for k in ('status', 'checked_at', 'latest_fieldwork_date')}))
-    print(f"Validated questions: {len(result['records'])}; model inputs: {len(result['polls'])}; skipped/failed reports: {len(result['failures'])}")
+    print(f"Validated questions: {len(result['records'])}; model inputs: {len(result['polls'])}; skipped/failed reports: {len(result['failures'])}; discovery queue: {len(result['discovery_queue'])}")
 
 
 if __name__ == '__main__':
