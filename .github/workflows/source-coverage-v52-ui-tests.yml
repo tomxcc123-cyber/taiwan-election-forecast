@@ -34,7 +34,7 @@ jobs:
       - name: Validate Poll Ingestion 2.0 pure UI logic
         run: node tests/source-v52-ui.mjs
       - name: Validate queue-only discovery logic
-        run: python -m unittest tests.test_pollster_registry_discovery -v
+        run: python -m unittest discover -s tests -p 'test_pollster_registry_discovery.py' -v
       - name: Build exact public product
         env:
           PYTHONPATH: .
