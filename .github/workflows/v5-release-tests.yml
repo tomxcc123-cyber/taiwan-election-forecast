@@ -1,0 +1,100 @@
+name: HB-TLEF v5 release tests
+
+on:
+  pull_request:
+    paths:
+      - 'model/integrated_prior.py'
+      - 'model/v5_product.py'
+      - 'model/fragmentation_live.py'
+      - 'model/releases/v5.0-public-beta.1.json'
+      - 'tests/test_integrated_prior.py'
+      - 'tests/test_v5_product.py'
+      - 'scripts/validate_integrated_prior_v5*.py'
+      - 'scripts/validate_integrated_offset_v5_2.py'
+      - 'scripts/validate_integrated_end_to_end_v5_3.py'
+      - 'scripts/build_v5_shadow_product.py'
+      - 'scripts/audit_v5_public_beta_release.py'
+      - 'scripts/build.py'
+      - 'site/index.html'
+      - 'docs/MODEL_CARD_V5_PUBLIC_BETA.md'
+      - '.github/workflows/v5-release-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - name: Run full offline unit suite
+        run: python -m unittest discover -s tests -v
+      - name: Reproduce frozen R4 reference
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_earlier_partisan_cycle.py
+      - name: Reproduce frozen fragmentation reference
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v3.py
+      - name: Reproduce disciplined v5.1 ablation
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_prior_v5_1.py
+      - name: Reproduce candidate residual offset v5.2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_offset_v5_2.py
+      - name: Reproduce end-to-end integrated v5.3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_end_to_end_v5_3.py
+      - name: Reproduce production-isomorphic 2026 shadow
+        env:
+          PYTHONPATH: .
+        run: python scripts/build_v5_shadow_product.py
+      - name: Audit v5 release manifest
+        env:
+          PYTHONPATH: .
+        run: python scripts/audit_v5_public_beta_release.py
+      - name: Build exact Pages artifact
+        env:
+          PYTHONPATH: .
+        run: python scripts/build.py
+      - name: Validate browser model artifacts
+        run: |
+          node tests/model.mjs
+          node tests/candidate-engine.mjs
+          node tests/evidence-ui.mjs
+          node tests/scenario-studio.mjs
+      - name: Assert v5 release files and public product
+        run: |
+          test -f dist/v5.0-public-beta.1.json
+          test -f dist/MODEL_CARD_V5_PUBLIC_BETA.md
+          grep -q 'HB-TLEF v5.0 Public Beta 1' dist/index.html
+          python - <<'PY'
+          import json
+          data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
+          assert data['model_id']=='HB-TLEF-v5.0-public-beta.1'
+          assert data['release']['public_beta'] is True
+          assert data['release']['stable'] is False
+          assert data['release']['integrated_prior'] is True
+          assert data['release']['turnout_vote_share_center'] is False
+          assert data['structural_model']['turnout_vote_share_center'] is False
+          assert 'candidate_residual_offset' in data['structural_model']
+          assert data['structural_model']['mode_counts'].get('integrated_r4_candidate_t3',0) > 0
+          assert len(data['counties']) == 22
+          assert 'fragmentation_gate' in data
+          assert 'v5_validation' in data
+          print(data['model_id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['triggered_count'])
+          PY

@@ -16,11 +16,17 @@ on:
       - 'scripts/validate_fragmentation_poll_gate.py'
       - 'scripts/validate_fragmentation_poll_gate_v2.py'
       - 'scripts/validate_fragmentation_poll_gate_v3.py'
+      - 'scripts/validate_integrated_prior_v5.py'
+      - 'scripts/validate_integrated_prior_v5_1.py'
+      - 'scripts/validate_integrated_offset_v5_2.py'
+      - 'scripts/validate_integrated_end_to_end_v5_3.py'
+      - 'scripts/build_v5_shadow_product.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'data/candidate-history-2009-2010.json'
       - 'data/historical-polls-tvbs.json'
+      - 'data/polls.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
@@ -89,6 +95,26 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_fragmentation_poll_gate_v3.py
+      - name: Validate integrated structural-candidate-turnout prior v5
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_prior_v5.py
+      - name: Validate disciplined integrated prior v5.1
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_prior_v5_1.py
+      - name: Validate offset-residual candidate fusion v5.2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_offset_v5_2.py
+      - name: Validate end-to-end integrated prior v5.3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_end_to_end_v5_3.py
+      - name: Build production-isomorphic v5 shadow forecast
+        env:
+          PYTHONPATH: .
+        run: python scripts/build_v5_shadow_product.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .
