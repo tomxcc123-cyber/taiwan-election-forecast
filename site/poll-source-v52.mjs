@@ -1,4 +1,4 @@
-const METHOD_LABELS={closed_online_panel:'封閉式網路樣本',telephone_cati:'電話訪問',landline_cati:'市話訪問',dual_frame_cati:'市話＋手機雙架構',online_panel:'網路樣本'};
+const METHOD_LABELS={closed_online_panel:'封閉式網路樣本',telephone_cati:'電話訪問',landline_cati:'市話訪問',dual_frame_cati:'市話＋手機雙架構',online_panel:'網路樣本',online_dmp_panel:'DMP網路樣本'};
 const VERIFY_LABELS={reviewed_multi_source_methodology:'多來源方法核驗',reviewed_original_page_facts:'原始頁面核驗',reviewed_pollster_facts:'調查機構事實核驗',automatic_original_report:'原始報告自動校驗'};
 const REVIEW_LABELS={reviewed_methodology_incomplete_response_mass:'方法已核對／回應類別不完整',publisher_not_pollster:'刊載媒體／不另建 pollster',access_limited:'來源受限／暫不入模',reviewed_not_integrated:'已核對／暫未整合',pending_original_verification:'待原始資料核驗'};
 const esc=value=>String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
