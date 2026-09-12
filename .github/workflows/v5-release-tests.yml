@@ -9,6 +9,11 @@ on:
       - 'model/releases/v5.0-public-beta.1.json'
       - 'tests/test_integrated_prior.py'
       - 'tests/test_v5_product.py'
+      - 'tests/test_ettoday.py'
+      - 'scripts/ettoday.py'
+      - 'scripts/update_polls.py'
+      - 'scripts/validate_ettoday_live_impact.py'
+      - 'data/reviewed-ettoday-polls.json'
       - 'scripts/validate_integrated_prior_v5*.py'
       - 'scripts/validate_integrated_offset_v5_2.py'
       - 'scripts/validate_integrated_end_to_end_v5_3.py'
@@ -16,6 +21,8 @@ on:
       - 'scripts/audit_v5_public_beta_release.py'
       - 'scripts/build.py'
       - 'site/index.html'
+      - 'site/candidate-app.mjs'
+      - 'site/evidence-ui.mjs'
       - 'docs/MODEL_CARD_V5_PUBLIC_BETA.md'
       - '.github/workflows/v5-release-tests.yml'
   workflow_dispatch:
@@ -39,6 +46,10 @@ jobs:
       - run: pip install -r requirements.txt
       - name: Run full offline unit suite
         run: python -m unittest discover -s tests -v
+      - name: Validate ETtoday ingestion and live v5 impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_ettoday_live_impact.py
       - name: Reproduce frozen R4 reference
         env:
           PYTHONPATH: .
@@ -98,3 +109,9 @@ jobs:
           assert 'v5_validation' in data
           print(data['model_id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['triggered_count'])
           PY
+      - name: Upload v5 release diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: v5-release-diagnostics
+          path: .cache/candidate-effect-v3
+          if-no-files-found: error
