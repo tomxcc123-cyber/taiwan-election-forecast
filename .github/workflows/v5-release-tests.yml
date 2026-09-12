@@ -18,6 +18,7 @@ on:
       - 'scripts/validate_integrated_offset_v5_2.py'
       - 'scripts/validate_integrated_end_to_end_v5_3.py'
       - 'scripts/build_v5_shadow_product.py'
+      - 'scripts/replay_frozen_v5_release_shadow.py'
       - 'scripts/audit_v5_public_beta_release.py'
       - 'scripts/build.py'
       - 'site/index.html'
@@ -36,6 +37,8 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -73,7 +76,7 @@ jobs:
       - name: Reproduce frozen production-isomorphic 2026 shadow
         env:
           PYTHONPATH: .
-        run: python scripts/build_v5_shadow_product.py --at 2026-09-12T04:35:30+00:00
+        run: python scripts/replay_frozen_v5_release_shadow.py
       - name: Audit v5 release manifest
         env:
           PYTHONPATH: .
