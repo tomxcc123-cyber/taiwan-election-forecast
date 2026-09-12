@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-12T07:40:00+00:00",
+  "reviewed_at": "2026-09-12T11:05:00+00:00",
   "review_policy": "Admit a reviewed poll only when candidate support, residual response mass, field dates, sample size, target population, collection mode, uncertainty and sponsor can be corroborated. Media republication is verification evidence, not a pollster identity.",
   "reports": [
     {
@@ -34,6 +34,39 @@
         "https://news.tvbs.com.tw/politics/4008251",
         "https://udn.com/news/story/124652/9696075"
       ]
+    },
+    {
+      "title": "震傳媒／山水民調：2026台北市長選舉支持度（6月波次）",
+      "county": "台北市",
+      "field_start": "2026-06-21",
+      "date": "2026-06-22",
+      "published_at": "2026-06-24",
+      "sample_n": 1074,
+      "population": "設籍台北市、年滿20歲民眾",
+      "method": "CATI電話訪問；住宅電話為抽樣架構；系統抽樣加尾2碼隨機；依地區、性別、年齡、教育程度加權",
+      "method_class": "landline_cati",
+      "sampling_frame": "台北市住宅電話",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 2.99,
+      "confidence_level": 95,
+      "funding": "震傳媒",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source": "震傳媒／山水民調",
+      "names": ["蔣萬安", "沈伯洋"],
+      "supports": [55.2, 27.5],
+      "blocs": ["blue", "dpp"],
+      "undecided": 17.4,
+      "nonvote": 0.0,
+      "multiple_matchups": false,
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/42781",
+      "verification_urls": [
+        "https://www.zmedia.com.tw/Document/Detail/42781",
+        "https://tw.news.yahoo.com/%E9%9C%87%E5%82%B3%E5%AA%92%E6%B0%91%E8%AA%BF-%E6%B2%88%E4%BC%AF%E6%B4%8B%E8%A2%AB%E6%B5%B7%E6%94%BE27%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-%E7%B6%A0%E7%87%9F%E6%94%AF%E6%8C%81%E8%80%85%E5%A3%AB%E6%B0%A3%E4%BD%8E-%E7%9C%8B%E5%A5%BD%E8%94%A3%E8%90%AC%E5%AE%89%E6%9C%83%E7%95%B6%E9%81%B8%E7%9A%84%E4%BA%BA%E6%9B%B4%E5%A4%9A-082036334.html",
+        "https://news.tvbs.com.tw/politics/3239410"
+      ],
+      "sample_note": "震傳媒原始頁核對候選人支持度與方法；跨來源公開報導明確列出17.4%無明確意見；四捨五入總和100.1%"
     },
     {
       "title": "震傳媒／山水民調：2026新北市長選舉支持度（5月波次）",
@@ -124,6 +157,7 @@
       "multiple_matchups": false,
       "source_url": "https://www.bigmedia.com.tw/article/1784338752250",
       "verification_urls": [
+        "https://www.bigmedia.com.tw/article/1784791841053",
         "https://newtalk.tw/news/view/2026-07-20/1048180",
         "https://news.tvbs.com.tw/politics/3264552"
       ]
