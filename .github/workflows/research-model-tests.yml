@@ -7,7 +7,10 @@ on:
       - 'tests/**'
       - 'scripts/ettoday.py'
       - 'scripts/update_polls.py'
+      - 'scripts/enrich_reviewed_polls.py'
       - 'scripts/validate_ettoday_live_impact.py'
+      - 'scripts/validate_source_coverage_v52b_impact.py'
+      - 'scripts/validate_source_coverage_v54_taipei_impact.py'
       - 'scripts/run_candidate_effect_research.py'
       - 'scripts/compare_candidate_models.py'
       - 'scripts/stack_candidate_models.py'
@@ -31,6 +34,7 @@ on:
       - 'data/historical-polls-tvbs.json'
       - 'data/polls.json'
       - 'data/reviewed-ettoday-polls.json'
+      - 'data/reviewed-additional-polls.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
@@ -45,7 +49,7 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v6
       - uses: actions/setup-python@v5
@@ -59,6 +63,14 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_ettoday_live_impact.py
+      - name: Validate cumulative reviewed source impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_source_coverage_v52b_impact.py
+      - name: Validate incremental Taipei Shanshui impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_source_coverage_v54_taipei_impact.py
       - name: Validate earlier Partisan Baseline cycle
         env:
           PYTHONPATH: .

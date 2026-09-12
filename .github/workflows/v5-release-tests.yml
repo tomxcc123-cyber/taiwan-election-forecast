@@ -19,6 +19,7 @@ on:
       - 'scripts/discover_poll_sources.py'
       - 'scripts/validate_ettoday_live_impact.py'
       - 'scripts/validate_source_coverage_v52b_impact.py'
+      - 'scripts/validate_source_coverage_v54_taipei_impact.py'
       - 'data/reviewed-ettoday-polls.json'
       - 'data/reviewed-additional-polls.json'
       - 'data/pollster-registry.json'
@@ -64,10 +65,14 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_ettoday_live_impact.py
-      - name: Validate reviewed multi-pollster live v5 impact
+      - name: Validate cumulative reviewed multi-pollster impact
         env:
           PYTHONPATH: .
         run: python scripts/validate_source_coverage_v52b_impact.py
+      - name: Validate incremental Taipei Shanshui impact
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_source_coverage_v54_taipei_impact.py
       - name: Reproduce frozen R4 reference
         env:
           PYTHONPATH: .
@@ -134,9 +139,16 @@ jobs:
           ids={r.get('pollster_id') for r in feed['records']}
           assert {'ettoday','trend-survey','shanshui','pearson-data'}.issubset(ids), ids
           assert len(registry['pollsters'])==7
+          taipei_poll=next(r for r in feed['records'] if r.get('pollster_id')=='shanshui' and r['county']=='台北市' and r['date']=='2026-06-22')
+          taipei=next(r for r in data['counties'] if r['name']=='台北市')
+          assert taipei_poll['model_eligible'] is False
+          assert taipei_poll['id'] in taipei['poll_ids']
+          pearson_nt=[r for r in feed['records'] if r.get('pollster_id')=='pearson-data' and r['county']=='新北市']
+          assert len(pearson_nt)==1
+          assert 'https://www.bigmedia.com.tw/article/1784791841053' in pearson_nt[0].get('verification_urls',[])
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='shanshui')['discovery']['queue_only'] is True
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='pearson-data')['discovery']['queue_only'] is True
-          print(data['model_id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['triggered_count'], sorted(x for x in ids if x))
+          print(data['model_id'], taipei_poll['id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['triggered_count'], sorted(x for x in ids if x))
           PY
       - name: Upload v5 release diagnostics
         uses: actions/upload-artifact@v4

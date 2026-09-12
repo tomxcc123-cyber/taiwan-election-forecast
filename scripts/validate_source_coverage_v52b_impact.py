@@ -1,11 +1,11 @@
 """Validate that reviewed Shanshui/Pearson waves enter and move HB-TLEF v5.
 
-This is a source-coverage regression, not parameter tuning. It constructs a
-counterfactual feed with the two newly reviewed pollsters removed while
-preserving every other source, then layers the reviewed seeds back in at one
-fixed timestamp. Pearson records keep their published nonvote category; the
-legacy three-bloc flag may reject those records while the v5 candidate
-likelihood independently validates the complete response mass.
+This is a cumulative source-coverage regression, not parameter tuning. It
+constructs a counterfactual feed with Shanshui/Pearson removed while preserving
+every other source, then layers all reviewed Shanshui/Pearson seeds back in at
+one fixed timestamp. Pearson records keep their published nonvote category;
+the inherited legacy three-bloc flag may reject records while the v5 candidate
+likelihood independently validates complete response mass.
 """
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ from scripts.enrich_reviewed_polls import enrich
 from scripts.update_polls import model_rows
 
 ROOT = Path(__file__).resolve().parents[1]
-AS_OF = "2026-09-12T08:00:00+00:00"
+AS_OF = "2026-09-12T11:05:00+00:00"
 POLLSTERS = {"shanshui", "pearson-data"}
 OUT = ROOT / ".cache/candidate-effect-v3/source-coverage-v52b-impact.json"
 
@@ -75,10 +75,11 @@ def main():
         for r in target_records if not audit.get(r["id"], {}).get("included")
     ]
 
+    taipei = race_delta(before, after, "台北市", ["蔣萬安", "沈伯洋"])
     new_taipei = race_delta(before, after, "新北市", ["李四川", "蘇巧慧"])
     kaohsiung = race_delta(before, after, "高雄市", ["柯志恩", "賴瑞隆"])
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "as_of": AS_OF,
         "model_version": after["model_version"],
         "counterfactual": "committed feed with shanshui and pearson-data removed; all other sources preserved",
@@ -97,6 +98,7 @@ def main():
         ],
         "accepted_poll_ids": [r["id"] for r in accepted],
         "rejected": rejected,
+        "taipei": taipei,
         "new_taipei": new_taipei,
         "kaohsiung": kaohsiung,
     }
@@ -106,15 +108,18 @@ def main():
 
     if any(r.get("pollster_id") in POLLSTERS for r in baseline.get("records", [])):
         raise SystemExit("counterfactual baseline still contains target pollsters")
-    if len(target_records) != 4:
-        raise SystemExit(f"Expected four reviewed Shanshui/Pearson records, got {len(target_records)}")
-    if len(accepted) != 4 or rejected:
-        raise SystemExit(f"Expected all four reviewed records in v5 likelihood; accepted={len(accepted)} rejected={rejected}")
+    if len(target_records) != 5:
+        raise SystemExit(f"Expected five reviewed Shanshui/Pearson records, got {len(target_records)}")
+    if len(accepted) != 5 or rejected:
+        raise SystemExit(f"Expected all five reviewed records in v5 likelihood; accepted={len(accepted)} rejected={rejected}")
     pearson = [r for r in target_records if r.get("pollster_id") == "pearson-data"]
     if len(pearson) != 2 or any(r.get("model_eligible") for r in pearson):
         raise SystemExit("Pearson nonvote records should remain outside the inherited legacy three-bloc input")
-    if not any(abs(r["mean_delta_pp"]) > 1e-6 for r in new_taipei + kaohsiung):
-        raise SystemExit("new pollsters entered audit but did not move v5 posterior")
+    taipei_poll = next(r for r in target_records if r.get("pollster_id") == "shanshui" and r.get("county") == "台北市")
+    if taipei_poll.get("model_eligible"):
+        raise SystemExit("Taipei Shanshui pre-cutoff wave should remain outside inherited legacy input")
+    if not any(abs(r["mean_delta_pp"]) > 1e-6 for r in taipei + new_taipei + kaohsiung):
+        raise SystemExit("reviewed pollsters entered audit but did not move v5 posterior")
 
 
 if __name__ == "__main__":
