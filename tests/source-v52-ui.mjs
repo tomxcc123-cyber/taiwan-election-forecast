@@ -1,10 +1,12 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,sourceState,coverageStats,observatoryHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,observatoryHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
 assert.equal(verificationLabel('reviewed_multi_source_methodology'),'多來源方法核驗');
 assert.equal(reviewLabel('publisher_not_pollster'),'刊載媒體／不另建 pollster');
+assert.equal(ingestionLabel({ingestion:'reviewed_multi_source_methodology',verification_status:'reviewed_multi_source_methodology'}),'人工核驗後收錄（多來源方法核驗）；不是本輪自動原始報告解析成功。');
+assert.equal(ingestionLabel({ingestion:'automatic_original_report'}),'原始報告自動解析並校驗。');
 assert.deepEqual(sourceState({validated_reports:2,index_ok:true}),{key:'auto',label:'自動核驗'});
 assert.deepEqual(sourceState({status:'reviewed_seed_only',reviewed_reports:1}),{key:'reviewed',label:'人工核驗種子'});
 assert.deepEqual(sourceState({index_ok:false}),{key:'degraded',label:'來源受限'});
