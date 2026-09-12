@@ -37,12 +37,12 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         raw = '''<html><head><meta charset="utf-8"></head><body>
           <a href="/Document/Detail/41952">震傳媒民調（一）／李四川絕對優勢不再？ 新北5％內決勝負！</a>
           <a href="/Document/Detail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a>
-          <a href="/Document/Detail/50002">震傳媒民調（三）／54.5%高市民對賴總統施政表示滿意</a>
+          <a href="/Document/Detail/50002">震傳媒民調（一）／65.7%北市民滿意蔣萬安施政 近兩成五綠營支持者亦肯定</a>
+          <a href="/Document/Detail/50003">震撼民心 震傳媒民調（一）／2028國民黨四大天王大洗盤 20.4%支持蔣萬安</a>
         </body></html>'''.encode('utf-8')
         rows = discover_from_html(raw, pollster['discovery']['index_urls'][0], pollster, self.config['matchups'])
+        self.assertEqual({r['url'].rsplit('/', 1)[-1] for r in rows}, {'41952', '50001'})
         self.assertEqual({r['county'] for r in rows}, {'新北市', '台北市'})
-        self.assertTrue(any(r['url'].endswith('/50001') for r in rows))
-        self.assertFalse(any(r['url'].endswith('/50002') for r in rows))
 
     def test_bigmedia_discovery_requires_vote_intention_signal(self):
         pollster = self.pollsters['pearson-data']
@@ -87,7 +87,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         pearson = self.pollsters['pearson-data']
         pages = {
             shanshui['discovery']['index_urls'][0]: '''<html><head><meta charset="utf-8"></head><body><a href="/Document/Detail/41952">震傳媒民調（一）／李四川絕對優勢不再？ 新北5％內決勝負！</a></body></html>'''.encode('utf-8'),
-            shanshui['discovery']['index_urls'][1]: '''<html><head><meta charset="utf-8"></head><body><a href="/Document/Detail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a></body></html>'''.encode('utf-8'),
+            shanshui['discovery']['index_urls'][1]: '''<html><head><meta charset="utf-8"></head><body><a href="/Document/Detail/50001">震傳媒民調（二）／55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋</a><a href="/Document/Detail/50002">震傳媒民調（一）／65.7%北市民滿意蔣萬安施政 近兩成五綠營支持者亦肯定</a></body></html>'''.encode('utf-8'),
             pearson['discovery']['index_urls'][0]: '''<html><head><meta charset="utf-8"></head><body><a href="/article/1786278801544">2026《鉅聞民調》高雄市長選舉／選情膠著！柯志恩46.14%緊咬賴瑞隆47.78%</a>
               <a href="/article/9990000000001">2026《鉅聞民調》台北市長選舉／蔣萬安52%對沈伯洋39%　選情進入決勝期</a></body></html>'''.encode('utf-8'),
         }
@@ -98,6 +98,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         self.assertIn('https://www.zmedia.com.tw/Document/Detail/50001', queued)
         self.assertIn('https://www.bigmedia.com.tw/article/9990000000001', queued)
         self.assertNotIn('https://www.zmedia.com.tw/Document/Detail/41952', queued)
+        self.assertNotIn('https://www.zmedia.com.tw/Document/Detail/50002', queued)
         self.assertNotIn('https://www.bigmedia.com.tw/article/1786278801544', queued)
         self.assertEqual(queued['https://www.zmedia.com.tw/Document/Detail/50001']['status'], 'discovered_unverified')
         sources = {s['name']: s for s in out['sources']}
