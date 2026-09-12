@@ -1,14 +1,14 @@
-"""Train a hurdle/regime challenger for non-KMT/DPP local-executive vote.
+"""Train a conservative hurdle/regime challenger for non-KMT/DPP vote.
 
-Stage 1 predicts whether nonmajor vote reaches the serious-challenger regime
-(>=20%). Stage 2 estimates nonmajor mass separately for ordinary and serious
-races. Specifications, ridge penalties and the probability threshold are chosen
-on 2018 only after fitting on 2014; the frozen choice is refit on 2014+2018 and
-reported once on 2022.
+Stage 1 predicts whether nonmajor vote reaches a serious-challenger regime
+(>=20%). Stage 2 is intentionally asymmetric: ordinary races may use a learned
+mass model, while serious races are allowed to fall back to the previous local
+nonmajor share because historical serious-race mass is sparse and unstable.
 
-The 2020 TPP party-list file is joined only for diagnostics of the modern TPP
-component; it is NOT allowed into the 2018 selection features because TPP did
-not yet have a comparable pre-election party-list observation.
+Specification, shrinkage, threshold and point-mass policy are selected on 2018
+after fitting on 2014. The frozen choice is then refit on 2014+2018 and reported
+on 2022. The 2020 TPP party-list file is diagnostic only for the modern TPP
+component and is not allowed into historical model selection.
 """
 from __future__ import annotations
 
@@ -17,12 +17,13 @@ from pathlib import Path
 
 import numpy as np
 
-from model.third_party import fit as fit_mass, predict as predict_mass, metrics as mass_metrics, logit, inv_logit
+from model.third_party import fit as fit_mass, predict as predict_mass, metrics as mass_metrics
 from scripts.validate_release_candidate import build_third_rows, norm_county
 
 SERIOUS = 0.20
 ALPHAS = (0.3, 1.0, 3.0, 10.0, 30.0, 100.0)
 THRESHOLDS = tuple(round(x, 2) for x in np.linspace(0.15, 0.85, 15))
+POLICIES = ("hard", "soft", "serious_carry")
 SPECS = [
     ("H0_prior", ["previous_nonmajor_share"]),
     ("H1_faction", ["previous_nonmajor_share", "council_independent_share",
@@ -62,7 +63,6 @@ def fit_classifier(rows, features, alpha):
     design = np.column_stack([np.ones(len(rows)), z])
     beta = np.zeros(design.shape[1])
     penalty = np.diag([0.0] + [float(alpha)]*len(features))
-    # Penalized weighted logistic IRLS with small-sample clipping.
     for _ in range(80):
         eta = np.clip(design @ beta, -20, 20)
         p = 1/(1+np.exp(-eta))
@@ -106,7 +106,6 @@ def class_metrics(prob, rows, threshold):
 
 def _fit_regime_mass(rows, features, alpha, serious):
     subset = [r for r in rows if (float(r["target_nonmajor_share"]) >= SERIOUS) == serious]
-    # Fail closed to pooled mass model when a historical fold has too few examples.
     source = subset if len(subset) >= 4 else rows
     model = fit_mass(source, features=features, alpha=alpha)
     model["regime"] = "serious" if serious else "ordinary"
@@ -115,15 +114,26 @@ def _fit_regime_mass(rows, features, alpha, serious):
     return model
 
 
-def hurdle_predict(classifier, ordinary, serious, rows, threshold, hard=True):
+def regime_components(classifier, ordinary, serious, rows):
     risk = predict_classifier(classifier, rows)
     po = predict_mass(ordinary, rows)
     ps = predict_mass(serious, rows)
-    if hard:
+    carry = np.asarray([float(r["previous_nonmajor_share"]) for r in rows])
+    return risk, po, ps, carry
+
+
+def policy_predict(risk, po, ps, carry, threshold, policy):
+    if policy == "hard":
         pred = np.where(risk >= threshold, ps, po)
-    else:
+    elif policy == "soft":
         pred = risk*ps + (1-risk)*po
-    return np.clip(pred, 0, 1), risk
+    elif policy == "serious_carry":
+        # The classifier decides the regime; sparse serious-race magnitude is
+        # anchored to the last observed local nonmajor mass instead of extrapolated.
+        pred = np.where(risk >= threshold, carry, po)
+    else:
+        raise ValueError(policy)
+    return np.clip(pred, 0, 1)
 
 
 def select_2018(rows):
@@ -133,24 +143,27 @@ def select_2018(rows):
     for name, features in SPECS:
         for alpha in ALPHAS:
             classifier = fit_classifier(train, features, alpha)
-            prob = predict_classifier(classifier, valid)
             ordinary = _fit_regime_mass(train, features, alpha, False)
             serious = _fit_regime_mass(train, features, alpha, True)
+            risk, po, ps, carry = regime_components(classifier, ordinary, serious, valid)
             for threshold in THRESHOLDS:
-                cm = class_metrics(prob, valid, threshold)
-                for mode in ("hard", "soft"):
-                    pred, _ = hurdle_predict(classifier, ordinary, serious, valid, threshold,
-                                             hard=(mode=="hard"))
+                cm = class_metrics(risk, valid, threshold)
+                for policy in POLICIES:
+                    pred = policy_predict(risk, po, ps, carry, threshold, policy)
                     mm = mass_metrics(pred, valid)
                     grid.append({"name":name,"features":features,"alpha":alpha,
-                                 "threshold":threshold,"mode":mode,
+                                 "threshold":threshold,"policy":policy,
                                  "classification":cm,"mass":mm})
-    # Primary objective is nonmajor MAE. Strong-regime error breaks ties, then
-    # balanced classification, then simpler feature count / stronger shrinkage.
-    selected = min(grid, key=lambda g: (
+    # A release candidate must not win solely by sacrificing detection of serious
+    # races. Require at least 75% serious-race recall when a feasible candidate exists.
+    feasible = [g for g in grid if g["classification"]["recall"] >= .75]
+    pool = feasible if feasible else grid
+    policy_rank = {"serious_carry":0, "hard":1, "soft":2}
+    selected = min(pool, key=lambda g: (
         g["mass"]["mae_pp"],
         g["mass"]["strong_nonmajor_mae_pp"] if g["mass"]["strong_nonmajor_mae_pp"] is not None else 999,
-        -g["classification"]["balanced_accuracy"], len(g["features"]), -g["alpha"]))
+        -g["classification"]["balanced_accuracy"], len(g["features"]), -g["alpha"],
+        policy_rank[g["policy"]]))
     return selected, grid
 
 
@@ -174,7 +187,8 @@ def tpp_diagnostics(root, rows, history):
         x=np.asarray([r["partylist_2020"] for r in out]); y=np.asarray([r["tpp_local_2022"] for r in out])
         corr=float(np.corrcoef(x,y)[0,1]) if np.std(x)>0 and np.std(y)>0 else None
     else: corr=None
-    return {"rows":out,"count":len(out),"correlation":corr}
+    return {"rows":out,"count":len(out),"correlation":corr,
+            "warning":"Only three 2022 TPP local-executive candidates; correlation is descriptive, not a fitted conversion model."}
 
 
 def main():
@@ -187,21 +201,21 @@ def main():
     classifier=fit_classifier(train,features,alpha)
     ordinary=_fit_regime_mass(train,features,alpha,False)
     serious=_fit_regime_mass(train,features,alpha,True)
-    pred22,risk22=hurdle_predict(classifier,ordinary,serious,by_year[2022],threshold,
-                                 hard=selected["mode"]=="hard")
-    carry=np.asarray([r["previous_nonmajor_share"] for r in by_year[2022]])
+    risk22, po22, ps22, carry22_values = regime_components(classifier, ordinary, serious, by_year[2022])
+    pred22=policy_predict(risk22,po22,ps22,carry22_values,threshold,selected["policy"])
     class22=class_metrics(risk22,by_year[2022],threshold)
-    mass22=mass_metrics(pred22,by_year[2022]); carry22=mass_metrics(carry,by_year[2022])
+    mass22=mass_metrics(pred22,by_year[2022]); carry22=mass_metrics(carry22_values,by_year[2022])
     details=[]
-    for r,p,risk,c in zip(by_year[2022],pred22,risk22,carry):
+    for r,p,risk,c,po,ps in zip(by_year[2022],pred22,risk22,carry22_values,po22,ps22):
         details.append({"county":r["county"],"risk":float(risk),"predicted":float(p),
-                        "carry":float(c),"actual":float(r["target_nonmajor_share"]),
+                        "ordinary_model":float(po),"serious_model":float(ps),"carry":float(c),
+                        "actual":float(r["target_nonmajor_share"]),
                         "actual_serious":bool(r["target_nonmajor_share"]>=SERIOUS),
                         "predicted_serious":bool(risk>=threshold),
                         "has_tpp_candidate":bool(r.get("has_tpp_candidate")),
                         "faction_propensity":float(r["faction_propensity"])})
     result={
-        "schema_version":1,"mode":"third_party_faction_hurdle_research",
+        "schema_version":2,"mode":"third_party_faction_hurdle_conservative",
         "release_allowed":False,"serious_threshold":SERIOUS,
         "selection_cycle":2018,"holdout_cycle":2022,"selected":selected,
         "2018_grid_size":len(grid),"2022_classification":class22,
@@ -209,12 +223,13 @@ def main():
         "tpp_2020_to_2022_diagnostics":tpp_diagnostics(root,rows,history),
         "county_details_2022":details,"excluded":excluded,
         "notes":[
-            "2018 alone selects feature specification, alpha, hurdle threshold and hard/soft mixture.",
-            "2022 TPP party-list structure is diagnostic only and is not used to select or fit this historical hurdle model.",
-            "A future 2026 TPP component may use the 2020->2022 relationship only with explicit high uncertainty and county holdout validation."
+            "2018 selects feature specification, alpha, hurdle threshold and the conservative mass policy.",
+            "The serious_carry policy uses the learned classifier only to identify the regime; serious-race magnitude remains anchored to the previous local nonmajor share.",
+            "2020 TPP party-list structure is diagnostic only and is not used to select or fit the historical hurdle model.",
+            "Because this policy family was introduced after diagnosing earlier 2022 nonmajor failures, 2022 is a development holdout, not an architecture-blind final test."
         ]}
     out=root/".cache/candidate-effect-v3";out.mkdir(parents=True,exist_ok=True)
-    (out/"nonmajor-hurdle-v1.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
+    (out/"nonmajor-hurdle-v2.json").write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding="utf-8")
     print(json.dumps({"selected":selected,"2022_classification":class22,"2022_mass":mass22,
                       "2022_carry":carry22,"tpp":result["tpp_2020_to_2022_diagnostics"]},
                      ensure_ascii=False,indent=2))
