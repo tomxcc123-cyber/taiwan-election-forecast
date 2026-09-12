@@ -1,0 +1,80 @@
+name: HB-TLEF v4.1 release tests
+
+on:
+  pull_request:
+    paths:
+      - 'model/fragmentation_live.py'
+      - 'model/v41_product.py'
+      - 'model/releases/v4.1-public-beta.2.json'
+      - 'tests/test_fragmentation_live.py'
+      - 'scripts/validate_fragmentation_poll_gate*.py'
+      - 'scripts/audit_v41_public_beta_release.py'
+      - 'scripts/build.py'
+      - 'site/index.html'
+      - 'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md'
+      - '.github/workflows/v41-release-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - name: Run full offline unit suite
+        run: python -m unittest discover -s tests -v
+      - name: Reproduce fragmentation v1
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate.py
+      - name: Reproduce fragmentation v2
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v2.py
+      - name: Reproduce fragmentation v3
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v3.py
+      - name: Reproduce selective RC3 reference
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_release_candidate_v3.py
+      - name: Audit v4.1 release manifest
+        env:
+          PYTHONPATH: .
+        run: python scripts/audit_v41_public_beta_release.py
+      - name: Build exact Pages artifact
+        env:
+          PYTHONPATH: .
+        run: python scripts/build.py
+      - name: Validate browser model artifacts
+        run: |
+          node tests/model.mjs
+          node tests/candidate-engine.mjs
+          node tests/evidence-ui.mjs
+          node tests/scenario-studio.mjs
+      - name: Assert release files are public
+        run: |
+          test -f dist/v4.1-public-beta.2.json
+          test -f dist/MODEL_CARD_V4_1_PUBLIC_BETA.md
+          grep -q 'HB-TLEF v4.1 Public Beta 2' dist/index.html
+          python - <<'PY'
+          import json
+          data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
+          assert data['model_id']=='HB-TLEF-v4.1-public-beta.2'
+          assert data['release']['public_beta'] is True
+          assert data['release']['stable'] is False
+          assert 'fragmentation_gate' in data
+          print(data['model_id'], data['fragmentation_gate']['triggered_count'])
+          PY

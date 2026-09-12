@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "model_id": "HB-TLEF-v4.1-public-beta.2",
+  "display_name": "HB-TLEF v4.1 Public Beta 2",
+  "release_status": "public_beta",
+  "deployed": true,
+  "frozen_on": "2026-09-12",
+  "deployed_on": "2026-09-12",
+  "deployment_scope": {
+    "public_research_release": true,
+    "live_2026_forecast_core": true,
+    "note": "v4.1 keeps the frozen v4.0 selective structural center and joint polling model, and adds a narrow strong-fragmentation full-field TVBS poll recenter gate."
+  },
+  "scope": "Taiwan county/city executive election candidate vote shares and winner probabilities",
+  "architecture": {
+    "partisan_baseline": "Partisan Baseline 4.0A weighted regularized KMT-DPP structural model",
+    "two_party_stack": {
+      "space": "logit",
+      "r4_weight": 0.9,
+      "legacy_weight": 0.1,
+      "selection_cycle": 2018
+    },
+    "nonmajor_mass": {
+      "model": "T3_roster_type",
+      "alpha": 0.3,
+      "features": [
+        "previous_nonmajor_share",
+        "council_independent_share",
+        "town_independent_share",
+        "town_available",
+        "faction_propensity",
+        "log_nonmajor_candidate_count",
+        "has_tpp_candidate",
+        "log_independent_candidate_count",
+        "log_minor_party_candidate_count"
+      ],
+      "blend_space": "share",
+      "model_weight": 0.7,
+      "carry_weight": 0.3,
+      "selection_cycle": 2018
+    },
+    "structural_reliability_gate": {
+      "score": "tv_disagreement + nonmajor_jump",
+      "threshold": 0.075,
+      "inside_envelope": "use compositional structural/candidate correction",
+      "outside_envelope": "fallback to direct candidate fundamentals",
+      "selection_cycle": 2018
+    },
+    "fragmentation_poll_gate": {
+      "status": "public_beta",
+      "source_scope": "already-accepted full-field TVBS polls only",
+      "strong_nonmajor_threshold": 0.4,
+      "trigger_measure": "non-KMT/DPP share among decided named-candidate support",
+      "action": "recenter the posterior draw cloud to the full named-candidate poll vector in centered-log-ratio space while preserving draw shape",
+      "partial_ballot_behavior": "do not hard-trigger; retain existing joint Gaussian polling likelihood",
+      "other_pollster_behavior": "do not hard-trigger; retain existing joint Gaussian polling likelihood",
+      "parameter_origin": "frozen from 2018-selected / 2022-diagnostic fragmentation challenger",
+      "confirmatory_holdout": false
+    },
+    "winner_probability": {
+      "method": "joint Monte Carlo candidate-share simulation after structural and polling updates",
+      "simulations": 2000,
+      "calibrated": false
+    }
+  },
+  "historical_validation": {
+    "coverage": {
+      "2014": 22,
+      "2018": 22,
+      "2022": 22,
+      "2014_predecessor_years": [2009, 2010]
+    },
+    "confirmatory_reference_2022": {
+      "model": "v4.0 selective RC3 before fragmentation gate",
+      "race_balanced_mae_pp": 5.980760687770487,
+      "winner_correct": 14,
+      "winner_total": 22,
+      "winner_accuracy": 0.6363636363636364,
+      "margin_mae_pp": 11.276881146986554,
+      "brier": 0.5006833608711262,
+      "confirmatory_holdout": true
+    },
+    "fragmentation_development_2022": {
+      "model": "fragmentation-poll-gate-v3 exploratory challenger",
+      "candidate_mae_pp": 4.849701209725154,
+      "race_balanced_mae_pp": 4.979098557746527,
+      "winner_correct": 16,
+      "winner_total": 22,
+      "winner_accuracy": 0.7272727272727273,
+      "margin_mae_pp": 10.436646547916881,
+      "confirmatory_holdout": false,
+      "reason_not_confirmatory": "The hard-fragmentation architecture was proposed after reviewing earlier 2022 challenger errors."
+    },
+    "legacy_2022_comparator": {
+      "race_balanced_mae_pp": 6.084627934963424,
+      "winner_correct": 14,
+      "winner_total": 22,
+      "winner_accuracy": 0.6363636363636364,
+      "margin_mae_pp": 11.685929240485791
+    },
+    "fragmentation_focus_cases": {
+      "新竹市": "v3 corrected the winner from 沈慧虹 to 高虹安 when the eligible full-field poll showed strong non-major support",
+      "苗栗縣": "v3 corrected the winner from 謝福弘 to 鍾東錦 after an explicit audited glyph repair 謝褔弘→謝福弘 admitted the TVBS wave as a sensitivity record"
+    }
+  },
+  "release_policy": {
+    "public_beta_allowed": true,
+    "stable_allowed": false,
+    "stable_blockers": [
+      "fragmentation gate architecture was proposed after inspection of 2022 challenger errors, so the 4.979pp development result is not a pristine confirmatory holdout",
+      "winner probabilities remain uncalibrated across multiple independent election cycles",
+      "2009/2010 source rows are web-transcribed and cross-checked but raw workbook hash verification is incomplete",
+      "hard fragmentation override is historically validated only with TVBS full-field waves and is intentionally not generalized to all pollsters or partial ballots"
+    ]
+  },
+  "publication_rules": {
+    "label": "Public Beta",
+    "must_disclose_uncalibrated_probability": true,
+    "must_disclose_fragmentation_gate": true,
+    "must_distinguish_confirmatory_and_development_validation": true,
+    "must_publish_model_card": true,
+    "must_publish_version_and_generated_at": true,
+    "must_not_call_stable": true
+  },
+  "data_policy": {
+    "baseline_excludes_current_polls": true,
+    "baseline_excludes_2026_outcomes": true,
+    "polling_is_downstream": true,
+    "fragmentation_hard_gate_uses_only_already_accepted_live_poll_records": true,
+    "blue_white_transfer_is_scenario_layer": true,
+    "tpp_and_independent_are_not_collapsed_in_interpretation": true
+  }
+}

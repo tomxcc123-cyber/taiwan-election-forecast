@@ -13,10 +13,14 @@ on:
       - 'scripts/validate_release_candidate_v2.py'
       - 'scripts/validate_release_candidate_v3.py'
       - 'scripts/validate_extended_candidate_cycles.py'
+      - 'scripts/validate_fragmentation_poll_gate.py'
+      - 'scripts/validate_fragmentation_poll_gate_v2.py'
+      - 'scripts/validate_fragmentation_poll_gate_v3.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'data/candidate-history-2009-2010.json'
+      - 'data/historical-polls-tvbs.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
@@ -73,6 +77,18 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_extended_candidate_cycles.py
+      - name: Validate poll-driven fragmentation gate
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate.py
+      - name: Validate hard fragmentation poll gate challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v2.py
+      - name: Validate repaired-roster stacked-prior fragmentation challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_fragmentation_poll_gate_v3.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .

@@ -94,7 +94,7 @@ def build(now=None):
     model_data['publication_pause_end'] = config['publication_pause_end']
     (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
-    from model.v4_product import build_product
+    from model.v41_product import build_product
     product = build_product(ROOT, now, feed)
     product['publication_pause_start'] = config['publication_pause_start']
     product['publication_pause_end'] = config['publication_pause_end']
@@ -106,20 +106,22 @@ def build(now=None):
         'data_hash':product['training_data_hash'], 'audit':product['training']['audit'],
         'backtest':product['validation']['fundamentals'], 'training':product['training'],
         'v4_validation':product['v4_validation'],
+        'fragmentation_gate':product['fragmentation_gate'],
         'surveys':json.loads((ROOT/'data/survey-source-audit.json').read_text(encoding='utf-8'))}
     (dist / 'candidate-validation.json').write_text(json.dumps(current_research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     shutil.copy2(ROOT/'data/candidate-history-cec.json', dist/'candidate-history-cec.json')
     shutil.copy2(ROOT/'data/historical-polls-tvbs.json', dist/'historical-polls-tvbs.json')
     shutil.copy2(ROOT/'data/forecast-history.json', dist/'forecast-history.json')
-    shutil.copy2(ROOT/'model/releases/v4-public-beta.1.json', dist/'v4-public-beta.1.json')
-    shutil.copy2(ROOT/'docs/MODEL_CARD_V4_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_PUBLIC_BETA.md')
+    shutil.copy2(ROOT/'model/releases/v4.1-public-beta.2.json', dist/'v4.1-public-beta.2.json')
+    shutil.copy2(ROOT/'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_1_PUBLIC_BETA.md')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')
     shutil.copy2(ROOT / 'THIRD_PARTY.md', dist / 'THIRD_PARTY.md')
     print('Built dist/index.html:', product['model_version'], ';', len(feed['records']),
           'archived questions;', product['diagnostics']['included_reports'], 'candidate-model inputs;',
-          product['diagnostics']['structural_mode_counts'])
+          product['diagnostics']['structural_mode_counts'], 'fragmentation gates;',
+          product['fragmentation_gate']['triggered_count'])
 
 
 if __name__ == '__main__':

@@ -6,28 +6,28 @@
   <meta name="description" content="2026 台灣縣市長選舉觀測：互動地圖、原始民調、情境推估與可重現的模型驗證。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <meta name="ui-build" content="2026-09-11-v4.3">
+  <meta name="ui-build" content="2026-09-12-v4.1-release">
   <title>台灣選舉觀測 | 2026 縣市長選舉</title>
-  <link rel="stylesheet" href="styles.css?v=20260911-43">
-  <link rel="stylesheet" href="motion.css?v=20260911-43">
-  <link rel="stylesheet" href="motion-v2.css?v=20260911-43">
-  <link rel="stylesheet" href="motion-v3.css?v=20260911-43">
-  <link rel="stylesheet" href="motion-v4.css?v=20260911-43">
+  <link rel="stylesheet" href="styles.css?v=20260912-41">
+  <link rel="stylesheet" href="motion.css?v=20260912-41">
+  <link rel="stylesheet" href="motion-v2.css?v=20260912-41">
+  <link rel="stylesheet" href="motion-v3.css?v=20260912-41">
+  <link rel="stylesheet" href="motion-v4.css?v=20260912-41">
   <style>
     .release-strip{margin:0;padding:12px 24px;background:#eef5ff;border-bottom:1px solid #c9daf4;color:#17365d;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}.release-strip .release-note{margin-left:.55rem;color:#52657d}@media(max-width:720px){.release-strip{padding:11px 16px}.release-strip .release-note{display:block;margin:.25rem 0 0}}
   </style>
   <script defer src="vendor/d3.min.js"></script>
   <script defer src="vendor/topojson.min.js"></script>
-  <script type="module" src="candidate-app.mjs?v=20260911-43"></script>
-  <script type="module" src="motion.mjs?v=20260911-43"></script>
-  <script type="module" src="motion-v2.mjs?v=20260911-43"></script>
-  <script type="module" src="motion-v3.mjs?v=20260911-43"></script>
-  <script type="module" src="motion-v4.mjs?v=20260911-43"></script>
+  <script type="module" src="candidate-app.mjs?v=20260912-41"></script>
+  <script type="module" src="motion.mjs?v=20260912-41"></script>
+  <script type="module" src="motion-v2.mjs?v=20260912-41"></script>
+  <script type="module" src="motion-v3.mjs?v=20260912-41"></script>
+  <script type="module" src="motion-v4.mjs?v=20260912-41"></script>
 </head>
 <body>
   <a class="skip" href="#main">跳至主要內容</a>
   <header class="topbar">
-    <a class="brand" href="?view=overview">台灣選舉觀測<span>2026 · HB-TLEF v4 Public Beta</span></a>
+    <a class="brand" href="?view=overview">台灣選舉觀測<span>2026 · HB-TLEF v4.1 Public Beta 2</span></a>
     <nav aria-label="主要導覽">
       <a href="?view=overview" data-view="overview">總覽</a>
       <a href="?view=counties" data-view="counties">縣市</a>
@@ -41,18 +41,18 @@
     <button id="share">分享情境</button>
   </header>
   <div class="release-strip" role="note">
-    <strong>HB-TLEF v4.0 Public Beta 1 已接管 2026 線上預測。</strong>
-    <a href="MODEL_CARD_V4_PUBLIC_BETA.md" target="_blank" rel="noopener">模型卡</a>
-    · <a href="v4-public-beta.1.json" target="_blank" rel="noopener">Release manifest</a>
-    <span class="release-note">結構中心採 v4；民調與全台／區域相關不確定性沿用聯合模擬層。地方組織特徵目前使用公開標示的橋接快照，因此版本仍為 Public Beta，非 Stable。</span>
+    <strong>HB-TLEF v4.1 Public Beta 2 已正式接管 2026 線上預測。</strong>
+    <a href="MODEL_CARD_V4_1_PUBLIC_BETA.md" target="_blank" rel="noopener">模型卡</a>
+    · <a href="v4.1-public-beta.2.json" target="_blank" rel="noopener">Release manifest</a>
+    <span class="release-note">本版新增強第三方／無黨籍 Fragmentation Gate；僅對已審計、完整候選名單的強碎片化 TVBS 波次啟用。2022 的 4.979pp／16-22 屬開發診斷，不作為全新確認性 holdout；版本仍為 Public Beta，非 Stable。</span>
   </div>
   <main id="main" tabindex="-1">
-    <div id="loading" role="status">正在讀取 HB-TLEF v4 模型與民調資料…</div>
+    <div id="loading" role="status">正在讀取 HB-TLEF v4.1 模型與民調資料…</div>
     <div id="page"></div>
   </main>
   <footer class="footer">
     <span>獨立研究專案，非中選會官方網站。</span>
-    <span><a href="https://db.cec.gov.tw/ElecTable" target="_blank" rel="noopener">中選會資料庫</a> · <a href="MODEL_CARD_V4_PUBLIC_BETA.md" target="_blank" rel="noopener">HB-TLEF v4 Public Beta</a> · <a href="legacy.html">舊版進階工作台</a> · <a href="THIRD_PARTY.md">資料與授權</a></span>
+    <span><a href="https://db.cec.gov.tw/ElecTable" target="_blank" rel="noopener">中選會資料庫</a> · <a href="MODEL_CARD_V4_1_PUBLIC_BETA.md" target="_blank" rel="noopener">HB-TLEF v4.1 Public Beta 2</a> · <a href="legacy.html">舊版進階工作台</a> · <a href="THIRD_PARTY.md">資料與授權</a></span>
   </footer>
   <div id="notice" role="status" aria-live="polite"></div>
   <dialog id="shareDialog"><h2>分享目前情境</h2><p>連結包含假設與縣市設定，不包含個人資料。相同資料版本可重現結果；新版資料可能改變結果。</p><label>情境連結<input id="shareUrl" readonly></label><div class="actions"><button id="copyLink">複製連結</button><button id="closeShare">關閉</button></div></dialog>
