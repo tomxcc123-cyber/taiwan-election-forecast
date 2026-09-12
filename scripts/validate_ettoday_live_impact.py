@@ -20,6 +20,7 @@ from scripts.update_polls import update
 
 ROOT = Path(__file__).resolve().parents[1]
 AS_OF = "2026-09-12T06:00:00+00:00"
+OUT = ROOT / ".cache/candidate-effect-v3/ettoday-live-impact.json"
 
 
 def load(path: Path):
@@ -100,7 +101,9 @@ def main():
         "accepted_ettoday_poll_ids": [a["id"] for a in accepted],
         "kaohsiung": rows,
     }
-    print(json.dumps(result, ensure_ascii=False, indent=2))
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
+    print(json.dumps({**result, "artifact": str(OUT)}, ensure_ascii=False, indent=2))
 
     if latest["date"] != "2026-08-30" or latest["sample_n"] != 1283 or not latest["model_eligible"]:
         raise SystemExit("Latest reviewed ETtoday wave was not classified as expected")
