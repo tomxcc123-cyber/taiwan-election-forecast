@@ -17,6 +17,7 @@ on:
       - 'scripts/validate_fragmentation_poll_gate_v2.py'
       - 'scripts/validate_fragmentation_poll_gate_v3.py'
       - 'scripts/validate_integrated_prior_v5.py'
+      - 'scripts/validate_integrated_prior_v5_1.py'
       - 'scripts/audit_public_beta_release.py'
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
@@ -94,6 +95,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_integrated_prior_v5.py
+      - name: Validate disciplined integrated prior v5.1
+        env:
+          PYTHONPATH: .
+        run: python scripts/validate_integrated_prior_v5_1.py
       - name: Audit frozen v4 Public Beta release
         env:
           PYTHONPATH: .
