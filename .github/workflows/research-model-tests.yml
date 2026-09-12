@@ -8,6 +8,9 @@ on:
       - 'scripts/run_candidate_effect_research.py'
       - 'scripts/compare_candidate_models.py'
       - 'scripts/stack_candidate_models.py'
+      - 'scripts/import_tpp_partylist.py'
+      - 'scripts/train_nonmajor_regimes.py'
+      - 'scripts/train_nonmajor_regimes_v3.py'
       - 'scripts/validate_earlier_partisan_cycle.py'
       - 'scripts/validate_release_candidate.py'
       - 'scripts/validate_release_candidate_v2.py'
@@ -17,6 +20,8 @@ on:
       - 'data/baseline/**'
       - 'data/candidate-history-cec.json'
       - 'data/candidate-history-2009-2010.json'
+      - 'data/incumbency-overrides.json'
+      - 'data/tpp-partylist-2020.json'
       - 'docs/PARTISAN_BASELINE_4A_BACKTEST.md'
       - 'docs/CANDIDATE_EFFECT_3.md'
       - 'docs/ELECTION_ENVIRONMENT_1.md'
@@ -57,6 +62,18 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/stack_candidate_models.py
+      - name: Import audited 2020 TPP party-list structure
+        env:
+          PYTHONPATH: .
+        run: python scripts/import_tpp_partylist.py
+      - name: Train serious-nonmajor hurdle challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/train_nonmajor_regimes.py
+      - name: Train regime-balanced nonmajor challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/train_nonmajor_regimes_v3.py
       - name: Validate full compositional release candidate v1
         env:
           PYTHONPATH: .

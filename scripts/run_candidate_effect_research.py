@@ -1,4 +1,4 @@
-"""Build and evaluate the frozen Candidate Effect 3.0 research panel.
+"""Build and evaluate the frozen Candidate Effect 3.x research panel.
 
 This script is intentionally offline: it reads repository historical data and a
 precomputed R4 structural-baseline artifact, writes only .cache research files,
@@ -11,36 +11,49 @@ from pathlib import Path
 
 from model.candidate_effect_panel import build_panel
 from model.candidate_effect_pipeline import run
+from model.incumbency import build_incumbency_map
 
 
 def main():
     root = Path(__file__).resolve().parents[1]
     frozen_path = root / "data/baseline/processed/candidate-effect-frozen-baseline-panel.json"
     history_path = root / "data/candidate-history-cec.json"
+    incumbency_path = root / "data/incumbency-overrides.json"
     outdir = root / ".cache/candidate-effect-v3"
     outdir.mkdir(parents=True, exist_ok=True)
 
     frozen = json.loads(frozen_path.read_text(encoding="utf-8"))
     history_payload = json.loads(history_path.read_text(encoding="utf-8"))
-    panel = build_panel(frozen, history_payload["races"])
+    incumbency_payload = json.loads(incumbency_path.read_text(encoding="utf-8"))
+    if incumbency_payload.get("schema_version") != 1:
+        raise ValueError("incumbency-overrides schema_version=1 required")
+
+    incumbency_map, incumbency_audit = build_incumbency_map(
+        history_payload["races"], overrides=incumbency_payload.get("overrides", {}))
+    panel = build_panel(frozen, history_payload["races"], verified_incumbents=incumbency_map)
     panel["candidate_history_source"] = {
         "path": "data/candidate-history-cec.json",
         "data_hash": history_payload.get("data_hash"),
     }
+    panel["incumbency_source"] = {
+        "path": "data/incumbency-overrides.json",
+        "overrides": len(incumbency_payload.get("overrides", {})),
+        "inferred_or_verified_races": len(incumbency_map),
+        "audit": incumbency_audit,
+    }
 
     panel_path = outdir / "candidate-effect-panel.json"
-    panel_path.write_text(json.dumps(panel, ensure_ascii=False, indent=2, allow_nan=False),
-                          encoding="utf-8")
+    panel_path.write_text(json.dumps(panel, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
 
     artifact = run(panel)
     artifact_path = outdir / "candidate-effect-v3-artifact.json"
-    artifact_path.write_text(json.dumps(artifact, ensure_ascii=False, indent=2, allow_nan=False),
-                             encoding="utf-8")
+    artifact_path.write_text(json.dumps(artifact, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
 
     summary = {
         "release_allowed": False,
         "panel_rows": len(panel["rows"]),
         "excluded_rows": sum(not x["included"] for x in panel["audit"]),
+        "incumbency_races": len(incumbency_map),
         "reference_specification": artifact["reference_specification"],
         "ablation": [
             {
