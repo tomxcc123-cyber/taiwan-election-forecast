@@ -31,7 +31,7 @@ assert.equal(stats.reviewQueue,1);
 assert.equal(stats.latest,'2026-08-30');
 const html=observatoryHTML(feed,model);
 assert.match(html,/民調來源觀測站/);
-assert.match(html,/pollster · ettoday/);
+assert.match(html,/pollster_id · ettoday/);
 assert.match(html,/封閉式網路樣本/);
 assert.match(html,/人工核驗種子/);
 assert.match(html,/方法已核對／回應類別不完整/);
