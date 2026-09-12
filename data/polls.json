@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-12T11:01:03+00:00",
+  "checked_at": "2026-09-12T11:10:49+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-12T11:01:03+00:00",
-  "updated_at": "2026-09-12T07:40:00+00:00",
+  "index_checked_at": "2026-09-12T11:10:49+00:00",
+  "updated_at": "2026-09-12T11:05:00+00:00",
   "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
@@ -47,19 +47,19 @@
     },
     {
       "name": "震傳媒／山水民調",
-      "url": "https://www.zmedia.com.tw/Document/PoolDetail/41952",
+      "url": "https://www.zmedia.com.tw/Document/PoolDetail/42781",
       "discovered": 0,
       "validated_reports": 0,
-      "reviewed_reports": 2,
+      "reviewed_reports": 3,
       "status": "reviewed_seed_only",
       "method_class": "landline_cati",
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-12T11:01:16+00:00",
+      "auto_discovery_checked_at": "2026-09-12T11:11:13+00:00",
       "auto_discovered": 2,
-      "auto_known": 1,
-      "auto_pending": 1,
+      "auto_known": 2,
+      "auto_pending": 0,
       "registry_pollster_id": "shanshui"
     },
     {
@@ -73,10 +73,10 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-12T11:01:16+00:00",
+      "auto_discovery_checked_at": "2026-09-12T11:11:13+00:00",
       "auto_discovered": 2,
-      "auto_known": 1,
-      "auto_pending": 1,
+      "auto_known": 2,
+      "auto_pending": 0,
       "registry_pollster_id": "pearson-data"
     }
   ],
@@ -94,32 +94,7 @@
       "url": "https://udn.com/vote2026/index"
     }
   ],
-  "discovery_queue": [
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震傳媒民調(二)/55.2%北市民支持蔣萬安連任 45.3%綠支持者不看好沈伯洋 震傳媒今(24)日公布最新議題民調。年底即將舉行台北市長選舉,面對爭取連任的國民黨籍市長蔣萬安與代表民進黨籍挑戰的沈伯洋,台北市民最希望哪一位擔任市長?民調顯示,55.2%台北市民支持蔣萬安,27.5%支持沈伯洋,兩者差距達到27.7%。至於在兩參選人的看好度部分,70.9%台",
-      "county": "台北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/42781",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-09-12T11:01:16+00:00",
-      "last_seen_at": "2026-09-12T11:01:16+00:00"
-    },
-    {
-      "pollster_id": "pearson-data",
-      "source": "鉅聞天下／皮爾森數據",
-      "publisher": "鉅聞天下新聞網",
-      "title": "2026《鉅聞民調》新北市長選舉/都是「北漂」人!傳統綠營優勢區三重、新莊、蘆洲 李四川、蘇巧慧呈現膠著",
-      "county": "新北市",
-      "url": "https://www.bigmedia.com.tw/article/1784791841053",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-09-12T11:01:16+00:00",
-      "last_seen_at": "2026-09-12T11:01:16+00:00"
-    }
-  ],
+  "discovery_queue": [],
   "records": [
     {
       "id": "fb01d4dfead1ac092347695d",
@@ -218,7 +193,7 @@
       "nonvote": 0.0,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
       "model_eligible": true,
       "exclusion_reason": null
     },
@@ -268,7 +243,7 @@
       "nonvote": 1.84,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -318,7 +293,7 @@
       "nonvote": 0.0,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
       "model_eligible": true,
       "exclusion_reason": null
     },
@@ -331,6 +306,7 @@
       "publisher": "鉅聞天下新聞網",
       "source_url": "https://www.bigmedia.com.tw/article/1784338752250",
       "verification_urls": [
+        "https://www.bigmedia.com.tw/article/1784791841053",
         "https://newtalk.tw/news/view/2026-07-20/1048180",
         "https://news.tvbs.com.tw/politics/3264552"
       ],
@@ -368,9 +344,60 @@
       "nonvote": 1.7,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "ffa28c71082b5624418a6ba5",
+      "county": "台北市",
+      "source": "震傳媒／山水民調",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/42781",
+      "verification_urls": [
+        "https://www.zmedia.com.tw/Document/Detail/42781",
+        "https://tw.news.yahoo.com/%E9%9C%87%E5%82%B3%E5%AA%92%E6%B0%91%E8%AA%BF-%E6%B2%88%E4%BC%AF%E6%B4%8B%E8%A2%AB%E6%B5%B7%E6%94%BE27%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-%E7%B6%A0%E7%87%9F%E6%94%AF%E6%8C%81%E8%80%85%E5%A3%AB%E6%B0%A3%E4%BD%8E-%E7%9C%8B%E5%A5%BD%E8%94%A3%E8%90%AC%E5%AE%89%E6%9C%83%E7%95%B6%E9%81%B8%E7%9A%84%E4%BA%BA%E6%9B%B4%E5%A4%9A-082036334.html",
+        "https://news.tvbs.com.tw/politics/3239410"
+      ],
+      "report_title": "震傳媒／山水民調：2026台北市長選舉支持度（6月波次）",
+      "field_start": "2026-06-21",
+      "date": "2026-06-22",
+      "published_at": "2026-06-24",
+      "sample_n": 1074,
+      "population": "設籍台北市、年滿20歲民眾",
+      "population_size": null,
+      "method": "CATI電話訪問；住宅電話為抽樣架構；系統抽樣加尾2碼隨機；依地區、性別、年齡、教育程度加權",
+      "method_class": "landline_cati",
+      "sampling_frame": "台北市住宅電話",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 2.99,
+      "confidence_level": 95.0,
+      "funding": "震傳媒",
+      "supervisor": null,
+      "sample_note": "震傳媒原始頁核對候選人支持度與方法；跨來源公開報導明確列出17.4%無明確意見；四捨五入總和100.1%",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 55.2,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 27.5,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 17.4,
+      "nonvote": 0.0,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
     },
     {
       "id": "fb5afa8077f274de0e8079cf",
@@ -505,7 +532,7 @@
       "nonvote": 0.0,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
-      "retrieved_at": "2026-09-12T07:40:00+00:00",
+      "retrieved_at": "2026-09-12T11:05:00+00:00",
       "model_eligible": false,
       "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
     },
@@ -1202,6 +1229,12 @@
   },
   "history": [
     {
+      "date": "2026-09-12T11:10:49+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/42781",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
       "date": "2026-09-12T11:01:16+00:00",
       "county": "新北市",
       "source_url": "https://www.bigmedia.com.tw/article/1784791841053",
@@ -1437,7 +1470,7 @@
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-09-12T11:01:16+00:00",
+  "discovery_checked_at": "2026-09-12T11:11:13+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-09-12T10:58:00+00:00",
