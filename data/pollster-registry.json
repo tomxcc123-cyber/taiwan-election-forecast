@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-12T10:20:00+00:00",
+  "updated_at": "2026-09-12T10:25:00+00:00",
   "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
   "pollsters": [
     {
@@ -26,7 +26,7 @@
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "managed_by_update_polls",
-        "index_url": "https://my-formosa.com/DOC_221784.htm"
+        "index_url": "https://www.my-formosa.com.tw/Topical/formosapollster"
       }
     },
     {
