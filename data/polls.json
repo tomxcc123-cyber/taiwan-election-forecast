@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-12T10:37:17+00:00",
+  "checked_at": "2026-09-12T10:44:38+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-12T10:37:17+00:00",
+  "index_checked_at": "2026-09-12T10:44:38+00:00",
   "updated_at": "2026-09-12T07:40:00+00:00",
   "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-12T10:37:28+00:00",
+      "auto_discovery_checked_at": "2026-09-12T10:44:53+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
@@ -73,7 +73,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-12T10:37:28+00:00",
+      "auto_discovery_checked_at": "2026-09-12T10:44:53+00:00",
       "auto_discovered": 2,
       "auto_known": 1,
       "auto_pending": 1,
@@ -104,8 +104,8 @@
       "url": "https://www.bigmedia.com.tw/article/1784791841053",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-09-12T10:37:28+00:00",
-      "last_seen_at": "2026-09-12T10:37:28+00:00"
+      "discovered_at": "2026-09-12T10:44:53+00:00",
+      "last_seen_at": "2026-09-12T10:44:53+00:00"
     }
   ],
   "records": [
@@ -1188,6 +1188,12 @@
   },
   "history": [
     {
+      "date": "2026-09-12T10:44:53+00:00",
+      "county": "新北市",
+      "source_url": "https://www.bigmedia.com.tw/article/1784791841053",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
       "date": "2026-09-12T10:37:28+00:00",
       "county": "新北市",
       "source_url": "https://www.bigmedia.com.tw/article/1784791841053",
@@ -1339,7 +1345,7 @@
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-09-12T10:37:28+00:00",
+  "discovery_checked_at": "2026-09-12T10:44:53+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-09-12T10:25:00+00:00",
