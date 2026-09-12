@@ -65,7 +65,7 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
 
     def test_every_reviewed_seed_has_complete_response_mass(self):
         rows = [reviewed_record(e, self.reviewed["reviewed_at"], date(2026, 9, 12)) for e in self.reviewed["reports"]]
-        self.assertEqual(len(rows), 5)
+        self.assertEqual(len(rows), 6)
         for row in rows:
             total = sum(c["support"] for c in row["candidates"]) + row["undecided"] + row["nonvote"]
             self.assertLessEqual(abs(total - 100.0), 1.0, row)
@@ -88,15 +88,28 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(model_rows[0]["dpp"], 36.1)
         self.assertEqual(model_rows[0]["undecided"], 21.1)
 
+    def test_taipei_shanshui_is_complete_but_pre_cutoff_for_legacy(self):
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        taipei = [r for r in result["records"] if r.get("pollster_id") == "shanshui" and r["county"] == "台北市"]
+        self.assertEqual(len(taipei), 1)
+        row = taipei[0]
+        self.assertEqual(row["date"], "2026-06-22")
+        self.assertEqual(row["sample_n"], 1074)
+        self.assertEqual([c["name"] for c in row["candidates"]], ["蔣萬安", "沈伯洋"])
+        self.assertAlmostEqual(sum(c["support"] for c in row["candidates"]) + row["undecided"] + row["nonvote"], 100.1, places=6)
+        self.assertFalse(row["model_eligible"])
+        self.assertIn("基線日期以前", row["exclusion_reason"])
+        self.assertFalse(any(p.get("id") == row["id"] for p in result["polls"]))
+
     def test_shanshui_and_pearson_source_counts_are_aggregated(self):
         result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
         shanshui = [r for r in result["records"] if r.get("pollster_id") == "shanshui"]
         pearson = [r for r in result["records"] if r.get("pollster_id") == "pearson-data"]
-        self.assertEqual(len(shanshui), 2)
+        self.assertEqual(len(shanshui), 3)
         self.assertEqual(len(pearson), 2)
         sh_source = next(s for s in result["sources"] if s["name"] == "震傳媒／山水民調")
         pe_source = next(s for s in result["sources"] if s["name"] == "鉅聞天下／皮爾森數據")
-        self.assertEqual(sh_source["reviewed_reports"], 2)
+        self.assertEqual(sh_source["reviewed_reports"], 3)
         self.assertEqual(pe_source["reviewed_reports"], 2)
         self.assertEqual(sh_source["method_class"], "landline_cati")
         self.assertEqual(pe_source["method_class"], "online_dmp_panel")
@@ -108,6 +121,9 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertTrue(all(r["nonvote"] > 0 for r in pearson))
         self.assertTrue(all(r["model_eligible"] is False for r in pearson))
         self.assertFalse(any(r.get("pollster_id") == "pearson-data" for r in result["polls"]))
+        nt = next(r for r in pearson if r["county"] == "新北市")
+        self.assertIn("https://www.bigmedia.com.tw/article/1784791841053", nt["verification_urls"])
+        self.assertEqual(len([r for r in pearson if r["county"] == "新北市"]), 1)
 
     def test_integrated_source_is_not_left_in_source_review(self):
         result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
@@ -146,7 +162,7 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(once["source_review"], twice["source_review"])
         for source, expected in {
             "新台灣國策智庫／趨勢民調": 1,
-            "震傳媒／山水民調": 2,
+            "震傳媒／山水民調": 3,
             "鉅聞天下／皮爾森數據": 2,
         }.items():
             rows = [s for s in twice["sources"] if s["name"] == source]
