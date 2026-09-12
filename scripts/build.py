@@ -94,7 +94,7 @@ def build(now=None):
     model_data['publication_pause_end'] = config['publication_pause_end']
     (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
-    from model.v41_product import build_product
+    from model.v5_product import build_product
     product = build_product(ROOT, now, feed)
     product['publication_pause_start'] = config['publication_pause_start']
     product['publication_pause_end'] = config['publication_pause_end']
@@ -105,13 +105,17 @@ def build(now=None):
         'historical_polling':{**product['historical_polling'], 'records':json.loads((ROOT/'data/historical-polls-tvbs.json').read_text(encoding='utf-8'))['records']},
         'data_hash':product['training_data_hash'], 'audit':product['training']['audit'],
         'backtest':product['validation']['fundamentals'], 'training':product['training'],
-        'v4_validation':product['v4_validation'],
+        'v4_validation':product.get('v4_validation'),
+        'v5_validation':product['v5_validation'],
         'fragmentation_gate':product['fragmentation_gate'],
         'surveys':json.loads((ROOT/'data/survey-source-audit.json').read_text(encoding='utf-8'))}
     (dist / 'candidate-validation.json').write_text(json.dumps(current_research, ensure_ascii=False, allow_nan=False), encoding='utf-8')
     shutil.copy2(ROOT/'data/candidate-history-cec.json', dist/'candidate-history-cec.json')
     shutil.copy2(ROOT/'data/historical-polls-tvbs.json', dist/'historical-polls-tvbs.json')
     shutil.copy2(ROOT/'data/forecast-history.json', dist/'forecast-history.json')
+    shutil.copy2(ROOT/'model/releases/v5.0-public-beta.1.json', dist/'v5.0-public-beta.1.json')
+    shutil.copy2(ROOT/'docs/MODEL_CARD_V5_PUBLIC_BETA.md', dist/'MODEL_CARD_V5_PUBLIC_BETA.md')
+    # Preserve the previous public-beta governance artifacts for version comparison.
     shutil.copy2(ROOT/'model/releases/v4.1-public-beta.2.json', dist/'v4.1-public-beta.2.json')
     shutil.copy2(ROOT/'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_1_PUBLIC_BETA.md')
     for name in ('public-polls.js', 'public-polls.css'):
