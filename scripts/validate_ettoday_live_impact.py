@@ -1,8 +1,11 @@
 """Validate that reviewed ETtoday Kaohsiung waves are admitted and move HB-TLEF v5.
 
 This is an ingestion regression, not parameter tuning. Both forecasts are run at
-one fixed timestamp; the only intended input difference is the reviewed ETtoday
-records layered on top of the committed poll archive.
+one fixed timestamp. The counterfactual baseline explicitly removes ETtoday
+records from the committed archive while preserving every other source; ETtoday
+reviewed records are then layered back on. This keeps the regression valid after
+ETtoday itself has become part of the committed production feed and as unrelated
+poll sources are added later.
 
 `model_eligible` in data/polls.json is the inherited legacy three-bloc cutoff.
 The v5 candidate likelihood independently admits roster-matched, non-overlapping
@@ -11,12 +14,13 @@ the v5 poll audit while only the August wave passes the legacy 2026-06-27 cutoff
 """
 from __future__ import annotations
 
+import copy
 import json
 from datetime import datetime
 from pathlib import Path
 
 from model.v5_product import build_product
-from scripts.update_polls import update
+from scripts.update_polls import model_rows, update
 
 ROOT = Path(__file__).resolve().parents[1]
 AS_OF = "2026-09-12T06:00:00+00:00"
@@ -32,23 +36,38 @@ def candidate(product, county, name):
     return next(c for c in race["candidates"] if c["name"] == name)
 
 
+def without_pollster(feed: dict, pollster_id: str) -> dict:
+    """Return a source-isolated counterfactual feed without one pollster."""
+    baseline = copy.deepcopy(feed)
+    baseline["records"] = [
+        r for r in baseline.get("records", [])
+        if r.get("pollster_id", r.get("source")) != pollster_id
+    ]
+    baseline["polls"] = model_rows(baseline["records"])
+    baseline["latest_fieldwork_date"] = max(
+        (r["date"] for r in baseline["records"]), default=None
+    )
+    return baseline
+
+
 def main():
     config = load(ROOT / "config.json")
-    existing = load(ROOT / "data/polls.json")
+    committed = load(ROOT / "data/polls.json")
+    baseline = without_pollster(committed, "ettoday")
 
     def offline(_url):
         raise OSError("impact validation intentionally uses reviewed seed facts only")
 
     augmented = update(
         config,
-        existing,
+        baseline,
         get=offline,
         now=AS_OF,
         include_formosa=False,
         include_ettoday=True,
     )
     now = datetime.fromisoformat(AS_OF)
-    before = build_product(ROOT, now, existing)
+    before = build_product(ROOT, now, baseline)
     after = build_product(ROOT, now, augmented)
 
     names = ["柯志恩", "賴瑞隆"]
@@ -76,9 +95,11 @@ def main():
     )
     latest = et_records[-1]
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "as_of": AS_OF,
         "model_version": after["model_version"],
+        "counterfactual": "committed feed with pollster_id=ettoday removed; all other sources preserved",
+        "baseline_other_model_inputs": len(baseline.get("polls", [])),
         "latest_fieldwork_date": augmented["latest_fieldwork_date"],
         "ettoday_records": len(et_records),
         "ettoday_record_status": [
@@ -105,6 +126,8 @@ def main():
     OUT.write_text(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False), encoding="utf-8")
     print(json.dumps({**result, "artifact": str(OUT)}, ensure_ascii=False, indent=2))
 
+    if any(r.get("pollster_id") == "ettoday" for r in baseline.get("records", [])):
+        raise SystemExit("ETtoday counterfactual baseline still contains ETtoday records")
     if latest["date"] != "2026-08-30" or latest["sample_n"] != 1283 or not latest["model_eligible"]:
         raise SystemExit("Latest reviewed ETtoday wave was not classified as expected")
     if len(accepted) != 2:
