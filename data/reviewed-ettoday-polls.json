@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-09-12T05:40:00+00:00",
+  "review_policy": "Pollster facts are admitted only when candidate support and methodology are corroborated by detailed public reports. Original ETtoday article discovery remains preferred and can replace these reviewed seed facts when automatically retrieved.",
+  "reports": [
+    {
+      "title": "ETtoday民調雲：2026高雄市長選舉支持度（6月波次）",
+      "county": "高雄市",
+      "field_start": "2026-06-16",
+      "date": "2026-06-19",
+      "published_at": "2026-06-23",
+      "sample_n": 1070,
+      "population_size": 406101,
+      "population": "設籍高雄市38個行政區且年滿20歲以上民眾",
+      "method": "EDM及手機簡訊通知；封閉式網路問卷；自建會員資料庫分層比例抽樣；比例估計法加權",
+      "sampling_frame": "ETtoday民調雲自建會員資料庫",
+      "weighting": "raking_ratio_estimation",
+      "margin_of_error": 3.0,
+      "funding": "東森民調雲股份有限公司",
+      "supervisor": "謝惠玲",
+      "names": ["柯志恩", "賴瑞隆"],
+      "supports": [46.8, 42.0],
+      "blocs": ["blue", "dpp"],
+      "undecided": 10.9,
+      "nonvote": 0.0,
+      "multiple_matchups": false,
+      "original_publisher_url": "https://www.ettoday.net/",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/3238125",
+        "https://news.tvbs.com.tw/politics/3240226"
+      ]
+    },
+    {
+      "title": "ETtoday民調雲：2026高雄市長選舉支持度（8月波次）",
+      "county": "高雄市",
+      "field_start": "2026-08-22",
+      "date": "2026-08-30",
+      "published_at": "2026-09-11",
+      "sample_n": 1283,
+      "population_size": 406434,
+      "population": "設籍高雄市38個行政區且年滿20歲以上民眾",
+      "method": "EDM及手機簡訊通知；封閉式網路問卷；自建會員資料庫分層比例抽樣；比例估計法（raking ratio estimation）加權",
+      "sampling_frame": "ETtoday民調雲自建會員資料庫",
+      "weighting": "raking_ratio_estimation",
+      "margin_of_error": 2.74,
+      "funding": "東森民調雲股份有限公司",
+      "supervisor": "謝惠玲",
+      "names": ["柯志恩", "賴瑞隆"],
+      "supports": [43.8, 43.5],
+      "blocs": ["blue", "dpp"],
+      "undecided": 12.5,
+      "nonvote": 0.0,
+      "multiple_matchups": false,
+      "original_publisher_url": "https://www.ettoday.net/",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4020643",
+        "https://udn.com/vote2026/story/124652/9748998"
+      ]
+    }
+  ]
+}
