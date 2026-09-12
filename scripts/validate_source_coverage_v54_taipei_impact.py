@@ -1,18 +1,25 @@
 """Validate the incremental Taipei Shanshui reviewed wave in HB-TLEF v5.
 
-This gate isolates only the new Taipei 2026-06-21--06-22 Shanshui wave against
-the currently committed feed. It also verifies that the newly reviewed Pearson
-New Taipei article is merely a verification alias for the already-admitted
-2026-07-06--07-11 wave, never a duplicate observation.
+The production archive now legitimately contains this wave.  To keep this
+source-impact gate replayable after deployment, construct an explicit
+counterfactual baseline by removing only the Taipei 2026-06-21--06-22
+Shanshui observation, preserve every other committed source, then layer the
+reviewed facts back in at one fixed timestamp.
+
+The Pearson New Taipei cross-tab article must remain merely a verification
+alias for the already-admitted 2026-07-06--07-11 wave, never a duplicate
+observation.
 """
 from __future__ import annotations
 
+import copy
 import json
 from datetime import date, datetime
 from pathlib import Path
 
 from model.v5_product import build_product
 from scripts.enrich_reviewed_polls import enrich
+from scripts.update_polls import model_rows
 
 ROOT = Path(__file__).resolve().parents[1]
 AS_OF = "2026-09-12T11:05:00+00:00"
@@ -24,6 +31,22 @@ def load(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def is_target(row: dict) -> bool:
+    return (
+        row.get("pollster_id") == "shanshui"
+        and row.get("county") == "台北市"
+        and row.get("date") == "2026-06-22"
+    )
+
+
+def without_target(feed: dict) -> dict:
+    baseline = copy.deepcopy(feed)
+    baseline["records"] = [r for r in baseline.get("records", []) if not is_target(r)]
+    baseline["polls"] = model_rows(baseline["records"])
+    baseline["latest_fieldwork_date"] = max((r["date"] for r in baseline["records"]), default=None)
+    return baseline
+
+
 def candidate(product: dict, county: str, name: str) -> dict:
     race = next(r for r in product["counties"] if r["name"] == county)
     return next(c for c in race["candidates"] if c["name"] == name)
@@ -31,25 +54,21 @@ def candidate(product: dict, county: str, name: str) -> dict:
 
 def main():
     config = load(ROOT / "config.json")
-    baseline = load(ROOT / "data/polls.json")
+    committed = load(ROOT / "data/polls.json")
     reviewed = load(ROOT / "data/reviewed-additional-polls.json")
+    baseline = without_target(committed)
     augmented = enrich(baseline, config, reviewed, today=date(2026, 9, 12))
     now = datetime.fromisoformat(AS_OF)
     before = build_product(ROOT, now, baseline)
     after = build_product(ROOT, now, augmented)
 
     baseline_ids = {r["id"] for r in baseline.get("records", [])}
-    targets = [
-        r for r in augmented["records"]
-        if r.get("pollster_id") == "shanshui"
-        and r.get("county") == "台北市"
-        and r.get("date") == "2026-06-22"
-    ]
+    targets = [r for r in augmented["records"] if is_target(r)]
     if len(targets) != 1:
         raise SystemExit(f"Expected one Taipei Shanshui target, got {len(targets)}")
     target = targets[0]
     if target["id"] in baseline_ids:
-        raise SystemExit("Taipei Shanshui target already exists in committed baseline")
+        raise SystemExit("Counterfactual baseline still contains Taipei Shanshui target")
 
     audit = {a["id"]: a for a in after["poll_audit"]}
     target_audit = audit.get(target["id"], {})
@@ -87,9 +106,10 @@ def main():
         raise SystemExit("Pearson cross-tab page missing from verification aliases")
 
     result = {
-        "schema_version": 1,
+        "schema_version": 2,
         "as_of": AS_OF,
         "model_version": after["model_version"],
+        "counterfactual": "committed feed with only Taipei Shanshui 2026-06-22 removed; all other sources preserved",
         "target": {
             "id": target["id"],
             "county": target["county"],
