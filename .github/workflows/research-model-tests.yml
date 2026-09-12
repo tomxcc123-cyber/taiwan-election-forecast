@@ -10,6 +10,7 @@ on:
       - 'scripts/stack_candidate_models.py'
       - 'scripts/import_tpp_partylist.py'
       - 'scripts/train_nonmajor_regimes.py'
+      - 'scripts/train_nonmajor_regimes_v3.py'
       - 'scripts/validate_earlier_partisan_cycle.py'
       - 'scripts/validate_release_candidate.py'
       - 'scripts/validate_release_candidate_v2.py'
@@ -69,6 +70,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/train_nonmajor_regimes.py
+      - name: Train regime-balanced nonmajor challenger
+        env:
+          PYTHONPATH: .
+        run: python scripts/train_nonmajor_regimes_v3.py
       - name: Validate full compositional release candidate v1
         env:
           PYTHONPATH: .
