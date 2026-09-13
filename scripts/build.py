@@ -61,7 +61,7 @@ def build(now=None):
     source = re.sub(r'(<body[^>]*>)', r'\1<div class="legacy-notice">舊版進階工作台：沿用舊模型與既有情境，與研究版推估不同步。<a href="index.html">返回新版</a></div>', source, count=1)
     (dist / 'legacy.html').write_text(source, encoding='utf-8')
     for name in (
-        'index.html', 'styles.css', 'source-v52.css', 'poll-source-v52.mjs',
+        'index.html', 'styles.css', 'gis-edition.css', 'source-v52.css', 'poll-source-v52.mjs',
         'governance-v56.css', 'governance-v56.mjs',
         'forecast.mjs', 'charts.mjs', 'app.mjs',
         'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs',
@@ -122,6 +122,7 @@ def build(now=None):
     shutil.copy2(ROOT/'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_1_PUBLIC_BETA.md')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
+    shutil.copytree(ROOT / 'site/gis', dist / 'gis')
     shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')
     shutil.copy2(ROOT / 'THIRD_PARTY.md', dist / 'THIRD_PARTY.md')
     print('Built dist/index.html:', product['model_version'], ';', len(feed['records']),

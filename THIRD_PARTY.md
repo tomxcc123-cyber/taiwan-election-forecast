@@ -1,5 +1,6 @@
 # Sources and third-party assets
 
+- MapLibre GL JS 6.9.0: https://github.com/maplibre/maplibre-gl-js (BSD 3-Clause). Vendored files and full license text are under `site/vendor/maplibre/`.
 - Website design, historical model and data: user's existing v12 + v14 project snapshot, 2026-06-27. This release does not establish ownership or independently verify every historical record. Confirm publication rights before launch.
 - D3 7.9.0: https://github.com/d3/d3 (ISC; copyright Mike Bostock).
 - topojson-client 3.1.0: https://github.com/topojson/topojson-client (ISC; copyright Mike Bostock).
