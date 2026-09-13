@@ -153,7 +153,8 @@ function addLabels(map, features, onSelect) {
     const name = feature.properties.name;
     const element = document.createElement('button');
     element.type = 'button';
-    element.className = `gis-map-label${name === activeSelected ? ' is-selected' : ''}`;
+    element.className = `gis-map-label county-path${name === activeSelected ? ' is-selected' : ''}`;
+    element.dataset.county = name;
     element.textContent = name.replace(/[縣市]$/, '');
     element.setAttribute('aria-label', `查看${name}預測`);
     element.addEventListener('click', event => {
