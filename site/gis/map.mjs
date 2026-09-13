@@ -23,7 +23,7 @@ function majorShare(race) {
     .sort((a, b) => b.mean - a.mean)[0]?.mean || 0;
   const dpp = best('DPP');
   const kmt = best('KMT');
-  return dpp + kmt ? dpp / (dpp + kmt) : 0.5;
+  return dpp > 0 && kmt > 0 ? dpp / (dpp + kmt) : null;
 }
 
 function mapMetrics(race, rawRace, baseRace, delta = 0) {
@@ -34,10 +34,11 @@ function mapMetrics(race, rawRace, baseRace, delta = 0) {
     ?? rawRace?.v4_structural?.r4_dpp_two_party
     ?? 0.5);
   const baselineMargin = (dpp2 * 2 - 1) * 100;
-  const forecastMargin = (majorShare(race) * 2 - 1) * 100;
-  const swing = forecastMargin - baselineMargin;
+  const share = majorShare(race);
+  const forecastMargin = share === null ? null : (share * 2 - 1) * 100;
+  const swing = forecastMargin === null ? null : forecastMargin - baselineMargin;
   const baselineGroup = baselineMargin >= 0 ? 'DPP' : 'KMT';
-  const swingGroup = swing >= 0 ? 'DPP' : 'KMT';
+  const swingGroup = swing === null ? 'IND' : swing >= 0 ? 'DPP' : 'KMT';
   const baseLeader = baseRace?.candidates?.[baseRace.winner];
   return {
     leader,
@@ -56,7 +57,7 @@ function mapMetrics(race, rawRace, baseRace, delta = 0) {
 
 function fillFor(metrics, mode) {
   if (mode === 'baseline') return COLORS[metrics.baselineGroup];
-  if (mode === 'swing') return COLORS[metrics.swingGroup];
+  if (mode === 'swing') return metrics.swing === null ? '#9aa5ae' : COLORS[metrics.swingGroup];
   if (mode === 'uncertainty') return '#c98232';
   if (mode === 'flow') return metrics.flow >= 0 ? COLORS.KMT : COLORS.DPP;
   return COLORS[metrics.leaderGroup] || COLORS.IND;
@@ -65,7 +66,7 @@ function fillFor(metrics, mode) {
 function opacityFor(metrics, mode) {
   if (mode === 'probability') return 0.32 + Math.max(0, metrics.probability - 0.45) * 1.18;
   if (mode === 'baseline') return 0.34 + Math.min(0.48, Math.abs(metrics.baselineMargin) / 34);
-  if (mode === 'swing') return 0.28 + Math.min(0.58, Math.abs(metrics.swing) / 16);
+  if (mode === 'swing') return metrics.swing === null ? 0.22 : 0.28 + Math.min(0.58, Math.abs(metrics.swing) / 16);
   if (mode === 'uncertainty') return 0.24 + Math.min(0.62, metrics.uncertainty * 0.9);
   if (mode === 'flow') return 0.26 + Math.min(0.62, Math.abs(metrics.flow) / 8);
   return metrics.leader ? 0.7 : 0.25;
@@ -74,7 +75,7 @@ function opacityFor(metrics, mode) {
 function valueFor(metrics, mode) {
   if (mode === 'probability') return `${Math.round(metrics.probability * 100)}%`;
   if (mode === 'baseline') return `${metrics.baselineMargin >= 0 ? 'DPP' : 'KMT'} +${Math.abs(metrics.baselineMargin).toFixed(1)}`;
-  if (mode === 'swing') return `${metrics.swing >= 0 ? 'DPP' : 'KMT'} ${metrics.swing >= 0 ? '+' : '−'}${Math.abs(metrics.swing).toFixed(1)}`;
+  if (mode === 'swing') return metrics.swing === null ? '主要政黨配對不完整' : `${metrics.swing >= 0 ? 'DPP' : 'KMT'} ${metrics.swing >= 0 ? '+' : '−'}${Math.abs(metrics.swing).toFixed(1)}`;
   if (mode === 'uncertainty') return `${Math.round(metrics.uncertainty * 100)}% 不確定`;
   if (mode === 'flow') return `${metrics.flow >= 0 ? '+' : '−'}${Math.abs(metrics.flow).toFixed(1)} pp`;
   return `${metrics.leader?.name || '無資料'} 領先`;
