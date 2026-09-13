@@ -13,6 +13,7 @@ setWorkerUrl(new URL('../vendor/maplibre/maplibre-gl-worker.mjs', import.meta.ur
 const normalize = value => String(value || '').replaceAll('臺', '台');
 const OFFSHORE = ['金門縣', '連江縣', '澎湖縣'];
 const NLSC = 'https://wmts.nlsc.gov.tw/wmts';
+const TOWN_LEVEL_ZOOM = 6.6;
 let activeMap = null;
 let activeMarkers = [];
 let activeFeatures = [];
@@ -232,7 +233,7 @@ function renderOffshoreInsets(features, onSelect) {
 }
 
 function syncGeographicLevel(map) {
-  const detailed = map.getZoom() >= 7;
+  const detailed = map.getZoom() >= TOWN_LEVEL_ZOOM;
   const indicator = document.getElementById('gisLevelIndicator');
   if (indicator) {
     const strong = indicator.querySelector('strong');
@@ -364,7 +365,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       id: 'official-town-boundaries',
       type: 'raster',
       source: 'nlsc-town',
-      minzoom: 6.6,
+      minzoom: TOWN_LEVEL_ZOOM,
       layout: {visibility: basemap === 'simple' ? 'none' : 'visible'},
       paint: {'raster-opacity': 0.64, 'raster-fade-duration': 140},
     });
