@@ -5,6 +5,7 @@
 - D3 7.9.0: https://github.com/d3/d3 (ISC; copyright Mike Bostock).
 - topojson-client 3.1.0: https://github.com/topojson/topojson-client (ISC; copyright Mike Bostock).
 - County geometry: https://github.com/jason2506/Taiwan.TopoJSON . Copied from the existing project's vendor assets; verify upstream data attribution and license for the intended publication.
+- Taiwan e-Map terrain, grayscale basemap, hillshade, county boundaries and township/district boundaries: National Land Surveying and Mapping Center, Ministry of the Interior (NLSC), https://maps.nlsc.gov.tw/ and https://wmts.nlsc.gov.tw/wmts . Accessed through the agency's no-application WMTS service (`EMAP5`, `EMAP01`, `MOI_HILLSHADE`, `CITY`, and `TOWN`) under the Taiwan Government Open Data Licence 1.0. Raster tiles remain hosted by NLSC and are not redistributed in this repository.
 - Poll numerical facts and metadata: TVBS Poll Center, https://www.tvbs.com.tw/poll-center . Original reports remain on the source website. No full PDF or full report text is included in the public artifact.
 
 ISC license (D3 and topojson-client):
