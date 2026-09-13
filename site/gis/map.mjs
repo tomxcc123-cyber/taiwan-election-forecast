@@ -15,6 +15,7 @@ let activeMap = null;
 let activeMarkers = [];
 let activeFeatures = [];
 let activeSelected = '';
+let activeFocused = false;
 
 function majorShare(race) {
   const best = key => [...race.candidates]
@@ -180,6 +181,7 @@ function selectFilter(name) {
 
 export function focusElectionCounty(name, animate = true) {
   activeSelected = normalize(name);
+  activeFocused = true;
   selectFilter(activeSelected);
   const feature = activeFeatures.find(item => item.properties.name === activeSelected);
   const bounds = feature && boundsFor(feature);
@@ -191,6 +193,7 @@ export function focusElectionCounty(name, animate = true) {
 }
 
 export function resetElectionMap() {
+  activeFocused = false;
   const compact = matchMedia('(max-width: 980px)').matches;
   activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
     padding: compact ? 24 : 38,
@@ -200,6 +203,8 @@ export function resetElectionMap() {
 
 export function resizeElectionMap() {
   activeMap?.resize();
+  if (activeFocused) focusElectionCounty(activeSelected, false);
+  else resetElectionMap();
 }
 
 export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, onSelect, deltas = {}) {
