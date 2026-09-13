@@ -4,7 +4,7 @@ import {historicalDatabase,pollValidation} from './historical-polls-ui.mjs';
 import {badge,probabilityLabel,ratingsBoard,nationalSummary,pollCounts,candidateEvidence,versionPanel,updatesPage,snapshotDownload,PRESETS,presetState,presetPanel,scenarioComparison,validationCard,validationPlots,refinementDiagnostics} from './evidence-ui.mjs';
 import {ScenarioWorkspace,workspaceBar,studioControls,resultTabs,comparePlans,sensitivity,strategyHint} from './scenario-studio.mjs';
 import {packMatrices} from './scenario-rules.mjs';
-import {drawElectionMap,focusElectionCounty,resetElectionMap,resizeElectionMap} from './gis/map.mjs?v=20260913-033';
+import {drawElectionMap,focusElectionCounty,resetElectionMap,resizeElectionMap} from './gis/map.mjs?v=20260913-034';
 let workspace,inputPanel='inputs',resultPanel='map';const openStudioDetails=new Set();
 let historyCompare='version',pendingPreset=null;
 let pollArchive=false,historyFilters={year:2022,county:'all',eligible:false},validationHorizon=30;
