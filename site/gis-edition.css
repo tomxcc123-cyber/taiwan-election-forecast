@@ -54,6 +54,7 @@ main{width:min(1600px,100%);padding:0 0 48px}
 
 .gis-map-stage{position:relative;grid-row:1/3;min-height:650px;margin:0;padding:0;overflow:hidden;background-color:var(--gis-sea)}
 .gis-map-stage::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(220,239,243,.22),transparent 18%,transparent 82%,rgba(220,239,243,.16));mix-blend-mode:soft-light}
+.gis-map-stage .map-commandbar{display:none}
 #countyMap{position:absolute;inset:0;z-index:0;width:100%;height:100%}
 .maplibregl-canvas{outline:none}
 .maplibregl-ctrl-top-right{top:112px;right:16px}
