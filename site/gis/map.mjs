@@ -52,22 +52,44 @@ function addOfficialBasemap(map, basemap) {
     type: 'raster',
     source: 'nlsc-terrain',
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
-    paint: {'raster-opacity': 0.96, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
+    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
   });
   map.addLayer({
     id: 'nlsc-administrative-base',
     type: 'raster',
     source: 'nlsc-administrative',
     layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
-    paint: {'raster-opacity': 0.92, 'raster-brightness-max': 0.93},
+    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-brightness-max': 0.93},
   });
   map.addLayer({
     id: 'nlsc-relief',
     type: 'raster',
     source: 'nlsc-hillshade',
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
-    paint: {'raster-opacity': 0.17, 'raster-contrast': 0.18},
+    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-contrast': 0.18},
   });
+}
+
+function revealLoadedOfficialLayers(map, element, basemap) {
+  if (basemap === 'simple') {
+    element.dataset.basemapReady = 'true';
+    return;
+  }
+  const activeSource = basemap === 'terrain' ? 'nlsc-terrain' : 'nlsc-administrative';
+  const layers = [
+    [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : 'nlsc-administrative-base', basemap === 'terrain' ? 0.96 : 0.92],
+    ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief', 0.17]] : []),
+    ['nlsc-city', 'official-county-boundaries', 0.68],
+    ['nlsc-town', 'official-town-boundaries', 0.64],
+  ];
+  const reveal = () => {
+    for (const [source, layer, opacity] of layers) {
+      if (map.getLayer(layer) && map.isSourceLoaded(source)) map.setPaintProperty(layer, 'raster-opacity', opacity);
+    }
+    if (map.isSourceLoaded(activeSource)) element.dataset.basemapReady = 'true';
+  };
+  map.on('sourcedata', reveal);
+  reveal();
 }
 
 function majorShare(race) {
@@ -314,6 +336,7 @@ export function resizeElectionMap() {
 
 export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, onSelect, deltas = {}) {
   clearMap();
+  element.dataset.basemapReady = basemap === 'simple' ? 'true' : 'false';
   activeSelected = normalize(selected);
   const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas);
   activeFeatures = geojson.features;
@@ -369,19 +392,20 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
         type: 'raster',
         source: 'nlsc-town',
         minzoom: TOWN_LEVEL_ZOOM,
-        paint: {'raster-opacity': 0.64, 'raster-fade-duration': 140},
+        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 140},
       });
       map.addLayer({
         id: 'official-county-boundaries',
         type: 'raster',
         source: 'nlsc-city',
-        paint: {'raster-opacity': 0.68, 'raster-fade-duration': 140},
+        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 140},
       });
     }
     addLabels(map, activeFeatures, onSelect);
     renderOffshoreInsets(activeFeatures, onSelect);
     resetElectionMap();
     syncGeographicLevel(map);
+    revealLoadedOfficialLayers(map, element, basemap);
   });
   map.on('zoom', () => syncGeographicLevel(map));
   let hoveredId = null;
