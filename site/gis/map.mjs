@@ -331,7 +331,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   map.addControl(new NavigationControl({showCompass: false, visualizePitch: false}), 'top-right');
   map.addControl(new ScaleControl({maxWidth: 110, unit: 'metric'}), 'bottom-left');
   map.on('error', () => {});
-  map.on('load', () => {
+  map.once('style.load', () => {
     map.addSource('counties', {type: 'geojson', data: geojson, promoteId: 'id'});
     map.addLayer({
       id: 'county-shadow',
