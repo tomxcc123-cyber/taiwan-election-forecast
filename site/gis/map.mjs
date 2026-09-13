@@ -31,42 +31,43 @@ function nlscSource(layer, maxzoom = 19) {
   };
 }
 
-function mapStyle(basemap) {
+function mapStyle() {
   return {
     version: 8,
     name: 'Taiwan Election GIS',
-    sources: {
-      'nlsc-terrain': nlscSource('EMAP5'),
-      'nlsc-administrative': nlscSource('EMAP01'),
-      'nlsc-hillshade': nlscSource('MOI_HILLSHADE'),
-      'nlsc-town': nlscSource('TOWN'),
-      'nlsc-city': nlscSource('CITY'),
-    },
-    layers: [
-      {id: 'water', type: 'background', paint: {'background-color': '#dceff3'}},
-      {
-        id: 'nlsc-terrain-base',
-        type: 'raster',
-        source: 'nlsc-terrain',
-        layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
-        paint: {'raster-opacity': 0.96, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
-      },
-      {
-        id: 'nlsc-administrative-base',
-        type: 'raster',
-        source: 'nlsc-administrative',
-        layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
-        paint: {'raster-opacity': 0.92, 'raster-brightness-max': 0.93},
-      },
-      {
-        id: 'nlsc-relief',
-        type: 'raster',
-        source: 'nlsc-hillshade',
-        layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
-        paint: {'raster-opacity': 0.17, 'raster-contrast': 0.18},
-      },
-    ],
+    sources: {},
+    layers: [{id: 'water', type: 'background', paint: {'background-color': '#dceff3'}}],
   };
+}
+
+function addOfficialBasemap(map, basemap) {
+  if (basemap === 'simple') return;
+  map.addSource('nlsc-terrain', nlscSource('EMAP5'));
+  map.addSource('nlsc-administrative', nlscSource('EMAP01'));
+  map.addSource('nlsc-hillshade', nlscSource('MOI_HILLSHADE'));
+  map.addSource('nlsc-town', nlscSource('TOWN'));
+  map.addSource('nlsc-city', nlscSource('CITY'));
+  map.addLayer({
+    id: 'nlsc-terrain-base',
+    type: 'raster',
+    source: 'nlsc-terrain',
+    layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
+    paint: {'raster-opacity': 0.96, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
+  });
+  map.addLayer({
+    id: 'nlsc-administrative-base',
+    type: 'raster',
+    source: 'nlsc-administrative',
+    layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
+    paint: {'raster-opacity': 0.92, 'raster-brightness-max': 0.93},
+  });
+  map.addLayer({
+    id: 'nlsc-relief',
+    type: 'raster',
+    source: 'nlsc-hillshade',
+    layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
+    paint: {'raster-opacity': 0.17, 'raster-contrast': 0.18},
+  });
 }
 
 function majorShare(race) {
@@ -318,7 +319,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   activeFeatures = geojson.features;
   const map = activeMap = new MapLibreMap({
     container: element,
-    style: mapStyle(basemap),
+    style: mapStyle(),
     center: [120.85, 23.65],
     zoom: 5.55,
     minZoom: 4.4,
@@ -331,7 +332,8 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   map.addControl(new NavigationControl({showCompass: false, visualizePitch: false}), 'top-right');
   map.addControl(new ScaleControl({maxWidth: 110, unit: 'metric'}), 'bottom-left');
   map.on('error', () => {});
-  map.once('style.load', () => {
+  map.once('load', () => {
+    addOfficialBasemap(map, basemap);
     map.addSource('counties', {type: 'geojson', data: geojson, promoteId: 'id'});
     map.addLayer({
       id: 'county-shadow',
@@ -361,21 +363,21 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       filter: ['==', ['get', 'name'], activeSelected],
       paint: {'line-color': '#152c40', 'line-width': 4, 'line-opacity': 1},
     });
-    map.addLayer({
-      id: 'official-town-boundaries',
-      type: 'raster',
-      source: 'nlsc-town',
-      minzoom: TOWN_LEVEL_ZOOM,
-      layout: {visibility: basemap === 'simple' ? 'none' : 'visible'},
-      paint: {'raster-opacity': 0.64, 'raster-fade-duration': 140},
-    });
-    map.addLayer({
-      id: 'official-county-boundaries',
-      type: 'raster',
-      source: 'nlsc-city',
-      layout: {visibility: basemap === 'simple' ? 'none' : 'visible'},
-      paint: {'raster-opacity': 0.68, 'raster-fade-duration': 140},
-    });
+    if (basemap !== 'simple') {
+      map.addLayer({
+        id: 'official-town-boundaries',
+        type: 'raster',
+        source: 'nlsc-town',
+        minzoom: TOWN_LEVEL_ZOOM,
+        paint: {'raster-opacity': 0.64, 'raster-fade-duration': 140},
+      });
+      map.addLayer({
+        id: 'official-county-boundaries',
+        type: 'raster',
+        source: 'nlsc-city',
+        paint: {'raster-opacity': 0.68, 'raster-fade-duration': 140},
+      });
+    }
     addLabels(map, activeFeatures, onSelect);
     renderOffshoreInsets(activeFeatures, onSelect);
     resetElectionMap();
