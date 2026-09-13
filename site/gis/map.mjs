@@ -191,10 +191,15 @@ export function focusElectionCounty(name, animate = true) {
 }
 
 export function resetElectionMap() {
-  activeMap?.fitBounds([[118.0, 20.5], [122.25, 26.5]], {
-    padding: 38,
+  const compact = matchMedia('(max-width: 980px)').matches;
+  activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
+    padding: compact ? 24 : 38,
     duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700,
   });
+}
+
+export function resizeElectionMap() {
+  activeMap?.resize();
 }
 
 export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, onSelect, deltas = {}) {
