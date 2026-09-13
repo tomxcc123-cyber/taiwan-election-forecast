@@ -1,0 +1,187 @@
+:root{
+  --gis-ink:#132437;
+  --gis-muted:#637282;
+  --gis-line:#ced8df;
+  --gis-paper:#fbfaf6;
+  --gis-sea:#dceff3;
+  --gis-blue:#2468d5;
+  --gis-green:#16845f;
+  --gis-orange:#c98232;
+}
+
+body{background:var(--gis-paper);color:var(--gis-ink)}
+.topbar{
+  position:relative;
+  height:76px;
+  padding:0 clamp(18px,2.5vw,40px);
+  gap:clamp(14px,2vw,30px);
+  border-color:var(--gis-line);
+  background:#fff;
+}
+.brand{display:flex;align-items:center;gap:11px;min-width:270px;line-height:1.1}
+.brand-mark{position:relative;display:block;width:20px;height:38px;transform:rotate(8deg);background:var(--gis-blue);border-radius:70% 28% 62% 34%;box-shadow:inset -4px -5px 0 #174caa}
+.brand-mark::after{content:"";position:absolute;width:7px;height:10px;right:-3px;top:2px;background:var(--gis-blue);border-radius:70% 30%}
+.brand-copy{display:flex!important;flex-direction:column;margin:0!important}
+.brand-copy strong{font-size:16px;letter-spacing:.02em;color:var(--gis-ink)}
+.brand-copy small{font-size:10px;margin-top:5px;letter-spacing:.06em;color:var(--gis-muted)}
+.topbar nav{gap:clamp(11px,1.6vw,24px);margin:0 auto}
+.topbar nav a{font-size:13px;color:#405163}
+.topbar nav a[aria-current=page]{color:#1558bd;border-color:#1558bd}
+.election-selector select{min-width:146px;font-size:13px;font-weight:700;border-color:var(--gis-line);background:#fff}
+.topbar>button{font-size:12px;min-height:36px;padding-inline:11px;border-color:var(--gis-line)}
+.topbar .share-control{margin-left:-8px}
+.release-strip{display:flex;align-items:center;gap:12px;padding:8px clamp(18px,2.5vw,40px)!important;background:#f7f8f8;color:#4a5968;font-size:11px!important}
+.release-strip a{margin-left:auto;font-size:11px}
+.release-strip .gov-chip{border-radius:2px}
+
+main{width:min(1600px,100%);padding:0 0 48px}
+.gis-overview{width:100%}
+.gis-status{height:42px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(18px,2.5vw,40px);background:#fff;border-bottom:1px solid var(--gis-line);font-size:11px;color:var(--gis-muted)}
+.gis-status>div{display:flex;align-items:center;gap:18px}
+.gis-status strong{font-size:13px;color:var(--gis-ink)}
+.gis-status span+span{padding-left:18px;border-left:1px solid var(--gis-line)}
+
+.gis-map-desk{display:grid;grid-template-columns:minmax(0,7fr) minmax(390px,3fr);min-height:760px;border:0;border-radius:0;border-bottom:1px solid var(--gis-line);background:#fff;overflow:visible}
+.gis-map-pane{position:relative;display:grid;grid-template-rows:auto minmax(600px,1fr) auto;min-width:0;background:var(--gis-sea);border-right:1px solid var(--gis-line)}
+.gis-layerbar{position:absolute;z-index:4;left:22px;top:18px;display:flex;background:rgba(255,255,255,.96);border:1px solid #c8d3da;box-shadow:0 5px 18px rgba(34,55,72,.08)}
+.gis-layerbar button{display:flex;flex-direction:column;align-items:flex-start;min-width:104px;min-height:50px;padding:8px 15px;border:0;border-right:1px solid #d5dee4;border-radius:0;background:transparent;color:#34475a}
+.gis-layerbar button:last-child{border-right:0}
+.gis-layerbar button strong{font-size:13px;line-height:1.2}
+.gis-layerbar button small{font-size:10px;line-height:1.2;margin-top:3px;color:#778694}
+.gis-layerbar button[aria-pressed=true]{background:#165fc8;color:#fff}
+.gis-layerbar button[aria-pressed=true] small{color:#e6efff}
+.gis-layerbar button:hover:not([aria-pressed=true]){background:#f1f5f6}
+
+.gis-map-stage{position:relative;grid-row:1/3;min-height:650px;margin:0;padding:0;overflow:hidden;background-color:var(--gis-sea)}
+.gis-map-stage::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background-image:linear-gradient(rgba(70,130,151,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(70,130,151,.08) 1px,transparent 1px);background-size:80px 80px;mix-blend-mode:multiply}
+#countyMap{position:absolute;inset:0;z-index:0;width:100%;height:100%}
+.maplibregl-canvas{outline:none}
+.maplibregl-ctrl-top-right{top:82px;right:16px}
+.maplibregl-ctrl-group{border-radius:2px!important;box-shadow:0 2px 7px rgba(30,55,70,.16)!important}
+.maplibregl-ctrl button{border-radius:0;min-height:29px}
+.maplibregl-ctrl-scale{font-size:10px;background:rgba(255,255,255,.78);border-color:#29445a;color:#29445a}
+.gis-reset{position:absolute;z-index:5;right:16px;top:150px;width:30px;min-height:30px;padding:0;border:0;border-radius:2px;background:#fff;box-shadow:0 2px 7px rgba(30,55,70,.16);font-size:20px;line-height:30px}
+.gis-breadcrumb{position:absolute;z-index:4;left:22px;top:84px;display:flex;align-items:center;gap:8px;padding:9px 12px;background:rgba(255,255,255,.9);border:1px solid rgba(182,199,209,.9);font-size:12px}
+.gis-breadcrumb b{font-weight:700}
+.gis-breadcrumb small{padding-left:10px;border-left:1px solid var(--gis-line)}
+.gis-context-label{position:absolute;z-index:2;pointer-events:none;color:#2870a3;font:italic 13px/1.2 Georgia,serif;letter-spacing:.22em;opacity:.68}
+.gis-context-label.west{left:7%;top:48%;transform:rotate(-7deg)}
+.gis-context-label.east{right:7%;top:53%;transform:rotate(4deg)}
+.gis-map-label{display:block;min-height:0;padding:2px 4px;border:0!important;border-radius:2px;background:rgba(255,255,255,.5)!important;color:#12283a;font-size:11px;font-weight:750;line-height:1;box-shadow:none;text-shadow:0 1px 1px #fff;white-space:nowrap}
+.gis-map-label:hover,.gis-map-label:focus-visible{background:#fff!important;color:#0d4e9a}
+.gis-map-label.is-selected{background:#132437!important;color:#fff;text-shadow:none}
+.maplibregl-popup-content{padding:0!important;border-radius:2px!important;box-shadow:0 5px 18px rgba(20,42,58,.2)!important}
+.gis-tooltip{display:grid;gap:2px;min-width:150px;padding:11px 13px}
+.gis-tooltip strong{font-size:14px}
+.gis-tooltip span{font-size:12px;font-weight:700;color:#164f9e}
+.gis-tooltip small{font-size:10px}
+.gis-legend{position:absolute;z-index:4;left:22px;bottom:18px;display:flex;gap:12px;flex-wrap:wrap;max-width:70%;padding:9px 12px;background:rgba(255,255,255,.92);border:1px solid rgba(182,199,209,.9);font-size:10px;color:#425568}
+
+.gis-timeline{grid-row:3;z-index:3;display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;gap:12px;height:64px;padding:0 20px;background:#fff;border-top:1px solid var(--gis-line)}
+.gis-timeline>button{min-height:28px;width:28px;padding:0;border-radius:50%;font-size:10px}
+.gis-timeline>div{position:relative;display:flex;align-items:center;justify-content:space-between;color:#73808e;font:10px/1.2 ui-monospace,SFMono-Regular,Consolas,monospace}
+.gis-timeline>div::before{content:"";position:absolute;left:0;right:0;top:-8px;height:2px;background:#c8d2da}
+.gis-timeline span,.gis-timeline strong{position:relative}
+.gis-timeline span::before,.gis-timeline strong::before{content:"";position:absolute;top:-13px;left:50%;width:8px;height:8px;border:2px solid #9aa8b5;border-radius:50%;background:#fff;transform:translateX(-50%)}
+.gis-timeline strong{font-size:12px;color:#1559bc}
+.gis-timeline strong::before{width:11px;height:11px;top:-14px;border-color:#1559bc;background:#1559bc}
+.gis-timeline>small{font-size:9px;white-space:nowrap}
+
+.district-inspector{position:relative;align-self:stretch;border:0;background:#fff;overflow:auto;max-height:824px}
+.district-inspector>section{padding:20px 25px}
+.district-inspector>section+section{border-top:1px solid var(--gis-line)}
+.sheet-handle{display:none}
+.district-breadcrumb{display:flex;gap:8px;align-items:center;margin-bottom:10px;font-size:10px;color:var(--gis-muted)}
+.district-breadcrumb b{font-weight:400}
+.district-title{display:flex;justify-content:space-between;gap:16px;align-items:start}
+.district-title h2{font-size:30px;letter-spacing:.02em}
+.district-title p{font-size:13px;color:var(--gis-muted)}
+.district-switch{position:relative;display:inline-flex;align-items:center;min-height:32px;padding:0 28px 0 9px;border:1px solid var(--gis-line);font-size:11px;font-weight:700;color:#245c9f;overflow:hidden}
+.district-switch select{position:absolute;inset:0;width:100%;height:100%;min-height:0;opacity:0;cursor:pointer}
+.district-switch::after{content:"⌄";position:absolute;right:9px;color:#245c9f}
+.district-call{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-top:16px}
+.district-call>strong{font-size:24px;line-height:1;color:#1f5fc2;letter-spacing:.02em}
+.district-call>div{text-align:right}
+.district-call b{display:block;font-size:24px;font-variant-numeric:tabular-nums;color:#174f9f}
+.district-call span{font-size:10px;color:var(--gis-muted)}
+.district-meta{display:flex;align-items:center;gap:7px;margin-top:13px;font-size:10px;color:var(--gis-muted)}
+.district-meta .badge{margin:0}
+.district-meta>span+span{padding-left:7px;border-left:1px solid var(--gis-line)}
+.gis-candidates{padding-block:0!important}
+.gis-candidate{display:grid;grid-template-columns:minmax(150px,1.3fr) minmax(100px,.8fr) 72px;gap:14px;align-items:center;padding:18px 0;border-bottom:1px solid #dce3e8}
+.gis-candidate:last-child{border-bottom:0}
+.gis-candidate-person{display:flex;align-items:center;gap:11px;min-width:0}
+.candidate-portrait{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border:1px solid color-mix(in srgb,var(--party),#fff 55%);border-radius:50%;background:linear-gradient(145deg,color-mix(in srgb,var(--party),#fff 78%),#eef3f5);color:color-mix(in srgb,var(--party),#17293b 24%);font-weight:850;font-size:12px;overflow:hidden}
+.candidate-portrait span{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.55)}
+.gis-candidate-person strong{display:block;font-size:15px;overflow-wrap:anywhere}
+.gis-candidate-person>div>span{display:block;margin-top:2px;font-size:9px;color:var(--gis-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gis-candidate-vote small,.gis-candidate-prob small{display:block;font-size:9px}
+.gis-candidate-vote strong,.gis-candidate-prob strong{font-size:20px;line-height:1.25;font-variant-numeric:tabular-nums}
+.probability-track{height:5px;margin-top:6px;border-radius:4px;background:#e4eaee;overflow:hidden}
+.probability-track i{display:block;height:100%;border-radius:4px}
+.gis-candidate-prob{padding-left:12px;border-left:1px solid var(--gis-line)}
+.forecast-explainer h3{font-size:15px}
+.explain-row{display:grid;grid-template-columns:minmax(130px,1fr) auto;gap:4px 12px;padding:8px 0;font-size:11px}
+.explain-row b{font-variant-numeric:tabular-nums}
+.explain-row i{grid-column:1/-1;display:block;position:relative;height:5px;background:#edf0f2}
+.explain-row i::after{content:"";display:block;width:var(--value);height:100%;background:var(--bar)}
+.explain-row.is-total{margin-top:5px;padding-top:12px;border-top:1px solid var(--gis-line);font-weight:800}
+.forecast-explainer .meta{margin-top:10px;line-height:1.5}
+.inspector-note p{font-size:11px;color:var(--gis-muted);line-height:1.55}
+.full-analysis{display:flex;align-items:center;justify-content:center;gap:14px;width:100%;margin-top:14px;border-color:#2c6dd1;border-radius:2px;color:#155cc3;background:#fff}
+
+.gis-support{width:min(1360px,calc(100% - 48px));margin:32px auto 0}
+.gis-support>.warning{margin-top:0}
+.gis-support .ratings{margin-top:30px}
+
+.studio-layout .gis-map-desk{grid-template-columns:minmax(0,1.25fr) minmax(340px,.75fr);min-height:640px;border:1px solid var(--gis-line)}
+.studio-layout .gis-map-pane{grid-template-rows:auto minmax(490px,1fr) auto}
+.studio-layout .gis-map-stage{min-height:540px}
+.studio-layout .district-inspector{max-height:704px}
+
+@media(max-width:1280px){
+  .topbar{gap:12px}.brand{min-width:220px}.brand-copy strong{font-size:14px}.brand-copy small{display:none}.topbar nav{gap:11px}.topbar nav a{font-size:12px}.topbar .share-control{display:none}
+  .gis-map-desk{grid-template-columns:minmax(0,1fr) 380px}
+  .gis-layerbar button{min-width:90px;padding-inline:11px}
+}
+
+@media(max-width:980px){
+  .topbar{min-height:66px;height:auto;flex-wrap:wrap;padding:10px 16px 0}.brand{min-width:0}.brand-copy strong{font-size:13px}.brand-mark{width:15px;height:31px}.election-selector{margin-left:auto}.election-selector select{min-width:130px}.topbar>button{min-height:32px}.topbar nav{order:4;width:100%;height:40px;justify-content:flex-start;overflow-x:auto;gap:20px}.topbar nav a{flex:0 0 auto}
+  .release-strip{overflow-x:auto;white-space:nowrap}.release-strip a{display:none}
+  .gis-status{height:auto;min-height:42px;flex-wrap:wrap;padding-block:8px}.gis-status>div:last-child{display:none}
+  .gis-map-desk{position:relative;display:block;min-height:calc(100svh - 150px);border:0}
+  .gis-map-pane{display:block;height:calc(100svh - 150px);min-height:650px;border:0}
+  .gis-map-stage{height:calc(100svh - 214px);min-height:580px}
+  .gis-layerbar{left:12px;right:12px;top:12px;display:grid;grid-template-columns:repeat(5,1fr)}
+  .gis-layerbar button{min-width:0;min-height:47px;padding:7px 4px;align-items:center}
+  .gis-layerbar button strong{font-size:11px}.gis-layerbar button small{font-size:8px}
+  .gis-breadcrumb{left:12px;top:73px}.gis-breadcrumb small{display:none}
+  .gis-legend{left:12px;bottom:12px;max-width:72%}
+  .gis-reset{top:128px;right:11px}
+  .maplibregl-ctrl-top-right{top:72px;right:10px}
+  .gis-context-label{font-size:11px}
+  .gis-timeline{position:absolute;left:0;right:0;bottom:0;height:64px;grid-template-columns:minmax(0,1fr);padding:0 20px}.gis-timeline>button,.gis-timeline>small{display:none}.gis-timeline>div span:nth-child(-n+7){display:none}
+  .district-inspector{position:absolute;z-index:8;left:0;right:0;bottom:0;max-height:none;height:330px;padding-top:17px;border:1px solid var(--gis-line);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -8px 26px rgba(28,51,68,.13);overflow:auto;transition:height .32s ease}
+  .district-inspector.is-expanded{height:min(78svh,720px)}
+  .sheet-handle{display:block;position:absolute;z-index:2;top:7px;left:50%;width:58px;height:16px;min-height:0;padding:0;border:0;background:transparent;transform:translateX(-50%)}
+  .sheet-handle span{display:block;width:38px;height:4px;margin:auto;border-radius:4px;background:#b9c3ca}
+  .district-inspector>section{padding:15px 20px}.district-breadcrumb{display:none}.district-title h2{font-size:25px}.district-call{margin-top:10px}.district-call>strong,.district-call b{font-size:19px}.district-meta{margin-top:8px}.gis-candidates{padding-inline:20px!important}
+  .gis-candidate{grid-template-columns:minmax(130px,1.2fr) minmax(90px,.8fr) 62px;padding:13px 0}.candidate-portrait{flex-basis:42px;width:42px;height:42px}.candidate-portrait span{width:32px;height:32px}.gis-candidate-vote strong,.gis-candidate-prob strong{font-size:18px}
+  .forecast-explainer,.inspector-note{display:none}.district-inspector.is-expanded .forecast-explainer,.district-inspector.is-expanded .inspector-note{display:block}
+  .gis-support{width:calc(100% - 32px);margin-top:28px}
+  .studio-layout .gis-map-desk{display:block;min-height:720px}.studio-layout .gis-map-pane{height:720px}.studio-layout .gis-map-stage{height:656px;min-height:0}.studio-layout .district-inspector{max-height:none}
+}
+
+@media(max-width:560px){
+  .topbar{gap:8px 12px}.brand-copy strong{font-size:12px}.brand-mark{width:13px;height:28px}.election-selector select{min-width:118px;padding:5px 8px;font-size:11px}.topbar #warRoom{display:none}.topbar nav{gap:17px}.topbar nav a{font-size:11px}
+  .release-strip{gap:8px}.release-strip .gov-chip.neutral{display:none}
+  .gis-status>div{width:100%;justify-content:space-between}.gis-status>div span{font-size:9px}.gis-status>div span+span{padding:0;border:0}
+  .gis-map-pane{height:720px;min-height:720px}.gis-map-stage{height:656px;min-height:0}
+  .gis-layerbar{overflow-x:auto;grid-template-columns:repeat(5,minmax(72px,1fr))}.gis-layerbar button{border-bottom:0}.gis-layerbar button small{display:none}
+  .gis-breadcrumb{top:67px;font-size:10px}.gis-map-label{font-size:9px}.gis-context-label{display:none}.gis-legend{bottom:14px;max-width:80%;gap:7px;padding:7px 8px;font-size:8px}
+  .district-inspector{height:305px}.district-title p{font-size:11px}.district-switch{font-size:9px}.district-call>strong,.district-call b{font-size:17px}.district-call span{font-size:8px}.district-meta>span{font-size:8px}
+  .gis-candidate{grid-template-columns:minmax(120px,1.1fr) minmax(82px,.8fr) 55px;gap:8px}.gis-candidate-person{gap:7px}.candidate-portrait{flex-basis:38px;width:38px;height:38px}.candidate-portrait span{width:29px;height:29px;font-size:10px}.gis-candidate-person strong{font-size:13px}.gis-candidate-vote strong,.gis-candidate-prob strong{font-size:15px}.gis-candidate-prob{padding-left:7px}.gis-candidate-vote small,.gis-candidate-prob small{font-size:8px}
+  .gis-timeline>div{justify-content:space-around}.gis-support{margin-top:24px}.gis-support .summary-band{grid-template-columns:1fr}
+}
+
+@media(prefers-reduced-motion:reduce){.district-inspector{transition:none}}

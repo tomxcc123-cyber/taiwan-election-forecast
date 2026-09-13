@@ -119,6 +119,19 @@ jobs:
           node tests/scenario-studio.mjs
           node tests/source-v52-ui.mjs
           node tests/governance-v56-ui.mjs
+      - name: Install GIS browser runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Validate GIS product in browser
+        run: node tests/candidate-browser.cjs
+      - name: Upload GIS visual QA
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gis-edition-visual-qa
+          path: qa/candidate-product
+          if-no-files-found: warn
       - name: Assert v5 release files and public product
         run: |
           test -f dist/v5.0-public-beta.1.json
