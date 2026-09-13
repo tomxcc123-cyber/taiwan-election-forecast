@@ -11,11 +11,62 @@ import {COLORS, group} from '../candidate-engine.mjs';
 setWorkerUrl(new URL('../vendor/maplibre/maplibre-gl-worker.mjs', import.meta.url).href);
 
 const normalize = value => String(value || '').replaceAll('臺', '台');
+const OFFSHORE = ['金門縣', '連江縣', '澎湖縣'];
+const NLSC = 'https://wmts.nlsc.gov.tw/wmts';
 let activeMap = null;
 let activeMarkers = [];
 let activeFeatures = [];
 let activeSelected = '';
 let activeFocused = false;
+
+function nlscSource(layer, maxzoom = 19) {
+  return {
+    type: 'raster',
+    tiles: [`${NLSC}/${layer}/default/GoogleMapsCompatible/{z}/{y}/{x}`],
+    tileSize: 256,
+    minzoom: 4,
+    maxzoom,
+    attribution: '內政部國土測繪中心',
+  };
+}
+
+function mapStyle(basemap) {
+  return {
+    version: 8,
+    name: 'Taiwan Election GIS',
+    sources: {
+      'nlsc-terrain': nlscSource('EMAP5'),
+      'nlsc-administrative': nlscSource('EMAP01'),
+      'nlsc-hillshade': nlscSource('MOI_HILLSHADE'),
+      'nlsc-town': nlscSource('TOWN'),
+      'nlsc-city': nlscSource('CITY'),
+    },
+    layers: [
+      {id: 'water', type: 'background', paint: {'background-color': '#dceff3'}},
+      {
+        id: 'nlsc-terrain-base',
+        type: 'raster',
+        source: 'nlsc-terrain',
+        layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
+        paint: {'raster-opacity': 0.96, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
+      },
+      {
+        id: 'nlsc-administrative-base',
+        type: 'raster',
+        source: 'nlsc-administrative',
+        layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
+        paint: {'raster-opacity': 0.92, 'raster-brightness-max': 0.93},
+      },
+      {
+        id: 'nlsc-relief',
+        type: 'raster',
+        source: 'nlsc-hillshade',
+        layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
+        paint: {'raster-opacity': 0.17, 'raster-contrast': 0.18},
+      },
+    ],
+  };
+}
 
 function majorShare(race) {
   const best = key => [...race.candidates]
@@ -149,6 +200,53 @@ function clearMap() {
   activeMap = null;
 }
 
+function renderOffshoreInsets(features, onSelect) {
+  const host = document.getElementById('gisInsets');
+  if (!host || !window.d3?.geoMercator || !window.d3?.geoPath) return;
+  host.replaceChildren();
+  for (const name of OFFSHORE) {
+    const feature = features.find(item => item.properties.name === name);
+    if (!feature) continue;
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = `gis-inset${name === activeSelected ? ' is-selected' : ''}`;
+    button.dataset.county = name;
+    button.setAttribute('aria-label', `定位並查看${name}預測`);
+    const label = document.createElement('span');
+    label.textContent = name;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 112 58');
+    svg.setAttribute('aria-hidden', 'true');
+    const projection = window.d3.geoMercator().fitExtent([[8, 8], [104, 52]], feature);
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', window.d3.geoPath(projection)(feature));
+    svg.append(path);
+    button.append(label, svg);
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      focusElectionCounty(name);
+      onSelect(name);
+    });
+    host.append(button);
+  }
+}
+
+function syncGeographicLevel(map) {
+  const detailed = map.getZoom() >= 7;
+  const indicator = document.getElementById('gisLevelIndicator');
+  if (indicator) {
+    const strong = indicator.querySelector('strong');
+    const small = indicator.querySelector('small');
+    if (strong) strong.textContent = detailed ? '鄉鎮市區' : '縣市';
+    if (small) small.textContent = detailed ? '官方鄉鎮界已顯示' : '放大顯示鄉鎮市區界';
+    indicator.classList.toggle('is-detailed', detailed);
+  }
+  activeMarkers.forEach(marker => {
+    const button = marker.getElement();
+    button.classList.toggle('is-scale-hidden', detailed && !button.classList.contains('is-selected'));
+  });
+}
+
 function addLabels(map, features, onSelect) {
   if (!window.d3?.geoCentroid) return;
   for (const feature of features) {
@@ -178,6 +276,10 @@ function selectFilter(name) {
     const button = marker.getElement();
     button.classList.toggle('is-selected', button.getAttribute('aria-label') === `查看${name}預測`);
   });
+  document.querySelectorAll('.gis-inset').forEach(button => {
+    button.classList.toggle('is-selected', button.dataset.county === name);
+  });
+  if (activeMap) syncGeographicLevel(activeMap);
 }
 
 export function focusElectionCounty(name, animate = true) {
@@ -208,19 +310,14 @@ export function resizeElectionMap() {
   else resetElectionMap();
 }
 
-export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, onSelect, deltas = {}) {
+export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, onSelect, deltas = {}) {
   clearMap();
   activeSelected = normalize(selected);
   const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas);
   activeFeatures = geojson.features;
   const map = activeMap = new MapLibreMap({
     container: element,
-    style: {
-      version: 8,
-      name: 'Taiwan Election GIS',
-      sources: {},
-      layers: [{id: 'water', type: 'background', paint: {'background-color': '#dceff3'}}],
-    },
+    style: mapStyle(basemap),
     center: [120.85, 23.65],
     zoom: 5.55,
     minZoom: 4.4,
@@ -247,7 +344,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       source: 'counties',
       paint: {
         'fill-color': ['get', 'fill'],
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], 0.96, ['get', 'opacity']],
+        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
       },
     });
     map.addLayer({
@@ -263,9 +360,27 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       filter: ['==', ['get', 'name'], activeSelected],
       paint: {'line-color': '#152c40', 'line-width': 4, 'line-opacity': 1},
     });
+    map.addLayer({
+      id: 'official-town-boundaries',
+      type: 'raster',
+      source: 'nlsc-town',
+      minzoom: 6.6,
+      layout: {visibility: basemap === 'simple' ? 'none' : 'visible'},
+      paint: {'raster-opacity': 0.64, 'raster-fade-duration': 140},
+    });
+    map.addLayer({
+      id: 'official-county-boundaries',
+      type: 'raster',
+      source: 'nlsc-city',
+      layout: {visibility: basemap === 'simple' ? 'none' : 'visible'},
+      paint: {'raster-opacity': 0.68, 'raster-fade-duration': 140},
+    });
     addLabels(map, activeFeatures, onSelect);
+    renderOffshoreInsets(activeFeatures, onSelect);
     resetElectionMap();
+    syncGeographicLevel(map);
   });
+  map.on('zoom', () => syncGeographicLevel(map));
   let hoveredId = null;
   const popup = new Popup({closeButton: false, closeOnClick: false, offset: 10, maxWidth: '240px'});
   map.on('mousemove', 'county-fill', event => {
