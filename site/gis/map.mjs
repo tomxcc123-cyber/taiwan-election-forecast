@@ -651,12 +651,12 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
         source: 'nlsc-village',
         minzoom: VILLAGE_LEVEL_ZOOM - 0.5,
         paint: {
-          'raster-opacity': ['interpolate', ['linear'], ['zoom'], VILLAGE_LEVEL_ZOOM - 0.5, 0, 11, 0.24, 12.5, 0.48, 16, 0.4],
+          'raster-opacity': ['interpolate', ['linear'], ['zoom'], VILLAGE_LEVEL_ZOOM - 0.5, 0, 11, 0.16, 12.5, 0.3, 16, 0.26],
           'raster-opacity-transition': {duration: 620},
           'raster-fade-duration': 420,
-          'raster-hue-rotate': 24,
-          'raster-saturation': -0.58,
-          'raster-contrast': -0.1,
+          'raster-hue-rotate': 18,
+          'raster-saturation': -0.74,
+          'raster-contrast': -0.18,
         },
       });
       map.addLayer({
