@@ -131,9 +131,10 @@ function addTerrainModel(map, element) {
   markReady();
 }
 
-function syncTerrain(map = activeMap) {
+function syncTerrain(map = activeMap, zoom = map?.getZoom() || 0) {
   if (!map?.getSource('terrain-dem')) return;
-  const enabled = activePerspective === '3d';
+  const enabled = activePerspective === '3d' && zoom < VILLAGE_LEVEL_ZOOM - 0.4;
+  if (map.getContainer().dataset.terrainEnabled === String(enabled)) return;
   map.setTerrain(enabled ? {source: 'terrain-dem', exaggeration: 1.38} : null);
   map.getContainer().dataset.terrainEnabled = String(enabled);
   if (map.getLayer('terrain-ambient')) {
@@ -359,9 +360,11 @@ async function drillAtPoint(map, event) {
     const enterVillage = activeGeography?.town === found.town || map.getZoom() >= VILLAGE_LEVEL_ZOOM;
     const detail = enterVillage ? found : {...found, village: '', villageCode: ''};
     publishGeography(detail);
+    const targetZoom = enterVillage ? Math.max(map.getZoom(), 13.2) : Math.max(map.getZoom(), 10.7);
+    syncTerrain(map, targetZoom);
     map.flyTo({
       center: event.lngLat,
-      zoom: enterVillage ? Math.max(map.getZoom(), 13.2) : Math.max(map.getZoom(), 10.7),
+      zoom: targetZoom,
       ...perspectiveCamera(enterVillage ? 13.2 : 10.7),
       duration: cameraDuration(1050),
       curve: 1.24,
@@ -484,13 +487,16 @@ export function focusElectionCounty(name, animate = true) {
   selectFilter(activeSelected);
   const feature = activeFeatures.find(item => item.properties.name === activeSelected);
   const bounds = feature && boundsFor(feature);
-  if (activeMap && bounds) activeMap.fitBounds(bounds, {
+  if (activeMap && bounds) {
+    syncTerrain(activeMap, 8.2);
+    activeMap.fitBounds(bounds, {
     padding: {top: 86, right: 72, bottom: 86, left: 72},
     maxZoom: 8.2,
     ...perspectiveCamera(8.2),
     duration: animate ? cameraDuration(1120) : 0,
     easing: cameraEase,
-  });
+    });
+  }
 }
 
 export function setElectionPerspective(mode, animate = true) {
@@ -522,10 +528,12 @@ export function resetElectionMap() {
   publishGeography(null);
   const compact = matchMedia('(max-width: 980px)').matches;
   if (activePerspective === '3d') {
+    const targetZoom = compact ? 6.36 : 7.02;
+    syncTerrain(activeMap, targetZoom);
     activeMap?.flyTo({
       center: [120.94, 23.72],
-      zoom: compact ? 6.36 : 7.02,
-      ...perspectiveCamera(compact ? 6.36 : 7.02),
+      zoom: targetZoom,
+      ...perspectiveCamera(targetZoom),
       duration: cameraDuration(1080),
       curve: 1.16,
       essential: false,
@@ -731,6 +739,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     setElectionPerspective(activePerspective, false);
   });
   map.on('zoom', () => syncGeographicLevel(map));
+  map.on('zoomend', () => syncTerrain(map));
   map.on('movestart', () => {
     element.dataset.cameraMoving = 'true';
     element.dataset.renderReady = 'false';
