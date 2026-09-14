@@ -352,6 +352,7 @@ function renderOffshoreInsets(features, onSelect) {
 
 function syncGeographicLevel(map) {
   const zoom = map.getZoom();
+  map.getContainer().dataset.mapZoom = zoom.toFixed(2);
   const detailed = zoom >= TOWN_LEVEL_ZOOM;
   const villageVisible = zoom >= VILLAGE_LEVEL_ZOOM;
   const level = activeGeography?.village ? '村里' : activeGeography?.town ? '鄉鎮市區' : detailed ? '鄉鎮市區' : '縣市';
@@ -454,6 +455,7 @@ export function stepBackElectionMap() {
 
 export function resizeElectionMap() {
   activeMap?.resize();
+  if (activeGeography) return;
   if (activeFocused) focusElectionCounty(activeSelected, false);
   else resetElectionMap();
 }
