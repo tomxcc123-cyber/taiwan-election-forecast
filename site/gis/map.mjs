@@ -66,6 +66,7 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-terrain-base',
     type: 'raster',
     source: 'nlsc-terrain',
+    minzoom: 5.9,
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
   });
@@ -73,6 +74,7 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-administrative-base',
     type: 'raster',
     source: 'nlsc-administrative',
+    minzoom: 5.9,
     layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-brightness-max': 0.93},
   });
@@ -80,6 +82,7 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-imagery-base',
     type: 'raster',
     source: 'nlsc-imagery',
+    minzoom: 6.1,
     layout: {visibility: basemap === 'imagery' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.12, 'raster-contrast': -0.04},
   });
@@ -87,6 +90,7 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-relief',
     type: 'raster',
     source: 'nlsc-hillshade',
+    minzoom: 6.35,
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 520}, 'raster-contrast': 0.2, 'raster-saturation': -0.3},
   });
@@ -198,7 +202,7 @@ function toFeatureCollection(topology, results, rawCounties, baselineResults, mo
         leader: metrics.leader?.name || '無資料',
         value: valueFor(metrics, mode),
         evidence: race.quality?.evidence?.grade || '—',
-        elevation: 620 + Math.round(metrics.probability * 4300),
+        elevation: 6000 + Math.round(metrics.probability * 28000),
       },
     };
   });
@@ -467,7 +471,10 @@ export function resetElectionMap() {
   activeFocused = false;
   publishGeography(null);
   const compact = matchMedia('(max-width: 980px)').matches;
-  activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
+  const bounds = activePerspective === '3d'
+    ? [[119.55, 21.55], [122.25, 25.72]]
+    : compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]];
+  activeMap?.fitBounds(bounds, {
     padding: compact ? 24 : 38,
     ...perspectiveCamera(5.55),
     duration: cameraDuration(1080),
@@ -558,7 +565,11 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       maxzoom: 9.4,
       paint: {
         'fill-extrusion-color': ['get', 'fill'],
-        'fill-extrusion-height': ['get', 'elevation'],
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'],
+          4.5, ['get', 'elevation'],
+          7.8, ['*', ['get', 'elevation'], 0.25],
+          9.2, 0,
+        ],
         'fill-extrusion-base': 0,
         'fill-extrusion-opacity': activePerspective === '3d' ? 0.46 : 0,
         'fill-extrusion-opacity-transition': {duration: 620, delay: 0},
