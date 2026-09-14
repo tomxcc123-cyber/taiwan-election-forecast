@@ -24,6 +24,14 @@ let activeSelected = '';
 let activeFocused = false;
 let activeGeography = null;
 let activeOnGeography = null;
+let activePerspective = '3d';
+
+const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
+const cameraDuration = milliseconds => reduceMotion() ? 0 : milliseconds;
+const cameraEase = t => 1 - Math.pow(1 - t, 4);
+const perspectiveCamera = (zoom = activeMap?.getZoom() || 5.5) => activePerspective === '3d'
+  ? {pitch: zoom >= VILLAGE_LEVEL_ZOOM ? 54 : zoom >= TOWN_LEVEL_ZOOM ? 50 : 46, bearing: -18}
+  : {pitch: 0, bearing: 0};
 
 function nlscSource(layer, maxzoom = 19) {
   return {
@@ -80,7 +88,7 @@ function addOfficialBasemap(map, basemap) {
     type: 'raster',
     source: 'nlsc-hillshade',
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
-    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-contrast': 0.18},
+    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 520}, 'raster-contrast': 0.2, 'raster-saturation': -0.3},
   });
 }
 
@@ -92,10 +100,7 @@ function revealLoadedOfficialLayers(map, element, basemap) {
   const activeSource = basemap === 'terrain' ? 'nlsc-terrain' : basemap === 'imagery' ? 'nlsc-imagery' : 'nlsc-administrative';
   const layers = [
     [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base', basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92],
-    ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief', 0.17]] : []),
-    ['nlsc-city', 'official-county-boundaries', 0.68],
-    ['nlsc-town', 'official-town-boundaries', 0.64],
-    ['nlsc-village', 'official-village-boundaries', 0.72],
+    ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief', activePerspective === '3d' ? 0.24 : 0.14]] : []),
   ];
   const reveal = () => {
     for (const [source, layer, opacity] of layers) {
@@ -193,6 +198,7 @@ function toFeatureCollection(topology, results, rawCounties, baselineResults, mo
         leader: metrics.leader?.name || '無資料',
         value: valueFor(metrics, mode),
         evidence: race.quality?.evidence?.grade || '—',
+        elevation: 620 + Math.round(metrics.probability * 4300),
       },
     };
   });
@@ -301,10 +307,13 @@ async function drillAtPoint(map, event) {
     const enterVillage = activeGeography?.town === found.town || map.getZoom() >= VILLAGE_LEVEL_ZOOM;
     const detail = enterVillage ? found : {...found, village: '', villageCode: ''};
     publishGeography(detail);
-    map.easeTo({
+    map.flyTo({
       center: event.lngLat,
       zoom: enterVillage ? Math.max(map.getZoom(), 13.2) : Math.max(map.getZoom(), 10.7),
-      duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 720,
+      ...perspectiveCamera(enterVillage ? 13.2 : 10.7),
+      duration: cameraDuration(1050),
+      curve: 1.24,
+      essential: false,
     });
   } catch (error) {
     activeOnGeography?.({error: error.message});
@@ -403,7 +412,9 @@ function addLabels(map, features, onSelect) {
 
 function selectFilter(name) {
   if (!activeMap?.getLayer('county-selected')) return;
-  activeMap.setFilter('county-selected', ['==', ['get', 'name'], name || '']);
+  ['county-selected-halo', 'county-selected-casing', 'county-selected'].forEach(id => {
+    if (activeMap.getLayer(id)) activeMap.setFilter(id, ['==', ['get', 'name'], name || '']);
+  });
   activeMarkers.forEach(marker => {
     const button = marker.getElement();
     button.classList.toggle('is-selected', button.getAttribute('aria-label') === `查看${name}預測`);
@@ -424,8 +435,32 @@ export function focusElectionCounty(name, animate = true) {
   if (activeMap && bounds) activeMap.fitBounds(bounds, {
     padding: {top: 86, right: 72, bottom: 86, left: 72},
     maxZoom: 8.2,
-    duration: animate && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 850 : 0,
+    ...perspectiveCamera(8.2),
+    duration: animate ? cameraDuration(1120) : 0,
+    easing: cameraEase,
   });
+}
+
+export function setElectionPerspective(mode, animate = true) {
+  activePerspective = mode === '2d' ? '2d' : '3d';
+  if (!activeMap) return;
+  const element = activeMap.getContainer();
+  element.dataset.perspective = activePerspective;
+  const camera = perspectiveCamera();
+  activeMap.easeTo({...camera, duration: animate ? cameraDuration(1050) : 0, easing: cameraEase});
+  if (activeMap.getLayer('county-extrusion')) {
+    activeMap.setPaintProperty('county-extrusion', 'fill-extrusion-opacity', activePerspective === '3d' ? 0.46 : 0);
+  }
+  if (activeMap.getLayer('nlsc-relief')) {
+    activeMap.setPaintProperty('nlsc-relief', 'raster-opacity', activePerspective === '3d' ? 0.24 : 0.14);
+  }
+  if (activePerspective === '3d') {
+    activeMap.dragRotate.enable();
+    activeMap.touchZoomRotate.enableRotation();
+  } else {
+    activeMap.dragRotate.disable();
+    activeMap.touchZoomRotate.disableRotation();
+  }
 }
 
 export function resetElectionMap() {
@@ -434,7 +469,9 @@ export function resetElectionMap() {
   const compact = matchMedia('(max-width: 980px)').matches;
   activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
     padding: compact ? 24 : 38,
-    duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 700,
+    ...perspectiveCamera(5.55),
+    duration: cameraDuration(1080),
+    easing: cameraEase,
   });
 }
 
@@ -442,7 +479,7 @@ export function stepBackElectionMap() {
   if (activeGeography?.village) {
     const town = {...activeGeography, village: '', villageCode: ''};
     publishGeography(town);
-    activeMap?.easeTo({center: [town.lng, town.lat], zoom: 10.7, duration: 520});
+    activeMap?.flyTo({center: [town.lng, town.lat], zoom: 10.7, ...perspectiveCamera(10.7), duration: cameraDuration(900), curve: 1.18, essential: false});
     return;
   }
   if (activeGeography?.town) {
@@ -460,10 +497,12 @@ export function resizeElectionMap() {
   else resetElectionMap();
 }
 
-export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, onSelect, onGeography, deltas = {}) {
+export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, perspective, onSelect, onGeography, deltas = {}) {
   clearMap();
   element.dataset.basemapReady = basemap === 'simple' ? 'true' : 'false';
   activeSelected = normalize(selected);
+  activePerspective = perspective === '2d' ? '2d' : '3d';
+  element.dataset.perspective = activePerspective;
   activeGeography = null;
   activeOnGeography = onGeography;
   const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas);
@@ -473,14 +512,16 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     style: mapStyle(),
     center: [120.85, 23.65],
     zoom: 5.55,
+    ...perspectiveCamera(5.55),
     minZoom: 4.4,
     maxZoom: 18,
     attributionControl: false,
-    dragRotate: false,
-    pitchWithRotate: false,
+    maxPitch: 65,
+    dragRotate: activePerspective === '3d',
+    pitchWithRotate: activePerspective === '3d',
     cooperativeGestures: false,
   });
-  map.addControl(new NavigationControl({showCompass: false, visualizePitch: false}), 'top-right');
+  map.addControl(new NavigationControl({showCompass: true, visualizePitch: true}), 'top-right');
   map.addControl(new ScaleControl({maxWidth: 110, unit: 'metric'}), 'bottom-left');
   map.on('error', () => {});
   map.once('load', () => {
@@ -490,7 +531,12 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       id: 'county-shadow',
       type: 'line',
       source: 'counties',
-      paint: {'line-color': '#18364b', 'line-width': 5, 'line-opacity': 0.09, 'line-blur': 4},
+      paint: {
+        'line-color': '#0f2d44',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 4.8, 8.5, 2.6, 11, 1.2],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 4.5, 0.14, 8.5, 0.08, 11, 0.02],
+        'line-blur': ['interpolate', ['linear'], ['zoom'], 4.5, 3.4, 9, 1.4],
+      },
     });
     map.addLayer({
       id: 'county-fill',
@@ -506,38 +552,105 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       },
     });
     map.addLayer({
+      id: 'county-extrusion',
+      type: 'fill-extrusion',
+      source: 'counties',
+      maxzoom: 9.4,
+      paint: {
+        'fill-extrusion-color': ['get', 'fill'],
+        'fill-extrusion-height': ['get', 'elevation'],
+        'fill-extrusion-base': 0,
+        'fill-extrusion-opacity': activePerspective === '3d' ? 0.46 : 0,
+        'fill-extrusion-opacity-transition': {duration: 620, delay: 0},
+        'fill-extrusion-vertical-gradient': true,
+      },
+    });
+    map.addLayer({
+      id: 'county-boundary-casing',
+      type: 'line',
+      source: 'counties',
+      paint: {
+        'line-color': '#17344b',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 2.2, 7.5, 1.8, 10, 1],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 4.5, 0.78, 8, 0.56, 10.5, 0.12],
+      },
+    });
+    map.addLayer({
       id: 'county-boundary',
       type: 'line',
       source: 'counties',
-      paint: {'line-color': '#ffffff', 'line-width': 1.25, 'line-opacity': 0.92},
+      paint: {
+        'line-color': '#fffdf5',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 0.86, 7.5, 0.68, 10, 0.42],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 4.5, 0.9, 8, 0.72, 10.5, 0.16],
+      },
+    });
+    map.addLayer({
+      id: 'county-selected-halo',
+      type: 'line',
+      source: 'counties',
+      filter: ['==', ['get', 'name'], activeSelected],
+      paint: {
+        'line-color': '#f3a51e',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 9, 9, 6],
+        'line-opacity': 0.24,
+        'line-blur': 4,
+      },
+    });
+    map.addLayer({
+      id: 'county-selected-casing',
+      type: 'line',
+      source: 'counties',
+      filter: ['==', ['get', 'name'], activeSelected],
+      paint: {'line-color': '#6e4b16', 'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 4.2, 9, 2.8], 'line-opacity': 0.92},
     });
     map.addLayer({
       id: 'county-selected',
       type: 'line',
       source: 'counties',
       filter: ['==', ['get', 'name'], activeSelected],
-      paint: {'line-color': '#152c40', 'line-width': 4, 'line-opacity': 1},
+      paint: {'line-color': '#ffd979', 'line-width': ['interpolate', ['linear'], ['zoom'], 4.5, 1.7, 9, 1.1], 'line-opacity': 1},
     });
     if (basemap !== 'simple') {
       map.addLayer({
         id: 'official-town-boundaries',
         type: 'raster',
         source: 'nlsc-town',
-        minzoom: TOWN_LEVEL_ZOOM,
-        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 140},
+        minzoom: TOWN_LEVEL_ZOOM - 0.4,
+        paint: {
+          'raster-opacity': ['interpolate', ['linear'], ['zoom'], TOWN_LEVEL_ZOOM - 0.4, 0, 7.3, 0.26, 9.6, 0.2, 11, 0.07],
+          'raster-opacity-transition': {duration: 540},
+          'raster-fade-duration': 360,
+          'raster-saturation': -0.72,
+          'raster-contrast': -0.16,
+        },
       });
       map.addLayer({
         id: 'official-village-boundaries',
         type: 'raster',
         source: 'nlsc-village',
-        minzoom: VILLAGE_LEVEL_ZOOM,
-        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 120},
+        minzoom: VILLAGE_LEVEL_ZOOM - 0.5,
+        paint: {
+          'raster-opacity': ['interpolate', ['linear'], ['zoom'], VILLAGE_LEVEL_ZOOM - 0.5, 0, 11, 0.24, 12.5, 0.48, 16, 0.4],
+          'raster-opacity-transition': {duration: 620},
+          'raster-fade-duration': 420,
+          'raster-hue-rotate': 24,
+          'raster-saturation': -0.58,
+          'raster-contrast': -0.1,
+        },
       });
       map.addLayer({
         id: 'official-county-boundaries',
         type: 'raster',
         source: 'nlsc-city',
-        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 140},
+        maxzoom: 10.5,
+        paint: {
+          'raster-opacity': ['interpolate', ['linear'], ['zoom'], 4.5, 0.24, 7.5, 0.12, 10, 0],
+          'raster-opacity-transition': {duration: 520},
+          'raster-fade-duration': 380,
+          'raster-saturation': -0.7,
+          'raster-contrast': -0.18,
+        },
       });
     }
     addLabels(map, activeFeatures, onSelect);
@@ -545,8 +658,11 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     resetElectionMap();
     syncGeographicLevel(map);
     revealLoadedOfficialLayers(map, element, basemap);
+    setElectionPerspective(activePerspective, false);
   });
   map.on('zoom', () => syncGeographicLevel(map));
+  map.on('movestart', () => { element.dataset.cameraMoving = 'true'; });
+  map.on('moveend', () => { element.dataset.cameraMoving = 'false'; });
   let hoveredId = null;
   const popup = new Popup({closeButton: false, closeOnClick: false, offset: 10, maxWidth: '240px'});
   map.on('mousemove', 'county-fill', event => {
