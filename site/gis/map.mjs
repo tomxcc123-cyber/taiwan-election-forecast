@@ -250,7 +250,7 @@ function toFeatureCollection(topology, results, rawCounties, baselineResults, mo
         leader: metrics.leader?.name || '無資料',
         value: valueFor(metrics, mode),
         evidence: race.quality?.evidence?.grade || '—',
-        elevation: 6000 + Math.round(metrics.probability * 28000),
+        elevation: 150 + Math.round(metrics.probability * 950),
       },
     };
   });
@@ -735,7 +735,14 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     element.dataset.cameraMoving = 'true';
     element.dataset.renderReady = 'false';
   });
-  map.on('moveend', () => { element.dataset.cameraMoving = 'false'; });
+  let settleTimer = null;
+  map.on('moveend', () => {
+    element.dataset.cameraMoving = 'false';
+    clearTimeout(settleTimer);
+    settleTimer = setTimeout(() => {
+      if (element.dataset.cameraMoving !== 'true') element.dataset.renderReady = 'true';
+    }, cameraDuration(420));
+  });
   map.on('idle', () => { element.dataset.renderReady = 'true'; });
   let hoveredId = null;
   const popup = new Popup({closeButton: false, closeOnClick: false, offset: 10, maxWidth: '240px'});
