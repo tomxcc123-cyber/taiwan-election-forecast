@@ -87,6 +87,7 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-relief',
     type: 'raster',
     source: 'nlsc-hillshade',
+    maxzoom: 11.5,
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 520}, 'raster-contrast': 0.2, 'raster-saturation': -0.3},
   });
@@ -101,9 +102,9 @@ function revealLoadedOfficialLayers(map, element, basemap) {
   const baseOpacity = basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92;
   const layers = [
     [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base',
-      ['interpolate', ['linear'], ['zoom'], 5.45, 0, 5.95, 0, 6.55, baseOpacity]],
+      ['interpolate', ['linear'], ['zoom'], 5.45, 0, 6.55, 0, 7.25, baseOpacity]],
     ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief',
-      ['interpolate', ['linear'], ['zoom'], 5.8, 0, 6.5, 0, 7.2, activePerspective === '3d' ? 0.24 : 0.14]]] : []),
+      ['interpolate', ['linear'], ['zoom'], 6.4, 0, 7.1, 0, 7.8, activePerspective === '3d' ? 0.16 : 0.09]]] : []),
   ];
   const reveal = () => {
     for (const [source, layer, opacity] of layers) {
@@ -456,7 +457,7 @@ export function setElectionPerspective(mode, animate = true) {
   }
   if (activeMap.getLayer('nlsc-relief')) {
     activeMap.setPaintProperty('nlsc-relief', 'raster-opacity',
-      ['interpolate', ['linear'], ['zoom'], 5.8, 0, 6.5, 0, 7.2, activePerspective === '3d' ? 0.24 : 0.14]);
+      ['interpolate', ['linear'], ['zoom'], 6.4, 0, 7.1, 0, 7.8, activePerspective === '3d' ? 0.16 : 0.09]);
   }
   if (activePerspective === '3d') {
     activeMap.dragRotate.enable();
@@ -474,8 +475,8 @@ export function resetElectionMap() {
   if (activePerspective === '3d') {
     activeMap?.flyTo({
       center: [120.94, 23.72],
-      zoom: compact ? 5.3 : 5.72,
-      ...perspectiveCamera(5.72),
+      zoom: compact ? 5.82 : 6.34,
+      ...perspectiveCamera(compact ? 5.82 : 6.34),
       duration: cameraDuration(1080),
       curve: 1.16,
       essential: false,
