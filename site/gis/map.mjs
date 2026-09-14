@@ -13,12 +13,17 @@ setWorkerUrl(new URL('../vendor/maplibre/maplibre-gl-worker.mjs', import.meta.ur
 const normalize = value => String(value || '').replaceAll('臺', '台');
 const OFFSHORE = ['金門縣', '連江縣', '澎湖縣'];
 const NLSC = 'https://wmts.nlsc.gov.tw/wmts';
+const NLSC_API = 'https://api.nlsc.gov.tw/other/TownVillagePointQuery';
 const TOWN_LEVEL_ZOOM = 6.6;
+const VILLAGE_LEVEL_ZOOM = 10.4;
 let activeMap = null;
 let activeMarkers = [];
+let activeLocationMarker = null;
 let activeFeatures = [];
 let activeSelected = '';
 let activeFocused = false;
+let activeGeography = null;
+let activeOnGeography = null;
 
 function nlscSource(layer, maxzoom = 19) {
   return {
@@ -44,8 +49,10 @@ function addOfficialBasemap(map, basemap) {
   if (basemap === 'simple') return;
   map.addSource('nlsc-terrain', nlscSource('EMAP5'));
   map.addSource('nlsc-administrative', nlscSource('EMAP01'));
+  map.addSource('nlsc-imagery', nlscSource('PHOTO2'));
   map.addSource('nlsc-hillshade', nlscSource('MOI_HILLSHADE'));
   map.addSource('nlsc-town', nlscSource('TOWN'));
+  map.addSource('nlsc-village', nlscSource('Village'));
   map.addSource('nlsc-city', nlscSource('CITY'));
   map.addLayer({
     id: 'nlsc-terrain-base',
@@ -62,6 +69,13 @@ function addOfficialBasemap(map, basemap) {
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-brightness-max': 0.93},
   });
   map.addLayer({
+    id: 'nlsc-imagery-base',
+    type: 'raster',
+    source: 'nlsc-imagery',
+    layout: {visibility: basemap === 'imagery' ? 'visible' : 'none'},
+    paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.12, 'raster-contrast': -0.04},
+  });
+  map.addLayer({
     id: 'nlsc-relief',
     type: 'raster',
     source: 'nlsc-hillshade',
@@ -75,12 +89,13 @@ function revealLoadedOfficialLayers(map, element, basemap) {
     element.dataset.basemapReady = 'true';
     return;
   }
-  const activeSource = basemap === 'terrain' ? 'nlsc-terrain' : 'nlsc-administrative';
+  const activeSource = basemap === 'terrain' ? 'nlsc-terrain' : basemap === 'imagery' ? 'nlsc-imagery' : 'nlsc-administrative';
   const layers = [
-    [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : 'nlsc-administrative-base', basemap === 'terrain' ? 0.96 : 0.92],
+    [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base', basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92],
     ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief', 0.17]] : []),
     ['nlsc-city', 'official-county-boundaries', 0.68],
     ['nlsc-town', 'official-town-boundaries', 0.64],
+    ['nlsc-village', 'official-village-boundaries', 0.72],
   ];
   const reveal = () => {
     for (const [source, layer, opacity] of layers) {
@@ -220,8 +235,88 @@ function tooltipNode(properties) {
 function clearMap() {
   activeMarkers.forEach(marker => marker.remove());
   activeMarkers = [];
+  activeLocationMarker?.remove();
+  activeLocationMarker = null;
   if (activeMap) activeMap.remove();
   activeMap = null;
+}
+
+function xmlText(xml, tag) {
+  return xml.querySelector(tag)?.textContent?.trim() || '';
+}
+
+async function lookupAdministrativePoint(lng, lat) {
+  const response = await fetch(`${NLSC_API}/${lng.toFixed(6)}/${lat.toFixed(6)}/4326`);
+  if (!response.ok) throw new Error('官方行政區定位暫時無法使用');
+  const xml = new DOMParser().parseFromString(await response.text(), 'application/xml');
+  if (xml.querySelector('parsererror')) throw new Error('官方行政區資料格式錯誤');
+  const result = {
+    county: normalize(xmlText(xml, 'ctyName')),
+    countyCode: xmlText(xml, 'ctyCode'),
+    town: xmlText(xml, 'townName'),
+    townCode: xmlText(xml, 'townCode'),
+    village: xmlText(xml, 'villageName'),
+    villageCode: xmlText(xml, 'villageCode'),
+    section: xmlText(xml, 'sectName'),
+    lng,
+    lat,
+  };
+  if (!result.county || !result.town) throw new Error('此位置沒有可用的行政區資料');
+  return result;
+}
+
+function locationMarker(detail) {
+  activeLocationMarker?.remove();
+  const element = document.createElement('div');
+  element.className = `gis-location-marker${detail.village ? ' is-village' : ''}`;
+  element.setAttribute('aria-label', detail.village ? `${detail.village}定位點` : `${detail.town}定位點`);
+  activeLocationMarker = new Marker({element, anchor: 'center'})
+    .setLngLat([detail.lng, detail.lat])
+    .addTo(activeMap);
+}
+
+function publishGeography(detail) {
+  activeGeography = detail;
+  if (detail) locationMarker(detail);
+  else {
+    activeLocationMarker?.remove();
+    activeLocationMarker = null;
+  }
+  activeOnGeography?.(detail);
+  if (activeMap) syncGeographicLevel(activeMap);
+}
+
+async function drillAtPoint(map, event) {
+  const canvas = map.getCanvas();
+  if (canvas.dataset.lookupBusy === 'true') return;
+  canvas.dataset.lookupBusy = 'true';
+  canvas.classList.add('is-locating');
+  try {
+    const found = await lookupAdministrativePoint(event.lngLat.lng, event.lngLat.lat);
+    if (found.county !== activeSelected) {
+      activeSelected = found.county;
+      activeFocused = true;
+      selectFilter(activeSelected);
+    }
+    const enterVillage = activeGeography?.town === found.town || map.getZoom() >= VILLAGE_LEVEL_ZOOM;
+    const detail = enterVillage ? found : {...found, village: '', villageCode: ''};
+    publishGeography(detail);
+    map.easeTo({
+      center: event.lngLat,
+      zoom: enterVillage ? Math.max(map.getZoom(), 13.2) : Math.max(map.getZoom(), 10.7),
+      duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 720,
+    });
+  } catch (error) {
+    activeOnGeography?.({error: error.message});
+  } finally {
+    canvas.dataset.lookupBusy = 'false';
+    canvas.classList.remove('is-locating');
+  }
+}
+
+export async function drillElectionCoordinates(lng, lat) {
+  if (!activeMap) throw new Error('地图尚未载入');
+  await drillAtPoint(activeMap, {lngLat: {lng: Number(lng), lat: Number(lat)}});
 }
 
 function renderOffshoreInsets(features, onSelect) {
@@ -256,14 +351,27 @@ function renderOffshoreInsets(features, onSelect) {
 }
 
 function syncGeographicLevel(map) {
-  const detailed = map.getZoom() >= TOWN_LEVEL_ZOOM;
+  const zoom = map.getZoom();
+  map.getContainer().dataset.mapZoom = zoom.toFixed(2);
+  const detailed = zoom >= TOWN_LEVEL_ZOOM;
+  const villageVisible = zoom >= VILLAGE_LEVEL_ZOOM;
+  const level = activeGeography?.village ? '村里' : activeGeography?.town ? '鄉鎮市區' : detailed ? '鄉鎮市區' : '縣市';
   const indicator = document.getElementById('gisLevelIndicator');
   if (indicator) {
     const strong = indicator.querySelector('strong');
     const small = indicator.querySelector('small');
-    if (strong) strong.textContent = detailed ? '鄉鎮市區' : '縣市';
-    if (small) small.textContent = detailed ? '官方鄉鎮界已顯示' : '放大顯示鄉鎮市區界';
+    if (strong) strong.textContent = level;
+    if (small) small.textContent = activeGeography?.village
+      ? '地理瀏覽層 · 非預測層'
+      : activeGeography?.town
+        ? '再點一次選取村里'
+        : villageVisible
+          ? '點擊地圖選取村里'
+          : detailed
+            ? '點擊地圖選取鄉鎮市區'
+            : '點擊縣市後向下探索';
     indicator.classList.toggle('is-detailed', detailed);
+    indicator.classList.toggle('is-village', Boolean(activeGeography?.village));
   }
   activeMarkers.forEach(marker => {
     const button = marker.getElement();
@@ -309,6 +417,7 @@ function selectFilter(name) {
 export function focusElectionCounty(name, animate = true) {
   activeSelected = normalize(name);
   activeFocused = true;
+  if (activeGeography?.county !== activeSelected) publishGeography(null);
   selectFilter(activeSelected);
   const feature = activeFeatures.find(item => item.properties.name === activeSelected);
   const bounds = feature && boundsFor(feature);
@@ -321,6 +430,7 @@ export function focusElectionCounty(name, animate = true) {
 
 export function resetElectionMap() {
   activeFocused = false;
+  publishGeography(null);
   const compact = matchMedia('(max-width: 980px)').matches;
   activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
     padding: compact ? 24 : 38,
@@ -328,16 +438,34 @@ export function resetElectionMap() {
   });
 }
 
+export function stepBackElectionMap() {
+  if (activeGeography?.village) {
+    const town = {...activeGeography, village: '', villageCode: ''};
+    publishGeography(town);
+    activeMap?.easeTo({center: [town.lng, town.lat], zoom: 10.7, duration: 520});
+    return;
+  }
+  if (activeGeography?.town) {
+    publishGeography(null);
+    focusElectionCounty(activeSelected);
+    return;
+  }
+  resetElectionMap();
+}
+
 export function resizeElectionMap() {
   activeMap?.resize();
+  if (activeGeography) return;
   if (activeFocused) focusElectionCounty(activeSelected, false);
   else resetElectionMap();
 }
 
-export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, onSelect, deltas = {}) {
+export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, onSelect, onGeography, deltas = {}) {
   clearMap();
   element.dataset.basemapReady = basemap === 'simple' ? 'true' : 'false';
   activeSelected = normalize(selected);
+  activeGeography = null;
+  activeOnGeography = onGeography;
   const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas);
   activeFeatures = geojson.features;
   const map = activeMap = new MapLibreMap({
@@ -346,7 +474,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     center: [120.85, 23.65],
     zoom: 5.55,
     minZoom: 4.4,
-    maxZoom: 10,
+    maxZoom: 18,
     attributionControl: false,
     dragRotate: false,
     pitchWithRotate: false,
@@ -370,7 +498,11 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       source: 'counties',
       paint: {
         'fill-color': ['get', 'fill'],
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
+        'fill-opacity': ['interpolate', ['linear'], ['zoom'],
+          5.5, ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
+          9, basemap === 'simple' ? 0.48 : 0.28,
+          11, basemap === 'simple' ? 0.24 : 0.08,
+        ],
       },
     });
     map.addLayer({
@@ -393,6 +525,13 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
         source: 'nlsc-town',
         minzoom: TOWN_LEVEL_ZOOM,
         paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 140},
+      });
+      map.addLayer({
+        id: 'official-village-boundaries',
+        type: 'raster',
+        source: 'nlsc-village',
+        minzoom: VILLAGE_LEVEL_ZOOM,
+        paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 220}, 'raster-fade-duration': 120},
       });
       map.addLayer({
         id: 'official-county-boundaries',
@@ -428,8 +567,12 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   map.on('click', 'county-fill', event => {
     const name = normalize(event.features?.[0]?.properties?.name);
     if (!name) return;
-    focusElectionCounty(name);
-    onSelect(name);
+    if (name !== activeSelected || map.getZoom() < TOWN_LEVEL_ZOOM) {
+      focusElectionCounty(name);
+      onSelect(name);
+      return;
+    }
+    drillAtPoint(map, event);
   });
   return map;
 }
