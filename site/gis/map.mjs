@@ -496,7 +496,11 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       source: 'counties',
       paint: {
         'fill-color': ['get', 'fill'],
-        'fill-opacity': ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
+        'fill-opacity': ['interpolate', ['linear'], ['zoom'],
+          5.5, ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
+          9, basemap === 'simple' ? 0.48 : 0.28,
+          11, basemap === 'simple' ? 0.24 : 0.08,
+        ],
       },
     });
     map.addLayer({
