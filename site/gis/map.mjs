@@ -681,8 +681,12 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     setElectionPerspective(activePerspective, false);
   });
   map.on('zoom', () => syncGeographicLevel(map));
-  map.on('movestart', () => { element.dataset.cameraMoving = 'true'; });
+  map.on('movestart', () => {
+    element.dataset.cameraMoving = 'true';
+    element.dataset.renderReady = 'false';
+  });
   map.on('moveend', () => { element.dataset.cameraMoving = 'false'; });
+  map.on('idle', () => { element.dataset.renderReady = 'true'; });
   let hoveredId = null;
   const popup = new Popup({closeButton: false, closeOnClick: false, offset: 10, maxWidth: '240px'});
   map.on('mousemove', 'county-fill', event => {
