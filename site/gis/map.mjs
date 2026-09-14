@@ -66,7 +66,6 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-terrain-base',
     type: 'raster',
     source: 'nlsc-terrain',
-    minzoom: 5.9,
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.18, 'raster-contrast': -0.08},
   });
@@ -74,7 +73,6 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-administrative-base',
     type: 'raster',
     source: 'nlsc-administrative',
-    minzoom: 5.9,
     layout: {visibility: basemap === 'administrative' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-brightness-max': 0.93},
   });
@@ -82,7 +80,6 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-imagery-base',
     type: 'raster',
     source: 'nlsc-imagery',
-    minzoom: 6.1,
     layout: {visibility: basemap === 'imagery' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 260}, 'raster-saturation': -0.12, 'raster-contrast': -0.04},
   });
@@ -90,7 +87,6 @@ function addOfficialBasemap(map, basemap) {
     id: 'nlsc-relief',
     type: 'raster',
     source: 'nlsc-hillshade',
-    minzoom: 6.35,
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 520}, 'raster-contrast': 0.2, 'raster-saturation': -0.3},
   });
@@ -102,9 +98,12 @@ function revealLoadedOfficialLayers(map, element, basemap) {
     return;
   }
   const activeSource = basemap === 'terrain' ? 'nlsc-terrain' : basemap === 'imagery' ? 'nlsc-imagery' : 'nlsc-administrative';
+  const baseOpacity = basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92;
   const layers = [
-    [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base', basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92],
-    ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief', activePerspective === '3d' ? 0.24 : 0.14]] : []),
+    [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base',
+      ['interpolate', ['linear'], ['zoom'], 5.45, 0, 5.95, 0, 6.55, baseOpacity]],
+    ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief',
+      ['interpolate', ['linear'], ['zoom'], 5.8, 0, 6.5, 0, 7.2, activePerspective === '3d' ? 0.24 : 0.14]]] : []),
   ];
   const reveal = () => {
     for (const [source, layer, opacity] of layers) {
@@ -456,7 +455,8 @@ export function setElectionPerspective(mode, animate = true) {
     activeMap.setPaintProperty('county-extrusion', 'fill-extrusion-opacity', activePerspective === '3d' ? 0.46 : 0);
   }
   if (activeMap.getLayer('nlsc-relief')) {
-    activeMap.setPaintProperty('nlsc-relief', 'raster-opacity', activePerspective === '3d' ? 0.24 : 0.14);
+    activeMap.setPaintProperty('nlsc-relief', 'raster-opacity',
+      ['interpolate', ['linear'], ['zoom'], 5.8, 0, 6.5, 0, 7.2, activePerspective === '3d' ? 0.24 : 0.14]);
   }
   if (activePerspective === '3d') {
     activeMap.dragRotate.enable();
@@ -471,10 +471,18 @@ export function resetElectionMap() {
   activeFocused = false;
   publishGeography(null);
   const compact = matchMedia('(max-width: 980px)').matches;
-  const bounds = activePerspective === '3d'
-    ? [[119.55, 21.55], [122.25, 25.72]]
-    : compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]];
-  activeMap?.fitBounds(bounds, {
+  if (activePerspective === '3d') {
+    activeMap?.flyTo({
+      center: [120.94, 23.72],
+      zoom: compact ? 5.3 : 5.72,
+      ...perspectiveCamera(5.72),
+      duration: cameraDuration(1080),
+      curve: 1.16,
+      essential: false,
+    });
+    return;
+  }
+  activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
     padding: compact ? 24 : 38,
     ...perspectiveCamera(5.55),
     duration: cameraDuration(1080),
