@@ -540,10 +540,12 @@ export function resetElectionMap() {
     });
     return;
   }
-  activeMap?.fitBounds(compact ? [[119.65, 21.65], [122.35, 25.55]] : [[118.0, 21.55], [122.25, 26.3]], {
-    padding: compact ? 24 : 38,
+  activeMap?.flyTo({
+    center: compact ? [121.02, 23.68] : [121.0, 23.65],
+    zoom: compact ? 6.1 : 6.52,
     ...perspectiveCamera(5.55),
     duration: cameraDuration(1080),
+    curve: 1.12,
     easing: cameraEase,
   });
 }
@@ -733,10 +735,10 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     }
     addLabels(map, activeFeatures, onSelect);
     renderOffshoreInsets(activeFeatures, onSelect);
+    setElectionPerspective(activePerspective, false);
     resetElectionMap();
     syncGeographicLevel(map);
     revealLoadedOfficialLayers(map, element, basemap);
-    setElectionPerspective(activePerspective, false);
   });
   map.on('zoom', () => syncGeographicLevel(map));
   map.on('zoomend', () => syncTerrain(map));

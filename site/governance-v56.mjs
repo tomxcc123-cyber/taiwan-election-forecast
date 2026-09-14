@@ -114,7 +114,7 @@ let model=null,research=null,history=null,replayIndex=0,applying=false,queued=fa
 function view(){return new URL(location.href).searchParams.get('view')||'overview';}
 function compactRelease(){
   const strip=document.querySelector('.release-strip');
-  if(!strip||strip.dataset.gov56)return;
+  if(!strip||strip.dataset.gov56||strip.dataset.commandCenter)return;
   strip.dataset.gov56='1';
   strip.innerHTML='<strong>HB-TLEF v5.0 Public Beta 1</strong><span class="gov-chip">現行模型</span><span class="gov-chip warn">概率未校準</span><span class="gov-chip neutral">fragmentation hard gate：shadow</span><a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">模型卡</a>';
 }

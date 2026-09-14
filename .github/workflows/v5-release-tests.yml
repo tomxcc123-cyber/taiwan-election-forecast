@@ -36,6 +36,7 @@ on:
       - 'site/candidate-app.mjs'
       - 'site/gis/map.mjs'
       - 'site/gis-edition.css'
+      - 'site/forecast-command-center.css'
       - 'site/evidence-ui.mjs'
       - 'site/poll-source-v52.mjs'
       - 'site/source-v52.css'
@@ -145,7 +146,9 @@ jobs:
           grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
           grep -q '確認性參考' dist/governance-v56.mjs
-          grep -q 'gis-edition-0.6.0' dist/index.html
+          grep -q 'forecast-command-center-0.7.0' dist/index.html
+          grep -q 'forecast-command-center.css' dist/index.html
+          grep -q 'Forecast Command Center 0.7.0' dist/index.html
           grep -q 'tiles.mapterhorn.com' dist/index.html
           grep -q "type: 'raster-dem'" dist/gis/map.mjs
           grep -q 'map.setTerrain' dist/gis/map.mjs

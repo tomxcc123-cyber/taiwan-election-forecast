@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Taiwan Election Forecast GIS Edition：透過互動地圖進入台灣22縣市的候選人預測、政黨基本盤、Swing與模型不確定性。">
+  <meta name="description" content="2026 台灣縣市長選舉預測：以互動 GIS 地圖、聯合模擬、關鍵戰場與可追溯民調，呈現全台 22 縣市的選情。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://wmts.nlsc.gov.tw https://tiles.mapterhorn.com; connect-src 'self' https://wmts.nlsc.gov.tw https://api.nlsc.gov.tw https://tiles.mapterhorn.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <meta name="ui-build" content="2026-09-14-gis-edition-0.6.0">
-  <title>Taiwan Election Forecast | GIS Edition</title>
+  <meta name="ui-build" content="2026-09-14-forecast-command-center-0.7.0">
+  <title>台灣選舉預測 | Forecast Command Center</title>
   <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css?v=6.9.0">
   <link rel="stylesheet" href="styles.css?v=20260912-56">
   <link rel="stylesheet" href="motion.css?v=20260912-56">
@@ -17,12 +17,13 @@
   <link rel="stylesheet" href="source-v52.css?v=20260912-56">
   <link rel="stylesheet" href="governance-v56.css?v=20260912-56">
   <link rel="stylesheet" href="gis-edition.css?v=20260914-060">
+  <link rel="stylesheet" href="forecast-command-center.css?v=20260914-070">
   <style>
     .release-strip{margin:0;border-bottom:1px solid #dfe4eb;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}@media(max-width:720px){.release-strip{padding:9px 16px!important}}
   </style>
   <script defer src="vendor/d3.min.js"></script>
   <script defer src="vendor/topojson.min.js"></script>
-  <script type="module" src="candidate-app.mjs?v=20260914-060"></script>
+  <script type="module" src="candidate-app.mjs?v=20260914-070"></script>
   <script type="module" src="poll-source-v52.mjs?v=20260912-56"></script>
   <script type="module" src="governance-v56.mjs?v=20260912-56"></script>
   <script type="module" src="motion.mjs?v=20260912-56"></script>
@@ -33,29 +34,27 @@
 <body>
   <a class="skip" href="#main">跳至主要內容</a>
   <header class="topbar">
-    <a class="brand" href="?view=map&election=2026-local&level=county&layer=leader"><i class="brand-mark" aria-hidden="true"></i><span class="brand-copy"><strong>台灣選舉預測與政治地理平台</strong><small>Taiwan Election Forecast — GIS Edition</small></span></a>
+    <a class="brand" href="?view=map&election=2026-local&level=county&layer=leader"><i class="brand-mark" aria-hidden="true"></i><span class="brand-copy"><strong>台灣選舉預測</strong><small>TAIWAN ELECTION FORECAST</small></span></a>
     <nav aria-label="主要導覽">
-      <a href="?view=map&election=2026-local&level=county&layer=leader" data-view="overview">GIS 地圖</a>
-      <a href="?view=counties" data-view="counties">縣市</a>
-      <a href="?view=updates" data-view="updates">趨勢</a>
-      <a href="?view=polls" data-view="polls">民調</a>
-      <a href="?view=scenario" data-view="scenario">兵推</a>
-      <a href="?view=validation" data-view="validation">模型實驗室</a>
+      <a href="?view=map&election=2026-local&level=county&layer=leader" data-view="overview">預測總覽</a>
+      <a href="?view=counties" data-view="counties">競賽中心</a>
+      <a href="?view=updates" data-view="updates">選情變化</a>
+      <a href="?view=polls" data-view="polls">民調中心</a>
+      <a href="?view=scenario" data-view="scenario">情境推演</a>
+      <a href="?view=validation" data-view="validation">模型驗證</a>
       <a href="?view=methods" data-view="methods">方法</a>
     </nav>
-    <label class="election-selector"><span class="offscreen">選擇選舉</span><select aria-label="選擇選舉"><option>2026 地方選舉</option><option disabled>2028 總統選舉（建置中）</option><option disabled>2028 立委選舉（建置中）</option></select></label>
-    <button id="warRoom" type="button" aria-pressed="false" title="進入戰情模式">戰情模式</button>
+    <label class="election-selector"><span class="offscreen">選擇選舉</span><select aria-label="選擇選舉"><option>2026 縣市長選舉</option><option disabled>2028 總統選舉（建置中）</option><option disabled>2028 立委選舉（建置中）</option></select></label>
     <button id="share" class="share-control">分享</button>
   </header>
-  <div class="release-strip" role="note">
-    <strong>GIS Edition 0.6.0</strong>
-    <span class="gov-chip">20m DTM 真實地形 · 立體選情高度層</span>
-    <span class="gov-chip warn">勝率未跨屆校準</span>
-    <span class="gov-chip neutral">PB 4.0 與當前預測分層顯示</span>
-    <a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">模型卡</a>
+  <div class="release-strip" role="note" data-command-center="true">
+    <strong>Forecast Command Center 0.7.0</strong>
+    <span>全台預測、關鍵戰場與 GIS 政治地理整合</span>
+    <span class="gov-chip warn">研究預測 · 機率尚未跨屆校準</span>
+    <a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">查看方法與限制</a>
   </div>
   <main id="main" tabindex="-1">
-    <div id="loading" role="status">正在讀取 HB-TLEF v5.0 模型與民調資料…</div>
+    <div id="loading" role="status">正在讀取最新預測、GIS 與民調資料…</div>
     <div id="page"></div>
   </main>
   <footer class="footer">
