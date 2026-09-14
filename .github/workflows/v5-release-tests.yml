@@ -34,12 +34,15 @@ on:
       - 'scripts/build.py'
       - 'site/index.html'
       - 'site/candidate-app.mjs'
+      - 'site/gis/map.mjs'
+      - 'site/gis-edition.css'
       - 'site/evidence-ui.mjs'
       - 'site/poll-source-v52.mjs'
       - 'site/source-v52.css'
       - 'site/governance-v56.mjs'
       - 'site/governance-v56.css'
       - 'docs/MODEL_CARD_V5_PUBLIC_BETA.md'
+      - 'THIRD_PARTY.md'
       - '.github/workflows/publish.yml'
       - '.github/workflows/v5-release-tests.yml'
   workflow_dispatch:
@@ -142,6 +145,10 @@ jobs:
           grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
           grep -q '確認性參考' dist/governance-v56.mjs
+          grep -q 'gis-edition-0.6.0' dist/index.html
+          grep -q 'tiles.mapterhorn.com' dist/index.html
+          grep -q "type: 'raster-dem'" dist/gis/map.mjs
+          grep -q 'map.setTerrain' dist/gis/map.mjs
           python - <<'PY'
           import json
           data=json.load(open('dist/candidate-model.json',encoding='utf-8'))
