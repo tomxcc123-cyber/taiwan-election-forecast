@@ -14,6 +14,7 @@ const normalize = value => String(value || '').replaceAll('臺', '台');
 const OFFSHORE = ['金門縣', '連江縣', '澎湖縣'];
 const NLSC = 'https://wmts.nlsc.gov.tw/wmts';
 const NLSC_API = 'https://api.nlsc.gov.tw/other/TownVillagePointQuery';
+const MAPTERHORN_TILEJSON = 'https://tiles.mapterhorn.com/tilejson.json';
 const TOWN_LEVEL_ZOOM = 7.4;
 const VILLAGE_LEVEL_ZOOM = 10.4;
 let activeMap = null;
@@ -91,6 +92,53 @@ function addOfficialBasemap(map, basemap) {
     layout: {visibility: basemap === 'terrain' ? 'visible' : 'none'},
     paint: {'raster-opacity': 0, 'raster-opacity-transition': {duration: 520}, 'raster-contrast': 0.2, 'raster-saturation': -0.3},
   });
+}
+
+function addTerrainModel(map, element) {
+  map.addSource('terrain-dem', {
+    type: 'raster-dem',
+    url: MAPTERHORN_TILEJSON,
+    tileSize: 512,
+    encoding: 'terrarium',
+  });
+  map.addSource('terrain-shade', {
+    type: 'raster-dem',
+    url: MAPTERHORN_TILEJSON,
+    tileSize: 512,
+    encoding: 'terrarium',
+  });
+  map.addLayer({
+    id: 'terrain-ambient',
+    type: 'hillshade',
+    source: 'terrain-shade',
+    maxzoom: 15,
+    layout: {visibility: activePerspective === '3d' ? 'visible' : 'none'},
+    paint: {
+      'hillshade-illumination-anchor': 'map',
+      'hillshade-illumination-direction': 318,
+      'hillshade-exaggeration': 0.54,
+      'hillshade-shadow-color': 'rgba(19, 48, 58, 0.46)',
+      'hillshade-highlight-color': 'rgba(255, 248, 218, 0.34)',
+      'hillshade-accent-color': 'rgba(67, 98, 86, 0.28)',
+    },
+  });
+  element.dataset.terrainSource = 'MOI-2024-20m-DTM';
+  element.dataset.terrainReady = 'false';
+  const markReady = () => {
+    if (map.isSourceLoaded('terrain-dem')) element.dataset.terrainReady = 'true';
+  };
+  map.on('sourcedata', markReady);
+  markReady();
+}
+
+function syncTerrain(map = activeMap) {
+  if (!map?.getSource('terrain-dem')) return;
+  const enabled = activePerspective === '3d';
+  map.setTerrain(enabled ? {source: 'terrain-dem', exaggeration: 1.38} : null);
+  map.getContainer().dataset.terrainEnabled = String(enabled);
+  if (map.getLayer('terrain-ambient')) {
+    map.setLayoutProperty('terrain-ambient', 'visibility', enabled ? 'visible' : 'none');
+  }
 }
 
 function revealLoadedOfficialLayers(map, element, basemap) {
@@ -452,6 +500,7 @@ export function setElectionPerspective(mode, animate = true) {
   element.dataset.perspective = activePerspective;
   const camera = perspectiveCamera();
   activeMap.easeTo({...camera, duration: animate ? cameraDuration(1050) : 0, easing: cameraEase});
+  syncTerrain(activeMap);
   if (activeMap.getLayer('county-extrusion')) {
     activeMap.setPaintProperty('county-extrusion', 'fill-extrusion-opacity', activePerspective === '3d' ? 0.46 : 0);
   }
@@ -542,6 +591,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   map.on('error', () => {});
   map.once('load', () => {
     addOfficialBasemap(map, basemap);
+    addTerrainModel(map, element);
     map.addSource('counties', {type: 'geojson', data: geojson, promoteId: 'id'});
     map.addLayer({
       id: 'county-shadow',
