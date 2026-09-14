@@ -14,7 +14,7 @@ const normalize = value => String(value || '').replaceAll('臺', '台');
 const OFFSHORE = ['金門縣', '連江縣', '澎湖縣'];
 const NLSC = 'https://wmts.nlsc.gov.tw/wmts';
 const NLSC_API = 'https://api.nlsc.gov.tw/other/TownVillagePointQuery';
-const TOWN_LEVEL_ZOOM = 6.6;
+const TOWN_LEVEL_ZOOM = 7.4;
 const VILLAGE_LEVEL_ZOOM = 10.4;
 let activeMap = null;
 let activeMarkers = [];
@@ -102,9 +102,9 @@ function revealLoadedOfficialLayers(map, element, basemap) {
   const baseOpacity = basemap === 'terrain' ? 0.96 : basemap === 'imagery' ? 0.88 : 0.92;
   const layers = [
     [activeSource, basemap === 'terrain' ? 'nlsc-terrain-base' : basemap === 'imagery' ? 'nlsc-imagery-base' : 'nlsc-administrative-base',
-      ['interpolate', ['linear'], ['zoom'], 5.45, 0, 6.55, 0, 7.25, baseOpacity]],
+      ['interpolate', ['linear'], ['zoom'], 5.45, 0, 7.25, 0, 7.85, baseOpacity]],
     ...(basemap === 'terrain' ? [['nlsc-hillshade', 'nlsc-relief',
-      ['interpolate', ['linear'], ['zoom'], 6.4, 0, 7.1, 0, 7.8, activePerspective === '3d' ? 0.16 : 0.09]]] : []),
+      ['interpolate', ['linear'], ['zoom'], 6.8, 0, 7.4, 0, 8, activePerspective === '3d' ? 0.16 : 0.09]]] : []),
   ];
   const reveal = () => {
     for (const [source, layer, opacity] of layers) {
@@ -457,7 +457,7 @@ export function setElectionPerspective(mode, animate = true) {
   }
   if (activeMap.getLayer('nlsc-relief')) {
     activeMap.setPaintProperty('nlsc-relief', 'raster-opacity',
-      ['interpolate', ['linear'], ['zoom'], 6.4, 0, 7.1, 0, 7.8, activePerspective === '3d' ? 0.16 : 0.09]);
+      ['interpolate', ['linear'], ['zoom'], 6.8, 0, 7.4, 0, 8, activePerspective === '3d' ? 0.16 : 0.09]);
   }
   if (activePerspective === '3d') {
     activeMap.dragRotate.enable();
@@ -475,8 +475,8 @@ export function resetElectionMap() {
   if (activePerspective === '3d') {
     activeMap?.flyTo({
       center: [120.94, 23.72],
-      zoom: compact ? 5.82 : 6.34,
-      ...perspectiveCamera(compact ? 5.82 : 6.34),
+      zoom: compact ? 6.36 : 7.02,
+      ...perspectiveCamera(compact ? 6.36 : 7.02),
       duration: cameraDuration(1080),
       curve: 1.16,
       essential: false,
