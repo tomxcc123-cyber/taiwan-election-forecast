@@ -751,6 +751,7 @@ export function resetElectionMap() {
   activeFocused = false;
   publishGeography(null);
   const compact = matchMedia('(max-width: 980px)').matches;
+  const historyAtlas = Boolean(activeMap?.getContainer()?.closest('.history-map-stage'));
   if (activePerspective === '3d') {
     const targetZoom = compact ? 6.36 : 7.02;
     syncTerrain(activeMap, targetZoom);
@@ -766,7 +767,7 @@ export function resetElectionMap() {
   }
   activeMap?.flyTo({
     center: compact ? [121.02, 23.68] : [121.0, 23.65],
-    zoom: compact ? 6.1 : 6.52,
+    zoom: historyAtlas ? (compact ? 6.72 : 6.94) : (compact ? 6.1 : 6.52),
     ...perspectiveCamera(5.55),
     duration: cameraDuration(1080),
     curve: 1.12,
