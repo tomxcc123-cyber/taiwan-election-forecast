@@ -19,6 +19,7 @@ const TOWN_LEVEL_ZOOM = 7.4;
 const VILLAGE_LEVEL_ZOOM = 10.4;
 let activeMap = null;
 let activeMarkers = [];
+let activeTownMarkers = [];
 let activeLocationMarker = null;
 let activeFeatures = [];
 let activeSelected = '';
@@ -258,6 +259,33 @@ function toFeatureCollection(topology, results, rawCounties, baselineResults, mo
   return {type: 'FeatureCollection', features};
 }
 
+function toTownFeatureCollection(topology, history = {}) {
+  const collection = window.topojson.feature(topology, topology.objects.map);
+  const historyByName = new Map(Object.entries(history).map(([name, record]) => [normalize(name), record]));
+  return {
+    type: 'FeatureCollection',
+    features: collection.features.map((feature, index) => {
+      const name = normalize(feature.properties?.name);
+      const record = historyByName.get(name) || null;
+      const winner = record?.winner || 'IND';
+      return {
+        ...feature,
+        id: feature.properties?.id || index,
+        properties: {
+          ...feature.properties,
+          name,
+          fill: COLORS[winner] || COLORS.IND,
+          party: winner,
+          margin: Number(record?.margin || 0),
+          elevation: 220 + Math.round(Number(record?.margin || 0) * 92),
+          value: record ? `2022 ${winner} +${Number(record.margin || 0).toFixed(1)}` : '2022 尚無對應結果',
+          validVotes: Number(record?.valid_votes || 0),
+        },
+      };
+    }),
+  };
+}
+
 function coordinates(geometry) {
   if (!geometry) return [];
   if (geometry.type === 'Polygon') return geometry.coordinates.flat();
@@ -294,10 +322,25 @@ function tooltipNode(properties) {
 function clearMap() {
   activeMarkers.forEach(marker => marker.remove());
   activeMarkers = [];
+  activeTownMarkers.forEach(marker => marker.remove());
+  activeTownMarkers = [];
   activeLocationMarker?.remove();
   activeLocationMarker = null;
   if (activeMap) activeMap.remove();
   activeMap = null;
+}
+
+function townTooltipNode(properties) {
+  const node = document.createElement('div');
+  node.className = 'gis-tooltip gis-town-tooltip';
+  const title = document.createElement('strong');
+  title.textContent = properties.name;
+  const value = document.createElement('span');
+  value.textContent = properties.value;
+  const meta = document.createElement('small');
+  meta.textContent = properties.validVotes ? `有效票 ${Number(properties.validVotes).toLocaleString('zh-TW')} · 點擊查看` : '點擊查看地區檔案';
+  node.append(title, value, meta);
+  return node;
 }
 
 function xmlText(xml, tag) {
@@ -441,6 +484,12 @@ function syncGeographicLevel(map) {
     const button = marker.getElement();
     button.classList.toggle('is-scale-hidden', detailed && !button.classList.contains('is-selected'));
   });
+  activeTownMarkers.forEach(marker => {
+    const button = marker.getElement();
+    const selected = button.dataset.town === activeGeography?.town;
+    button.classList.toggle('is-selected', selected);
+    button.classList.toggle('is-town-hidden', zoom < 7.15 && !selected);
+  });
 }
 
 function addLabels(map, features, onSelect) {
@@ -462,6 +511,150 @@ function addLabels(map, features, onSelect) {
       .setLngLat(window.d3.geoCentroid(feature))
       .addTo(map);
     activeMarkers.push(marker);
+  }
+}
+
+function selectTownFeature(map, feature, lngLat) {
+  const name = normalize(feature.properties?.name);
+  if (!name) return;
+  if (activeGeography?.town === name && map.getZoom() >= VILLAGE_LEVEL_ZOOM - 0.5) {
+    drillAtPoint(map, {lngLat});
+    return;
+  }
+  const center = window.d3?.geoCentroid ? window.d3.geoCentroid(feature) : [lngLat.lng, lngLat.lat];
+  const detail = {
+    county: activeSelected,
+    countyCode: String(feature.properties?.id || '').slice(0, 5),
+    town: name,
+    townCode: String(feature.properties?.id || ''),
+    village: '',
+    villageCode: '',
+    section: '',
+    lng: Number(center[0]),
+    lat: Number(center[1]),
+  };
+  publishGeography(detail);
+  if (map.getLayer('town-selected')) map.setFilter('town-selected', ['==', ['get', 'name'], name]);
+  const targetZoom = Math.max(map.getZoom(), 10.7);
+  map.flyTo({
+    center,
+    zoom: targetZoom,
+    ...perspectiveCamera(targetZoom),
+    duration: cameraDuration(920),
+    curve: 1.2,
+    essential: false,
+  });
+}
+
+function addTownLabels(map, features) {
+  if (!window.d3?.geoCentroid) return;
+  activeTownMarkers.forEach(marker => marker.remove());
+  activeTownMarkers = [];
+  for (const feature of features) {
+    const element = document.createElement('button');
+    element.type = 'button';
+    element.className = 'gis-map-label gis-town-label';
+    element.dataset.town = feature.properties.name;
+    element.textContent = feature.properties.name;
+    element.setAttribute('aria-label', `查看${activeSelected}${feature.properties.name}歷史結果`);
+    element.addEventListener('click', event => {
+      event.stopPropagation();
+      const [lng, lat] = window.d3.geoCentroid(feature);
+      selectTownFeature(map, feature, {lng, lat});
+    });
+    activeTownMarkers.push(new Marker({element, anchor: 'center'})
+      .setLngLat(window.d3.geoCentroid(feature))
+      .addTo(map));
+  }
+}
+
+async function addTownVectors(map, element, url, history, mode) {
+  if (!url) return;
+  element.dataset.townVectorReady = 'false';
+  try {
+    const response = await fetch(url, {cache: 'force-cache'});
+    if (!response.ok) throw new Error('鄉鎮向量資料無法讀取');
+    const geojson = toTownFeatureCollection(await response.json(), history);
+    if (map !== activeMap) return;
+    map.addSource('town-vectors', {type: 'geojson', data: geojson, promoteId: 'id'});
+    map.addLayer({
+      id: 'town-fill',
+      type: 'fill',
+      source: 'town-vectors',
+      minzoom: 6.7,
+      paint: {
+        'fill-color': ['get', 'fill'],
+        'fill-opacity': ['interpolate', ['linear'], ['zoom'], 6.7, 0, 7.2, mode === 'baseline' ? 0.76 : 0.42, 10.5, mode === 'baseline' ? 0.64 : 0.3],
+        'fill-outline-color': 'rgba(0,0,0,0)',
+      },
+    });
+    map.addLayer({
+      id: 'town-boundary-casing',
+      type: 'line',
+      source: 'town-vectors',
+      minzoom: 6.7,
+      paint: {
+        'line-color': '#f8fbfc',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 6.7, 2.1, 9, 2.6, 12, 3.1],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 6.7, 0, 7.2, 0.88],
+      },
+    });
+    map.addLayer({
+      id: 'town-extrusion',
+      type: 'fill-extrusion',
+      source: 'town-vectors',
+      minzoom: 6.9,
+      maxzoom: 11.2,
+      paint: {
+        'fill-extrusion-color': ['get', 'fill'],
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 6.9, 0, 7.4, ['get', 'elevation'], 10.8, ['*', ['get', 'elevation'], 0.42]],
+        'fill-extrusion-base': 0,
+        'fill-extrusion-opacity': activePerspective === '3d' ? 0.34 : 0,
+        'fill-extrusion-opacity-transition': {duration: 520},
+        'fill-extrusion-vertical-gradient': true,
+      },
+    });
+    map.addLayer({
+      id: 'town-boundary',
+      type: 'line',
+      source: 'town-vectors',
+      minzoom: 6.7,
+      paint: {
+        'line-color': '#526d80',
+        'line-width': ['interpolate', ['linear'], ['zoom'], 6.7, 0.5, 9, 0.8, 12, 1.1],
+        'line-opacity': ['interpolate', ['linear'], ['zoom'], 6.7, 0, 7.2, 0.82, 12, 0.68],
+      },
+    });
+    map.addLayer({
+      id: 'town-selected',
+      type: 'line',
+      source: 'town-vectors',
+      filter: ['==', ['get', 'name'], ''],
+      paint: {'line-color': '#f2a51d', 'line-width': 3, 'line-opacity': 0.96},
+    });
+    addTownLabels(map, geojson.features);
+    const popup = new Popup({closeButton: false, closeOnClick: false, offset: 8, maxWidth: '220px'});
+    map.on('mousemove', 'town-fill', event => {
+      const feature = event.features?.[0];
+      if (!feature) return;
+      map.getCanvas().style.cursor = 'pointer';
+      popup.setLngLat(event.lngLat).setDOMContent(townTooltipNode(feature.properties)).addTo(map);
+    });
+    map.on('mouseleave', 'town-fill', () => {
+      map.getCanvas().style.cursor = '';
+      popup.remove();
+    });
+    map.on('click', 'town-fill', event => {
+      const feature = event.features?.[0];
+      if (!feature) return;
+      selectTownFeature(map, feature, event.lngLat);
+      if (map.getLayer('town-selected')) map.setFilter('town-selected', ['==', ['get', 'name'], normalize(feature.properties?.name)]);
+    });
+    element.dataset.townVectorCount = String(geojson.features.length);
+    element.dataset.townVectorReady = 'true';
+    syncGeographicLevel(map);
+  } catch {
+    element.dataset.townVectorReady = 'error';
   }
 }
 
@@ -488,11 +681,11 @@ export function focusElectionCounty(name, animate = true) {
   const feature = activeFeatures.find(item => item.properties.name === activeSelected);
   const bounds = feature && boundsFor(feature);
   if (activeMap && bounds) {
-    syncTerrain(activeMap, 8.2);
+    syncTerrain(activeMap, 9.1);
     activeMap.fitBounds(bounds, {
     padding: {top: 86, right: 72, bottom: 86, left: 72},
-    maxZoom: 8.2,
-    ...perspectiveCamera(8.2),
+    maxZoom: 9.45,
+    ...perspectiveCamera(9.1),
     duration: animate ? cameraDuration(1120) : 0,
     easing: cameraEase,
     });
@@ -509,6 +702,9 @@ export function setElectionPerspective(mode, animate = true) {
   syncTerrain(activeMap);
   if (activeMap.getLayer('county-extrusion')) {
     activeMap.setPaintProperty('county-extrusion', 'fill-extrusion-opacity', activePerspective === '3d' ? 0.46 : 0);
+  }
+  if (activeMap.getLayer('town-extrusion')) {
+    activeMap.setPaintProperty('town-extrusion', 'fill-extrusion-opacity', activePerspective === '3d' ? 0.34 : 0);
   }
   if (activeMap.getLayer('nlsc-relief')) {
     activeMap.setPaintProperty('nlsc-relief', 'raster-opacity',
@@ -572,7 +768,7 @@ export function resizeElectionMap() {
   else resetElectionMap();
 }
 
-export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, perspective, onSelect, onGeography, deltas = {}) {
+export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, perspective, onSelect, onGeography, deltas = {}, focusSelected = false, townTopologyUrl = '', townHistory = {}) {
   clearMap();
   element.dataset.basemapReady = basemap === 'simple' ? 'true' : 'false';
   activeSelected = normalize(selected);
@@ -599,7 +795,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
   map.addControl(new NavigationControl({showCompass: true, visualizePitch: true}), 'top-right');
   map.addControl(new ScaleControl({maxWidth: 110, unit: 'metric'}), 'bottom-left');
   map.on('error', () => {});
-  map.once('load', () => {
+  map.once('load', async () => {
     addOfficialBasemap(map, basemap);
     addTerrainModel(map, element);
     map.addSource('counties', {type: 'geojson', data: geojson, promoteId: 'id'});
@@ -733,10 +929,12 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
         },
       });
     }
+    await addTownVectors(map, element, townTopologyUrl, townHistory, mode);
     addLabels(map, activeFeatures, onSelect);
     renderOffshoreInsets(activeFeatures, onSelect);
     setElectionPerspective(activePerspective, false);
-    resetElectionMap();
+    if (focusSelected) focusElectionCounty(activeSelected, false);
+    else resetElectionMap();
     syncGeographicLevel(map);
     revealLoadedOfficialLayers(map, element, basemap);
   });
@@ -773,6 +971,7 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
     popup.remove();
   });
   map.on('click', 'county-fill', event => {
+    if (map.getLayer('town-fill') && map.queryRenderedFeatures(event.point, {layers: ['town-fill']}).length) return;
     const name = normalize(event.features?.[0]?.properties?.name);
     if (!name) return;
     if (name !== activeSelected || map.getZoom() < TOWN_LEVEL_ZOOM) {

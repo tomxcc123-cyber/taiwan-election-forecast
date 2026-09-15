@@ -6,7 +6,7 @@
   <meta name="description" content="2026 台灣縣市長選舉預測：以互動 GIS 地圖、聯合模擬、關鍵戰場與可追溯民調，呈現全台 22 縣市的選情。">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://wmts.nlsc.gov.tw https://tiles.mapterhorn.com; connect-src 'self' https://wmts.nlsc.gov.tw https://api.nlsc.gov.tw https://tiles.mapterhorn.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
-  <meta name="ui-build" content="2026-09-14-forecast-command-center-0.7.0">
+  <meta name="ui-build" content="2026-09-14-race-center-0.8.0">
   <title>台灣選舉預測 | Forecast Command Center</title>
   <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css?v=6.9.0">
   <link rel="stylesheet" href="styles.css?v=20260912-56">
@@ -18,12 +18,13 @@
   <link rel="stylesheet" href="governance-v56.css?v=20260912-56">
   <link rel="stylesheet" href="gis-edition.css?v=20260914-060">
   <link rel="stylesheet" href="forecast-command-center.css?v=20260914-070">
+  <link rel="stylesheet" href="race-center.css?v=20260914-080">
   <style>
     .release-strip{margin:0;border-bottom:1px solid #dfe4eb;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}@media(max-width:720px){.release-strip{padding:9px 16px!important}}
   </style>
   <script defer src="vendor/d3.min.js"></script>
   <script defer src="vendor/topojson.min.js"></script>
-  <script type="module" src="candidate-app.mjs?v=20260914-070"></script>
+  <script type="module" src="candidate-app.mjs?v=20260914-080"></script>
   <script type="module" src="poll-source-v52.mjs?v=20260912-56"></script>
   <script type="module" src="governance-v56.mjs?v=20260912-56"></script>
   <script type="module" src="motion.mjs?v=20260912-56"></script>
@@ -48,8 +49,8 @@
     <button id="share" class="share-control">分享</button>
   </header>
   <div class="release-strip" role="note" data-command-center="true">
-    <strong>Forecast Command Center 0.7.0</strong>
-    <span>全台預測、關鍵戰場與 GIS 政治地理整合</span>
+    <strong>Race Center 0.8.0</strong>
+    <span>候選人、民調與鄉鎮政治地理整合</span>
     <span class="gov-chip warn">研究預測 · 機率尚未跨屆校準</span>
     <a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">查看方法與限制</a>
   </div>
