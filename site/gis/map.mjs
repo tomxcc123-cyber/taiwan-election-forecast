@@ -27,6 +27,7 @@ let activeFocused = false;
 let activeGeography = null;
 let activeOnGeography = null;
 let activePerspective = '3d';
+let activeBasemap = 'simple';
 
 const reduceMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 const cameraDuration = milliseconds => reduceMotion() ? 0 : milliseconds;
@@ -230,7 +231,7 @@ function valueFor(metrics, mode) {
   return `${metrics.leader?.name || '無資料'} 領先`;
 }
 
-function toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas) {
+function toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas, overrides = {}) {
   const collection = window.topojson.feature(topology, topology.objects.map);
   const resultByName = new Map(results.map(race => [normalize(race.name), race]));
   const rawByName = new Map(rawCounties.map(race => [normalize(race.name), race]));
@@ -240,23 +241,49 @@ function toFeatureCollection(topology, results, rawCounties, baselineResults, mo
     const race = resultByName.get(name);
     if (!race) return {...feature, id: feature.properties?.id || index};
     const metrics = mapMetrics(race, rawByName.get(name), baseByName.get(name), Number(deltas?.[name] || 0));
+    const override = overrides?.[name];
     return {
       ...feature,
       id: feature.properties?.id || index,
       properties: {
         ...feature.properties,
         name,
-        fill: fillFor(metrics, mode),
-        opacity: Math.min(0.92, opacityFor(metrics, mode)),
-        party: metrics.leaderGroup,
-        leader: metrics.leader?.name || '無資料',
-        value: valueFor(metrics, mode),
-        evidence: race.quality?.evidence?.grade || '—',
-        elevation: 150 + Math.round(metrics.probability * 950),
+        fill: override?.fill || fillFor(metrics, mode),
+        opacity: Math.min(0.92, override?.opacity ?? opacityFor(metrics, mode)),
+        party: override?.party || metrics.leaderGroup,
+        leader: override?.leader || metrics.leader?.name || '無資料',
+        value: override?.value || valueFor(metrics, mode),
+        evidence: override?.evidence || race.quality?.evidence?.grade || '—',
+        elevation: override?.elevation ?? 150 + Math.round(metrics.probability * 950),
       },
     };
   });
   return {type: 'FeatureCollection', features};
+}
+
+function countyMatch(features, property, fallback) {
+  return ['match', ['get', 'name'], ...features.flatMap(feature => [feature.properties.name, feature.properties[property] ?? fallback]), fallback];
+}
+
+function countyOpacity(features, basemap = activeBasemap) {
+  const full = countyMatch(features, 'opacity', 0.24);
+  return ['interpolate', ['linear'], ['zoom'],
+    5.5, ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', full, basemap === 'simple' ? 1 : 0.72]],
+    9, basemap === 'simple' ? 0.48 : 0.28,
+    11, basemap === 'simple' ? 0.24 : 0.08,
+  ];
+}
+
+function applyCountyFrame(map, features) {
+  if (!map?.getLayer('county-fill')) return;
+  const fill = countyMatch(features, 'fill', '#9aa5ae');
+  const elevation = countyMatch(features, 'elevation', 160);
+  map.setPaintProperty('county-fill', 'fill-color', fill);
+  map.setPaintProperty('county-fill', 'fill-opacity', countyOpacity(features));
+  if (map.getLayer('county-extrusion')) {
+    map.setPaintProperty('county-extrusion', 'fill-extrusion-color', fill);
+    map.setPaintProperty('county-extrusion', 'fill-extrusion-height', ['interpolate', ['linear'], ['zoom'], 4.5, elevation, 7.8, ['*', elevation, 0.25], 9.2, 0]);
+  }
 }
 
 function toTownFeatureCollection(topology, history = {}) {
@@ -446,6 +473,7 @@ function renderOffshoreInsets(features, onSelect) {
     const projection = window.d3.geoMercator().fitExtent([[8, 8], [104, 52]], feature);
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', window.d3.geoPath(projection)(feature));
+    path.style.fill = feature.properties.fill || '';
     svg.append(path);
     button.append(label, svg);
     button.addEventListener('click', event => {
@@ -768,15 +796,34 @@ export function resizeElectionMap() {
   else resetElectionMap();
 }
 
-export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, perspective, onSelect, onGeography, deltas = {}, focusSelected = false, townTopologyUrl = '', townHistory = {}) {
+export function updateElectionMapFrame(topology, results, rawCounties, baselineResults, mode, deltas = {}, overrides = {}) {
+  if (!activeMap?.getSource('counties')) return false;
+  const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas, overrides);
+  activeFeatures = geojson.features;
+  activeMap.getSource('counties').setData(geojson);
+  applyCountyFrame(activeMap, activeFeatures);
+  const insetByName = new Map(activeFeatures.map(feature => [feature.properties.name, feature]));
+  document.querySelectorAll('.gis-inset').forEach(button => {
+    const feature = insetByName.get(button.dataset.county);
+    const path = button.querySelector('path');
+    if (feature && path) path.style.fill = feature.properties.fill || '';
+  });
+  const element = activeMap.getContainer();
+  element.dataset.frameUpdatedAt = String(Date.now());
+  activeMap.triggerRepaint();
+  return true;
+}
+
+export function drawElectionMap(element, topology, results, rawCounties, baselineResults, selected, mode, basemap, perspective, onSelect, onGeography, deltas = {}, focusSelected = false, townTopologyUrl = '', townHistory = {}, overrides = {}) {
   clearMap();
   element.dataset.basemapReady = basemap === 'simple' ? 'true' : 'false';
   activeSelected = normalize(selected);
+  activeBasemap = basemap;
   activePerspective = perspective === '2d' ? '2d' : '3d';
   element.dataset.perspective = activePerspective;
   activeGeography = null;
   activeOnGeography = onGeography;
-  const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas);
+  const geojson = toFeatureCollection(topology, results, rawCounties, baselineResults, mode, deltas, overrides);
   activeFeatures = geojson.features;
   const map = activeMap = new MapLibreMap({
     container: element,
@@ -816,11 +863,13 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       source: 'counties',
       paint: {
         'fill-color': ['get', 'fill'],
+        'fill-color-transition': {duration: 560, delay: 0},
         'fill-opacity': ['interpolate', ['linear'], ['zoom'],
           5.5, ['case', ['boolean', ['feature-state', 'hover'], false], basemap === 'simple' ? 0.96 : 0.82, ['*', ['get', 'opacity'], basemap === 'simple' ? 1 : 0.72]],
           9, basemap === 'simple' ? 0.48 : 0.28,
           11, basemap === 'simple' ? 0.24 : 0.08,
         ],
+        'fill-opacity-transition': {duration: 560, delay: 0},
       },
     });
     map.addLayer({
@@ -830,11 +879,13 @@ export function drawElectionMap(element, topology, results, rawCounties, baselin
       maxzoom: 9.4,
       paint: {
         'fill-extrusion-color': ['get', 'fill'],
+        'fill-extrusion-color-transition': {duration: 620, delay: 0},
         'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'],
           4.5, ['get', 'elevation'],
           7.8, ['*', ['get', 'elevation'], 0.25],
           9.2, 0,
         ],
+        'fill-extrusion-height-transition': {duration: 620, delay: 0},
         'fill-extrusion-base': 0,
         'fill-extrusion-opacity': activePerspective === '3d' ? 0.46 : 0,
         'fill-extrusion-opacity-transition': {duration: 620, delay: 0},
