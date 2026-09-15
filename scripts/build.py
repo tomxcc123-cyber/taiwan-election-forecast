@@ -71,7 +71,10 @@ def build(now=None):
         'motion-v4.mjs'
     ):
         shutil.copy2(ROOT / 'site' / name, dist / name)
-    old_index = (ROOT / 'site/index.html').read_text(encoding='utf-8').replace('src="candidate-app.mjs"', 'src="app.mjs"')
+    old_index = (ROOT / 'site/index.html').read_text(encoding='utf-8')
+    old_index = re.sub(r'src="candidate-app\.mjs(?:\?[^\"]*)?"', 'src="app.mjs"', old_index, count=1)
+    old_index = re.sub(r'\s*<script type="module" src="governance-v56\.mjs(?:\?[^\"]*)?"></script>', '', old_index)
+    old_index = re.sub(r'\s*<link rel="stylesheet" href="governance-v56\.css(?:\?[^\"]*)?">', '', old_index)
     old_index = re.sub(r'\s*<a[^>]*data-view="updates"[^>]*>.*?</a>', '', old_index)
     (dist / 'research-legacy.html').write_text(old_index, encoding='utf-8')
     model_data = prepare(ROOT, now)
