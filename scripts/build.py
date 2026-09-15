@@ -65,12 +65,16 @@ def build(now=None):
         'governance-v56.css', 'governance-v56.mjs',
         'forecast.mjs', 'charts.mjs', 'app.mjs',
         'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs',
+        'history-atlas.css', 'history-atlas.mjs',
         'historical-polls-ui.mjs', 'evidence-ui.mjs', 'scenario-rules.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
     ):
         shutil.copy2(ROOT / 'site' / name, dist / name)
+    for name in ('history-atlas.css', 'history-atlas.mjs'):
+        if not (dist / name).is_file():
+            raise ValueError(f'Missing required History Atlas asset: {name}')
     old_index = (ROOT / 'site/index.html').read_text(encoding='utf-8').replace('src="candidate-app.mjs"', 'src="app.mjs"')
     old_index = re.sub(r'\s*<a[^>]*data-view="updates"[^>]*>.*?</a>', '', old_index)
     (dist / 'research-legacy.html').write_text(old_index, encoding='utf-8')
@@ -122,8 +126,8 @@ def build(now=None):
     shutil.copy2(ROOT/'docs/MODEL_CARD_V4_1_PUBLIC_BETA.md', dist/'MODEL_CARD_V4_1_PUBLIC_BETA.md')
     for name in ('public-polls.js', 'public-polls.css'):
         shutil.copy2(ROOT / 'site' / name, dist / name)
-    shutil.copytree(ROOT / 'site/gis', dist / 'gis')
-    shutil.copytree(ROOT / 'site/vendor', dist / 'vendor')
+    shutil.copytree(ROOT / 'site/gis', dist / 'gis', dirs_exist_ok=True)
+    shutil.copytree(ROOT / 'site/vendor', dist / 'vendor', dirs_exist_ok=True)
     shutil.copy2(ROOT / 'THIRD_PARTY.md', dist / 'THIRD_PARTY.md')
     print('Built dist/index.html:', product['model_version'], ';', len(feed['records']),
           'archived questions;', product['diagnostics']['included_reports'], 'candidate-model inputs;',
