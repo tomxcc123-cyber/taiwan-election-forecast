@@ -148,9 +148,11 @@ jobs:
           grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
           grep -q '確認性參考' dist/governance-v56.mjs
-          grep -q 'race-center-0.8.0' dist/index.html
+          grep -q 'history-atlas-0.9.0' dist/index.html
           grep -q 'forecast-command-center.css' dist/index.html
-          grep -q 'Race Center 0.8.0' dist/index.html
+          grep -q 'History Atlas 0.9.0' dist/index.html
+          test -f dist/history-atlas.css
+          test -f dist/history-atlas.mjs
           grep -q 'tiles.mapterhorn.com' dist/index.html
           grep -q "type: 'raster-dem'" dist/gis/map.mjs
           grep -q 'map.setTerrain' dist/gis/map.mjs
