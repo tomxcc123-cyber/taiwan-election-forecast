@@ -767,7 +767,7 @@ export function resetElectionMap() {
   }
   activeMap?.flyTo({
     center: compact ? [121.02, 23.68] : [121.0, 23.65],
-    zoom: historyAtlas ? (compact ? 6.72 : 6.94) : (compact ? 6.1 : 6.52),
+    zoom: historyAtlas ? (compact ? 6.16 : 6.94) : (compact ? 6.1 : 6.52),
     ...perspectiveCamera(5.55),
     duration: cameraDuration(1080),
     curve: 1.12,
