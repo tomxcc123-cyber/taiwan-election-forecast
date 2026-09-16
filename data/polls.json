@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-09-15T21:19:51+00:00",
+  "checked_at": "2026-09-16T03:30:58+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-09-15T21:19:51+00:00",
+  "index_checked_at": "2026-09-16T03:30:58+00:00",
   "updated_at": "2026-09-12T11:05:00+00:00",
   "latest_fieldwork_date": "2026-08-30",
   "status": "degraded",
@@ -27,7 +27,7 @@
     {
       "name": "ETtoday 民調雲",
       "url": "https://feeds.feedburner.com/ettoday/newslist",
-      "discovered": 0,
+      "discovered": 2,
       "validated_reports": 0,
       "reviewed_reports": 2,
       "index_ok": true,
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-15T21:20:23+00:00",
+      "auto_discovery_checked_at": "2026-09-16T03:31:40+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -73,7 +73,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-09-15T21:20:23+00:00",
+      "auto_discovery_checked_at": "2026-09-16T03:31:40+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -94,7 +94,24 @@
       "url": "https://udn.com/vote2026/index"
     }
   ],
-  "discovery_queue": [],
+  "discovery_queue": [
+    {
+      "source": "ETtoday",
+      "title": "新竹市六大施政面向平均滿意度70.5%　6成2市民肯定高虹安表現",
+      "county": "新竹市",
+      "url": "https://www.ettoday.net/news/20260916/3238146.htm",
+      "status": "discovered_unverified",
+      "reason": "Cannot locate ETtoday vote-intention question"
+    },
+    {
+      "source": "ETtoday",
+      "title": "新竹市長三腳督！高虹安48.6%領先　莊競程21.2%、何志勇1.8%",
+      "county": "新竹市",
+      "url": "https://www.ettoday.net/news/20260916/3238141.htm",
+      "status": "discovered_unverified",
+      "reason": "Missing ETtoday fieldwork dates"
+    }
+  ],
   "records": [
     {
       "id": "fb01d4dfead1ac092347695d",
@@ -1145,6 +1162,16 @@
       "message": "'utf-8' codec can't decode byte 0xac in position 471: invalid start byte"
     },
     {
+      "source": "ETtoday",
+      "url": "https://www.ettoday.net/news/20260916/3238141.htm",
+      "message": "Missing ETtoday fieldwork dates"
+    },
+    {
+      "source": "ETtoday",
+      "url": "https://www.ettoday.net/news/20260916/3238146.htm",
+      "message": "Cannot locate ETtoday vote-intention question"
+    },
+    {
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/poll_center/2026/20260130/a77f38bdee0ceef8c988b182d179b754.pdf",
       "message": "Vote-intention totals cannot be parsed safely"
@@ -1470,7 +1497,7 @@
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-09-15T21:20:23+00:00",
+  "discovery_checked_at": "2026-09-16T03:31:40+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-09-12T10:58:00+00:00",
