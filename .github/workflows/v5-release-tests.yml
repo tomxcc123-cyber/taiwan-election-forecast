@@ -148,7 +148,9 @@ jobs:
           grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
           grep -q '確認性參考' dist/governance-v56.mjs
-          grep -q 'history-atlas-0.9.0' dist/index.html
+          grep -q '2026-09-16-gis-precision-rc' dist/index.html
+          grep -q 'gis-edition.css?v=20260916-100' dist/index.html
+          grep -q 'candidate-app.mjs?v=20260916-100' dist/index.html
           grep -q 'forecast-command-center.css' dist/index.html
           grep -q 'History Atlas 0.9.0' dist/index.html
           test -f dist/history-atlas.css
