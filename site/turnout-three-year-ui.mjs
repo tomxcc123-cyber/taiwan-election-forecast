@@ -31,7 +31,7 @@ export function validateThreeYearAudit(data){
   const seen=new Set();
   for(const town of data.towns){
     const k=town.county+'|'+town.town_code+'|'+town.district;
-    if(!town.code_and_name_only||!town['2018_duplicate_source_counts_identical']||seen.has(k))
+    if((!town.code_and_name_only && !(town.documented_name_change?.spatial_boundary_verified===false && town.documented_name_change?.cec_minutes_url==='https://web.cec.gov.tw/api/file/d97c9325-90b2-44bc-a430-c43197e58ea0.pdf'))||!town['2018_duplicate_source_counts_identical']||seen.has(k))
       throw new Error('三屆行政區跨年對接紀錄不完整');
     seen.add(k);
     for(const year of ['2014','2018','2022'])
@@ -87,6 +87,7 @@ export function threeYearAuditPanel(raw){
       '<div><small>共同樣本縣市</small><strong>'+number(d.matched_counties)+' / 22</strong></div>'+
       '<div><small>投開票所數三屆不變</small><strong>'+number(d.unchanged_station_count_towns)+'</strong></div>'+
       '<div><small>至少一周期選民數變化超過8%</small><strong>'+number(d.electorate_change_gt_8pct_towns)+'</strong></div></div>'+
+    '<p>具有中選會2015年正式名稱改制佐證而恢復對接的地區：<strong>'+number(d.documented_2015_name_changes_count||0)+'</strong>。名稱改制、站點總數核對與空間邊界完全一致是不同層次的驗證，不得混同。</p>'+ 
     '<h3>同一批行政區的兩周期歷史留出對照</h3>'+
     '<div class="turnout-tablewrap"><table class="turnout-table"><thead><tr><th>選後診斷分組</th><th>鄉鎮數</th><th>2018直接延用MAE</th><th>2018收縮25%MAE</th><th>2022直接延用MAE</th><th>2022收縮25%MAE</th></tr></thead><tbody>'+
     rows+'</tbody></table></div>'+
