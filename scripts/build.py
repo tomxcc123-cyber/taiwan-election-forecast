@@ -68,6 +68,7 @@ def build(now=None):
         'history-atlas.css', 'history-atlas.mjs',
         'historical-polls-ui.mjs', 'evidence-ui.mjs', 'scenario-rules.mjs',
          'market-observatory.mjs', 'market-observatory.css',
+         'market-fusion.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
