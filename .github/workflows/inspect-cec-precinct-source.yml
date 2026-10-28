@@ -45,7 +45,19 @@ jobs:
                   fs=z.infolist()
                   print('SOURCE_ARCHIVE_MEMBERS',len(fs))
                   print('SOURCE_UNCOMPRESSED_TOTAL',sum(i.file_size for i in fs))
-                  for x in fs[:35]:
-                      print('SOURCE_MEMBER',repr(x.filename),x.file_size)
+                  samples=[x for x in fs if (x.filename.endswith('/elprof.csv') or x.filename.endswith('/elbase.csv') or x.filename.endswith('/elctks.csv')) and any(k in x.filename for k in ('2014','2018','2022','103年','107年','111年'))]
+                  print('ELECTION_YEAR_FILES',len(samples))
+                  for x in samples[:85]:
+                      print('ELECTION_YEAR_MEMBER',repr(x.filename),x.file_size)
+                  for suffix in ('elprof.csv','elbase.csv','elctks.csv'):
+                      for x in samples:
+                          if x.filename.endswith(suffix) and '2022' in x.filename:
+                              raw=z.read(x)
+                              print('CSV_SAMPLE_PATH',repr(x.filename))
+                              print('CSV_SAMPLE_HEX',raw[:30].hex())
+                              for line in raw.splitlines()[:3]:
+                                  print('CSV_SAMPLE_LINE',repr(line[:200]))
+                              break
+
           except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
           PY
