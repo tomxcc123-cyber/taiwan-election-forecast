@@ -1,6 +1,6 @@
 import copy
 import unittest
-from scripts.evaluate_turnout_two_cycle_towns import evaluate
+from scripts.evaluate_turnout_two_cycle_towns import evaluate, county_paired_uncertainty
 
 def fixture():
     counties14=[]
@@ -43,6 +43,32 @@ class TwoCycleTests(unittest.TestCase):
             r['cycles']['2014_to_2018']['scores']['persistence']['electorate_weighted_mae_pp'],10)
         self.assertAlmostEqual(
             r['cycles']['2018_to_2022']['scores']['persistence']['electorate_weighted_mae_pp'],15)
+    def test_county_paired_bootstrap_and_loo_are_deterministic(self):
+        p14,p18,h=fixture()
+        r=evaluate(p14,p18,h)
+        for cycle in r['cycles'].values():
+            result=cycle['scores']['county_shrink_75']['paired_county_uncertainty']
+            self.assertEqual(result['n_counties'],22)
+            self.assertEqual(result['resamples'],1000)
+            self.assertEqual(len(result['leave_one_county_out']),22)
+            self.assertEqual(len(result['bootstrap_90pct_delta_mae_vs_persistence_pp']),2)
+            self.assertTrue(0<=result['leave_one_county_out_improved_fraction']<=1)
+            self.assertIsNone(cycle['scores']['persistence']['paired_county_uncertainty'])
+        self.assertEqual(r,evaluate(p14,p18,h))
+    def test_cluster_resampling_uses_county_not_town_as_unit(self):
+        rows=[
+            {'county':'A','target_electorate':100,'errors_pp':{'persistence':5,'county_shrink_75':3}},
+            {'county':'A','target_electorate':100,'errors_pp':{'persistence':5,'county_shrink_75':3}},
+            {'county':'B','target_electorate':10,'errors_pp':{'persistence':1,'county_shrink_75':4}},
+            {'county':'C','target_electorate':50,'errors_pp':{'persistence':3,'county_shrink_75':2}},
+        ]
+        result=county_paired_uncertainty(rows,'county_shrink_75',B=100)
+        self.assertEqual(result['n_counties'],3)
+        self.assertEqual(result['counties_improved'],2)
+        self.assertEqual(result['counties_worse'],1)
+        self.assertEqual(len(result['leave_one_county_out']),3)
+        self.assertLess(result['bootstrap_90pct_delta_mae_vs_persistence_pp'][0],
+                        result['bootstrap_90pct_delta_mae_vs_persistence_pp'][1])
     def test_2018_outcomes_not_2018_predictors(self):
         p14,p18,history=fixture()
         a=evaluate(p14,p18,history)
