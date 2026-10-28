@@ -1,8 +1,8 @@
-"""Score archived forecast variants only against independently supplied final CEC results.
+/*Score archived forecast variants only against independently supplied final CEC results.
 
 No election results are bundled with this code. Running without a verified
 final-results input must fail closed, never invent outcomes or report accuracy.
-"""
+*/
 import {existsSync,readFileSync,writeFileSync} from 'node:fs';
 import {resolve} from 'node:path';
 
