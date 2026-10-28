@@ -14,7 +14,7 @@ const COHORTS=[
 export function validateThreeYearAudit(data){
   if(data?.schema_version!==1||
     data.kind!=='cec_three_year_common_town_ecological_stability_audit'||
-    data.geography_status!=='code_and_original_name_continuity_only_no_historical_boundary_overlay'||
+    data.geography_status!=='code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay'||
     data.candidate_vote_data_used!==false||
     data.no_individual_voter_inference!==true||
     data.forecast_2026_modified!==false||
