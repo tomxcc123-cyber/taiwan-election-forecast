@@ -72,7 +72,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs
+        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
