@@ -7,6 +7,9 @@ on:
       - 'scripts/import_cec_precincts.py'
       - 'scripts/import_cec_open_csv.py'
       - 'scripts/build_cec_candidate_turnout_panel.py'
+      - 'scripts/evaluate_turnout_holdout.py'
+      - 'tests/test_turnout_holdout.py'
+      - 'tests/test_cec_town_candidate_panel.py'
   workflow_dispatch:
 
 permissions:
