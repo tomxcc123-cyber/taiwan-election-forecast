@@ -98,6 +98,17 @@ jobs:
             --history data/candidate-history-cec.json \
             --panel data/turnout-district-panel-2018-2022.json \
             --output /tmp/cec-town-candidate-association.json
+          python -m unittest tests.test_turnout_holdout -v
+          python scripts/evaluate_turnout_holdout.py \
+            --association /tmp/cec-town-candidate-association.json \
+            --output /tmp/cec-turnout-holdout.json
+
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-turnout-holdout-review
+          path: /tmp/cec-turnout-holdout.json
+          retention-days: 14
       - uses: actions/upload-artifact@v4
         if: success()
         with:
