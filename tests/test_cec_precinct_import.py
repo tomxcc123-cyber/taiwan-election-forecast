@@ -48,7 +48,7 @@ class PrecinctSheetTests(unittest.TestCase):
             parse_precinct_sheet(sheet)
     def test_district_mismatch_rejected(self):
         sheet=sample()
-        sheet.rows[3][3]+=1
+        sheet.rows[3][10]+=1
         with self.assertRaisesRegex(ValueError,'District sum'):
             parse_precinct_sheet(sheet)
     def test_station_inventory_discrepancy_retained(self):
