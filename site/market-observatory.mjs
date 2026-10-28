@@ -1,4 +1,5 @@
 import {marketFusion} from './market-fusion.mjs';
+import {jointMarketShadow} from './market-joint-shadow.mjs';
 // Read-only election market research and evidence coverage. No order or trading APIs.
 const esc = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const percent = v => Number.isFinite(Number(v)) ? (Number(v)*100).toFixed(1)+'%' : '—';
@@ -113,6 +114,33 @@ export function fusionEvidencePanel(archive){
     +'<p class="market-warning">2026年11月28日選舉尚未舉行。現在沒有正式結算結果，不能顯示「Brier改善」或宣稱哪個權重較準。選後只使用當日之前實際已保存、且能匹配中選會正式結果的樣本。</p></section>';
 }
 
+// Original Monte Carlo paths are reweighted jointly, preserving their
+// across-county dependency rather than summing disconnected local estimates.
+export function jointShadowPanel(model,market,weight){
+  const shadow=jointMarketShadow(model,market,weight);
+  const header='<section class="market-panel market-joint-shadow" id="marketJointSensitivity">'
+      +'<header><div><small>JOINT MONTE CARLO · RESEARCH SHADOW</small><h2>市場訊號下的22縣市聯合席次敏感度</h2></div></header>'
+      +'<p>不是立法院席次：此表計算的是22個縣市長選舉中，各政黨／無黨籍候選人勝選的縣市數。保留 HB-TLEF 原始模擬路徑之間的相關性，只用合約核驗通過的選區進行小幅重要性重加權。</p>';
+  if(!shadow.available)return header+'<p class="market-warning">聯合敏感度不可顯示：'+esc(shadow.reason)+'。原始模型數據仍保持有效且不受影響。</p></section>';
+  const stats=shadow.diagnostics;
+  const make=(v,dp=2)=>Number(v).toFixed(dp);
+  const delta=v=>(v>=0?'+':'')+make(v);
+  const table=shadow.national.map(x=>'<tr><td><b>'+esc(x.name)+'</b></td>'
+    +'<td>'+make(x.baseline_mean)+'</td><td><strong>'+make(x.mean)+'</strong></td>'
+    +'<td>'+delta(x.delta_mean)+'</td><td>'+x.p05+'—'+x.p95+'</td>'
+    +'<td>'+make(x.majority_probability*100,1)+'%</td></tr>').join('');
+  const exclusions=shadow.checks.filter(x=>!x.eligible);
+  return header
+    +'<div class="market-summary">'
+    +'<div><small>核驗通過的縣市</small><strong>'+stats.eligible_count+' / 22</strong></div>'
+    +'<div><small>研究加權強度</small><strong>'+make(weight*100,0)+'%</strong></div>'
+    +'<div><small>有效模擬數（ESS）</small><strong>'+make(stats.effective_sample_size,0)+' / '+stats.simulations+'</strong></div>'
+    +'<div><small>最大單一路徑權重</small><strong>'+make(stats.max_path_weight*100,2)+'%</strong></div></div>'
+    +'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>政治分類</th><th>原模型預期縣市數</th><th>聯合試驗預期縣市數</th><th>差異</th><th>5%—95%席次區間</th><th>至少12縣市機率</th></tr></thead><tbody>'+table+'</tbody></table></div>'
+    +(exclusions.length?'<details class="market-evidence-exceptions"><summary>檢視未納入聯合重加權的 '+exclusions.length+' 個縣市</summary><div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>縣市</th><th>排除原因</th></tr></thead><tbody>'+exclusions.map(x=>'<tr><td>'+esc(x.county)+'</td><td>'+esc(x.reason)+'</td></tr>').join('')+'</tbody></table></div></details>':'')
+    +'<p class="market-warning">重要性重加權並非已訓練或經校準的聯合後驗。市場可能轉述民調與新聞，兩者並非獨立訊息。此結果不改寫正式網站地圖、候選人得票率、席次或發布版勝率；有效樣本數低於20%或單一路徑權重高於5%即拒絕發布試驗結果。</p></section>';
+}
+
 export function marketPage(snapshot,model,weight=0.05,archive=null){
   const d=snapshot?.schema_version===1?snapshot:{status:'unavailable',events:[],history:[],errors:[]};
   const events=d.events||[],fresh=events.filter(x=>!x.stale);
@@ -124,6 +152,7 @@ export function marketPage(snapshot,model,weight=0.05,archive=null){
    +(events.length?'':'<section class="market-panel"><h2>市場資料尚未成功核驗</h2><p>等待公開來源同步；未使用模擬行情。</p></section>')
    +'<div class="market-controls"><label for="marketCounty">縣市</label><select id="marketCounty"><option value="all">全部</option>'+option+'</select><small>無市場不代表沒有選舉，歷史快照不代表即時盤口。</small></div>'
    +'<section class="market-panel market-fusion-control"><h2>市場信號融合 · 試驗版本</h2><p>以模型勝率及候選人市場 Yes 合約價格進行對數機率融合；並非把市場價格當作候選人得票率。研究權重尚未經獨立週期校準，融合數字不改動正式 HB-TLEF 模型、得票率或全國席次分布。</p><label for="marketWeight">市場試驗權重</label> <select id="marketWeight">'+[0,0.05,0.10].map(w=>'<option value="'+w+'" '+(w===weight?'selected':'')+'>'+Math.round(w*100)+'%'+(w===0?'（不融合）':'')+'</option>').join('')+'</select><p class="market-note">僅對候選人名單高度匹配、近期報價、流動性及買賣價差均通過門檻的選區產生融合勝率。</p></section>'
+   +jointShadowPanel(model,d,weight)
    +fusionEvidencePanel(archive)
    +'<div id="marketEventList">'+events.map(x=>eventCard(x,model,d.history||[],weight)).join('')+'</div>'
    +'<section class="market-panel"><h2>資料與法律說明</h2><p>來源為<a href="https://docs.polymarket.com/" rel="noopener noreferrer" target="_blank">Polymarket Gamma 公開唯讀接口</a>。採排程快照，資料不一定即時，也不是完整訂單簿；失敗時保留舊值並標記。選前全站暫停發布政策同樣適用本頁。</p><p>目前不將市場資料合併進統計模型、不做依價格推測選民群體的分析，也不提供交易功能。不同市場的結算條款應逐一核對。</p></section></section>';
