@@ -70,6 +70,7 @@ def build(now=None):
          'market-observatory.mjs', 'market-observatory.css',
          'market-fusion.mjs',
          'market-joint-shadow.mjs',
+         'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -108,6 +109,19 @@ def build(now=None):
     if markets.get('schema_version') != 1 or not isinstance(markets.get('events'), list):
         raise ValueError('Invalid market snapshot archive')
     (dist / 'market-snapshots.json').write_text(json.dumps(markets, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
+    turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
+    turnout = json.loads(turnout_path.read_text(encoding='utf-8'))
+    if turnout.get('schema_version') != 1 or len(turnout.get('records', [])) != 22:
+        raise ValueError('Unverified historical turnout source: refusing to publish')
+    for year in ('2018', '2022'):
+        eligible = sum(c['years'][year]['eligible'] for c in turnout['records'])
+        cast = sum(c['years'][year]['cast'] for c in turnout['records'])
+        if (eligible, cast) != (turnout['national'][year]['eligible'],
+                                turnout['national'][year]['cast']):
+            raise ValueError('Historical turnout national total mismatch')
+    (dist / 'turnout-history-2018-2022.json').write_text(
+        json.dumps(turnout, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
 
     from model.v5_product import build_product
     product = build_product(ROOT, now, feed)
