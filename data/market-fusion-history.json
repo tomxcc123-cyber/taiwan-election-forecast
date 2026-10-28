@@ -15,16 +15,16 @@
     {
       "schema_version": 1,
       "taipei_day": "2026-10-28",
-      "as_of": "2026-10-28T05:26:20.063537+00:00",
+      "as_of": "2026-10-28T05:40:25.035775+00:00",
       "provenance": {
-        "model_fingerprint": "689db2623001e72747cfa2e2009fa63f355de8d73ef09ae939f72c125204b260",
+        "model_fingerprint": "aad08471c69a0274eb06b18db07f3e5757c482e653fd4e7b3a4b439b71ae4663",
         "model_version": "2026.09-HB-TLEF-v5.0-public-beta.1",
-        "model_as_of": "2026-10-28T05:26:20.063537+00:00",
-        "market_checked_at": "2026-10-28T05:26:11+00:00",
+        "model_as_of": "2026-10-28T05:40:25.035775+00:00",
+        "market_checked_at": "2026-10-28T05:40:19+00:00",
         "market_registry_count": 19,
         "market_status": "ok"
       },
-      "source_digest": "701d246cf5e52e4f59939d63716c25d699992784c9eae69609df32fc96137cb8",
+      "source_digest": "6a1536563df03c3a5f921c1dec577abbac16180f73a0f8bed113743d7582752a",
       "weights": [
         0,
         0.05,
@@ -41,10 +41,10 @@
           "race_id": "local-executive-2026-county-1175fce2e312",
           "market_slug": "changhua-county-magistrate-election-winner-20260813135716600",
           "source_url": "https://polymarket.com/event/changhua-county-magistrate-election-winner-20260813135716600",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 73162.05442,
+          "liquidity_usd": 73105.56658,
           "volume_usd": 17702.119565,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -92,10 +92,10 @@
           "race_id": "local-executive-2026-county-1fa460ca48ae",
           "market_slug": "penghu-county-magistrate-election-winner-202608131357161400",
           "source_url": "https://polymarket.com/event/penghu-county-magistrate-election-winner-202608131357161400",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 33005.13932,
+          "liquidity_usd": 33005.19149,
           "volume_usd": 13834.620613000001,
           "included": false,
           "reason": "合約價格總和偏離100%過多",
@@ -212,10 +212,10 @@
           "race_id": "local-executive-2026-county-2a330ebd3aa7",
           "market_slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
           "source_url": "https://polymarket.com/event/lienchiang-county-magistrate-election-winner-202608131357161600",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:36:13.340384Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 25054.89708,
+          "liquidity_usd": 25044.57188,
           "volume_usd": 12682.907281,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -245,11 +245,11 @@
           "race_id": "local-executive-2026-county-2f29ef121b19",
           "market_slug": "taitung-county-magistrate-election-winner-202608131357161300",
           "source_url": "https://polymarket.com/event/taitung-county-magistrate-election-winner-202608131357161300",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 39763.139,
-          "volume_usd": 15621.923505,
+          "liquidity_usd": 39782.98884,
+          "volume_usd": 15621.923504999999,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
@@ -258,9 +258,9 @@
               "name": "王志偉",
               "probability": 0.001,
               "market_yes": null,
-              "market_aligned": 0.017,
-              "fused_05": 0.0011557,
-              "fused_10": 0.00133524
+              "market_aligned": 0.013,
+              "fused_05": 0.00113996,
+              "fused_10": 0.00129914
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
@@ -268,8 +268,8 @@
               "probability": 0.0015,
               "market_yes": 0.0005,
               "market_aligned": 0.0005,
-              "fused_05": 0.00142415,
-              "fused_10": 0.00135174
+              "fused_05": 0.00142372,
+              "fused_10": 0.00135096
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
@@ -277,17 +277,17 @@
               "probability": 0.62,
               "market_yes": 0.75,
               "market_aligned": 0.75,
-              "fused_05": 0.62783602,
-              "fused_10": 0.63558479
+              "fused_05": 0.62764775,
+              "fused_10": 0.63521495
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
               "name": "陳瑩",
               "probability": 0.3775,
-              "market_yes": 0.2325,
-              "market_aligned": 0.2325,
-              "fused_05": 0.36958413,
-              "fused_10": 0.36172823
+              "market_yes": 0.2365,
+              "market_aligned": 0.2365,
+              "fused_05": 0.36978856,
+              "fused_10": 0.36213495
             }
           ]
         },
@@ -296,10 +296,10 @@
           "race_id": "local-executive-2026-county-2f3ede12c290",
           "market_slug": "yilan-county-magistrate-election-winner-20260813135716200",
           "source_url": "https://polymarket.com/event/yilan-county-magistrate-election-winner-20260813135716200",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 38960.31511,
+          "liquidity_usd": 38890.77608,
           "volume_usd": 13658.848398,
           "included": false,
           "reason": "市場包含重要但無法對應的選項",
@@ -407,10 +407,10 @@
           "race_id": "local-executive-2026-county-364b2e14f33d",
           "market_slug": "chiayi-county-magistrate-election-winner-20260813135716900",
           "source_url": "https://polymarket.com/event/chiayi-county-magistrate-election-winner-20260813135716900",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 34364.4946,
+          "liquidity_usd": 34949.3245,
           "volume_usd": 6049.969628,
           "included": false,
           "reason": "交易量或流動性不足",
@@ -440,11 +440,11 @@
           "race_id": "local-executive-2026-county-39a14e2e8228",
           "market_slug": "taichung-mayor-election-winner-20260813125857400",
           "source_url": "https://polymarket.com/event/taichung-mayor-election-winner-20260813125857400",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:38:12.268633Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 32178.43784,
-          "volume_usd": 28753.490383000004,
+          "liquidity_usd": 32175.28784,
+          "volume_usd": 28753.490383,
           "included": false,
           "reason": "主要選項買賣價差缺漏或過大",
           "candidates": [
@@ -482,11 +482,11 @@
           "race_id": "local-executive-2026-county-3bbf653c4d64",
           "market_slug": "hsinchu-city-mayor-election-winner-20260813135716400",
           "source_url": "https://polymarket.com/event/hsinchu-city-mayor-election-winner-20260813135716400",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 103207.77108,
-          "volume_usd": 34992.450730000004,
+          "liquidity_usd": 101805.53271,
+          "volume_usd": 34992.45073,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
@@ -495,27 +495,27 @@
               "name": "高虹安",
               "probability": 0.549,
               "market_yes": 0.885,
-              "market_aligned": 0.8814741,
-              "fused_05": 0.57132443,
-              "fused_10": 0.59335945
+              "market_aligned": 0.88103534,
+              "fused_05": 0.57127254,
+              "fused_10": 0.59325725
             },
             {
               "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
               "name": "何志勇",
               "probability": 0.0065,
               "market_yes": 0.003,
-              "market_aligned": 0.00298805,
-              "fused_05": 0.00635427,
-              "fused_10": 0.0061993
+              "market_aligned": 0.00298656,
+              "fused_05": 0.00635369,
+              "fused_10": 0.00619823
             },
             {
               "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
               "name": "莊競程",
               "probability": 0.4445,
-              "market_yes": 0.116,
-              "market_aligned": 0.11553785,
-              "fused_05": 0.4223213,
-              "fused_10": 0.40044125
+              "market_yes": 0.1165,
+              "market_aligned": 0.1159781,
+              "fused_05": 0.42237376,
+              "fused_10": 0.40054452
             }
           ]
         },
@@ -524,10 +524,10 @@
           "race_id": "local-executive-2026-county-3db00425a6dd",
           "market_slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
           "source_url": "https://polymarket.com/event/hsinchu-county-magistrate-election-winner-20260813135716300",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 46211.77126,
+          "liquidity_usd": 46167.67406,
           "volume_usd": 26182.552799999998,
           "included": false,
           "reason": "主要選項買賣價差缺漏或過大",
@@ -566,10 +566,10 @@
           "race_id": "local-executive-2026-county-70749066df2a",
           "market_slug": "kinmen-county-magistrate-election-winner-202608131357161500",
           "source_url": "https://polymarket.com/event/kinmen-county-magistrate-election-winner-202608131357161500",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 38326.95255,
+          "liquidity_usd": 38617.25794,
           "volume_usd": 12440.930432,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -580,8 +580,8 @@
               "probability": 0.017,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.01439302,
-              "fused_10": 0.01215834
+              "fused_05": 0.01439311,
+              "fused_10": 0.0121585
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
@@ -589,26 +589,26 @@
               "probability": 0.025,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.02076196,
-              "fused_10": 0.01720348
+              "fused_05": 0.0207621,
+              "fused_10": 0.01720371
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
               "name": "梁文韜",
               "probability": 0.0235,
               "market_yes": 0.0355,
-              "market_aligned": 0.03521825,
-              "fused_05": 0.02421752,
-              "fused_10": 0.02490067
+              "market_aligned": 0.03520079,
+              "fused_05": 0.02421709,
+              "fused_10": 0.02489977
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
               "name": "陳玉珍",
               "probability": 0.879,
               "market_yes": 0.945,
-              "market_aligned": 0.9375,
-              "fused_05": 0.89056337,
-              "fused_10": 0.90024429
+              "market_aligned": 0.9370352,
+              "fused_05": 0.89054738,
+              "fused_10": 0.90021156
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
@@ -616,17 +616,17 @@
               "probability": 0.019,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.0159971,
-              "fused_10": 0.01343843
+              "fused_05": 0.01599721,
+              "fused_10": 0.01343861
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
               "name": "李文良",
               "probability": 0.0175,
-              "market_yes": 0.0275,
-              "market_aligned": 0.02728175,
-              "fused_05": 0.01806993,
-              "fused_10": 0.01861636
+              "market_yes": 0.028,
+              "market_aligned": 0.02776401,
+              "fused_05": 0.0180859,
+              "fused_10": 0.01864925
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
@@ -634,8 +634,8 @@
               "probability": 0.019,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.0159971,
-              "fused_10": 0.01343843
+              "fused_05": 0.01599721,
+              "fused_10": 0.01343861
             }
           ]
         },
@@ -644,10 +644,10 @@
           "race_id": "local-executive-2026-county-780b480cd047",
           "market_slug": "pingtung-county-magistrate-election-winner-202608131357161100",
           "source_url": "https://polymarket.com/event/pingtung-county-magistrate-election-winner-202608131357161100",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 18817.3192,
+          "liquidity_usd": 18846.9024,
           "volume_usd": 7675.801927,
           "included": false,
           "reason": "交易量或流動性不足",
@@ -677,10 +677,10 @@
           "race_id": "local-executive-2026-county-800c9be4cf11",
           "market_slug": "kaohsiung-mayor-election-winner-20260813125857600",
           "source_url": "https://polymarket.com/event/kaohsiung-mayor-election-winner-20260813125857600",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 135998.00363,
+          "liquidity_usd": 134691.69352,
           "volume_usd": 75545.982236,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -689,46 +689,46 @@
               "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
               "name": "賴瑞隆",
               "probability": 0.553,
-              "market_yes": 0.815,
-              "market_aligned": 0.815,
-              "fused_05": 0.56872477,
-              "fused_10": 0.58430617
+              "market_yes": 0.82,
+              "market_aligned": 0.81877184,
+              "fused_05": 0.56888953,
+              "fused_10": 0.58463777
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
               "name": "張靜",
               "probability": 0.0005,
               "market_yes": 0.0005,
-              "market_aligned": 0.0005,
-              "fused_05": 0.00050434,
-              "fused_10": 0.00050821
+              "market_aligned": 0.00049925,
+              "fused_05": 0.00050437,
+              "fused_10": 0.00050826
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
               "name": "洪方隆",
               "probability": 0.0015,
               "market_yes": null,
-              "market_aligned": 0.0021,
-              "fused_05": 0.0015387,
-              "fused_10": 0.0015768
+              "market_aligned": 0,
+              "fused_05": 0.00143224,
+              "fused_10": 0.00136615
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
               "name": "柯志恩",
               "probability": 0.444,
               "market_yes": 0.181,
-              "market_aligned": 0.181,
-              "fused_05": 0.42820639,
-              "fused_10": 0.41255763
+              "market_aligned": 0.18072891,
+              "fused_05": 0.42819947,
+              "fused_10": 0.41253937
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
               "name": "王肇民",
               "probability": 0.001,
               "market_yes": null,
-              "market_aligned": 0.0014,
-              "fused_05": 0.0010258,
-              "fused_10": 0.0010512
+              "market_aligned": 0,
+              "fused_05": 0.00097438,
+              "fused_10": 0.00094845
             }
           ]
         },
@@ -737,10 +737,10 @@
           "race_id": "local-executive-2026-county-a0b9b4804c8c",
           "market_slug": "hualien-county-magistrate-election-winner-202608131357161200",
           "source_url": "https://polymarket.com/event/hualien-county-magistrate-election-winner-202608131357161200",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 54593.05408,
+          "liquidity_usd": 64813.39292,
           "volume_usd": 11086.980931,
           "included": false,
           "reason": "市場包含重要但無法對應的選項",
@@ -788,10 +788,10 @@
           "race_id": "local-executive-2026-county-a46602cecd9b",
           "market_slug": "new-taipei-mayor-election-winner-20260813125857200",
           "source_url": "https://polymarket.com/event/new-taipei-mayor-election-winner-20260813125857200",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 151517.50911,
+          "liquidity_usd": 152063.74907,
           "volume_usd": 162272.50874299998,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -801,27 +801,27 @@
               "name": "蘇巧慧",
               "probability": 0.4715,
               "market_yes": 0.51,
-              "market_aligned": 0.51,
-              "fused_05": 0.47328299,
-              "fused_10": 0.47529869
+              "market_aligned": 0.50746269,
+              "fused_05": 0.47305766,
+              "fused_10": 0.47485165
             },
             {
               "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
               "name": "李四川",
               "probability": 0.5285,
-              "market_yes": 0.485,
-              "market_aligned": 0.485,
-              "fused_05": 0.52615609,
-              "fused_10": 0.52407174
+              "market_yes": 0.495,
+              "market_aligned": 0.49253731,
+              "fused_05": 0.52644252,
+              "fused_10": 0.52464848
             },
             {
               "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
               "name": "蘇輝湟",
               "probability": 0,
               "market_yes": null,
-              "market_aligned": 0.005,
-              "fused_05": 0.00056092,
-              "fused_10": 0.00062957
+              "market_aligned": 0,
+              "fused_05": 0.00049981,
+              "fused_10": 0.00049987
             }
           ]
         },
@@ -830,13 +830,13 @@
           "race_id": "local-executive-2026-county-b1067dd41531",
           "market_slug": "keelung-mayor-election-winner-20260813135716100",
           "source_url": "https://polymarket.com/event/keelung-mayor-election-winner-20260813135716100",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 25899.8607,
+          "liquidity_usd": 4819.3986,
           "volume_usd": 15672.9594,
           "included": false,
-          "reason": "合約價格總和偏離100%過多",
+          "reason": "交易量或流動性不足",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
@@ -872,10 +872,10 @@
           "race_id": "local-executive-2026-county-c7cf2c480cf8",
           "market_slug": "chiayi-city-mayor-election-winner-202608131357161000",
           "source_url": "https://polymarket.com/event/chiayi-city-mayor-election-winner-202608131357161000",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 69377.13384,
+          "liquidity_usd": 79317.29875,
           "volume_usd": 21245.240604,
           "included": false,
           "reason": "市場包含重要但無法對應的選項",
@@ -932,11 +932,11 @@
           "race_id": "local-executive-2026-county-cff72749bf92",
           "market_slug": "miaoli-county-magistrate-election-winner-20260813135716500",
           "source_url": "https://polymarket.com/event/miaoli-county-magistrate-election-winner-20260813135716500",
-          "quote_as_of": "2026-10-28T05:26:12.594787Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 38107.80084,
-          "volume_usd": 31327.720836,
+          "liquidity_usd": 39200.77449,
+          "volume_usd": 31327.720835999993,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
@@ -944,19 +944,19 @@
               "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
               "name": "陳品安",
               "probability": 0.441,
-              "market_yes": 0.089,
-              "market_aligned": 0.09208484,
-              "fused_05": 0.4158893,
-              "fused_10": 0.39120778
+              "market_yes": 0.088,
+              "market_aligned": 0.09114448,
+              "fused_05": 0.41575206,
+              "fused_10": 0.3909387
             },
             {
               "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
               "name": "鍾東錦",
               "probability": 0.559,
               "market_yes": 0.8775,
-              "market_aligned": 0.90791516,
-              "fused_05": 0.5841107,
-              "fused_10": 0.60879222
+              "market_aligned": 0.90885552,
+              "fused_05": 0.58424794,
+              "fused_10": 0.6090613
             }
           ]
         },
@@ -965,11 +965,11 @@
           "race_id": "local-executive-2026-county-e35db3914937",
           "market_slug": "taipei-mayor-election-winner-20260813125857100",
           "source_url": "https://polymarket.com/event/taipei-mayor-election-winner-20260813125857100",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 386980.96733,
-          "volume_usd": 2192642.371153,
+          "liquidity_usd": 386726.35917,
+          "volume_usd": 2192662.3711530003,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
@@ -979,8 +979,8 @@
               "probability": 0.0115,
               "market_yes": 0.0005,
               "market_aligned": 0.0005,
-              "fused_05": 0.00986649,
-              "fused_10": 0.00846025
+              "fused_05": 0.00987116,
+              "fused_10": 0.00846739
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
@@ -988,44 +988,44 @@
               "probability": 0.7465,
               "market_yes": 0.675,
               "market_aligned": 0.675,
-              "fused_05": 0.74540944,
-              "fused_10": 0.74390168
+              "fused_05": 0.74576165,
+              "fused_10": 0.74452941
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
               "name": "林志成",
               "probability": 0.0095,
               "market_yes": null,
-              "market_aligned": 0.0015,
-              "fused_05": 0.00869347,
-              "fused_10": 0.00795094
+              "market_aligned": 0.001,
+              "fused_05": 0.00852303,
+              "fused_10": 0.00764145
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
               "name": "沈伯洋",
               "probability": 0.2135,
-              "market_yes": 0.32,
-              "market_aligned": 0.32,
-              "fused_05": 0.21864365,
-              "fused_10": 0.22378523
+              "market_yes": 0.3215,
+              "market_aligned": 0.3215,
+              "fused_05": 0.21879811,
+              "fused_10": 0.22407884
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
               "name": "蕭文乾",
               "probability": 0.0105,
               "market_yes": null,
-              "market_aligned": 0.00165789,
-              "fused_05": 0.00960858,
-              "fused_10": 0.00878789
+              "market_aligned": 0.00110526,
+              "fused_05": 0.00942019,
+              "fused_10": 0.00844582
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
               "name": "唐新民",
               "probability": 0.0085,
               "market_yes": null,
-              "market_aligned": 0.00134211,
-              "fused_05": 0.00777837,
-              "fused_10": 0.007114
+              "market_aligned": 0.00089474,
+              "fused_05": 0.00762587,
+              "fused_10": 0.00683709
             }
           ]
         },
@@ -1034,11 +1034,11 @@
           "race_id": "local-executive-2026-county-eed891611f5f",
           "market_slug": "taoyuan-mayor-election-winner-20260813125857300",
           "source_url": "https://polymarket.com/event/taoyuan-mayor-election-winner-20260813125857300",
-          "quote_as_of": "2026-10-28T05:24:11.571995Z",
-          "market_retrieved_at": "2026-10-28T05:26:11+00:00",
+          "quote_as_of": "2026-10-28T05:40:12.291786Z",
+          "market_retrieved_at": "2026-10-28T05:40:19+00:00",
           "market_stale": false,
-          "liquidity_usd": 94517.00479,
-          "volume_usd": 29703.921165,
+          "liquidity_usd": 94828.16312,
+          "volume_usd": 29703.921165000003,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
