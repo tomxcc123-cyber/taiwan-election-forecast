@@ -41,7 +41,7 @@ assert.match(text,/74.00%/);
 assert.match(text,/沒有在2018年預測時使用2018結果/);
 assert.match(text,/不得作為2026年正式勝選機率修正依據/);
 const wrong=structuredClone(report);wrong.promotion_gate.status='approved';
-assert.throws(()=>validateTwoCycleHistory(panel,wrong),/未通過/);
+assert.throws(()=>validateTwoCycleHistory(panel,wrong),/不符合/);
 const missing=structuredClone(panel);missing.counties[0].districts=[];
 assert.throws(()=>validateTwoCycleHistory(missing,report),/不一致/);
 assert.match(twoCycleHistoryPanel(null,null),/尚未經核驗/);
