@@ -1,3 +1,4 @@
+import {marketFusion} from './market-fusion.mjs';
 // Read-only election market research and evidence coverage. No order or trading APIs.
 const esc = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const percent = v => Number.isFinite(Number(v)) ? (Number(v)*100).toFixed(1)+'%' : '—';
@@ -53,27 +54,31 @@ function sparkline(points){
   const d=values.map((v,i)=>(i?'L':'M')+(8+i*180/(values.length-1)).toFixed(1)+','+(46-(v-low)/span*35).toFixed(1)).join(' ');
   return '<svg class="market-spark" viewBox="0 0 196 54" role="img" aria-label="歷史價格快照"><path d="'+d+'" fill="none" stroke="#198778" stroke-width="2.4"/></svg>';
 }
-function eventCard(event,model,history){
+function eventCard(event,model,history,weight){
+  const fusion=marketFusion(model,event,weight);
+  const fused=new Map(fusion.eligible?fusion.probabilities.map(x=>[x.name,x]):[]);
   const race=(model?.counties||[]).find(x=>x.name===event.county);
   const candidates=new Map((race?.candidates||[]).map(c=>[c.name,c]));
   const rows=[...(event.outcomes||[])].sort((a,b)=>b.probability-a.probability).map(o=>{
     const chinese=alias[o.name],candidate=candidates.get(chinese),p=Number(candidate?.probability),matched=!!candidate&&Number.isFinite(p);
     const spread=o.spread==null?'未知':(o.spread*100).toFixed(1)+'¢';
+    const shadow=fused.get(chinese);
     const trace=history.filter(x=>x.key===event.slug+'|'+o.market_id);
     return '<tr><td><b>'+esc(chinese||o.name)+'</b><small>'+esc(o.name)+'</small></td>'
      +'<td><strong>'+percent(o.probability)+'</strong><i class="market-bar"><b style="width:'+(100*o.probability).toFixed(2)+'%"></b></i></td>'
      +'<td>'+(matched?percent(p):'未配對')+'</td><td>'+(matched?((o.probability-p)*100>=0?'+':'')+((o.probability-p)*100).toFixed(1)+'pp':'—')+'</td>'
-     +'<td>'+spread+'</td><td>'+sparkline(trace)+'</td></tr>';
+     +'<td>'+spread+'</td><td>'+(shadow?percent(shadow.fused):'—')+'</td><td>'+sparkline(trace)+'</td></tr>';
   }).join('');
   const url=/^https:\/\/polymarket\.com\/event\/[a-z0-9-]+$/.test(event.source_url||'')?event.source_url:'#';
   return '<article class="market-panel market-event" data-market-county="'+esc(event.county)+'"><header><div><small>'+esc(event.county)+' / '+(event.stale?'過往快照':'來源已核驗')+'</small><h2>'+esc(event.title)+'</h2></div><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">市場來源及結算規則</a></header>'
    +'<div class="market-metadata"><span>總交易量 <b>'+compact(event.volume_usd)+'</b></span><span>流動性 <b>'+compact(event.liquidity_usd)+'</b></span><span>來源更新 <b>'+esc(dateLabel(event.quote_as_of))+'</b></span></div>'
+   +(fusion.eligible?'<p class="market-note">融合試驗權重 '+Math.round(weight*100)+'%；不改變正式模型或得票率。</p>':'<p class="market-note">融合試驗不適用：'+esc(fusion.reason)+'。</p>')
    +(event.stale?'<p class="market-warning">來源暫未成功核驗，以下為最後有效快照，並非即時價格。</p>':'')
    +(event.data_quality==='thin'?'<p class="market-warning">成交量或流動性較低，報價參考價值有限。</p>':'')
-   +'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>選項</th><th>Yes價格</th><th>模型條件勝率</th><th>差額</th><th>買賣價差</th><th>價格走勢</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
+   +'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>選項</th><th>Yes價格</th><th>模型條件勝率</th><th>差額</th><th>買賣價差</th><th>融合試驗勝率</th><th>價格走勢</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
    +'<p class="market-note">Yes合約報價不保證合計100%；市場與模型數值的差額不代表統計誤差。未核實姓名配對的候選人不進行對照。</p></article>';
 }
-export function marketPage(snapshot,model){
+export function marketPage(snapshot,model,weight=0.05){
   const d=snapshot?.schema_version===1?snapshot:{status:'unavailable',events:[],history:[],errors:[]};
   const events=d.events||[],fresh=events.filter(x=>!x.stale);
   const option=[...new Set(events.map(x=>x.county))].sort().map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
@@ -83,6 +88,7 @@ export function marketPage(snapshot,model){
    +(d.status!=='ok'?'<p class="market-warning">來源狀態：'+esc(d.status||'unavailable')+'。缺值不填入估測價格。</p>':'')
    +(events.length?'':'<section class="market-panel"><h2>市場資料尚未成功核驗</h2><p>等待公開來源同步；未使用模擬行情。</p></section>')
    +'<div class="market-controls"><label for="marketCounty">縣市</label><select id="marketCounty"><option value="all">全部</option>'+option+'</select><small>無市場不代表沒有選舉，歷史快照不代表即時盤口。</small></div>'
-   +'<div id="marketEventList">'+events.map(x=>eventCard(x,model,d.history||[])).join('')+'</div>'
+   +'<section class="market-panel market-fusion-control"><h2>市場信號融合 · 試驗版本</h2><p>以模型勝率及候選人市場 Yes 合約價格進行對數機率融合；並非把市場價格當作候選人得票率。研究權重尚未經獨立週期校準，融合數字不改動正式 HB-TLEF 模型、得票率或全國席次分布。</p><label for="marketWeight">市場試驗權重</label> <select id="marketWeight">'+[0,0.05,0.10].map(w=>'<option value="'+w+'" '+(w===weight?'selected':'')+'>'+Math.round(w*100)+'%'+(w===0?'（不融合）':'')+'</option>').join('')+'</select><p class="market-note">僅對候選人名單高度匹配、近期報價、流動性及買賣價差均通過門檻的選區產生融合勝率。</p></section>'
+   +'<div id="marketEventList">'+events.map(x=>eventCard(x,model,d.history||[],weight)).join('')+'</div>'
    +'<section class="market-panel"><h2>資料與法律說明</h2><p>來源為<a href="https://docs.polymarket.com/" rel="noopener noreferrer" target="_blank">Polymarket Gamma 公開唯讀接口</a>。採排程快照，資料不一定即時，也不是完整訂單簿；失敗時保留舊值並標記。選前全站暫停發布政策同樣適用本頁。</p><p>目前不將市場資料合併進統計模型、不做依價格推測選民群體的分析，也不提供交易功能。不同市場的結算條款應逐一核對。</p></section></section>';
 }
