@@ -6,6 +6,10 @@ on:
       - '.github/workflows/inspect-cec-precinct-source.yml'
       - 'scripts/import_cec_precincts.py'
       - 'scripts/import_cec_open_csv.py'
+      - 'scripts/build_cec_candidate_turnout_panel.py'
+      - 'scripts/evaluate_turnout_holdout.py'
+      - 'tests/test_turnout_holdout.py'
+      - 'tests/test_cec_town_candidate_panel.py'
   workflow_dispatch:
 
 permissions:
@@ -88,6 +92,32 @@ jobs:
             --zip /tmp/cec-official.zip \
             --history data/candidate-history-cec.json \
             --output /tmp/cec-precincts
+      - name: Audit station candidate votes and build matched-town research panel
+        run: |
+          python -m unittest tests.test_cec_town_candidate_panel -v
+          python scripts/build_cec_candidate_turnout_panel.py \
+            --zip /tmp/cec-official.zip \
+            --stations data/cec-precincts \
+            --history data/candidate-history-cec.json \
+            --panel data/turnout-district-panel-2018-2022.json \
+            --output /tmp/cec-town-candidate-association.json
+          python -m unittest tests.test_turnout_holdout -v
+          python scripts/evaluate_turnout_holdout.py \
+            --association /tmp/cec-town-candidate-association.json \
+            --output /tmp/cec-turnout-holdout.json
+
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-turnout-holdout-review
+          path: /tmp/cec-turnout-holdout.json
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-candidate-town-association-review
+          path: /tmp/cec-town-candidate-association.json
+          retention-days: 14
       - uses: actions/upload-artifact@v4
         if: success()
         with:

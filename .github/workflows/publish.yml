@@ -60,11 +60,27 @@ jobs:
           fi
       - name: Build CEC matched-township historical turnout panel
         run: python scripts/build_turnout_district_panel.py
+      - name: Audit CEC candidate votes and run 2022 time-ordered turnout holdout
+        run: |
+          set -euo pipefail
+          if [ ! -s data/cec-town-candidate-association-2018-2022.json ]; then
+            curl --fail --location --silent --show-error --max-time 150 --retry 1 \
+              --output /tmp/cec-candidate-votes.zip 'https://data.cec.gov.tw/選舉資料庫/votedata.zip'
+            python scripts/build_cec_candidate_turnout_panel.py \
+              --zip /tmp/cec-candidate-votes.zip \
+              --output data/cec-town-candidate-association-2018-2022.json
+            rm -f /tmp/cec-candidate-votes.zip
+          else
+            echo "Reusing archived, independently reconciled historical candidate votes."
+          fi
+          python scripts/evaluate_turnout_holdout.py \
+            --association data/cec-town-candidate-association-2018-2022.json \
+            --output data/turnout-holdout-2018-2022.json
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/polls.json data/market-snapshots.json data/cec-precincts data/turnout-district-panel-2018-2022.json
+          git add data/polls.json data/market-snapshots.json data/cec-precincts data/turnout-district-panel-2018-2022.json data/cec-town-candidate-association-2018-2022.json data/turnout-holdout-2018-2022.json
           if ! git diff --cached --quiet; then
             git commit -m "Update verified poll archive and source status"
             git push origin HEAD:main
@@ -72,7 +88,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs
+        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-association-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs && node tests/turnout-association-ui.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
