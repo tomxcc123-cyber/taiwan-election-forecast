@@ -73,8 +73,19 @@ def recover(prior,recent,archive_root=ROOT/'data/cec-precincts'):
             info=row.get('documented_name_change')
             if (row['district']!=rule['after'] or not isinstance(info,dict) or
                 info.get('2014_original_name')!=rule['before'] or info.get('2018_name')!=rule['after'] or
-                info.get('cec_minutes_url')!=CEC_MINUTES):
+                info.get('cec_minutes_url')!=CEC_MINUTES or
+                info.get('effective_date')!=rule['effective_date'] or
+                info.get('spatial_boundary_verified') is not False or
+                info.get('2014_elbase_sha256')!=(c.get('2014_label_source') or {}).get('sha256')):
                 raise ValueError('Existing renamed row has unverified provenance')
+            for year in (2014,2018):
+                entry=entries[(year,county)]
+                raw=(Path(archive_root)/Path(entry['path']).name).read_bytes()
+                if (entry['status']!='official_precinct_aggregate_verified' or
+                    hashlib.sha256(raw).hexdigest()!=entry['sha256'] or
+                    info.get('source_archived_cec_station_sha256',{}).get(str(year))!=entry['sha256'] or
+                    audited_town(json.loads(raw),code,year)!=row['years'][str(year)]):
+                    raise ValueError('Existing documented rename diverged from original CEC booth counts')
             outcomes.append({'county':county,'town_code':code,'already_reconciled':True})
             continue
         if existing:raise ValueError('Ambiguous historical town-code join')
