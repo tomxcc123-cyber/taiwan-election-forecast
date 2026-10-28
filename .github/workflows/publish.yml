@@ -58,11 +58,13 @@ jobs:
           else
             echo "Using previously reconciled, immutable CEC precinct chunks."
           fi
+      - name: Build CEC matched-township historical turnout panel
+        run: python scripts/build_turnout_district_panel.py
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/polls.json data/market-snapshots.json data/cec-precincts
+          git add data/polls.json data/market-snapshots.json data/cec-precincts data/turnout-district-panel-2018-2022.json
           if ! git diff --cached --quiet; then
             git commit -m "Update verified poll archive and source status"
             git push origin HEAD:main
