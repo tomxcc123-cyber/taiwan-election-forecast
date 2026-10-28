@@ -24,3 +24,13 @@
 @media(max-width:760px){.studio-layout{grid-template-columns:1fr;gap:20px}.studio-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.studio-slots button{min-width:0;display:block;padding:8px}.studio-slots button span{display:block;font-size:11px}.studio-actions{gap:6px}.studio-actions label:first-child{width:100%}.studio-actions input{width:100%}.studio-actions button{font-size:12px}.studio-layout .map-figure svg{height:345px}.studio-input-tabs button{font-size:13px;padding:10px 3px}.studio-controls{padding:14px}.studio-result-tabs button{flex:1;min-width:0;padding:9px 4px;font-size:12px}.studio-result table{font-size:12px}.studio-result th{white-space:normal;min-width:64px}.studio-result td{padding:10px 7px}.studio-result .table-wrap{max-width:100%}.studio-controls .control{margin:14px 0}}
 
 .studio-layout.matrix-open{grid-template-columns:minmax(0,1fr)}.matrix-open .studio-input-tabs{max-width:520px}.matrix-open .studio-controls>.control{max-width:440px}.matrix-open .studio-bottom{max-width:440px}.matrix-open .flow-matrix table{width:100%}.matrix-open .flow-matrix input{width:100%;max-width:90px}.matrix-open .studio-input-body>.control{max-width:440px}
+
+
+/* Release regression 2026-10-28: a sticky navigation rail and the
+ * GPU-rendered map canvas must not cover scroll-targeted studio controls.
+ * Keep preset <summary> accessible to pointer, keyboard and automated clicks.
+ */
+.studio-layout .studio-controls{position:relative;z-index:3;isolation:isolate;background:#fff}
+.studio-layout .gis-map-desk{position:relative;z-index:0}
+.studio-presets>summary{position:relative;z-index:1;scroll-margin-block-start:120px}
+@media(max-width:760px){.studio-presets>summary{scroll-margin-block-start:160px}}

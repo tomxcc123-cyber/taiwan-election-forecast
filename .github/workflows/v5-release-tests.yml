@@ -40,6 +40,8 @@ on:
       - 'scripts/evaluate_turnout_holdout.py'
       - 'site/gis/map.mjs'
       - 'site/gis-edition.css'
+      - 'site/styles.css'
+      - 'tests/candidate-browser.cjs'
       - 'site/forecast-command-center.css'
       - 'site/race-center.css'
       - 'site/vendor/towns/**'
