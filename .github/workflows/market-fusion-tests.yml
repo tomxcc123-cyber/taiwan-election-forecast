@@ -7,6 +7,9 @@ on:
       - 'site/market-joint-shadow.mjs'
       - 'site/turnout-sensitivity.mjs'
       - 'site/turnout-ui.mjs'
+      - 'site/precinct-turnout-ui.mjs'
+      - 'scripts/import_cec_open_csv.py'
+      - 'scripts/import_cec_precincts.py'
       - 'site/turnout.css'
       - 'data/turnout-history-2018-2022.json'
       - 'site/market-observatory.mjs'
@@ -16,6 +19,9 @@ on:
       - 'tests/market-fusion.mjs'
       - 'tests/market-joint-shadow.mjs'
       - 'tests/turnout-sensitivity.mjs'
+      - 'tests/precinct-turnout.mjs'
+      - 'tests/test_cec_precinct_import.py'
+      - 'tests/test_cec_open_csv.py'
       - 'tests/market-fusion-evidence.mjs'
       - 'tests/market-observatory.mjs'
       - '.github/workflows/market-fusion-tests.yml'
@@ -40,6 +46,7 @@ jobs:
           node --check site/market-joint-shadow.mjs
           node --check site/turnout-sensitivity.mjs
           node --check site/turnout-ui.mjs
+          node --check site/precinct-turnout-ui.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -50,6 +57,12 @@ jobs:
         run: node tests/market-observatory.mjs
       - name: Test joint correlated election simulations and ESS quality gates
         run: node tests/market-joint-shadow.mjs
+      - name: Test synthetic original CSV and XLS polling-station accounting
+        run: |
+          python -m unittest tests.test_cec_open_csv -v
+          python -m unittest tests.test_cec_precinct_import -v
+      - name: Test precinct-level history browser and county total conservation
+        run: node tests/precinct-turnout.mjs
       - name: Test CEC turnout data and neutral mathematical sensitivity bounds
         run: node tests/turnout-sensitivity.mjs
       - name: Test aligned archive and synthetic future-outcome evaluation

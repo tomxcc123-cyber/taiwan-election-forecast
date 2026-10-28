@@ -71,6 +71,7 @@ def build(now=None):
          'market-fusion.mjs',
          'market-joint-shadow.mjs',
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
+         'precinct-turnout-ui.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -109,6 +110,20 @@ def build(now=None):
     if markets.get('schema_version') != 1 or not isinstance(markets.get('events'), list):
         raise ValueError('Invalid market snapshot archive')
     (dist / 'market-snapshots.json').write_text(json.dumps(markets, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
+    # The CEC station source is distributed as county/year chunks.
+    # Do not invent station rows when the official download is unavailable.
+    booth_source = ROOT / 'data/cec-precincts'
+    if (booth_source / 'index.json').exists():
+        booth_index = json.loads((booth_source / 'index.json').read_text(encoding='utf-8'))
+        if booth_index.get('schema_version') != 1 or len(booth_index.get('entries', [])) != 66:
+            raise ValueError('Unverified or incomplete CEC polling-station archive')
+        for entry in booth_index['entries']:
+            if entry.get('status') == 'official_precinct_aggregate_verified':
+                station_file = booth_source / Path(entry['path']).name
+                if not station_file.is_file():
+                    raise ValueError('CEC station data chunk missing: '+str(station_file))
+        shutil.copytree(booth_source, dist / 'cec-precincts')
 
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))

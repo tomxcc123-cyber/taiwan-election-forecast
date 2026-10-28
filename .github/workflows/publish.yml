@@ -43,11 +43,26 @@ jobs:
         run: python scripts/promote_poll_sources.py
       - name: Fetch read-only Taiwan election market snapshots
         run: python scripts/update_market_snapshots.py
+      - name: Reconstruct CEC historical polling-station archive from original bulk CSV
+        run: |
+          set -euo pipefail
+          if [ ! -s data/cec-precincts/index.json ]; then
+            echo "No verified archived CEC precinct data yet; downloading original official release."
+            curl --fail --location --silent --show-error --max-time 150 --retry 1 \
+              --output /tmp/cec-votedata.zip 'https://data.cec.gov.tw/選舉資料庫/votedata.zip'
+            python scripts/import_cec_open_csv.py \
+              --zip /tmp/cec-votedata.zip \
+              --history data/candidate-history-cec.json \
+              --output data/cec-precincts
+            rm -f /tmp/cec-votedata.zip
+          else
+            echo "Using previously reconciled, immutable CEC precinct chunks."
+          fi
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/polls.json data/market-snapshots.json
+          git add data/polls.json data/market-snapshots.json data/cec-precincts
           if ! git diff --cached --quiet; then
             git commit -m "Update verified poll archive and source status"
             git push origin HEAD:main
@@ -55,7 +70,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs
+        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi

@@ -1,0 +1,96 @@
+name: Inspect official CEC precinct archive (research-only)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/inspect-cec-precinct-source.yml'
+      - 'scripts/import_cec_precincts.py'
+      - 'scripts/import_cec_open_csv.py'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  official-cec-source-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+      - name: Inspect CEC official source headers and archive file listing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request,urllib.parse
+          url='https://data.cec.gov.tw/選舉資料庫/votedata.zip'
+          try:
+              req=urllib.request.Request(url,method='HEAD',headers={'User-Agent':'TW-election-research-archive/1.0'})
+              with urllib.request.urlopen(req,timeout=25) as resp:
+                  print('OFFICIAL_CEC_STATUS',resp.status)
+                  print('OFFICIAL_CEC_SIZE',resp.headers.get('Content-Length'))
+                  print('OFFICIAL_CEC_TYPE',resp.headers.get('Content-Type'))
+                  print('OFFICIAL_CEC_URL',resp.url)
+          except Exception as exc:
+              print('SOURCE_FETCH_ERROR',type(exc).__name__,str(exc)[:350])
+          PY
+          curl --location --fail --show-error --silent --max-time 140 --retry 1 \
+            --output /tmp/cec-official.zip 'https://data.cec.gov.tw/選舉資料庫/votedata.zip' || { echo 'SOURCE_NOT_DOWNLOADED'; exit 0; }
+          python - <<'PY'
+          from zipfile import ZipFile, BadZipFile
+          from pathlib import Path
+          p=Path('/tmp/cec-official.zip')
+          print('SOURCE_FILE_SIZE',p.stat().st_size)
+          try:
+              with ZipFile(p) as z:
+                  fs=z.infolist()
+                  print('SOURCE_ARCHIVE_MEMBERS',len(fs))
+                  print('SOURCE_UNCOMPRESSED_TOTAL',sum(i.file_size for i in fs))
+                  samples=[x for x in fs if (x.filename.endswith('/elprof.csv') or x.filename.endswith('/elbase.csv') or x.filename.endswith('/elctks.csv')) and any(k in x.filename for k in ('2014','2018','2022','103年','107年','111年'))]
+                  print('ELECTION_YEAR_FILES',len(samples))
+                  for x in samples[:85]:
+                      print('ELECTION_YEAR_MEMBER',repr(x.filename),x.file_size)
+                  for x in samples:
+                      if (('2022-' in x.filename and x.filename.endswith('/elprof.csv')) or
+                          (('2014-' in x.filename or '2018-' in x.filename) and
+                          ('縣市市長' in x.filename or '直轄市市長' in x.filename) and
+                          x.filename.endswith('/elprof.csv'))):
+                          print('TARGET_ELECTION_FILE',repr(x.filename),x.file_size)
+                  for year in ('2014-','2018-','2022-'):
+                      for x in samples:
+                          if (year in x.filename and x.filename.endswith('/elprof.csv') and
+                             ('縣市市長' in x.filename or 'C1/city' in x.filename)):
+                              raw=z.read(x)
+                              lines=raw.decode('utf-8-sig',errors='replace').splitlines()
+                              print('TARGET_HEADER',year,repr(x.filename),repr(lines[0][:180]))
+                              booth=next((line for line in lines if len(line.split(','))>10 and
+                                  line.split(',')[5].strip('0')!=''),None)
+                              print('TARGET_BOOTH',year,repr(booth[:180]) if booth else None)
+                              break
+                  for suffix in ('elprof.csv','elbase.csv','elctks.csv'):
+                      for x in samples:
+                          if x.filename.endswith(suffix) and '2022' in x.filename:
+                              raw=z.read(x)
+                              print('CSV_SAMPLE_PATH',repr(x.filename))
+                              print('CSV_SAMPLE_HEX',raw[:30].hex())
+                              for line in raw.splitlines()[:3]:
+                                  print('CSV_SAMPLE_LINE',repr(line[:200]))
+                              break
+
+          except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
+          PY
+
+      - name: Verify all available 2014, 2018, 2022 polling-station rows
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/import_cec_open_csv.py scripts/import_cec_precincts.py
+          python scripts/import_cec_open_csv.py \
+            --zip /tmp/cec-official.zip \
+            --history data/candidate-history-cec.json \
+            --output /tmp/cec-precincts
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-precinct-extract-review
+          path: /tmp/cec-precincts
+          retention-days: 14
