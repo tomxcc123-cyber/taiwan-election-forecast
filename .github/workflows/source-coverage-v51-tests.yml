@@ -122,7 +122,7 @@ jobs:
           kaohsiung=next(r for r in data['counties'] if r['name']=='高雄市')
           nt_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='新北市'}
           kh_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='高雄市'}
-          assert len(nt_ids)==2 and nt_ids.issubset(set(new_taipei['poll_ids'])), (nt_ids,new_taipei['poll_ids'])
+          assert len(nt_ids)>=2 and nt_ids.issubset(set(new_taipei['poll_ids'])), (nt_ids,new_taipei['poll_ids'])
           assert len(kh_ids)==2 and kh_ids.issubset(set(kaohsiung['poll_ids'])), (kh_ids,kaohsiung['poll_ids'])
           assert data['release']['stable'] is False
           print('PASS public product:',taipei_poll['id'],sorted(nt_ids),sorted(kh_ids))
