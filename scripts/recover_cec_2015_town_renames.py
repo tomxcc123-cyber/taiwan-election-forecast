@@ -136,7 +136,8 @@ def recover(prior,recent,archive_root=ROOT/'data/cec-precincts'):
     prior['documented_2015_name_changes']=sorted([
         {'county':c,'town_code':code,**rule} for (c,code),rule in RENAMES.items()],
         key=lambda x:(x['county'],x['town_code']))
-    prior['verification']+='; two 2015 officially documented town-to-city title changes matched by identical original CEC town code and audited booth totals'
+    note='; two 2015 officially documented town-to-city title changes matched by identical original CEC town code and audited booth totals'
+    if note not in prior['verification']:prior['verification']+=note
     prior['no_historical_polygon_comparison']=True
     if prior['matched_towns']!=368:
         raise ValueError('Restored 2014→2018 panel not complete')
