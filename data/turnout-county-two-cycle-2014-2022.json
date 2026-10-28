@@ -1,0 +1,887 @@
+{
+  "schema_version": 1,
+  "kind": "cec_county_turnout_two_cycle_baseline_check",
+  "source": "CEC 2014/2018/2022 audited same-office county mayoral original integer totals",
+  "years": [
+    2014,
+    2018,
+    2022
+  ],
+  "cycle_count": 2,
+  "county_count_each_cycle": 22,
+  "model_weights": {
+    "persistence": 1.0,
+    "national_shrink_75": 0.75,
+    "national_shrink_50": 0.5
+  },
+  "model_selection": "Fixed weights, no parameters estimated from holdout labels",
+  "training_info": "For each held-out year use only immediately preceding election county counts and its pooled all-county rate",
+  "leakage_gate": "no 2018 outcome enters 2018 predictor; no 2022 outcome enters 2022 predictor",
+  "county_not_township": "This cannot validate the more granular 2018→2022 township shadow model or its national-drift term.",
+  "cycles": {
+    "2014_to_2018": {
+      "train_year": 2014,
+      "test_year": 2018,
+      "counties": 22,
+      "train_national_turnout_pct": 67.59167,
+      "scores": {
+        "persistence": {
+          "weighted_mae_pp": 3.25417,
+          "weighted_rmse_pp": 3.71474,
+          "equal_county_mae_pp": 2.64219,
+          "delta_mae_vs_persistence_pp": 0.0,
+          "improved_counties": 0
+        },
+        "national_shrink_75": {
+          "weighted_mae_pp": 2.65732,
+          "weighted_rmse_pp": 3.30833,
+          "equal_county_mae_pp": 2.35273,
+          "delta_mae_vs_persistence_pp": -0.59685,
+          "improved_counties": 15
+        },
+        "national_shrink_50": {
+          "weighted_mae_pp": 2.46636,
+          "weighted_rmse_pp": 3.30239,
+          "equal_county_mae_pp": 2.37996,
+          "delta_mae_vs_persistence_pp": -0.78781,
+          "improved_counties": 15
+        }
+      },
+      "rows": [
+        {
+          "county": "南投縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 73.10857,
+          "target_turnout_pct": 72.74734,
+          "target_electorate": 413222,
+          "predicted_turnout_pct": {
+            "persistence": 73.10857,
+            "national_shrink_75": 71.72934,
+            "national_shrink_50": 70.35012
+          },
+          "errors_pp": {
+            "persistence": 0.36123114082623475,
+            "national_shrink_75": -1.0179928809261551,
+            "national_shrink_50": -2.397216902678534
+          }
+        },
+        {
+          "county": "台中市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 71.93155,
+          "target_turnout_pct": 67.45742,
+          "target_electorate": 2213789,
+          "predicted_turnout_pct": {
+            "persistence": 71.93155,
+            "national_shrink_75": 70.84658,
+            "national_shrink_50": 69.76161
+          },
+          "errors_pp": {
+            "persistence": 4.474129848194908,
+            "national_shrink_75": 3.3891597088402947,
+            "national_shrink_50": 2.3041895694856818
+          }
+        },
+        {
+          "county": "台北市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 70.45957,
+          "target_turnout_pct": 65.94837,
+          "target_electorate": 2164155,
+          "predicted_turnout_pct": {
+            "persistence": 70.45957,
+            "national_shrink_75": 69.7426,
+            "national_shrink_50": 69.02562
+          },
+          "errors_pp": {
+            "persistence": 4.5111981198637015,
+            "national_shrink_75": 3.794223434149635,
+            "national_shrink_50": 3.0772487484355793
+          }
+        },
+        {
+          "county": "台南市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 65.88462,
+          "target_turnout_pct": 64.01373,
+          "target_electorate": 1546862,
+          "predicted_turnout_pct": {
+            "persistence": 65.88462,
+            "national_shrink_75": 66.31138,
+            "national_shrink_50": 66.73814
+          },
+          "errors_pp": {
+            "persistence": 1.8708917183911544,
+            "national_shrink_75": 2.2976552847283283,
+            "national_shrink_50": 2.724418851065513
+          }
+        },
+        {
+          "county": "台東縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 67.8189,
+          "target_turnout_pct": 68.32604,
+          "target_electorate": 179706,
+          "predicted_turnout_pct": {
+            "persistence": 67.8189,
+            "national_shrink_75": 67.76209,
+            "national_shrink_50": 67.70528
+          },
+          "errors_pp": {
+            "persistence": -0.50714579134985,
+            "national_shrink_75": -0.5639522966636501,
+            "national_shrink_50": -0.6207588019774501
+          }
+        },
+        {
+          "county": "嘉義市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 70.95565,
+          "target_turnout_pct": 67.90639,
+          "target_electorate": 212843,
+          "predicted_turnout_pct": {
+            "persistence": 70.95565,
+            "national_shrink_75": 70.11466,
+            "national_shrink_50": 69.27366
+          },
+          "errors_pp": {
+            "persistence": 3.049259820366268,
+            "national_shrink_75": 2.2082650504452017,
+            "national_shrink_50": 1.3672702805241355
+          }
+        },
+        {
+          "county": "嘉義縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 74.19031,
+          "target_turnout_pct": 70.74996,
+          "target_electorate": 428649,
+          "predicted_turnout_pct": {
+            "persistence": 74.19031,
+            "national_shrink_75": 72.54065,
+            "national_shrink_50": 70.89099
+          },
+          "errors_pp": {
+            "persistence": 3.440350454757868,
+            "national_shrink_75": 1.7906905692500863,
+            "national_shrink_50": 0.14103068374230476
+          }
+        },
+        {
+          "county": "基隆市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 63.92366,
+          "target_turnout_pct": 62.45427,
+          "target_electorate": 309428,
+          "predicted_turnout_pct": {
+            "persistence": 63.92366,
+            "national_shrink_75": 64.84066,
+            "national_shrink_50": 65.75767
+          },
+          "errors_pp": {
+            "persistence": 1.4693899875632521,
+            "national_shrink_75": 2.386392834705675,
+            "national_shrink_50": 3.303395681848109
+          }
+        },
+        {
+          "county": "宜蘭縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 70.46322,
+          "target_turnout_pct": 69.08731,
+          "target_electorate": 373510,
+          "predicted_turnout_pct": {
+            "persistence": 70.46322,
+            "national_shrink_75": 69.74533,
+            "national_shrink_50": 69.02745
+          },
+          "errors_pp": {
+            "persistence": 1.3759152248242867,
+            "national_shrink_75": 0.6580276528813545,
+            "national_shrink_50": -0.05985991906158894
+          }
+        },
+        {
+          "county": "屏東縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 73.52965,
+          "target_turnout_pct": 71.08833,
+          "target_electorate": 689393,
+          "predicted_turnout_pct": {
+            "persistence": 73.52965,
+            "national_shrink_75": 72.04516,
+            "national_shrink_50": 70.56066
+          },
+          "errors_pp": {
+            "persistence": 2.441317347325689,
+            "national_shrink_75": 0.9568224120464097,
+            "national_shrink_50": -0.5276725232328583
+          }
+        },
+        {
+          "county": "彰化縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 72.92716,
+          "target_turnout_pct": 70.89996,
+          "target_electorate": 1031222,
+          "predicted_turnout_pct": {
+            "persistence": 72.92716,
+            "national_shrink_75": 71.59329,
+            "national_shrink_50": 70.25942
+          },
+          "errors_pp": {
+            "persistence": 2.0271977713638534,
+            "national_shrink_75": 0.6933259363862687,
+            "national_shrink_50": -0.6405458985913048
+          }
+        },
+        {
+          "county": "新北市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 61.65447,
+          "target_turnout_pct": 64.00261,
+          "target_electorate": 3264128,
+          "predicted_turnout_pct": {
+            "persistence": 61.65447,
+            "national_shrink_75": 63.13877,
+            "national_shrink_50": 64.62307
+          },
+          "errors_pp": {
+            "persistence": -2.3481341129928057,
+            "national_shrink_75": -0.8638342544857402,
+            "national_shrink_50": 0.6204656040213141
+          }
+        },
+        {
+          "county": "新竹市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 62.905,
+          "target_turnout_pct": 65.44101,
+          "target_electorate": 338323,
+          "predicted_turnout_pct": {
+            "persistence": 62.905,
+            "national_shrink_75": 64.07667,
+            "national_shrink_50": 65.24833
+          },
+          "errors_pp": {
+            "persistence": -2.5360170665884363,
+            "national_shrink_75": -1.3643482081689973,
+            "national_shrink_50": -0.19267934974955825
+          }
+        },
+        {
+          "county": "新竹縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 68.75535,
+          "target_turnout_pct": 67.95245,
+          "target_electorate": 427652,
+          "predicted_turnout_pct": {
+            "persistence": 68.75535,
+            "national_shrink_75": 68.46443,
+            "national_shrink_50": 68.17351
+          },
+          "errors_pp": {
+            "persistence": 0.8029008834229634,
+            "national_shrink_75": 0.511981792439431,
+            "national_shrink_50": 0.22106270145590967
+          }
+        },
+        {
+          "county": "桃園市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 62.73289,
+          "target_turnout_pct": 60.63329,
+          "target_electorate": 1732591,
+          "predicted_turnout_pct": {
+            "persistence": 62.73289,
+            "national_shrink_75": 63.94759,
+            "national_shrink_50": 65.16228
+          },
+          "errors_pp": {
+            "persistence": 2.099595657629416,
+            "national_shrink_75": 3.3142911279924525,
+            "national_shrink_50": 4.528986598355478
+          }
+        },
+        {
+          "county": "澎湖縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 66.26554,
+          "target_turnout_pct": 62.88004,
+          "target_electorate": 86603,
+          "predicted_turnout_pct": {
+            "persistence": 66.26554,
+            "national_shrink_75": 66.59708,
+            "national_shrink_50": 66.92861
+          },
+          "errors_pp": {
+            "persistence": 3.3855047241290293,
+            "national_shrink_75": 3.7170368027802825,
+            "national_shrink_50": 4.048568881431525
+          }
+        },
+        {
+          "county": "花蓮縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 61.7654,
+          "target_turnout_pct": 64.86792,
+          "target_electorate": 268817,
+          "predicted_turnout_pct": {
+            "persistence": 61.7654,
+            "national_shrink_75": 63.22197,
+            "national_shrink_50": 64.67854
+          },
+          "errors_pp": {
+            "persistence": -3.102517697570273,
+            "national_shrink_75": -1.6459506389661982,
+            "national_shrink_50": -0.18938358036212355
+          }
+        },
+        {
+          "county": "苗栗縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 72.79698,
+          "target_turnout_pct": 70.73596,
+          "target_electorate": 446507,
+          "predicted_turnout_pct": {
+            "persistence": 72.79698,
+            "national_shrink_75": 71.49565,
+            "national_shrink_50": 70.19432
+          },
+          "errors_pp": {
+            "persistence": 2.061018118301028,
+            "national_shrink_75": 0.7596922710784715,
+            "national_shrink_50": -0.541633576144096
+          }
+        },
+        {
+          "county": "連江縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 67.05179,
+          "target_turnout_pct": 71.3079,
+          "target_electorate": 10773,
+          "predicted_turnout_pct": {
+            "persistence": 67.05179,
+            "national_shrink_75": 67.18676,
+            "national_shrink_50": 67.32173
+          },
+          "errors_pp": {
+            "persistence": -4.256106549389549,
+            "national_shrink_75": -4.121136797444313,
+            "national_shrink_50": -3.986167045499067
+          }
+        },
+        {
+          "county": "金門縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 45.15185,
+          "target_turnout_pct": 42.75949,
+          "target_electorate": 117913,
+          "predicted_turnout_pct": {
+            "persistence": 45.15185,
+            "national_shrink_75": 50.76181,
+            "national_shrink_50": 56.37176
+          },
+          "errors_pp": {
+            "persistence": 2.392359505069658,
+            "national_shrink_75": 8.002314545930211,
+            "national_shrink_50": 13.61226958679077
+          }
+        },
+        {
+          "county": "雲林縣",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 74.09156,
+          "target_turnout_pct": 71.57366,
+          "target_electorate": 565078,
+          "predicted_turnout_pct": {
+            "persistence": 74.09156,
+            "national_shrink_75": 72.46659,
+            "national_shrink_50": 70.84162
+          },
+          "errors_pp": {
+            "persistence": 2.5179004369270563,
+            "national_shrink_75": 0.8929285723830449,
+            "national_shrink_50": -0.7320432921609776
+          }
+        },
+        {
+          "county": "高雄市",
+          "training_year": 2014,
+          "target_year": 2018,
+          "prev_turnout_pct": 66.43996,
+          "target_turnout_pct": 73.53799,
+          "target_electorate": 2281338,
+          "predicted_turnout_pct": {
+            "persistence": 66.43996,
+            "national_shrink_75": 66.72789,
+            "national_shrink_50": 67.01582
+          },
+          "errors_pp": {
+            "persistence": -7.098025053248358,
+            "national_shrink_75": -6.810097122031278,
+            "national_shrink_50": -6.522169190814187
+          }
+        }
+      ]
+    },
+    "2018_to_2022": {
+      "train_year": 2018,
+      "test_year": 2022,
+      "counties": 22,
+      "train_national_turnout_pct": 66.95998,
+      "scores": {
+        "persistence": {
+          "weighted_mae_pp": 6.31814,
+          "weighted_rmse_pp": 7.68847,
+          "equal_county_mae_pp": 5.71046,
+          "delta_mae_vs_persistence_pp": 0.0,
+          "improved_counties": 0
+        },
+        "national_shrink_75": {
+          "weighted_mae_pp": 6.27667,
+          "weighted_rmse_pp": 7.44867,
+          "equal_county_mae_pp": 5.86296,
+          "delta_mae_vs_persistence_pp": -0.04147,
+          "improved_counties": 13
+        },
+        "national_shrink_50": {
+          "weighted_mae_pp": 6.2352,
+          "weighted_rmse_pp": 7.3649,
+          "equal_county_mae_pp": 6.01547,
+          "delta_mae_vs_persistence_pp": -0.08294,
+          "improved_counties": 13
+        }
+      },
+      "rows": [
+        {
+          "county": "南投縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 72.74734,
+          "target_turnout_pct": 69.07914,
+          "target_electorate": 406195,
+          "predicted_turnout_pct": {
+            "persistence": 72.74734,
+            "national_shrink_75": 71.3005,
+            "national_shrink_50": 69.85366
+          },
+          "errors_pp": {
+            "persistence": 3.668199914888959,
+            "national_shrink_75": 2.2213600403893197,
+            "national_shrink_50": 0.7745201658896916
+          }
+        },
+        {
+          "county": "台中市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 67.45742,
+          "target_turnout_pct": 60.00725,
+          "target_electorate": 2274107,
+          "predicted_turnout_pct": {
+            "persistence": 67.45742,
+            "national_shrink_75": 67.33306,
+            "national_shrink_50": 67.2087
+          },
+          "errors_pp": {
+            "persistence": 7.45017574507748,
+            "national_shrink_75": 7.32581442981779,
+            "national_shrink_50": 7.201453114558099
+          }
+        },
+        {
+          "county": "台北市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 65.94837,
+          "target_turnout_pct": 67.70278,
+          "target_electorate": 2026769,
+          "predicted_turnout_pct": {
+            "persistence": 65.94837,
+            "national_shrink_75": 66.20127,
+            "national_shrink_50": 66.45417
+          },
+          "errors_pp": {
+            "persistence": -1.7544096533523068,
+            "national_shrink_75": -1.5015084470542561,
+            "national_shrink_50": -1.2486072407562054
+          }
+        },
+        {
+          "county": "台南市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 64.01373,
+          "target_turnout_pct": 58.68307,
+          "target_electorate": 1548203,
+          "predicted_turnout_pct": {
+            "persistence": 64.01373,
+            "national_shrink_75": 64.75029,
+            "national_shrink_50": 65.48685
+          },
+          "errors_pp": {
+            "persistence": 5.330659097268575,
+            "national_shrink_75": 6.067221955249735,
+            "national_shrink_50": 6.803784813230895
+          }
+        },
+        {
+          "county": "台東縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 68.32604,
+          "target_turnout_pct": 64.78721,
+          "target_electorate": 177853,
+          "predicted_turnout_pct": {
+            "persistence": 68.32604,
+            "national_shrink_75": 67.98453,
+            "national_shrink_50": 67.64301
+          },
+          "errors_pp": {
+            "persistence": 3.5388317381110923,
+            "national_shrink_75": 3.197315147006019,
+            "national_shrink_50": 2.855798555900946
+          }
+        },
+        {
+          "county": "嘉義市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 67.90639,
+          "target_turnout_pct": 43.98636,
+          "target_electorate": 214130,
+          "predicted_turnout_pct": {
+            "persistence": 67.90639,
+            "national_shrink_75": 67.66979,
+            "national_shrink_50": 67.43318
+          },
+          "errors_pp": {
+            "persistence": 23.920027671696044,
+            "national_shrink_75": 23.68342421891274,
+            "national_shrink_50": 23.446820766129427
+          }
+        },
+        {
+          "county": "嘉義縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 70.74996,
+          "target_turnout_pct": 67.32408,
+          "target_electorate": 422568,
+          "predicted_turnout_pct": {
+            "persistence": 70.74996,
+            "national_shrink_75": 69.80247,
+            "national_shrink_50": 68.85497
+          },
+          "errors_pp": {
+            "persistence": 3.425885272010054,
+            "national_shrink_75": 2.4783893622379316,
+            "national_shrink_50": 1.530893452465809
+          }
+        },
+        {
+          "county": "基隆市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 62.45427,
+          "target_turnout_pct": 60.16018,
+          "target_electorate": 307913,
+          "predicted_turnout_pct": {
+            "persistence": 62.45427,
+            "national_shrink_75": 63.5807,
+            "national_shrink_50": 64.70712
+          },
+          "errors_pp": {
+            "persistence": 2.2940953459340663,
+            "national_shrink_75": 3.420522052013497,
+            "national_shrink_50": 4.5469487580929275
+          }
+        },
+        {
+          "county": "宜蘭縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 69.08731,
+          "target_turnout_pct": 64.28215,
+          "target_electorate": 374779,
+          "predicted_turnout_pct": {
+            "persistence": 69.08731,
+            "national_shrink_75": 68.55547,
+            "national_shrink_50": 68.02364
+          },
+          "errors_pp": {
+            "persistence": 4.8051566188483275,
+            "national_shrink_75": 4.273324215157659,
+            "national_shrink_50": 3.7414918114669904
+          }
+        },
+        {
+          "county": "屏東縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 71.08833,
+          "target_turnout_pct": 67.18119,
+          "target_electorate": 679330,
+          "predicted_turnout_pct": {
+            "persistence": 71.08833,
+            "national_shrink_75": 70.05624,
+            "national_shrink_50": 69.02416
+          },
+          "errors_pp": {
+            "persistence": 3.9071409957471603,
+            "national_shrink_75": 2.8750517593454927,
+            "national_shrink_50": 1.8429625229438362
+          }
+        },
+        {
+          "county": "彰化縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 70.89996,
+          "target_turnout_pct": 64.8955,
+          "target_electorate": 1028606,
+          "predicted_turnout_pct": {
+            "persistence": 70.89996,
+            "national_shrink_75": 69.91497,
+            "national_shrink_50": 68.92997
+          },
+          "errors_pp": {
+            "persistence": 6.004462059296256,
+            "national_shrink_75": 5.019466029205832,
+            "national_shrink_50": 4.034469999115409
+          }
+        },
+        {
+          "county": "新北市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 64.00261,
+          "target_turnout_pct": 56.60113,
+          "target_electorate": 3316517,
+          "predicted_turnout_pct": {
+            "persistence": 64.00261,
+            "national_shrink_75": 64.74195,
+            "national_shrink_50": 65.48129
+          },
+          "errors_pp": {
+            "persistence": 7.401479489698659,
+            "national_shrink_75": 8.140822182003715,
+            "national_shrink_50": 8.880164874308772
+          }
+        },
+        {
+          "county": "新竹市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 65.44101,
+          "target_turnout_pct": 62.94454,
+          "target_electorate": 350758,
+          "predicted_turnout_pct": {
+            "persistence": 65.44101,
+            "national_shrink_75": 65.82075,
+            "national_shrink_50": 66.2005
+          },
+          "errors_pp": {
+            "persistence": 2.496476210069909,
+            "national_shrink_75": 2.876217163888428,
+            "national_shrink_50": 3.2559581177069474
+          }
+        },
+        {
+          "county": "新竹縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 67.95245,
+          "target_turnout_pct": 58.97972,
+          "target_electorate": 452720,
+          "predicted_turnout_pct": {
+            "persistence": 67.95245,
+            "national_shrink_75": 67.70433,
+            "national_shrink_50": 67.45621
+          },
+          "errors_pp": {
+            "persistence": 8.972724751153006,
+            "national_shrink_75": 8.724607243071414,
+            "national_shrink_50": 8.476489734989823
+          }
+        },
+        {
+          "county": "桃園市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 60.63329,
+          "target_turnout_pct": 59.46025,
+          "target_electorate": 1825127,
+          "predicted_turnout_pct": {
+            "persistence": 60.63329,
+            "national_shrink_75": 62.21497,
+            "national_shrink_50": 63.79664
+          },
+          "errors_pp": {
+            "persistence": 1.1730485172279925,
+            "national_shrink_75": 2.7547192640445695,
+            "national_shrink_50": 4.336390010861146
+          }
+        },
+        {
+          "county": "澎湖縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 62.88004,
+          "target_turnout_pct": 58.5104,
+          "target_electorate": 90360,
+          "predicted_turnout_pct": {
+            "persistence": 62.88004,
+            "national_shrink_75": 63.90002,
+            "national_shrink_50": 64.92001
+          },
+          "errors_pp": {
+            "persistence": 4.369635964620189,
+            "national_shrink_75": 5.389620586349886,
+            "national_shrink_50": 6.409605208079583
+          }
+        },
+        {
+          "county": "花蓮縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 64.86792,
+          "target_turnout_pct": 57.55813,
+          "target_electorate": 266058,
+          "predicted_turnout_pct": {
+            "persistence": 64.86792,
+            "national_shrink_75": 65.39094,
+            "national_shrink_50": 65.91395
+          },
+          "errors_pp": {
+            "persistence": 7.309794876058406,
+            "national_shrink_75": 7.832808872316111,
+            "national_shrink_50": 8.355822868573803
+          }
+        },
+        {
+          "county": "苗栗縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 70.73596,
+          "target_turnout_pct": 67.20289,
+          "target_electorate": 443908,
+          "predicted_turnout_pct": {
+            "persistence": 70.73596,
+            "national_shrink_75": 69.79196,
+            "national_shrink_50": 68.84797
+          },
+          "errors_pp": {
+            "persistence": 3.5330682201689667,
+            "national_shrink_75": 2.589073264567854,
+            "national_shrink_50": 1.645078308966741
+          }
+        },
+        {
+          "county": "連江縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 71.3079,
+          "target_turnout_pct": 72.98899,
+          "target_electorate": 11810,
+          "predicted_turnout_pct": {
+            "persistence": 71.3079,
+            "national_shrink_75": 70.22092,
+            "national_shrink_50": 69.13394
+          },
+          "errors_pp": {
+            "persistence": -1.681093001264733,
+            "national_shrink_75": -2.7680735246206845,
+            "national_shrink_50": -3.855054047976647
+          }
+        },
+        {
+          "county": "金門縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 42.75949,
+          "target_turnout_pct": 39.32245,
+          "target_electorate": 122294,
+          "predicted_turnout_pct": {
+            "persistence": 42.75949,
+            "national_shrink_75": 48.80961,
+            "national_shrink_50": 54.85973
+          },
+          "errors_pp": {
+            "persistence": 3.437039717302631,
+            "national_shrink_75": 9.48716099647679,
+            "national_shrink_50": 15.537282275650949
+          }
+        },
+        {
+          "county": "雲林縣",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 71.57366,
+          "target_turnout_pct": 67.34618,
+          "target_electorate": 559273,
+          "predicted_turnout_pct": {
+            "persistence": 71.57366,
+            "national_shrink_75": 70.42024,
+            "national_shrink_50": 69.26682
+          },
+          "errors_pp": {
+            "persistence": 4.22747908504606,
+            "national_shrink_75": 3.0740586917800017,
+            "national_shrink_50": 1.9206382985139436
+          }
+        },
+        {
+          "county": "高雄市",
+          "training_year": 2018,
+          "target_year": 2022,
+          "prev_turnout_pct": 73.53799,
+          "target_turnout_pct": 58.60885,
+          "target_electorate": 2282623,
+          "predicted_turnout_pct": {
+            "persistence": 73.53799,
+            "national_shrink_75": 71.89348,
+            "national_shrink_50": 70.24898
+          },
+          "errors_pp": {
+            "persistence": 14.92913911361483,
+            "national_shrink_75": 13.284637143566014,
+            "national_shrink_50": 11.640135173517196
+          }
+        }
+      ]
+    }
+  },
+  "both_cycles_improved_over_persistence": [
+    "national_shrink_75",
+    "national_shrink_50"
+  ],
+  "promotion_gate": {
+    "status": "blocked",
+    "reason": "Only two county-wide retrospective cycles and no pre-2018 district source alignment; does not establish prospective performance or candidate vote effects",
+    "formal_hb_tlef_unchanged": true,
+    "allow_2026_candidate_win_probability_modification": false
+  }
+}
