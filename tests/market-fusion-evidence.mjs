@@ -9,7 +9,14 @@ const races=[{name:'台北市',race_id:'TPE',candidates:[
 ]}];
 for(let i=1;i<22;i++)races.push({name:'sample-county-'+i,race_id:'S'+i,
   candidates:[{candidate_id:'x'+i,name:'候選甲',probability:.51},{candidate_id:'y'+i,name:'候選乙',probability:.49}]});
-const model={fingerprint:'sha-example-001',model_version:'v5-test',generated_at:ASOF,counties:races};
+// Exactly 200 linked draws. Registration probabilities match the test
+// frequency (Taipei 60/40, other counties 51/49).
+for(const [i,r] of races.entries()){
+  const k=i===0?120:102;
+  r.draws=Array.from({length:200},(_,j)=>j<k?[800000,200000]:[200000,800000]);
+}
+const model={fingerprint:'sha-example-001',model_version:'v5-test',
+  generated_at:ASOF,simulations:200,counties:races};
 const markets={schema_version:1,checked_at:MARKET_CHECK,status:'ok',registry_count:1,events:[{
   slug:'taipei-mayor-election-winner-20260813125857100',county:'台北市',
   source_url:'https://polymarket.com/event/taipei-mayor-election-winner-20260813125857100',
@@ -22,6 +29,9 @@ const markets={schema_version:1,checked_at:MARKET_CHECK,status:'ok',registry_cou
 const snap=pairedSnapshot(model,markets);
 assert.equal(snap.races.length,22);
 assert.equal(snap.included_races,1);
+assert.equal(snap.joint_sensitivity.joint_05.available,true);
+assert.equal(snap.joint_sensitivity.joint_10.available,true);
+assert.ok(snap.joint_sensitivity.joint_05.diagnostics.effective_sample_size>150);
 assert.equal(snap.excluded_races,21);
 assert.equal(snap.taipei_day,'2026-11-21');
 assert.equal(snap.provenance.market_checked_at,MARKET_CHECK);
@@ -67,7 +77,10 @@ const row7=scored.coverage.find(x=>x.horizon_days===7);
 assert.equal(row7.evaluated_counties,1);
 assert.equal(scored.coverage.find(x=>x.horizon_days===1).evaluated_counties,0);
 assert.equal(scored.summary.find(x=>x.horizon_days===7).n,1);
-assert.equal(scored.rows.filter(x=>x.horizon_days===7).length,4);
+assert.equal(scored.rows.filter(x=>x.horizon_days===7).length,6);
+assert.equal(scored.summary.find(x=>x.horizon_days===7).scores.joint_05.n,1);
+assert.equal(scored.summary.find(x=>x.horizon_days===7).scores.joint_10.n,1);
+assert.equal(scored.summary.find(x=>x.horizon_days===7).scores.baseline.paired_delta_brier,0);
 assert.ok(scored.summary.find(x=>x.horizon_days===7).scores.market.brier<
           scored.summary.find(x=>x.horizon_days===7).scores.baseline.brier);
 assert.equal(scored.no_p_value_claims,true);
