@@ -38,7 +38,7 @@ const server=http.createServer((req,res)=>{
       const el=document.querySelector('#townTurnoutMap');
       return el&& (el.querySelectorAll('path').length>=8||
         el.textContent.includes('暫不可用'));
-    },{timeout:15000});
+    },null,{timeout:15000});
     assert.ok(await page.locator('#townTurnoutMap path').count()>=8,
       'Historical Taipei township polygons must load, not just a placeholder.');
     await page.locator('#townTurnoutMap path').first().click();
@@ -46,11 +46,9 @@ const server=http.createServer((req,res)=>{
     assert.match(inspection,/2018投票率/);
     await page.selectOption('#precinctCounty','新北市');
     await page.locator('#turnoutDistrictPanel h2').waitFor();
-    await page.waitForTimeout(650);
-    assert.ok((await page.locator('#townTurnoutMap path').count())>=25);
+    await page.waitForFunction(()=>document.querySelectorAll('#townTurnoutMap path').length>=25,null,{timeout:15000});
     await page.selectOption('#precinctCounty','台北市');
-    await page.waitForTimeout(550);
-    assert.ok((await page.locator('#townTurnoutMap path').count())>=8);
+    await page.waitForFunction(()=>document.querySelectorAll('#townTurnoutMap path').length>=8,null,{timeout:15000});
     assert.deepEqual(errors,[],'No JS errors on historical turnout research route');
     console.log(JSON.stringify({passed:true,route:'turnout',
       taipei_map_polygon_count:await page.locator('#townTurnoutMap path').count(),
