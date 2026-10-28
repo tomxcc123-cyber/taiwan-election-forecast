@@ -67,11 +67,15 @@ def pick_paths(z):
 def collect_profile_groups(z,year,files):
     raw={k:z.read(v) for k,v in files.items()}
     geonames={}
+    geolabels={}
     for r in rows_from_bytes(raw['elbase.csv']):
-        if len(r)>=6 and dequote(r[3])=='000' and dequote(r[4])=='0000' and dequote(r[2])=='00':
-            name=dequote(r[5])
-            if name:
-                geonames[tuple(dequote(x).zfill(n) for x,n in zip(r[:2],(2,3)))]=name
+        if len(r)<6:continue
+        name=dequote(r[5])
+        if not name:continue
+        codes=zone_key([*r[:5],'0'])
+        geolabels[codes[:5]]=name
+        if dequote(r[3])=='000' and dequote(r[4])=='0000' and dequote(r[2])=='00':
+            geonames[codes[:2]]=name
     groups=defaultdict(list)
     totals={}
     for r in rows_from_bytes(raw['elprof.csv']):
@@ -86,7 +90,7 @@ def collect_profile_groups(z,year,files):
             totals[k]=meta
         elif station!='0000':
             groups[k].append((r,meta))
-    return raw,geonames,groups,totals
+    return raw,geonames,geolabels,groups,totals
 
 
 def convert(zip_path,history_path,output_path):
@@ -101,17 +105,17 @@ def convert(zip_path,history_path,output_path):
         if len(inventory)<6:raise ValueError('Official CEC archive missing historical mayoral election CSV tables')
         sources=[]
         for (year,folder),files in inventory.items():
-            raw,names,groups,totals=collect_profile_groups(z,year,files)
+            raw,names,labels,groups,totals=collect_profile_groups(z,year,files)
             # File-level rows containing other elections can be a candidate source
             # only when all 4 audited county aggregates agree exactly.
-            sources.append((year,folder,files,raw,names,groups,totals))
+            sources.append((year,folder,files,raw,names,labels,groups,totals))
         target_coverage=defaultdict(list)
-        for year,folder,files,raw,names,groups,totals in sources:
+        for year,folder,files,raw,names,labels,groups,totals in sources:
             for k,name in names.items():
                 target=official.get((year,name))
                 if not target or k not in totals:continue
                 if all(totals[k][field]==target[field] for field in FIELDS):
-                    target_coverage[(year,name)].append((folder,k,files,raw,groups))
+                    target_coverage[(year,name)].append((folder,k,files,raw,groups,labels))
         for key,target in sorted(official.items()):
             year,county=key
             matches=target_coverage.get(key,[])
@@ -119,7 +123,7 @@ def convert(zip_path,history_path,output_path):
                 # Two official files describing the same race can be duplicates.
                 # Keep only if their polling-place tuples are byte-identical.
                 signatures=[]
-                for folder,k,files,raw,groups in matches:
+                for folder,k,files,raw,groups,labels in matches:
                     h=hashlib.sha256(json.dumps([(zone_key(r),p) for r,p in groups[k]],
                         sort_keys=True,ensure_ascii=False).encode()).hexdigest()
                     signatures.append(h)
@@ -131,7 +135,7 @@ def convert(zip_path,history_path,output_path):
                         'precinct_count':0,'reason':'original verified CEC workbook only had district subtotals'})
                     continue
                 raise ValueError('Missing matching official mayoral station data: '+str(key))
-            folder,code,files,raw,groups=matches[0]
+            folder,code,files,raw,groups,labels=matches[0]
             stations=groups[code]
             if not stations:raise ValueError('CEC aggregate lacks station rows for '+str(key))
             seen=set()
@@ -146,6 +150,8 @@ def convert(zip_path,history_path,output_path):
                     raise ValueError('Vote conservation fails for '+str((key,geo)))
                 for field in FIELDS:summed[field]+=meta[field]
                 packed.append({'geo_codes':list(geo),'precinct_number':geo[5],
+                    'district_name':labels.get((*geo[:4],'0000')),
+                    'village_name':labels.get(geo[:5]),
                     **meta,
                     'turnout_rate':meta['ballots_cast']/meta['electorate'] if meta['electorate'] else None})
             if any(summed[field]!=target[field] for field in FIELDS):
