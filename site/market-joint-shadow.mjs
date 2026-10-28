@@ -151,7 +151,7 @@ export function jointMarketShadow(model,market,lambda=0.05,asOf=model?.generated
   if(Math.abs(nationalMean-22)>0.003)return fail('聯合席次守恆失敗',{diagnostics});
   return {
     available:true,kind:'uncalibrated_joint_importance_weight_shadow',
-    official_model_unchanged:true,not_training:false,
+    official_model_unchanged:true,not_training:true,
     diagnostics,checks,counties,national,
     warning:'僅是相關模擬路徑的敏感度重新加權，無法代表已校準的聯合後驗；市場與民調可能含有相同資訊。'
   };
