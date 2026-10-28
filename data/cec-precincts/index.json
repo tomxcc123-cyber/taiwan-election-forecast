@@ -1,0 +1,940 @@
+{
+  "schema_version": 1,
+  "source_url": "https://data.cec.gov.tw/選舉資料庫/votedata.zip",
+  "source_kind": "cec_official_bulk_votedata",
+  "levels": "individual polling-station aggregate, NOT voter-level",
+  "years": [
+    2014,
+    2018,
+    2022
+  ],
+  "coverage": {
+    "official_precinct_aggregate_verified": 65,
+    "district_only_original": 1
+  },
+  "station_rows": 48902,
+  "races_expected": 66,
+  "races_found": 66,
+  "ecological_warning": "Aggregated booth turnout cannot reveal individual voting preferences and cannot justify targeting or causal claims.",
+  "join_warning": "No direct cross-year station join; booth and administrative boundaries may change.",
+  "forecast_status": "historical_study_only",
+  "entries": [
+    {
+      "year": 2014,
+      "county": "南投縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-南投縣.json",
+      "precinct_count": 483,
+      "totals": {
+        "valid_votes": 293080,
+        "invalid_votes": 9656,
+        "ballots_cast": 302736,
+        "electorate": 414091
+      },
+      "sha256": "7df7a44a6a166c054dd450cfa23ba99aa1f3841c405aab0b0f26710c99c19c58"
+    },
+    {
+      "year": 2014,
+      "county": "台中市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-台中市.json",
+      "precinct_count": 1536,
+      "totals": {
+        "valid_votes": 1484815,
+        "invalid_votes": 21208,
+        "ballots_cast": 1506023,
+        "electorate": 2093689
+      },
+      "sha256": "006866982ed61c7439565810ccfad878055c45efa12546764faab2d5716f8b20"
+    },
+    {
+      "year": 2014,
+      "county": "台北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-台北市.json",
+      "precinct_count": 1534,
+      "totals": {
+        "valid_votes": 1494046,
+        "invalid_votes": 18678,
+        "ballots_cast": 1512724,
+        "electorate": 2146939
+      },
+      "sha256": "1c9b214584fe68326ae3fc144f6835c38f3d00185fdd72d0afd7a5e10b8fac06"
+    },
+    {
+      "year": 2014,
+      "county": "台南市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-台南市.json",
+      "precinct_count": 1310,
+      "totals": {
+        "valid_votes": 976093,
+        "invalid_votes": 20595,
+        "ballots_cast": 996688,
+        "electorate": 1512778
+      },
+      "sha256": "c2a0bf5f20eea3be3bfdc29e03f2272d2ffe2c1fc6ed4d05653cd951f5fd93b0"
+    },
+    {
+      "year": 2014,
+      "county": "台東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-台東縣.json",
+      "precinct_count": 213,
+      "totals": {
+        "valid_votes": 118132,
+        "invalid_votes": 3274,
+        "ballots_cast": 121406,
+        "electorate": 179015
+      },
+      "sha256": "cbf04462ccbb8fbbac64e07f49f54dfb33932a8fac67331591b10d0cce97a04f"
+    },
+    {
+      "year": 2014,
+      "county": "嘉義市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-嘉義市.json",
+      "precinct_count": 176,
+      "totals": {
+        "valid_votes": 145302,
+        "invalid_votes": 2356,
+        "ballots_cast": 147658,
+        "electorate": 208099
+      },
+      "sha256": "6fb73d511413f2a1515e4dc025e36509ed392be559a22e242babeb683cf1e450"
+    },
+    {
+      "year": 2014,
+      "county": "嘉義縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-嘉義縣.json",
+      "precinct_count": 480,
+      "totals": {
+        "valid_votes": 306526,
+        "invalid_votes": 12867,
+        "ballots_cast": 319393,
+        "electorate": 430505
+      },
+      "sha256": "c58759108cdf4554998377f656dcffb55c56b65196b97f3805a0bac667b25711"
+    },
+    {
+      "year": 2014,
+      "county": "基隆市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-基隆市.json",
+      "precinct_count": 249,
+      "totals": {
+        "valid_votes": 190038,
+        "invalid_votes": 3861,
+        "ballots_cast": 193899,
+        "electorate": 303329
+      },
+      "sha256": "e9cd59f12e8304bd71aa02cdd8c089e43d1321aaa544794369411a6fdd78206d"
+    },
+    {
+      "year": 2014,
+      "county": "宜蘭縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-宜蘭縣.json",
+      "precinct_count": 396,
+      "totals": {
+        "valid_votes": 250573,
+        "invalid_votes": 6715,
+        "ballots_cast": 257288,
+        "electorate": 365138
+      },
+      "sha256": "f499362601f3c35f73839f0c53176d20ebfffefa04add836e9a3f59691ba16ea"
+    },
+    {
+      "year": 2014,
+      "county": "屏東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-屏東縣.json",
+      "precinct_count": 682,
+      "totals": {
+        "valid_votes": 490980,
+        "invalid_votes": 14029,
+        "ballots_cast": 505009,
+        "electorate": 686810
+      },
+      "sha256": "1f512cb6cdc56918d21afd319125af45429cc9a6ac1b3ce7d05eba4181c65f26"
+    },
+    {
+      "year": 2014,
+      "county": "彰化縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-彰化縣.json",
+      "precinct_count": 1049,
+      "totals": {
+        "valid_votes": 719410,
+        "invalid_votes": 21387,
+        "ballots_cast": 740797,
+        "electorate": 1015804
+      },
+      "sha256": "c7ce0dc570eca594c45e9c181dd032e4d38a4123806181193cc3480cabf027ab"
+    },
+    {
+      "year": 2014,
+      "county": "新北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-新北市.json",
+      "precinct_count": 2406,
+      "totals": {
+        "valid_votes": 1916283,
+        "invalid_votes": 29780,
+        "ballots_cast": 1946063,
+        "electorate": 3156402
+      },
+      "sha256": "cc53c90485cd597b3f68ce63bdf805448a218a05dc38f537ac767291a0b8930a"
+    },
+    {
+      "year": 2014,
+      "county": "新竹市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-新竹市.json",
+      "precinct_count": 285,
+      "totals": {
+        "valid_votes": 199637,
+        "invalid_votes": 3214,
+        "ballots_cast": 202851,
+        "electorate": 322472
+      },
+      "sha256": "a1b6774d7411efdae3f937d9568dbbe229be6c8524e60d3fcfdb6fc8b0297ac0"
+    },
+    {
+      "year": 2014,
+      "county": "新竹縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-新竹縣.json",
+      "precinct_count": 385,
+      "totals": {
+        "valid_votes": 264821,
+        "invalid_votes": 12382,
+        "ballots_cast": 277203,
+        "electorate": 403173
+      },
+      "sha256": "ff2927355b7178cfe3520e1f6e7dc638ef49a3ec0da73bbafa60bd1cbad4ae8f"
+    },
+    {
+      "year": 2014,
+      "county": "桃園市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-桃園市.json",
+      "precinct_count": 1088,
+      "totals": {
+        "valid_votes": 965490,
+        "invalid_votes": 18609,
+        "ballots_cast": 984099,
+        "electorate": 1568713
+      },
+      "sha256": "1c729be5e6a72912e049a66fcb12d9931e10541d45483d3b7f0c9a62e388daa7"
+    },
+    {
+      "year": 2014,
+      "county": "澎湖縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-澎湖縣.json",
+      "precinct_count": 114,
+      "totals": {
+        "valid_votes": 52697,
+        "invalid_votes": 1819,
+        "ballots_cast": 54516,
+        "electorate": 82269
+      },
+      "sha256": "396240c13cea6a77926006a18a3dae8a43d32524e2b9af2a69b1a9a4223a2741"
+    },
+    {
+      "year": 2014,
+      "county": "花蓮縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-花蓮縣.json",
+      "precinct_count": 300,
+      "totals": {
+        "valid_votes": 157529,
+        "invalid_votes": 6502,
+        "ballots_cast": 164031,
+        "electorate": 265571
+      },
+      "sha256": "a9c76d1cf78f780804de5ade730889c8b8a2c00fab759deca3dcc70ef38331af"
+    },
+    {
+      "year": 2014,
+      "county": "苗栗縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-苗栗縣.json",
+      "precinct_count": 466,
+      "totals": {
+        "valid_votes": 316663,
+        "invalid_votes": 8144,
+        "ballots_cast": 324807,
+        "electorate": 446182
+      },
+      "sha256": "7744ee550c419ff636cc0db2a4694d63a4992b674cc2469bd6bc99840ea5838b"
+    },
+    {
+      "year": 2014,
+      "county": "連江縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-連江縣.json",
+      "precinct_count": 8,
+      "totals": {
+        "valid_votes": 6619,
+        "invalid_votes": 113,
+        "ballots_cast": 6732,
+        "electorate": 10040
+      },
+      "sha256": "3e9f9cb2298eb1bf1fa06f188ace28df59035df2ccb91fae3d110c0000c6c945"
+    },
+    {
+      "year": 2014,
+      "county": "金門縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-金門縣.json",
+      "precinct_count": 61,
+      "totals": {
+        "valid_votes": 45416,
+        "invalid_votes": 1341,
+        "ballots_cast": 46757,
+        "electorate": 103555
+      },
+      "sha256": "8071d13023635f570b5cfeb98753f513f648c1bc5fc278fd8cb5e34255b610b8"
+    },
+    {
+      "year": 2014,
+      "county": "雲林縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-雲林縣.json",
+      "precinct_count": 546,
+      "totals": {
+        "valid_votes": 408762,
+        "invalid_votes": 10268,
+        "ballots_cast": 419030,
+        "electorate": 565557
+      },
+      "sha256": "451d6f22009b8ade34dffa8090f4b32717ceae9e4a3e9a4f1fb050c9cfbadc80"
+    },
+    {
+      "year": 2014,
+      "county": "高雄市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2014-高雄市.json",
+      "precinct_count": 1792,
+      "totals": {
+        "valid_votes": 1458872,
+        "invalid_votes": 23553,
+        "ballots_cast": 1482425,
+        "electorate": 2231225
+      },
+      "sha256": "7e82a2212de402c87acebedb20835c60e070c8a9349f89e0e59a3700e171cf8e"
+    },
+    {
+      "year": 2018,
+      "county": "南投縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-南投縣.json",
+      "precinct_count": 488,
+      "totals": {
+        "valid_votes": 292845,
+        "invalid_votes": 7763,
+        "ballots_cast": 300608,
+        "electorate": 413222
+      },
+      "sha256": "4eaa569a595814d91cb6297ce8b93956fa22cd533c3526492a0b4c04e00e33ef"
+    },
+    {
+      "year": 2018,
+      "county": "台中市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-台中市.json",
+      "precinct_count": 1601,
+      "totals": {
+        "valid_votes": 1463770,
+        "invalid_votes": 29595,
+        "ballots_cast": 1493365,
+        "electorate": 2213789
+      },
+      "sha256": "185859f7125ad0ccf4d9178b34f87ef305b6cd76df63998ede4d884d1e168b70"
+    },
+    {
+      "year": 2018,
+      "county": "台北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-台北市.json",
+      "precinct_count": 1563,
+      "totals": {
+        "valid_votes": 1413870,
+        "invalid_votes": 13355,
+        "ballots_cast": 1427225,
+        "electorate": 2164155
+      },
+      "sha256": "607fd566bf32c01e9cf78b3a1d3b2be39b8b119931d812131896bcf30afc050e"
+    },
+    {
+      "year": 2018,
+      "county": "台南市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-台南市.json",
+      "precinct_count": 1322,
+      "totals": {
+        "valid_votes": 966670,
+        "invalid_votes": 23534,
+        "ballots_cast": 990204,
+        "electorate": 1546862
+      },
+      "sha256": "69f262807c5c4eae73b1029330371301f64aeb81c051d905bad2aaccd83fa357"
+    },
+    {
+      "year": 2018,
+      "county": "台東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-台東縣.json",
+      "precinct_count": 213,
+      "totals": {
+        "valid_votes": 119518,
+        "invalid_votes": 3268,
+        "ballots_cast": 122786,
+        "electorate": 179706
+      },
+      "sha256": "aed7b92bbfd504e74fcfe4d19768208efa4cb5efe14fef4f23c63a6862e028ea"
+    },
+    {
+      "year": 2018,
+      "county": "嘉義市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-嘉義市.json",
+      "precinct_count": 177,
+      "totals": {
+        "valid_votes": 142208,
+        "invalid_votes": 2326,
+        "ballots_cast": 144534,
+        "electorate": 212843
+      },
+      "sha256": "b7dde01f5748793b224dc302d7452eadedc02f9631b781091f64ebda08c1274b"
+    },
+    {
+      "year": 2018,
+      "county": "嘉義縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-嘉義縣.json",
+      "precinct_count": 486,
+      "totals": {
+        "valid_votes": 285147,
+        "invalid_votes": 18122,
+        "ballots_cast": 303269,
+        "electorate": 428649
+      },
+      "sha256": "ed5e9270d2a7a3df5ae654da503205216b7f4f7fc15ee3160ace71fd607b04e8"
+    },
+    {
+      "year": 2018,
+      "county": "基隆市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-基隆市.json",
+      "precinct_count": 257,
+      "totals": {
+        "valid_votes": 188696,
+        "invalid_votes": 4555,
+        "ballots_cast": 193251,
+        "electorate": 309428
+      },
+      "sha256": "51d5e4f925285b0de57fd95cdd3cc5e9bf213423f8c1b49f8189ecc7eeea5049"
+    },
+    {
+      "year": 2018,
+      "county": "宜蘭縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-宜蘭縣.json",
+      "precinct_count": 399,
+      "totals": {
+        "valid_votes": 250121,
+        "invalid_votes": 7927,
+        "ballots_cast": 258048,
+        "electorate": 373510
+      },
+      "sha256": "43b006684168d4b39cde51002b70b0c0c34d44af5927d8a11be2d48c41d186c2"
+    },
+    {
+      "year": 2018,
+      "county": "屏東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-屏東縣.json",
+      "precinct_count": 689,
+      "totals": {
+        "valid_votes": 470146,
+        "invalid_votes": 19932,
+        "ballots_cast": 490078,
+        "electorate": 689393
+      },
+      "sha256": "b951f010982c98d1d50fcc6a40f8505614ae023527215d90810483c1f92e91d1"
+    },
+    {
+      "year": 2018,
+      "county": "彰化縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-彰化縣.json",
+      "precinct_count": 1049,
+      "totals": {
+        "valid_votes": 710419,
+        "invalid_votes": 20717,
+        "ballots_cast": 731136,
+        "electorate": 1031222
+      },
+      "sha256": "64a7ef99d759ba7f2796af63a435786b8cbfecb91b4f64f6283f870b18b840a9"
+    },
+    {
+      "year": 2018,
+      "county": "新北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-新北市.json",
+      "precinct_count": 2446,
+      "totals": {
+        "valid_votes": 2038822,
+        "invalid_votes": 50305,
+        "ballots_cast": 2089127,
+        "electorate": 3264128
+      },
+      "sha256": "734940e2e794172e94f4438bdb44790f438c54449dd68b0397a545215d441345"
+    },
+    {
+      "year": 2018,
+      "county": "新竹市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-新竹市.json",
+      "precinct_count": 299,
+      "totals": {
+        "valid_votes": 217103,
+        "invalid_votes": 4299,
+        "ballots_cast": 221402,
+        "electorate": 338323
+      },
+      "sha256": "82e6453b5410ecac63ff42796a5021e2d2bb74054fbe2f0e8c7f86e2c31709fd"
+    },
+    {
+      "year": 2018,
+      "county": "新竹縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-新竹縣.json",
+      "precinct_count": 404,
+      "totals": {
+        "valid_votes": 282405,
+        "invalid_votes": 8195,
+        "ballots_cast": 290600,
+        "electorate": 427652
+      },
+      "sha256": "ba2c2e00527f9ad8517efa690550104e014ed38aacca0e5c57b5b3d673771e5d"
+    },
+    {
+      "year": 2018,
+      "county": "桃園市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-桃園市.json",
+      "precinct_count": 1142,
+      "totals": {
+        "valid_votes": 1033149,
+        "invalid_votes": 17378,
+        "ballots_cast": 1050527,
+        "electorate": 1732591
+      },
+      "sha256": "51f83f9aa75cda8cc6e0e56ca0a720b370523b4fa38069e91dd2e3221169b8e1"
+    },
+    {
+      "year": 2018,
+      "county": "澎湖縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-澎湖縣.json",
+      "precinct_count": 116,
+      "totals": {
+        "valid_votes": 52915,
+        "invalid_votes": 1541,
+        "ballots_cast": 54456,
+        "electorate": 86603
+      },
+      "sha256": "61c5f9e4c08b9741c2d65a8000089d53c6dbb4a37b0cd9a9fc86c90fedfb7f95"
+    },
+    {
+      "year": 2018,
+      "county": "花蓮縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-花蓮縣.json",
+      "precinct_count": 299,
+      "totals": {
+        "valid_votes": 169596,
+        "invalid_votes": 4780,
+        "ballots_cast": 174376,
+        "electorate": 268817
+      },
+      "sha256": "05ec0d0136f45be5ba6f86edc6af90df77e45227cd9d551297af7cd784ff5d70"
+    },
+    {
+      "year": 2018,
+      "county": "苗栗縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-苗栗縣.json",
+      "precinct_count": 470,
+      "totals": {
+        "valid_votes": 304370,
+        "invalid_votes": 11471,
+        "ballots_cast": 315841,
+        "electorate": 446507
+      },
+      "sha256": "c0dd4009bb0cf5eb86faafd574984762c64c6d07b0621e4960391ad064b13fa1"
+    },
+    {
+      "year": 2018,
+      "county": "連江縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-連江縣.json",
+      "precinct_count": 9,
+      "totals": {
+        "valid_votes": 7408,
+        "invalid_votes": 274,
+        "ballots_cast": 7682,
+        "electorate": 10773
+      },
+      "sha256": "55618defa0f05f3e898f2778f2435f560c7d061055fee196e0356d7181964e92"
+    },
+    {
+      "year": 2018,
+      "county": "金門縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-金門縣.json",
+      "precinct_count": 78,
+      "totals": {
+        "valid_votes": 49229,
+        "invalid_votes": 1190,
+        "ballots_cast": 50419,
+        "electorate": 117913
+      },
+      "sha256": "11db1b9bff21839330d177094db88c48245627680b8e134824e50cdd575d4c91"
+    },
+    {
+      "year": 2018,
+      "county": "雲林縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-雲林縣.json",
+      "precinct_count": 557,
+      "totals": {
+        "valid_votes": 391519,
+        "invalid_votes": 12928,
+        "ballots_cast": 404447,
+        "electorate": 565078
+      },
+      "sha256": "e948bd6f71327b0cd8edce7f60b9e3f816e85e7b6921af3e5960f80d6b3f7795"
+    },
+    {
+      "year": 2018,
+      "county": "高雄市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2018-高雄市.json",
+      "precinct_count": 1823,
+      "totals": {
+        "valid_votes": 1656907,
+        "invalid_votes": 20743,
+        "ballots_cast": 1677650,
+        "electorate": 2281338
+      },
+      "sha256": "b46923333b5cca86882d51f2611436bba2394b53c666611bf9f14540d944b282"
+    },
+    {
+      "year": 2022,
+      "county": "南投縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-南投縣.json",
+      "precinct_count": 493,
+      "totals": {
+        "valid_votes": 275499,
+        "invalid_votes": 5097,
+        "ballots_cast": 280596,
+        "electorate": 406195
+      },
+      "sha256": "7a57d58cf185cd21b0c00ccfbb7dbb04ef889478468a4f4892a26002010e9882"
+    },
+    {
+      "year": 2022,
+      "county": "台中市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-台中市.json",
+      "precinct_count": 1880,
+      "totals": {
+        "valid_votes": 1346471,
+        "invalid_votes": 18158,
+        "ballots_cast": 1364629,
+        "electorate": 2274107
+      },
+      "sha256": "dc2feff64ab3dbe32ed39bd351832cb0b707ef364c81a8d7e82c07df2e75e9f0"
+    },
+    {
+      "year": 2022,
+      "county": "台北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-台北市.json",
+      "precinct_count": 1755,
+      "totals": {
+        "valid_votes": 1360951,
+        "invalid_votes": 11228,
+        "ballots_cast": 1372179,
+        "electorate": 2026769
+      },
+      "sha256": "6a4dd03aeb9fa6ce2b3671f9ebb06b4c8f3e8e81bfb997cfdb8cefcc8f5e7729"
+    },
+    {
+      "year": 2022,
+      "county": "台南市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-台南市.json",
+      "precinct_count": 1540,
+      "totals": {
+        "valid_votes": 888674,
+        "invalid_votes": 19859,
+        "ballots_cast": 908533,
+        "electorate": 1548203
+      },
+      "sha256": "0464a8686387657f6cd78660bf40b0e540fdfa2edaaf7a16eccd12986f9601ec"
+    },
+    {
+      "year": 2022,
+      "county": "台東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-台東縣.json",
+      "precinct_count": 236,
+      "totals": {
+        "valid_votes": 112148,
+        "invalid_votes": 3078,
+        "ballots_cast": 115226,
+        "electorate": 177853
+      },
+      "sha256": "95574aa3c91ff4c4497f1d4a4fe8147dccee27d1b24b872c4e564385f9141765"
+    },
+    {
+      "year": 2022,
+      "county": "嘉義市",
+      "status": "district_only_original",
+      "precinct_count": 0,
+      "reason": "original verified CEC workbook only had district subtotals"
+    },
+    {
+      "year": 2022,
+      "county": "嘉義縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-嘉義縣.json",
+      "precinct_count": 532,
+      "totals": {
+        "valid_votes": 273294,
+        "invalid_votes": 11196,
+        "ballots_cast": 284490,
+        "electorate": 422568
+      },
+      "sha256": "c524385c4d5000c85a8331c2d04b79181254edfb8064beb8a539971920053b40"
+    },
+    {
+      "year": 2022,
+      "county": "基隆市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-基隆市.json",
+      "precinct_count": 281,
+      "totals": {
+        "valid_votes": 182893,
+        "invalid_votes": 2348,
+        "ballots_cast": 185241,
+        "electorate": 307913
+      },
+      "sha256": "8f8c4ba9ad5205be55d6d4380ab6f0a532d3ceb16334a27b6c8425c013e80d4b"
+    },
+    {
+      "year": 2022,
+      "county": "宜蘭縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-宜蘭縣.json",
+      "precinct_count": 426,
+      "totals": {
+        "valid_votes": 235281,
+        "invalid_votes": 5635,
+        "ballots_cast": 240916,
+        "electorate": 374779
+      },
+      "sha256": "73fb66f5607884a4165ec98e3a4fdd4113df9bfde40b24e4e40bb7278a435367"
+    },
+    {
+      "year": 2022,
+      "county": "屏東縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-屏東縣.json",
+      "precinct_count": 711,
+      "totals": {
+        "valid_votes": 443153,
+        "invalid_votes": 13229,
+        "ballots_cast": 456382,
+        "electorate": 679330
+      },
+      "sha256": "8b08c625db21aa1d59772f907695a70a72f915388a3b8779a007da067509d14e"
+    },
+    {
+      "year": 2022,
+      "county": "彰化縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-彰化縣.json",
+      "precinct_count": 1082,
+      "totals": {
+        "valid_votes": 650424,
+        "invalid_votes": 17095,
+        "ballots_cast": 667519,
+        "electorate": 1028606
+      },
+      "sha256": "8c34fac97e34db9541c2226adc161268a2aab7ee388a6e3dbc2c86fe204ad9d1"
+    },
+    {
+      "year": 2022,
+      "county": "新北市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-新北市.json",
+      "precinct_count": 2663,
+      "totals": {
+        "valid_votes": 1846531,
+        "invalid_votes": 30655,
+        "ballots_cast": 1877186,
+        "electorate": 3316517
+      },
+      "sha256": "bda04d6dbc429af8ff99669dd5503251c700b0c825ae3844880c03c6c1e18013"
+    },
+    {
+      "year": 2022,
+      "county": "新竹市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-新竹市.json",
+      "precinct_count": 354,
+      "totals": {
+        "valid_votes": 217941,
+        "invalid_votes": 2842,
+        "ballots_cast": 220783,
+        "electorate": 350758
+      },
+      "sha256": "62fc5efb86fab0bb9151a66d7634ecdf7f7c308bcafca3e948699d8beb0d3e45"
+    },
+    {
+      "year": 2022,
+      "county": "新竹縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-新竹縣.json",
+      "precinct_count": 463,
+      "totals": {
+        "valid_votes": 258305,
+        "invalid_votes": 8708,
+        "ballots_cast": 267013,
+        "electorate": 452720
+      },
+      "sha256": "c7eee7b8632a38ee15d21696e0830e5a02fb27f8846281a81500cbb8d8f92bcd"
+    },
+    {
+      "year": 2022,
+      "county": "桃園市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-桃園市.json",
+      "precinct_count": 1361,
+      "totals": {
+        "valid_votes": 1071763,
+        "invalid_votes": 13462,
+        "ballots_cast": 1085225,
+        "electorate": 1825127
+      },
+      "sha256": "a4b45277acca888732a28070903664e7079d8942563c270295449292f388612c"
+    },
+    {
+      "year": 2022,
+      "county": "澎湖縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-澎湖縣.json",
+      "precinct_count": 120,
+      "totals": {
+        "valid_votes": 51242,
+        "invalid_votes": 1628,
+        "ballots_cast": 52870,
+        "electorate": 90360
+      },
+      "sha256": "e9649ab36692b9ee649c726608ca52ef998805e7ee132e3170978268eb7c116e"
+    },
+    {
+      "year": 2022,
+      "county": "花蓮縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-花蓮縣.json",
+      "precinct_count": 332,
+      "totals": {
+        "valid_votes": 149307,
+        "invalid_votes": 3831,
+        "ballots_cast": 153138,
+        "electorate": 266058
+      },
+      "sha256": "168505eb35077c926a0edf61c42629779d33d04c37bfe842e701a3949ab955c7"
+    },
+    {
+      "year": 2022,
+      "county": "苗栗縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-苗栗縣.json",
+      "precinct_count": 484,
+      "totals": {
+        "valid_votes": 292100,
+        "invalid_votes": 6219,
+        "ballots_cast": 298319,
+        "electorate": 443908
+      },
+      "sha256": "8e3df88df14d87d75aa114defd2ef95decd6474efd3ae2eeaee3d2459aec3456"
+    },
+    {
+      "year": 2022,
+      "county": "連江縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-連江縣.json",
+      "precinct_count": 10,
+      "totals": {
+        "valid_votes": 8505,
+        "invalid_votes": 115,
+        "ballots_cast": 8620,
+        "electorate": 11810
+      },
+      "sha256": "acc8bbaefe69a47fd94faf7f1acfa4c9ead5c5e21c6f610de31bdf6bb7470bfd"
+    },
+    {
+      "year": 2022,
+      "county": "金門縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-金門縣.json",
+      "precinct_count": 91,
+      "totals": {
+        "valid_votes": 47114,
+        "invalid_votes": 975,
+        "ballots_cast": 48089,
+        "electorate": 122294
+      },
+      "sha256": "d508be1bbe2de62407975edc8db0f9f8b550bdc6a6f75de2de343523a75ca1a1"
+    },
+    {
+      "year": 2022,
+      "county": "雲林縣",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-雲林縣.json",
+      "precinct_count": 617,
+      "totals": {
+        "valid_votes": 366833,
+        "invalid_votes": 9816,
+        "ballots_cast": 376649,
+        "electorate": 559273
+      },
+      "sha256": "3ada2e514f85938458ca6a86311bb26387430f3a7200db15029f84d91339ed7a"
+    },
+    {
+      "year": 2022,
+      "county": "高雄市",
+      "status": "official_precinct_aggregate_verified",
+      "path": "cec-precincts/2022-高雄市.json",
+      "precinct_count": 2025,
+      "totals": {
+        "valid_votes": 1318733,
+        "invalid_votes": 19086,
+        "ballots_cast": 1337819,
+        "electorate": 2282623
+      },
+      "sha256": "d592a95763f321ab3b09fbd187fc9ca5e7ba46db722b22842ebb76523182884b"
+    }
+  ]
+}
