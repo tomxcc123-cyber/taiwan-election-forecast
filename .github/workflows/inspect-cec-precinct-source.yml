@@ -84,6 +84,32 @@ jobs:
           except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
           PY
 
+      - name: Diagnose verified 2014 election district mapping from original elbase
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from zipfile import ZipFile
+          from scripts.import_cec_open_csv import rows_from_bytes,zone_key
+          r=json.load(open('data/cec-precincts/2014-台北市.json',encoding='utf8'))
+          base=r['source_member'].rsplit('/',1)[0]
+          with ZipFile('/tmp/cec-official.zip') as z:
+              src=base+'/elbase.csv'
+              records=rows_from_bytes(z.read(src))
+              print('2014_TAIPEI_SOURCE',src,'ROWCOUNT',len(records))
+              for row in records[:45]:
+                  print('2014_ELBASE_SAMPLE',json.dumps(row,ensure_ascii=False))
+              codes=Counter(tuple(p['geo_codes'][:4]) for p in r['precincts'])
+              print('2014_STATION_GEOKEYS',len(codes))
+              print('2014_TAIPEI_STATION_CODES',json.dumps(codes.most_common(20),ensure_ascii=False))
+              region_keys={tuple(zone_key([*row[:5],'0'])[:4]):row[5] for row in records if len(row)>=6 and row[4].strip("'")=='0000'}
+              for key,n in codes.most_common(20):
+                  print('2014_LABEL_PROBE',json.dumps(key,ensure_ascii=False),
+                      'EXACT',region_keys.get(key),
+                      'IGNORE_ELECTION',[(list(k),v) for k,v in region_keys.items()
+                          if (k[0],k[1],k[3])==(key[0],key[1],key[3])][:6],
+                      'SHARED_NAME_COUNT',n)
+          PY
       - name: Verify all available 2014, 2018, 2022 polling-station rows
         run: |
           set -euo pipefail
