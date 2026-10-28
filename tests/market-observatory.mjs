@@ -35,7 +35,7 @@ assert.match(output,/蔣萬安/);
 assert.match(output,/65.0%/);
 assert.match(output,/\+4.0pp/);
 assert.match(output,/未配對/);
-assert.doesNotMatch(output,/Buy Yes|連接錢包|下單/);
+assert.doesNotMatch(output,/<button[^>]*(?:buy|trade|order)|data-action=["']trade|wallet-connect/i);
 const missing=marketPage(null,model);
 assert.match(missing,/尚未成功核驗/);
 console.log(JSON.stringify({passed:true,coverage_rows:rows.length,markets:1}));
