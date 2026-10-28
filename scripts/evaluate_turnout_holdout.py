@@ -104,8 +104,8 @@ def evaluate(turnout_panel,history,association=None):
     association_summary={'status':'no_audited_elctks_candidate_data','comparable_towns':0,
         'within_county_centered_weighted_pearson':None}
     if association is not None:
-        if association.get('kind')!='historical_ecological_candidate_turnout_association_only' or
-           not association.get('official_forecast_unchanged'):
+        if (association.get('kind')!='historical_ecological_candidate_turnout_association_only' or
+           not association.get('official_forecast_unchanged')):
             raise ValueError('Candidate vote source was not audited')
         if association['matched_towns']!=turnout_panel['matched_districts']:
             raise ValueError('Candidate/turnout panel mismatch')
