@@ -36,11 +36,12 @@ def match_records(feed, roster, as_of):
                 matched.append(names[key]); support.append(float(c['support']))
             n, undecided = float(row['sample_n']), float(row['undecided'])
             nonvote = float(row.get('nonvote',0))
+            unknown = float(row.get('response_mass_unreported', 0))
             if (len(matched) < 2 or len(set(matched)) != len(matched) or n < 100
-                    or not np.isfinite([n, undecided, nonvote, *support]).all()
+                    or not np.isfinite([n, undecided, nonvote, unknown, *support]).all()
                     or min(support) < 0 or max(support) > 100 or not 0 <= undecided <= 100
-                    or not 0 <= nonvote <= 100
-                    or sum(support) < 20 or abs(sum(support)+undecided+nonvote-100) > 3):
+                    or not 0 <= nonvote <= 100 or not 0 <= unknown <= 30
+                    or sum(support) < 20 or abs(sum(support)+undecided+nonvote+unknown-100) > 3):
                 raise ValueError('比例、樣本或未表態資料無效')
             sample = (row['county'], row['source_url'], row['field_start'], row['date'])
             pollster = row.get('pollster_id',row['source'])
@@ -55,7 +56,8 @@ def match_records(feed, roster, as_of):
             reason = str(error)
         audit.append({'id': row.get('id'), 'county': row.get('county'), 'source': row.get('source'),
                       'date': row.get('date'), 'included': reason is None,
-                      'reason': reason or ('已配對；僅觀測題目列出人選的相對支持' if accepted[-1]['partial_ballot'] else '已配對完整名單')})
+                      'response_mass_unreported': row.get('response_mass_unreported', 0),
+                      'reason': reason or ('已配對；原始文章未披露完整回答分類，以額外不確定性處理' if row.get('response_mass_unreported',0) else ('已配對；僅觀測題目列出人選的相對支持' if accepted[-1]['partial_ballot'] else '已配對完整名單'))})
     return sorted(accepted, key=lambda r: (r['date'], r['id'])), audit
 
 
@@ -79,9 +81,12 @@ def observation_matrices(records, candidates, settings):
         variance = h @ np.diag(1/(effective_n*q)) @ h.T
         tvbs = row.get('pollster_id','').lower() == 'tvbs' or row.get('source') == 'TVBS'
         extra_sd = settings.get('tvbs_poll_extra_sd',settings['poll_extra_sd']) if tvbs else settings['poll_extra_sd']
+        unknown_sd = row.get('response_mass_unreported', 0) / 100 * settings.get('unreported_mass_sd', 1.5)
+        online_sd = settings.get('online_dmp_extra_sd', .30) if row.get('method_class') == 'online_dmp_panel' else 0
         variance += np.eye(k-1)*(extra_sd**2
                     + (row['undecided']/100 * settings['undecided_sd'])**2
-                    + (settings['partial_ballot_sd']**2 if row['partial_ballot'] else 0))
+                    + (settings['partial_ballot_sd']**2 if row['partial_ballot'] else 0)
+                    + unknown_sd**2 + online_sd**2)
         matrices.append(matrix); ys.append(h @ np.log(q)); variances.append(variance)
         groups.extend([row.get('pollster_id',row['source'])]*(k-1))
         metadata.extend([row]*(k-1))
