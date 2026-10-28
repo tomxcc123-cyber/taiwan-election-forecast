@@ -10,6 +10,12 @@ on:
       - 'site/precinct-turnout-ui.mjs'
       - 'scripts/build_turnout_district_panel.py'
       - 'site/turnout-district-panel.mjs'
+      - 'site/turnout-association-ui.mjs'
+      - 'scripts/build_cec_candidate_turnout_panel.py'
+      - 'scripts/evaluate_turnout_holdout.py'
+      - 'tests/turnout-association-ui.mjs'
+      - 'tests/test_cec_town_candidate_panel.py'
+      - 'tests/test_turnout_holdout.py'
       - 'tests/turnout-district-panel.mjs'
       - 'tests/test_turnout_district_panel.py'
       - 'scripts/import_cec_open_csv.py'
@@ -52,6 +58,7 @@ jobs:
           node --check site/turnout-ui.mjs
           node --check site/precinct-turnout-ui.mjs
           node --check site/turnout-district-panel.mjs
+          node --check site/turnout-association-ui.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -70,6 +77,12 @@ jobs:
         run: node tests/precinct-turnout.mjs
       - name: Test township comparison rendering and no-causal-claim guards
         run: node tests/turnout-district-panel.mjs
+      - name: Test vote-source conservation and time-ordered holdout
+        run: |
+          python -m unittest tests.test_cec_town_candidate_panel -v
+          python -m unittest tests.test_turnout_holdout -v
+          python scripts/evaluate_turnout_holdout.py --output /tmp/holdout-without-future-candidates.json
+          node tests/turnout-association-ui.mjs
       - name: Test historical township source reconciliation
         run: |
           python -m unittest tests.test_turnout_district_panel -v
