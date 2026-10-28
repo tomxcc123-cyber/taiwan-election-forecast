@@ -58,7 +58,7 @@ class Original2014CECTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'Duplicate'):
             audited_town_rollup(original,index,admin_names(source_elbase())[0])
     def test_ambiguous_names_refused(self):
-        raw=source_elbase()+b"'63,'000,'00,'120,'0000,wrong\n"
+        raw=source_elbase()+b"'63,'000,'00,'120,'0000,北投新區\n"
         names,ambiguity=admin_names(raw)
         self.assertEqual(ambiguity,1)
         self.assertNotIn(('63','000','120'),names)
