@@ -81,7 +81,7 @@ export function threeYearAuditPanel(raw){
   const excluded=arr=>arr.length?arr.map(x=>esc(x.county+' '+x.district)).join('、'):'無';
   return '<section class="turnout-panel" id="turnoutThreeYearAudit">'+
     '<header><small>OFFICIAL CEC · COMMON THREE-YEAR COHORT · HISTORICAL AUDIT ONLY</small><h2>2014—2022 三屆行政區共同樣本與地理可比性審計</h2></header>'+
-    '<p>將2014—2018與2018—2022兩套已對帳的中選會行政區面板，以<strong>相同縣市、同一鄉鎮代碼與原始名稱</strong>連結，並逐項核對兩個來源2018年的選舉人數、投票數、有效票、無效票及投開票所數。這是統計口徑的連續匹配，<strong>不是歷史行政邊界GIS重疊比對</strong>。</p>'+
+    '<p>將2014—2018與2018—2022兩套已對帳的中選會行政區面板，以<strong>相同縣市、同一鄉鎮代碼及原始名稱</strong>連結；2015年官方確認的員林鎮→員林市、頭份鎮→頭份市設有嚴格名稱改制例外。再逐項核對兩個來源2018年的選舉人數、投票數、有效票、無效票及投開票所數。這是統計口徑的連續匹配，<strong>不是歷史行政邊界GIS重疊比對</strong>。</p>'+
     '<div class="turnout-stats">'+
       '<div><small>三屆共同行政區</small><strong>'+number(d.matched_towns)+'</strong></div>'+
       '<div><small>共同樣本縣市</small><strong>'+number(d.matched_counties)+' / 22</strong></div>'+
