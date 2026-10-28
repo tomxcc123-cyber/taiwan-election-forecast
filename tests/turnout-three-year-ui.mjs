@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {validateThreeYearAudit,threeYearAuditPanel} from '../site/turnout-three-year-ui.mjs';
 
 const s={schema_version:1,kind:'cec_three_year_common_town_ecological_stability_audit',
- geography_status:'code_and_original_name_continuity_only_no_historical_boundary_overlay',
+ geography_status:'code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay',
  candidate_vote_data_used:false,no_individual_voter_inference:true,
  forecast_2026_modified:false,
  promotion_gate:{status:'blocked',formal_hb_tlef_unchanged:true,
