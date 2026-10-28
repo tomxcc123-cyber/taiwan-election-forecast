@@ -55,7 +55,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/candidate-app.mjs
+        run: node --check site/market-observatory.mjs && node --check site/candidate-app.mjs && node tests/market-observatory.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
