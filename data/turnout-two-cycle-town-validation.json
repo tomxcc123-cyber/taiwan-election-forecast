@@ -17,120 +17,120 @@
       "training_election": 2014,
       "held_out_election": 2018,
       "matched_counties": 22,
-      "matched_towns": 366,
+      "matched_towns": 368,
       "scores": {
         "persistence": {
-          "n_towns": 366,
-          "electorate_weighted_mae_pp": 3.4979,
-          "electorate_weighted_rmse_pp": 4.20841,
-          "equal_town_mae_pp": 3.30947,
+          "n_towns": 368,
+          "electorate_weighted_mae_pp": 3.48121,
+          "electorate_weighted_rmse_pp": 4.19382,
+          "equal_town_mae_pp": 3.30012,
           "delta_mae_vs_persistence_pp": 0.0,
           "paired_county_uncertainty": null
         },
         "county_shrink_75": {
-          "n_towns": 366,
-          "electorate_weighted_mae_pp": 3.43434,
-          "electorate_weighted_rmse_pp": 4.06712,
-          "equal_town_mae_pp": 3.22327,
-          "delta_mae_vs_persistence_pp": -0.06356,
+          "n_towns": 368,
+          "electorate_weighted_mae_pp": 3.42915,
+          "electorate_weighted_rmse_pp": 4.05862,
+          "equal_town_mae_pp": 3.22091,
+          "delta_mae_vs_persistence_pp": -0.05206,
           "paired_county_uncertainty": {
             "cluster_unit": "county",
             "n_counties": 22,
             "resamples": 1000,
             "bootstrap_90pct_delta_mae_vs_persistence_pp": [
-              -0.14478,
-              0.01297
+              -0.13274,
+              0.02924
             ],
             "counties_improved": 16,
             "counties_worse": 6,
             "leave_one_county_out": [
               {
                 "excluded_county": "南投縣",
-                "delta_mae_pp": -0.06731
+                "delta_mae_pp": -0.05553
               },
               {
                 "excluded_county": "台中市",
-                "delta_mae_pp": -0.07538
+                "delta_mae_pp": -0.06225
               },
               {
                 "excluded_county": "台北市",
-                "delta_mae_pp": -0.07168
+                "delta_mae_pp": -0.05863
               },
               {
                 "excluded_county": "台南市",
-                "delta_mae_pp": -0.02985
+                "delta_mae_pp": -0.01769
               },
               {
                 "excluded_county": "台東縣",
-                "delta_mae_pp": -0.06286
+                "delta_mae_pp": -0.05126
               },
               {
                 "excluded_county": "嘉義市",
-                "delta_mae_pp": -0.06425
+                "delta_mae_pp": -0.05262
               },
               {
                 "excluded_county": "嘉義縣",
-                "delta_mae_pp": -0.0614
+                "delta_mae_pp": -0.04966
               },
               {
                 "excluded_county": "基隆市",
-                "delta_mae_pp": -0.06468
+                "delta_mae_pp": -0.05298
               },
               {
                 "excluded_county": "宜蘭縣",
-                "delta_mae_pp": -0.06455
+                "delta_mae_pp": -0.05282
               },
               {
                 "excluded_county": "屏東縣",
-                "delta_mae_pp": -0.07892
+                "delta_mae_pp": -0.06684
               },
               {
                 "excluded_county": "彰化縣",
-                "delta_mae_pp": -0.06128
+                "delta_mae_pp": -0.054
               },
               {
                 "excluded_county": "新北市",
-                "delta_mae_pp": -0.04001
+                "delta_mae_pp": -0.02641
               },
               {
                 "excluded_county": "新竹市",
-                "delta_mae_pp": -0.0647
+                "delta_mae_pp": -0.05298
               },
               {
                 "excluded_county": "新竹縣",
-                "delta_mae_pp": -0.05404
+                "delta_mae_pp": -0.04237
               },
               {
                 "excluded_county": "桃園市",
-                "delta_mae_pp": -0.08821
+                "delta_mae_pp": -0.07531
               },
               {
                 "excluded_county": "澎湖縣",
-                "delta_mae_pp": -0.06331
+                "delta_mae_pp": -0.05176
               },
               {
                 "excluded_county": "花蓮縣",
-                "delta_mae_pp": -0.05709
+                "delta_mae_pp": -0.0455
               },
               {
                 "excluded_county": "苗栗縣",
-                "delta_mae_pp": -0.0662
+                "delta_mae_pp": -0.06147
               },
               {
                 "excluded_county": "連江縣",
-                "delta_mae_pp": -0.06318
+                "delta_mae_pp": -0.05168
               },
               {
                 "excluded_county": "金門縣",
-                "delta_mae_pp": -0.06322
+                "delta_mae_pp": -0.05166
               },
               {
                 "excluded_county": "雲林縣",
-                "delta_mae_pp": -0.0633
+                "delta_mae_pp": -0.05146
               },
               {
                 "excluded_county": "高雄市",
-                "delta_mae_pp": -0.07188
+                "delta_mae_pp": -0.05873
               }
             ],
             "leave_one_county_out_improved_fraction": 1.0,
@@ -138,112 +138,112 @@
           }
         },
         "county_shrink_50": {
-          "n_towns": 366,
-          "electorate_weighted_mae_pp": 3.51639,
-          "electorate_weighted_rmse_pp": 4.11702,
-          "equal_town_mae_pp": 3.53634,
-          "delta_mae_vs_persistence_pp": 0.01849,
+          "n_towns": 368,
+          "electorate_weighted_mae_pp": 3.52133,
+          "electorate_weighted_rmse_pp": 4.11669,
+          "equal_town_mae_pp": 3.53879,
+          "delta_mae_vs_persistence_pp": 0.04012,
           "paired_county_uncertainty": {
             "cluster_unit": "county",
             "n_counties": 22,
             "resamples": 1000,
             "bootstrap_90pct_delta_mae_vs_persistence_pp": [
-              -0.08836,
-              0.14143
+              -0.07086,
+              0.1762
             ],
-            "counties_improved": 13,
-            "counties_worse": 9,
+            "counties_improved": 12,
+            "counties_worse": 10,
             "leave_one_county_out": [
               {
                 "excluded_county": "南投縣",
-                "delta_mae_pp": 0.00829
+                "delta_mae_pp": 0.0305
               },
               {
                 "excluded_county": "台中市",
-                "delta_mae_pp": 0.01112
+                "delta_mae_pp": 0.03566
               },
               {
                 "excluded_county": "台北市",
-                "delta_mae_pp": 0.02104
+                "delta_mae_pp": 0.0454
               },
               {
                 "excluded_county": "台南市",
-                "delta_mae_pp": 0.05834
+                "delta_mae_pp": 0.08147
               },
               {
                 "excluded_county": "台東縣",
-                "delta_mae_pp": 0.01946
+                "delta_mae_pp": 0.04128
               },
               {
                 "excluded_county": "嘉義市",
-                "delta_mae_pp": 0.01876
+                "delta_mae_pp": 0.04063
               },
               {
                 "excluded_county": "嘉義縣",
-                "delta_mae_pp": 0.02234
+                "delta_mae_pp": 0.04442
               },
               {
                 "excluded_county": "基隆市",
-                "delta_mae_pp": 0.01867
+                "delta_mae_pp": 0.04066
               },
               {
                 "excluded_county": "宜蘭縣",
-                "delta_mae_pp": 0.01279
+                "delta_mae_pp": 0.03491
               },
               {
                 "excluded_county": "屏東縣",
-                "delta_mae_pp": -0.01932
+                "delta_mae_pp": 0.00348
               },
               {
                 "excluded_county": "彰化縣",
-                "delta_mae_pp": 0.0262
+                "delta_mae_pp": 0.04009
               },
               {
                 "excluded_county": "新北市",
-                "delta_mae_pp": 0.06155
+                "delta_mae_pp": 0.08715
               },
               {
                 "excluded_county": "新竹市",
-                "delta_mae_pp": 0.01886
+                "delta_mae_pp": 0.04087
               },
               {
                 "excluded_county": "新竹縣",
-                "delta_mae_pp": 0.01814
+                "delta_mae_pp": 0.04027
               },
               {
                 "excluded_county": "桃園市",
-                "delta_mae_pp": -0.0189
+                "delta_mae_pp": 0.00527
               },
               {
                 "excluded_county": "澎湖縣",
-                "delta_mae_pp": 0.01919
+                "delta_mae_pp": 0.04091
               },
               {
                 "excluded_county": "花蓮縣",
-                "delta_mae_pp": 0.02617
+                "delta_mae_pp": 0.04804
               },
               {
                 "excluded_county": "苗栗縣",
-                "delta_mae_pp": 0.01125
+                "delta_mae_pp": 0.01994
               },
               {
                 "excluded_county": "連江縣",
-                "delta_mae_pp": 0.01932
+                "delta_mae_pp": 0.04096
               },
               {
                 "excluded_county": "金門縣",
-                "delta_mae_pp": 0.01934
+                "delta_mae_pp": 0.04109
               },
               {
                 "excluded_county": "雲林縣",
-                "delta_mae_pp": 0.01814
+                "delta_mae_pp": 0.04043
               },
               {
                 "excluded_county": "高雄市",
-                "delta_mae_pp": 0.02181
+                "delta_mae_pp": 0.04633
               }
             ],
-            "leave_one_county_out_improved_fraction": 0.09091,
+            "leave_one_county_out_improved_fraction": 0.0,
             "interpretation": "One election-year resampled by counties, not cross-election forecast calibration or a causal confidence interval"
           }
         }
@@ -310,10 +310,10 @@
           "coverage_fraction": 1.0
         },
         "彰化縣": {
-          "matched_towns": 25,
-          "target_electorate_covered": 932639,
+          "matched_towns": 26,
+          "target_electorate_covered": 1031222,
           "target_county_electorate": 1031222,
-          "coverage_fraction": 0.904402
+          "coverage_fraction": 1.0
         },
         "新北市": {
           "matched_towns": 29,
@@ -352,10 +352,10 @@
           "coverage_fraction": 1.0
         },
         "苗栗縣": {
-          "matched_towns": 17,
-          "target_electorate_covered": 365893,
+          "matched_towns": 18,
+          "target_electorate_covered": 446507,
           "target_county_electorate": 446507,
-          "coverage_fraction": 0.819456
+          "coverage_fraction": 1.0
         },
         "連江縣": {
           "matched_towns": 4,
@@ -3957,6 +3957,25 @@
         },
         {
           "county": "彰化縣",
+          "district": "員林市",
+          "training_year": 2014,
+          "test_year": 2018,
+          "target_electorate": 98583,
+          "input_turnout_pct": 69.6134,
+          "observed_turnout_pct": 66.71739,
+          "forecast_pct": {
+            "persistence": 69.6134,
+            "county_shrink_75": 70.44184,
+            "county_shrink_50": 71.27028
+          },
+          "errors_pp": {
+            "persistence": 2.8960177822448863,
+            "county_shrink_75": 3.724456793173958,
+            "county_shrink_50": 4.55289580410303
+          }
+        },
+        {
+          "county": "彰化縣",
           "district": "溪湖鎮",
           "training_year": 2014,
           "test_year": 2018,
@@ -5796,6 +5815,25 @@
             "persistence": 3.5388971927946766,
             "county_shrink_75": 4.308642163519538,
             "county_shrink_50": 5.0783871342444
+          }
+        },
+        {
+          "county": "苗栗縣",
+          "district": "頭份市",
+          "training_year": 2014,
+          "test_year": 2018,
+          "target_electorate": 80614,
+          "input_turnout_pct": 66.51737,
+          "observed_turnout_pct": 66.23663,
+          "forecast_pct": {
+            "persistence": 66.51737,
+            "county_shrink_75": 68.08727,
+            "county_shrink_50": 69.65717
+          },
+          "errors_pp": {
+            "persistence": 0.2807349176623397,
+            "county_shrink_75": 1.8506365357573773,
+            "county_shrink_50": 3.420538153852426
           }
         },
         {

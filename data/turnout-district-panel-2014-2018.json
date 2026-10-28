@@ -2,13 +2,13 @@
   "schema_version": 1,
   "kind": "observed_cec_2014_to_2018_town_turnout_holdout_input",
   "source_url": "https://data.cec.gov.tw/選舉資料庫/votedata.zip",
-  "verification": "2014 original elbase names; 2014/2018 source-hashed elprof booth totals and independently audited county mayoral counts",
+  "verification": "2014 original elbase names; 2014/2018 source-hashed elprof booth totals and independently audited county mayoral counts; two 2015 officially documented town-to-city title changes matched by identical original CEC town code and audited booth totals",
   "years": [
     2014,
     2018
   ],
   "matched_counties": 22,
-  "matched_towns": 366,
+  "matched_towns": 368,
   "excluded_counties": [],
   "no_cross_year_precinct_join": true,
   "join_screen_not_boundary_proof": true,
@@ -4155,10 +4155,10 @@
     },
     {
       "county": "彰化縣",
-      "status": "matched_original_code_name",
+      "status": "matched_original_code_name_with_documented_2015_renames",
       "exclusion_reasons": [],
-      "matched_towns": 25,
-      "2018_electorate_coverage": 0.904402,
+      "matched_towns": 26,
+      "2018_electorate_coverage": 1.0,
       "2014_label_source": {
         "source_member": "votedata/votedata/voteData/2014-103年地方公職人員選舉/縣市市長/elbase.csv",
         "sha256": "55041399ad0be22f585c60a53a5112f6ea37eb5a5399d3ff0b27d2ccafd71a58",
@@ -4168,12 +4168,8 @@
       "2014_unlabeled_town_codes": [],
       "2014_original_district_count": 26,
       "2018_original_district_count": 26,
-      "unmatched_2014_names": [
-        "員林鎮"
-      ],
-      "unmatched_2018_names": [
-        "員林市"
-      ],
+      "unmatched_2014_names": [],
+      "unmatched_2018_names": [],
       "districts": [
         {
           "town_code": "010",
@@ -4372,6 +4368,41 @@
             }
           },
           "delta_turnout_pp": -3.61455
+        },
+        {
+          "town_code": "100",
+          "district": "員林市",
+          "join_policy": "exact CEC town code; 2014 original elbase name to CEC-documented 2015 town-to-city title change; NOT a historical geometry proof",
+          "documented_name_change": {
+            "2014_original_name": "員林鎮",
+            "2018_name": "員林市",
+            "effective_date": "2015-08-08",
+            "official_local_government_url": "https://www.chcg.gov.tw/TSO/yuanlin/07other/main.aspx?main_id=30945",
+            "cec_minutes_url": "https://web.cec.gov.tw/api/file/d97c9325-90b2-44bc-a430-c43197e58ea0.pdf",
+            "spatial_boundary_verified": false,
+            "2014_elbase_sha256": "55041399ad0be22f585c60a53a5112f6ea37eb5a5399d3ff0b27d2ccafd71a58",
+            "source_archived_cec_station_sha256": {
+              "2014": "c7ce0dc570eca594c45e9c181dd032e4d38a4123806181193cc3480cabf027ab",
+              "2018": "64a7ef99d759ba7f2796af63a435786b8cbfecb91b4f64f6283f870b18b840a9"
+            }
+          },
+          "years": {
+            "2014": {
+              "electorate": 96276,
+              "ballots_cast": 67021,
+              "valid_votes": 65387,
+              "invalid_votes": 1634,
+              "stations": 98
+            },
+            "2018": {
+              "electorate": 98583,
+              "ballots_cast": 65772,
+              "valid_votes": 63956,
+              "invalid_votes": 1816,
+              "stations": 98
+            }
+          },
+          "delta_turnout_pp": -2.89602
         },
         {
           "town_code": "110",
@@ -6543,10 +6574,10 @@
     },
     {
       "county": "苗栗縣",
-      "status": "matched_original_code_name",
+      "status": "matched_original_code_name_with_documented_2015_renames",
       "exclusion_reasons": [],
-      "matched_towns": 17,
-      "2018_electorate_coverage": 0.819456,
+      "matched_towns": 18,
+      "2018_electorate_coverage": 1.0,
       "2014_label_source": {
         "source_member": "votedata/votedata/voteData/2014-103年地方公職人員選舉/縣市市長/elbase.csv",
         "sha256": "55041399ad0be22f585c60a53a5112f6ea37eb5a5399d3ff0b27d2ccafd71a58",
@@ -6556,12 +6587,8 @@
       "2014_unlabeled_town_codes": [],
       "2014_original_district_count": 18,
       "2018_original_district_count": 18,
-      "unmatched_2014_names": [
-        "頭份鎮"
-      ],
-      "unmatched_2018_names": [
-        "頭份市"
-      ],
+      "unmatched_2014_names": [],
+      "unmatched_2018_names": [],
       "districts": [
         {
           "town_code": "010",
@@ -6650,6 +6677,41 @@
             }
           },
           "delta_turnout_pp": -3.5389
+        },
+        {
+          "town_code": "050",
+          "district": "頭份市",
+          "join_policy": "exact CEC town code; 2014 original elbase name to CEC-documented 2015 town-to-city title change; NOT a historical geometry proof",
+          "documented_name_change": {
+            "2014_original_name": "頭份鎮",
+            "2018_name": "頭份市",
+            "effective_date": "2015-10-05",
+            "official_local_government_url": "https://www.chcg.gov.tw/HSO/changhua/01news/news_a_02.aspx?bull_id=195475",
+            "cec_minutes_url": "https://web.cec.gov.tw/api/file/d97c9325-90b2-44bc-a430-c43197e58ea0.pdf",
+            "spatial_boundary_verified": false,
+            "2014_elbase_sha256": "55041399ad0be22f585c60a53a5112f6ea37eb5a5399d3ff0b27d2ccafd71a58",
+            "source_archived_cec_station_sha256": {
+              "2014": "7744ee550c419ff636cc0db2a4694d63a4992b674cc2469bd6bc99840ea5838b",
+              "2018": "c0dd4009bb0cf5eb86faafd574984762c64c6d07b0621e4960391ad064b13fa1"
+            }
+          },
+          "years": {
+            "2014": {
+              "electorate": 77697,
+              "ballots_cast": 51682,
+              "valid_votes": 50664,
+              "invalid_votes": 1018,
+              "stations": 69
+            },
+            "2018": {
+              "electorate": 80614,
+              "ballots_cast": 53396,
+              "valid_votes": 51938,
+              "invalid_votes": 1458,
+              "stations": 71
+            }
+          },
+          "delta_turnout_pp": -0.28073
         },
         {
           "town_code": "060",
@@ -8515,5 +8577,25 @@
         }
       ]
     }
-  ]
+  ],
+  "documented_2015_name_changes_count": 2,
+  "documented_2015_name_changes": [
+    {
+      "county": "彰化縣",
+      "town_code": "100",
+      "before": "員林鎮",
+      "after": "員林市",
+      "effective_date": "2015-08-08",
+      "official_url": "https://www.chcg.gov.tw/TSO/yuanlin/07other/main.aspx?main_id=30945"
+    },
+    {
+      "county": "苗栗縣",
+      "town_code": "050",
+      "before": "頭份鎮",
+      "after": "頭份市",
+      "effective_date": "2015-10-05",
+      "official_url": "https://www.chcg.gov.tw/HSO/changhua/01news/news_a_02.aspx?bull_id=195475"
+    }
+  ],
+  "no_historical_polygon_comparison": true
 }
