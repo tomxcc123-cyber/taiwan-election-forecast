@@ -67,6 +67,7 @@ def build(now=None):
         'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs',
         'history-atlas.css', 'history-atlas.mjs',
         'historical-polls-ui.mjs', 'evidence-ui.mjs', 'scenario-rules.mjs',
+         'market-observatory.mjs', 'market-observatory.css',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -100,6 +101,12 @@ def build(now=None):
     model_data['publication_pause_end'] = config['publication_pause_end']
     (dist / 'model-data.json').write_text(json.dumps(model_data, ensure_ascii=False), encoding='utf-8')
     (dist / 'polls.json').write_text(json.dumps(public_feed, ensure_ascii=False, indent=2), encoding='utf-8')
+    markets_path = ROOT / 'data/market-snapshots.json'
+    markets = json.loads(markets_path.read_text(encoding='utf-8')) if markets_path.exists() else {'schema_version':1,'status':'unavailable','events':[],'history':[]}
+    if markets.get('schema_version') != 1 or not isinstance(markets.get('events'), list):
+        raise ValueError('Invalid market snapshot archive')
+    (dist / 'market-snapshots.json').write_text(json.dumps(markets, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
     from model.v5_product import build_product
     product = build_product(ROOT, now, feed)
     product['publication_pause_start'] = config['publication_pause_start']
