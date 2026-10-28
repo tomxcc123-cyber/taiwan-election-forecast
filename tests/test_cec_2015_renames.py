@@ -39,8 +39,20 @@ class Official2015RenameTests(unittest.TestCase):
         report=evaluate_cycles(amended,recent,h)
         self.assertEqual(report['cycles']['2014_to_2018']['matched_towns'],368)
         self.assertEqual(report['cycles']['2018_to_2022']['matched_towns'],366)
+        self.assertAlmostEqual(
+            report['cycles']['2014_to_2018']['scores']['persistence']['electorate_weighted_mae_pp'],
+            3.48121, places=4)
+        self.assertAlmostEqual(
+            report['cycles']['2014_to_2018']['scores']['county_shrink_75']['electorate_weighted_mae_pp'],
+            3.42915, places=4)
         common=audit_common(amended,recent,report)
         self.assertEqual(common['matched_towns'],366)
+        self.assertAlmostEqual(common['cohorts']['common_towns']['2014_to_2018']['scores']['persistence'],
+                               3.48595, places=4)
+        self.assertAlmostEqual(common['cohorts']['common_towns']['2014_to_2018']['scores']['county_shrink_75'],
+                               3.43334, places=4)
+        self.assertAlmostEqual(common['cohorts']['common_towns']['2018_to_2022']['scores']['persistence'],
+                               6.22726, places=4)
         self.assertEqual(common['documented_2015_name_changes_count'],2)
         self.assertEqual(len(common['unmatched_recent']),0)
         self.assertEqual(len(common['unmatched_prior']),2) # 2022 Chiayi City has no matched townships
