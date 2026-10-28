@@ -209,7 +209,7 @@ def build(now=None):
         json.loads((ROOT/'data/turnout-two-cycle-town-validation.json').read_text(encoding='utf8')))
     if (three_year['promotion_gate']['status'] != 'blocked' or
         three_year['forecast_2026_modified'] is not False or
-        three_year['geography_status'] != 'code_and_original_name_continuity_only_no_historical_boundary_overlay'):
+        three_year['geography_status'] != 'code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay'):
         raise ValueError('Unsafe three-election geographic audit: refusing to publish')
     (dist/'turnout-three-year-compatibility.json').write_text(
         json.dumps(three_year, ensure_ascii=False, indent=2, allow_nan=False),
