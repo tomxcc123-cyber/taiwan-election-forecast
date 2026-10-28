@@ -72,6 +72,7 @@ def build(now=None):
          'market-joint-shadow.mjs',
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
          'precinct-turnout-ui.mjs',
+         'turnout-district-panel.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
