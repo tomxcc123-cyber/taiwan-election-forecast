@@ -125,6 +125,17 @@ def build(now=None):
                     raise ValueError('CEC station data chunk missing: '+str(station_file))
         shutil.copytree(booth_source, dist / 'cec-precincts')
 
+    district_panel_path = ROOT / 'data/turnout-district-panel-2018-2022.json'
+    if district_panel_path.exists():
+        district_panel = json.loads(district_panel_path.read_text(encoding='utf-8'))
+        if (district_panel.get('schema_version') != 1 or
+            district_panel.get('kind') != 'observed_turnout_district_panel_not_an_individual_turnout_model' or
+            not district_panel.get('official_forecast_unchanged') or
+            len(district_panel.get('counties', [])) != 22):
+            raise ValueError('Unverified cross-election township turnout panel')
+        (dist / 'turnout-district-panel-2018-2022.json').write_text(
+            json.dumps(district_panel, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))
     if turnout.get('schema_version') != 1 or len(turnout.get('records', [])) != 22:
