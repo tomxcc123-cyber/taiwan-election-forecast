@@ -35,7 +35,7 @@ assert.equal(higher.robust_draws,100);
 assert.equal(higher.robustness_share,.5);
 assert.equal(higher.scenario_change_ballots,Math.round(2026769*.05));
 assert.equal(higher.official_model_unchanged,true);
-assert.equal(higher.candidates[0].model_valid_vote_share,.555);
+assert.ok(Math.abs(higher.candidates[0].model_valid_vote_share-.555)<1e-12);
 const lower=turnoutScenario(model,source,{county:'台北市',deltaPp:-5});
 assert.equal(lower.robust_draws,100);
 assert.ok(higher.candidates[0].upper>higher.candidates[0].lower);
@@ -46,10 +46,14 @@ const corrupt=structuredClone(source);corrupt.records[0].years['2022'].cast+=10;
 assert.throws(()=>historicalTurnout(corrupt),/不一致/);
 const missing=turnoutPage(model,null,'台北市',5);
 assert.match(missing,/無法核驗/);
-const html=turnoutPage(model,source,'台北市',5);
+const fullModel={counties:historical.rows.map(r=>r.county==='台北市'?model.counties[0]:
+  {name:r.county,candidates:[{name:'甲',candidate_id:'x'},{name:'乙',candidate_id:'y'}],
+   draws:Array.from({length:200},()=>[500000,500000])})};
+const html=turnoutPage(fullModel,source,'台北市',5);
 assert.match(html,/2022實際投票率/);
 assert.match(html,/101,338/);
 assert.match(html,/選舉人數作分母/);
 assert.match(html,/數學範圍/);
-assert.match(html,/資料未通過核驗：/, '22 county model inputs must fail closed when missing');
+assert.doesNotMatch(html,/資料未通過核驗/);
+assert.match(turnoutPage(model,source,'台北市',5),/資料未通過核驗/, 'missing 21 model counties fail closed');
 console.log(JSON.stringify({passed:true,source_counties:22,robust_draws_at_five_pp:100,neutral_assumptions:true}));
