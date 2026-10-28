@@ -1,0 +1,42 @@
+name: Market fusion research gate
+
+on:
+  pull_request:
+    paths:
+      - 'site/market-fusion.mjs'
+      - 'site/market-observatory.mjs'
+      - 'site/candidate-app.mjs'
+      - 'scripts/archive_market_fusion.mjs'
+      - 'scripts/evaluate_market_fusion.mjs'
+      - 'tests/market-fusion.mjs'
+      - 'tests/market-fusion-evidence.mjs'
+      - 'tests/market-observatory.mjs'
+      - '.github/workflows/market-fusion-tests.yml'
+      - '.github/workflows/publish.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  research-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source modules
+        run: |
+          node --check site/market-fusion.mjs
+          node --check site/market-observatory.mjs
+          node --check site/candidate-app.mjs
+          node --check scripts/archive_market_fusion.mjs
+          node --check scripts/evaluate_market_fusion.mjs
+      - name: Test invariant event-fusion weights
+        run: node tests/market-fusion.mjs
+      - name: Test market observation presentation
+        run: node tests/market-observatory.mjs
+      - name: Test aligned archive and synthetic future-outcome evaluation
+        run: node tests/market-fusion-evidence.mjs
