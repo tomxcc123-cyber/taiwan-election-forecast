@@ -1,6 +1,10 @@
 name: Inspect official CEC precinct archive (research-only)
 
 on:
+  pull_request:
+    paths:
+      - '.github/workflows/inspect-cec-precinct-source.yml'
+      - 'scripts/import_cec_precincts.py'
   workflow_dispatch:
 
 permissions:
