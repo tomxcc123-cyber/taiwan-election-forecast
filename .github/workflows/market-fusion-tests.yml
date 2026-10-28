@@ -5,12 +5,17 @@ on:
     paths:
       - 'site/market-fusion.mjs'
       - 'site/market-joint-shadow.mjs'
+      - 'site/turnout-sensitivity.mjs'
+      - 'site/turnout-ui.mjs'
+      - 'site/turnout.css'
+      - 'data/turnout-history-2018-2022.json'
       - 'site/market-observatory.mjs'
       - 'site/candidate-app.mjs'
       - 'scripts/archive_market_fusion.mjs'
       - 'scripts/evaluate_market_fusion.mjs'
       - 'tests/market-fusion.mjs'
       - 'tests/market-joint-shadow.mjs'
+      - 'tests/turnout-sensitivity.mjs'
       - 'tests/market-fusion-evidence.mjs'
       - 'tests/market-observatory.mjs'
       - '.github/workflows/market-fusion-tests.yml'
@@ -33,6 +38,8 @@ jobs:
         run: |
           node --check site/market-fusion.mjs
           node --check site/market-joint-shadow.mjs
+          node --check site/turnout-sensitivity.mjs
+          node --check site/turnout-ui.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -43,5 +50,7 @@ jobs:
         run: node tests/market-observatory.mjs
       - name: Test joint correlated election simulations and ESS quality gates
         run: node tests/market-joint-shadow.mjs
+      - name: Test CEC turnout data and neutral mathematical sensitivity bounds
+        run: node tests/turnout-sensitivity.mjs
       - name: Test aligned archive and synthetic future-outcome evaluation
         run: node tests/market-fusion-evidence.mjs
