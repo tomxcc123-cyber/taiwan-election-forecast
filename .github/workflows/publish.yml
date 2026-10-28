@@ -76,11 +76,13 @@ jobs:
           python scripts/evaluate_turnout_holdout.py \
             --association data/cec-town-candidate-association-2018-2022.json \
             --output data/turnout-holdout-2018-2022.json
+      - name: Evaluate frozen 2018-only turnout shadow formulas on 2022
+        run: python scripts/evaluate_turnout_shadows.py
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add data/polls.json data/market-snapshots.json data/cec-precincts data/turnout-district-panel-2018-2022.json data/cec-town-candidate-association-2018-2022.json data/turnout-holdout-2018-2022.json
+          git add data/polls.json data/market-snapshots.json data/cec-precincts data/turnout-district-panel-2018-2022.json data/cec-town-candidate-association-2018-2022.json data/turnout-holdout-2018-2022.json data/turnout-shadow-ablation-2022.json
           if ! git diff --cached --quiet; then
             git commit -m "Update verified poll archive and source status"
             git push origin HEAD:main
@@ -88,7 +90,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-association-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs && node tests/turnout-association-ui.mjs
+        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-association-ui.mjs && node --check site/turnout-shadow-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs && node tests/turnout-association-ui.mjs && node tests/turnout-shadow-ui.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
