@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {validatePrecinctIndex,validatePrecinctRecord,precinctDistricts,precinctPanel} from '../site/precinct-turnout-ui.mjs';
 
-const names=Array.from({length:22},(_,i)=>i===0?'台北市':i===1?'嘉義市':'測試縣市'+i);
+const names=Array.from({length:22},(_,i)=>i===0?'台北市':i===1?'嘉義市':'測試'+String.fromCodePoint(0x4e00+i));
 const entries=[];
 for(const year of [2014,2018,2022]){
   for(const county of names){
