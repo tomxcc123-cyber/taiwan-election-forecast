@@ -83,6 +83,7 @@ export function fusionEvidencePanel(archive){
   const snapshots=archive?.schema_version===1&&Array.isArray(archive.snapshots)?archive.snapshots:[];
   const recent=snapshots.at(-1);
   const rows=recent?.races||[];
+  const frozenJoint=recent?.joint_sensitivity?.joint_05;
   const reasons=new Map();
   for(const r of rows){
     if(!r.included)reasons.set(r.reason||'未標明原因',(reasons.get(r.reason||'未標明原因')||0)+1);
@@ -110,6 +111,7 @@ export function fusionEvidencePanel(archive){
     +'<p>同一建構時點配對模型條件勝率、原始合約價格和實驗結果。每天僅保留台北時間當日最後一次成功建構，保留來源時間、版本與候選人識別，供選後按相同資訊截止時間比較。</p>'
     +stat
     +(recent?'<p class="market-note">最近紀錄：'+esc(dateLabel(recent.as_of))+' · 來源記錄 SHA256 '+esc(recent.source_digest?.slice(0,14)||'—')+'…</p>':'')
+    +(recent?'<p class="market-note">聯合路徑實驗（5%市場權重）：'+(frozenJoint?.available?'已保存 · ESS '+esc(frozenJoint.diagnostics?.effective_sample_size)+' / '+esc(frozenJoint.diagnostics?.simulations):'尚無合格歷史配對或此日期尚未啟用聯合模組')+'。每組記錄的來源與模型版本應一致。</p>':'')
     +exceptions+table
     +'<p class="market-warning">2026年11月28日選舉尚未舉行。現在沒有正式結算結果，不能顯示「Brier改善」或宣稱哪個權重較準。選後只使用當日之前實際已保存、且能匹配中選會正式結果的樣本。</p></section>';
 }
