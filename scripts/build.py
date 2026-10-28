@@ -72,7 +72,7 @@ def build(now=None):
          'market-joint-shadow.mjs',
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
          'precinct-turnout-ui.mjs',
-         'turnout-district-panel.mjs', 'turnout-association-ui.mjs',
+         'turnout-district-panel.mjs', 'turnout-association-ui.mjs', 'turnout-shadow-ui.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -155,6 +155,23 @@ def build(now=None):
                 raise ValueError('Candidate vote / turnout backtest data failed quality gate')
             (dist / name).write_text(
                 json.dumps(source, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf8')
+
+    shadow_path = ROOT / 'data/turnout-shadow-ablation-2022.json'
+    if shadow_path.exists():
+        shadow = json.loads(shadow_path.read_text(encoding='utf8'))
+        gate = shadow.get('promotion_gate', {})
+        if (shadow.get('schema_version') != 1 or
+            shadow.get('kind') != 'turnout_forecast_shadow_ablation_2022_exploratory' or
+            shadow.get('training_cutoff_election') != 2018 or
+            shadow.get('holdout_election') != 2022 or
+            not shadow.get('uses_2022_outcomes_only_for_scoring') or
+            shadow.get('candidate_party_votes_used_in_predictors') is not False or
+            gate.get('status') != 'blocked' or
+            gate.get('allow_2026_candidate_win_probability_modification') is not False):
+            raise ValueError('Unverified exploratory turnout-shadow model gate')
+        (dist / 'turnout-shadow-ablation-2022.json').write_text(
+            json.dumps(shadow, ensure_ascii=False, indent=2, allow_nan=False),
+            encoding='utf8')
 
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))

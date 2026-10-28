@@ -11,6 +11,10 @@ on:
       - 'scripts/build_turnout_district_panel.py'
       - 'site/turnout-district-panel.mjs'
       - 'site/turnout-association-ui.mjs'
+      - 'site/turnout-shadow-ui.mjs'
+      - 'scripts/evaluate_turnout_shadows.py'
+      - 'tests/test_turnout_shadows.py'
+      - 'tests/turnout-shadow-ui.mjs'
       - 'scripts/build_cec_candidate_turnout_panel.py'
       - 'scripts/evaluate_turnout_holdout.py'
       - 'tests/turnout-association-ui.mjs'
@@ -59,6 +63,7 @@ jobs:
           node --check site/precinct-turnout-ui.mjs
           node --check site/turnout-district-panel.mjs
           node --check site/turnout-association-ui.mjs
+          node --check site/turnout-shadow-ui.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -83,6 +88,11 @@ jobs:
           python -m unittest tests.test_turnout_holdout -v
           python scripts/evaluate_turnout_holdout.py --output /tmp/holdout-without-future-candidates.json
           node tests/turnout-association-ui.mjs
+      - name: Test frozen shadow turnout forecasts and paired geographic uncertainty
+        run: |
+          python -m unittest tests.test_turnout_shadows -v
+          python scripts/evaluate_turnout_shadows.py --output /tmp/turnout-shadow-ablation-2022.json
+          node tests/turnout-shadow-ui.mjs
       - name: Test historical township source reconciliation
         run: |
           python -m unittest tests.test_turnout_district_panel -v

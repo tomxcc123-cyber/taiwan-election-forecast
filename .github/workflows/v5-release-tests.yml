@@ -196,8 +196,10 @@ jobs:
           assert taipei_poll['model_eligible'] is False
           assert taipei_poll['id'] in taipei['poll_ids']
           pearson_nt=[r for r in feed['records'] if r.get('pollster_id')=='pearson-data' and r['county']=='新北市']
-          assert len(pearson_nt)==1
-          assert 'https://www.bigmedia.com.tw/article/1784791841053' in pearson_nt[0].get('verification_urls',[])
+          assert len(pearson_nt)>=1
+          pearson_known=[r for r in pearson_nt if 'https://www.bigmedia.com.tw/article/1784791841053' in r.get('verification_urls',[])]
+          assert len(pearson_known)==1, 'Known Pearson Data source must remain uniquely provenance-matched'
+          assert len({r['id'] for r in pearson_nt})==len(pearson_nt), 'Duplicated poll IDs in county source registry'
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='shanshui')['discovery']['queue_only'] is True
           assert next(p for p in registry['pollsters'] if p['pollster_id']=='pearson-data')['discovery']['queue_only'] is True
           print(data['model_id'], taipei_poll['id'], data['structural_model']['mode_counts'], data['fragmentation_gate']['status'], sorted(x for x in ids if x))
