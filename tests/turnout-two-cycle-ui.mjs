@@ -14,7 +14,9 @@ const panel={schema_version:1,kind:'observed_cec_2014_to_2018_town_turnout_holdo
  no_cross_year_precinct_join:true,join_screen_not_boundary_proof:true,
  official_2026_forecast_unchanged:true,matched_counties:22,matched_towns:22,counties};
 const score=mae=>({n_towns:22,electorate_weighted_mae_pp:mae,
- delta_mae_vs_persistence_pp:mae-3.5});
+ delta_mae_vs_persistence_pp:mae-3.5,
+ paired_county_uncertainty:{cluster_unit:'county',n_counties:22,
+ bootstrap_90pct_delta_mae_vs_persistence_pp:[-.3,.2]}});
 const previous={training_election:2014,held_out_election:2018,matched_towns:22,
  matched_counties:22,
  towns:Array.from({length:22},(_,i)=>({county:'測試縣'+i})),
@@ -40,6 +42,10 @@ assert.match(text,/70.00%/);
 assert.match(text,/74.00%/);
 assert.match(text,/沒有在2018年預測時使用2018結果/);
 assert.match(text,/不得作為2026年正式勝選機率修正依據/);
+assert.match(text,/2018縣市重抽樣範圍/);
+assert.match(text,/2022縣市重抽樣範圍/);
+assert.match(text,/-0.30 pp/);
+assert.match(text,/未來選舉的信賴區間/);
 const wrong=structuredClone(report);wrong.promotion_gate.status='approved';
 assert.throws(()=>validateTwoCycleHistory(panel,wrong),/不符合/);
 const missing=structuredClone(panel);missing.counties[0].districts=[];

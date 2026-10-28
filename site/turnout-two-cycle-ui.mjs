@@ -5,6 +5,7 @@ const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const fixed=x=>Number.isFinite(x)?x.toFixed(2):'—';
 const pp=x=>Number.isFinite(x)?(x>0?'+':'')+fixed(x)+' pp':'—';
 const num=x=>Number.isFinite(x)?new Intl.NumberFormat('zh-TW').format(x):'—';
+const uncertainty=s=>{const ci=s?.paired_county_uncertainty?.bootstrap_90pct_delta_mae_vs_persistence_pp;return Array.isArray(ci)&&ci.length===2&&ci.every(Number.isFinite)?pp(ci[0])+' ～ '+pp(ci[1]):'—';};
 const methods=[['persistence','前屆鄉鎮投票率直接延用'],
 ['county_shrink_75','向縣市均值收縮25%'],
 ['county_shrink_50','向縣市均值收縮50%']];
@@ -55,8 +56,9 @@ export function twoCycleHistoryPanel(raw,report,county='台北市'){
   const rows=methods.map(([key,label])=>{
     const before=a.scores[key],after=b.scores[key];
     return '<tr><td>'+esc(label)+'</td><td>'+fixed(before.electorate_weighted_mae_pp)+'</td>'
-      +'<td>'+pp(before.delta_mae_vs_persistence_pp)+'</td><td>'+fixed(after.electorate_weighted_mae_pp)+'</td>'
-      +'<td>'+pp(after.delta_mae_vs_persistence_pp)+'</td></tr>';
+      +'<td>'+pp(before.delta_mae_vs_persistence_pp)+'</td><td>'+uncertainty(before)+'</td>'
+      +'<td>'+fixed(after.electorate_weighted_mae_pp)+'</td>'
+      +'<td>'+pp(after.delta_mae_vs_persistence_pp)+'</td><td>'+uncertainty(after)+'</td></tr>';
   }).join('');
   const townRows=historyRows.map(t=>{
     const a=t.years['2014'],b=t.years['2018'];
@@ -73,9 +75,10 @@ export function twoCycleHistoryPanel(raw,report,county='台北市'){
    +'<div><small>2018→2022年匹配縣市</small><strong>'+num(b.matched_counties)+' / 22</strong></div>'
    +'<div><small>2018→2022年匹配行政區</small><strong>'+num(b.matched_towns)+'</strong></div></div>'
    +'<div class="turnout-tablewrap"><table class="turnout-table"><thead><tr><th>固定公式</th>'
-   +'<th>預測2018年 MAE (pp)</th><th>2018相對基準</th>'
-   +'<th>預測2022年 MAE (pp)</th><th>2022相對基準</th></tr></thead><tbody>'
+   +'<th>預測2018年 MAE (pp)</th><th>2018相對基準</th><th>2018縣市重抽樣範圍</th>'
+   +'<th>預測2022年 MAE (pp)</th><th>2022相對基準</th><th>2022縣市重抽樣範圍</th></tr></thead><tbody>'
    +rows+'</tbody></table></div>'
+   +'<p class="turnout-note">兩屆各自以完整縣市為群集做1000次成對重抽樣，區間是相對延用基準MAE差額的歷史樣本內90%分位範圍；不能當成對未來選舉的信賴區間。除縣市外未跨屆重抽行政區，也未將兩屆分數混成單一樣本。</p>'
    +'<p class="turnout-note">比較公式只使用各測試年份上一屆已知投票率，沒有在2018年預測時使用2018結果、也沒有在2022年預測時使用2022結果。兩個周期可比的是方法，不是完全相同的行政區樣本；不合併兩屆MAE。表內負的相對基準差額表示誤差改善。</p>'
    +'<p>兩個周期均低於直接延用基準的方法：'
    +(check.improved_both_cycles.length?check.improved_both_cycles.map(k=>esc(methods.find(x=>x[0]===k)?.[1]||k)).join('、'):'無')
