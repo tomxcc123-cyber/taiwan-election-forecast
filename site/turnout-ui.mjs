@@ -1,4 +1,5 @@
 import {turnoutScenario,turnoutOverview,TURNOUT_DELTA_OPTIONS} from './turnout-sensitivity.mjs';
+import {precinctPanel} from './precinct-turnout-ui.mjs';
 const esc=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const pct=x=>Number(x).toFixed(2)+'%';
 const fmt=x=>new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(Math.abs(x));
@@ -9,7 +10,7 @@ const boundsBar=(candidate)=>{
     +'<span class="turnout-range-possible" style="left:'+lo.toFixed(3)+'%;width:'+(hi-lo).toFixed(3)+'%"></span>'
     +'<span class="turnout-range-center" style="left:'+mid.toFixed(3)+'%"></span></div>';
 };
-export function turnoutPage(model,source,county='台北市',deltaPp=0){
+export function turnoutPage(model,source,county='台北市',deltaPp=0,precinctIndex=null,precinctRecord=null,precinctCounty='台北市',precinctYear=2022,precinctDistrict='all'){
   if(!source) return '<section class="turnout-page"><h1>投票率影響與敏感度</h1><p>無法核驗中選會歷史投票率資料。未用推算數字代替。</p></section>';
   try{
     const rows=turnoutOverview(model,source,deltaPp);
@@ -46,12 +47,13 @@ export function turnoutPage(model,source,county='台北市',deltaPp=0){
       +'<section class="turnout-panel"><h2>'+esc(active)+' 候選人有效票占比的條件範圍</h2>'
       +'<p>淺色區間是「投票率固定變動'+signed(deltaPp,0)+'個百分點，受影響選民的選票可任意分配」的邏輯上下界，不是機率區間；深色刻線為未改變原模型支持組成時的平均值。各候選人個別上下界不會同時取到。</p>'
       +ranges+'</section>'
+      +precinctPanel(precinctIndex,precinctRecord,precinctCounty,precinctYear,precinctDistrict)
       +'<section class="turnout-panel"><h2>各縣市歷史參與與情境診斷</h2>'
       +'<p>每列均用該縣市2022年的實際投票率做參照；紅／綠等政治分類不參與推算。由於2022年嘉義市長投票另期舉行，其跨年比較需特別審慎。</p>'
       +'<div class="turnout-tablewrap">'+hist+'</div></section>'
       +'<section class="turnout-panel"><h2>方法與資料限制</h2>'
       +'<p>投票率＝投票數／選舉人數，投票數含無效票；模型的候選人得票占比是有效票比例。為展示數學界限，暫假定無效票占比不隨投票率改變。若無分群投票偏好資料，不能單憑地方投票率變化判斷哪位候選人受益，也不能推定投票率與候選人支持之間的因果關係。</p>'
-      +'<p>2018年六都與其他縣市長選舉總投票率66.96%，2022年60.97%；本頁沒有提供2026年投票率的統計預測，也沒有把假設作為正式模型輸入。要建立可檢驗的投票率—得票率結構模型，後續需要選民調查、逐投開票所票數、人口與投票率資料，以及跨屆留出測試。</p>'
+      +'<p>2018年六都與其他縣市長選舉總投票率66.96%，2022年60.97%；本頁沒有提供2026年投票率的統計預測，也沒有把假設作為正式模型輸入。逐投開票所數據現已可依2014、2018、2022年官方檔案逐年核對；但它只能觀察總體投票行為，仍需要選民調查中的投票參與與候選人意向聯合測量、行政邊界對接及跨屆留出測試，才可能判定投票率能否成為正式模型因素。</p>'
       +'<p>來源：<a href="'+esc(source.source.url)+'" target="_blank" rel="noopener noreferrer">'+esc(source.source.report)+'</a>，表1-4（2018）及表1-7（2022）。<a href="turnout-history-2018-2022.json" download>下載22縣市原始投票率資料</a>。</p>'
       +'</section></section>';
   }catch(e){
