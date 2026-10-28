@@ -2,7 +2,7 @@
 const esc = v => String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const percent = v => Number.isFinite(Number(v)) ? (Number(v)*100).toFixed(1)+'%' : '—';
 const compact = v => Number.isFinite(Number(v)) ? new Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:1}).format(Number(v))+' USD' : '未提供';
-const dateLabel = v => {const d=new Date(v);return Number.isFinite(d.getTime())?d.toLocaleString('zh-TW',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit'}):'尚未核對';};
+const dateLabel = v => {if(!v)return '尚未核對';const d=new Date(v);return Number.isFinite(d.getTime())?d.toLocaleString('zh-TW',{timeZone:'Asia/Taipei',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit'}):'尚未核對';};
 const alias = {
   'Chiang Wan-an':'蔣萬安','Puma Shen':'沈伯洋','Kuo Hsi':'郭璽',
   'Su Chiao-hui':'蘇巧慧','Lee Shu-chuan':'李四川',
@@ -31,7 +31,7 @@ export function coverageOverrides(model){
   return Object.fromEntries(coverageRows(model).map(r=>[r.county,{
     fill:r.count===0?'#9aa8b9':r.days>45?'#b88d4a':r.count>=2?'#176e68':'#4aa89c',
     opacity:r.count===0?0.36:0.82,
-    party:'OTHER',value:r.count?r.count+' 題 / '+r.latest:'無直接民調',
+    value:r.count?r.count+' 題 / '+r.latest:'無直接民調',
     evidence:r.count?'已配對民調':'未覆蓋',elevation:130+r.count*140
   }]));
 }
