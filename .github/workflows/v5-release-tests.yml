@@ -34,6 +34,10 @@ on:
       - 'scripts/build.py'
       - 'site/index.html'
       - 'site/candidate-app.mjs'
+      - 'site/turnout-ui.mjs'
+      - 'site/turnout-association-ui.mjs'
+      - 'tests/turnout-browser.cjs'
+      - 'scripts/evaluate_turnout_holdout.py'
       - 'site/gis/map.mjs'
       - 'site/gis-edition.css'
       - 'site/forecast-command-center.css'
@@ -131,6 +135,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Validate GIS product in browser
         run: node tests/candidate-browser.cjs
+      - name: Validate real-browser CEC turnout research GIS and source gates
+        run: node tests/turnout-browser.cjs
       - name: Upload GIS visual QA
         if: always()
         uses: actions/upload-artifact@v4
