@@ -8,6 +8,10 @@ on:
       - 'site/turnout-sensitivity.mjs'
       - 'site/turnout-ui.mjs'
       - 'site/precinct-turnout-ui.mjs'
+      - 'scripts/build_turnout_district_panel.py'
+      - 'site/turnout-district-panel.mjs'
+      - 'tests/turnout-district-panel.mjs'
+      - 'tests/test_turnout_district_panel.py'
       - 'scripts/import_cec_open_csv.py'
       - 'scripts/import_cec_precincts.py'
       - 'site/turnout.css'
@@ -47,6 +51,7 @@ jobs:
           node --check site/turnout-sensitivity.mjs
           node --check site/turnout-ui.mjs
           node --check site/precinct-turnout-ui.mjs
+          node --check site/turnout-district-panel.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -63,6 +68,12 @@ jobs:
           python -m unittest tests.test_cec_precinct_import -v
       - name: Test precinct-level history browser and county total conservation
         run: node tests/precinct-turnout.mjs
+      - name: Test township comparison rendering and no-causal-claim guards
+        run: node tests/turnout-district-panel.mjs
+      - name: Test historical township source reconciliation
+        run: |
+          python -m unittest tests.test_turnout_district_panel -v
+          python scripts/build_turnout_district_panel.py --output /tmp/town-turnout-panel.json
       - name: Test CEC turnout data and neutral mathematical sensitivity bounds
         run: node tests/turnout-sensitivity.mjs
       - name: Test aligned archive and synthetic future-outcome evaluation
