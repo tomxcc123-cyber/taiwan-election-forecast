@@ -9,6 +9,7 @@ pre-2014 national trend is unavailable on compatible local-election boundary.
 import argparse
 import json
 import math
+import random
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -33,6 +34,63 @@ def cycle_score(rows,method):
         'electorate_weighted_rmse_pp':round(math.sqrt(sum(
             x['target_electorate']*x['errors_pp'][method]**2 for x in rows)/weight),5),
         'equal_town_mae_pp':round(sum(abs(x['errors_pp'][method]) for x in rows)/len(rows),5)
+    }
+
+
+
+def county_paired_uncertainty(rows,method,seed=20261028,B=1000):
+    """Paired county-cluster uncertainty within a single known election year.
+
+    This is NOT a confidence interval for a new election cycle. It checks
+    whether within-cycle MAE gains depend on a few counties.
+    """
+    if method=='persistence':return None
+    by_county={}
+    for r in rows:by_county.setdefault(r['county'],[]).append(r)
+    names=sorted(by_county)
+    if len(names)<3:raise ValueError('Insufficient regional clusters')
+    per_county={}
+    for name in names:
+        group=by_county[name]
+        total=sum(x['target_electorate'] for x in group)
+        delta=sum(
+            x['target_electorate']*(abs(x['errors_pp'][method])-
+                abs(x['errors_pp']['persistence']))
+            for x in group)/total
+        per_county[name]=delta
+    rng=random.Random(seed)
+    draws=[]
+    for _ in range(B):
+        sample=[rng.choice(names) for _ in names]
+        total=0.;numerator=0.
+        for name in sample:
+            for r in by_county[name]:
+                wt=r['target_electorate']
+                total+=wt
+                numerator+=wt*(abs(r['errors_pp'][method])-
+                    abs(r['errors_pp']['persistence']))
+        draws.append(numerator/total)
+    draws.sort()
+    loo=[]
+    for excluded in names:
+        rest=[r for r in rows if r['county']!=excluded]
+        total=sum(x['target_electorate'] for x in rest)
+        difference=sum(x['target_electorate']*(
+            abs(x['errors_pp'][method])-abs(x['errors_pp']['persistence']))
+            for x in rest)/total
+        loo.append({'excluded_county':excluded,'delta_mae_pp':round(difference,5)})
+    return {
+        'cluster_unit':'county',
+        'n_counties':len(names),
+        'resamples':B,
+        'bootstrap_90pct_delta_mae_vs_persistence_pp':[
+            round(draws[int(B*.05)],5),round(draws[int(B*.95)-1],5)],
+        'counties_improved':sum(x < -1e-9 for x in per_county.values()),
+        'counties_worse':sum(x > 1e-9 for x in per_county.values()),
+        'leave_one_county_out':loo,
+        'leave_one_county_out_improved_fraction':round(
+            sum(x['delta_mae_pp']<0 for x in loo)/len(loo),5),
+        'interpretation':'One election-year resampled by counties, not cross-election forecast calibration or a causal confidence interval'
     }
 
 
@@ -91,6 +149,8 @@ def evaluate(panel14, panel18, history, shadow2022=None):
             scores[k]['delta_mae_vs_persistence_pp']=round(
                 scores[k]['electorate_weighted_mae_pp']-
                 scores['persistence']['electorate_weighted_mae_pp'],5)
+        for method in RULES:
+            scores[method]['paired_county_uncertainty'] = county_paired_uncertainty(rows,method)
         if new_year==2022 and shadow2022 is not None:
             if shadow2022.get('kind')!='turnout_forecast_shadow_ablation_2022_exploratory' or (
                 shadow2022.get('training_cutoff_election')!=2018):
@@ -113,6 +173,7 @@ def evaluate(panel14, panel18, history, shadow2022=None):
         'rules':RULES,'cycles':cycles,'no_future_outcome_predictors':True,
         'different_cohorts_do_not_pool':True,
         'same_formula_weights_across_both_cycles':True,
+        'uncertainty_method':'For each held-out cycle separately: 1000 paired county-cluster bootstrap replicates plus leave-one-county-out MAE delta vs persistence; this does not establish confidence intervals for future cycles.',
         'candidate_vote_data_used':False,
         'improved_both_cycles':replicated,
         'model_limit':'2014 and 2022 holdouts are retrospective, only two cycles. 2022 model selection already occurred; no validated vote-choice link.',
