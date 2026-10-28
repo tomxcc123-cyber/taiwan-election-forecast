@@ -52,6 +52,20 @@ const server=http.createServer((req,res)=>{
     await page.locator('#townTurnoutMap path').first().click();
     const inspection=await page.locator('#turnoutMapInspector').innerText();
     assert.match(inspection,/2018投票率/);
+    if(fs.existsSync(path.join(root,'turnout-district-panel-2014-2018.json'))
+       &&fs.existsSync(path.join(root,'turnout-two-cycle-town-validation.json'))){
+      await page.waitForFunction(()=>{
+        const el=document.querySelector('#priorTownTurnoutMap');
+        return el&&(el.querySelectorAll('path').length>=8||
+          el.textContent.includes('暫不可用'));
+      },null,{timeout:15000});
+      assert.ok(await page.locator('#priorTownTurnoutMap path').count()>=8,
+        'The verified original-year 2014→2018 township map must load real GIS polygons.');
+      await page.locator('#priorTownTurnoutMap path').first().click();
+      assert.match(await page.locator('#priorTurnoutMapInspector').innerText(),/2014投票率/);
+      assert.ok(await page.locator('#townTurnoutMap path').count()>=8,
+        'The second map must not cancel or erase the first historical map.');
+    }
     await page.selectOption('#precinctCounty','新北市');
     await page.locator('#turnoutDistrictPanel h2').waitFor();
     await page.waitForFunction(()=>document.querySelectorAll('#townTurnoutMap path').length>=25,null,{timeout:15000});
