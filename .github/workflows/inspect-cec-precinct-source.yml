@@ -49,6 +49,23 @@ jobs:
                   print('ELECTION_YEAR_FILES',len(samples))
                   for x in samples[:85]:
                       print('ELECTION_YEAR_MEMBER',repr(x.filename),x.file_size)
+                  for x in samples:
+                      if (('2022-' in x.filename and x.filename.endswith('/elprof.csv')) or
+                          (('2014-' in x.filename or '2018-' in x.filename) and
+                          ('縣市市長' in x.filename or '直轄市市長' in x.filename) and
+                          x.filename.endswith('/elprof.csv'))):
+                          print('TARGET_ELECTION_FILE',repr(x.filename),x.file_size)
+                  for year in ('2014-','2018-','2022-'):
+                      for x in samples:
+                          if (year in x.filename and x.filename.endswith('/elprof.csv') and
+                             ('縣市市長' in x.filename or 'C1/city' in x.filename)):
+                              raw=z.read(x)
+                              lines=raw.decode('utf-8-sig',errors='replace').splitlines()
+                              print('TARGET_HEADER',year,repr(x.filename),repr(lines[0][:180]))
+                              booth=next((line for line in lines if len(line.split(','))>10 and
+                                  line.split(',')[5].strip('0')!=''),None)
+                              print('TARGET_BOOTH',year,repr(booth[:180]) if booth else None)
+                              break
                   for suffix in ('elprof.csv','elbase.csv','elctks.csv'):
                       for x in samples:
                           if x.filename.endswith(suffix) and '2022' in x.filename:
