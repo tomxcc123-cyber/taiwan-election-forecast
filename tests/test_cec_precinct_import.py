@@ -54,6 +54,7 @@ class PrecinctSheetTests(unittest.TestCase):
     def test_station_inventory_discrepancy_retained(self):
         sheet=sample()
         sheet.rows[4][10]=1  # The extra issue-balance term; keep audit flag.
+        sheet.rows[3][10]=1  # Station and district both contain the audited discrepancy.
         self.assertEqual(parse_precinct_sheet(sheet)['precincts'][0]['inventory_delta'],1)
     def test_non_int_rejected(self):
         sheet=sample()
