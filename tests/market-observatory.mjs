@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {coverageRows, coverageOverrides, coveragePanel, marketPage} from '../site/market-observatory.mjs';
+import {coverageRows, coverageOverrides, coveragePanel, marketPage, fusionEvidencePanel} from '../site/market-observatory.mjs';
 
 const model = {
   generated_at: '2026-10-28T08:00:00Z', roster_as_of: '2026-09-07',
@@ -39,3 +39,17 @@ assert.doesNotMatch(output,/<button[^>]*(?:buy|trade|order)|data-action=["']trad
 const missing=marketPage(null,model);
 assert.match(missing,/尚未成功核驗/);
 console.log(JSON.stringify({passed:true,coverage_rows:rows.length,markets:1}));
+
+const emptyEvidence=fusionEvidencePanel(null);
+assert.match(emptyEvidence,/沒有由同一次網站建構/);
+const archivedEvidence=fusionEvidencePanel({schema_version:1,snapshots:[{
+  as_of:'2026-10-28T05:00:00Z',source_digest:'a'.repeat(64),
+  included_races:1,excluded_races:1,races:[
+    {county:'台北市',included:true,reason:'matched_and_quality_checked',candidates:[
+      {name:'蔣萬安',probability:.6,fused_05:.62},{name:'沈伯洋',probability:.4,fused_05:.38}]},
+    {county:'桃園市',included:false,reason:'來源不存在',candidates:[{name:'張善政',probability:1,fused_05:null}]}
+  ]}]});
+assert.match(archivedEvidence,/市場融合的歷史證據與研究審計/);
+assert.match(archivedEvidence,/來源不存在/);
+assert.match(archivedEvidence,/\+2.00pp/);
+assert.match(archivedEvidence,/尚未提供/);

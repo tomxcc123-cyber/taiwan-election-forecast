@@ -44,3 +44,35 @@
 真正將市場訊號放進**正式聯合預測**，需要先做到：保留市場逐時快照與來源時間、處理同一民調在模型和市場被重複利用的相關性、取得足夠具不同年份的結算事件、按預先固定權重比較 Brier/log loss 和校準曲線。無證據不能只憑市場流動性較高就認定市場更準。入模時還須聯合更新各縣市模擬而非各自調整勝率後拼湊全台席次。
 
 新模組：`site/market-fusion.mjs`；回歸測試：`node tests/market-fusion.mjs`。
+
+
+## 配對時間快照與正式回測準備（2026-10-28）
+
+新增 \`scripts/archive_market_fusion.mjs\` 與 \`data/market-fusion-history.json\`，在每次 GitHub Pages 建構使用**同一次建構產生的** \`dist/candidate-model.json\` 和當輪 \`data/market-snapshots.json\`，記錄全部22縣市的候選人基準勝率、已對應的市場 Yes 價格、市場分布、5%與10%實驗融合勝率、來源擷取時點、候選人ID、模型fingerprint、排除原因與 SHA256 證據摘要。這不是把先前只有價格的歷史資料重新灌入今天的模型；**不允許補造過去的模型與市場配對**。
+
+依台北日期每個模型版本保留當日最後一次完整成功建構，歷史上限200份；同一時間不同來源摘要會阻擋覆寫。資料流不反寫正式 HB-TLEF 模型，不修改得票率、聯合勝率分布或國民黨／民進黨席次計算。市場頁顯示最新符合條件的縣市數、未納入原因、來源日期和候選人勝率差額。即使有很多每日快照，也不能把同一縣市多日數據當作互相獨立的多個選舉樣本。
+
+新增 \`scripts/evaluate_market_fusion.mjs\`，必須**明確提供** \`status=official_final\`、2026-11-28日期、每個縣市勝出者candidate_id及中選會官方來源 URL 才能評估。評估對同一選區、同一信息截止點的模型、來源市場、5%、10%融合分布做**多類別 Brier score**與**勝出者 log loss**；固定1、3、7、14、21、28日前的時間窗口，要求截止前36小時內真實記錄，避免事後挑選好看的日期。缺少結果、記錄或不合格市場時不出分數，不用「模型今天的數字」重算舊日期。評估報表每個窗口單列樣本覆蓋和排除原因，不能把高度相關的時間窗口視為獨立樣本，也不據此宣稱權重統計顯著。
+
+選後命令（請先從中選會核對真正的最終當選名單並獨立編成檔案，倉庫**不**附帶假結果）：
+
+\`node scripts/evaluate_market_fusion.mjs PATH_TO_VERIFIED_CEC_RESULTS.json OUTPUT_RESEARCH_REPORT.json\`
+
+單次正式結果格式：
+
+\`\`\`json
+{
+  "schema_version": 1,
+  "election_date": "2026-11-28",
+  "status": "official_final",
+  "races": [
+    {
+      "county": "某縣市",
+      "winner_candidate_id": "必須符合已存檔候選人ID",
+      "official_source_url": "https://db.cec.gov.tw/......"
+    }
+  ]
+}
+\`\`\`
+
+此處的 \`某縣市\` 和 ID 僅為資料結構示例，並非任何實際當選結果。至少需要多屆獨立選舉或相當數量的經核實歷史市場資料，才有條件訓練並評估真正自適應的市場權重；不能只根據2026一屆結果就把某個試驗權重改稱最佳。

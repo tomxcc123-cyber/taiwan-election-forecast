@@ -78,7 +78,42 @@ function eventCard(event,model,history,weight){
    +'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>選項</th><th>Yes價格</th><th>模型條件勝率</th><th>差額</th><th>買賣價差</th><th>融合試驗勝率</th><th>價格走勢</th></tr></thead><tbody>'+rows+'</tbody></table></div>'
    +'<p class="market-note">Yes合約報價不保證合計100%；市場與模型數值的差額不代表統計誤差。未核實姓名配對的候選人不進行對照。</p></article>';
 }
-export function marketPage(snapshot,model,weight=0.05){
+export function fusionEvidencePanel(archive){
+  const snapshots=archive?.schema_version===1&&Array.isArray(archive.snapshots)?archive.snapshots:[];
+  const recent=snapshots.at(-1);
+  const rows=recent?.races||[];
+  const reasons=new Map();
+  for(const r of rows){
+    if(!r.included)reasons.set(r.reason||'未標明原因',(reasons.get(r.reason||'未標明原因')||0)+1);
+  }
+  const exclusions=[...reasons.entries()].sort((a,b)=>b[1]-a[1]);
+  const stat='<div class="market-summary">'
+   +'<div><small>真正凍結的台北日曆日</small><strong>'+snapshots.length+'</strong></div>'
+   +'<div><small>最近通過訊號核驗的選區</small><strong>'+(recent?.included_races??'—')+' / 22</strong></div>'
+   +'<div><small>核驗排除的選區</small><strong>'+(recent?.excluded_races??'—')+'</strong></div>'
+   +'<div><small>已發佈的選後評分</small><strong>尚未提供</strong></div></div>';
+  const table=recent?'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>縣市</th><th>模型凍結時間</th><th>信號資格</th><th>模型領先者</th><th>5% 融合差額</th></tr></thead><tbody>'
+   +rows.map(r=>{
+      const base=[...(r.candidates||[])].sort((a,b)=>b.probability-a.probability)[0];
+      const shifted=base?.fused_05;
+      return '<tr><td>'+esc(r.county)+'</td><td>'+esc(dateLabel(recent.as_of))+'</td>'
+      +'<td>'+(r.included?'已配對／通過門檻':esc(r.reason||'不適用'))+'</td>'
+      +'<td>'+esc(base?.name||'—')+'</td>'
+      +'<td>'+(r.included&&Number.isFinite(shifted)?((shifted-base.probability)*100>=0?'+':'')+((shifted-base.probability)*100).toFixed(2)+'pp':'—')+'</td></tr>';
+    }).join('')+'</tbody></table></div>':'<p class="market-note">還沒有由同一次網站建構與市場核驗形成的配對歷史記錄；不會用目前的行情推算過去日期。</p>';
+  const exceptions=exclusions.length?'<details class="market-evidence-exceptions"><summary>未入選原因（'+exclusions.reduce((a,x)=>a+x[1],0)+'縣市）</summary>'
+      +'<div class="market-tablewrap"><table class="market-data-table"><thead><tr><th>原因</th><th>縣市數</th></tr></thead><tbody>'
+      +exclusions.map(([reason,count])=>'<tr><td>'+esc(reason)+'</td><td>'+count+'</td></tr>').join('')
+      +'</tbody></table></div></details>':'';
+  return '<section class="market-panel" id="marketFusionAudit"><header><div><small>FROZEN EVIDENCE · NO LOOK-AHEAD</small><h2>市場融合的歷史證據與研究審計</h2></div></header>'
+    +'<p>同一建構時點配對模型條件勝率、原始合約價格和實驗結果。每天僅保留台北時間當日最後一次成功建構，保留來源時間、版本與候選人識別，供選後按相同資訊截止時間比較。</p>'
+    +stat
+    +(recent?'<p class="market-note">最近紀錄：'+esc(dateLabel(recent.as_of))+' · 來源記錄 SHA256 '+esc(recent.source_digest?.slice(0,14)||'—')+'…</p>':'')
+    +exceptions+table
+    +'<p class="market-warning">2026年11月28日選舉尚未舉行。現在沒有正式結算結果，不能顯示「Brier改善」或宣稱哪個權重較準。選後只使用當日之前實際已保存、且能匹配中選會正式結果的樣本。</p></section>';
+}
+
+export function marketPage(snapshot,model,weight=0.05,archive=null){
   const d=snapshot?.schema_version===1?snapshot:{status:'unavailable',events:[],history:[],errors:[]};
   const events=d.events||[],fresh=events.filter(x=>!x.stale);
   const option=[...new Set(events.map(x=>x.county))].sort().map(x=>'<option value="'+esc(x)+'">'+esc(x)+'</option>').join('');
@@ -89,6 +124,7 @@ export function marketPage(snapshot,model,weight=0.05){
    +(events.length?'':'<section class="market-panel"><h2>市場資料尚未成功核驗</h2><p>等待公開來源同步；未使用模擬行情。</p></section>')
    +'<div class="market-controls"><label for="marketCounty">縣市</label><select id="marketCounty"><option value="all">全部</option>'+option+'</select><small>無市場不代表沒有選舉，歷史快照不代表即時盤口。</small></div>'
    +'<section class="market-panel market-fusion-control"><h2>市場信號融合 · 試驗版本</h2><p>以模型勝率及候選人市場 Yes 合約價格進行對數機率融合；並非把市場價格當作候選人得票率。研究權重尚未經獨立週期校準，融合數字不改動正式 HB-TLEF 模型、得票率或全國席次分布。</p><label for="marketWeight">市場試驗權重</label> <select id="marketWeight">'+[0,0.05,0.10].map(w=>'<option value="'+w+'" '+(w===weight?'selected':'')+'>'+Math.round(w*100)+'%'+(w===0?'（不融合）':'')+'</option>').join('')+'</select><p class="market-note">僅對候選人名單高度匹配、近期報價、流動性及買賣價差均通過門檻的選區產生融合勝率。</p></section>'
+   +fusionEvidencePanel(archive)
    +'<div id="marketEventList">'+events.map(x=>eventCard(x,model,d.history||[],weight)).join('')+'</div>'
    +'<section class="market-panel"><h2>資料與法律說明</h2><p>來源為<a href="https://docs.polymarket.com/" rel="noopener noreferrer" target="_blank">Polymarket Gamma 公開唯讀接口</a>。採排程快照，資料不一定即時，也不是完整訂單簿；失敗時保留舊值並標記。選前全站暫停發布政策同樣適用本頁。</p><p>目前不將市場資料合併進統計模型、不做依價格推測選民群體的分析，也不提供交易功能。不同市場的結算條款應逐一核對。</p></section></section>';
 }

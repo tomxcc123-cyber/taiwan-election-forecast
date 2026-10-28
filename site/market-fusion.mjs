@@ -38,7 +38,7 @@ export function marketFusion(model, event, weight=0.05, asOf=new Date().toISOStr
   if(!race||race.candidates?.length<2)return error('目前名單無法對應選區');
   const quoteTime=Date.parse(event.quote_as_of||'');
   const checkTime=Date.parse(asOf||'');
-  if(!Number.isFinite(quoteTime)||!Number.isFinite(checkTime)||quoteTime>checkTime+300000||
+  if(!Number.isFinite(quoteTime)||!Number.isFinite(checkTime)||quoteTime>checkTime||
       checkTime-quoteTime>12*3600000)return error('交易報價超過12小時或時間異常');
   if(!Number.isFinite(event.volume_usd)||event.volume_usd<10000||
       !Number.isFinite(event.liquidity_usd)||event.liquidity_usd<10000)return error('交易量或流動性不足');
@@ -86,6 +86,7 @@ export function marketFusion(model, event, weight=0.05, asOf=new Date().toISOStr
     probabilities:race.candidates.map((c,i)=>({
       candidateId:c.candidate_id,name:c.name,model:p.get(c.name),
       market:mapped.has(c.name)?mapped.get(c.name).probability:null,
+      alignedMarket:q.get(c.name)/qTotal,
       fused:scores[i]/z,delta:scores[i]/z-p.get(c.name),
       mapped:mapped.has(c.name)
     }))
