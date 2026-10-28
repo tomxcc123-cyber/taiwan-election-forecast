@@ -23,6 +23,7 @@ RENAMES={
    'official_url':'https://www.chcg.gov.tw/HSO/changhua/01news/news_a_02.aspx?bull_id=195475'},
 }
 CEC_MINUTES='https://web.cec.gov.tw/api/file/d97c9325-90b2-44bc-a430-c43197e58ea0.pdf'
+OFFICIAL_2014_ELBASE_SHA256='55041399ad0be22f585c60a53a5112f6ea37eb5a5399d3ff0b27d2ccafd71a58'
 STATUS='matched_original_code_name_with_documented_2015_renames'
 
 
@@ -76,6 +77,7 @@ def recover(prior,recent,archive_root=ROOT/'data/cec-precincts'):
                 info.get('cec_minutes_url')!=CEC_MINUTES or
                 info.get('effective_date')!=rule['effective_date'] or
                 info.get('spatial_boundary_verified') is not False or
+                info.get('2014_elbase_sha256')!=OFFICIAL_2014_ELBASE_SHA256 or
                 info.get('2014_elbase_sha256')!=(c.get('2014_label_source') or {}).get('sha256')):
                 raise ValueError('Existing renamed row has unverified provenance')
             for year in (2014,2018):
@@ -90,7 +92,7 @@ def recover(prior,recent,archive_root=ROOT/'data/cec-precincts'):
             continue
         if existing:raise ValueError('Ambiguous historical town-code join')
         src=c.get('2014_label_source') or {}
-        if not isinstance(src.get('sha256'),str) or len(src['sha256'])!=64:
+        if src.get('sha256')!=OFFICIAL_2014_ELBASE_SHA256:
             raise ValueError('Missing original 2014 elbase checksum')
         if (c['unmatched_2014_names']!=[rule['before']] or
             c['unmatched_2018_names']!=[rule['after']] or
