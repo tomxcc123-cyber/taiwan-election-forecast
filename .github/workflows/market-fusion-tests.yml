@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - 'site/market-fusion.mjs'
+      - 'site/market-joint-shadow.mjs'
       - 'site/market-observatory.mjs'
       - 'site/candidate-app.mjs'
       - 'scripts/archive_market_fusion.mjs'
       - 'scripts/evaluate_market_fusion.mjs'
       - 'tests/market-fusion.mjs'
+      - 'tests/market-joint-shadow.mjs'
       - 'tests/market-fusion-evidence.mjs'
       - 'tests/market-observatory.mjs'
       - '.github/workflows/market-fusion-tests.yml'
@@ -30,6 +32,7 @@ jobs:
       - name: Validate source modules
         run: |
           node --check site/market-fusion.mjs
+          node --check site/market-joint-shadow.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -38,5 +41,7 @@ jobs:
         run: node tests/market-fusion.mjs
       - name: Test market observation presentation
         run: node tests/market-observatory.mjs
+      - name: Test joint correlated election simulations and ESS quality gates
+        run: node tests/market-joint-shadow.mjs
       - name: Test aligned archive and synthetic future-outcome evaluation
         run: node tests/market-fusion-evidence.mjs

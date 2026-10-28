@@ -8,6 +8,7 @@ import {readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 import {marketFusion} from '../site/market-fusion.mjs';
+import {jointMarketShadow} from '../site/market-joint-shadow.mjs';
 
 const base = resolve(import.meta.dirname,'..');
 const modelFile=resolve(base,'dist/candidate-model.json');
@@ -18,6 +19,24 @@ const publishFile=resolve(base,'dist/market-fusion-history.json');
 export const ASSUMED_WEIGHTS=Object.freeze([0,0.05,0.10]);
 const round = p=>Number(p.toFixed(8));
 const id = x=>String(x??'');
+
+function compactJoint(shadow){
+  if(!shadow.available){
+    return {available:false,reason:shadow.reason,
+      diagnostics:shadow.diagnostics||null,
+      included_count:shadow.eligible_count??shadow.diagnostics?.eligible_count??0};
+  }
+  return {
+    available:true,kind:shadow.kind,diagnostics:shadow.diagnostics,
+    national:shadow.national.map(x=>({party:x.party,mean:x.mean,baseline_mean:x.baseline_mean,
+      delta_mean:x.delta_mean,p05:x.p05,p95:x.p95,majority_probability:x.majority_probability})),
+    races:shadow.counties.map(r=>({
+      county:r.county,race_id:r.race_id,eligible_market:r.eligible_market,
+      candidates:r.candidates.map(c=>({candidate_id:c.candidate_id,
+        probability:c.experimental,baseline_probability:c.baseline}))
+    }))
+  };
+}
 
 export function pairedSnapshot(model, market){
   const asOf=model?.generated_at,modelMs=Date.parse(asOf||'');
@@ -72,6 +91,10 @@ export function pairedSnapshot(model, market){
       candidates
     });
   }
+  const joint_sensitivity={
+    joint_05:compactJoint(jointMarketShadow(model,market,0.05,asOf)),
+    joint_10:compactJoint(jointMarketShadow(model,market,0.10,asOf))
+  };
   const source={
     model_fingerprint:model.fingerprint,
     model_version:model.model_version,
@@ -85,13 +108,14 @@ export function pairedSnapshot(model, market){
     taipei_day:day,
     as_of:asOf,
     provenance:source,
-    source_digest:createHash('sha256').update(JSON.stringify({source,races})).digest('hex'),
+    source_digest:createHash('sha256').update(JSON.stringify({source,races,joint_sensitivity})).digest('hex'),
     weights:ASSUMED_WEIGHTS,
     included_races:races.filter(r=>r.included).length,
     excluded_races:races.filter(r=>!r.included).length,
     outcome_status:'awaiting_official_result',
     research_only:true,
     official_forecast_unchanged:true,
+    joint_sensitivity,
     races
   };
 }

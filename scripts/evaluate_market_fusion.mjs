@@ -9,6 +9,8 @@ import {resolve} from 'node:path';
 const EPS=1e-8;
 const WEIGHTS=[['baseline','probability'],['market','market_aligned'],
                ['fusion_05','fused_05'],['fusion_10','fused_10']];
+const JOINT_METHODS=['joint_05','joint_10'];
+const METHODS=[...WEIGHTS.map(x=>x[0]),...JOINT_METHODS];
 const MAX_AGE_HOURS=36;
 const TAIPEI_POLL_CLOSE_UTC='2026-11-28T08:00:00Z'; // 16:00 Taiwan: evaluation reference, not assertion of certified closing
 const DAY_HORIZONS=[1,3,7,14,21,28];
@@ -74,6 +76,23 @@ export function evaluate(archive,outcomes){
           snapshot_digest:snap.source_digest,
           official_source_url:official.get(county).official_source_url});
       }
+      // Joint methods are optional on old archive dates. Compare only when
+      // both joint draws and the local source gate genuinely passed.
+      for(const label of JOINT_METHODS){
+        const joint=snap.joint_sensitivity?.[label];
+        if(!joint?.available)continue;
+        const local=joint.races?.find(r=>r.county===county);
+        if(!local?.eligible_market)continue;
+        const map=new Map(local.candidates?.map(c=>[c.candidate_id,c.probability]));
+        if(map.size!==race.candidates.length||race.candidates.some(c=>!map.has(c.candidate_id)))
+          throw new Error('Joint archive has incompatible candidate registration IDs');
+        const aligned=race.candidates.map(c=>({candidate_id:c.candidate_id,probability:map.get(c.candidate_id)}));
+        const scores=scoreDistribution(aligned,winner,'probability');
+        rows.push({horizon_days:days,county,method:label,...scores,
+          model_as_of:snap.as_of,market_as_of:race.quote_as_of,
+          snapshot_digest:snap.source_digest,
+          official_source_url:official.get(county).official_source_url});
+      }
       evaluated++;
     }
     coverage.push({horizon_days:days,evaluated_counties:evaluated,official_counties:official.size,
@@ -82,11 +101,22 @@ export function evaluate(archive,outcomes){
   const summary=DAY_HORIZONS.map(days=>{
     const candidates=rows.filter(x=>x.horizon_days===days);
     return {horizon_days:days,n:coverage.find(x=>x.horizon_days===days).evaluated_counties,
-      scores:Object.fromEntries(WEIGHTS.map(([method])=>{
+      scores:Object.fromEntries(METHODS.map(method=>{
         const subset=candidates.filter(x=>x.method===method);
         const n=subset.length;
-        return [method,n?{brier:subset.reduce((a,x)=>a+x.brier,0)/n,
-          log_loss:subset.reduce((a,x)=>a+x.log_loss,0)/n}:null];
+        if(!n)return [method,null];
+        const baseline=new Map(candidates.filter(x=>x.method==='baseline').map(
+          x=>[x.county,x]));
+        const paired=subset.map(x=>({forecast:x,baseline:baseline.get(x.county)}));
+        if(paired.some(x=>!x.baseline))throw new Error('Missing paired baseline score');
+        return [method,{
+          n,brier:subset.reduce((a,x)=>a+x.brier,0)/n,
+          log_loss:subset.reduce((a,x)=>a+x.log_loss,0)/n,
+          paired_delta_brier:paired.reduce(
+            (a,x)=>a+x.forecast.brier-x.baseline.brier,0)/n,
+          paired_delta_log_loss:paired.reduce(
+            (a,x)=>a+x.forecast.log_loss-x.baseline.log_loss,0)/n
+        }];
       }))};
   });
   return {schema_version:1,scope:'paired_retrospective_research_only',official_status:outcomes.status,
@@ -98,6 +128,8 @@ export function evaluate(archive,outcomes){
 }
 
 function main(){
+  if(Date.now()<Date.parse('2026-11-28T08:00:00Z'))
+    throw new Error('The 2026 election has not concluded: real outcome scoring is prohibited');
   const args=process.argv.slice(2);
   if(args.length!==2)throw new Error('Usage: node scripts/evaluate_market_fusion.mjs <certified-cec-results.json> <research-output.json>');
   const [input,output]=args.map(x=>resolve(x));
