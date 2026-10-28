@@ -100,10 +100,20 @@ def main():
         r for r in augmented["records"]
         if r.get("pollster_id") == "pearson-data" and r.get("county") == "新北市"
     ]
-    if len(pearson_nt) != 1:
-        raise SystemExit(f"Pearson New Taipei alias created duplicate observations: {len(pearson_nt)}")
-    if PEARSON_ALIAS not in pearson_nt[0].get("verification_urls", []):
-        raise SystemExit("Pearson cross-tab page missing from verification aliases")
+    # Additional genuinely distinct Pearson survey waves are valid.  The
+    # cross-tab alias must point to exactly one existing July observation,
+    # never generate a second record for that same fieldwork period.
+    pearson_alias_records = [
+        r for r in pearson_nt if PEARSON_ALIAS in r.get("verification_urls", [])
+    ]
+    if len(pearson_alias_records) != 1:
+        raise SystemExit(f"Pearson cross-tab alias matched {len(pearson_alias_records)} records, expected one")
+    if pearson_alias_records[0].get("date") != "2026-07-11":
+        raise SystemExit("Pearson cross-tab alias attached to the wrong fieldwork wave")
+    keys = [(r.get("pollster_id"), r.get("county"), r.get("field_start"), r.get("date"))
+            for r in pearson_nt]
+    if len(keys) != len(set(keys)):
+        raise SystemExit("Pearson survey has duplicate pollster/county/fieldwork observations")
 
     result = {
         "schema_version": 2,
@@ -120,6 +130,7 @@ def main():
         },
         "taipei": delta,
         "pearson_new_taipei_record_count": len(pearson_nt),
+        "pearson_alias_wave_count": len(pearson_alias_records),
         "pearson_alias_verified": True,
     }
     OUT.parent.mkdir(parents=True, exist_ok=True)
