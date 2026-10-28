@@ -72,7 +72,7 @@ def build(now=None):
          'market-joint-shadow.mjs',
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
          'precinct-turnout-ui.mjs',
-         'turnout-district-panel.mjs', 'turnout-association-ui.mjs', 'turnout-shadow-ui.mjs',
+         'turnout-district-panel.mjs', 'turnout-association-ui.mjs', 'turnout-shadow-ui.mjs', 'turnout-two-cycle-ui.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -172,6 +172,32 @@ def build(now=None):
         (dist / 'turnout-shadow-ablation-2022.json').write_text(
             json.dumps(shadow, ensure_ascii=False, indent=2, allow_nan=False),
             encoding='utf8')
+
+    independent_cycle_files = (
+        ('turnout-district-panel-2014-2018.json',
+         'observed_cec_2014_to_2018_town_turnout_holdout_input',
+         'official_2026_forecast_unchanged'),
+        ('turnout-two-cycle-town-validation.json',
+         'cec_two_independent_town_turnout_cycles_2014_2022',
+         'no_future_outcome_predictors'),
+        ('turnout-county-two-cycle-2014-2022.json',
+         'cec_county_turnout_two_cycle_baseline_check',
+         'cycle_count'),
+    )
+    for filename,kind,guard in independent_cycle_files:
+        path = ROOT / 'data' / filename
+        if path.exists():
+            payload = json.loads(path.read_text(encoding='utf8'))
+            pg = payload.get('promotion_gate', {})
+            if (payload.get('schema_version') != 1 or payload.get('kind') != kind or
+                payload.get(guard) not in (True,2) or
+                len(payload.get('cycles', {})) != 2 and filename != 'turnout-district-panel-2014-2018.json' or
+                pg.get('status') != 'blocked' and filename != 'turnout-district-panel-2014-2018.json' or
+                pg.get('allow_2026_candidate_win_probability_modification') is not False
+                    and filename != 'turnout-district-panel-2014-2018.json'):
+                raise ValueError('Independent historical turnout cycle source validation failed')
+            (dist / filename).write_text(
+                json.dumps(payload,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf8')
 
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))
