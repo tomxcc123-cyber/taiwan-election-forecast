@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-10-27T22:12:22+00:00",
+  "checked_at": "2026-10-28T04:24:46+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-10-27T22:12:22+00:00",
-  "updated_at": "2026-09-12T11:05:00+00:00",
-  "latest_fieldwork_date": "2026-08-30",
+  "index_checked_at": "2026-10-28T04:24:46+00:00",
+  "updated_at": "2026-10-28T04:25:18+00:00",
+  "latest_fieldwork_date": "2026-10-19",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
   "sources": [
@@ -27,7 +27,7 @@
     {
       "name": "ETtoday 民調雲",
       "url": "https://feeds.feedburner.com/ettoday/newslist",
-      "discovered": 0,
+      "discovered": 1,
       "validated_reports": 0,
       "reviewed_reports": 2,
       "index_ok": true,
@@ -56,11 +56,12 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-10-27T22:12:40+00:00",
+      "auto_discovery_checked_at": "2026-10-28T04:25:16+00:00",
       "auto_discovered": 6,
       "auto_known": 0,
-      "auto_pending": 6,
-      "registry_pollster_id": "shanshui"
+      "auto_pending": 4,
+      "registry_pollster_id": "shanshui",
+      "auto_promoted": 2
     },
     {
       "name": "鉅聞天下／皮爾森數據",
@@ -73,11 +74,12 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-10-27T22:12:40+00:00",
+      "auto_discovery_checked_at": "2026-10-28T04:25:16+00:00",
       "auto_discovered": 2,
       "auto_known": 1,
-      "auto_pending": 1,
-      "registry_pollster_id": "pearson-data"
+      "auto_pending": 0,
+      "registry_pollster_id": "pearson-data",
+      "auto_promoted": 1
     }
   ],
   "source_review": [
@@ -96,6 +98,14 @@
   ],
   "discovery_queue": [
     {
+      "source": "ETtoday",
+      "title": "羅智強示警蔣萬安選情仍危險！揭3份民調落差大　籲支持者站出來",
+      "county": "台北市",
+      "url": "https://www.ettoday.net/news/20261028/3261968.htm",
+      "status": "discovered_unverified",
+      "reason": "Missing ETtoday fieldwork dates"
+    },
+    {
       "pollster_id": "shanshui",
       "source": "震傳媒／山水民調",
       "publisher": "震傳媒",
@@ -104,20 +114,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
-    },
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震撼民心 震傳媒民調(一)/42.8%北市民支持沈伯洋、39.0%挺蔣萬安 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選戰,在6名市長參選人中,42.8%台北市民表示支持民進黨籍參選人沈伯洋、39.0%支持現任市長蔣萬安,在投票率部分,90.1%台北市民表示會去投票,8.1%表示不會投票。",
-      "county": "台北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44789",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
+      "discovered_at": "2026-10-28T04:25:16+00:00",
+      "last_seen_at": "2026-10-28T04:25:16+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-10-28T04:25:18+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -128,8 +128,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44790",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
+      "discovered_at": "2026-10-28T04:25:16+00:00",
+      "last_seen_at": "2026-10-28T04:25:16+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-10-28T04:25:18+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -140,32 +142,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
-    },
-    {
-      "pollster_id": "pearson-data",
-      "source": "鉅聞天下／皮爾森數據",
-      "publisher": "鉅聞天下新聞網",
-      "title": "2026《鉅聞民調》新北市長選舉民調/新北市長選情膠著 李四川45.74% 蘇巧慧45.18% 女性選民板塊挪移",
-      "county": "新北市",
-      "url": "https://www.bigmedia.com.tw/article/1791969638295",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
-    },
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震傳媒民調(一)/藍白合也沒用?新北市民38.2%支持蘇巧慧、37.1%挺李四川 雙方差距1.1%! 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉,在三位登記參選人中,38.2%新北市民支持民進黨籍參選人蘇巧慧,37.1%支持國民黨籍參選人李四川,雙方差距1.1%,至於無黨籍參選人蘇輝湟則獲得2.6%新北市民的支持。若與115年4月新北市民調",
-      "county": "新北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44348",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
+      "discovered_at": "2026-10-28T04:25:16+00:00",
+      "last_seen_at": "2026-10-28T04:25:16+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-10-28T04:25:18+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -176,11 +156,156 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-27T22:12:40+00:00",
-      "last_seen_at": "2026-10-27T22:12:40+00:00"
+      "discovered_at": "2026-10-28T04:25:16+00:00",
+      "last_seen_at": "2026-10-28T04:25:16+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-10-28T04:25:18+00:00"
     }
   ],
   "records": [
+    {
+      "id": "9715c8fce619a1e63c782c2b",
+      "county": "台北市",
+      "source": "震傳媒／山水民調",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44789",
+      "report_title": "震撼民心 震傳媒民調(一)/42.8%北市民支持沈伯洋、39.0%挺蔣萬安 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選戰,在6名市長參選人中,42.8%台北市民表示支持民進黨籍參選人沈伯洋、39.0%支持現任市長蔣萬安,在投票率部分,90.1%台北市民表示會去投票,8.1%表示不會投票。",
+      "published_at": "2026-10-22",
+      "field_start": "2026-10-18",
+      "date": "2026-10-19",
+      "sample_n": 1074,
+      "population": "設籍台北市，年滿20歲民眾",
+      "method": "CATI，住宅電話，系統抽樣與尾2碼隨機",
+      "method_class": "landline_cati",
+      "margin_of_error": 2.99,
+      "confidence_level": 95,
+      "funding": "震傳媒",
+      "candidates": [
+        {
+          "name": "沈伯洋",
+          "support": 42.8,
+          "bloc": "other"
+        },
+        {
+          "name": "蔣萬安",
+          "support": 39.0,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 0.0,
+      "undecided_reported": false,
+      "nonvote": 0,
+      "nonvote_reported": false,
+      "response_mass_unreported": 18.2,
+      "response_mass_note": "Only listed candidate shares and explicitly identified response categories; remainder is unclassified, NOT assumed undecided or abstention.",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "ingestion": "automatic_first_party_partial",
+      "verification_status": "validated_partial_response",
+      "retrieved_at": "2026-10-28T04:25:18+00:00",
+      "sample_note": "Publisher sample; partial response categories. Relative candidate support only.",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "02c43c89e16ea5fa83781ce3",
+      "county": "新北市",
+      "source": "鉅聞天下／皮爾森數據",
+      "pollster_id": "pearson-data",
+      "pollster": "皮爾森數據",
+      "publisher": "鉅聞天下新聞網",
+      "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
+      "report_title": "2026《鉅聞民調》新北市長選舉民調/新北市長選情膠著 李四川45.74% 蘇巧慧45.18% 女性選民板塊挪移",
+      "published_at": "2026-10-15",
+      "field_start": "2026-09-28",
+      "date": "2026-10-03",
+      "sample_n": 1066,
+      "population": "新北市年滿20歲之網路人口",
+      "method": "DMP網路調查，性別／年齡／居住地分層與事後加權",
+      "method_class": "online_dmp_panel",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "鉅聞天下新聞網",
+      "candidates": [
+        {
+          "name": "蘇巧慧",
+          "support": 45.18,
+          "bloc": "other"
+        },
+        {
+          "name": "李四川",
+          "support": 45.74,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 6.96,
+      "undecided_reported": true,
+      "nonvote": 0,
+      "nonvote_reported": false,
+      "response_mass_unreported": 2.12,
+      "response_mass_note": "Only listed candidate shares and explicitly identified response categories; remainder is unclassified, NOT assumed undecided or abstention.",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "ingestion": "automatic_first_party_partial",
+      "verification_status": "validated_partial_response",
+      "retrieved_at": "2026-10-28T04:25:18+00:00",
+      "sample_note": "Publisher sample; partial response categories. Relative candidate support only.",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "bfdd123fce5cc9a57fb419d2",
+      "county": "新北市",
+      "source": "震傳媒／山水民調",
+      "pollster_id": "shanshui",
+      "pollster": "山水民意研究股份有限公司",
+      "publisher": "震傳媒",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44348",
+      "report_title": "震傳媒民調(一)/藍白合也沒用?新北市民38.2%支持蘇巧慧、37.1%挺李四川 雙方差距1.1%! 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉,在三位登記參選人中,38.2%新北市民支持民進黨籍參選人蘇巧慧,37.1%支持國民黨籍參選人李四川,雙方差距1.1%,至於無黨籍參選人蘇輝湟則獲得2.6%新北市民的支持。若與115年4月新北市民調",
+      "published_at": "2026-09-23",
+      "field_start": "2026-09-20",
+      "date": "2026-09-21",
+      "sample_n": 1076,
+      "population": "設籍新北市，年滿20歲民眾",
+      "method": "CATI，住宅電話，系統抽樣與尾2碼隨機",
+      "method_class": "landline_cati",
+      "margin_of_error": 2.99,
+      "confidence_level": 95,
+      "funding": "震傳媒",
+      "candidates": [
+        {
+          "name": "蘇巧慧",
+          "support": 38.2,
+          "bloc": "other"
+        },
+        {
+          "name": "李四川",
+          "support": 37.1,
+          "bloc": "other"
+        },
+        {
+          "name": "蘇輝湟",
+          "support": 2.6,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 0.0,
+      "undecided_reported": false,
+      "nonvote": 0,
+      "nonvote_reported": false,
+      "response_mass_unreported": 22.1,
+      "response_mass_note": "Only listed candidate shares and explicitly identified response categories; remainder is unclassified, NOT assumed undecided or abstention.",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "ingestion": "automatic_first_party_partial",
+      "verification_status": "validated_partial_response",
+      "retrieved_at": "2026-10-28T04:25:18+00:00",
+      "sample_note": "Publisher sample; partial response categories. Relative candidate support only.",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
     {
       "id": "fb01d4dfead1ac092347695d",
       "county": "高雄市",
@@ -1230,6 +1355,11 @@
       "message": "'utf-8' codec can't decode byte 0xac in position 471: invalid start byte"
     },
     {
+      "source": "ETtoday",
+      "url": "https://www.ettoday.net/news/20261028/3261968.htm",
+      "message": "Missing ETtoday fieldwork dates"
+    },
+    {
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1552/1791788111_20261003_________________________________.pdf",
       "message": "Missing or unsupported fieldwork dates"
@@ -1309,6 +1439,66 @@
   },
   "history": [
     {
+      "date": "2026-10-28T04:25:18+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44348",
+      "kind": "verified_partial_poll_promoted"
+    },
+    {
+      "date": "2026-10-28T04:25:18+00:00",
+      "county": "新北市",
+      "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
+      "kind": "verified_partial_poll_promoted"
+    },
+    {
+      "date": "2026-10-28T04:25:18+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44789",
+      "kind": "verified_partial_poll_promoted"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "新北市",
+      "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44348",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44789",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-10-28T04:25:16+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
       "date": "2026-10-27T22:12:40+00:00",
       "county": "新北市",
       "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
@@ -1846,71 +2036,11 @@
       "date": "2026-10-24T15:56:09+00:00",
       "county": "台北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T15:56:09+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "新北市",
-      "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44348",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44789",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T10:57:12+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T04:34:49+00:00",
-      "county": "新北市",
-      "source_url": "https://www.bigmedia.com.tw/article/1791969638295",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-24T04:34:49+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44348",
       "kind": "poll_source_discovered_unverified"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-10-27T22:12:40+00:00",
+  "discovery_checked_at": "2026-10-28T04:25:16+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-09-12T10:58:00+00:00",
