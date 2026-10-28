@@ -141,8 +141,8 @@ def convert(zip_path,history_path,output_path):
                 geo=zone_key(line)
                 if geo in seen:raise ValueError('Duplicate CEC official station key '+str((key,geo)))
                 seen.add(geo)
-                if meta['valid_votes']+meta['invalid_votes']!=meta['ballots_cast'] or
-                    meta['electorate']<meta['ballots_cast']:
+                if (meta['valid_votes']+meta['invalid_votes']!=meta['ballots_cast'] or
+                    meta['electorate']<meta['ballots_cast']):
                     raise ValueError('Vote conservation fails for '+str((key,geo)))
                 for field in FIELDS:summed[field]+=meta[field]
                 packed.append({'geo_codes':list(geo),'precinct_number':geo[5],
