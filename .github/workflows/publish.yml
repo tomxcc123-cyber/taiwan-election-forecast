@@ -55,7 +55,7 @@ jobs:
       - name: Build publication artifact
         run: python scripts/build.py
       - name: Check market observer module syntax
-        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/candidate-app.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs
+        run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs
       - name: Validate reproducible forecast model
         run: |
           if [ -f dist/model-data.json ]; then node tests/model.mjs; fi
@@ -63,15 +63,17 @@ jobs:
           if [ -f dist/candidate-model.json ]; then node tests/evidence-ui.mjs; fi
           if [ -f dist/candidate-model.json ]; then node tests/scenario-studio.mjs; fi
           if [ -f dist/candidate-model.json ]; then node tests/history-atlas.mjs; fi
-      - name: Preserve daily baseline and version history
+      - name: Preserve aligned daily model, market and baseline histories
         run: |
           python scripts/archive_forecast.py
-          if [ -f data/forecast-history.json ]; then
-            git add data/forecast-history.json
-            if ! git diff --cached --quiet; then
-              git commit -m "Archive daily forecast baseline"
-              git push origin HEAD:main
-            fi
+          node scripts/archive_market_fusion.mjs
+          if [ -f dist/candidate-model.json ]; then
+            cp data/forecast-history.json dist/forecast-history.json
+          fi
+          git add data/forecast-history.json data/market-fusion-history.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive aligned election model and market research signals"
+            git push origin HEAD:main
           fi
       - uses: actions/upload-pages-artifact@v4
         with:
