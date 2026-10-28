@@ -64,7 +64,7 @@ class ThreeYearContinuityAuditTests(unittest.TestCase):
         self.assertEqual(a, b)
         self.assertFalse(a['candidate_vote_data_used'])
         self.assertTrue(a['no_individual_voter_inference'])
-        self.assertIn('post_election', a['post_election_selection_warning'].lower().replace('-', '_').replace(' ', '_'))
+        self.assertIn('test-year', a['post_election_selection_warning'])
         self.assertIn('no_historical_boundary_overlay', a['geography_status'])
 
 
