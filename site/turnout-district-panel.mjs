@@ -1,3 +1,4 @@
+import {validateTwoCycleHistory} from './turnout-two-cycle-ui.mjs';
 // Observed, matched administrative-town panel from CEC booths; NOT a causal
 // turnout→candidate model or a new estimate of 2026 political preferences.
 const esc=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -84,21 +85,29 @@ export function districtPanelView(source,county='台北市'){
     +'<p><a href="turnout-district-panel-2018-2022.json" download>下載經對帳的歷史行政區面板</a> · <a href="'+esc(data.source_url)+'" target="_blank" rel="noopener noreferrer">中選會原始開放資料</a></p></section>';
 }
 
-let requestVersion=0;
-export async function drawTurnoutDistrictMap(panel,county,topologyUrl){
-  const element=document.getElementById('townTurnoutMap');
+// Each historical cycle has its own request token. A second map must not
+// invalidate the first map's in-flight topology request.
+const requestVersions=new Map();
+export async function drawTurnoutDistrictMap(panel,county,topologyUrl,options={}){
+  const prior=options.period==='2014_to_2018';
+  const mapId=prior?'priorTownTurnoutMap':'townTurnoutMap';
+  const inspectorId=prior?'priorTurnoutMapInspector':'turnoutMapInspector';
+  const from=prior?'2014':'2018',to=prior?'2018':'2022';
+  const element=document.getElementById(mapId);
   if(!element)return;
-  const id=++requestVersion;
-  const message=text=>{if(id!==requestVersion||!element.isConnected)return;while(element.firstChild)element.removeChild(element.firstChild);const t=document.createElementNS('http://www.w3.org/2000/svg','text');t.setAttribute('x','20');t.setAttribute('y','35');t.textContent=text;element.append(t);};
+  const id=(requestVersions.get(mapId)||0)+1;
+  requestVersions.set(mapId,id);
+  const obsolete=()=>id!==requestVersions.get(mapId)||!element.isConnected;
+  const message=text=>{if(obsolete())return;while(element.firstChild)element.removeChild(element.firstChild);const t=document.createElementNS('http://www.w3.org/2000/svg','text');t.setAttribute('x','20');t.setAttribute('y','35');t.textContent=text;element.append(t);};
   let source;
-  try{source=validateTownPanel(panel)}catch{message('尚無經核驗的行政區面板');return;}
+  try{source=prior?validateTwoCycleHistory(panel,options.report).panel:validateTownPanel(panel)}catch{message('尚無經核驗的行政區面板');return;}
   const c=source.counties.find(x=>x.county===county);
   if(!c?.districts.length||!topologyUrl){message('本場沒有可比較的行政區幾何圖層');return;}
   try{
     const r=await fetch(topologyUrl,{cache:'force-cache'});
     if(!r.ok)throw Error('行政區圖資不可讀取');
     const topo=await r.json();
-    if(id!==requestVersion||!element.isConnected)return;
+    if(obsolete())return;
     if(!globalThis.d3||!globalThis.topojson||!topo.objects?.map)throw Error('圖資解碼器缺失');
     const d3=globalThis.d3,topojson=globalThis.topojson;
     const feature=topojson.feature(topo,topo.objects.map);
@@ -126,14 +135,14 @@ export async function drawTurnoutDistrictMap(panel,county,topologyUrl){
       .on('keydown',(event,feature)=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select(feature);}});
     function select(f){
       const row=names.get(norm(f.properties?.name));
-      const target=document.getElementById('turnoutMapInspector');
+      const target=document.getElementById(inspectorId);
       if(!target||!row)return;
-      const a=row.years['2018'],b=row.years['2022'];
-      target.textContent=row.district+'：2018投票率 '+pct(a.ballots_cast/a.electorate*100)+'，2022為 '+pct(b.ballots_cast/b.electorate*100)+'，變動 '+pp(row.delta_turnout_pp)+'；兩屆投開票所數 '+a.stations+' → '+b.stations+'。';
+      const a=row.years[from],b=row.years[to];
+      target.textContent=row.district+'：'+from+'投票率 '+pct(a.ballots_cast/a.electorate*100)+'，'+to+'為 '+pct(b.ballots_cast/b.electorate*100)+'，變動 '+pp(row.delta_turnout_pp)+'；兩屆投開票所數 '+a.stations+' → '+b.stations+'。';
     }
     const unmatched=c.districts.filter(x=>!linked.has(x.district));
     if(unmatched.length) {
-      const target=document.getElementById('turnoutMapInspector');
+      const target=document.getElementById(inspectorId);
       if(target)target.textContent='GIS圖層與官方統計的行政區名稱有 '+unmatched.length+' 處無法匹配；表格數據仍有效，但未匹配單位不著色。';
     }
   }catch(e){message('GIS行政區圖層暫不可用：'+String(e.message||e));}
