@@ -10,6 +10,9 @@ on:
       - 'scripts/evaluate_turnout_holdout.py'
       - 'tests/test_turnout_holdout.py'
       - 'tests/test_cec_town_candidate_panel.py'
+      - 'scripts/build_turnout_2014_2018.py'
+      - 'tests/test_turnout_2014_2018.py'
+      - 'scripts/evaluate_turnout_county_cycles.py'
   workflow_dispatch:
 
 permissions:
@@ -118,6 +121,24 @@ jobs:
             --zip /tmp/cec-official.zip \
             --history data/candidate-history-cec.json \
             --output /tmp/cec-precincts
+      - name: Reconstruct separate 2014-to-2018 district holdout from original administrative names
+        run: |
+          python -m unittest tests.test_turnout_2014_2018 -v
+          python scripts/build_turnout_2014_2018.py \
+            --zip /tmp/cec-official.zip \
+            --source data/cec-precincts \
+            --history data/candidate-history-cec.json \
+            --output /tmp/turnout-district-panel-2014-2018.json
+          python scripts/evaluate_turnout_county_cycles.py \
+            --output /tmp/turnout-county-two-cycle-2014-2022.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-prior-cycle-turnout-review
+          path: |
+            /tmp/turnout-district-panel-2014-2018.json
+            /tmp/turnout-county-two-cycle-2014-2022.json
+          retention-days: 14
       - name: Audit station candidate votes and build matched-town research panel
         run: |
           python -m unittest tests.test_cec_town_candidate_panel -v
