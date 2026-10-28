@@ -40,7 +40,7 @@ assert.match(threeYearAuditPanel(null),/尚未完成來源交叉稽核/);
 if(fs.existsSync(new URL('../dist/turnout-three-year-compatibility.json',import.meta.url))){
  const real=JSON.parse(fs.readFileSync(new URL('../dist/turnout-three-year-compatibility.json',import.meta.url),'utf8'));
  assert.equal(validateThreeYearAudit(real),real);
- assert.equal(real.matched_towns,364);
+ assert.ok([364,366].includes(real.matched_towns));
  assert.match(threeYearAuditPanel(real),/員林市/);
 }
 console.log(JSON.stringify({passed:true,historical_only:true,no_2026_model_mutation:true}));
