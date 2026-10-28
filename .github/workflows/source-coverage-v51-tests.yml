@@ -59,8 +59,8 @@ jobs:
           assert len(ids)==len(registry['pollsters'])==7
           assert {'tvbs','formosa-bic','ettoday','trend-survey','shanshui','pearson-data','apollo'}==ids
           trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
-          shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui']
-          pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data']
+          shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui' and r.get('ingestion')=='reviewed_multi_source_methodology']
+          pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data' and r.get('ingestion')=='reviewed_multi_source_methodology']
           assert len(trend)==1, trend
           assert len(shanshui)==3, shanshui
           assert len(pearson)==2, pearson
