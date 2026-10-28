@@ -1,0 +1,47 @@
+name: Inspect official CEC precinct archive (research-only)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  official-cec-source-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+      - name: Inspect CEC official source headers and archive file listing
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import urllib.request,urllib.parse
+          url='https://data.cec.gov.tw/選舉資料庫/votedata.zip'
+          try:
+              req=urllib.request.Request(url,method='HEAD',headers={'User-Agent':'TW-election-research-archive/1.0'})
+              with urllib.request.urlopen(req,timeout=25) as resp:
+                  print('OFFICIAL_CEC_STATUS',resp.status)
+                  print('OFFICIAL_CEC_SIZE',resp.headers.get('Content-Length'))
+                  print('OFFICIAL_CEC_TYPE',resp.headers.get('Content-Type'))
+                  print('OFFICIAL_CEC_URL',resp.url)
+          except Exception as exc:
+              print('SOURCE_FETCH_ERROR',type(exc).__name__,str(exc)[:350])
+          PY
+          curl --location --fail --show-error --silent --max-time 140 --retry 1 \
+            --output /tmp/cec-official.zip 'https://data.cec.gov.tw/選舉資料庫/votedata.zip' || { echo 'SOURCE_NOT_DOWNLOADED'; exit 0; }
+          python - <<'PY'
+          from zipfile import ZipFile, BadZipFile
+          from pathlib import Path
+          p=Path('/tmp/cec-official.zip')
+          print('SOURCE_FILE_SIZE',p.stat().st_size)
+          try:
+              with ZipFile(p) as z:
+                  fs=z.infolist()
+                  print('SOURCE_ARCHIVE_MEMBERS',len(fs))
+                  print('SOURCE_UNCOMPRESSED_TOTAL',sum(i.file_size for i in fs))
+                  for x in fs[:35]:
+                      print('SOURCE_MEMBER',repr(x.filename),x.file_size)
+          except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
+          PY
