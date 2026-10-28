@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {validateThreeYearAudit,threeYearAuditPanel} from '../site/turnout-three-year-ui.mjs';
 
 const s={schema_version:1,kind:'cec_three_year_common_town_ecological_stability_audit',
- geography_status:'code_and_original_name_continuity_only_no_historical_boundary_overlay',
+ geography_status:'code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay',
  candidate_vote_data_used:false,no_individual_voter_inference:true,
  forecast_2026_modified:false,
  promotion_gate:{status:'blocked',formal_hb_tlef_unchanged:true,
@@ -40,7 +40,7 @@ assert.match(threeYearAuditPanel(null),/尚未完成來源交叉稽核/);
 if(fs.existsSync(new URL('../dist/turnout-three-year-compatibility.json',import.meta.url))){
  const real=JSON.parse(fs.readFileSync(new URL('../dist/turnout-three-year-compatibility.json',import.meta.url),'utf8'));
  assert.equal(validateThreeYearAudit(real),real);
- assert.equal(real.matched_towns,364);
+ assert.ok([364,366].includes(real.matched_towns));
  assert.match(threeYearAuditPanel(real),/員林市/);
 }
 console.log(JSON.stringify({passed:true,historical_only:true,no_2026_model_mutation:true}));

@@ -114,7 +114,7 @@ def evaluate(panel14, panel18, history, shadow2022=None):
         rows=[]
         count_coverage={}
         for county in panel['counties']:
-            if county['status']!=status:continue
+            if county['status']!=status and not (old_year==2014 and county['status']=='matched_original_code_name_with_documented_2015_renames'):continue
             name=county['county']
             previous=base[(old_year,name)]
             t_county=turnout(previous)

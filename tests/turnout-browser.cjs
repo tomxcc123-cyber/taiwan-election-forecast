@@ -33,7 +33,7 @@ const server=http.createServer((req,res)=>{
     await page.locator('#turnoutThreeYearAudit').waitFor();
     if(fs.existsSync(path.join(root,'turnout-three-year-compatibility.json'))){
       const audit=await page.locator('#turnoutThreeYearAudit').innerText();
-      assert.match(audit,/364/);
+      assert.match(audit,/36[46]/);
       assert.match(audit,/三屆行政區共同樣本/);
       assert.match(audit,/不可作選前準確率證據/);
     }

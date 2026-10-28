@@ -47,7 +47,7 @@ def pair_index(panel, prior):
         for town in county['districts']:
             if prior:
                 code = town['town_code']
-                if county['status'] != 'matched_original_code_name':
+                if county['status'] not in ('matched_original_code_name','matched_original_code_name_with_documented_2015_renames'):
                     raise ValueError('Unverified 2014 CEC town source')
             else:
                 if county['status'] != 'matched_code_name_only':
@@ -75,7 +75,7 @@ def validate_sources(prior, recent, validation):
         len(recent.get('counties', [])) != 22):
         raise ValueError('Unverified original CEC district data')
     for c in prior['counties']:
-        if c['status'] == 'matched_original_code_name':
+        if c['status'] in ('matched_original_code_name','matched_original_code_name_with_documented_2015_renames'):
             original = c.get('2014_label_source') or {}
             sha = original.get('sha256')
             if (not isinstance(sha, str) or len(sha) != 64 or
@@ -187,7 +187,8 @@ def evaluate(prior, recent, validation):
         stats['station_count_changed'] += int(changed_stations)
         stats['electorate_change_gt_8pct'] += int(changed_electorate)
         rows.append({'county': c, 'district': name, 'town_code': code,
-                     'code_and_name_only': True,
+                     'code_and_name_only': not bool(old.get('documented_name_change')),
+                     'documented_name_change': old.get('documented_name_change'),
                      '2018_duplicate_source_counts_identical': True,
                      'year_electorates': {'2014': y14['electorate'],
                                          '2018': y18['electorate'],
@@ -212,6 +213,7 @@ def evaluate(prior, recent, validation):
                 'turnout-two-cycle-town-validation.json'],
             'matched_counties': len(counties),
             'matched_towns': len(rows),
+            'documented_2015_name_changes_count': sum(bool(x.get('documented_name_change')) for x in rows),
             'prior_two_year_towns': len(left),
             'later_two_year_towns': len(right),
             'unmatched_prior': [{'county': c, 'code': code, 'district': name}
@@ -226,7 +228,7 @@ def evaluate(prior, recent, validation):
             'cohorts': group_results, 'towns': rows,
             'time_order': 'Holdout forecasts frozen before test election; realized test-year electorate weights enter scoring only.',
             'post_election_selection_warning': 'Station counts and change in electorate require test-year observations. Diagnostic strata cannot be selected prospectively and cannot demonstrate forecasting gains.',
-            'geography_status': 'code_and_original_name_continuity_only_no_historical_boundary_overlay',
+            'geography_status': 'code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay',
             'historical_boundary_reference': 'https://maps.nlsc.gov.tw/pro/013_41_layer.html',
             'no_individual_voter_inference': True,
             'candidate_vote_data_used': False,

@@ -93,6 +93,15 @@ jobs:
           else
             echo "Using source-audited 2014 elbase names and 2014–2018 station-to-district comparison."
           fi
+      - name: Reconcile CEC-confirmed 2015 Yuanlin and Toufen town-to-city name changes
+        run: |
+          set -euo pipefail
+          python scripts/recover_cec_2015_town_renames.py \
+            --prior data/turnout-district-panel-2014-2018.json \
+            --recent data/turnout-district-panel-2018-2022.json \
+            --stations data/cec-precincts \
+            --output data/turnout-district-panel-2014-2018.json
+          python -m unittest tests.test_cec_2015_renames -v
       - name: Independently evaluate two historical county and township turnout cycles
         run: |
           set -euo pipefail
