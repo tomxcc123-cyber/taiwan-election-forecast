@@ -97,7 +97,7 @@ export function pairedSnapshot(model, market){
 }
 
 export function upsertHistory(previous, snapshot){
-  if(previous&&previous.schema_version!==1)throw new Error('Unknown historical archive schema');
+  if(previous?.schema_version!==undefined&&previous.schema_version!==1)throw new Error('Unknown historical archive schema');
   const items=Array.isArray(previous?.snapshots)?previous.snapshots:[];
   if(items.some(s=>!s.provenance?.model_fingerprint||!s.taipei_day))
     throw new Error('Corrupted archived provenance');
