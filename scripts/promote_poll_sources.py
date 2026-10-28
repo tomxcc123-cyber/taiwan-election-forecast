@@ -11,11 +11,14 @@ import re
 from datetime import date
 from pathlib import Path
 from lxml import html
+import sys
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
 
 from scripts.discover_poll_sources import fetch, stamp
 from scripts.update_polls import atomic_json, classify, model_rows
 
-ROOT = Path(__file__).resolve().parents[1]
 FEED_PATH = ROOT / 'data/polls.json'
 CONFIG_PATH = ROOT / 'config.json'
 REGISTRY_PATH = ROOT / 'data/pollster-registry.json'
