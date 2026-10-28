@@ -228,7 +228,9 @@ def parse_report(text, entry, now=None):
 def classify(record, config):
     r = copy.deepcopy(record)
     r['model_eligible'] = False
-    if r.get('nonvote', 0):
+    if r.get('response_mass_unreported', 0):
+        r['exclusion_reason'] = '來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理'
+    elif r.get('nonvote', 0):
         r['exclusion_reason'] = '舊版三方模型不支援獨立不投票類別；候選人模型另行檢查'
     elif r['date'] <= config['baseline_cutoff']:
         r['exclusion_reason'] = '基線日期以前的資料，僅供查閱，避免重複加權'

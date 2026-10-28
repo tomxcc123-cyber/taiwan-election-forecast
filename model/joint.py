@@ -4,6 +4,7 @@ from .polling import day, observation_matrices
 
 SETTINGS = {'design_effect': 2.0, 'poll_extra_sd': .12, 'house_sd': .18,
             'partial_ballot_sd': .25, 'undecided_sd': .5, 'rounded_zero_floor_pct': .05,
+            'unreported_mass_sd': 1.5, 'online_dmp_extra_sd': .30,
             'local_daily_variance': .0005, 'national_daily_variance': .00012,
             'regional_daily_variance': .00008, 'simulations': 2000, 'seed': 20260908}
 
