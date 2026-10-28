@@ -39,6 +39,8 @@ jobs:
         run: python scripts/enrich_reviewed_polls.py
       - name: Discover additional first-party poll pages
         run: python scripts/discover_poll_sources.py
+      - name: Verify and promote complete-source vote-intention reports
+        run: python scripts/promote_poll_sources.py
       - name: Preserve last valid data and audit log
         run: |
           git config user.name 'github-actions[bot]'
