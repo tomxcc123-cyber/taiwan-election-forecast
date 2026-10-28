@@ -29,6 +29,14 @@ const server=http.createServer((req,res)=>{
     await page.waitForSelector('body[data-ready=true]',{timeout:20000});
     await page.locator('#turnoutDistrictPanel').waitFor();
     await page.locator('#turnoutVoteValidation').waitFor();
+    await page.locator('#twoCycleTurnout').waitFor();
+    if(fs.existsSync(path.join(root,'turnout-two-cycle-town-validation.json'))){
+      const cycleText=await page.locator('#twoCycleTurnout').innerText();
+      assert.match(cycleText,/2014—2018/);
+      assert.match(cycleText,/2018—2022/);
+      assert.match(cycleText,/兩個周期均低於直接延用基準/);
+    }
+
     assert.match(await page.locator('#turnoutDistrictPanel').innerText(),/2018—2022/);
     assert.match(await page.locator('#turnoutVoteValidation').innerText(),/因果/);
     const unverified=await page.locator('#turnoutVoteValidation').innerText();

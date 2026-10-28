@@ -13,6 +13,14 @@ on:
       - 'site/turnout-association-ui.mjs'
       - 'site/turnout-shadow-ui.mjs'
       - 'scripts/evaluate_turnout_shadows.py'
+      - 'site/turnout-two-cycle-ui.mjs'
+      - 'scripts/build_turnout_2014_2018.py'
+      - 'scripts/evaluate_turnout_county_cycles.py'
+      - 'scripts/evaluate_turnout_two_cycle_towns.py'
+      - 'tests/test_turnout_2014_2018.py'
+      - 'tests/test_turnout_county_cycles.py'
+      - 'tests/test_turnout_two_cycle_towns.py'
+      - 'tests/turnout-two-cycle-ui.mjs'
       - 'tests/test_turnout_shadows.py'
       - 'tests/turnout-shadow-ui.mjs'
       - 'scripts/build_cec_candidate_turnout_panel.py'
@@ -64,6 +72,7 @@ jobs:
           node --check site/turnout-district-panel.mjs
           node --check site/turnout-association-ui.mjs
           node --check site/turnout-shadow-ui.mjs
+          node --check site/turnout-two-cycle-ui.mjs
           node --check site/market-observatory.mjs
           node --check site/candidate-app.mjs
           node --check scripts/archive_market_fusion.mjs
@@ -93,6 +102,13 @@ jobs:
           python -m unittest tests.test_turnout_shadows -v
           python scripts/evaluate_turnout_shadows.py --output /tmp/turnout-shadow-ablation-2022.json
           node tests/turnout-shadow-ui.mjs
+      - name: Test original 2014 CEC labels and independently held-out 2018 / 2022 cycles
+        run: |
+          python -m unittest tests.test_turnout_2014_2018 -v
+          python -m unittest tests.test_turnout_county_cycles -v
+          python -m unittest tests.test_turnout_two_cycle_towns -v
+          python scripts/evaluate_turnout_county_cycles.py --output /tmp/cec-county-two-cycle.json
+          node tests/turnout-two-cycle-ui.mjs
       - name: Test historical township source reconciliation
         run: |
           python -m unittest tests.test_turnout_district_panel -v

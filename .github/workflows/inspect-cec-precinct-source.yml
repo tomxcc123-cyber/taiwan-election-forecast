@@ -10,6 +10,11 @@ on:
       - 'scripts/evaluate_turnout_holdout.py'
       - 'tests/test_turnout_holdout.py'
       - 'tests/test_cec_town_candidate_panel.py'
+      - 'scripts/build_turnout_2014_2018.py'
+      - 'tests/test_turnout_2014_2018.py'
+      - 'scripts/evaluate_turnout_county_cycles.py'
+      - 'scripts/evaluate_turnout_two_cycle_towns.py'
+      - 'tests/test_turnout_two_cycle_towns.py'
   workflow_dispatch:
 
 permissions:
@@ -84,6 +89,32 @@ jobs:
           except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
           PY
 
+      - name: Diagnose verified 2014 election district mapping from original elbase
+        run: |
+          python - <<'PY'
+          import json
+          from collections import Counter
+          from zipfile import ZipFile
+          from scripts.import_cec_open_csv import rows_from_bytes,zone_key
+          r=json.load(open('data/cec-precincts/2014-台北市.json',encoding='utf8'))
+          base=r['source_member'].rsplit('/',1)[0]
+          with ZipFile('/tmp/cec-official.zip') as z:
+              src=base+'/elbase.csv'
+              records=rows_from_bytes(z.read(src))
+              print('2014_TAIPEI_SOURCE',src,'ROWCOUNT',len(records))
+              for row in records[:45]:
+                  print('2014_ELBASE_SAMPLE',json.dumps(row,ensure_ascii=False))
+              codes=Counter(tuple(p['geo_codes'][:4]) for p in r['precincts'])
+              print('2014_STATION_GEOKEYS',len(codes))
+              print('2014_TAIPEI_STATION_CODES',json.dumps(codes.most_common(20),ensure_ascii=False))
+              region_keys={tuple(zone_key([*row[:5],'0'])[:4]):row[5] for row in records if len(row)>=6 and row[4].strip("'")=='0000'}
+              for key,n in codes.most_common(20):
+                  print('2014_LABEL_PROBE',json.dumps(key,ensure_ascii=False),
+                      'EXACT',region_keys.get(key),
+                      'IGNORE_ELECTION',[(list(k),v) for k,v in region_keys.items()
+                          if (k[0],k[1],k[3])==(key[0],key[1],key[3])][:6],
+                      'SHARED_NAME_COUNT',n)
+          PY
       - name: Verify all available 2014, 2018, 2022 polling-station rows
         run: |
           set -euo pipefail
@@ -92,6 +123,29 @@ jobs:
             --zip /tmp/cec-official.zip \
             --history data/candidate-history-cec.json \
             --output /tmp/cec-precincts
+      - name: Reconstruct separate 2014-to-2018 district holdout from original administrative names
+        run: |
+          python -m unittest tests.test_turnout_2014_2018 -v
+          python scripts/build_turnout_2014_2018.py \
+            --zip /tmp/cec-official.zip \
+            --source data/cec-precincts \
+            --history data/candidate-history-cec.json \
+            --output /tmp/turnout-district-panel-2014-2018.json
+          python scripts/evaluate_turnout_county_cycles.py \
+            --output /tmp/turnout-county-two-cycle-2014-2022.json
+          python -m unittest tests.test_turnout_two_cycle_towns -v
+          python scripts/evaluate_turnout_two_cycle_towns.py \
+            --prior /tmp/turnout-district-panel-2014-2018.json \
+            --output /tmp/turnout-two-cycle-town-validation.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-prior-cycle-turnout-review
+          path: |
+            /tmp/turnout-district-panel-2014-2018.json
+            /tmp/turnout-county-two-cycle-2014-2022.json
+            /tmp/turnout-two-cycle-town-validation.json
+          retention-days: 14
       - name: Audit station candidate votes and build matched-town research panel
         run: |
           python -m unittest tests.test_cec_town_candidate_panel -v
