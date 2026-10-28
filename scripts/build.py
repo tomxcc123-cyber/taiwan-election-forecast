@@ -72,7 +72,7 @@ def build(now=None):
          'market-joint-shadow.mjs',
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
          'precinct-turnout-ui.mjs',
-         'turnout-district-panel.mjs',
+         'turnout-district-panel.mjs', 'turnout-association-ui.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -136,6 +136,25 @@ def build(now=None):
             raise ValueError('Unverified cross-election township turnout panel')
         (dist / 'turnout-district-panel-2018-2022.json').write_text(
             json.dumps(district_panel, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
+    research_outputs = (
+        ('cec-town-candidate-association-2018-2022.json',
+         'historical_ecological_candidate_turnout_association_only',
+         'official_forecast_unchanged'),
+        ('turnout-holdout-2018-2022.json',
+         'cec_historical_time_ordered_turnout_holdout',
+         'official_2026_forecast_unchanged'),
+    )
+    for name, expected_kind, guard in research_outputs:
+        path = ROOT / 'data' / name
+        if path.is_file():
+            source = json.loads(path.read_text(encoding='utf8'))
+            if (source.get('schema_version') != 1 or source.get('kind') != expected_kind or
+                source.get(guard) is not True or len(source.get('counties', [])) not in (0, 22) and
+                source.get('kind') == 'historical_ecological_candidate_turnout_association_only'):
+                raise ValueError('Candidate vote / turnout backtest data failed quality gate')
+            (dist / name).write_text(
+                json.dumps(source, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf8')
 
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))
