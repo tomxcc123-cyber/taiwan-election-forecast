@@ -1,9 +1,9 @@
-"""Historical archive of genuinely computed, paired election-market and model signals.
+/*Historical archive of genuinely computed, paired election-market and model signals.
 
 Archives are produced ONLY from one publish build's candidate-model.json and
 already-fetched market-snapshots.json. No retroactive reconstruction of older
 market/model values and no ingestion of market data into official forecasts.
-"""
+*/
 import {readFileSync,writeFileSync,existsSync,mkdirSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
