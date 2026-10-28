@@ -30,6 +30,13 @@ const server=http.createServer((req,res)=>{
     await page.locator('#turnoutDistrictPanel').waitFor();
     await page.locator('#turnoutVoteValidation').waitFor();
     await page.locator('#twoCycleTurnout').waitFor();
+    await page.locator('#turnoutThreeYearAudit').waitFor();
+    if(fs.existsSync(path.join(root,'turnout-three-year-compatibility.json'))){
+      const audit=await page.locator('#turnoutThreeYearAudit').innerText();
+      assert.match(audit,/364/);
+      assert.match(audit,/三屆行政區共同樣本/);
+      assert.match(audit,/不可作選前準確率證據/);
+    }
     if(fs.existsSync(path.join(root,'turnout-two-cycle-town-validation.json'))){
       const cycleText=await page.locator('#twoCycleTurnout').innerText();
       assert.match(cycleText,/2014—2018/);

@@ -4,6 +4,7 @@ import {districtPanelView} from './turnout-district-panel.mjs';
 import {associationPanel} from './turnout-association-ui.mjs';
 import {shadowResearchPanel} from './turnout-shadow-ui.mjs';
 import {twoCycleHistoryPanel} from './turnout-two-cycle-ui.mjs';
+import {threeYearAuditPanel} from './turnout-three-year-ui.mjs';
 const esc=x=>String(x??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 const pct=x=>Number(x).toFixed(2)+'%';
 const fmt=x=>new Intl.NumberFormat('zh-TW',{maximumFractionDigits:0}).format(Math.abs(x));
@@ -14,7 +15,7 @@ const boundsBar=(candidate)=>{
     +'<span class="turnout-range-possible" style="left:'+lo.toFixed(3)+'%;width:'+(hi-lo).toFixed(3)+'%"></span>'
     +'<span class="turnout-range-center" style="left:'+mid.toFixed(3)+'%"></span></div>';
 };
-export function turnoutPage(model,source,county='台北市',deltaPp=0,precinctIndex=null,precinctRecord=null,precinctCounty='台北市',precinctYear=2022,precinctDistrict='all',districtPanel=null,candidateAssociation=null,turnoutHoldout=null,turnoutShadows=null,turnoutPriorPanel=null,turnoutTwoCycle=null){
+export function turnoutPage(model,source,county='台北市',deltaPp=0,precinctIndex=null,precinctRecord=null,precinctCounty='台北市',precinctYear=2022,precinctDistrict='all',districtPanel=null,candidateAssociation=null,turnoutHoldout=null,turnoutShadows=null,turnoutPriorPanel=null,turnoutTwoCycle=null,turnoutThreeYear=null){
   if(!source) return '<section class="turnout-page"><h1>投票率影響與敏感度</h1><p>無法核驗中選會歷史投票率資料。未用推算數字代替。</p></section>';
   try{
     const rows=turnoutOverview(model,source,deltaPp);
@@ -55,6 +56,7 @@ export function turnoutPage(model,source,county='台北市',deltaPp=0,precinctIn
       +associationPanel(candidateAssociation,turnoutHoldout,precinctCounty)
       +shadowResearchPanel(turnoutShadows,precinctCounty)
       +twoCycleHistoryPanel(turnoutPriorPanel,turnoutTwoCycle,precinctCounty)
+      +threeYearAuditPanel(turnoutThreeYear)
       +precinctPanel(precinctIndex,precinctRecord,precinctCounty,precinctYear,precinctDistrict)
       +'<section class="turnout-panel"><h2>各縣市歷史參與與情境診斷</h2>'
       +'<p>每列均用該縣市2022年的實際投票率做參照；紅／綠等政治分類不參與推算。由於2022年嘉義市長投票另期舉行，其跨年比較需特別審慎。</p>'

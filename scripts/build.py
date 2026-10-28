@@ -73,6 +73,7 @@ def build(now=None):
          'turnout-sensitivity.mjs', 'turnout-ui.mjs', 'turnout.css',
          'precinct-turnout-ui.mjs',
          'turnout-district-panel.mjs', 'turnout-association-ui.mjs', 'turnout-shadow-ui.mjs', 'turnout-two-cycle-ui.mjs',
+         'turnout-three-year-ui.mjs',
         'scenario-studio.mjs', 'motion.css', 'motion.mjs', 'motion-v2.css',
         'motion-v2.mjs', 'motion-v3.css', 'motion-v3.mjs', 'motion-v4.css',
         'motion-v4.mjs'
@@ -198,6 +199,21 @@ def build(now=None):
                 raise ValueError('Independent historical turnout cycle source validation failed')
             (dist / filename).write_text(
                 json.dumps(payload,ensure_ascii=False,indent=2,allow_nan=False),encoding='utf8')
+
+    # Research-only, recomputed from the same audited original-year sources.
+    # A failure blocks publication rather than silently mixing incompatible years.
+    from scripts.audit_turnout_three_year import evaluate as audit_three_year
+    three_year = audit_three_year(
+        json.loads((ROOT/'data/turnout-district-panel-2014-2018.json').read_text(encoding='utf8')),
+        json.loads((ROOT/'data/turnout-district-panel-2018-2022.json').read_text(encoding='utf8')),
+        json.loads((ROOT/'data/turnout-two-cycle-town-validation.json').read_text(encoding='utf8')))
+    if (three_year['promotion_gate']['status'] != 'blocked' or
+        three_year['forecast_2026_modified'] is not False or
+        three_year['geography_status'] != 'code_and_original_name_continuity_only_no_historical_boundary_overlay'):
+        raise ValueError('Unsafe three-election geographic audit: refusing to publish')
+    (dist/'turnout-three-year-compatibility.json').write_text(
+        json.dumps(three_year, ensure_ascii=False, indent=2, allow_nan=False),
+        encoding='utf8')
 
     turnout_path = ROOT / 'data/turnout-history-2018-2022.json'
     turnout = json.loads(turnout_path.read_text(encoding='utf-8'))
