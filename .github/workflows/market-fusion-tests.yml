@@ -113,6 +113,8 @@ jobs:
           python -m unittest tests.test_turnout_two_cycle_towns -v
           python scripts/evaluate_turnout_county_cycles.py --output /tmp/cec-county-two-cycle.json
           node tests/turnout-two-cycle-ui.mjs && node tests/turnout-three-year-ui.mjs
+          python -m unittest tests.test_turnout_three_year -v
+          python scripts/audit_turnout_three_year.py --output /tmp/turnout-three-year-compatibility.json
       - name: Test historical township source reconciliation
         run: |
           python -m unittest tests.test_turnout_district_panel -v
