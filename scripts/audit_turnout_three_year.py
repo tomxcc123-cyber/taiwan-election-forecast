@@ -228,7 +228,7 @@ def evaluate(prior, recent, validation):
             'cohorts': group_results, 'towns': rows,
             'time_order': 'Holdout forecasts frozen before test election; realized test-year electorate weights enter scoring only.',
             'post_election_selection_warning': 'Station counts and change in electorate require test-year observations. Diagnostic strata cannot be selected prospectively and cannot demonstrate forecasting gains.',
-            'geography_status': 'code_and_original_name_continuity_only_no_historical_boundary_overlay',
+            'geography_status': 'code_and_original_name_or_official_2015_rename_no_historical_boundary_overlay',
             'historical_boundary_reference': 'https://maps.nlsc.gov.tw/pro/013_41_layer.html',
             'no_individual_voter_inference': True,
             'candidate_vote_data_used': False,
