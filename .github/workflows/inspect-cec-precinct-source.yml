@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/inspect-cec-precinct-source.yml'
       - 'scripts/import_cec_precincts.py'
+      - 'scripts/import_cec_open_csv.py'
   workflow_dispatch:
 
 permissions:
@@ -78,3 +79,18 @@ jobs:
 
           except BadZipFile as exc:print('SOURCE_BAD_ZIP',str(exc))
           PY
+
+      - name: Verify all available 2014, 2018, 2022 polling-station rows
+        run: |
+          set -euo pipefail
+          python -m py_compile scripts/import_cec_open_csv.py scripts/import_cec_precincts.py
+          python scripts/import_cec_open_csv.py \
+            --zip /tmp/cec-official.zip \
+            --history data/candidate-history-cec.json \
+            --output /tmp/cec-precincts
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cec-precinct-extract-review
+          path: /tmp/cec-precincts
+          retention-days: 14
