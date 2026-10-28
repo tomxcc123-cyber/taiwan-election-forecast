@@ -84,6 +84,10 @@ export function twoCycleHistoryPanel(raw,report,county='台北市'){
    +(check.improved_both_cycles.length?check.improved_both_cycles.map(k=>esc(methods.find(x=>x[0]===k)?.[1]||k)).join('、'):'無')
    +'。</p>'
    +(historyRows.length?'<h3>'+esc(county)+'：2014—2018年行政區實際投票率</h3>'
+    +'<div class="turnout-map-layout"><div class="turnout-map-shell">'
+    +'<svg id="priorTownTurnoutMap" role="img" aria-label="'+esc(county)+'2014至2018投票率變化，2014年中選會原始行政區核驗" viewBox="0 0 680 500" preserveAspectRatio="xMidYMid meet"><text x="20" y="40">2014—2018行政區GIS地圖載入中…</text></svg>'
+    +'<p class="turnout-map-key">2014→2018觀測投票率變動（百分點）：<span style="background:#bc7b44"></span>下降　<span style="background:#e1e7eb"></span>±1pp內　<span style="background:#9373b9"></span>上升　<span style="background:#cad5dc"></span>無對應幾何</p></div>'
+    +'<div id="priorTurnoutMapInspector" class="turnout-map-detail">選取行政區，查看2014和2018年實際投票數、選舉人數及站點數。地圖沿用網站現有行政區幾何，只以當屆中選會原始名稱及代碼確認統計數值；行政界可能跨年調整，無法匹配的單位不會著色。</div></div>'
     +'<div class="turnout-tablewrap"><table class="turnout-table"><thead><tr><th>行政區</th>'
     +'<th>2014年</th><th>2018年</th><th>變動</th><th>站點數</th></tr></thead><tbody>'
     +townRows+'</tbody></table></div>':
