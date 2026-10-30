@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-10-30T12:52:49+00:00",
+  "checked_at": "2026-10-30T22:17:11+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-10-30T12:52:49+00:00",
+  "index_checked_at": "2026-10-30T22:17:11+00:00",
   "updated_at": "2026-10-28T04:25:18+00:00",
   "latest_fieldwork_date": "2026-10-19",
   "status": "degraded",
@@ -27,7 +27,7 @@
     {
       "name": "ETtoday 民調雲",
       "url": "https://feeds.feedburner.com/ettoday/newslist",
-      "discovered": 1,
+      "discovered": 0,
       "validated_reports": 0,
       "reviewed_reports": 2,
       "index_ok": true,
@@ -53,13 +53,13 @@
       "reviewed_reports": 3,
       "status": "reviewed_seed_only",
       "method_class": "landline_cati",
-      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
+      "note": "本輪一方站點自動發現受限；保留既有核驗資料，不把抓取失敗當成無新民調。",
       "auto_discovery": true,
-      "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-10-30T12:53:13+00:00",
-      "auto_discovered": 6,
-      "auto_known": 2,
-      "auto_pending": 4,
+      "auto_discovery_status": "degraded",
+      "auto_discovery_checked_at": "2026-10-30T22:17:23+00:00",
+      "auto_discovered": 0,
+      "auto_known": 0,
+      "auto_pending": 0,
       "registry_pollster_id": "shanshui",
       "auto_promoted": 2
     },
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-10-30T12:53:13+00:00",
+      "auto_discovery_checked_at": "2026-10-30T22:17:23+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -96,72 +96,7 @@
       "url": "https://udn.com/vote2026/index"
     }
   ],
-  "discovery_queue": [
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震傳媒民調(三)/誰能外溢助攻新北百里侯?48.8%認同蔣萬安、33.3%點名沈伯洋 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉,由於台北市長蔣萬安及民進黨籍台北市長候選人沈伯洋近日皆成焦點,甚至被視為兩黨大選領頭羊,對新北市民而言,兩人誰對同黨候選人有較正向的外溢效應?民調顯示,48.8%新北市民認為蔣萬安對同黨候選人有較正向的外溢效應,",
-      "county": "台北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-30T12:53:13+00:00",
-      "last_seen_at": "2026-10-30T12:53:13+00:00",
-      "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-10-30T12:53:15+00:00"
-    },
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震撼民心 震傳媒民調(二)/北市長看好度 蔣萬安46.4%、沈伯洋36.9% 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選舉看好度,46.4%台北市民看好現任台北市長蔣萬安,36.9%支持民進黨籍市長參選人沈伯洋,兩人差距9.5%。",
-      "county": "台北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-30T12:53:13+00:00",
-      "last_seen_at": "2026-10-30T12:53:13+00:00",
-      "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-10-30T12:53:15+00:00"
-    },
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震撼民心 震傳媒民調(四)/黃珊珊的34萬票流向哪?54.4%支持沈伯洋、34.1%挺蔣萬安 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選戰的投票動向,2022年無黨籍參選人黃珊珊當時獲得的34萬票究竟會在今年流向何方?民調顯示,54.4%選擇黃珊珊的選民會支持沈伯洋,34.1%會改支持蔣萬安。",
-      "county": "台北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-30T12:53:13+00:00",
-      "last_seen_at": "2026-10-30T12:53:13+00:00",
-      "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-10-30T12:53:15+00:00"
-    },
-    {
-      "pollster_id": "shanshui",
-      "source": "震傳媒／山水民調",
-      "publisher": "震傳媒",
-      "title": "震傳媒民調(二)/42.0%新北市民看好李四川 蘇巧慧五個月內上升3.7% 雙方差距縮小至5.2%! 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉看好度,在三位登記參選人中,42.0%新北市民看好國民黨籍參選人李四川,36.8%看好民進黨籍參選人蘇巧慧,雙方差距5.2%。在趨勢追蹤部分,與115年4月相比,李四川看好度下跌0.9%,蘇巧慧則上",
-      "county": "新北市",
-      "url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "status": "discovered_unverified",
-      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-10-30T12:53:13+00:00",
-      "last_seen_at": "2026-10-30T12:53:13+00:00",
-      "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-10-30T12:53:15+00:00"
-    },
-    {
-      "source": "ETtoday",
-      "title": "民調咬超緊！賴瑞隆：戒慎恐懼　「賽馬場變台積電」接棒陳其邁",
-      "county": "高雄市",
-      "url": "https://www.ettoday.net/news/20261030/3263583.htm",
-      "status": "discovered_unverified",
-      "reason": "Missing ETtoday fieldwork dates"
-    }
-  ],
+  "discovery_queue": [],
   "records": [
     {
       "id": "9715c8fce619a1e63c782c2b",
@@ -1355,11 +1290,6 @@
       "message": "'utf-8' codec can't decode byte 0xac in position 471: invalid start byte"
     },
     {
-      "source": "ETtoday",
-      "url": "https://www.ettoday.net/news/20261030/3263583.htm",
-      "message": "Missing ETtoday fieldwork dates"
-    },
-    {
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1552/1791788111_20261003_________________________________.pdf",
       "message": "Missing or unsupported fieldwork dates"
@@ -1403,6 +1333,16 @@
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251124/b598691bc21b681281b8b75489a1deef.pdf",
       "message": "Vote-intention question has an unsupported table header"
+    },
+    {
+      "source": "震傳媒／山水民調 discovery",
+      "url": "https://www.zmedia.com.tw/Document/Pool",
+      "message": "HTTP Error 500: Internal Server Error"
+    },
+    {
+      "source": "震傳媒／山水民調 discovery",
+      "url": "https://www.zmedia.com.tw/Document/Pool?page=2",
+      "message": "HTTP Error 500: Internal Server Error"
     }
   ],
   "reports": {
@@ -2040,7 +1980,7 @@
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-10-30T12:53:13+00:00",
+  "discovery_checked_at": "2026-10-30T22:17:23+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-09-12T10:58:00+00:00",
