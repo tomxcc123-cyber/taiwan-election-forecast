@@ -11696,6 +11696,2343 @@
           ]
         }
       ]
+    },
+    {
+      "schema_version": 1,
+      "taipei_day": "2026-11-02",
+      "as_of": "2026-11-01T22:00:56.554012+00:00",
+      "provenance": {
+        "model_fingerprint": "a58121d68b084c8e05ef893bb75c3061e0cf1d2ad754a665cb76c3c58f7ead5c",
+        "model_version": "2026.09-HB-TLEF-v5.0-public-beta.1",
+        "model_as_of": "2026-11-01T22:00:56.554012+00:00",
+        "market_checked_at": "2026-11-01T22:00:48+00:00",
+        "market_registry_count": 19,
+        "market_status": "ok"
+      },
+      "source_digest": "13c929e43cf59cb739281b391b59c24ed4168100283dd05a210b0eaa54a279b5",
+      "weights": [
+        0,
+        0.05,
+        0.1
+      ],
+      "included_races": 12,
+      "excluded_races": 10,
+      "outcome_status": "awaiting_official_result",
+      "research_only": true,
+      "official_forecast_unchanged": true,
+      "joint_sensitivity": {
+        "joint_05": {
+          "available": true,
+          "kind": "uncalibrated_joint_importance_weight_shadow",
+          "diagnostics": {
+            "simulations": 2000,
+            "eligible_count": 12,
+            "excluded_count": 10,
+            "effective_sample_size": 1933.6,
+            "effective_sample_fraction": 0.9668,
+            "max_path_weight": 0.00079,
+            "joint_gate_passed": true,
+            "market_checked_at": "2026-11-01T22:00:48+00:00",
+            "model_as_of": "2026-11-01T22:00:56.554012+00:00",
+            "experiment_weight": 0.05,
+            "no_independent_signal_assumption": true
+          },
+          "national": [
+            {
+              "party": "KMT",
+              "mean": 11.2472,
+              "baseline_mean": 11.1205,
+              "delta_mean": 0.1267,
+              "p05": 8,
+              "p95": 15,
+              "majority_probability": 0.46311
+            },
+            {
+              "party": "DPP",
+              "mean": 8.6714,
+              "baseline_mean": 8.775,
+              "delta_mean": -0.1036,
+              "p05": 5,
+              "p95": 13,
+              "majority_probability": 0.12421
+            },
+            {
+              "party": "TPP",
+              "mean": 0.5708,
+              "baseline_mean": 0.5705,
+              "delta_mean": 0.0003,
+              "p05": 0,
+              "p95": 1,
+              "majority_probability": 0
+            },
+            {
+              "party": "IND",
+              "mean": 1.4107,
+              "baseline_mean": 1.423,
+              "delta_mean": -0.0123,
+              "p05": 0,
+              "p95": 3,
+              "majority_probability": 0
+            },
+            {
+              "party": "OTHER",
+              "mean": 0.0999,
+              "baseline_mean": 0.111,
+              "delta_mean": -0.0111,
+              "p05": 0,
+              "p95": 1,
+              "majority_probability": 0
+            }
+          ],
+          "races": [
+            {
+              "county": "彰化縣",
+              "race_id": "local-executive-2026-county-1175fce2e312",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
+                  "probability": 0.001342,
+                  "baseline_probability": 0.0015
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
+                  "probability": 0.466661,
+                  "baseline_probability": 0.4665
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
+                  "probability": 0.5317,
+                  "baseline_probability": 0.5315
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
+                  "probability": 0.000297,
+                  "baseline_probability": 0.0005
+                }
+              ]
+            },
+            {
+              "county": "澎湖縣",
+              "race_id": "local-executive-2026-county-1fa460ca48ae",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
+                  "probability": 0.089946,
+                  "baseline_probability": 0.089
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
+                  "probability": 0.051622,
+                  "baseline_probability": 0.0525
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
+                  "probability": 0.042862,
+                  "baseline_probability": 0.042
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
+                  "probability": 0.413729,
+                  "baseline_probability": 0.4125
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
+                  "probability": 0.033224,
+                  "baseline_probability": 0.035
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
+                  "probability": 0.368618,
+                  "baseline_probability": 0.369
+                }
+              ]
+            },
+            {
+              "county": "台南市",
+              "race_id": "local-executive-2026-county-2555d8a05557",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
+                  "probability": 0.001976,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
+                  "probability": 0.206362,
+                  "baseline_probability": 0.205
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
+                  "probability": 0.002179,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
+                  "probability": 0.789483,
+                  "baseline_probability": 0.791
+                }
+              ]
+            },
+            {
+              "county": "連江縣",
+              "race_id": "local-executive-2026-county-2a330ebd3aa7",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
+                  "probability": 0.017133,
+                  "baseline_probability": 0.014
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
+                  "probability": 0.982867,
+                  "baseline_probability": 0.986
+                }
+              ]
+            },
+            {
+              "county": "台東縣",
+              "race_id": "local-executive-2026-county-2f29ef121b19",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
+                  "probability": 0.000433,
+                  "baseline_probability": 0.0005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
+                  "probability": 0.000379,
+                  "baseline_probability": 0.0005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
+                  "probability": 0.613785,
+                  "baseline_probability": 0.608
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
+                  "probability": 0.385403,
+                  "baseline_probability": 0.391
+                }
+              ]
+            },
+            {
+              "county": "宜蘭縣",
+              "race_id": "local-executive-2026-county-2f3ede12c290",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
+                  "probability": 0.473163,
+                  "baseline_probability": 0.4755
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
+                  "probability": 0.005126,
+                  "baseline_probability": 0.005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
+                  "probability": 0.009559,
+                  "baseline_probability": 0.0095
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
+                  "probability": 0.508297,
+                  "baseline_probability": 0.5055
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
+                  "probability": 0.003855,
+                  "baseline_probability": 0.0045
+                }
+              ]
+            },
+            {
+              "county": "雲林縣",
+              "race_id": "local-executive-2026-county-343b71f65d13",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
+                  "probability": 0.466387,
+                  "baseline_probability": 0.468
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
+                  "probability": 0.003073,
+                  "baseline_probability": 0.0035
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
+                  "probability": 0.004659,
+                  "baseline_probability": 0.0045
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
+                  "probability": 0.52588,
+                  "baseline_probability": 0.524
+                }
+              ]
+            },
+            {
+              "county": "嘉義縣",
+              "race_id": "local-executive-2026-county-364b2e14f33d",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
+                  "probability": 0.541101,
+                  "baseline_probability": 0.54
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
+                  "probability": 0.458899,
+                  "baseline_probability": 0.46
+                }
+              ]
+            },
+            {
+              "county": "台中市",
+              "race_id": "local-executive-2026-county-39a14e2e8228",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
+                  "probability": 0.390809,
+                  "baseline_probability": 0.407
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
+                  "probability": 0.608043,
+                  "baseline_probability": 0.592
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
+                  "probability": 0.001148,
+                  "baseline_probability": 0.001
+                }
+              ]
+            },
+            {
+              "county": "新竹市",
+              "race_id": "local-executive-2026-county-3bbf653c4d64",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
+                  "probability": 0.58391,
+                  "baseline_probability": 0.558
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
+                  "probability": 0.002174,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
+                  "probability": 0.413915,
+                  "baseline_probability": 0.44
+                }
+              ]
+            },
+            {
+              "county": "新竹縣",
+              "race_id": "local-executive-2026-county-3db00425a6dd",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
+                  "probability": 0.595538,
+                  "baseline_probability": 0.591
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
+                  "probability": 0.402912,
+                  "baseline_probability": 0.4075
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
+                  "probability": 0.00155,
+                  "baseline_probability": 0.0015
+                }
+              ]
+            },
+            {
+              "county": "金門縣",
+              "race_id": "local-executive-2026-county-70749066df2a",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
+                  "probability": 0.007559,
+                  "baseline_probability": 0.012
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
+                  "probability": 0.014303,
+                  "baseline_probability": 0.0235
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
+                  "probability": 0.028678,
+                  "baseline_probability": 0.0275
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
+                  "probability": 0.902984,
+                  "baseline_probability": 0.872
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
+                  "probability": 0.015686,
+                  "baseline_probability": 0.0255
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
+                  "probability": 0.016404,
+                  "baseline_probability": 0.0155
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
+                  "probability": 0.014385,
+                  "baseline_probability": 0.024
+                }
+              ]
+            },
+            {
+              "county": "屏東縣",
+              "race_id": "local-executive-2026-county-780b480cd047",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
+                  "probability": 0.556912,
+                  "baseline_probability": 0.5375
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
+                  "probability": 0.443088,
+                  "baseline_probability": 0.4625
+                }
+              ]
+            },
+            {
+              "county": "高雄市",
+              "race_id": "local-executive-2026-county-800c9be4cf11",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
+                  "probability": 0.559078,
+                  "baseline_probability": 0.553
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
+                  "probability": 0,
+                  "baseline_probability": 0
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
+                  "probability": 0.000759,
+                  "baseline_probability": 0.001
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
+                  "probability": 0.439716,
+                  "baseline_probability": 0.4455
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
+                  "probability": 0.000447,
+                  "baseline_probability": 0.0005
+                }
+              ]
+            },
+            {
+              "county": "花蓮縣",
+              "race_id": "local-executive-2026-county-a0b9b4804c8c",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
+                  "probability": 0.945056,
+                  "baseline_probability": 0.942
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
+                  "probability": 0.019045,
+                  "baseline_probability": 0.0205
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
+                  "probability": 0.014418,
+                  "baseline_probability": 0.015
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
+                  "probability": 0.021481,
+                  "baseline_probability": 0.0225
+                }
+              ]
+            },
+            {
+              "county": "新北市",
+              "race_id": "local-executive-2026-county-a46602cecd9b",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
+                  "probability": 0.467278,
+                  "baseline_probability": 0.47
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
+                  "probability": 0.532722,
+                  "baseline_probability": 0.53
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
+                  "probability": 0,
+                  "baseline_probability": 0
+                }
+              ]
+            },
+            {
+              "county": "基隆市",
+              "race_id": "local-executive-2026-county-b1067dd41531",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
+                  "probability": 0.413627,
+                  "baseline_probability": 0.424
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
+                  "probability": 0.582153,
+                  "baseline_probability": 0.5695
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
+                  "probability": 0.004219,
+                  "baseline_probability": 0.0065
+                }
+              ]
+            },
+            {
+              "county": "嘉義市",
+              "race_id": "local-executive-2026-county-c7cf2c480cf8",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
+                  "probability": 0.003918,
+                  "baseline_probability": 0.004
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
+                  "probability": 0.419454,
+                  "baseline_probability": 0.4195
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
+                  "probability": 0.002725,
+                  "baseline_probability": 0.003
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
+                  "probability": 0.003056,
+                  "baseline_probability": 0.003
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
+                  "probability": 0.570847,
+                  "baseline_probability": 0.5705
+                }
+              ]
+            },
+            {
+              "county": "苗栗縣",
+              "race_id": "local-executive-2026-county-cff72749bf92",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
+                  "probability": 0.410043,
+                  "baseline_probability": 0.44
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
+                  "probability": 0.589957,
+                  "baseline_probability": 0.56
+                }
+              ]
+            },
+            {
+              "county": "台北市",
+              "race_id": "local-executive-2026-county-e35db3914937",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
+                  "probability": 0.010585,
+                  "baseline_probability": 0.0125
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
+                  "probability": 0.74789,
+                  "baseline_probability": 0.744
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
+                  "probability": 0.00465,
+                  "baseline_probability": 0.008
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
+                  "probability": 0.224024,
+                  "baseline_probability": 0.215
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
+                  "probability": 0.006567,
+                  "baseline_probability": 0.0105
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
+                  "probability": 0.006284,
+                  "baseline_probability": 0.01
+                }
+              ]
+            },
+            {
+              "county": "桃園市",
+              "race_id": "local-executive-2026-county-eed891611f5f",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
+                  "probability": 0.434736,
+                  "baseline_probability": 0.475
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
+                  "probability": 0.565264,
+                  "baseline_probability": 0.525
+                }
+              ]
+            },
+            {
+              "county": "南投縣",
+              "race_id": "local-executive-2026-county-f86a4b628d2b",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
+                  "probability": 0.428338,
+                  "baseline_probability": 0.4295
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
+                  "probability": 0.571662,
+                  "baseline_probability": 0.5705
+                }
+              ]
+            }
+          ]
+        },
+        "joint_10": {
+          "available": true,
+          "kind": "uncalibrated_joint_importance_weight_shadow",
+          "diagnostics": {
+            "simulations": 2000,
+            "eligible_count": 12,
+            "excluded_count": 10,
+            "effective_sample_size": 1794.9,
+            "effective_sample_fraction": 0.8975,
+            "max_path_weight": 0.00122,
+            "joint_gate_passed": true,
+            "market_checked_at": "2026-11-01T22:00:48+00:00",
+            "model_as_of": "2026-11-01T22:00:56.554012+00:00",
+            "experiment_weight": 0.1,
+            "no_independent_signal_assumption": true
+          },
+          "national": [
+            {
+              "party": "KMT",
+              "mean": 11.3532,
+              "baseline_mean": 11.1205,
+              "delta_mean": 0.2327,
+              "p05": 8,
+              "p95": 15,
+              "majority_probability": 0.4827
+            },
+            {
+              "party": "DPP",
+              "mean": 8.5703,
+              "baseline_mean": 8.775,
+              "delta_mean": -0.2047,
+              "p05": 5,
+              "p95": 13,
+              "majority_probability": 0.11486
+            },
+            {
+              "party": "TPP",
+              "mean": 0.5715,
+              "baseline_mean": 0.5705,
+              "delta_mean": 0.001,
+              "p05": 0,
+              "p95": 1,
+              "majority_probability": 0
+            },
+            {
+              "party": "IND",
+              "mean": 1.4124,
+              "baseline_mean": 1.423,
+              "delta_mean": -0.0106,
+              "p05": 0,
+              "p95": 3,
+              "majority_probability": 0
+            },
+            {
+              "party": "OTHER",
+              "mean": 0.0927,
+              "baseline_mean": 0.111,
+              "delta_mean": -0.0183,
+              "p05": 0,
+              "p95": 1,
+              "majority_probability": 0
+            }
+          ],
+          "races": [
+            {
+              "county": "彰化縣",
+              "race_id": "local-executive-2026-county-1175fce2e312",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
+                  "probability": 0.001185,
+                  "baseline_probability": 0.0015
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
+                  "probability": 0.466967,
+                  "baseline_probability": 0.4665
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
+                  "probability": 0.531677,
+                  "baseline_probability": 0.5315
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
+                  "probability": 0.00017,
+                  "baseline_probability": 0.0005
+                }
+              ]
+            },
+            {
+              "county": "澎湖縣",
+              "race_id": "local-executive-2026-county-1fa460ca48ae",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
+                  "probability": 0.090132,
+                  "baseline_probability": 0.089
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
+                  "probability": 0.051161,
+                  "baseline_probability": 0.0525
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
+                  "probability": 0.043604,
+                  "baseline_probability": 0.042
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
+                  "probability": 0.415617,
+                  "baseline_probability": 0.4125
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
+                  "probability": 0.031912,
+                  "baseline_probability": 0.035
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
+                  "probability": 0.367575,
+                  "baseline_probability": 0.369
+                }
+              ]
+            },
+            {
+              "county": "台南市",
+              "race_id": "local-executive-2026-county-2555d8a05557",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
+                  "probability": 0.001898,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
+                  "probability": 0.207187,
+                  "baseline_probability": 0.205
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
+                  "probability": 0.002353,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
+                  "probability": 0.788562,
+                  "baseline_probability": 0.791
+                }
+              ]
+            },
+            {
+              "county": "連江縣",
+              "race_id": "local-executive-2026-county-2a330ebd3aa7",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
+                  "probability": 0.020804,
+                  "baseline_probability": 0.014
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
+                  "probability": 0.979196,
+                  "baseline_probability": 0.986
+                }
+              ]
+            },
+            {
+              "county": "台東縣",
+              "race_id": "local-executive-2026-county-2f29ef121b19",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
+                  "probability": 0.000362,
+                  "baseline_probability": 0.0005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
+                  "probability": 0.000278,
+                  "baseline_probability": 0.0005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
+                  "probability": 0.620751,
+                  "baseline_probability": 0.608
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
+                  "probability": 0.378609,
+                  "baseline_probability": 0.391
+                }
+              ]
+            },
+            {
+              "county": "宜蘭縣",
+              "race_id": "local-executive-2026-county-2f3ede12c290",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
+                  "probability": 0.470682,
+                  "baseline_probability": 0.4755
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
+                  "probability": 0.005208,
+                  "baseline_probability": 0.005
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
+                  "probability": 0.009623,
+                  "baseline_probability": 0.0095
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
+                  "probability": 0.511038,
+                  "baseline_probability": 0.5055
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
+                  "probability": 0.003449,
+                  "baseline_probability": 0.0045
+                }
+              ]
+            },
+            {
+              "county": "雲林縣",
+              "race_id": "local-executive-2026-county-343b71f65d13",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
+                  "probability": 0.465537,
+                  "baseline_probability": 0.468
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
+                  "probability": 0.002723,
+                  "baseline_probability": 0.0035
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
+                  "probability": 0.004766,
+                  "baseline_probability": 0.0045
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
+                  "probability": 0.526974,
+                  "baseline_probability": 0.524
+                }
+              ]
+            },
+            {
+              "county": "嘉義縣",
+              "race_id": "local-executive-2026-county-364b2e14f33d",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
+                  "probability": 0.54181,
+                  "baseline_probability": 0.54
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
+                  "probability": 0.45819,
+                  "baseline_probability": 0.46
+                }
+              ]
+            },
+            {
+              "county": "台中市",
+              "race_id": "local-executive-2026-county-39a14e2e8228",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
+                  "probability": 0.374555,
+                  "baseline_probability": 0.407
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
+                  "probability": 0.624171,
+                  "baseline_probability": 0.592
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
+                  "probability": 0.001273,
+                  "baseline_probability": 0.001
+                }
+              ]
+            },
+            {
+              "county": "新竹市",
+              "race_id": "local-executive-2026-county-3bbf653c4d64",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
+                  "probability": 0.608426,
+                  "baseline_probability": 0.558
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
+                  "probability": 0.0023,
+                  "baseline_probability": 0.002
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
+                  "probability": 0.389275,
+                  "baseline_probability": 0.44
+                }
+              ]
+            },
+            {
+              "county": "新竹縣",
+              "race_id": "local-executive-2026-county-3db00425a6dd",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
+                  "probability": 0.599731,
+                  "baseline_probability": 0.591
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
+                  "probability": 0.398663,
+                  "baseline_probability": 0.4075
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
+                  "probability": 0.001606,
+                  "baseline_probability": 0.0015
+                }
+              ]
+            },
+            {
+              "county": "金門縣",
+              "race_id": "local-executive-2026-county-70749066df2a",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
+                  "probability": 0.004652,
+                  "baseline_probability": 0.012
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
+                  "probability": 0.008583,
+                  "baseline_probability": 0.0235
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
+                  "probability": 0.029612,
+                  "baseline_probability": 0.0275
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
+                  "probability": 0.922048,
+                  "baseline_probability": 0.872
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
+                  "probability": 0.009563,
+                  "baseline_probability": 0.0255
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
+                  "probability": 0.017042,
+                  "baseline_probability": 0.0155
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
+                  "probability": 0.008501,
+                  "baseline_probability": 0.024
+                }
+              ]
+            },
+            {
+              "county": "屏東縣",
+              "race_id": "local-executive-2026-county-780b480cd047",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
+                  "probability": 0.576147,
+                  "baseline_probability": 0.5375
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
+                  "probability": 0.423853,
+                  "baseline_probability": 0.4625
+                }
+              ]
+            },
+            {
+              "county": "高雄市",
+              "race_id": "local-executive-2026-county-800c9be4cf11",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
+                  "probability": 0.566304,
+                  "baseline_probability": 0.553
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
+                  "probability": 0,
+                  "baseline_probability": 0
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
+                  "probability": 0.000562,
+                  "baseline_probability": 0.001
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
+                  "probability": 0.432748,
+                  "baseline_probability": 0.4455
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
+                  "probability": 0.000386,
+                  "baseline_probability": 0.0005
+                }
+              ]
+            },
+            {
+              "county": "花蓮縣",
+              "race_id": "local-executive-2026-county-a0b9b4804c8c",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
+                  "probability": 0.947414,
+                  "baseline_probability": 0.942
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
+                  "probability": 0.017963,
+                  "baseline_probability": 0.0205
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
+                  "probability": 0.01389,
+                  "baseline_probability": 0.015
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
+                  "probability": 0.020733,
+                  "baseline_probability": 0.0225
+                }
+              ]
+            },
+            {
+              "county": "新北市",
+              "race_id": "local-executive-2026-county-a46602cecd9b",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
+                  "probability": 0.464754,
+                  "baseline_probability": 0.47
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
+                  "probability": 0.535246,
+                  "baseline_probability": 0.53
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
+                  "probability": 0,
+                  "baseline_probability": 0
+                }
+              ]
+            },
+            {
+              "county": "基隆市",
+              "race_id": "local-executive-2026-county-b1067dd41531",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
+                  "probability": 0.403139,
+                  "baseline_probability": 0.424
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
+                  "probability": 0.594012,
+                  "baseline_probability": 0.5695
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
+                  "probability": 0.002849,
+                  "baseline_probability": 0.0065
+                }
+              ]
+            },
+            {
+              "county": "嘉義市",
+              "race_id": "local-executive-2026-county-c7cf2c480cf8",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
+                  "probability": 0.003731,
+                  "baseline_probability": 0.004
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
+                  "probability": 0.419106,
+                  "baseline_probability": 0.4195
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
+                  "probability": 0.002541,
+                  "baseline_probability": 0.003
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
+                  "probability": 0.003128,
+                  "baseline_probability": 0.003
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
+                  "probability": 0.571494,
+                  "baseline_probability": 0.5705
+                }
+              ]
+            },
+            {
+              "county": "苗栗縣",
+              "race_id": "local-executive-2026-county-cff72749bf92",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
+                  "probability": 0.381176,
+                  "baseline_probability": 0.44
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
+                  "probability": 0.618824,
+                  "baseline_probability": 0.56
+                }
+              ]
+            },
+            {
+              "county": "台北市",
+              "race_id": "local-executive-2026-county-e35db3914937",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
+                  "probability": 0.009167,
+                  "baseline_probability": 0.0125
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
+                  "probability": 0.748484,
+                  "baseline_probability": 0.744
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
+                  "probability": 0.002721,
+                  "baseline_probability": 0.008
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
+                  "probability": 0.231658,
+                  "baseline_probability": 0.215
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
+                  "probability": 0.004113,
+                  "baseline_probability": 0.0105
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
+                  "probability": 0.003857,
+                  "baseline_probability": 0.01
+                }
+              ]
+            },
+            {
+              "county": "桃園市",
+              "race_id": "local-executive-2026-county-eed891611f5f",
+              "eligible_market": true,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
+                  "probability": 0.396424,
+                  "baseline_probability": 0.475
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
+                  "probability": 0.603576,
+                  "baseline_probability": 0.525
+                }
+              ]
+            },
+            {
+              "county": "南投縣",
+              "race_id": "local-executive-2026-county-f86a4b628d2b",
+              "eligible_market": false,
+              "candidates": [
+                {
+                  "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
+                  "probability": 0.427881,
+                  "baseline_probability": 0.4295
+                },
+                {
+                  "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
+                  "probability": 0.572119,
+                  "baseline_probability": 0.5705
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "races": [
+        {
+          "county": "彰化縣",
+          "race_id": "local-executive-2026-county-1175fce2e312",
+          "market_slug": "changhua-county-magistrate-election-winner-20260813135716600",
+          "source_url": "https://polymarket.com/event/changhua-county-magistrate-election-winner-20260813135716600",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 58037.74994,
+          "volume_usd": 17938.619565,
+          "included": false,
+          "reason": "主要選項買賣價差缺漏或過大",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
+              "name": "邱建富",
+              "probability": 0.0015,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
+              "name": "陳素月",
+              "probability": 0.4665,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
+              "name": "魏平政",
+              "probability": 0.5315,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
+              "name": "陳重嘉",
+              "probability": 0.0005,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "澎湖縣",
+          "race_id": "local-executive-2026-county-1fa460ca48ae",
+          "market_slug": "penghu-county-magistrate-election-winner-202608131357161400",
+          "source_url": "https://polymarket.com/event/penghu-county-magistrate-election-winner-202608131357161400",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 35691.55634,
+          "volume_usd": 13900.420613,
+          "included": false,
+          "reason": "合約價格總和偏離100%過多",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
+              "name": "葉竹林",
+              "probability": 0.089,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
+              "name": "周倪安",
+              "probability": 0.0525,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
+              "name": "許智富",
+              "probability": 0.042,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
+              "name": "陳振中",
+              "probability": 0.4125,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
+              "name": "陳盡川",
+              "probability": 0.035,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
+              "name": "吳淑瑾",
+              "probability": 0.369,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "台南市",
+          "race_id": "local-executive-2026-county-2555d8a05557",
+          "market_slug": null,
+          "source_url": null,
+          "quote_as_of": null,
+          "market_retrieved_at": null,
+          "market_stale": null,
+          "liquidity_usd": null,
+          "volume_usd": null,
+          "included": false,
+          "reason": "尚無對應的公開選舉市場",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
+              "name": "葉人文",
+              "probability": 0.002,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
+              "name": "謝龍介",
+              "probability": 0.205,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
+              "name": "蕭燐洪",
+              "probability": 0.002,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
+              "name": "陳亭妃",
+              "probability": 0.791,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "連江縣",
+          "race_id": "local-executive-2026-county-2a330ebd3aa7",
+          "market_slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
+          "source_url": "https://polymarket.com/event/lienchiang-county-magistrate-election-winner-202608131357161600",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 23711.47124,
+          "volume_usd": 13987.670523,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
+              "name": "曹爾元",
+              "probability": 0.014,
+              "market_yes": 0.262,
+              "market_aligned": 0.2641129,
+              "fused_05": 0.01641346,
+              "fused_10": 0.01923485
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
+              "name": "王忠銘",
+              "probability": 0.986,
+              "market_yes": 0.73,
+              "market_aligned": 0.7358871,
+              "fused_05": 0.98358654,
+              "fused_10": 0.98076515
+            }
+          ]
+        },
+        {
+          "county": "台東縣",
+          "race_id": "local-executive-2026-county-2f29ef121b19",
+          "market_slug": "taitung-county-magistrate-election-winner-202608131357161300",
+          "source_url": "https://polymarket.com/event/taitung-county-magistrate-election-winner-202608131357161300",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 39314.57296,
+          "volume_usd": 15803.473505,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
+              "name": "王志偉",
+              "probability": 0.0005,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.00050109,
+              "fused_10": 0.00050206
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
+              "name": "李吳穎智",
+              "probability": 0.0005,
+              "market_yes": 0.0005,
+              "market_aligned": 0.00049826,
+              "fused_05": 0.00050109,
+              "fused_10": 0.00050206
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
+              "name": "吳秀華",
+              "probability": 0.608,
+              "market_yes": 0.75,
+              "market_aligned": 0.74738416,
+              "fused_05": 0.61564817,
+              "fused_10": 0.62323929
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
+              "name": "陳瑩",
+              "probability": 0.391,
+              "market_yes": 0.253,
+              "market_aligned": 0.25211759,
+              "fused_05": 0.38334965,
+              "fused_10": 0.37575659
+            }
+          ]
+        },
+        {
+          "county": "宜蘭縣",
+          "race_id": "local-executive-2026-county-2f3ede12c290",
+          "market_slug": "yilan-county-magistrate-election-winner-20260813135716200",
+          "source_url": "https://polymarket.com/event/yilan-county-magistrate-election-winner-20260813135716200",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 74109.71473,
+          "volume_usd": 14548.608012,
+          "included": false,
+          "reason": "市場包含重要但無法對應的選項",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
+              "name": "林國漳",
+              "probability": 0.4755,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
+              "name": "陳宏毅",
+              "probability": 0.005,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
+              "name": "劉燦輝",
+              "probability": 0.0095,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
+              "name": "吳宗憲",
+              "probability": 0.5055,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
+              "name": "楊鉯婷",
+              "probability": 0.0045,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "雲林縣",
+          "race_id": "local-executive-2026-county-343b71f65d13",
+          "market_slug": null,
+          "source_url": null,
+          "quote_as_of": null,
+          "market_retrieved_at": null,
+          "market_stale": null,
+          "liquidity_usd": null,
+          "volume_usd": null,
+          "included": false,
+          "reason": "尚無對應的公開選舉市場",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
+              "name": "張嘉郡",
+              "probability": 0.468,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
+              "name": "林佳瑜",
+              "probability": 0.0035,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
+              "name": "吳炳輝",
+              "probability": 0.0045,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
+              "name": "劉建國",
+              "probability": 0.524,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "嘉義縣",
+          "race_id": "local-executive-2026-county-364b2e14f33d",
+          "market_slug": "chiayi-county-magistrate-election-winner-20260813135716900",
+          "source_url": "https://polymarket.com/event/chiayi-county-magistrate-election-winner-20260813135716900",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 38900.57304,
+          "volume_usd": 6224.095561,
+          "included": false,
+          "reason": "交易量或流動性不足",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
+              "name": "蔡易餘",
+              "probability": 0.54,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
+              "name": "吳品叡",
+              "probability": 0.46,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "台中市",
+          "race_id": "local-executive-2026-county-39a14e2e8228",
+          "market_slug": "taichung-mayor-election-winner-20260813125857400",
+          "source_url": "https://polymarket.com/event/taichung-mayor-election-winner-20260813125857400",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 100987.92778,
+          "volume_usd": 36874.000296,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
+              "name": "何欣純",
+              "probability": 0.407,
+              "market_yes": 0.149,
+              "market_aligned": 0.149,
+              "fused_05": 0.39062619,
+              "fused_10": 0.37449498
+            },
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
+              "name": "江啟臣",
+              "probability": 0.592,
+              "market_yes": 0.85,
+              "market_aligned": 0.85,
+              "fused_05": 0.60836459,
+              "fused_10": 0.62448762
+            },
+            {
+              "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
+              "name": "洪麗華",
+              "probability": 0.001,
+              "market_yes": null,
+              "market_aligned": 0.001,
+              "fused_05": 0.00100922,
+              "fused_10": 0.0010174
+            }
+          ]
+        },
+        {
+          "county": "新竹市",
+          "race_id": "local-executive-2026-county-3bbf653c4d64",
+          "market_slug": "hsinchu-city-mayor-election-winner-20260813135716400",
+          "source_url": "https://polymarket.com/event/hsinchu-city-mayor-election-winner-20260813135716400",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 107988.03164,
+          "volume_usd": 39549.253763,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
+              "name": "高虹安",
+              "probability": 0.558,
+              "market_yes": 0.885,
+              "market_aligned": 0.87192118,
+              "fused_05": 0.57900477,
+              "fused_10": 0.59971173
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
+              "name": "何志勇",
+              "probability": 0.002,
+              "market_yes": 0.0055,
+              "market_aligned": 0.00541872,
+              "fused_05": 0.00213319,
+              "fused_10": 0.00227112
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
+              "name": "莊競程",
+              "probability": 0.44,
+              "market_yes": 0.1245,
+              "market_aligned": 0.1226601,
+              "fused_05": 0.41886204,
+              "fused_10": 0.39801715
+            }
+          ]
+        },
+        {
+          "county": "新竹縣",
+          "race_id": "local-executive-2026-county-3db00425a6dd",
+          "market_slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
+          "source_url": "https://polymarket.com/event/hsinchu-county-magistrate-election-winner-20260813135716300",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 43113.69325,
+          "volume_usd": 28236.968997999997,
+          "included": false,
+          "reason": "主要選項買賣價差缺漏或過大",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
+              "name": "徐欣瑩",
+              "probability": 0.591,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
+              "name": "鄭朝方",
+              "probability": 0.4075,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
+              "name": "朱定瑀",
+              "probability": 0.0015,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "金門縣",
+          "race_id": "local-executive-2026-county-70749066df2a",
+          "market_slug": "kinmen-county-magistrate-election-winner-202608131357161500",
+          "source_url": "https://polymarket.com/event/kinmen-county-magistrate-election-winner-202608131357161500",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 47114.45253,
+          "volume_usd": 13125.992954,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
+              "name": "洪和成",
+              "probability": 0.012,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.01034855,
+              "fused_10": 0.00890205
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
+              "name": "張火木",
+              "probability": 0.0235,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.0195962,
+              "fused_10": 0.01630001
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
+              "name": "梁文韜",
+              "probability": 0.0275,
+              "market_yes": 0.046,
+              "market_aligned": 0.04457364,
+              "fused_05": 0.02847927,
+              "fused_10": 0.02941963
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
+              "name": "陳玉珍",
+              "probability": 0.872,
+              "market_yes": 0.9595,
+              "market_aligned": 0.92974806,
+              "fused_05": 0.88433709,
+              "fused_10": 0.89460489
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
+              "name": "黃世團",
+              "probability": 0.0255,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.0211773,
+              "fused_10": 0.01754337
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
+              "name": "李文良",
+              "probability": 0.0155,
+              "market_yes": 0.0265,
+              "market_aligned": 0.02567829,
+              "fused_05": 0.0160695,
+              "fused_10": 0.01661824
+            },
+            {
+              "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
+              "name": "張國威",
+              "probability": 0.024,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.01999209,
+              "fused_10": 0.01661181
+            }
+          ]
+        },
+        {
+          "county": "屏東縣",
+          "race_id": "local-executive-2026-county-780b480cd047",
+          "market_slug": "pingtung-county-magistrate-election-winner-202608131357161100",
+          "source_url": "https://polymarket.com/event/pingtung-county-magistrate-election-winner-202608131357161100",
+          "quote_as_of": "2026-11-01T21:58:18.613015Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 16274.787,
+          "volume_usd": 10229.724475000003,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
+              "name": "周春米",
+              "probability": 0.5375,
+              "market_yes": 0.83,
+              "market_aligned": 0.86458333,
+              "fused_05": 0.55859519,
+              "fused_10": 0.57948097
+            },
+            {
+              "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
+              "name": "蘇清泉",
+              "probability": 0.4625,
+              "market_yes": 0.13,
+              "market_aligned": 0.13541667,
+              "fused_05": 0.44140481,
+              "fused_10": 0.42051903
+            }
+          ]
+        },
+        {
+          "county": "高雄市",
+          "race_id": "local-executive-2026-county-800c9be4cf11",
+          "market_slug": "kaohsiung-mayor-election-winner-20260813125857600",
+          "source_url": "https://polymarket.com/event/kaohsiung-mayor-election-winner-20260813125857600",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 130057.80272,
+          "volume_usd": 82323.540174,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
+              "name": "賴瑞隆",
+              "probability": 0.553,
+              "market_yes": 0.755,
+              "market_aligned": 0.75012419,
+              "fused_05": 0.56362409,
+              "fused_10": 0.57446292
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
+              "name": "張靜",
+              "probability": 0,
+              "market_yes": 0.0005,
+              "market_aligned": 0.00049677,
+              "fused_05": 0.0005019,
+              "fused_10": 0.00050381
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
+              "name": "洪方隆",
+              "probability": 0.001,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.0009696,
+              "fused_10": 0.00094014
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
+              "name": "柯志恩",
+              "probability": 0.4455,
+              "market_yes": 0.251,
+              "market_aligned": 0.24937904,
+              "fused_05": 0.43440252,
+              "fused_10": 0.42358932
+            },
+            {
+              "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
+              "name": "王肇民",
+              "probability": 0.0005,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.0005019,
+              "fused_10": 0.00050381
+            }
+          ]
+        },
+        {
+          "county": "花蓮縣",
+          "race_id": "local-executive-2026-county-a0b9b4804c8c",
+          "market_slug": "hualien-county-magistrate-election-winner-202608131357161200",
+          "source_url": "https://polymarket.com/event/hualien-county-magistrate-election-winner-202608131357161200",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 63772.93885,
+          "volume_usd": 12320.183319,
+          "included": false,
+          "reason": "市場包含重要但無法對應的選項",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
+              "name": "游淑貞",
+              "probability": 0.942,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
+              "name": "魏嘉賢",
+              "probability": 0.0205,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
+              "name": "張峻",
+              "probability": 0.015,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
+              "name": "羅佩秦",
+              "probability": 0.0225,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "新北市",
+          "race_id": "local-executive-2026-county-a46602cecd9b",
+          "market_slug": "new-taipei-mayor-election-winner-20260813125857200",
+          "source_url": "https://polymarket.com/event/new-taipei-mayor-election-winner-20260813125857200",
+          "quote_as_of": "2026-11-01T21:56:18.97325Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 121990.81802,
+          "volume_usd": 210060.816765,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
+              "name": "蘇巧慧",
+              "probability": 0.47,
+              "market_yes": 0.45,
+              "market_aligned": 0.45,
+              "fused_05": 0.46876278,
+              "fused_10": 0.46776069
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
+              "name": "李四川",
+              "probability": 0.53,
+              "market_yes": 0.55,
+              "market_aligned": 0.55,
+              "fused_05": 0.53073745,
+              "fused_10": 0.53173953
+            },
+            {
+              "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
+              "name": "蘇輝湟",
+              "probability": 0,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.00049977,
+              "fused_10": 0.00049979
+            }
+          ]
+        },
+        {
+          "county": "基隆市",
+          "race_id": "local-executive-2026-county-b1067dd41531",
+          "market_slug": "keelung-mayor-election-winner-20260813135716100",
+          "source_url": "https://polymarket.com/event/keelung-mayor-election-winner-20260813135716100",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 34117.6321,
+          "volume_usd": 17658.586067,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
+              "name": "童子瑋",
+              "probability": 0.424,
+              "market_yes": 0.26,
+              "market_aligned": 0.25870647,
+              "fused_05": 0.41513709,
+              "fused_10": 0.4062818
+            },
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
+              "name": "謝國樑",
+              "probability": 0.5695,
+              "market_yes": 0.745,
+              "market_aligned": 0.74129353,
+              "fused_05": 0.57912479,
+              "fused_10": 0.58865487
+            },
+            {
+              "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
+              "name": "魏造文",
+              "probability": 0.0065,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.00573812,
+              "fused_10": 0.00506333
+            }
+          ]
+        },
+        {
+          "county": "嘉義市",
+          "race_id": "local-executive-2026-county-c7cf2c480cf8",
+          "market_slug": "chiayi-city-mayor-election-winner-202608131357161000",
+          "source_url": "https://polymarket.com/event/chiayi-city-mayor-election-winner-202608131357161000",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 65693.56268,
+          "volume_usd": 21480.925865999998,
+          "included": false,
+          "reason": "合約價格總和偏離100%過多",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
+              "name": "王義成",
+              "probability": 0.004,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
+              "name": "王美惠",
+              "probability": 0.4195,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
+              "name": "黃宏成台灣阿成世界偉人財神總統",
+              "probability": 0.003,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
+              "name": "陳愷璜",
+              "probability": 0.003,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
+              "name": "張啓楷",
+              "probability": 0.5705,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        },
+        {
+          "county": "苗栗縣",
+          "race_id": "local-executive-2026-county-cff72749bf92",
+          "market_slug": "miaoli-county-magistrate-election-winner-20260813135716500",
+          "source_url": "https://polymarket.com/event/miaoli-county-magistrate-election-winner-20260813135716500",
+          "quote_as_of": "2026-11-01T21:56:18.97325Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 30756.73466,
+          "volume_usd": 34347.33831099999,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
+              "name": "陳品安",
+              "probability": 0.44,
+              "market_yes": 0.0805,
+              "market_aligned": 0.08527542,
+              "fused_05": 0.41393038,
+              "fused_10": 0.38833425
+            },
+            {
+              "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
+              "name": "鍾東錦",
+              "probability": 0.56,
+              "market_yes": 0.8635,
+              "market_aligned": 0.91472458,
+              "fused_05": 0.58606962,
+              "fused_10": 0.61166575
+            }
+          ]
+        },
+        {
+          "county": "台北市",
+          "race_id": "local-executive-2026-county-e35db3914937",
+          "market_slug": "taipei-mayor-election-winner-20260813125857100",
+          "source_url": "https://polymarket.com/event/taipei-mayor-election-winner-20260813125857100",
+          "quote_as_of": "2026-11-01T21:54:19.117739Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 443123.50772,
+          "volume_usd": 2711603.206892,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
+              "name": "郭璽",
+              "probability": 0.0125,
+              "market_yes": 0.0005,
+              "market_aligned": 0.00049677,
+              "fused_05": 0.01070027,
+              "fused_10": 0.00915091
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
+              "name": "蔣萬安",
+              "probability": 0.744,
+              "market_yes": 0.655,
+              "market_aligned": 0.65077,
+              "fused_05": 0.74309987,
+              "fused_10": 0.74149223
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
+              "name": "林志成",
+              "probability": 0.008,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.0070027,
+              "fused_10": 0.00612387
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
+              "name": "沈伯洋",
+              "probability": 0.215,
+              "market_yes": 0.351,
+              "market_aligned": 0.34873323,
+              "fused_05": 0.22147399,
+              "fused_10": 0.2279251
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
+              "name": "蕭文乾",
+              "probability": 0.0105,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.00906692,
+              "fused_10": 0.00782196
+            },
+            {
+              "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
+              "name": "唐新民",
+              "probability": 0.01,
+              "market_yes": null,
+              "market_aligned": 0,
+              "fused_05": 0.00865625,
+              "fused_10": 0.00748592
+            }
+          ]
+        },
+        {
+          "county": "桃園市",
+          "race_id": "local-executive-2026-county-eed891611f5f",
+          "market_slug": "taoyuan-mayor-election-winner-20260813125857300",
+          "source_url": "https://polymarket.com/event/taoyuan-mayor-election-winner-20260813125857300",
+          "quote_as_of": "2026-11-01T22:00:21.199107Z",
+          "market_retrieved_at": "2026-11-01T22:00:48+00:00",
+          "market_stale": false,
+          "liquidity_usd": 70133.53667,
+          "volume_usd": 39974.960608,
+          "included": true,
+          "reason": "matched_and_quality_checked",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
+              "name": "黃世杰",
+              "probability": 0.475,
+              "market_yes": 0.051,
+              "market_aligned": 0.05172414,
+              "fused_05": 0.44015936,
+              "fused_10": 0.40589846
+            },
+            {
+              "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
+              "name": "張善政",
+              "probability": 0.525,
+              "market_yes": 0.935,
+              "market_aligned": 0.94827586,
+              "fused_05": 0.55984064,
+              "fused_10": 0.59410154
+            }
+          ]
+        },
+        {
+          "county": "南投縣",
+          "race_id": "local-executive-2026-county-f86a4b628d2b",
+          "market_slug": null,
+          "source_url": null,
+          "quote_as_of": null,
+          "market_retrieved_at": null,
+          "market_stale": null,
+          "liquidity_usd": null,
+          "volume_usd": null,
+          "included": false,
+          "reason": "尚無對應的公開選舉市場",
+          "candidates": [
+            {
+              "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
+              "name": "温世政",
+              "probability": 0.4295,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            },
+            {
+              "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
+              "name": "許淑華",
+              "probability": 0.5705,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
+            }
+          ]
+        }
+      ]
     }
   ]
 }
