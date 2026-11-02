@@ -66,9 +66,14 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         raise ValueError("reviewed poll candidate list is invalid")
     if date.fromisoformat(entry["date"]) > today or date.fromisoformat(entry["field_start"]) > date.fromisoformat(entry["date"]):
         raise ValueError("reviewed poll field dates are invalid")
+    unknown = float(entry.get("response_mass_unreported", 0))
     total = sum(float(v) for v in entry["supports"]) + float(entry["undecided"]) + float(entry["nonvote"])
-    if abs(total - 100.0) > 1.0:
-        raise ValueError(f"reviewed poll response mass does not total 100: {total}")
+    if not (0 <= unknown <= 30) or abs(total + unknown - 100.0) > 1.0:
+        raise ValueError(f"reviewed poll source-supported response mass is inconsistent: {total} known + {unknown} unknown")
+    if unknown and not entry.get("response_mass_note"):
+        raise ValueError("Reviewed partial response must explicitly document the unclassified categories")
+    if unknown and float(entry["undecided"]) == 0 and entry.get("undecided_reported") is False:
+        raise ValueError("Reviewed partial response may not impute unreported undecided as zero")
     if int(entry["sample_n"]) <= 0 or float(entry["margin_of_error"]) <= 0:
         raise ValueError("reviewed poll sample or margin of error is invalid")
 
@@ -109,7 +114,11 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         "candidates": candidates,
         "undecided": float(entry["undecided"]),
         "nonvote": float(entry["nonvote"]),
-        "verification_status": "reviewed_multi_source_methodology",
+        "undecided_reported": entry.get("undecided_reported", True),
+        "nonvote_reported": entry.get("nonvote_reported", float(entry["nonvote"]) > 0),
+        "response_mass_unreported": unknown,
+        "response_mass_note": entry.get("response_mass_note", ""),
+        "verification_status": "reviewed_multi_source_methodology_partial_response" if unknown else "reviewed_multi_source_methodology",
         "ingestion": "reviewed_multi_source_methodology",
         "retrieved_at": reviewed_at,
     }
@@ -129,7 +138,7 @@ def _review_rows(reviewed: dict) -> list[dict]:
     rows = []
     for item in reviewed.get("non_admitted_sources", []):
         urls = item.get("verification_urls") or []
-        if item.get("status") == "publisher_not_pollster":
+        if item.get("status") in ("publisher_not_pollster", "publisher_reprint_not_new_pollster"):
             note = item["reason"]
         else:
             note = f"{item['reason']} 已核對訪期／方法的來源仍採 fail-closed，不以剩餘比例自行補成未表態。"
@@ -229,7 +238,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     coverage = out.get("coverage_note", "").rstrip()
     old_addition = "另含經多來源方法核對的新台灣國策智庫／趨勢民調 reviewed seed；刊載媒體不另建立 pollster 權重。"
     coverage = coverage.replace(old_addition, "").strip()
-    addition = "另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。"
+    addition = "另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。"
     if addition not in coverage:
         out["coverage_note"] = (coverage + (" " if coverage else "") + addition).strip()
 
