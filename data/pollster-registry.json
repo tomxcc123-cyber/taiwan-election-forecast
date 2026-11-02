@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-09-12T10:58:00+00:00",
+  "updated_at": "2026-11-02T00:00:00+00:00",
   "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
   "pollsters": [
     {
@@ -9,7 +9,9 @@
       "source_label": "TVBS 民意調查中心",
       "publisher": "TVBS",
       "status": "automatic_parser",
-      "method_classes": ["telephone_cati"],
+      "method_classes": [
+        "telephone_cati"
+      ],
       "model_uncertainty": "tvbs_specific",
       "discovery": {
         "mode": "managed_by_update_polls",
@@ -22,7 +24,10 @@
       "source_label": "美麗島電子報／畢肯",
       "publisher": "美麗島電子報",
       "status": "automatic_parser_plus_reviewed_seed",
-      "method_classes": ["dual_frame_cati", "telephone_cati"],
+      "method_classes": [
+        "dual_frame_cati",
+        "telephone_cati"
+      ],
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "managed_by_update_polls",
@@ -35,7 +40,9 @@
       "source_label": "ETtoday 民調雲",
       "publisher": "ETtoday",
       "status": "automatic_discovery_plus_reviewed_seed",
-      "method_classes": ["closed_online_panel"],
+      "method_classes": [
+        "closed_online_panel"
+      ],
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "managed_by_update_polls",
@@ -48,7 +55,9 @@
       "source_label": "新台灣國策智庫／趨勢民調",
       "publisher": "凱達格蘭基金會－新台灣國策智庫",
       "status": "reviewed_seed_only",
-      "method_classes": ["telephone_cati"],
+      "method_classes": [
+        "telephone_cati"
+      ],
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "not_automated",
@@ -61,7 +70,10 @@
       "source_label": "震傳媒／山水民調",
       "publisher": "震傳媒",
       "status": "reviewed_seed_plus_auto_discovery",
-      "method_classes": ["landline_cati", "dual_frame_cati"],
+      "method_classes": [
+        "landline_cati",
+        "dual_frame_cati"
+      ],
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "html_index_queue",
@@ -70,9 +82,24 @@
           "https://www.zmedia.com.tw/Document/Pool?page=2"
         ],
         "article_path_pattern": "^/Document/(?:Pool)?Detail/[0-9]+$",
-        "markers": ["震傳媒民調"],
-        "title_cues": ["選舉", "連任", "決勝", "對決", "選情", "膠著"],
-        "exclude_cues": ["2028總統", "施政滿意", "施政表示滿意", "誰較有利", "對選情無影響"],
+        "markers": [
+          "震傳媒民調"
+        ],
+        "title_cues": [
+          "選舉",
+          "連任",
+          "決勝",
+          "對決",
+          "選情",
+          "膠著"
+        ],
+        "exclude_cues": [
+          "2028總統",
+          "施政滿意",
+          "施政表示滿意",
+          "誰較有利",
+          "對選情無影響"
+        ],
         "queue_only": true,
         "url_note": "Index links use /Document/Detail/<id> and redirect to /Document/PoolDetail/<id>; reviewed records preserve the final URL and list the index alias for de-duplication. Issue polls about job approval, 2028 presidential preference, or event effects on election advantage are excluded from the vote-intention discovery queue."
       }
@@ -83,7 +110,9 @@
       "source_label": "鉅聞天下／皮爾森數據",
       "publisher": "鉅聞天下新聞網",
       "status": "reviewed_seed_plus_auto_discovery",
-      "method_classes": ["online_dmp_panel"],
+      "method_classes": [
+        "online_dmp_panel"
+      ],
       "model_uncertainty": "generic_non_tvbs",
       "discovery": {
         "mode": "html_index_queue",
@@ -91,7 +120,9 @@
           "https://www.bigmedia.com.tw/category/%E9%89%85%E8%81%9E%E6%B0%91%E8%AA%BF"
         ],
         "article_path_pattern": "^/article/[0-9]+$",
-        "markers": ["鉅聞民調"],
+        "markers": [
+          "鉅聞民調"
+        ],
         "queue_only": true
       }
     },
@@ -101,11 +132,54 @@
       "source_label": "艾普羅行銷市場研究",
       "publisher": null,
       "status": "fail_closed_incomplete_response_mass",
-      "method_classes": ["telephone_cati"],
+      "method_classes": [
+        "telephone_cati"
+      ],
       "model_uncertainty": "not_admitted",
       "discovery": {
         "mode": "not_automated",
         "index_url": null
+      }
+    },
+    {
+      "pollster_id": "udn-poll-center",
+      "name": "聯合報系民意調查中心",
+      "source_label": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "status": "reviewed_seed_plus_auto_discovery_queue",
+      "method_classes": [
+        "dual_frame_cati"
+      ],
+      "model_uncertainty": "generic_non_tvbs",
+      "discovery": {
+        "mode": "html_index_queue",
+        "index_urls": [
+          "https://udn.com/vote2026/pollboard"
+        ],
+        "article_path_pattern": "^/(?:vote2026|news)/story/124652/[0-9]+$",
+        "markers": [
+          "聯合報民調"
+        ],
+        "title_cues": [
+          "市長",
+          "縣長",
+          "支持",
+          "選情",
+          "激戰",
+          "膠著"
+        ],
+        "exclude_cues": [
+          "看好度",
+          "施政滿意",
+          "施政表現",
+          "當選機率",
+          "學者",
+          "政見",
+          "辯論解析",
+          "國政"
+        ],
+        "queue_only": true,
+        "url_note": "Only original UDN in-house polling is eligible for review; mere media reprints are not new polls. The board's link format or JavaScript may fail; discovery must fail closed. Independently reviewed official-article seeds do not claim automatic retrieval."
       }
     }
   ]
