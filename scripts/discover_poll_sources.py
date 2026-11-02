@@ -155,6 +155,14 @@ def discover_from_html(raw: bytes, index_url: str, pollster: dict, matchups: dic
             continue
         if exclude_cues and any(cue in ctitle for cue in exclude_cues):
             continue
+        # UDN in-house releases sometimes headline both voting intention and
+        # "who is expected to win". Queue only the former; never mistake
+        # favorability or elected-outcome expectation for voting intention.
+        if pollster.get("pollster_id") == "udn-poll-center":
+            if "看好度" in ctitle and not any(t in ctitle for t in ("支持度", "投票意向", "投票支持")):
+                continue
+            if not any(t in ctitle for t in ("支持度", "投票意向", "投票支持", "選情", "激戰")):
+                continue
         county, candidate_hits = infer_county(title, matchups)
         if not county:
             continue
