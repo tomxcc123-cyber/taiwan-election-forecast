@@ -58,6 +58,17 @@ class UdnOriginalPollsTests(unittest.TestCase):
         self.assertEqual({r['county'] for r in accepted},{'台北市','高雄市'})
         self.assertEqual({r['pollster_id'] for r in accepted},{'udn-poll-center'})
 
+    def test_future_udn_publication_cannot_contaminate_september_fixed_asof(self):
+        feed={'schema_version':1,'checked_at':'2026-09-12T11:05:00+00:00',
+              'updated_at':'2026-09-12T00:00:00+00:00',
+              'records':[],'polls':[],'sources':[],'history':[]}
+        earlier=enrich(feed,self.config,self.reviewed,date(2026,9,12))
+        self.assertEqual(len([r for r in earlier['records'] if r.get('pollster_id')=='udn-poll-center']),0)
+        self.assertEqual(len([r for r in earlier['records'] if r.get('pollster_id')=='shanshui']),3)
+        self.assertEqual(len([r for r in earlier['records'] if r.get('pollster_id')=='pearson-data']),2)
+        self.assertFalse(any(r.get('date','') > '2026-09-12' for r in earlier['records']))
+        self.assertFalse(any(s['name']=='聯合報系民意調查中心' for s in earlier['sources']))
+
     def test_no_imputed_undecided_and_reject_bad_response_total(self):
         src=self.udn[0]
         broken=copy.deepcopy(src)
