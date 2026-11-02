@@ -194,6 +194,13 @@ jobs:
           assert 'candidate_residual_offset' in data['structural_model']
           assert data['structural_model']['mode_counts'].get('integrated_r4_candidate_t3',0) > 0
           assert len(data['counties']) == 22
+          holdout=data.get('nonmajor_historical_holdout',{})
+          assert holdout.get('kind')=='historical_t3_rolling_origin_research_no_2026_forecast_promotion'
+          assert holdout.get('evaluation_cycles')==[2018,2022]
+          assert set(holdout.get('scores',{}))=={'2018','2022'}
+          assert holdout['promotion_gate']['promote_to_formal_forecast'] is False
+          assert holdout['promotion_gate']['2026_forecast_t3_parameters_changed'] is False
+          assert sum(holdout['rows_by_year'][str(y)] for y in (2018,2022))==holdout['row_count']
           assert 'v5_validation' in data
           ids={r.get('pollster_id') for r in feed['records']}
           assert {'ettoday','trend-survey','shanshui','pearson-data'}.issubset(ids), ids

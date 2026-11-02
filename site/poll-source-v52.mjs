@@ -49,6 +49,31 @@ export function discoveryQueueHTML(feed){
   const rows=queue.map(row=>`<tr><td>${statusChip('review','待核驗')}</td><td><a href="${safe(row.url)}" target="_blank" rel="noopener">${esc(row.title||row.source||'未命名頁面')}</a><small>${esc(row.pollster_id?`pollster_id · ${row.pollster_id}`:row.source||'')}</small></td><td>${esc(row.county||'待辨識')}</td><td>${esc(row.reason||'尚未通過完整資料品質校驗。')}</td><td>${esc((row.discovered_at||'').slice(0,10)||'—')}</td></tr>`).join('');
   return `<section class="discovery-queue"><div class="source-observatory-head"><div><span class="eyebrow">Discovery Queue</span><h3>待核驗發現</h3><p>系統已在一方來源找到這些頁面，但它們尚未通過訪期、樣本、方法、完整回應品質與候選人題目校驗，因此<strong>不影響目前預測</strong>。</p></div>${statusChip('review',`${queue.length} 筆待核驗`)}</div><div class="table-wrap source-table"><table><thead><tr><th>狀態</th><th>發現頁面</th><th>縣市</th><th>為何尚未入模</th><th>首次發現</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
 }
+export function nonmajorHistoricalHTML(model){
+  const h=model?.nonmajor_historical_holdout;
+  if(!h||h.schema_version!==1||h.kind!=='historical_t3_rolling_origin_research_no_2026_forecast_promotion'
+      ||h.promotion_gate?.promote_to_formal_forecast!==false
+      ||h.promotion_gate?.['2026_forecast_t3_parameters_changed']!==false
+      ||!Array.isArray(h.folds)||h.folds.length!==2
+      ||!h.scores?.['2018']||!h.scores?.['2022'])return '';
+  const fmt=v=>Number.isFinite(Number(v))?Number(v).toFixed(2):'—';
+  const years=[2018,2022];
+  const rows=years.map(y=>{
+    const record=h.scores[String(y)]?.nonmajor_present_unique_pair;
+    const m=record?.models;
+    if(!m||!m.t3_blend_pct||!m.carry_pct||!m.t3_raw_pct)return '';
+    const t=m.t3_blend_pct,c=m.carry_pct;
+    return `<tr><td>${y}<small>${y===2018?'開發／模型規格選擇期':'時間順序測試；非全案盲測'}</small></td><td>${Number(t.n)}</td><td>${fmt(t.mae_pp)}pp</td><td>${fmt(c.mae_pp)}pp</td><td>${fmt(t.bias_pp)}pp</td><td>${Number(t.over_5pp)} / ${Number(t.under_5pp)}</td></tr>`;
+  }).filter(Boolean);
+  if(rows.length!==2)return '';
+  const large=(h.largest_2022_overestimates||[]).filter(x=>Number.isFinite(x.t3_blend_pct)&&Number.isFinite(x.actual_pct)&&x.nonmajor_candidate_count>0&&x.t3_blend_pct>x.actual_pct).slice(0,5);
+  const worst=large.map(x=>`<tr><td>${esc(x.county)}</td><td>${fmt(x.t3_blend_pct)}%</td><td>${fmt(x.actual_pct)}%</td><td>${fmt(x.t3_blend_pct-x.actual_pct)}pp</td></tr>`).join('');
+  const boot=h.bootstrap?.cluster_combined;
+  const ci=boot&&Number.isFinite(boot.ci95_low_pp)&&Number.isFinite(boot.ci95_high_pp)
+    ? `歷史縣市群集bootstrap：T3相對前期延續基線的MAE改善95%區間 ${fmt(boot.ci95_low_pp)}至${fmt(boot.ci95_high_pp)}個百分點；此區間並非勝選機率可信區間。`
+    : '跨期bootstrap不足以構建可核驗區間。';
+  return `<section class="source-observatory" id="nonmajorHistoricalValidation"><div class="source-observatory-head"><div><span class="eyebrow">T3 Rolling-origin · Research-only</span><h3>第三勢力票池的歷史時間留出檢驗</h3><p>以2014資料訓練測試2018，再以2014及2018資料訓練測試2022；只在<strong>有非藍綠候選人且藍綠各唯一一名</strong>的縣市比較，以避免沒有其他人選的零值稀釋誤差。T3採現行70%模型／30%前期票池；純前期延續為對照。單位為有效票百分點，逐縣市等權。</p></div><span class="source-chip source-policy">研究觀察 · 不調正式預測</span></div><div class="table-wrap source-table"><table><thead><tr><th>測試選舉</th><th>縣市數</th><th>T3 MAE</th><th>前期延續MAE</th><th>T3有號偏差</th><th>高估/低估逾5pp</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><p class="meta">${ci} 2018曾用於規格選擇，2022在本專案先前開發中已被查看，不是全案未碰觸的獨立盲測；新hurdle替代模型只做shadow研究，不影響現行T3得票中心。</p>${worst?`<details><summary>展開2022偏高最多的縣市（僅供誤差定位）</summary><div class="table-wrap source-table"><table><thead><tr><th>縣市</th><th>T3預估</th><th>實際非藍綠票</th><th>高估差距</th></tr></thead><tbody>${worst}</tbody></table></div></details>`:''}<p class="meta">2026參數未改動；勝率尚未校準。完整逐縣市和不同非藍綠票池強度可核對候選人模型JSON的nonmajor_historical_holdout欄位。</p></section>`;
+}
 export function nonmajorResponseHTML(model){
   const audit=model?.nonmajor_poll_response_audit;
   if(!audit)return '';
@@ -76,7 +101,7 @@ export function nonmajorResponseHTML(model){
 export function observatoryHTML(feed,model){
   const s=coverageStats(feed,model),rows=[...(feed.sources||[]).map(x=>recordSourceRow(x,feed,model)),...(feed.source_review||[]).map(reviewSourceRow)];
   const registryText=s.registryCount?`Pollster Registry 已登錄 ${s.registryCount} 個調查機構／狀態。`:'來源登錄正在建立中。';
-  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div><div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
+  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div><div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${nonmajorHistoricalHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
 }
 function recordTags(record,audit){
   const accepted=audit?.included;

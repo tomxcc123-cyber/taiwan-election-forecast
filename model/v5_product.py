@@ -26,6 +26,7 @@ from .joint import infer
 from .partisan_baseline import predict as predict_r4
 from .polling import match_records
 from .nonmajor_poll_audit import build_nonmajor_response_audit
+from .nonmajor_rolling_holdout import build_report as build_nonmajor_rolling_holdout
 from .refinement import select_fit, support_roster
 from .roster import load_roster
 from .simulation import simulate
@@ -367,5 +368,9 @@ def build_product(root: Path, now, feed, settings=None):
     # cannot change modeled candidate means, draws or probabilities.
     scaffold["nonmajor_poll_response_audit"] = build_nonmajor_response_audit(
         scaffold["counties"], records, as_of)
+    # Retrospective T3 error audit is read-only and executed after the public
+    # posterior and every shadow/fragmentation module. Do not use these
+    # 2018/2022 target labels to tune 2026 priors or hyperparameters.
+    scaffold["nonmajor_historical_holdout"] = build_nonmajor_rolling_holdout(root)
     scaffold["fingerprint"] = digest({k: v for k, v in scaffold.items() if k != "fingerprint"})
     return scaffold

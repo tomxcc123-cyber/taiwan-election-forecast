@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,nonmajorHistoricalHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
@@ -83,4 +83,31 @@ assert.match(difference,/差距不是預測誤差/);
 assert.ok(!difference.includes('<script>'));
 assert.match(observatoryHTML(feed,{...model,...proofModel}),/nonmajorResponseAudit/);
 assert.equal(nonmajorResponseHTML({nonmajor_poll_response_audit:{...proofModel.nonmajor_poll_response_audit,formal_forecast_modified:true}}),'');
+const noPromotion={
+  schema_version:1,
+  kind:'historical_t3_rolling_origin_research_no_2026_forecast_promotion',
+  promotion_gate:{promote_to_formal_forecast:false,'2026_forecast_t3_parameters_changed':false},
+  folds:[{target_year:2018},{target_year:2022}],
+  scores:{
+    '2018':{nonmajor_present_unique_pair:{models:{
+      t3_blend_pct:{n:14,mae_pp:7.5,bias_pp:2,over_5pp:6,under_5pp:4},
+      t3_raw_pct:{n:14,mae_pp:8},carry_pct:{n:14,mae_pp:9}}}},
+    '2022':{nonmajor_present_unique_pair:{models:{
+      t3_blend_pct:{n:13,mae_pp:6.9,bias_pp:1.5,over_5pp:4,under_5pp:2},
+      t3_raw_pct:{n:13,mae_pp:6.1},carry_pct:{n:13,mae_pp:7.7}}}}
+  },
+  bootstrap:{cluster_combined:{ci95_low_pp:-1.2,ci95_high_pp:3.7}},
+  largest_2022_overestimates:[{county:'台北市',actual_pct:1.8,t3_blend_pct:20,nonmajor_candidate_count:3}]
+};
+const holdoutHTML=nonmajorHistoricalHTML({nonmajor_historical_holdout:noPromotion});
+assert.match(holdoutHTML,/歷史時間留出檢驗/);
+assert.match(holdoutHTML,/2018/);
+assert.match(holdoutHTML,/2022/);
+assert.match(holdoutHTML,/9\.00pp/);
+assert.match(holdoutHTML,/7\.50pp/);
+assert.match(holdoutHTML,/非全案盲測/);
+assert.match(holdoutHTML,/台北市/);
+assert.match(holdoutHTML,/研究觀察 · 不調正式預測/);
+assert.match(observatoryHTML(feed,{...model,nonmajor_historical_holdout:noPromotion}),/nonmajorHistoricalValidation/);
+assert.equal(nonmajorHistoricalHTML({nonmajor_historical_holdout:{...noPromotion,promotion_gate:{promote_to_formal_forecast:true}}}),'');
 console.log('source-v53-ui ok');
