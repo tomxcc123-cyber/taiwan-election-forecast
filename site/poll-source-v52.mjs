@@ -53,7 +53,7 @@ export function nonmajorHistoricalHTML(model){
   const h=model?.nonmajor_historical_holdout;
   if(!h||h.schema_version!==1||h.kind!=='historical_t3_rolling_origin_research_no_2026_forecast_promotion'
       ||h.promotion_gate?.promote_to_formal_forecast!==false
-      ||h.promotion_gate?.2026_forecast_t3_parameters_changed!==false
+      ||h.promotion_gate?.['2026_forecast_t3_parameters_changed']!==false
       ||!Array.isArray(h.folds)||h.folds.length!==2
       ||!h.scores?.['2018']||!h.scores?.['2022'])return '';
   const fmt=v=>Number.isFinite(Number(v))?Number(v).toFixed(2):'—';
