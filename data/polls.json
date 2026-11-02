@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-01T22:00:15+00:00",
+  "checked_at": "2026-11-02T02:42:36+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-11-01T22:00:15+00:00",
-  "updated_at": "2026-10-28T04:25:18+00:00",
-  "latest_fieldwork_date": "2026-10-19",
+  "index_checked_at": "2026-11-02T02:42:36+00:00",
+  "updated_at": "2026-11-02T00:00:00+00:00",
+  "latest_fieldwork_date": "2026-10-31",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
   "sources": [
@@ -56,7 +56,7 @@
       "note": "本輪一方站點自動發現受限；保留既有核驗資料，不把抓取失敗當成無新民調。",
       "auto_discovery": true,
       "auto_discovery_status": "degraded",
-      "auto_discovery_checked_at": "2026-11-01T22:00:37+00:00",
+      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
@@ -74,12 +74,30 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-01T22:00:37+00:00",
+      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
       "registry_pollster_id": "pearson-data",
       "auto_promoted": 1
+    },
+    {
+      "name": "聯合報系民意調查中心",
+      "url": "https://udn.com/news/story/124652/9840910",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 2,
+      "status": "reviewed_seed_only",
+      "method_class": "dual_frame_cati",
+      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
+      "auto_discovery": true,
+      "auto_discovery_status": "checked",
+      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
+      "auto_discovered": 1,
+      "auto_known": 1,
+      "auto_pending": 0,
+      "registry_pollster_id": "udn-poll-center",
+      "auto_promoted": 0
     }
   ],
   "source_review": [
@@ -90,14 +108,122 @@
       "url": "https://news.tvbs.com.tw/politics/4004018"
     },
     {
-      "name": "聯合報",
-      "status": "publisher_not_pollster",
-      "note": "聯合報可作為民調報導與交叉核驗來源，但轉載其他調查機構結果時不建立獨立pollster_id，避免把刊載媒體重複加權。",
-      "url": "https://udn.com/vote2026/index"
+      "name": "聯合報轉載其他機構民調",
+      "status": "publisher_reprint_not_new_pollster",
+      "note": "聯合報系民意調查中心自行執行的台北、高雄調查另有獨立pollster_id；僅轉載其他機構民調的新聞不重複計權。",
+      "url": "https://udn.com/vote2026/pollboard"
     }
   ],
   "discovery_queue": [],
   "records": [
+    {
+      "id": "dac7cea5694315dbcb723133",
+      "county": "高雄市",
+      "source": "聯合報系民意調查中心",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source_url": "https://udn.com/news/story/124652/9850777",
+      "verification_urls": [
+        "https://udn.com/vote2026/story/124652/9850520",
+        "https://news.tvbs.com.tw/politics/4044438"
+      ],
+      "report_title": "聯合報系民意調查中心：2026高雄市長選舉投票意向（10月28—31日，辯論前與期間）",
+      "field_start": "2026-10-28",
+      "date": "2026-10-31",
+      "published_at": "2026-11-02",
+      "sample_n": 1101,
+      "population": "設籍高雄市、年滿20歲選民",
+      "population_size": null,
+      "method": "住宅及手機雙電話底冊尾數隨機抽樣；依性別、年齡結構加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "高雄市住宅電話及手機雙電話底冊",
+      "weighting": "sex_age",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "聯合報",
+      "supervisor": null,
+      "sample_note": "調查於10月28—31日進行，部分報導簡寫為10月28—30日；以聯合報原始稿的10月31日為准。公布1,101有效樣本，候選人題子樣本數未另載；辯論在10月30日，報導稱不能完整反映辯論效果。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 33.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 40.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 26.0,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 1.0,
+      "response_mass_note": "聯合報原文指出其他三位候選人合計不到1%，但未公開逐名數字；模型將加總後剩餘約1百分點全數保留未分類，不反推每位候選人或未表態。",
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-02T00:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "720cd56de9dfa23ef225eba8",
+      "county": "台北市",
+      "source": "聯合報系民意調查中心",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source_url": "https://udn.com/news/story/124652/9840910",
+      "verification_urls": [
+        "https://udn.com/vote2026/pollboard",
+        "https://news.tvbs.com.tw/politics/4042255"
+      ],
+      "report_title": "聯合報系民意調查中心：2026台北市長選舉投票意向（10月20—25日）",
+      "field_start": "2026-10-20",
+      "date": "2026-10-25",
+      "published_at": "2026-10-28",
+      "sample_n": 1115,
+      "population": "設籍台北市、年滿20歲成年選民",
+      "population_size": null,
+      "method": "住宅及手機雙電話底冊尾數隨機抽樣；依性別、年齡、行政區結構加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "台北市住宅電話及手機雙電話底冊",
+      "weighting": "sex_age_district",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "聯合報",
+      "supervisor": null,
+      "sample_note": "本題公布樣本數1,115；投票意向題之有效子樣本數未另載；只對兩位有明確支持度的候選人建立相對支持觀測；不是追蹤同批受訪者。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 41.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 45.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 13.0,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 1.0,
+      "response_mass_note": "其餘四位候選人合計小於1%，未逐名發布；加總及百分比四捨五入後餘額保留為1百分點未分類，並非全數未表態。",
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-02T00:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
     {
       "id": "9715c8fce619a1e63c782c2b",
       "county": "台北市",
@@ -336,6 +462,10 @@
       ],
       "undecided": 21.1,
       "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -386,6 +516,10 @@
       ],
       "undecided": 4.24,
       "nonvote": 1.84,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -436,6 +570,10 @@
       ],
       "undecided": 28.8,
       "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -487,6 +625,10 @@
       ],
       "undecided": 3.4,
       "nonvote": 1.7,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -538,6 +680,10 @@
       ],
       "undecided": 17.4,
       "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -675,6 +821,10 @@
       ],
       "undecided": 25.6,
       "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -1379,6 +1529,18 @@
   },
   "history": [
     {
+      "date": "2026-11-02T02:42:36+00:00",
+      "county": "高雄市",
+      "source_url": "https://udn.com/news/story/124652/9850777",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-02T02:42:36+00:00",
+      "county": "台北市",
+      "source_url": "https://udn.com/news/story/124652/9840910",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
       "date": "2026-10-30T12:53:13+00:00",
       "county": "新北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
@@ -1964,26 +2126,14 @@
       "date": "2026-10-28T04:56:25+00:00",
       "county": "台北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:56:25+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:56:25+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "kind": "poll_source_discovered_unverified"
     }
   ],
-  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-11-01T22:00:37+00:00",
+  "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
+  "discovery_checked_at": "2026-11-02T02:42:49+00:00",
   "pollster_registry": {
     "schema_version": 1,
-    "updated_at": "2026-09-12T10:58:00+00:00",
-    "registered_pollsters": 7
+    "updated_at": "2026-11-02T00:00:00+00:00",
+    "registered_pollsters": 8
   }
 }
