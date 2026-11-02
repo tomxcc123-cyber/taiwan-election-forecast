@@ -56,14 +56,17 @@ jobs:
           d=json.load(open('data/polls.json',encoding='utf-8'))
           registry=json.load(open('data/pollster-registry.json',encoding='utf-8'))
           ids={p['pollster_id'] for p in registry['pollsters']}
-          assert len(ids)==len(registry['pollsters'])==7
-          assert {'tvbs','formosa-bic','ettoday','trend-survey','shanshui','pearson-data','apollo'}==ids
+          assert len(ids)==len(registry['pollsters'])==8
+          assert {'tvbs','formosa-bic','ettoday','trend-survey','shanshui','pearson-data','apollo','udn-poll-center'}==ids
           trend=[r for r in d['records'] if r.get('pollster_id')=='trend-survey' and r.get('county')=='台中市']
           shanshui=[r for r in d['records'] if r.get('pollster_id')=='shanshui' and r.get('ingestion')=='reviewed_multi_source_methodology']
           pearson=[r for r in d['records'] if r.get('pollster_id')=='pearson-data' and r.get('ingestion')=='reviewed_multi_source_methodology']
           assert len(trend)==1, trend
           assert len(shanshui)==3, shanshui
           assert len(pearson)==2, pearson
+          udn=[r for r in d['records'] if r.get('pollster_id')=='udn-poll-center']
+          assert {(r['county'],r['date']) for r in udn}=={('台北市','2026-10-25'),('高雄市','2026-10-31')}
+          assert all(r.get('response_mass_unreported')==1 and r.get('model_eligible') is False for r in udn)
           taipei=next(r for r in shanshui if r['county']=='台北市')
           assert taipei['date']=='2026-06-22'
           assert taipei['sample_n']==1074
@@ -88,6 +91,7 @@ jobs:
           assert sources['震傳媒／山水民調']['reviewed_reports']==3
           assert sources['鉅聞天下／皮爾森數據']['reviewed_reports']==2
           assert sources['鉅聞天下／皮爾森數據']['method_class']=='online_dmp_panel'
+          assert sources['聯合報系民意調查中心']['reviewed_reports']==2
           apollo=next(s for s in d['source_review'] if s['name']=='艾普羅行銷市場研究')
           assert apollo['status']=='reviewed_methodology_incomplete_response_mass'
           assert not any(x.get('pollster_id')=='apollo' for x in d['records'])
@@ -124,6 +128,12 @@ jobs:
           kh_ids={r['id'] for r in feed['records'] if r.get('pollster_id') in {'shanshui','pearson-data'} and r['county']=='高雄市'}
           assert len(nt_ids)>=2 and nt_ids.issubset(set(new_taipei['poll_ids'])), (nt_ids,new_taipei['poll_ids'])
           assert len(kh_ids)==2 and kh_ids.issubset(set(kaohsiung['poll_ids'])), (kh_ids,kaohsiung['poll_ids'])
+          udn=[r for r in feed['records'] if r.get('pollster_id')=='udn-poll-center']
+          assert len(udn)==2,udn
+          assert next(r for r in udn if r['county']=='台北市')['id'] in taipei['poll_ids']
+          assert next(r for r in udn if r['county']=='高雄市')['id'] in kaohsiung['poll_ids']
+          audited={r['id']:r for r in data['poll_audit']}
+          assert all(audited[r['id']]['included'] for r in udn),[audited.get(r['id']) for r in udn]
           assert data['release']['stable'] is False
           print('PASS public product:',taipei_poll['id'],sorted(nt_ids),sorted(kh_ids))
           PY
