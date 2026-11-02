@@ -72,6 +72,13 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         raise ValueError(f"reviewed poll source-supported response mass is inconsistent: {total} known + {unknown} unknown")
     if unknown and not entry.get("response_mass_note"):
         raise ValueError("Reviewed partial response must explicitly document the unclassified categories")
+    cap = entry.get("reported_nonmajor_support_upper_pct")
+    if cap is not None:
+        if (type(cap) not in (float, int) or not 0 <= cap <= unknown
+            or len(entry.get("names", [])) != 2
+            or not entry.get("reported_nonmajor_upper_basis")
+            or entry.get("undecided_reported", True) is False):
+            raise ValueError("Independent survey nonmajor upper response limit is unverified")
     if unknown and float(entry["undecided"]) == 0 and entry.get("undecided_reported") is False:
         raise ValueError("Reviewed partial response may not impute unreported undecided as zero")
     if int(entry["sample_n"]) <= 0 or float(entry["margin_of_error"]) <= 0:
@@ -118,6 +125,8 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         "nonvote_reported": entry.get("nonvote_reported", float(entry["nonvote"]) > 0),
         "response_mass_unreported": unknown,
         "response_mass_note": entry.get("response_mass_note", ""),
+        "reported_nonmajor_support_upper_pct": entry.get("reported_nonmajor_support_upper_pct"),
+        "reported_nonmajor_upper_basis": entry.get("reported_nonmajor_upper_basis"),
         "verification_status": "reviewed_multi_source_methodology_partial_response" if unknown else "reviewed_multi_source_methodology",
         "ingestion": "reviewed_multi_source_methodology",
         "retrieved_at": reviewed_at,

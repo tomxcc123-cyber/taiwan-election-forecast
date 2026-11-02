@@ -25,6 +25,7 @@ from .integrated_prior import CANDIDATE_FEATURES, enrich_major_row
 from .joint import infer
 from .partisan_baseline import predict as predict_r4
 from .polling import match_records
+from .nonmajor_poll_audit import build_nonmajor_response_audit
 from .refinement import select_fit, support_roster
 from .roster import load_roster
 from .simulation import simulate
@@ -361,5 +362,10 @@ def build_product(root: Path, now, feed, settings=None):
     # v5 still uses the production-safe live fragmentation gate after the normal
     # polling likelihood. The gate mutates only qualifying county draw clouds.
     scaffold = apply_live_fragmentation_gate(scaffold, feed)
+    # Survey other-candidate responses are not election-day ballot shares. The
+    # audit is read-only, runs *after* all forecast calculations/gates, and
+    # cannot change modeled candidate means, draws or probabilities.
+    scaffold["nonmajor_poll_response_audit"] = build_nonmajor_response_audit(
+        scaffold["counties"], records, as_of)
     scaffold["fingerprint"] = digest({k: v for k, v in scaffold.items() if k != "fingerprint"})
     return scaffold
