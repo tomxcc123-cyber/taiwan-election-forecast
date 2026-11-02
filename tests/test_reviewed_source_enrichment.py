@@ -64,8 +64,8 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         }
 
     def test_every_reviewed_seed_has_complete_response_mass(self):
-        rows = [reviewed_record(e, self.reviewed["reviewed_at"], date(2026, 9, 12)) for e in self.reviewed["reports"]]
-        self.assertEqual(len(rows), 6)
+        rows = [reviewed_record(e, self.reviewed["reviewed_at"], date(2026, 11, 2)) for e in self.reviewed["reports"]]
+        self.assertEqual(len(rows), 8)
         for row in rows:
             total = sum(c["support"] for c in row["candidates"]) + row["undecided"] + row["nonvote"]
             self.assertLessEqual(abs(total - 100.0), 1.0, row)
@@ -74,9 +74,9 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
 
     def test_trend_seed_is_complete_and_current_matchup_is_eligible(self):
         entry = next(e for e in self.reviewed["reports"] if e["pollster_id"] == "trend-survey")
-        row = reviewed_record(entry, self.reviewed["reviewed_at"], date(2026, 9, 12))
+        row = reviewed_record(entry, self.reviewed["reviewed_at"], date(2026, 11, 2))
         self.assertEqual(row["pollster_id"], "trend-survey")
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         trend = [r for r in result["records"] if r.get("pollster_id") == "trend-survey"]
         self.assertEqual(len(trend), 1)
         self.assertTrue(trend[0]["model_eligible"])
@@ -89,7 +89,7 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(model_rows[0]["undecided"], 21.1)
 
     def test_taipei_shanshui_is_complete_but_pre_cutoff_for_legacy(self):
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         taipei = [r for r in result["records"] if r.get("pollster_id") == "shanshui" and r["county"] == "台北市"]
         self.assertEqual(len(taipei), 1)
         row = taipei[0]
@@ -102,7 +102,7 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertFalse(any(p.get("id") == row["id"] for p in result["polls"]))
 
     def test_shanshui_and_pearson_source_counts_are_aggregated(self):
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         shanshui = [r for r in result["records"] if r.get("pollster_id") == "shanshui"]
         pearson = [r for r in result["records"] if r.get("pollster_id") == "pearson-data"]
         self.assertEqual(len(shanshui), 3)
@@ -115,7 +115,7 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(pe_source["method_class"], "online_dmp_panel")
 
     def test_pearson_preserves_nonvote_and_stays_out_of_legacy_three_bloc(self):
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         pearson = [r for r in result["records"] if r.get("pollster_id") == "pearson-data"]
         self.assertEqual(len(pearson), 2)
         self.assertTrue(all(r["nonvote"] > 0 for r in pearson))
@@ -126,15 +126,16 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         self.assertEqual(len([r for r in pearson if r["county"] == "新北市"]), 1)
 
     def test_integrated_source_is_not_left_in_source_review(self):
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         names = {r["name"] for r in result["source_review"]}
         self.assertNotIn("ETtoday", names)
         self.assertIn("艾普羅行銷市場研究", names)
-        self.assertIn("聯合報", names)
+        self.assertIn("聯合報轉載其他機構民調", names)
+        self.assertNotIn("聯合報", names)
         self.assertFalse(any(str(r.get("status", "")).startswith("integrated_") for r in result["source_review"]))
 
     def test_apollo_stays_fail_closed_and_out_of_records(self):
-        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
         self.assertFalse(any(r.get("pollster_id") == "apollo" for r in result["records"]))
         apollo = next(r for r in result["source_review"] if r["name"] == "艾普羅行銷市場研究")
         self.assertEqual(apollo["status"], "reviewed_methodology_incomplete_response_mass")
@@ -142,21 +143,21 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
 
     def test_automatic_record_takes_precedence_over_reviewed_seed(self):
         entry = next(e for e in self.reviewed["reports"] if e["pollster_id"] == "trend-survey")
-        auto = reviewed_record(entry, self.reviewed["reviewed_at"], date(2026, 9, 12))
+        auto = reviewed_record(entry, self.reviewed["reviewed_at"], date(2026, 11, 2))
         auto["id"] = "automatic-trend-test"
         auto["ingestion"] = "automatic_original_html"
         auto["retrieved_at"] = "2026-09-12T07:45:00+00:00"
         feed = self.base_feed()
         feed["records"] = [copy.deepcopy(auto)]
-        result = enrich(feed, self.config, self.reviewed, date(2026, 9, 12))
+        result = enrich(feed, self.config, self.reviewed, date(2026, 11, 2))
         same = [r for r in result["records"] if r.get("pollster_id") == "trend-survey" and r["county"] == "台中市"]
         self.assertEqual(len(same), 1)
         self.assertEqual(same[0]["id"], "automatic-trend-test")
         self.assertEqual(same[0]["ingestion"], "automatic_original_html")
 
     def test_enrichment_is_idempotent(self):
-        once = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 9, 12))
-        twice = enrich(once, self.config, self.reviewed, date(2026, 9, 12))
+        once = enrich(self.base_feed(), self.config, self.reviewed, date(2026, 11, 2))
+        twice = enrich(once, self.config, self.reviewed, date(2026, 11, 2))
         self.assertEqual(once["records"], twice["records"])
         self.assertEqual(once["polls"], twice["polls"])
         self.assertEqual(once["source_review"], twice["source_review"])
