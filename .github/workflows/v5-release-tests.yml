@@ -197,7 +197,20 @@ jobs:
           assert 'v5_validation' in data
           ids={r.get('pollster_id') for r in feed['records']}
           assert {'ettoday','trend-survey','shanshui','pearson-data'}.issubset(ids), ids
-          assert len(registry['pollsters'])==7
+          assert len(registry['pollsters'])==8
+          assert 'udn-poll-center' in {p['pollster_id'] for p in registry['pollsters']}
+          nonmajor=data.get('nonmajor_poll_response_audit',{})
+          assert nonmajor.get('kind')=='nonmajor_survey_response_comparison_not_ballot_forecast_constraint'
+          assert nonmajor.get('formal_forecast_modified') is False
+          assert nonmajor.get('metrics_not_interchangeable') is True
+          assert {x['county'] for x in nonmajor.get('rows',[])}=={'台北市','高雄市'}
+          udn={p['county']:p for p in feed['records'] if p.get('pollster_id')=='udn-poll-center'}
+          assert len(udn)==2
+          for county in udn:
+              race=next(c for c in data['counties'] if c['name']==county)
+              assert udn[county]['id'] in race['poll_ids']
+              assert any(x['id']==udn[county]['id'] and x['included'] for x in data['poll_audit'])
+          assert all(r['poll_nonmajor_support_upper_pct']==1 for r in nonmajor['rows'])
           taipei_poll=next(r for r in feed['records'] if r.get('pollster_id')=='shanshui' and r['county']=='台北市' and r['date']=='2026-06-22')
           taipei=next(r for r in data['counties'] if r['name']=='台北市')
           assert taipei_poll['model_eligible'] is False
