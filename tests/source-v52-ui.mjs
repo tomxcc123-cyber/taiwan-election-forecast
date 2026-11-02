@@ -5,6 +5,8 @@ assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
 assert.equal(methodLabel('online_dmp_panel'),'DMP網路樣本');
 assert.equal(verificationLabel('reviewed_multi_source_methodology'),'多來源方法核驗');
+assert.equal(verificationLabel('reviewed_multi_source_methodology_partial_response'),'多來源核驗／回應類別部分未公開');
+assert.equal(reviewLabel('publisher_reprint_not_new_pollster'),'轉載別家調查／不重複計權');
 assert.equal(reviewLabel('publisher_not_pollster'),'刊載媒體／不另建 pollster');
 assert.equal(ingestionLabel({ingestion:'reviewed_multi_source_methodology',verification_status:'reviewed_multi_source_methodology'}),'人工核驗後收錄（多來源方法核驗）；不是本輪自動原始報告解析成功。');
 assert.equal(ingestionLabel({ingestion:'automatic_original_report'}),'原始報告自動解析並校驗。');
