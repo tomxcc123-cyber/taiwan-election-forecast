@@ -15,6 +15,7 @@ from pathlib import Path
 
 import numpy as np
 
+from model.data import load_dataset, audit_dataset
 from model.third_party import fit as fit_t3, predict as predict_t3
 from model.v4_product import T3_ALPHA, T3_FEATURES, T3_MODEL_WEIGHT, T3_CARRY_WEIGHT
 from scripts.validate_release_candidate import build_third_rows, norm_county
@@ -88,6 +89,10 @@ def _groups(rows):
 def build_t3_cycle_audit(root:Path):
     rows,excluded,history=build_third_rows(root)
     counts={year:sum(r['target_year']==year for r in rows) for year in EXPECTED_YEARS}
+    checked_history=load_dataset(root/'data/candidate-history-cec.json')
+    audit=audit_dataset(checked_history)
+    if audit.get('research_eligible_count')!=66:
+        raise ValueError('CEC source hash or expected historical race coverage invalid')
     races={(r['year'],norm_county(r['county'])):r for r in history}
     if set(counts)!={2014,2018,2022} or any(v!=22 for v in counts.values()):
         raise ValueError(f'Unexpected chronological T3 input coverage: {counts}')
