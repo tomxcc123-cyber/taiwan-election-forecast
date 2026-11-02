@@ -66,7 +66,7 @@ export function nonmajorHistoricalHTML(model){
     return `<tr><td>${y}<small>${y===2018?'開發／模型規格選擇期':'時間順序測試；非全案盲測'}</small></td><td>${Number(t.n)}</td><td>${fmt(t.mae_pp)}pp</td><td>${fmt(c.mae_pp)}pp</td><td>${fmt(t.bias_pp)}pp</td><td>${Number(t.over_5pp)} / ${Number(t.under_5pp)}</td></tr>`;
   }).filter(Boolean);
   if(rows.length!==2)return '';
-  const large=(h.largest_2022_overestimates||[]).filter(x=>Number.isFinite(x.t3_blend_pct)&&Number.isFinite(x.actual_pct)&&x.nonmajor_candidate_count>0).slice(0,5);
+  const large=(h.largest_2022_overestimates||[]).filter(x=>Number.isFinite(x.t3_blend_pct)&&Number.isFinite(x.actual_pct)&&x.nonmajor_candidate_count>0&&x.t3_blend_pct>x.actual_pct).slice(0,5);
   const worst=large.map(x=>`<tr><td>${esc(x.county)}</td><td>${fmt(x.t3_blend_pct)}%</td><td>${fmt(x.actual_pct)}%</td><td>${fmt(x.t3_blend_pct-x.actual_pct)}pp</td></tr>`).join('');
   const boot=h.bootstrap?.cluster_combined;
   const ci=boot&&Number.isFinite(boot.ci95_low_pp)&&Number.isFinite(boot.ci95_high_pp)
