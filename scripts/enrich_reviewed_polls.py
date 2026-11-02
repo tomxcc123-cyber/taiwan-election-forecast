@@ -164,15 +164,24 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out = copy.deepcopy(feed)
     today = today or date.today()
     reviewed_at = reviewed["reviewed_at"]
-    if date.fromisoformat(reviewed_at[:10]) > today:
-        raise ValueError("reviewed source file is dated in the future")
+    # Source seeds are versioned per review event, not retroactively made
+    # available in older fixed-as-of validation runs. A newer archive may
+    # still reproduce its older snapshots using only originally reviewed rows.
+    eligible_entries = []
+    for entry in reviewed.get("reports", []):
+        audited_at = entry.get("reviewed_at", reviewed_at)
+        if date.fromisoformat(audited_at[:10]) > today:
+            continue
+        if date.fromisoformat(entry.get("published_at") or entry["date"]) > today:
+            continue
+        eligible_entries.append(entry)
 
     records = list(out.get("records", []))
     existing_ids = {r.get("id") for r in records}
     added = []
 
-    for entry in reviewed.get("reports", []):
-        seed = reviewed_record(entry, reviewed_at, today)
+    for entry in eligible_entries:
+        seed = reviewed_record(entry, entry.get("reviewed_at", reviewed_at), today)
         same = [r for r in records if _same_poll(r, seed)]
         automatic = next((r for r in same if str(r.get("ingestion", "")).startswith("automatic_")), None)
         if automatic:
@@ -191,7 +200,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out["polls"] = model_rows(classified)
     out["latest_fieldwork_date"] = max((r["date"] for r in classified), default=None)
 
-    source_groups = _reviewed_source_groups(reviewed)
+    source_groups = _reviewed_source_groups({"reports": eligible_entries})
     sources = out.setdefault("sources", [])
     for source_name, entries in source_groups.items():
         existing = next((s for s in sources if s.get("name") == source_name), None)
@@ -256,7 +265,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
             )
         out["history"] = history[:100]
         existing_updated = out.get("updated_at") or ""
-        out["updated_at"] = max(existing_updated, reviewed_at)
+        out["updated_at"] = max(existing_updated, *(seed["retrieved_at"] for seed in added))
 
     return out
 
