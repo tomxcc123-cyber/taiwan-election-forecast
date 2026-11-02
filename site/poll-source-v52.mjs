@@ -1,6 +1,6 @@
 const METHOD_LABELS={closed_online_panel:'封閉式網路樣本',telephone_cati:'電話訪問',landline_cati:'市話訪問',dual_frame_cati:'市話＋手機雙架構',online_panel:'網路樣本',online_dmp_panel:'DMP網路樣本'};
-const VERIFY_LABELS={reviewed_multi_source_methodology:'多來源方法核驗',reviewed_original_page_facts:'原始頁面核驗',reviewed_pollster_facts:'調查機構事實核驗',automatic_original_report:'原始報告自動校驗',automatic_original_html:'原始頁面自動校驗'};
-const REVIEW_LABELS={reviewed_methodology_incomplete_response_mass:'方法已核對／回應類別不完整',publisher_not_pollster:'刊載媒體／不另建 pollster',access_limited:'來源受限／暫不入模',reviewed_not_integrated:'已核對／暫未整合',pending_original_verification:'待原始資料核驗'};
+const VERIFY_LABELS={reviewed_multi_source_methodology_partial_response:'多來源核驗／回應類別部分未公開',reviewed_multi_source_methodology:'多來源方法核驗',reviewed_original_page_facts:'原始頁面核驗',reviewed_pollster_facts:'調查機構事實核驗',automatic_original_report:'原始報告自動校驗',automatic_original_html:'原始頁面自動校驗'};
+const REVIEW_LABELS={reviewed_methodology_incomplete_response_mass:'方法已核對／回應類別不完整',publisher_not_pollster:'刊載媒體／不另建 pollster',publisher_reprint_not_new_pollster:'轉載別家調查／不重複計權',access_limited:'來源受限／暫不入模',reviewed_not_integrated:'已核對／暫未整合',pending_original_verification:'待原始資料核驗'};
 const esc=value=>String(value??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
 const safe=value=>{try{const u=new URL(value);return u.protocol==='https:'?esc(u.href):'#';}catch{return '#';}};
 export const methodLabel=value=>METHOD_LABELS[value]||value||'方法未分類';
@@ -40,7 +40,7 @@ function recordSourceRow(source,feed,model){
   return `<tr><td><a href="${safe(source.url)}" target="_blank" rel="noopener">${esc(source.name)}</a><small>${first?.pollster_id?`pollster_id · ${esc(first.pollster_id)}`:source.registry_pollster_id?`pollster_id · ${esc(source.registry_pollster_id)}`:'來源層級'}</small></td><td>${statusChip(state.key,state.label)}</td><td>${esc(methodLabel(source.method_class||first?.method_class))}</td><td>${esc(acquisitionLabel(source))}</td><td>${included} 題</td><td>${esc(source.note||'通過解析與資料校驗後存檔。')}</td></tr>`;
 }
 function reviewSourceRow(source){
-  const blocked=/incomplete|limited|pending|not_integrated/.test(source.status||''),publisher=source.status==='publisher_not_pollster';
+  const blocked=/incomplete|limited|pending|not_integrated/.test(source.status||''),publisher=['publisher_not_pollster','publisher_reprint_not_new_pollster'].includes(source.status);
   return `<tr><td>${source.url?`<a href="${safe(source.url)}" target="_blank" rel="noopener">${esc(source.name)}</a>`:esc(source.name)}<small>${publisher?'verification / publisher':'review queue'}</small></td><td>${statusChip(publisher?'publisher':blocked?'blocked':'review',reviewLabel(source.status))}</td><td>—</td><td>人工核對</td><td>0 題</td><td>${esc(source.note||'')}</td></tr>`;
 }
 export function discoveryQueueHTML(feed){
