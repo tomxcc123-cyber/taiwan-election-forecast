@@ -185,3 +185,10 @@ v5.0 滿足 Public Beta 的工程與開發驗證條件，但不滿足 Stable：
 - fragmentation 40% 規則只保留 shadow，不作公開 hard override。
 
 因此網站可展示模型條件機率與研究診斷，但不得稱為 Stable，也不應把單一回測週期的改善解讀為已證明的長期預測可靠性。
+
+
+## 12. T3 第三勢力票池的時間留出診斷（2026-11-02）
+
+原正式T3規格不改動（`T3_ALPHA=0.3`、T3佔70%、上一輪票池佔30%）。新增 `nonmajor_historical_holdout`，只用2014訓練2018，再以2014＋2018訓練2022，計算非KMT/DPP得票份額的縣市等權MAE、帶符號偏差、強第三勢力與非藍綠候選人數分組、前屆延續基線及實驗性hurdle模型。2018曾參與選型，2022也曾在全專案開發中被查看，因此**不是兩個完全未碰觸的獨立盲測**。比較時必須另列「非藍綠候選人存在且藍綠各唯一一名」的真實適用選區，不能用沒有其他人選的0票池拉低MAE。
+
+為了暴露有限週期下的不確定性，報告附縣市群集重抽樣的T3與carry MAE差異區間及2022逐縣市偏差，並將所有資料列存於`candidate-model.json.nonmajor_historical_holdout`。民調中心有可讀對照，詳細方法見`docs/T3_NONMAJOR_ROLLING_HOLDOUT.md`。**這些結果只作時間排序之研究回測，不更新正式2026模型的T3中心、候選人平均得票、勝率，也不等於概率校準。** 正式推廣門檻仍標為`blocked_insufficient_independent_cycles`。
