@@ -62,7 +62,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
 
     def test_udn_original_inhouse_poll_is_queued_not_automatically_promoted(self):
         udn=self.pollsters['udn-poll-center']
-        raw='''<html><body>
+        raw='''<html><head><meta charset="utf-8"></head><body>
         <a href="/news/story/124652/9840910">聯合報民調／北市藍綠激戰 看好度蔣48%、沈35% 支持度蔣41%、沈45%</a>
         <a href="/vote2026/story/124652/9850520">聯合報民調／高雄激戰 辯論前支持度柯志恩33%緊追賴瑞隆40%</a>
         <a href="/news/story/124652/8880000">聯合報民調／總統施政滿意度</a>
