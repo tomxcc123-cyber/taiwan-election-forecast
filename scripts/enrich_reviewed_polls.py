@@ -230,7 +230,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     replacements = {row["name"]: row for row in _review_rows(reviewed)}
     # Remove both legacy aliases and any already-normalized replacement rows so
     # running this stage repeatedly cannot duplicate source-review entries.
-    drop_names = set(replacements) | {"中時／艾普羅"}
+    drop_names = set(replacements) | {"中時／艾普羅", "聯合報"}
     unresolved = [row for row in unresolved if row.get("name") not in drop_names]
     unresolved.extend(replacements.values())
     out["source_review"] = unresolved
