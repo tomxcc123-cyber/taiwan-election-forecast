@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
@@ -62,4 +62,23 @@ assert.ok(!html.includes('未接入</td>'));
 const empty=discoveryQueueHTML({...feed,discovery_queue:[]});
 assert.match(empty,/目前沒有新的/);
 assert.match(empty,/佇列為空/);
+const proofModel={nonmajor_poll_response_audit:{schema_version:1,
+  kind:'nonmajor_survey_response_comparison_not_ballot_forecast_constraint',
+  formal_forecast_modified:false,metrics_not_interchangeable:true,source_rows:1,rows:[{
+  county:'台北市',date:'2026-10-25',source:'聯合報系民意調查中心',
+  pollster_id:'udn-poll-center',source_url:'https://udn.com/news/story/124652/9840910',
+  poll_nonmajor_support_upper_pct:1,poll_undecided_reported_pct:13,
+  model_nonmajor_mean_ballot_pct:19.7,model_nonmajor_p05_ballot_pct:1,model_nonmajor_p95_ballot_pct:58,
+  is_ballot_prediction_constraint:false,reweighted_or_redistributed_undecided:false,
+  provenance:'first_party_reported_survey_responses_vs_uncalibrated_election_day_ballot_draws'
+}]}};
+const difference=nonmajorResponseHTML(proofModel);
+assert.match(difference,/非藍綠候選人/);
+assert.match(difference,/調查未表態/);
+assert.match(difference,/&lt;1\.0%/);
+assert.match(difference,/19\.7%/);
+assert.match(difference,/差距不是預測誤差/);
+assert.ok(!difference.includes('<script>'));
+assert.match(observatoryHTML(feed,{...model,...proofModel}),/nonmajorResponseAudit/);
+assert.equal(nonmajorResponseHTML({nonmajor_poll_response_audit:{...proofModel.nonmajor_poll_response_audit,formal_forecast_modified:true}}),'');
 console.log('source-v53-ui ok');
