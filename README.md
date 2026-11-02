@@ -21,6 +21,11 @@
 
 最新調查原始文字只核實兩份聯合報系自辦台北／高雄民調之「其他候選人合計不到1%」；模型的T3非藍綠票池則是選舉日模擬得票份額。兩者的時間、分母和未表態處理不同，不可直接以民調1%替代模型或稱為投票日硬上限。新版於民調來源觀測站並列**已核驗調查的其他人選回應上限、未表態、以及模型非藍綠候選人2000次模擬平均與90%範圍**；原始來源可點，無來源不推定。資料輸出於 `candidate-model.json.nonmajor_poll_response_audit`，並保持 `formal_forecast_modified=false`、`probabilities_calibrated=false`；網站正式候選人平均得票及勝率未因本研究面板而改動。詳見 [方法限制與數據欄位](docs/NONMAJOR_POLL_RESPONSE_AUDIT.md)。
 
+
+### 原始民調中的第三勢力／無黨籍回應，與選舉日模擬票池的差異（2026-11-02）
+
+最新調查原始文字只核實兩份聯合報系自辦台北／高雄民調之「其他候選人合計不到1%」；模型的T3非藍綠票池則是選舉日模擬得票份額。兩者的時間、分母和未表態處理不同，不可直接以民調1%替代模型或稱為投票日硬上限。新版於民調來源觀測站並列**已核驗調查的其他人選回應上限、未表態、以及模型非藍綠候選人2000次模擬平均與90%範圍**；原始來源可點，無來源不推定。資料輸出於 `candidate-model.json.nonmajor_poll_response_audit`，並保持 `formal_forecast_modified=false`、`probabilities_calibrated=false`；網站正式候選人平均得票及勝率未因本研究面板而改動。詳見 [方法限制與數據欄位](docs/NONMAJOR_POLL_RESPONSE_AUDIT.md)。
+
 ## 一次性發布
 
 1. 將此目錄內容放入已授權的 GitHub 倉庫，預設分支使用 `main`。
