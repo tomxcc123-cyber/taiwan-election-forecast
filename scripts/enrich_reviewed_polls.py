@@ -66,9 +66,14 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         raise ValueError("reviewed poll candidate list is invalid")
     if date.fromisoformat(entry["date"]) > today or date.fromisoformat(entry["field_start"]) > date.fromisoformat(entry["date"]):
         raise ValueError("reviewed poll field dates are invalid")
+    unknown = float(entry.get("response_mass_unreported", 0))
     total = sum(float(v) for v in entry["supports"]) + float(entry["undecided"]) + float(entry["nonvote"])
-    if abs(total - 100.0) > 1.0:
-        raise ValueError(f"reviewed poll response mass does not total 100: {total}")
+    if not (0 <= unknown <= 30) or abs(total + unknown - 100.0) > 1.0:
+        raise ValueError(f"reviewed poll source-supported response mass is inconsistent: {total} known + {unknown} unknown")
+    if unknown and not entry.get("response_mass_note"):
+        raise ValueError("Reviewed partial response must explicitly document the unclassified categories")
+    if unknown and float(entry["undecided"]) == 0 and entry.get("undecided_reported") is False:
+        raise ValueError("Reviewed partial response may not impute unreported undecided as zero")
     if int(entry["sample_n"]) <= 0 or float(entry["margin_of_error"]) <= 0:
         raise ValueError("reviewed poll sample or margin of error is invalid")
 
@@ -109,7 +114,11 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         "candidates": candidates,
         "undecided": float(entry["undecided"]),
         "nonvote": float(entry["nonvote"]),
-        "verification_status": "reviewed_multi_source_methodology",
+        "undecided_reported": entry.get("undecided_reported", True),
+        "nonvote_reported": entry.get("nonvote_reported", float(entry["nonvote"]) > 0),
+        "response_mass_unreported": unknown,
+        "response_mass_note": entry.get("response_mass_note", ""),
+        "verification_status": "reviewed_multi_source_methodology_partial_response" if unknown else "reviewed_multi_source_methodology",
         "ingestion": "reviewed_multi_source_methodology",
         "retrieved_at": reviewed_at,
     }
@@ -129,7 +138,7 @@ def _review_rows(reviewed: dict) -> list[dict]:
     rows = []
     for item in reviewed.get("non_admitted_sources", []):
         urls = item.get("verification_urls") or []
-        if item.get("status") == "publisher_not_pollster":
+        if item.get("status") in ("publisher_not_pollster", "publisher_reprint_not_new_pollster"):
             note = item["reason"]
         else:
             note = f"{item['reason']} 已核對訪期／方法的來源仍採 fail-closed，不以剩餘比例自行補成未表態。"
@@ -155,15 +164,24 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out = copy.deepcopy(feed)
     today = today or date.today()
     reviewed_at = reviewed["reviewed_at"]
-    if date.fromisoformat(reviewed_at[:10]) > today:
-        raise ValueError("reviewed source file is dated in the future")
+    # Source seeds are versioned per review event, not retroactively made
+    # available in older fixed-as-of validation runs. A newer archive may
+    # still reproduce its older snapshots using only originally reviewed rows.
+    eligible_entries = []
+    for entry in reviewed.get("reports", []):
+        audited_at = entry.get("reviewed_at", reviewed_at)
+        if date.fromisoformat(audited_at[:10]) > today:
+            continue
+        if date.fromisoformat(entry.get("published_at") or entry["date"]) > today:
+            continue
+        eligible_entries.append(entry)
 
     records = list(out.get("records", []))
     existing_ids = {r.get("id") for r in records}
     added = []
 
-    for entry in reviewed.get("reports", []):
-        seed = reviewed_record(entry, reviewed_at, today)
+    for entry in eligible_entries:
+        seed = reviewed_record(entry, entry.get("reviewed_at", reviewed_at), today)
         same = [r for r in records if _same_poll(r, seed)]
         automatic = next((r for r in same if str(r.get("ingestion", "")).startswith("automatic_")), None)
         if automatic:
@@ -182,7 +200,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     out["polls"] = model_rows(classified)
     out["latest_fieldwork_date"] = max((r["date"] for r in classified), default=None)
 
-    source_groups = _reviewed_source_groups(reviewed)
+    source_groups = _reviewed_source_groups({"reports": eligible_entries})
     sources = out.setdefault("sources", [])
     for source_name, entries in source_groups.items():
         existing = next((s for s in sources if s.get("name") == source_name), None)
@@ -221,7 +239,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     replacements = {row["name"]: row for row in _review_rows(reviewed)}
     # Remove both legacy aliases and any already-normalized replacement rows so
     # running this stage repeatedly cannot duplicate source-review entries.
-    drop_names = set(replacements) | {"中時／艾普羅"}
+    drop_names = set(replacements) | {"中時／艾普羅", "聯合報"}
     unresolved = [row for row in unresolved if row.get("name") not in drop_names]
     unresolved.extend(replacements.values())
     out["source_review"] = unresolved
@@ -229,7 +247,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     coverage = out.get("coverage_note", "").rstrip()
     old_addition = "另含經多來源方法核對的新台灣國策智庫／趨勢民調 reviewed seed；刊載媒體不另建立 pollster 權重。"
     coverage = coverage.replace(old_addition, "").strip()
-    addition = "另含經多來源方法核對的趨勢民調、山水民調與皮爾森數據 reviewed seeds；刊載媒體不另建立 pollster 權重。"
+    addition = "另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。"
     if addition not in coverage:
         out["coverage_note"] = (coverage + (" " if coverage else "") + addition).strip()
 
@@ -247,7 +265,7 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
             )
         out["history"] = history[:100]
         existing_updated = out.get("updated_at") or ""
-        out["updated_at"] = max(existing_updated, reviewed_at)
+        out["updated_at"] = max(existing_updated, *(seed["retrieved_at"] for seed in added))
 
     return out
 

@@ -155,12 +155,31 @@ def discover_from_html(raw: bytes, index_url: str, pollster: dict, matchups: dic
             continue
         if exclude_cues and any(cue in ctitle for cue in exclude_cues):
             continue
+        # UDN in-house releases sometimes headline both voting intention and
+        # "who is expected to win". Queue only the former; never mistake
+        # favorability or elected-outcome expectation for voting intention.
+        if pollster.get("pollster_id") == "udn-poll-center":
+            if "看好度" in ctitle and not any(t in ctitle for t in ("支持度", "投票意向", "投票支持")):
+                continue
+            if not any(t in ctitle for t in ("支持度", "投票意向", "投票支持", "選情", "激戰")):
+                continue
         county, candidate_hits = infer_county(title, matchups)
+        # UDN often abbreviates 台北市 as 北市 and uses surnames only
+        # (e.g. 支持度蔣41%、沈45%). This is for *queueing a report URL*,
+        # never for matching the report's voting candidates for admission.
+        if not county and pollster.get("pollster_id") == "udn-poll-center":
+            aliases = {"北市": "台北市", "高市": "高雄市", "中市": "台中市", "南市": "台南市"}
+            hits = {county_name for alias, county_name in aliases.items() if alias in ctitle}
+            if len(hits) == 1:
+                county = next(iter(hits))
         if not county:
             continue
         mayoral = any(x in ctitle for x in ("市長", "縣長"))
         support_cue = any(cue in ctitle for cue in cues)
-        if not (candidate_hits >= 2 or (candidate_hits >= 1 and support_cue) or (mayoral and support_cue)):
+        udn_original_support = (pollster.get("pollster_id") == "udn-poll-center"
+                                and any(t in ctitle for t in ("支持度", "投票意向", "投票支持")))
+        if not (candidate_hits >= 2 or (candidate_hits >= 1 and support_cue)
+                or (mayoral and support_cue) or udn_original_support):
             continue
         found[url] = {
             "pollster_id": pollster["pollster_id"],

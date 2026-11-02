@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewed_at": "2026-09-12T11:05:00+00:00",
-  "review_policy": "Admit a reviewed poll only when candidate support, residual response mass, field dates, sample size, target population, collection mode, uncertainty and sponsor can be corroborated. Media republication is verification evidence, not a pollster identity.",
+  "reviewed_at": "2026-11-02T00:00:00+00:00",
+  "review_policy": "Admit a reviewed poll only when candidate support, residual response mass, field dates, sample size, target population, collection mode, uncertainty and sponsor can be corroborated. Media republication is verification evidence, not a pollster identity. Original in-house media polling is a separate named pollster even if its publisher name is the same. Unknown/other minor candidate response mass remains unclassified, not imputed to undecided.",
   "reports": [
     {
       "title": "新台灣國策智庫：2026台中市長參選人民調（8月波次）",
@@ -22,18 +22,28 @@
       "pollster": "趨勢民意調查股份有限公司",
       "publisher": "凱達格蘭基金會－新台灣國策智庫",
       "source": "新台灣國策智庫／趨勢民調",
-      "names": ["江啟臣", "何欣純"],
-      "supports": [42.8, 36.1],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "江啟臣",
+        "何欣純"
+      ],
+      "supports": [
+        42.8,
+        36.1
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 21.1,
-      "nonvote": 0.0,
+      "nonvote": 0,
       "multiple_matchups": false,
       "source_url": "https://braintrust.tw/2026%E5%85%AD%E9%83%BD%E5%B8%82%E9%95%B7%E7%88%AD%E9%9C%B8%E6%88%B0%EF%BC%9A%E5%8F%B0%E4%B8%AD%E5%B8%82%E9%95%B7%E5%8F%83%E9%81%B8%E4%BA%BA%E6%B0%91%E8%AA%BF%E7%99%BC%E4%BD%88%E8%A8%98%E8%80%85/",
       "verification_urls": [
         "https://newtalk.tw/news/view/2026-08-17/1053899",
         "https://news.tvbs.com.tw/politics/4008251",
         "https://udn.com/news/story/124652/9696075"
-      ]
+      ],
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
     },
     {
       "title": "震傳媒／山水民調：2026台北市長選舉支持度（6月波次）",
@@ -54,11 +64,20 @@
       "pollster": "山水民意研究股份有限公司",
       "publisher": "震傳媒",
       "source": "震傳媒／山水民調",
-      "names": ["蔣萬安", "沈伯洋"],
-      "supports": [55.2, 27.5],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        55.2,
+        27.5
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 17.4,
-      "nonvote": 0.0,
+      "nonvote": 0,
       "multiple_matchups": false,
       "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/42781",
       "verification_urls": [
@@ -66,7 +85,8 @@
         "https://tw.news.yahoo.com/%E9%9C%87%E5%82%B3%E5%AA%92%E6%B0%91%E8%AA%BF-%E6%B2%88%E4%BC%AF%E6%B4%8B%E8%A2%AB%E6%B5%B7%E6%94%BE27%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-%E7%B6%A0%E7%87%9F%E6%94%AF%E6%8C%81%E8%80%85%E5%A3%AB%E6%B0%A3%E4%BD%8E-%E7%9C%8B%E5%A5%BD%E8%94%A3%E8%90%AC%E5%AE%89%E6%9C%83%E7%95%B6%E9%81%B8%E7%9A%84%E4%BA%BA%E6%9B%B4%E5%A4%9A-082036334.html",
         "https://news.tvbs.com.tw/politics/3239410"
       ],
-      "sample_note": "震傳媒原始頁核對候選人支持度與方法；跨來源公開報導明確列出17.4%無明確意見；四捨五入總和100.1%"
+      "sample_note": "震傳媒原始頁核對候選人支持度與方法；跨來源公開報導明確列出17.4%無明確意見；四捨五入總和100.1%",
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
     },
     {
       "title": "震傳媒／山水民調：2026新北市長選舉支持度（5月波次）",
@@ -80,24 +100,34 @@
       "method_class": "landline_cati",
       "sampling_frame": "新北市住宅電話",
       "weighting": "district_sex_age_education",
-      "margin_of_error": 3.0,
+      "margin_of_error": 3,
       "confidence_level": 95,
       "funding": "震傳媒",
       "pollster_id": "shanshui",
       "pollster": "山水民意研究股份有限公司",
       "publisher": "震傳媒",
       "source": "震傳媒／山水民調",
-      "names": ["李四川", "蘇巧慧"],
-      "supports": [39.6, 34.8],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "李四川",
+        "蘇巧慧"
+      ],
+      "supports": [
+        39.6,
+        34.8
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 25.6,
-      "nonvote": 0.0,
+      "nonvote": 0,
       "multiple_matchups": false,
       "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/41952",
       "verification_urls": [
         "https://www.zmedia.com.tw/Document/Detail/41952",
         "https://www.bigmedia.com.tw/article/1777980989226"
-      ]
+      ],
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
     },
     {
       "title": "震傳媒／山水民調：2026高雄市長選舉支持度（7月波次）",
@@ -111,24 +141,34 @@
       "method_class": "landline_cati",
       "sampling_frame": "高雄市住宅電話",
       "weighting": "district_sex_age_education",
-      "margin_of_error": 3.0,
+      "margin_of_error": 3,
       "confidence_level": 95,
       "funding": "震傳媒",
       "pollster_id": "shanshui",
       "pollster": "山水民意研究股份有限公司",
       "publisher": "震傳媒",
       "source": "震傳媒／山水民調",
-      "names": ["柯志恩", "賴瑞隆"],
-      "supports": [31.6, 39.6],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "柯志恩",
+        "賴瑞隆"
+      ],
+      "supports": [
+        31.6,
+        39.6
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 28.8,
-      "nonvote": 0.0,
+      "nonvote": 0,
       "multiple_matchups": false,
       "source_url": "https://www.zmedia.com.tw/Document/PoolDetail/43287",
       "verification_urls": [
         "https://www.zmedia.com.tw/Document/Detail/43287",
         "https://www.bigmedia.com.tw/article/1786341177893"
-      ]
+      ],
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
     },
     {
       "title": "鉅聞天下／皮爾森數據：2026新北市長選舉調查（7月波次）",
@@ -149,9 +189,18 @@
       "pollster": "皮爾森數據",
       "publisher": "鉅聞天下新聞網",
       "source": "鉅聞天下／皮爾森數據",
-      "names": ["李四川", "蘇巧慧"],
-      "supports": [50.85, 44.06],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "李四川",
+        "蘇巧慧"
+      ],
+      "supports": [
+        50.85,
+        44.06
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 3.4,
       "nonvote": 1.7,
       "multiple_matchups": false,
@@ -160,7 +209,8 @@
         "https://www.bigmedia.com.tw/article/1784791841053",
         "https://newtalk.tw/news/view/2026-07-20/1048180",
         "https://news.tvbs.com.tw/politics/3264552"
-      ]
+      ],
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
     },
     {
       "title": "鉅聞天下／皮爾森數據：2026高雄市長選舉調查（8月波次）",
@@ -181,9 +231,18 @@
       "pollster": "皮爾森數據",
       "publisher": "鉅聞天下新聞網",
       "source": "鉅聞天下／皮爾森數據",
-      "names": ["柯志恩", "賴瑞隆"],
-      "supports": [46.14, 47.78],
-      "blocs": ["blue", "dpp"],
+      "names": [
+        "柯志恩",
+        "賴瑞隆"
+      ],
+      "supports": [
+        46.14,
+        47.78
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
       "undecided": 4.24,
       "nonvote": 1.84,
       "multiple_matchups": false,
@@ -191,7 +250,96 @@
       "verification_urls": [
         "https://news.tvbs.com.tw/politics/4004777",
         "https://newtalk.tw/news/view/2026-08-10/1052483"
-      ]
+      ],
+      "reviewed_at": "2026-09-12T11:05:00+00:00"
+    },
+    {
+      "title": "聯合報系民意調查中心：2026台北市長選舉投票意向（10月20—25日）",
+      "county": "台北市",
+      "field_start": "2026-10-20",
+      "date": "2026-10-25",
+      "published_at": "2026-10-28",
+      "sample_n": 1115,
+      "population": "設籍台北市、年滿20歲成年選民",
+      "method": "住宅及手機雙電話底冊尾數隨機抽樣；依性別、年齡、行政區結構加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "台北市住宅電話及手機雙電話底冊",
+      "weighting": "sex_age_district",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "聯合報",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source": "聯合報系民意調查中心",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        41,
+        45
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 13,
+      "nonvote": 0,
+      "response_mass_unreported": 1,
+      "response_mass_note": "其餘四位候選人合計小於1%，未逐名發布；加總及百分比四捨五入後餘額保留為1百分點未分類，並非全數未表態。",
+      "multiple_matchups": false,
+      "source_url": "https://udn.com/news/story/124652/9840910",
+      "verification_urls": [
+        "https://udn.com/vote2026/pollboard",
+        "https://news.tvbs.com.tw/politics/4042255"
+      ],
+      "sample_note": "本題公布樣本數1,115；投票意向題之有效子樣本數未另載；只對兩位有明確支持度的候選人建立相對支持觀測；不是追蹤同批受訪者。",
+      "reviewed_at": "2026-11-02T00:00:00+00:00"
+    },
+    {
+      "title": "聯合報系民意調查中心：2026高雄市長選舉投票意向（10月28—31日，辯論前與期間）",
+      "county": "高雄市",
+      "field_start": "2026-10-28",
+      "date": "2026-10-31",
+      "published_at": "2026-11-02",
+      "sample_n": 1101,
+      "population": "設籍高雄市、年滿20歲選民",
+      "method": "住宅及手機雙電話底冊尾數隨機抽樣；依性別、年齡結構加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "高雄市住宅電話及手機雙電話底冊",
+      "weighting": "sex_age",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "聯合報",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source": "聯合報系民意調查中心",
+      "names": [
+        "柯志恩",
+        "賴瑞隆"
+      ],
+      "supports": [
+        33,
+        40
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 26,
+      "nonvote": 0,
+      "response_mass_unreported": 1,
+      "response_mass_note": "聯合報原文指出其他三位候選人合計不到1%，但未公開逐名數字；模型將加總後剩餘約1百分點全數保留未分類，不反推每位候選人或未表態。",
+      "multiple_matchups": false,
+      "source_url": "https://udn.com/news/story/124652/9850777",
+      "verification_urls": [
+        "https://udn.com/vote2026/story/124652/9850520",
+        "https://news.tvbs.com.tw/politics/4044438"
+      ],
+      "sample_note": "調查於10月28—31日進行，部分報導簡寫為10月28—30日；以聯合報原始稿的10月31日為准。公布1,101有效樣本，候選人題子樣本數未另載；辯論在10月30日，報導稱不能完整反映辯論效果。",
+      "reviewed_at": "2026-11-02T00:00:00+00:00"
     }
   ],
   "non_admitted_sources": [
@@ -201,10 +349,13 @@
       "county": "台中市",
       "field_start": "2026-08-03",
       "date": "2026-08-05",
-      "known_support": {"江啟臣": 38.2, "何欣純": 24.1},
+      "known_support": {
+        "江啟臣": 38.2,
+        "何欣純": 24.1
+      },
       "sample_n": 1077,
       "method": "人員電話訪問；住宅電話抽樣",
-      "margin_of_error": 3.0,
+      "margin_of_error": 3,
       "reason": "公開報導可核對候選人支持、訪期、樣本與抽樣方法，但目前可取得文字未把剩餘37.7%明確拆分為未表態、不投票或其他回答。為避免自行推定回應類別，暫不入模。",
       "verification_urls": [
         "https://news.tvbs.com.tw/politics/4004018",
@@ -212,10 +363,12 @@
       ]
     },
     {
-      "name": "聯合報",
-      "status": "publisher_not_pollster",
-      "reason": "聯合報可作為民調報導與交叉核驗來源，但轉載其他調查機構結果時不建立獨立pollster_id，避免把刊載媒體重複加權。",
-      "verification_urls": ["https://udn.com/vote2026/index"]
+      "name": "聯合報轉載其他機構民調",
+      "status": "publisher_reprint_not_new_pollster",
+      "reason": "聯合報系民意調查中心自行執行的台北、高雄調查另有獨立pollster_id；僅轉載其他機構民調的新聞不重複計權。",
+      "verification_urls": [
+        "https://udn.com/vote2026/pollboard"
+      ]
     }
   ]
 }

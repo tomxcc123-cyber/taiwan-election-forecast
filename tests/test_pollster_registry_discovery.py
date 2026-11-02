@@ -28,6 +28,8 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         self.assertIn('ettoday', self.pollsters)
         self.assertIn('shanshui', self.pollsters)
         self.assertIn('pearson-data', self.pollsters)
+        self.assertIn('udn-poll-center',self.pollsters)
+        self.assertEqual(self.pollsters['udn-poll-center']['discovery']['mode'],'html_index_queue')
         self.assertEqual(self.pollsters['shanshui']['discovery']['mode'], 'html_index_queue')
         self.assertEqual(self.pollsters['pearson-data']['discovery']['mode'], 'html_index_queue')
         self.assertEqual(self.pollsters['apollo']['model_uncertainty'], 'not_admitted')
@@ -57,6 +59,19 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         </body></html>'''.encode('utf-8')
         rows = discover_from_html(raw, pollster['discovery']['index_urls'][0], pollster, self.config['matchups'])
         self.assertEqual({r['url'].rsplit('/', 1)[-1] for r in rows}, {'1786278801544', '9990000000001'})
+
+    def test_udn_original_inhouse_poll_is_queued_not_automatically_promoted(self):
+        udn=self.pollsters['udn-poll-center']
+        raw='''<html><head><meta charset="utf-8"></head><body>
+        <a href="/news/story/124652/9840910">聯合報民調／北市藍綠激戰 看好度蔣48%、沈35% 支持度蔣41%、沈45%</a>
+        <a href="/vote2026/story/124652/9850520">聯合報民調／高雄激戰 辯論前支持度柯志恩33%緊追賴瑞隆40%</a>
+        <a href="/news/story/124652/8880000">聯合報民調／總統施政滿意度</a>
+        <a href="/news/story/124652/8880001">聯合報民調／高雄市長看好度分析</a>
+        </body></html>'''.encode()
+        found=discover_from_html(raw,udn['discovery']['index_urls'][0],udn,self.config['matchups'])
+        self.assertEqual({x['url'].rsplit('/',1)[-1] for x in found},{'9840910','9850520'})
+        self.assertEqual({x['county'] for x in found},{'台北市','高雄市'})
+        self.assertTrue(udn['discovery']['queue_only'])
 
     def base_feed(self):
         return {
@@ -115,7 +130,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         self.assertTrue(sources['震傳媒／山水民調']['auto_discovery'])
         self.assertEqual(sources['震傳媒／山水民調']['auto_pending'], 1)
         self.assertEqual(sources['鉅聞天下／皮爾森數據']['auto_pending'], 1)
-        self.assertEqual(out['pollster_registry']['registered_pollsters'], 7)
+        self.assertEqual(out['pollster_registry']['registered_pollsters'], 8)
         self.assertIn('未通過完整校驗前不入模', out['coverage_note'])
 
     def test_discovery_failure_preserves_records_and_degrades_source(self):

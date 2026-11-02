@@ -64,7 +64,9 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    # Playwright 1.55 Chromium is tested on Ubuntu 24.04; ubuntu-latest
+    # upgraded to 26.04, where this browser package is unsupported.
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v6
