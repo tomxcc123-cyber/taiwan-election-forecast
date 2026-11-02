@@ -87,6 +87,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/stack_candidate_models.py
+      - name: Print T3 2018/2022 chronological holdout and blocked promotion gate
+        env:
+          PYTHONPATH: .
+        run: python -m model.nonmajor_rolling_holdout
       - name: Validate full compositional release candidate v1
         env:
           PYTHONPATH: .
