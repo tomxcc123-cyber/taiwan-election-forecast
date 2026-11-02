@@ -135,6 +135,7 @@ jobs:
           node tests/evidence-ui.mjs
           node tests/scenario-studio.mjs
           node tests/source-v52-ui.mjs
+          node tests/t3-chronological-ui.mjs
           node tests/governance-v56-ui.mjs
       - name: Install GIS browser runtime
         run: |
@@ -160,6 +161,17 @@ jobs:
           grep -q 'HB-TLEF v5.0 Public Beta 1' dist/index.html
           grep -q 'governance-v56.mjs' dist/index.html
           grep -q 'Poll Ingestion 2.0' dist/poll-source-v52.mjs
+          test -f dist/t3-chronological-bias-audit.json
+          test -f dist/t3-chronological-ui.mjs
+          python - <<'PY'
+          import json
+          r=json.load(open('dist/t3-chronological-bias-audit.json',encoding='utf8'))
+          assert r['governance']['official_forecast_modified'] is False
+          assert r['governance']['independent_blind_holdout'] is False
+          assert r['governance']['release_gate']=='blocked_until_independent_roster_and_probability_validation'
+          assert {y:r['cycles'][y]['training_years'] for y in ('2018','2022')}=={'2018':[2014],'2022':[2014,2018]}
+          assert all(r['cycles'][y]['target_rows']==22 for y in ('2018','2022'))
+          PY
           grep -q '確認性參考' dist/governance-v56.mjs
           grep -q '2026-09-16-gis-precision-rc' dist/index.html
           grep -q 'gis-edition.css?v=20260916-100' dist/index.html
