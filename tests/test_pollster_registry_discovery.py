@@ -28,6 +28,8 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         self.assertIn('ettoday', self.pollsters)
         self.assertIn('shanshui', self.pollsters)
         self.assertIn('pearson-data', self.pollsters)
+        self.assertIn('udn-poll-center',self.pollsters)
+        self.assertEqual(self.pollsters['udn-poll-center']['discovery']['mode'],'html_index_queue')
         self.assertEqual(self.pollsters['shanshui']['discovery']['mode'], 'html_index_queue')
         self.assertEqual(self.pollsters['pearson-data']['discovery']['mode'], 'html_index_queue')
         self.assertEqual(self.pollsters['apollo']['model_uncertainty'], 'not_admitted')
@@ -115,7 +117,7 @@ class PollsterRegistryDiscoveryTests(unittest.TestCase):
         self.assertTrue(sources['震傳媒／山水民調']['auto_discovery'])
         self.assertEqual(sources['震傳媒／山水民調']['auto_pending'], 1)
         self.assertEqual(sources['鉅聞天下／皮爾森數據']['auto_pending'], 1)
-        self.assertEqual(out['pollster_registry']['registered_pollsters'], 7)
+        self.assertEqual(out['pollster_registry']['registered_pollsters'], 8)
         self.assertIn('未通過完整校驗前不入模', out['coverage_note'])
 
     def test_discovery_failure_preserves_records_and_degrades_source(self):
