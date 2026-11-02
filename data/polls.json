@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-02T02:42:36+00:00",
+  "checked_at": "2026-11-02T03:55:22+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-11-02T02:42:36+00:00",
+  "index_checked_at": "2026-11-02T03:55:22+00:00",
   "updated_at": "2026-11-02T00:00:00+00:00",
   "latest_fieldwork_date": "2026-10-31",
   "status": "degraded",
@@ -53,13 +53,13 @@
       "reviewed_reports": 3,
       "status": "reviewed_seed_only",
       "method_class": "landline_cati",
-      "note": "本輪一方站點自動發現受限；保留既有核驗資料，不把抓取失敗當成無新民調。",
+      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
-      "auto_discovery_status": "degraded",
-      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
-      "auto_discovered": 0,
-      "auto_known": 0,
-      "auto_pending": 0,
+      "auto_discovery_status": "checked",
+      "auto_discovery_checked_at": "2026-11-02T03:55:31+00:00",
+      "auto_discovered": 6,
+      "auto_known": 2,
+      "auto_pending": 4,
       "registry_pollster_id": "shanshui",
       "auto_promoted": 2
     },
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
+      "auto_discovery_checked_at": "2026-11-02T03:55:31+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -92,10 +92,10 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-02T02:42:49+00:00",
-      "auto_discovered": 1,
+      "auto_discovery_checked_at": "2026-11-02T03:55:31+00:00",
+      "auto_discovered": 2,
       "auto_known": 1,
-      "auto_pending": 0,
+      "auto_pending": 1,
       "registry_pollster_id": "udn-poll-center",
       "auto_promoted": 0
     }
@@ -114,7 +114,78 @@
       "url": "https://udn.com/vote2026/pollboard"
     }
   ],
-  "discovery_queue": [],
+  "discovery_queue": [
+    {
+      "pollster_id": "shanshui",
+      "source": "震傳媒／山水民調",
+      "publisher": "震傳媒",
+      "title": "震傳媒民調(三)/誰能外溢助攻新北百里侯?48.8%認同蔣萬安、33.3%點名沈伯洋 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉,由於台北市長蔣萬安及民進黨籍台北市長候選人沈伯洋近日皆成焦點,甚至被視為兩黨大選領頭羊,對新北市民而言,兩人誰對同黨候選人有較正向的外溢效應?民調顯示,48.8%新北市民認為蔣萬安對同黨候選人有較正向的外溢效應,",
+      "county": "台北市",
+      "url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-11-02T03:55:31+00:00",
+      "last_seen_at": "2026-11-02T03:55:31+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-11-02T03:55:35+00:00"
+    },
+    {
+      "pollster_id": "shanshui",
+      "source": "震傳媒／山水民調",
+      "publisher": "震傳媒",
+      "title": "震撼民心 震傳媒民調(二)/北市長看好度 蔣萬安46.4%、沈伯洋36.9% 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選舉看好度,46.4%台北市民看好現任台北市長蔣萬安,36.9%支持民進黨籍市長參選人沈伯洋,兩人差距9.5%。",
+      "county": "台北市",
+      "url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-11-02T03:55:31+00:00",
+      "last_seen_at": "2026-11-02T03:55:31+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-11-02T03:55:35+00:00"
+    },
+    {
+      "pollster_id": "shanshui",
+      "source": "震傳媒／山水民調",
+      "publisher": "震傳媒",
+      "title": "震撼民心 震傳媒民調(四)/黃珊珊的34萬票流向哪?54.4%支持沈伯洋、34.1%挺蔣萬安 震傳媒今(22)日公布最新時事議題民調。針對年底台北市長選戰的投票動向,2022年無黨籍參選人黃珊珊當時獲得的34萬票究竟會在今年流向何方?民調顯示,54.4%選擇黃珊珊的選民會支持沈伯洋,34.1%會改支持蔣萬安。",
+      "county": "台北市",
+      "url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-11-02T03:55:31+00:00",
+      "last_seen_at": "2026-11-02T03:55:31+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-11-02T03:55:35+00:00"
+    },
+    {
+      "pollster_id": "shanshui",
+      "source": "震傳媒／山水民調",
+      "publisher": "震傳媒",
+      "title": "震傳媒民調(二)/42.0%新北市民看好李四川 蘇巧慧五個月內上升3.7% 雙方差距縮小至5.2%! 震傳媒今(23)日公布最新時事議題民調。針對年底新北市長選舉看好度,在三位登記參選人中,42.0%新北市民看好國民黨籍參選人李四川,36.8%看好民進黨籍參選人蘇巧慧,雙方差距5.2%。在趨勢追蹤部分,與115年4月相比,李四川看好度下跌0.9%,蘇巧慧則上",
+      "county": "新北市",
+      "url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-11-02T03:55:31+00:00",
+      "last_seen_at": "2026-11-02T03:55:31+00:00",
+      "last_validation_error": "Article is not a general vote-intention poll",
+      "last_validation_at": "2026-11-02T03:55:35+00:00"
+    },
+    {
+      "pollster_id": "udn-poll-center",
+      "source": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "title": "聯合報民調/高雄激戰 柯志恩緊追賴瑞隆",
+      "county": "高雄市",
+      "url": "https://udn.com/vote2026/story/124652/9850777",
+      "status": "discovered_unverified",
+      "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
+      "discovered_at": "2026-11-02T03:55:31+00:00",
+      "last_seen_at": "2026-11-02T03:55:31+00:00",
+      "last_validation_error": "Pollster has no approved automatic parser",
+      "last_validation_at": "2026-11-02T03:55:35+00:00"
+    }
+  ],
   "records": [
     {
       "id": "dac7cea5694315dbcb723133",
@@ -164,6 +235,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 1.0,
       "response_mass_note": "聯合報原文指出其他三位候選人合計不到1%，但未公開逐名數字；模型將加總後剩餘約1百分點全數保留未分類，不反推每位候選人或未表態。",
+      "reported_nonmajor_support_upper_pct": 1,
+      "reported_nonmajor_upper_basis": "Original UDN article explicitly states combined other listed candidates below one percent, no name-specific shares; this is survey response, NOT a forecast vote-share cap.",
       "verification_status": "reviewed_multi_source_methodology_partial_response",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-11-02T00:00:00+00:00",
@@ -218,6 +291,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 1.0,
       "response_mass_note": "其餘四位候選人合計小於1%，未逐名發布；加總及百分比四捨五入後餘額保留為1百分點未分類，並非全數未表態。",
+      "reported_nonmajor_support_upper_pct": 1,
+      "reported_nonmajor_upper_basis": "Original UDN article explicitly states combined other listed candidates below one percent, no name-specific shares; this is survey response, NOT a forecast vote-share cap.",
       "verification_status": "reviewed_multi_source_methodology_partial_response",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-11-02T00:00:00+00:00",
@@ -466,6 +541,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -520,6 +597,8 @@
       "nonvote_reported": true,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -574,6 +653,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -629,6 +710,8 @@
       "nonvote_reported": true,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -684,6 +767,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -825,6 +910,8 @@
       "nonvote_reported": false,
       "response_mass_unreported": 0.0,
       "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
       "verification_status": "reviewed_multi_source_methodology",
       "ingestion": "reviewed_multi_source_methodology",
       "retrieved_at": "2026-09-12T11:05:00+00:00",
@@ -1483,16 +1570,6 @@
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251230/7f85b1bca9aaaba0aa86f0cded95d365.pdf",
       "message": "Vote-intention question has an unsupported table header"
-    },
-    {
-      "source": "震傳媒／山水民調 discovery",
-      "url": "https://www.zmedia.com.tw/Document/Pool",
-      "message": "HTTP Error 500: Internal Server Error"
-    },
-    {
-      "source": "震傳媒／山水民調 discovery",
-      "url": "https://www.zmedia.com.tw/Document/Pool?page=2",
-      "message": "HTTP Error 500: Internal Server Error"
     }
   ],
   "reports": {
@@ -1528,6 +1605,36 @@
     }
   },
   "history": [
+    {
+      "date": "2026-11-02T03:55:31+00:00",
+      "county": "高雄市",
+      "source_url": "https://udn.com/vote2026/story/124652/9850777",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-02T03:55:31+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-02T03:55:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-02T03:55:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-02T03:55:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
     {
       "date": "2026-11-02T02:42:36+00:00",
       "county": "高雄市",
@@ -2097,40 +2204,10 @@
       "county": "新北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:58:47+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:58:47+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:58:47+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:56:25+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T04:56:25+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-11-02T02:42:49+00:00",
+  "discovery_checked_at": "2026-11-02T03:55:31+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-11-02T00:00:00+00:00",
