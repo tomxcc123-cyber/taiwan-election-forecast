@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,t3CycleAuditHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
@@ -83,4 +83,35 @@ assert.match(difference,/差距不是預測誤差/);
 assert.ok(!difference.includes('<script>'));
 assert.match(observatoryHTML(feed,{...model,...proofModel}),/nonmajorResponseAudit/);
 assert.equal(nonmajorResponseHTML({nonmajor_poll_response_audit:{...proofModel.nonmajor_poll_response_audit,formal_forecast_modified:true}}),'');
+const auditTemplate={
+    schema_version:1,kind:'t3_chronological_nonmajor_mass_bias_audit_not_forecast_calibration',
+    forecast_2026_modified:false,probability_calibrated:false,promotion_gate:{status:'blocked'},
+    cycles:[2018,2022].map(year=>({
+        year,source_counties:22,
+        county_rows:Array.from({length:22},(_,i)=>({county:'縣'+i,nonmajor_candidate_count:2,actual_pct:2,
+            production_blended_pct:4,t3_blended_error_pp:2})),
+        metrics:{
+            production_spec_raw:{mae_pp:7},
+            production_spec_70_30:{mae_pp:6,bias_pp:2,overpredict_n:11},
+            lagged_carry:{mae_pp:8}
+        },
+        paired_mae_70_30_minus_carry:{
+            estimated_delta_pp:-2,percentile_95_low_pp:-6,percentile_95_high_pp:1
+        },
+        groups:{nonmajor_candidates_0:{n:2,production_spec_70_30:{mae_pp:0,bias_pp:0},lagged_carry:{mae_pp:0}}},
+        largest_absolute_errors:[{county:'台北市',nonmajor_candidate_count:3,actual_pct:4,
+            production_blended_pct:15,t3_blended_error_pp:11}]
+    }))
+};
+const t3Html=t3CycleAuditHTML({nonmajor_t3_cycle_validation:auditTemplate});
+assert.match(t3Html,/2018與2022歷史偏差檢驗/);
+assert.match(t3Html,/2014年僅用於訓練/);
+assert.match(t3Html,/無黨籍/);
+assert.match(t3Html,/2022年絕對預測誤差/);
+assert.match(t3Html,/暫不調整正式預測/);
+assert.match(observatoryHTML(feed,{...model,nonmajor_t3_cycle_validation:auditTemplate}),/t3CycleAudit/);
+assert.equal(t3CycleAuditHTML({nonmajor_t3_cycle_validation:{
+    ...auditTemplate,forecast_2026_modified:true}}),'');
+assert.equal(t3CycleAuditHTML({nonmajor_t3_cycle_validation:{
+    ...auditTemplate,promotion_gate:{status:'promoted'}}}),'');
 console.log('source-v53-ui ok');

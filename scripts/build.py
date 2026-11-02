@@ -230,6 +230,16 @@ def build(now=None):
 
     from model.v5_product import build_product
     product = build_product(ROOT, now, feed)
+    # Chronological nonmajor/T3 audit is explanatory only. It is attached
+    # after the official forecast calculation, so cannot alter its draws.
+    from scripts.audit_nonmajor_t3_cycles import build_t3_cycle_audit
+    t3_cycle_audit = build_t3_cycle_audit(ROOT)
+    if (t3_cycle_audit['forecast_2026_modified'] is not False or
+        t3_cycle_audit['promotion_gate']['status'] != 'blocked' or
+        [c['year'] for c in t3_cycle_audit['cycles']] != [2018, 2022] or
+        any(c['source_counties'] != 22 for c in t3_cycle_audit['cycles'])):
+        raise ValueError('T3 historical audit source, holdout, or no-promotion gate unsafe')
+    product['nonmajor_t3_cycle_validation'] = t3_cycle_audit
     product['publication_pause_start'] = config['publication_pause_start']
     product['publication_pause_end'] = config['publication_pause_end']
     product['fingerprint'] = digest({k:v for k,v in product.items() if k != 'fingerprint'})

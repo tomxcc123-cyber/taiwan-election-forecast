@@ -73,10 +73,47 @@ export function nonmajorResponseHTML(model){
   if(!rows.length)return '';
   return `<section class="source-observatory" id="nonmajorResponseAudit"><div class="source-observatory-head"><div><span class="eyebrow">Nonmajor Evidence · Research Only</span><h3>非藍綠候選人：原始民調回應與模型票池對照</h3><p>只列原始調查<strong>明確交代其他候選人支持上限</strong>的波次。模型數值是選舉日模擬得票，調查數值是訪問當下的回答比例；分母、時間及未表態轉化都不同，<strong>兩者的差距不是預測誤差，更不是模型必須遵守的得票上限</strong>。</p></div></div><div class="table-wrap source-table"><table><thead><tr><th>縣市／訪期結束</th><th>原始調查</th><th>調查其他人選回應</th><th>調查未表態</th><th>模型非藍綠得票池</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><p class="meta">為避免自行將未表態者分票給小黨／無黨籍，本研究僅顯示原始回應比例與模型不確定範圍；正式候選人得票及勝選機率維持既有模型，尚待多期資料與回測確認是否應調整。</p></section>`;
 }
+export function t3CycleAuditHTML(model){
+  const audit=model?.nonmajor_t3_cycle_validation;
+  if(!audit||audit.schema_version!==1
+    ||audit.kind!=='t3_chronological_nonmajor_mass_bias_audit_not_forecast_calibration'
+    ||audit.promotion_gate?.status!=='blocked'
+    ||audit.forecast_2026_modified!==false||audit.probability_calibrated!==false
+    ||!Array.isArray(audit.cycles)
+    ||audit.cycles.length!==2
+    ||audit.cycles[0].year!==2018||audit.cycles[1].year!==2022
+    ||audit.cycles.some(c=>c.source_counties!==22||!Array.isArray(c.county_rows)||c.county_rows.length!==22))return '';
+  const num=v=>Number.isFinite(v)?Number(v).toFixed(2):'—';
+  const cycleRows=audit.cycles.map(c=>{
+    const raw=c.metrics?.production_spec_raw;
+    const mix=c.metrics?.production_spec_70_30;
+    const lag=c.metrics?.lagged_carry;
+    const delta=c.paired_mae_70_30_minus_carry;
+    if(!raw||!mix||!lag||!delta)return '';
+    const role=c.year===2018?'開發驗證／曾參與選模':'時間留出／非全新盲測';
+    return `<tr><td><strong>${c.year}</strong><small>${role}</small></td><td>${c.source_counties}</td><td>${num(raw.mae_pp)} pp</td><td><strong>${num(mix.mae_pp)} pp</strong><small>偏差 ${num(mix.bias_pp)} pp；高估 ${mix.overpredict_n} 縣市</small></td><td>${num(lag.mae_pp)} pp</td><td>${num(delta.estimated_delta_pp)} pp<small>縣市配對 bootstrap 95%：${num(delta.percentile_95_low_pp)}～${num(delta.percentile_95_high_pp)} pp</small></td></tr>`;
+  }).filter(Boolean);
+  if(cycleRows.length!==2)return '';
+  const latest=audit.cycles[1];
+  const groups=['nonmajor_candidates_0','nonmajor_candidates_1','nonmajor_candidates_2plus','has_independent','observed_nonmajor_below_5pct','observed_nonmajor_above_20pct'];
+  const labels={
+    nonmajor_candidates_0:'沒有非藍綠候選人',nonmajor_candidates_1:'1名非藍綠候選人',
+    nonmajor_candidates_2plus:'2名以上非藍綠候選人',has_independent:'有無黨籍候選人',
+    observed_nonmajor_below_5pct:'實際非藍綠票池低於5%（事後分組）',
+    observed_nonmajor_above_20pct:'實際非藍綠票池達20%（事後分組）'};
+  const segmentRows=groups.map(key=>{
+    const g=latest.groups?.[key];
+    if(!g)return '';
+    return `<tr><td>${esc(labels[key])}</td><td>${g.n}</td><td>${num(g.production_spec_70_30?.mae_pp)} pp</td><td>${num(g.production_spec_70_30?.bias_pp)} pp</td><td>${num(g.lagged_carry?.mae_pp)} pp</td></tr>`;
+  }).filter(Boolean).join('');
+  const outliers=latest.largest_absolute_errors||[];
+  const outlierRows=outliers.map(q=>`<tr><td>${esc(q.county)}</td><td>${q.nonmajor_candidate_count}</td><td>${num(q.actual_pct)}%</td><td>${num(q.production_blended_pct)}%</td><td>${num(q.t3_blended_error_pp)} pp</td></tr>`).join('');
+  return `<section class="source-observatory" id="t3CycleAudit"><div class="source-observatory-head"><div><span class="eyebrow">T3 · Chronological Validation · Research Only</span><h3>第三勢力／無黨籍票池：2018與2022歷史偏差檢驗</h3><p>2014年僅用於訓練；2018年曾用於模型規格選擇，不能算全新盲測。2022年使用2014＋2018資料擬合後測試，但專案曾查看2022結果，<strong>不是獨立、事前鎖定的確認性檢驗</strong>。</p></div></div><div class="table-wrap source-table"><table><thead><tr><th>選舉年／證據級別</th><th>縣市</th><th>原始 T3 MAE</th><th>現行70% T3＋30%上屆 MAE／偏差</th><th>只沿用上屆 MAE</th><th>組合－沿用 MAE差額／抽樣不確定性</th></tr></thead><tbody>${cycleRows.join('')}</tbody></table></div><details><summary>展開2022年候選人人數與異常縣市</summary><p class="meta">前四項按候選人名單分組；末兩項按實際選舉結果事後分組，僅用於錯誤診斷。正偏差表示模型高估；負偏差表示模型低估。</p><div class="table-wrap source-table"><table><thead><tr><th>2022子組</th><th>樣本</th><th>70/30 MAE</th><th>70/30平均偏差</th><th>上屆沿用MAE</th></tr></thead><tbody>${segmentRows}</tbody></table></div><p class="meta">2022年絕對預測誤差最大的8個縣市（依候選人名單條件下的非藍綠票池預估）：</p><div class="table-wrap source-table"><table><thead><tr><th>縣市</th><th>非藍綠人數</th><th>真實得票</th><th>70/30預測</th><th>誤差（預測－真值）</th></tr></thead><tbody>${outlierRows}</tbody></table></div></details><p class="meta"><strong>暫不調整正式預測：</strong>本次使用中選會已核對的歷史候選人開票記錄；歷屆完整最終名單不等於已證明當年預測時可提前獲得的名單。每輪僅22個縣市，誤差及bootstrap範圍不足以完成跨屆概率校準。調整2026得票中心的授權仍被封鎖。<a href="candidate-history-cec.json" target="_blank" rel="noopener">中選會歷史資料</a>｜<a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">模型限制</a></p></section>`;
+}
 export function observatoryHTML(feed,model){
   const s=coverageStats(feed,model),rows=[...(feed.sources||[]).map(x=>recordSourceRow(x,feed,model)),...(feed.source_review||[]).map(reviewSourceRow)];
   const registryText=s.registryCount?`Pollster Registry 已登錄 ${s.registryCount} 個調查機構／狀態。`:'來源登錄正在建立中。';
-  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div><div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
+  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div><div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${t3CycleAuditHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
 }
 function recordTags(record,audit){
   const accepted=audit?.included;
