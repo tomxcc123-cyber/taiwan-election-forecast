@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-02T15:47:56+00:00",
+  "checked_at": "2026-11-03T00:56:46+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-11-02T15:47:56+00:00",
+  "index_checked_at": "2026-11-03T00:56:46+00:00",
   "updated_at": "2026-11-02T00:00:00+00:00",
   "latest_fieldwork_date": "2026-10-31",
   "status": "degraded",
@@ -27,7 +27,7 @@
     {
       "name": "ETtoday 民調雲",
       "url": "https://feeds.feedburner.com/ettoday/newslist",
-      "discovered": 1,
+      "discovered": 0,
       "validated_reports": 0,
       "reviewed_reports": 2,
       "index_ok": true,
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-02T15:48:12+00:00",
+      "auto_discovery_checked_at": "2026-11-03T00:57:02+00:00",
       "auto_discovered": 6,
       "auto_known": 2,
       "auto_pending": 4,
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-02T15:48:12+00:00",
+      "auto_discovery_checked_at": "2026-11-03T00:57:02+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -92,7 +92,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-02T15:48:12+00:00",
+      "auto_discovery_checked_at": "2026-11-03T00:57:02+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
@@ -116,14 +116,6 @@
   ],
   "discovery_queue": [
     {
-      "source": "ETtoday",
-      "title": "講政策民調落後更多很沮喪　沈伯洋堅持做完「這專案」迎轉機",
-      "county": "台北市",
-      "url": "https://www.ettoday.net/news/20261102/3265169.htm",
-      "status": "discovered_unverified",
-      "reason": "Missing ETtoday fieldwork dates"
-    },
-    {
       "pollster_id": "shanshui",
       "source": "震傳媒／山水民調",
       "publisher": "震傳媒",
@@ -132,10 +124,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-02T15:48:12+00:00",
-      "last_seen_at": "2026-11-02T15:48:12+00:00",
+      "discovered_at": "2026-11-03T00:57:02+00:00",
+      "last_seen_at": "2026-11-03T00:57:02+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-02T15:48:14+00:00"
+      "last_validation_at": "2026-11-03T00:57:05+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -146,10 +138,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44790",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-02T15:48:12+00:00",
-      "last_seen_at": "2026-11-02T15:48:12+00:00",
+      "discovered_at": "2026-11-03T00:57:02+00:00",
+      "last_seen_at": "2026-11-03T00:57:02+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-02T15:48:14+00:00"
+      "last_validation_at": "2026-11-03T00:57:05+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -160,10 +152,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-02T15:48:12+00:00",
-      "last_seen_at": "2026-11-02T15:48:12+00:00",
+      "discovered_at": "2026-11-03T00:57:02+00:00",
+      "last_seen_at": "2026-11-03T00:57:02+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-02T15:48:14+00:00"
+      "last_validation_at": "2026-11-03T00:57:05+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -174,10 +166,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-02T15:48:12+00:00",
-      "last_seen_at": "2026-11-02T15:48:12+00:00",
+      "discovered_at": "2026-11-03T00:57:02+00:00",
+      "last_seen_at": "2026-11-03T00:57:02+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-02T15:48:14+00:00"
+      "last_validation_at": "2026-11-03T00:57:05+00:00"
     }
   ],
   "records": [
@@ -1521,11 +1513,6 @@
       "message": "'utf-8' codec can't decode byte 0xac in position 471: invalid start byte"
     },
     {
-      "source": "ETtoday",
-      "url": "https://www.ettoday.net/news/20261102/3265169.htm",
-      "message": "Missing ETtoday fieldwork dates"
-    },
-    {
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1554/1793451109_1510311___________________________________________________.pdf",
       "message": "Missing or unsupported fieldwork dates"
@@ -1604,6 +1591,30 @@
     }
   },
   "history": [
+    {
+      "date": "2026-11-03T00:57:02+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-03T00:57:02+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-03T00:57:02+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-03T00:57:02+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
     {
       "date": "2026-11-02T15:48:12+00:00",
       "county": "新北市",
@@ -2179,34 +2190,10 @@
       "county": "新北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T07:43:36+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T07:43:36+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T07:43:36+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T05:40:08+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-11-02T15:48:12+00:00",
+  "discovery_checked_at": "2026-11-03T00:57:02+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-11-02T00:00:00+00:00",
