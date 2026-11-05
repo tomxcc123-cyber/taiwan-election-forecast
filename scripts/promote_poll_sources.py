@@ -134,6 +134,8 @@ def parse_article(raw, entry, roster, today):
         'id': hashlib.sha256(identity.encode()).hexdigest()[:24],
         'county': county, 'source': entry['source'], 'pollster_id': pollster,
         'pollster': pollster_name, 'publisher': publisher, 'source_url': source_url,
+        'commissioning_type': 'external_commissioned',
+        'commissioner_id': 'zmedia' if pollster == 'shanshui' else 'bigmedia',
         'report_title': entry.get('title', ''), 'published_at': published.isoformat(),
         'field_start': start.isoformat(), 'date': end.isoformat(), 'sample_n': sample,
         'population': population, 'method': method, 'method_class': method_class,
