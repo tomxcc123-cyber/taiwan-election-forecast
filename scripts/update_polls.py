@@ -28,7 +28,7 @@ ALLOWED_HOSTS = {'www.tvbs.com.tw', 'www-asset.tvbs.com.tw'} | formosa.HOSTS | e
 COUNTIES = ['台北市','新北市','桃園市','台中市','台南市','高雄市','基隆市','新竹市',
             '新竹縣','苗栗縣','彰化縣','南投縣','雲林縣','嘉義市','嘉義縣','屏東縣',
             '宜蘭縣','花蓮縣','台東縣','澎湖縣','金門縣','連江縣']
-PARSER_VERSION = 2
+PARSER_VERSION = 3
 
 
 class InvalidReport(ValueError):
@@ -107,13 +107,29 @@ def extract_pdf(raw):
 
 
 def roc_dates(text):
-    m = re.search(r'訪問時間\s*[|｜]\s*(\d{2,4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日\s*至\s*(?:(\d{1,2})\s*月\s*)?(\d{1,2})\s*日', text)
-    if not m:
-        raise InvalidReport('Missing or unsupported fieldwork dates')
-    y, mo, day, end_mo, end_day = m.groups()
-    y = int(y) + (1911 if int(y) < 1911 else 0)
-    return date(y, int(mo), int(day)).isoformat(), date(y, int(end_mo or mo), int(end_day)).isoformat()
+    """Read ROC/Gregorian date ranges and single-day interviews.
 
+    TVBS one-day post-debate surveys sometimes state one interview date
+    followed by an afternoon time window instead of the older "日至" range.
+    Only an explicit date anchored to the 訪問時間 field is accepted.
+    """
+    prefix = r'訪問時間\\s*[|｜]\\s*(\\d{2,4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日'
+    m = re.search(prefix + r'\\s*至\\s*(?:(\\d{1,2})\\s*月\\s*)?(\\d{1,2})\\s*日', text)
+    if m:
+        y, mo, start_day, end_mo, end_day = m.groups()
+        y = int(y) + (1911 if int(y) < 1911 else 0)
+        return (date(y, int(mo), int(start_day)).isoformat(),
+                date(y, int(end_mo or mo), int(end_day)).isoformat())
+
+    # Permit a single-day fieldwork entry only if an explicit time-of-day
+    # qualifier or clock time follows it. Do not silently truncate a broken
+    # multi-day date range to one day.
+    one = re.search(prefix + r'\\s*(?:(?:上午|下午|晚間|早上|晚上)|\\d{1,2}\\s*[:：]\\s*\\d{2})', text)
+    if one:
+        y, mo, day = map(int, one.groups())
+        iso = date(y + (1911 if y < 1911 else 0), mo, day).isoformat()
+        return iso, iso
+    raise InvalidReport('Missing or unsupported fieldwork dates')
 
 def party_for(name, question):
     q = canonical(question)
