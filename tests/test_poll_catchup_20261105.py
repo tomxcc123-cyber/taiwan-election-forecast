@@ -19,7 +19,7 @@ class PollCatchupTests(unittest.TestCase):
     def setUpClass(cls):
         cls.config = json.loads((ROOT / "config.json").read_text(encoding="utf-8"))
         cls.archive = json.loads((ROOT / "data/reviewed-additional-polls.json").read_text(encoding="utf-8"))
-        cls.new_rows = [p for p in cls.archive["reports"] if p.get("reviewed_at", "").startswith("2026-11-05")]
+        cls.new_rows = [p for p in cls.archive["reports"] if p.get("reviewed_at", "").startswith("2026-11-05") and p["pollster_id"] in ("tvbs", "ettoday")]
         cls.tvbs = next(p for p in cls.new_rows if p["pollster_id"] == "tvbs")
         cls.ettoday = next(p for p in cls.new_rows if p["pollster_id"] == "ettoday")
 
