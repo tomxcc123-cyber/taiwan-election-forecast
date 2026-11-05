@@ -43,6 +43,20 @@ export function buildDestination(current,item) {
   url.searchParams.set('view',item.view==='overview'?'map':item.view);
   if(item.kind==='county'){
     url.searchParams.set('county',item.county);
+    // The candidate app restores state from the compact "s" payload before
+    // reading the county query parameter. Change BOTH, or county jump would
+    // silently reopen the previously saved county instead of the searched one.
+    const encoded=url.searchParams.get('s');
+    if(encoded){
+      try{
+        if(encoded.length>48000)throw Error('oversized scenario');
+        const saved=JSON.parse(decodeURIComponent(escape(atob(encoded))));
+        if(![2,3].includes(saved.v)||!saved.state||typeof saved.state!=='object')
+          throw Error('invalid scenario');
+        saved.state.county=item.county;
+        url.searchParams.set('s',btoa(unescape(encodeURIComponent(JSON.stringify(saved)))));
+      }catch{url.searchParams.delete('s');}
+    }
     url.searchParams.set('election','2026-local');
     url.searchParams.set('level','county');
     url.searchParams.delete('town');
