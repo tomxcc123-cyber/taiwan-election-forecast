@@ -26,6 +26,19 @@ class MultisourceTests(unittest.TestCase):
         self.assertEqual((rows[0]['undecided'],rows[0]['nonvote']),(20,10))
         self.assertFalse(rows[0]['multiple_matchups'])
 
+    def test_source_charset_big5_index_and_first_party_report(self):
+        prefix='<html><head><meta charset="big5"></head><body>'
+        suffix='</body></html>'
+        index=prefix+f'<a href="/DOC_100000.htm">{ENTRY["title"]}</a>'+suffix
+        found=formosa.discover(index.encode('big5'))
+        self.assertEqual(len(found),1)
+        self.assertEqual(found[0]["url"],'https://my-formosa.com.tw/DOC_100000.htm')
+        report=(prefix+HTML+suffix).encode('big5')
+        parsed=formosa.parse(report,ENTRY,date(2026,9,8))
+        self.assertEqual(len(parsed),1)
+        self.assertEqual(parsed[0]['county'],'新北市')
+        self.assertEqual((parsed[0]['undecided'],parsed[0]['nonvote']),(20,10))
+
     def test_metadata_and_mass_fail_closed(self):
         for text in [HTML.replace('1000人','未知'),HTML.replace('乙乙30%','乙乙80%'),HTML.replace('畢肯','其他公司'),HTML.replace('2026年4','2027年4')]:
             with self.assertRaises(ValueError):formosa.parse(text.encode(),ENTRY,date(2026,9,8))

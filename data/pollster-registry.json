@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-11-02T00:00:00+00:00",
+  "updated_at": "2026-11-05T09:00:00+00:00",
   "policy": "Separate pollster identity, publisher identity, discovery, verification and model admission. Automatic discovery never implies automatic model inclusion.",
   "pollsters": [
     {
@@ -32,7 +32,12 @@
       "discovery": {
         "mode": "managed_by_update_polls",
         "index_url": "https://www.my-formosa.com.tw/Topical/formosapollster"
-      }
+      },
+      "commissioning_sources": [
+        "美麗島電子報",
+        "台北市信民兩岸研究協會"
+      ],
+      "note": "畢肯（執行機構）是相同pollster_id；委託單位及媒體發布來源獨立保留。兩個委託單位的報導不自動視為兩家調查機構。"
     },
     {
       "pollster_id": "ettoday",

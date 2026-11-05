@@ -9,7 +9,7 @@ from lxml import html
 INDEX = 'https://www.my-formosa.com.tw/Topical/formosapollster'
 HOSTS = {'www.my-formosa.com.tw', 'my-formosa.com.tw'}
 SOURCE = '美麗島電子報／畢肯'
-VERSION = 1
+VERSION = 2
 
 
 def canonical_url(url):
@@ -19,8 +19,27 @@ def canonical_url(url):
     return 'https://my-formosa.com.tw'+p.path
 
 
+def publisher_html(raw):
+    """Decode publisher HTML with a strict, bounded charset fallback.
+
+    Some original Formosa pages are encoded in Big5, while legacy test
+    fixtures and newer pages are UTF-8 without a charset declaration.
+    Never use errors='replace', which can corrupt names and percentages.
+    """
+    if not isinstance(raw, (bytes, bytearray)) or not raw:
+        raise ValueError('Invalid publisher HTML bytes')
+    # Strict fallback is safe for UTF-8 fixtures and legacy Big5 publisher pages.
+    encodings = ('utf-8', 'big5', 'cp950')
+    for encoding in encodings:
+        try:
+            return html.fromstring(raw.decode(encoding, errors='strict'))
+        except UnicodeDecodeError:
+            continue
+    raise ValueError('Unsupported or malformed Formosa HTML charset')
+
+
 def discover(raw):
-    doc = html.fromstring(raw.decode('utf-8'))
+    doc = publisher_html(raw)
     entries = {}
     for a in doc.xpath('//a[@href]'):
         title = ''.join(a.text_content().split())
@@ -54,7 +73,7 @@ def record(entry, county, start, end, sample, number, candidates, undecided, non
 
 
 def parse(raw, entry, now):
-    doc = html.fromstring(raw.decode('utf-8'))
+    doc = publisher_html(raw)
     for node in doc.xpath('//script|//style'):
         node.drop_tree()
     text = unicodedata.normalize('NFKC', doc.text_content())
