@@ -106,6 +106,20 @@ class PollTests(unittest.TestCase):
         r = self.parsed(REPORT.replace('8 月 21 日至 26 日', '7 月 30 日至 8 月 2 日'))[0]
         self.assertEqual((r['field_start'], r['date']), ('2026-07-30', '2026-08-02'))
 
+    def test_single_day_fieldwork_with_time_of_day(self):
+        text = REPORT.replace(
+            '115 年 8 月 21 日至 26 日晚間',
+            '115 年 8 月 31 日下午 14:00－18:00',
+        )
+        r = self.parsed(text)[0]
+        self.assertEqual((r['field_start'], r['date']), ('2026-08-31', '2026-08-31'))
+
+    def test_single_day_never_swallows_broken_date_range(self):
+        text = REPORT.replace('115 年 8 月 21 日至 26 日晚間',
+                              '115 年 8 月 31 日至未知日期')
+        with self.assertRaises(u.InvalidReport):
+            self.parsed(text)
+
     def test_primary_and_hypothetical_questions_not_blended(self):
         with self.assertRaises(u.InvalidReport):
             self.parsed(REPORT.replace('台北市長選舉，', '台北市長初選，'))
