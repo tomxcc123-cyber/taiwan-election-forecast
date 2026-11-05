@@ -28,10 +28,8 @@ def publisher_html(raw):
     """
     if not isinstance(raw, (bytes, bytearray)) or not raw:
         raise ValueError('Invalid publisher HTML bytes')
-    hint = re.search(rb'charset\\s*=\\s*["\\\']?([a-zA-Z0-9_-]+)', raw[:4096], re.IGNORECASE)
-    declared = (hint.group(1).decode('ascii').lower() if hint else '')
-    allowed = ('utf-8', 'big5', 'cp950')
-    encodings = ([declared] if declared in allowed else []) + [e for e in allowed if e != declared]
+    # Strict fallback is safe for UTF-8 fixtures and legacy Big5 publisher pages.
+    encodings = ('utf-8', 'big5', 'cp950')
     for encoding in encodings:
         try:
             return html.fromstring(raw.decode(encoding, errors='strict'))
