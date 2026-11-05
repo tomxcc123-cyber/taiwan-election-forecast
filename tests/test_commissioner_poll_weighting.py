@@ -9,6 +9,7 @@ from pathlib import Path
 import numpy as np
 
 from model.joint import SETTINGS, infer
+from model.commissioner_audit import build_commissioner_audit
 from model.polling import day
 from model.roster import load_roster
 from model.data import load_dataset
@@ -87,6 +88,32 @@ class CommissionerWeightingTests(unittest.TestCase):
         shared = posterior([row1, row2], .20, house_sd=0.0)
         independent = posterior([row1, {**row2, "commissioner_id": "sponsor2"}], .20, house_sd=0.0)
         self.assertLess(np.linalg.norm(shared["mean"]), np.linalg.norm(independent["mean"]))
+
+    def test_read_only_leave_one_commissioner_out_is_a_sensitivity_not_bias(self):
+        rows = [dummy_row(60)]
+        current = posterior(rows, .20)
+        original_mean = current["mean"].copy()
+        result = build_commissioner_audit(dummy_prior(), rows, current,
+                                          "2026-11-05", "2026-11-05")
+        self.assertTrue(result["read_only"])
+        self.assertFalse(result["affects_formal_forecast"])
+        self.assertTrue(result["not_partisan_bias_estimate"])
+        self.assertEqual(result["commissioner_group_count"], 1)
+        group = result["leave_one_commissioner_out"][0]
+        self.assertEqual(group["commissioner_id"], "synthetic-commissioner")
+        self.assertEqual(group["report_count"], 1)
+        self.assertEqual(len(group["counties"]), 1)
+        self.assertGreater(group["counties"][0]["max_abs_shift_pp"], 0)
+        self.assertGreater(result["without_commissioner_variance"][0]["max_abs_shift_pp"], 0)
+        np.testing.assert_allclose(current["mean"], original_mean)
+        opposite = posterior([dummy_row(40)], .20)
+        inverse = build_commissioner_audit(dummy_prior(), [dummy_row(40)], opposite,
+                                           "2026-11-05", "2026-11-05")
+        self.assertAlmostEqual(
+            group["counties"][0]["max_abs_shift_pp"],
+            inverse["leave_one_commissioner_out"][0]["counties"][0]["max_abs_shift_pp"],
+            places=7,
+        )
 
     def test_missing_commissioner_is_not_silently_treated_as_inhouse(self):
         bad = dummy_row(60)
