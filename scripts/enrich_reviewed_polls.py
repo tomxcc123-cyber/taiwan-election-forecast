@@ -111,6 +111,8 @@ def reviewed_record(entry: dict, reviewed_at: str, today: date) -> dict:
         "margin_of_error": float(entry["margin_of_error"]),
         "confidence_level": float(entry["confidence_level"]),
         "funding": entry["funding"],
+        "commissioning_type": entry.get("commissioning_type", "undisclosed"),
+        "commissioner_id": entry.get("commissioner_id"),
         "supervisor": entry.get("supervisor"),
         "sample_note": entry.get(
             "sample_note",
