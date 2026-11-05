@@ -9,7 +9,7 @@ from lxml import html
 INDEX = 'https://www.my-formosa.com.tw/Topical/formosapollster'
 HOSTS = {'www.my-formosa.com.tw', 'my-formosa.com.tw'}
 SOURCE = '美麗島電子報／畢肯'
-VERSION = 1
+VERSION = 2
 
 
 def canonical_url(url):
@@ -20,7 +20,7 @@ def canonical_url(url):
 
 
 def discover(raw):
-    doc = html.fromstring(raw.decode('utf-8'))
+    doc = html.fromstring(raw)  # lxml detects the source's declared HTML charset (e.g. Big5)
     entries = {}
     for a in doc.xpath('//a[@href]'):
         title = ''.join(a.text_content().split())
@@ -54,7 +54,7 @@ def record(entry, county, start, end, sample, number, candidates, undecided, non
 
 
 def parse(raw, entry, now):
-    doc = html.fromstring(raw.decode('utf-8'))
+    doc = html.fromstring(raw)  # lxml detects the source's declared HTML charset (e.g. Big5)
     for node in doc.xpath('//script|//style'):
         node.drop_tree()
     text = unicodedata.normalize('NFKC', doc.text_content())
