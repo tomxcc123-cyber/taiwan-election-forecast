@@ -160,6 +160,26 @@ main{background:transparent}
 .command-map-desk .gis-layerbar button{min-height:48px;border-right:1px solid #e1e7ed}
 .command-map-desk .gis-layerbar button[aria-pressed=true]{background:#23597f;color:#fff}
 .command-map-desk .gis-legend{border-radius:9px;backdrop-filter:blur(8px)}
+/* User-controlled GIS focus mode retains all data and restores the side rail. */
+.command-map-desk.is-map-focus{display:block}
+.command-map-desk.is-map-focus .gis-map-pane{border-right:0}
+.command-map-desk.is-map-focus .battleground-rail{display:none}
+.command-map-desk.is-map-focus .gis-map-stage{min-height:670px;height:min(78svh,880px)}
+.command-map-desk.is-map-focus #countyMap{min-height:100%}
+.gis-focus-toggle{
+  position:absolute;right:14px;bottom:68px;z-index:8;
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:37px;padding:7px 14px;border-radius:8px;
+  border:1px solid rgba(165,186,200,.95);
+  background:rgba(255,255,255,.95);
+  box-shadow:0 3px 12px rgba(25,48,69,.15);
+  color:#244f71;font-size:11px;font-weight:800;
+  backdrop-filter:blur(9px)
+}
+.gis-focus-toggle::before{content:"⛶";margin-right:7px;font-size:16px;line-height:1}
+.gis-focus-toggle:hover{background:#eaf2f8;border-color:#7da5bd}
+.gis-focus-toggle[aria-pressed=true]{background:#234e6d;color:#fff;border-color:#234e6d}
+
 .command-map-desk .gis-map-options summary,.command-map-desk .gis-reset{border-radius:8px}
 .battleground-rail{background:#fff}
 .battleground-rail-content{padding:27px 26px}
@@ -253,6 +273,8 @@ main{background:transparent}
   .command-map-desk .gis-layerbar{left:9px;right:9px;top:9px;max-width:calc(100% - 18px);overflow-x:auto}
   .command-map-desk .gis-layerbar button{min-width:68px}
   .command-map-desk .gis-breadcrumb{left:9px}
+  .gis-focus-toggle{bottom:83px;right:10px;min-height:34px;padding:6px 9px;font-size:10px}
+  .command-map-desk.is-map-focus .gis-map-stage{height:610px;min-height:610px}
   .command-map-desk .battleground-rail-content{padding:23px 16px}
   .forecast-command-hero{padding:19px 16px 17px}
   .command-card{padding:18px 16px}
