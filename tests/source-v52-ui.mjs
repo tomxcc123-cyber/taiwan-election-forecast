@@ -71,7 +71,7 @@ assert.match(html,/抓取／解析失敗/);
 assert.match(html,/不代表新資料已入模/);
 assert.match(html,/委託方不確定性/);
 assert.match(html,/已標識 1 筆外部委託調查/);
-assert.match(html,/0\\.20/);
+assert.match(html,/0\.20/);
 assert.match(html,/不是單筆調查固定乘以80%權重/);
 assert.match(html,/原始民調數字不變/);
 
