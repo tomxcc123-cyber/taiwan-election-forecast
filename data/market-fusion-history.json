@@ -18711,16 +18711,16 @@
     {
       "schema_version": 1,
       "taipei_day": "2026-11-05",
-      "as_of": "2026-11-05T09:10:46.281020+00:00",
+      "as_of": "2026-11-05T11:39:14.370475+00:00",
       "provenance": {
-        "model_fingerprint": "d9fa9efc788ffe85bc06dc2dadbd939c68c5a07b1a2c0c25af1550243975b6c2",
+        "model_fingerprint": "84587fc19389e16846433be609091c7a0adc1ef7b8900e9d23c8d40b20841c2b",
         "model_version": "2026.09-HB-TLEF-v5.0-public-beta.1",
-        "model_as_of": "2026-11-05T09:10:46.281020+00:00",
-        "market_checked_at": "2026-11-05T09:10:38+00:00",
+        "model_as_of": "2026-11-05T11:39:14.370475+00:00",
+        "market_checked_at": "2026-11-05T11:39:07+00:00",
         "market_registry_count": 19,
         "market_status": "ok"
       },
-      "source_digest": "eb626790cee4708a3fe16a048f88f0bd46db9e8e50b9e4e1f94b2da580f97bd1",
+      "source_digest": "ac5b4460d709b584e44094963bbfe90b0904af9808c929565cb79bc9c373de21",
       "weights": [
         0,
         0.05,
@@ -18739,57 +18739,57 @@
             "simulations": 2000,
             "eligible_count": 12,
             "excluded_count": 10,
-            "effective_sample_size": 1937.2,
-            "effective_sample_fraction": 0.9686,
-            "max_path_weight": 0.00073,
+            "effective_sample_size": 1936,
+            "effective_sample_fraction": 0.968,
+            "max_path_weight": 0.00074,
             "joint_gate_passed": true,
-            "market_checked_at": "2026-11-05T09:10:38+00:00",
-            "model_as_of": "2026-11-05T09:10:46.281020+00:00",
+            "market_checked_at": "2026-11-05T11:39:07+00:00",
+            "model_as_of": "2026-11-05T11:39:14.370475+00:00",
             "experiment_weight": 0.05,
             "no_independent_signal_assumption": true
           },
           "national": [
             {
               "party": "KMT",
-              "mean": 10.7202,
-              "baseline_mean": 10.586,
-              "delta_mean": 0.1342,
+              "mean": 10.7939,
+              "baseline_mean": 10.666,
+              "delta_mean": 0.1279,
               "p05": 7,
-              "p95": 14,
-              "majority_probability": 0.35541
+              "p95": 15,
+              "majority_probability": 0.37526
             },
             {
               "party": "DPP",
-              "mean": 9.1841,
-              "baseline_mean": 9.3045,
-              "delta_mean": -0.1204,
+              "mean": 9.1114,
+              "baseline_mean": 9.2255,
+              "delta_mean": -0.1141,
               "p05": 5,
               "p95": 13,
-              "majority_probability": 0.16336
+              "majority_probability": 0.16373
             },
             {
               "party": "TPP",
-              "mean": 0.5593,
-              "baseline_mean": 0.559,
-              "delta_mean": 0.0003,
+              "mean": 0.5578,
+              "baseline_mean": 0.558,
+              "delta_mean": -0.0002,
               "p05": 0,
               "p95": 1,
               "majority_probability": 0
             },
             {
               "party": "IND",
-              "mean": 1.4279,
-              "baseline_mean": 1.4335,
-              "delta_mean": -0.0056,
+              "mean": 1.4275,
+              "baseline_mean": 1.4345,
+              "delta_mean": -0.007,
               "p05": 0,
               "p95": 3,
               "majority_probability": 0
             },
             {
               "party": "OTHER",
-              "mean": 0.1084,
-              "baseline_mean": 0.117,
-              "delta_mean": -0.0086,
+              "mean": 0.1093,
+              "baseline_mean": 0.116,
+              "delta_mean": -0.0067,
               "p05": 0,
               "p95": 1,
               "majority_probability": 0
@@ -18803,22 +18803,22 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
-                  "probability": 0.000419,
+                  "probability": 0.0005,
                   "baseline_probability": 0.0005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
-                  "probability": 0.454433,
-                  "baseline_probability": 0.4545
+                  "probability": 0.452707,
+                  "baseline_probability": 0.453
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
-                  "probability": 0.543657,
-                  "baseline_probability": 0.5435
+                  "probability": 0.545272,
+                  "baseline_probability": 0.545
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
-                  "probability": 0.001491,
+                  "probability": 0.001521,
                   "baseline_probability": 0.0015
                 }
               ]
@@ -18830,33 +18830,33 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
-                  "probability": 0.079026,
-                  "baseline_probability": 0.0805
+                  "probability": 0.079867,
+                  "baseline_probability": 0.081
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
-                  "probability": 0.060035,
-                  "baseline_probability": 0.059
+                  "probability": 0.059532,
+                  "baseline_probability": 0.0585
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
-                  "probability": 0.044886,
-                  "baseline_probability": 0.0445
+                  "probability": 0.045691,
+                  "baseline_probability": 0.0455
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
-                  "probability": 0.424431,
-                  "baseline_probability": 0.4245
+                  "probability": 0.424048,
+                  "baseline_probability": 0.4235
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
-                  "probability": 0.044427,
-                  "baseline_probability": 0.0445
+                  "probability": 0.044861,
+                  "baseline_probability": 0.045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
-                  "probability": 0.347195,
-                  "baseline_probability": 0.347
+                  "probability": 0.346001,
+                  "baseline_probability": 0.3465
                 }
               ]
             },
@@ -18867,23 +18867,23 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
-                  "probability": 0.001539,
-                  "baseline_probability": 0.0015
+                  "probability": 0.002037,
+                  "baseline_probability": 0.002
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
-                  "probability": 0.191994,
-                  "baseline_probability": 0.1925
+                  "probability": 0.200218,
+                  "baseline_probability": 0.2005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
-                  "probability": 0.002863,
+                  "probability": 0.003039,
                   "baseline_probability": 0.003
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
-                  "probability": 0.803604,
-                  "baseline_probability": 0.803
+                  "probability": 0.794706,
+                  "baseline_probability": 0.7945
                 }
               ]
             },
@@ -18894,12 +18894,12 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
-                  "probability": 0.023645,
+                  "probability": 0.023729,
                   "baseline_probability": 0.0215
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
-                  "probability": 0.976355,
+                  "probability": 0.976271,
                   "baseline_probability": 0.9785
                 }
               ]
@@ -18911,7 +18911,7 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
-                  "probability": 0.00081,
+                  "probability": 0.000847,
                   "baseline_probability": 0.001
                 },
                 {
@@ -18921,13 +18921,13 @@
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
-                  "probability": 0.614765,
-                  "baseline_probability": 0.6055
+                  "probability": 0.613159,
+                  "baseline_probability": 0.6035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
-                  "probability": 0.384425,
-                  "baseline_probability": 0.3935
+                  "probability": 0.385994,
+                  "baseline_probability": 0.3955
                 }
               ]
             },
@@ -18938,28 +18938,28 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
-                  "probability": 0.481104,
-                  "baseline_probability": 0.4835
+                  "probability": 0.479724,
+                  "baseline_probability": 0.4825
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
-                  "probability": 0.006346,
-                  "baseline_probability": 0.006
+                  "probability": 0.006861,
+                  "baseline_probability": 0.0065
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
-                  "probability": 0.00862,
+                  "probability": 0.008487,
                   "baseline_probability": 0.0085
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
-                  "probability": 0.496505,
-                  "baseline_probability": 0.495
+                  "probability": 0.498137,
+                  "baseline_probability": 0.496
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
-                  "probability": 0.007425,
-                  "baseline_probability": 0.007
+                  "probability": 0.006791,
+                  "baseline_probability": 0.0065
                 }
               ]
             },
@@ -18970,23 +18970,23 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
-                  "probability": 0.455513,
-                  "baseline_probability": 0.4565
+                  "probability": 0.453607,
+                  "baseline_probability": 0.456
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
-                  "probability": 0.003658,
+                  "probability": 0.003799,
                   "baseline_probability": 0.0035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
-                  "probability": 0.0034,
+                  "probability": 0.003587,
                   "baseline_probability": 0.0035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
-                  "probability": 0.537429,
-                  "baseline_probability": 0.5365
+                  "probability": 0.539007,
+                  "baseline_probability": 0.537
                 }
               ]
             },
@@ -18997,13 +18997,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
-                  "probability": 0.539713,
-                  "baseline_probability": 0.5415
+                  "probability": 0.540131,
+                  "baseline_probability": 0.542
                 },
                 {
                   "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
-                  "probability": 0.460287,
-                  "baseline_probability": 0.4585
+                  "probability": 0.459869,
+                  "baseline_probability": 0.458
                 }
               ]
             },
@@ -19014,13 +19014,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
-                  "probability": 0.667148,
-                  "baseline_probability": 0.6855
+                  "probability": 0.617249,
+                  "baseline_probability": 0.636
                 },
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
-                  "probability": 0.332852,
-                  "baseline_probability": 0.3145
+                  "probability": 0.382751,
+                  "baseline_probability": 0.364
                 },
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
@@ -19036,39 +19036,39 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
-                  "probability": 0.574455,
-                  "baseline_probability": 0.5495
+                  "probability": 0.573491,
+                  "baseline_probability": 0.548
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
-                  "probability": 0.004364,
+                  "probability": 0.00439,
                   "baseline_probability": 0.005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
-                  "probability": 0.421181,
-                  "baseline_probability": 0.4455
+                  "probability": 0.42212,
+                  "baseline_probability": 0.447
                 }
               ]
             },
             {
               "county": "新竹縣",
               "race_id": "local-executive-2026-county-3db00425a6dd",
-              "eligible_market": false,
+              "eligible_market": true,
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
-                  "probability": 0.591904,
-                  "baseline_probability": 0.5935
+                  "probability": 0.576153,
+                  "baseline_probability": 0.5945
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
-                  "probability": 0.406023,
-                  "baseline_probability": 0.4045
+                  "probability": 0.42174,
+                  "baseline_probability": 0.4035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
-                  "probability": 0.002072,
+                  "probability": 0.002106,
                   "baseline_probability": 0.002
                 }
               ]
@@ -19080,37 +19080,37 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
-                  "probability": 0.009713,
+                  "probability": 0.009651,
                   "baseline_probability": 0.0155
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
-                  "probability": 0.012245,
-                  "baseline_probability": 0.0195
+                  "probability": 0.011831,
+                  "baseline_probability": 0.019
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
-                  "probability": 0.025183,
-                  "baseline_probability": 0.0245
+                  "probability": 0.02576,
+                  "baseline_probability": 0.025
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
-                  "probability": 0.912227,
-                  "baseline_probability": 0.8845
+                  "probability": 0.912827,
+                  "baseline_probability": 0.8855
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
-                  "probability": 0.015341,
-                  "baseline_probability": 0.0245
+                  "probability": 0.01501,
+                  "baseline_probability": 0.024
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
-                  "probability": 0.01434,
-                  "baseline_probability": 0.014
+                  "probability": 0.014233,
+                  "baseline_probability": 0.0135
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
-                  "probability": 0.010951,
+                  "probability": 0.010688,
                   "baseline_probability": 0.0175
                 }
               ]
@@ -19122,13 +19122,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
-                  "probability": 0.531042,
-                  "baseline_probability": 0.5325
+                  "probability": 0.528249,
+                  "baseline_probability": 0.5295
                 },
                 {
                   "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
-                  "probability": 0.468958,
-                  "baseline_probability": 0.4675
+                  "probability": 0.471751,
+                  "baseline_probability": 0.4705
                 }
               ]
             },
@@ -19139,55 +19139,55 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
-                  "probability": 0.6374,
-                  "baseline_probability": 0.627
+                  "probability": 0.622409,
+                  "baseline_probability": 0.614
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
-                  "probability": 0.002281,
+                  "probability": 0.002195,
                   "baseline_probability": 0.002
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
-                  "probability": 0.00044,
+                  "probability": 0.000357,
                   "baseline_probability": 0.0005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
-                  "probability": 0.358571,
-                  "baseline_probability": 0.3695
+                  "probability": 0.373124,
+                  "baseline_probability": 0.382
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
-                  "probability": 0.001308,
-                  "baseline_probability": 0.001
+                  "probability": 0.001915,
+                  "baseline_probability": 0.0015
                 }
               ]
             },
             {
               "county": "花蓮縣",
               "race_id": "local-executive-2026-county-a0b9b4804c8c",
-              "eligible_market": true,
+              "eligible_market": false,
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
-                  "probability": 0.935004,
-                  "baseline_probability": 0.936
+                  "probability": 0.934736,
+                  "baseline_probability": 0.9345
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
-                  "probability": 0.020848,
-                  "baseline_probability": 0.02
+                  "probability": 0.020573,
+                  "baseline_probability": 0.021
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
-                  "probability": 0.023466,
+                  "probability": 0.021574,
                   "baseline_probability": 0.022
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
-                  "probability": 0.020682,
-                  "baseline_probability": 0.022
+                  "probability": 0.023117,
+                  "baseline_probability": 0.0225
                 }
               ]
             },
@@ -19198,13 +19198,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
-                  "probability": 0.512968,
-                  "baseline_probability": 0.5055
+                  "probability": 0.505069,
+                  "baseline_probability": 0.503
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
-                  "probability": 0.487032,
-                  "baseline_probability": 0.4945
+                  "probability": 0.494931,
+                  "baseline_probability": 0.497
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
@@ -19220,17 +19220,17 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
-                  "probability": 0.416003,
-                  "baseline_probability": 0.427
+                  "probability": 0.41712,
+                  "baseline_probability": 0.428
                 },
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
-                  "probability": 0.578064,
-                  "baseline_probability": 0.5635
+                  "probability": 0.577099,
+                  "baseline_probability": 0.5625
                 },
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
-                  "probability": 0.005933,
+                  "probability": 0.00578,
                   "baseline_probability": 0.0095
                 }
               ]
@@ -19242,28 +19242,28 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
-                  "probability": 0.00477,
+                  "probability": 0.004675,
                   "baseline_probability": 0.0045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
-                  "probability": 0.42695,
-                  "baseline_probability": 0.4275
+                  "probability": 0.427859,
+                  "baseline_probability": 0.428
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
-                  "probability": 0.004087,
-                  "baseline_probability": 0.004
+                  "probability": 0.004644,
+                  "baseline_probability": 0.0045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
-                  "probability": 0.004852,
+                  "probability": 0.004994,
                   "baseline_probability": 0.005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
-                  "probability": 0.559341,
-                  "baseline_probability": 0.559
+                  "probability": 0.557828,
+                  "baseline_probability": 0.558
                 }
               ]
             },
@@ -19274,13 +19274,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
-                  "probability": 0.417438,
-                  "baseline_probability": 0.4495
+                  "probability": 0.413874,
+                  "baseline_probability": 0.446
                 },
                 {
                   "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
-                  "probability": 0.582562,
-                  "baseline_probability": 0.5505
+                  "probability": 0.586126,
+                  "baseline_probability": 0.554
                 }
               ]
             },
@@ -19291,33 +19291,33 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
-                  "probability": 0.012104,
-                  "baseline_probability": 0.0145
+                  "probability": 0.011074,
+                  "baseline_probability": 0.0135
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
-                  "probability": 0.672684,
-                  "baseline_probability": 0.6625
+                  "probability": 0.670293,
+                  "baseline_probability": 0.6605
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
-                  "probability": 0.007528,
-                  "baseline_probability": 0.0125
+                  "probability": 0.007381,
+                  "baseline_probability": 0.012
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
-                  "probability": 0.29726,
-                  "baseline_probability": 0.294
+                  "probability": 0.300875,
+                  "baseline_probability": 0.2975
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
-                  "probability": 0.006202,
-                  "baseline_probability": 0.01
+                  "probability": 0.0064,
+                  "baseline_probability": 0.0105
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
-                  "probability": 0.004222,
-                  "baseline_probability": 0.0065
+                  "probability": 0.003977,
+                  "baseline_probability": 0.006
                 }
               ]
             },
@@ -19328,13 +19328,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
-                  "probability": 0.451407,
-                  "baseline_probability": 0.4885
+                  "probability": 0.448097,
+                  "baseline_probability": 0.4855
                 },
                 {
                   "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
-                  "probability": 0.548593,
-                  "baseline_probability": 0.5115
+                  "probability": 0.551903,
+                  "baseline_probability": 0.5145
                 }
               ]
             },
@@ -19345,13 +19345,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
-                  "probability": 0.451421,
-                  "baseline_probability": 0.458
+                  "probability": 0.448488,
+                  "baseline_probability": 0.4565
                 },
                 {
                   "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
-                  "probability": 0.548579,
-                  "baseline_probability": 0.542
+                  "probability": 0.551512,
+                  "baseline_probability": 0.5435
                 }
               ]
             }
@@ -19364,57 +19364,57 @@
             "simulations": 2000,
             "eligible_count": 12,
             "excluded_count": 10,
-            "effective_sample_size": 1802.4,
-            "effective_sample_fraction": 0.9012,
-            "max_path_weight": 0.00104,
+            "effective_sample_size": 1799.2,
+            "effective_sample_fraction": 0.8996,
+            "max_path_weight": 0.00107,
             "joint_gate_passed": true,
-            "market_checked_at": "2026-11-05T09:10:38+00:00",
-            "model_as_of": "2026-11-05T09:10:46.281020+00:00",
+            "market_checked_at": "2026-11-05T11:39:07+00:00",
+            "model_as_of": "2026-11-05T11:39:14.370475+00:00",
             "experiment_weight": 0.1,
             "no_independent_signal_assumption": true
           },
           "national": [
             {
               "party": "KMT",
-              "mean": 10.8381,
-              "baseline_mean": 10.586,
-              "delta_mean": 0.2521,
+              "mean": 10.9026,
+              "baseline_mean": 10.666,
+              "delta_mean": 0.2366,
               "p05": 7,
-              "p95": 14,
-              "majority_probability": 0.37533
+              "p95": 15,
+              "majority_probability": 0.39497
             },
             {
               "party": "DPP",
-              "mean": 9.0636,
-              "baseline_mean": 9.3045,
-              "delta_mean": -0.2409,
+              "mean": 8.9999,
+              "baseline_mean": 9.2255,
+              "delta_mean": -0.2256,
               "p05": 5,
               "p95": 13,
-              "majority_probability": 0.15116
+              "majority_probability": 0.15322
             },
             {
               "party": "TPP",
-              "mean": 0.5602,
-              "baseline_mean": 0.559,
-              "delta_mean": 0.0012,
+              "mean": 0.5578,
+              "baseline_mean": 0.558,
+              "delta_mean": -0.0002,
               "p05": 0,
               "p95": 1,
               "majority_probability": 0
             },
             {
               "party": "IND",
-              "mean": 1.4359,
-              "baseline_mean": 1.4335,
-              "delta_mean": 0.0024,
+              "mean": 1.4343,
+              "baseline_mean": 1.4345,
+              "delta_mean": -0.0002,
               "p05": 0,
               "p95": 3,
               "majority_probability": 0
             },
             {
               "party": "OTHER",
-              "mean": 0.1022,
-              "baseline_mean": 0.117,
-              "delta_mean": -0.0148,
+              "mean": 0.1054,
+              "baseline_mean": 0.116,
+              "delta_mean": -0.0106,
               "p05": 0,
               "p95": 1,
               "majority_probability": 0
@@ -19428,22 +19428,22 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
-                  "probability": 0.00034,
+                  "probability": 0.000484,
                   "baseline_probability": 0.0005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
-                  "probability": 0.454507,
-                  "baseline_probability": 0.4545
+                  "probability": 0.452539,
+                  "baseline_probability": 0.453
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
-                  "probability": 0.543709,
-                  "baseline_probability": 0.5435
+                  "probability": 0.545481,
+                  "baseline_probability": 0.545
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1175fce2e312-efb616afc0d6",
-                  "probability": 0.001445,
+                  "probability": 0.001496,
                   "baseline_probability": 0.0015
                 }
               ]
@@ -19455,33 +19455,33 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
-                  "probability": 0.077905,
-                  "baseline_probability": 0.0805
+                  "probability": 0.079195,
+                  "baseline_probability": 0.081
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
-                  "probability": 0.060825,
-                  "baseline_probability": 0.059
+                  "probability": 0.06045,
+                  "baseline_probability": 0.0585
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
-                  "probability": 0.045309,
-                  "baseline_probability": 0.0445
+                  "probability": 0.045929,
+                  "baseline_probability": 0.0455
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
-                  "probability": 0.42468,
-                  "baseline_probability": 0.4245
+                  "probability": 0.424221,
+                  "baseline_probability": 0.4235
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
-                  "probability": 0.044601,
-                  "baseline_probability": 0.0445
+                  "probability": 0.045122,
+                  "baseline_probability": 0.045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
-                  "probability": 0.346679,
-                  "baseline_probability": 0.347
+                  "probability": 0.345083,
+                  "baseline_probability": 0.3465
                 }
               ]
             },
@@ -19492,23 +19492,23 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
-                  "probability": 0.00163,
-                  "baseline_probability": 0.0015
+                  "probability": 0.002089,
+                  "baseline_probability": 0.002
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
-                  "probability": 0.191904,
-                  "baseline_probability": 0.1925
+                  "probability": 0.200021,
+                  "baseline_probability": 0.2005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-2ba20da8f45a",
-                  "probability": 0.002809,
+                  "probability": 0.003135,
                   "baseline_probability": 0.003
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
-                  "probability": 0.803658,
-                  "baseline_probability": 0.803
+                  "probability": 0.794755,
+                  "baseline_probability": 0.7945
                 }
               ]
             },
@@ -19519,12 +19519,12 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2a330ebd3aa7-8baaaaf44f6c",
-                  "probability": 0.026244,
+                  "probability": 0.026383,
                   "baseline_probability": 0.0215
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2a330ebd3aa7-ba1dbc86840d",
-                  "probability": 0.973756,
+                  "probability": 0.973617,
                   "baseline_probability": 0.9785
                 }
               ]
@@ -19536,7 +19536,7 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-022779e0be44",
-                  "probability": 0.000641,
+                  "probability": 0.000694,
                   "baseline_probability": 0.001
                 },
                 {
@@ -19546,13 +19546,13 @@
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
-                  "probability": 0.623739,
-                  "baseline_probability": 0.6055
+                  "probability": 0.622446,
+                  "baseline_probability": 0.6035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
-                  "probability": 0.375619,
-                  "baseline_probability": 0.3935
+                  "probability": 0.37686,
+                  "baseline_probability": 0.3955
                 }
               ]
             },
@@ -19563,28 +19563,28 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
-                  "probability": 0.479659,
-                  "baseline_probability": 0.4835
+                  "probability": 0.477696,
+                  "baseline_probability": 0.4825
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
-                  "probability": 0.00661,
-                  "baseline_probability": 0.006
+                  "probability": 0.007162,
+                  "baseline_probability": 0.0065
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-266e2ed43df2",
-                  "probability": 0.008633,
+                  "probability": 0.008338,
                   "baseline_probability": 0.0085
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
-                  "probability": 0.497217,
-                  "baseline_probability": 0.495
+                  "probability": 0.499689,
+                  "baseline_probability": 0.496
                 },
                 {
                   "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
-                  "probability": 0.007881,
-                  "baseline_probability": 0.007
+                  "probability": 0.007116,
+                  "baseline_probability": 0.0065
                 }
               ]
             },
@@ -19595,23 +19595,23 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
-                  "probability": 0.454698,
-                  "baseline_probability": 0.4565
+                  "probability": 0.451618,
+                  "baseline_probability": 0.456
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-b0eff00fe1ce",
-                  "probability": 0.003742,
+                  "probability": 0.004036,
                   "baseline_probability": 0.0035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-b7b92d7ed7e6",
-                  "probability": 0.003364,
+                  "probability": 0.003791,
                   "baseline_probability": 0.0035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
-                  "probability": 0.538196,
-                  "baseline_probability": 0.5365
+                  "probability": 0.540555,
+                  "baseline_probability": 0.537
                 }
               ]
             },
@@ -19622,13 +19622,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
-                  "probability": 0.538899,
-                  "baseline_probability": 0.5415
+                  "probability": 0.538819,
+                  "baseline_probability": 0.542
                 },
                 {
                   "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
-                  "probability": 0.461101,
-                  "baseline_probability": 0.4585
+                  "probability": 0.461181,
+                  "baseline_probability": 0.458
                 }
               ]
             },
@@ -19639,13 +19639,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
-                  "probability": 0.647679,
-                  "baseline_probability": 0.6855
+                  "probability": 0.597601,
+                  "baseline_probability": 0.636
                 },
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
-                  "probability": 0.352321,
-                  "baseline_probability": 0.3145
+                  "probability": 0.402399,
+                  "baseline_probability": 0.364
                 },
                 {
                   "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
@@ -19661,39 +19661,39 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
-                  "probability": 0.598488,
-                  "baseline_probability": 0.5495
+                  "probability": 0.597649,
+                  "baseline_probability": 0.548
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
-                  "probability": 0.00377,
+                  "probability": 0.003813,
                   "baseline_probability": 0.005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
-                  "probability": 0.397742,
-                  "baseline_probability": 0.4455
+                  "probability": 0.398539,
+                  "baseline_probability": 0.447
                 }
               ]
             },
             {
               "county": "新竹縣",
               "race_id": "local-executive-2026-county-3db00425a6dd",
-              "eligible_market": false,
+              "eligible_market": true,
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
-                  "probability": 0.590605,
-                  "baseline_probability": 0.5935
+                  "probability": 0.558125,
+                  "baseline_probability": 0.5945
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
-                  "probability": 0.407293,
-                  "baseline_probability": 0.4045
+                  "probability": 0.439709,
+                  "baseline_probability": 0.4035
                 },
                 {
                   "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
-                  "probability": 0.002103,
+                  "probability": 0.002166,
                   "baseline_probability": 0.002
                 }
               ]
@@ -19705,37 +19705,37 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-26f942154c74",
-                  "probability": 0.006055,
+                  "probability": 0.005961,
                   "baseline_probability": 0.0155
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
-                  "probability": 0.007617,
-                  "baseline_probability": 0.0195
+                  "probability": 0.007282,
+                  "baseline_probability": 0.019
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
-                  "probability": 0.025557,
-                  "baseline_probability": 0.0245
+                  "probability": 0.026213,
+                  "baseline_probability": 0.025
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
-                  "probability": 0.930052,
-                  "baseline_probability": 0.8845
+                  "probability": 0.930088,
+                  "baseline_probability": 0.8855
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
-                  "probability": 0.009445,
-                  "baseline_probability": 0.0245
+                  "probability": 0.00923,
+                  "baseline_probability": 0.024
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
-                  "probability": 0.014502,
-                  "baseline_probability": 0.014
+                  "probability": 0.014746,
+                  "baseline_probability": 0.0135
                 },
                 {
                   "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
-                  "probability": 0.006771,
+                  "probability": 0.00648,
                   "baseline_probability": 0.0175
                 }
               ]
@@ -19747,13 +19747,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
-                  "probability": 0.529774,
-                  "baseline_probability": 0.5325
+                  "probability": 0.52743,
+                  "baseline_probability": 0.5295
                 },
                 {
                   "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
-                  "probability": 0.470226,
-                  "baseline_probability": 0.4675
+                  "probability": 0.47257,
+                  "baseline_probability": 0.4705
                 }
               ]
             },
@@ -19764,55 +19764,55 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
-                  "probability": 0.647372,
-                  "baseline_probability": 0.627
+                  "probability": 0.631268,
+                  "baseline_probability": 0.614
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
-                  "probability": 0.002527,
+                  "probability": 0.002338,
                   "baseline_probability": 0.002
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
-                  "probability": 0.000375,
+                  "probability": 0.000247,
                   "baseline_probability": 0.0005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
-                  "probability": 0.348066,
-                  "baseline_probability": 0.3695
+                  "probability": 0.363746,
+                  "baseline_probability": 0.382
                 },
                 {
                   "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
-                  "probability": 0.00166,
-                  "baseline_probability": 0.001
+                  "probability": 0.002401,
+                  "baseline_probability": 0.0015
                 }
               ]
             },
             {
               "county": "花蓮縣",
               "race_id": "local-executive-2026-county-a0b9b4804c8c",
-              "eligible_market": true,
+              "eligible_market": false,
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
-                  "probability": 0.932726,
-                  "baseline_probability": 0.936
+                  "probability": 0.933815,
+                  "baseline_probability": 0.9345
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
-                  "probability": 0.022239,
-                  "baseline_probability": 0.02
+                  "probability": 0.020638,
+                  "baseline_probability": 0.021
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
-                  "probability": 0.025643,
+                  "probability": 0.021754,
                   "baseline_probability": 0.022
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
-                  "probability": 0.019393,
-                  "baseline_probability": 0.022
+                  "probability": 0.023792,
+                  "baseline_probability": 0.0225
                 }
               ]
             },
@@ -19823,13 +19823,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
-                  "probability": 0.519456,
-                  "baseline_probability": 0.5055
+                  "probability": 0.506601,
+                  "baseline_probability": 0.503
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
-                  "probability": 0.480544,
-                  "baseline_probability": 0.4945
+                  "probability": 0.493399,
+                  "baseline_probability": 0.497
                 },
                 {
                   "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
@@ -19845,17 +19845,17 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
-                  "probability": 0.405076,
-                  "baseline_probability": 0.427
+                  "probability": 0.406321,
+                  "baseline_probability": 0.428
                 },
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
-                  "probability": 0.591148,
-                  "baseline_probability": 0.5635
+                  "probability": 0.590089,
+                  "baseline_probability": 0.5625
                 },
                 {
                   "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
-                  "probability": 0.003776,
+                  "probability": 0.003591,
                   "baseline_probability": 0.0095
                 }
               ]
@@ -19867,28 +19867,28 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
-                  "probability": 0.005056,
+                  "probability": 0.004874,
                   "baseline_probability": 0.0045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
-                  "probability": 0.425886,
-                  "baseline_probability": 0.4275
+                  "probability": 0.427561,
+                  "baseline_probability": 0.428
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
-                  "probability": 0.004188,
-                  "baseline_probability": 0.004
+                  "probability": 0.004774,
+                  "baseline_probability": 0.0045
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-79865f83daa2",
-                  "probability": 0.004709,
+                  "probability": 0.00497,
                   "baseline_probability": 0.005
                 },
                 {
                   "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
-                  "probability": 0.56016,
-                  "baseline_probability": 0.559
+                  "probability": 0.557822,
+                  "baseline_probability": 0.558
                 }
               ]
             },
@@ -19899,13 +19899,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
-                  "probability": 0.385425,
-                  "baseline_probability": 0.4495
+                  "probability": 0.381944,
+                  "baseline_probability": 0.446
                 },
                 {
                   "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
-                  "probability": 0.614575,
-                  "baseline_probability": 0.5505
+                  "probability": 0.618056,
+                  "baseline_probability": 0.554
                 }
               ]
             },
@@ -19916,33 +19916,33 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
-                  "probability": 0.010017,
-                  "baseline_probability": 0.0145
+                  "probability": 0.009016,
+                  "baseline_probability": 0.0135
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
-                  "probability": 0.67909,
-                  "baseline_probability": 0.6625
+                  "probability": 0.676185,
+                  "baseline_probability": 0.6605
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
-                  "probability": 0.004483,
-                  "baseline_probability": 0.0125
+                  "probability": 0.004509,
+                  "baseline_probability": 0.012
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
-                  "probability": 0.299765,
-                  "baseline_probability": 0.294
+                  "probability": 0.303651,
+                  "baseline_probability": 0.2975
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
-                  "probability": 0.00383,
-                  "baseline_probability": 0.01
+                  "probability": 0.003933,
+                  "baseline_probability": 0.0105
                 },
                 {
                   "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
-                  "probability": 0.002815,
-                  "baseline_probability": 0.0065
+                  "probability": 0.002706,
+                  "baseline_probability": 0.006
                 }
               ]
             },
@@ -19953,13 +19953,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
-                  "probability": 0.415599,
-                  "baseline_probability": 0.4885
+                  "probability": 0.411817,
+                  "baseline_probability": 0.4855
                 },
                 {
                   "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
-                  "probability": 0.584401,
-                  "baseline_probability": 0.5115
+                  "probability": 0.588183,
+                  "baseline_probability": 0.5145
                 }
               ]
             },
@@ -19970,13 +19970,13 @@
               "candidates": [
                 {
                   "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
-                  "probability": 0.445365,
-                  "baseline_probability": 0.458
+                  "probability": 0.44118,
+                  "baseline_probability": 0.4565
                 },
                 {
                   "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
-                  "probability": 0.554635,
-                  "baseline_probability": 0.542
+                  "probability": 0.55882,
+                  "baseline_probability": 0.5435
                 }
               ]
             }
@@ -19989,13 +19989,13 @@
           "race_id": "local-executive-2026-county-1175fce2e312",
           "market_slug": "changhua-county-magistrate-election-winner-20260813135716600",
           "source_url": "https://polymarket.com/event/changhua-county-magistrate-election-winner-20260813135716600",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 66966.20234,
+          "liquidity_usd": 67141.91692,
           "volume_usd": 18098.183462,
           "included": false,
-          "reason": "合約價格總和偏離100%過多",
+          "reason": "主要選項買賣價差缺漏或過大",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-1175fce2e312-0a7d93fe7356",
@@ -20009,7 +20009,7 @@
             {
               "candidate_id": "local-executive-2026-county-1175fce2e312-47a11665179b",
               "name": "陳素月",
-              "probability": 0.4545,
+              "probability": 0.453,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20018,7 +20018,7 @@
             {
               "candidate_id": "local-executive-2026-county-1175fce2e312-72a9b68eef22",
               "name": "魏平政",
-              "probability": 0.5435,
+              "probability": 0.545,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20040,10 +20040,10 @@
           "race_id": "local-executive-2026-county-1fa460ca48ae",
           "market_slug": "penghu-county-magistrate-election-winner-202608131357161400",
           "source_url": "https://polymarket.com/event/penghu-county-magistrate-election-winner-202608131357161400",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 38735.626,
+          "liquidity_usd": 38701.20309,
           "volume_usd": 13927.880073,
           "included": false,
           "reason": "合約價格總和偏離100%過多",
@@ -20051,7 +20051,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-56ab43cc01f5",
               "name": "葉竹林",
-              "probability": 0.0805,
+              "probability": 0.081,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20060,7 +20060,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-83305dbf1f1b",
               "name": "周倪安",
-              "probability": 0.059,
+              "probability": 0.0585,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20069,7 +20069,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-8cd11bd148a4",
               "name": "許智富",
-              "probability": 0.0445,
+              "probability": 0.0455,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20078,7 +20078,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-9e833bd007ab",
               "name": "陳振中",
-              "probability": 0.4245,
+              "probability": 0.4235,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20087,7 +20087,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-a4d8b291921c",
               "name": "陳盡川",
-              "probability": 0.0445,
+              "probability": 0.045,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20096,7 +20096,7 @@
             {
               "candidate_id": "local-executive-2026-county-1fa460ca48ae-f0d9ec59c4a9",
               "name": "吳淑瑾",
-              "probability": 0.347,
+              "probability": 0.3465,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20120,7 +20120,7 @@
             {
               "candidate_id": "local-executive-2026-county-2555d8a05557-1286e52d3321",
               "name": "葉人文",
-              "probability": 0.0015,
+              "probability": 0.002,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20129,7 +20129,7 @@
             {
               "candidate_id": "local-executive-2026-county-2555d8a05557-163dd006b2cc",
               "name": "謝龍介",
-              "probability": 0.1925,
+              "probability": 0.2005,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20147,7 +20147,7 @@
             {
               "candidate_id": "local-executive-2026-county-2555d8a05557-30a29a04ffa2",
               "name": "陳亭妃",
-              "probability": 0.803,
+              "probability": 0.7945,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20160,10 +20160,10 @@
           "race_id": "local-executive-2026-county-2a330ebd3aa7",
           "market_slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
           "source_url": "https://polymarket.com/event/lienchiang-county-magistrate-election-winner-202608131357161600",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 28437.94476,
+          "liquidity_usd": 31083.98423,
           "volume_usd": 13987.670523,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -20193,11 +20193,11 @@
           "race_id": "local-executive-2026-county-2f29ef121b19",
           "market_slug": "taitung-county-magistrate-election-winner-202608131357161300",
           "source_url": "https://polymarket.com/event/taitung-county-magistrate-election-winner-202608131357161300",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 46440.76286,
-          "volume_usd": 18142.683630999996,
+          "liquidity_usd": 35472.17683,
+          "volume_usd": 18142.683631,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
@@ -20207,35 +20207,35 @@
               "probability": 0.001,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.00097037,
-              "fused_10": 0.00094167
+              "fused_05": 0.00097007,
+              "fused_10": 0.00094113
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-42991359b007",
               "name": "李吳穎智",
               "probability": 0,
               "market_yes": 0.032,
-              "market_aligned": 0.03158934,
-              "fused_05": 0.000618,
-              "fused_10": 0.00076389
+              "market_aligned": 0.03128055,
+              "fused_05": 0.00061751,
+              "fused_10": 0.0007627
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-7e3623349d97",
               "name": "吳秀華",
-              "probability": 0.6055,
+              "probability": 0.6035,
               "market_yes": 0.765,
-              "market_aligned": 0.75518263,
-              "fused_05": 0.61503344,
-              "fused_10": 0.62475498
+              "market_aligned": 0.74780059,
+              "fused_05": 0.61261696,
+              "fused_10": 0.62193112
             },
             {
               "candidate_id": "local-executive-2026-county-2f29ef121b19-891718390bff",
               "name": "陳瑩",
-              "probability": 0.3935,
-              "market_yes": 0.216,
-              "market_aligned": 0.21322804,
-              "fused_05": 0.38337819,
-              "fused_10": 0.37353946
+              "probability": 0.3955,
+              "market_yes": 0.226,
+              "market_aligned": 0.22091887,
+              "fused_05": 0.38579546,
+              "fused_10": 0.37636504
             }
           ]
         },
@@ -20244,10 +20244,10 @@
           "race_id": "local-executive-2026-county-2f3ede12c290",
           "market_slug": "yilan-county-magistrate-election-winner-20260813135716200",
           "source_url": "https://polymarket.com/event/yilan-county-magistrate-election-winner-20260813135716200",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 81891.36833,
+          "liquidity_usd": 81407.62287,
           "volume_usd": 14929.509265,
           "included": false,
           "reason": "市場包含重要但無法對應的選項",
@@ -20255,7 +20255,7 @@
             {
               "candidate_id": "local-executive-2026-county-2f3ede12c290-1ff92d0a72c3",
               "name": "林國漳",
-              "probability": 0.4835,
+              "probability": 0.4825,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20264,7 +20264,7 @@
             {
               "candidate_id": "local-executive-2026-county-2f3ede12c290-23c0abd4f62f",
               "name": "陳宏毅",
-              "probability": 0.006,
+              "probability": 0.0065,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20282,7 +20282,7 @@
             {
               "candidate_id": "local-executive-2026-county-2f3ede12c290-43a8b54a44a8",
               "name": "吳宗憲",
-              "probability": 0.495,
+              "probability": 0.496,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20291,7 +20291,7 @@
             {
               "candidate_id": "local-executive-2026-county-2f3ede12c290-a90bb51c9d4f",
               "name": "楊鉯婷",
-              "probability": 0.007,
+              "probability": 0.0065,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20315,7 +20315,7 @@
             {
               "candidate_id": "local-executive-2026-county-343b71f65d13-80e022db8994",
               "name": "張嘉郡",
-              "probability": 0.4565,
+              "probability": 0.456,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20342,7 +20342,7 @@
             {
               "candidate_id": "local-executive-2026-county-343b71f65d13-bc433f857a19",
               "name": "劉建國",
-              "probability": 0.5365,
+              "probability": 0.537,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20355,18 +20355,18 @@
           "race_id": "local-executive-2026-county-364b2e14f33d",
           "market_slug": "chiayi-county-magistrate-election-winner-20260813135716900",
           "source_url": "https://polymarket.com/event/chiayi-county-magistrate-election-winner-20260813135716900",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 33883.58489,
-          "volume_usd": 9505.520457,
+          "liquidity_usd": 36071.76637,
+          "volume_usd": 9511.310457,
           "included": false,
           "reason": "交易量或流動性不足",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-364b2e14f33d-78474da6567a",
               "name": "蔡易餘",
-              "probability": 0.5415,
+              "probability": 0.542,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20375,7 +20375,7 @@
             {
               "candidate_id": "local-executive-2026-county-364b2e14f33d-845cc0568433",
               "name": "吳品叡",
-              "probability": 0.4585,
+              "probability": 0.458,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20388,40 +20388,40 @@
           "race_id": "local-executive-2026-county-39a14e2e8228",
           "market_slug": "taichung-mayor-election-winner-20260813125857400",
           "source_url": "https://polymarket.com/event/taichung-mayor-election-winner-20260813125857400",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 152536.27609,
-          "volume_usd": 76526.44560800001,
+          "liquidity_usd": 154430.36016,
+          "volume_usd": 76576.445608,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-39a14e2e8228-02a166b318bf",
               "name": "何欣純",
-              "probability": 0.6855,
-              "market_yes": 0.2385,
-              "market_aligned": 0.2385,
-              "fused_05": 0.66388441,
-              "fused_10": 0.64192518
+              "probability": 0.636,
+              "market_yes": 0.244,
+              "market_aligned": 0.24182359,
+              "fused_05": 0.61578221,
+              "fused_10": 0.59548655
             },
             {
               "candidate_id": "local-executive-2026-county-39a14e2e8228-3b97875b6e91",
               "name": "江啟臣",
-              "probability": 0.3145,
-              "market_yes": 0.76,
-              "market_aligned": 0.76,
-              "fused_05": 0.33557628,
-              "fused_10": 0.35749404
+              "probability": 0.364,
+              "market_yes": 0.765,
+              "market_aligned": 0.75817641,
+              "fused_05": 0.3837097,
+              "fused_10": 0.40399776
             },
             {
               "candidate_id": "local-executive-2026-county-39a14e2e8228-fac31af01abf",
               "name": "洪麗華",
               "probability": 0,
               "market_yes": null,
-              "market_aligned": 0.0015,
-              "fused_05": 0.00053931,
-              "fused_10": 0.00058078
+              "market_aligned": 0,
+              "fused_05": 0.00050809,
+              "fused_10": 0.00051568
             }
           ]
         },
@@ -20430,40 +20430,40 @@
           "race_id": "local-executive-2026-county-3bbf653c4d64",
           "market_slug": "hsinchu-city-mayor-election-winner-20260813135716400",
           "source_url": "https://polymarket.com/event/hsinchu-city-mayor-election-winner-20260813135716400",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 119805.66245,
-          "volume_usd": 51524.36272200001,
+          "liquidity_usd": 128122.00395,
+          "volume_usd": 51774.362722,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-3bbf653c4d64-7c24e9a21682",
               "name": "高虹安",
-              "probability": 0.5495,
+              "probability": 0.548,
               "market_yes": 0.865,
-              "market_aligned": 0.86413586,
-              "fused_05": 0.56990121,
-              "fused_10": 0.59006
+              "market_aligned": 0.87153652,
+              "fused_05": 0.56927586,
+              "fused_10": 0.59029212
             },
             {
               "candidate_id": "local-executive-2026-county-3bbf653c4d64-d433115ad2ef",
               "name": "何志勇",
               "probability": 0.005,
               "market_yes": 0.0005,
-              "market_aligned": 0.0004995,
-              "fused_05": 0.00451826,
-              "fused_10": 0.00407603
+              "market_aligned": 0.00050378,
+              "fused_05": 0.00452481,
+              "fused_10": 0.00408727
             },
             {
               "candidate_id": "local-executive-2026-county-3bbf653c4d64-e8b9ec93af1d",
               "name": "莊競程",
-              "probability": 0.4455,
-              "market_yes": 0.1355,
-              "market_aligned": 0.13536464,
-              "fused_05": 0.42558053,
-              "fused_10": 0.40586397
+              "probability": 0.447,
+              "market_yes": 0.127,
+              "market_aligned": 0.1279597,
+              "fused_05": 0.42619933,
+              "fused_10": 0.40562061
             }
           ]
         },
@@ -20472,40 +20472,40 @@
           "race_id": "local-executive-2026-county-3db00425a6dd",
           "market_slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
           "source_url": "https://polymarket.com/event/hsinchu-county-magistrate-election-winner-20260813135716300",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:33:38.772923Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 71313.31203,
-          "volume_usd": 36611.481821,
-          "included": false,
-          "reason": "主要選項買賣價差缺漏或過大",
+          "liquidity_usd": 72275.63273,
+          "volume_usd": 38930.432821,
+          "included": true,
+          "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-3db00425a6dd-59629a87b724",
               "name": "徐欣瑩",
-              "probability": 0.5935,
-              "market_yes": null,
-              "market_aligned": null,
-              "fused_05": null,
-              "fused_10": null
+              "probability": 0.5945,
+              "market_yes": 0.25,
+              "market_aligned": 0.25,
+              "fused_05": 0.57662665,
+              "fused_10": 0.55854397
             },
             {
               "candidate_id": "local-executive-2026-county-3db00425a6dd-af0e2074c510",
               "name": "鄭朝方",
-              "probability": 0.4045,
-              "market_yes": null,
-              "market_aligned": null,
-              "fused_05": null,
-              "fused_10": null
+              "probability": 0.4035,
+              "market_yes": 0.735,
+              "market_aligned": 0.735,
+              "fused_05": 0.4211329,
+              "fused_10": 0.43894956
             },
             {
               "candidate_id": "local-executive-2026-county-3db00425a6dd-f2450d9e759e",
               "name": "朱定瑀",
               "probability": 0.002,
               "market_yes": null,
-              "market_aligned": null,
-              "fused_05": null,
-              "fused_10": null
+              "market_aligned": 0.015,
+              "fused_05": 0.00224046,
+              "fused_10": 0.00250647
             }
           ]
         },
@@ -20514,10 +20514,10 @@
           "race_id": "local-executive-2026-county-70749066df2a",
           "market_slug": "kinmen-county-magistrate-election-winner-202608131357161500",
           "source_url": "https://polymarket.com/event/kinmen-county-magistrate-election-winner-202608131357161500",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 71326.42032,
+          "liquidity_usd": 73619.21938,
           "volume_usd": 13685.607384,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -20528,53 +20528,53 @@
               "probability": 0.0155,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.01317627,
-              "fused_10": 0.01117704
+              "fused_05": 0.01317527,
+              "fused_10": 0.01117575
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-2e82b67d55e1",
               "name": "張火木",
-              "probability": 0.0195,
+              "probability": 0.019,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.01638741,
-              "fused_10": 0.0137423
+              "fused_05": 0.01598675,
+              "fused_10": 0.0134232
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-67e374cd75a9",
               "name": "梁文韜",
-              "probability": 0.0245,
+              "probability": 0.025,
               "market_yes": 0.0315,
-              "market_aligned": 0.03103448,
-              "fused_05": 0.0250224,
-              "fused_10": 0.02550147
+              "market_aligned": 0.03091266,
+              "fused_05": 0.02550032,
+              "fused_10": 0.02595617
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-779476ab4faf",
               "name": "陳玉珍",
-              "probability": 0.8845,
-              "market_yes": 0.963,
-              "market_aligned": 0.94876847,
-              "fused_05": 0.89588003,
-              "fused_10": 0.90547282
+              "probability": 0.8855,
+              "market_yes": 0.9615,
+              "market_aligned": 0.94357213,
+              "fused_05": 0.89652764,
+              "fused_10": 0.90579137
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-96b5c4de5cb1",
               "name": "黃世團",
-              "probability": 0.0245,
+              "probability": 0.024,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.02035566,
-              "fused_10": 0.01687632
+              "fused_05": 0.01995928,
+              "fused_10": 0.01656411
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-c593b95319ff",
               "name": "李文良",
-              "probability": 0.014,
-              "market_yes": 0.0205,
-              "market_aligned": 0.02019704,
-              "fused_05": 0.01439179,
-              "fused_10": 0.01476302
+              "probability": 0.0135,
+              "market_yes": 0.026,
+              "market_aligned": 0.02551521,
+              "fused_05": 0.01406542,
+              "fused_10": 0.01462383
             },
             {
               "candidate_id": "local-executive-2026-county-70749066df2a-e9f0a3debc75",
@@ -20582,8 +20582,8 @@
               "probability": 0.0175,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.01478644,
-              "fused_10": 0.01246702
+              "fused_05": 0.01478531,
+              "fused_10": 0.01246557
             }
           ]
         },
@@ -20592,10 +20592,10 @@
           "race_id": "local-executive-2026-county-780b480cd047",
           "market_slug": "pingtung-county-magistrate-election-winner-202608131357161100",
           "source_url": "https://polymarket.com/event/pingtung-county-magistrate-election-winner-202608131357161100",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 20163.17,
+          "liquidity_usd": 20367.3926,
           "volume_usd": 10659.388728,
           "included": false,
           "reason": "合約價格總和偏離100%過多",
@@ -20603,7 +20603,7 @@
             {
               "candidate_id": "local-executive-2026-county-780b480cd047-bb05d969b43a",
               "name": "周春米",
-              "probability": 0.5325,
+              "probability": 0.5295,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20612,7 +20612,7 @@
             {
               "candidate_id": "local-executive-2026-county-780b480cd047-d1510250d9e2",
               "name": "蘇清泉",
-              "probability": 0.4675,
+              "probability": 0.4705,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20625,22 +20625,22 @@
           "race_id": "local-executive-2026-county-800c9be4cf11",
           "market_slug": "kaohsiung-mayor-election-winner-20260813125857600",
           "source_url": "https://polymarket.com/event/kaohsiung-mayor-election-winner-20260813125857600",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 167057.97841,
-          "volume_usd": 97438.37165599999,
+          "liquidity_usd": 170413.62126,
+          "volume_usd": 97443.37165599999,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-1884678de531",
               "name": "賴瑞隆",
-              "probability": 0.627,
-              "market_yes": 0.82,
-              "market_aligned": 0.82,
-              "fused_05": 0.64029611,
-              "fused_10": 0.65333943
+              "probability": 0.614,
+              "market_yes": 0.825,
+              "market_aligned": 0.825,
+              "fused_05": 0.62717448,
+              "fused_10": 0.6401446
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-2fa3845a4348",
@@ -20648,35 +20648,35 @@
               "probability": 0.002,
               "market_yes": 0.0005,
               "market_aligned": 0.0005,
-              "fused_05": 0.00188024,
-              "fused_10": 0.0017662
+              "fused_05": 0.00187816,
+              "fused_10": 0.0017624
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-aa5e68a3f8b2",
               "name": "洪方隆",
               "probability": 0.0005,
               "market_yes": null,
-              "market_aligned": 0.00933333,
-              "fused_05": 0.00058319,
-              "fused_10": 0.00067966
+              "market_aligned": 0.002125,
+              "fused_05": 0.000541,
+              "fused_10": 0.00058491
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-c4e92f0c5443",
               "name": "柯志恩",
-              "probability": 0.3695,
-              "market_yes": 0.1515,
-              "market_aligned": 0.1515,
-              "fused_05": 0.35607408,
-              "fused_10": 0.34285537
+              "probability": 0.382,
+              "market_yes": 0.166,
+              "market_aligned": 0.166,
+              "fused_05": 0.36878337,
+              "fused_10": 0.35575335
             },
             {
               "candidate_id": "local-executive-2026-county-800c9be4cf11-d513b132c083",
               "name": "王肇民",
-              "probability": 0.001,
+              "probability": 0.0015,
               "market_yes": null,
-              "market_aligned": 0.01866667,
-              "fused_05": 0.00116638,
-              "fused_10": 0.00135933
+              "market_aligned": 0.006375,
+              "fused_05": 0.00162299,
+              "fused_10": 0.00175473
             }
           ]
         },
@@ -20685,49 +20685,49 @@
           "race_id": "local-executive-2026-county-a0b9b4804c8c",
           "market_slug": "hualien-county-magistrate-election-winner-202608131357161200",
           "source_url": "https://polymarket.com/event/hualien-county-magistrate-election-winner-202608131357161200",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 58959.53201,
+          "liquidity_usd": 58979.44139,
           "volume_usd": 12765.059725,
-          "included": true,
-          "reason": "matched_and_quality_checked",
+          "included": false,
+          "reason": "市場包含重要但無法對應的選項",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-a0b9b4804c8c-54479edf99c3",
               "name": "游淑貞",
-              "probability": 0.936,
-              "market_yes": 0.81,
-              "market_aligned": 0.82150101,
-              "fused_05": 0.93433249,
-              "fused_10": 0.93232104
+              "probability": 0.9345,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
             },
             {
               "candidate_id": "local-executive-2026-county-a0b9b4804c8c-689b349dd52b",
               "name": "魏嘉賢",
-              "probability": 0.02,
-              "market_yes": 0.06,
-              "market_aligned": 0.06085193,
-              "fused_05": 0.02124473,
-              "fused_10": 0.02255853
+              "probability": 0.021,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
             },
             {
               "candidate_id": "local-executive-2026-county-a0b9b4804c8c-816878d1e7af",
               "name": "張峻",
               "probability": 0.022,
-              "market_yes": 0.1115,
-              "market_aligned": 0.11308316,
-              "fused_05": 0.02399001,
-              "fused_10": 0.0261503
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
             },
             {
               "candidate_id": "local-executive-2026-county-a0b9b4804c8c-f4c9cb165326",
               "name": "羅佩秦",
-              "probability": 0.022,
-              "market_yes": 0.0045,
-              "market_aligned": 0.00456389,
-              "fused_05": 0.02043277,
-              "fused_10": 0.01897013
+              "probability": 0.0225,
+              "market_yes": null,
+              "market_aligned": null,
+              "fused_05": null,
+              "fused_10": null
             }
           ]
         },
@@ -20736,40 +20736,40 @@
           "race_id": "local-executive-2026-county-a46602cecd9b",
           "market_slug": "new-taipei-mayor-election-winner-20260813125857200",
           "source_url": "https://polymarket.com/event/new-taipei-mayor-election-winner-20260813125857200",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 165020.95126,
-          "volume_usd": 237457.541324,
+          "liquidity_usd": 195395.46381,
+          "volume_usd": 250834.942128,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-a46602cecd9b-20752e861ed1",
               "name": "蘇巧慧",
-              "probability": 0.5055,
-              "market_yes": 0.615,
-              "market_aligned": 0.615,
-              "fused_05": 0.51110955,
-              "fused_10": 0.5169607
+              "probability": 0.503,
+              "market_yes": 0.565,
+              "market_aligned": 0.565,
+              "fused_05": 0.50597867,
+              "fused_10": 0.50920396
             },
             {
               "candidate_id": "local-executive-2026-county-a46602cecd9b-67b53281668a",
               "name": "李四川",
-              "probability": 0.4945,
-              "market_yes": 0.375,
-              "market_aligned": 0.375,
-              "fused_05": 0.48830894,
-              "fused_10": 0.48236276
+              "probability": 0.497,
+              "market_yes": 0.43,
+              "market_aligned": 0.43,
+              "fused_05": 0.49346027,
+              "fused_10": 0.49016618
             },
             {
               "candidate_id": "local-executive-2026-county-a46602cecd9b-e2d59a338d7d",
               "name": "蘇輝湟",
               "probability": 0,
               "market_yes": null,
-              "market_aligned": 0.01,
-              "fused_05": 0.00058151,
-              "fused_10": 0.00067654
+              "market_aligned": 0.005,
+              "fused_05": 0.00056106,
+              "fused_10": 0.00062986
             }
           ]
         },
@@ -20778,31 +20778,31 @@
           "race_id": "local-executive-2026-county-b1067dd41531",
           "market_slug": "keelung-mayor-election-winner-20260813135716100",
           "source_url": "https://polymarket.com/event/keelung-mayor-election-winner-20260813135716100",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:35:40.352622Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 54778.2152,
-          "volume_usd": 20496.728328,
+          "liquidity_usd": 53692.6359,
+          "volume_usd": 20498.1569,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-b1067dd41531-337153b61229",
               "name": "童子瑋",
-              "probability": 0.427,
-              "market_yes": 0.31,
-              "market_aligned": 0.30693069,
-              "fused_05": 0.42103209,
-              "fused_10": 0.41500264
+              "probability": 0.428,
+              "market_yes": 0.305,
+              "market_aligned": 0.3019802,
+              "fused_05": 0.4216957,
+              "fused_10": 0.4153317
             },
             {
               "candidate_id": "local-executive-2026-county-b1067dd41531-687221ab6c9c",
               "name": "謝國樑",
-              "probability": 0.5635,
-              "market_yes": 0.7,
-              "market_aligned": 0.69306931,
-              "fused_05": 0.57074847,
-              "fused_10": 0.57788834
+              "probability": 0.5625,
+              "market_yes": 0.705,
+              "market_aligned": 0.6980198,
+              "fused_05": 0.57008349,
+              "fused_10": 0.57755705
             },
             {
               "candidate_id": "local-executive-2026-county-b1067dd41531-fdaf50e19722",
@@ -20810,8 +20810,8 @@
               "probability": 0.0095,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.00821945,
-              "fused_10": 0.00710902
+              "fused_05": 0.00822081,
+              "fused_10": 0.00711125
             }
           ]
         },
@@ -20820,13 +20820,13 @@
           "race_id": "local-executive-2026-county-c7cf2c480cf8",
           "market_slug": "chiayi-city-mayor-election-winner-202608131357161000",
           "source_url": "https://polymarket.com/event/chiayi-city-mayor-election-winner-202608131357161000",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 69598.6663,
-          "volume_usd": 25358.535079999998,
+          "liquidity_usd": 56835.99404,
+          "volume_usd": 25538.535079999998,
           "included": false,
-          "reason": "市場包含重要但無法對應的選項",
+          "reason": "合約價格總和偏離100%過多",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-c7cf2c480cf8-32042ff4f4e1",
@@ -20840,7 +20840,7 @@
             {
               "candidate_id": "local-executive-2026-county-c7cf2c480cf8-382e00f15b4c",
               "name": "王美惠",
-              "probability": 0.4275,
+              "probability": 0.428,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20849,7 +20849,7 @@
             {
               "candidate_id": "local-executive-2026-county-c7cf2c480cf8-73d9b7899108",
               "name": "黃宏成台灣阿成世界偉人財神總統",
-              "probability": 0.004,
+              "probability": 0.0045,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20867,7 +20867,7 @@
             {
               "candidate_id": "local-executive-2026-county-c7cf2c480cf8-ebd3696c0cee",
               "name": "張啓楷",
-              "probability": 0.559,
+              "probability": 0.558,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -20880,10 +20880,10 @@
           "race_id": "local-executive-2026-county-cff72749bf92",
           "market_slug": "miaoli-county-magistrate-election-winner-20260813135716500",
           "source_url": "https://polymarket.com/event/miaoli-county-magistrate-election-winner-20260813135716500",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 64938.48319,
+          "liquidity_usd": 66790.68109,
           "volume_usd": 36070.847589,
           "included": true,
           "reason": "matched_and_quality_checked",
@@ -20891,20 +20891,20 @@
             {
               "candidate_id": "local-executive-2026-county-cff72749bf92-7e0fa8e5447e",
               "name": "陳品安",
-              "probability": 0.4495,
+              "probability": 0.446,
               "market_yes": 0.061,
-              "market_aligned": 0.06109164,
-              "fused_05": 0.41844169,
-              "fused_10": 0.38801678
+              "market_aligned": 0.061,
+              "fused_05": 0.41515364,
+              "fused_10": 0.38495824
             },
             {
               "candidate_id": "local-executive-2026-county-cff72749bf92-c1d69c92176d",
               "name": "鍾東錦",
-              "probability": 0.5505,
-              "market_yes": 0.9375,
-              "market_aligned": 0.93890836,
-              "fused_05": 0.58155831,
-              "fused_10": 0.61198322
+              "probability": 0.554,
+              "market_yes": 0.939,
+              "market_aligned": 0.939,
+              "fused_05": 0.58484636,
+              "fused_10": 0.61504176
             }
           ]
         },
@@ -20913,67 +20913,67 @@
           "race_id": "local-executive-2026-county-e35db3914937",
           "market_slug": "taipei-mayor-election-winner-20260813125857100",
           "source_url": "https://polymarket.com/event/taipei-mayor-election-winner-20260813125857100",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:37:40.476445Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 573435.22387,
-          "volume_usd": 3417098.826549,
+          "liquidity_usd": 639522.13056,
+          "volume_usd": 3430107.5135,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-0d7a13741c17",
               "name": "郭璽",
-              "probability": 0.0145,
+              "probability": 0.0135,
               "market_yes": 0.0005,
-              "market_aligned": 0.00049826,
-              "fused_05": 0.01230622,
-              "fused_10": 0.01043474
+              "market_aligned": 0.00049751,
+              "fused_05": 0.01149585,
+              "fused_10": 0.00978073
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-18b5923f8040",
               "name": "蔣萬安",
-              "probability": 0.6625,
-              "market_yes": 0.73,
-              "market_aligned": 0.72745391,
-              "fused_05": 0.66848772,
-              "fused_10": 0.6739093
+              "probability": 0.6605,
+              "market_yes": 0.725,
+              "market_aligned": 0.72139303,
+              "fused_05": 0.66613655,
+              "fused_10": 0.67123816
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-2bfabd935a32",
               "name": "林志成",
-              "probability": 0.0125,
+              "probability": 0.012,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.01068783,
-              "fused_10": 0.00912998
+              "fused_05": 0.01027889,
+              "fused_10": 0.00879699
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-337abd76cb4e",
               "name": "沈伯洋",
-              "probability": 0.294,
-              "market_yes": 0.273,
-              "market_aligned": 0.27204783,
-              "fused_05": 0.29412964,
-              "fused_10": 0.29398876
+              "probability": 0.2975,
+              "market_yes": 0.2795,
+              "market_aligned": 0.27810945,
+              "fused_05": 0.29771375,
+              "fused_10": 0.2976691
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-46ecad4d43bc",
               "name": "蕭文乾",
-              "probability": 0.01,
+              "probability": 0.0105,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.0086462,
-              "fused_10": 0.0074688
+              "fused_05": 0.00905428,
+              "fused_10": 0.00780084
             },
             {
               "candidate_id": "local-executive-2026-county-e35db3914937-683bd7785f85",
               "name": "唐新民",
-              "probability": 0.0065,
+              "probability": 0.006,
               "market_yes": null,
               "market_aligned": 0,
-              "fused_05": 0.00574239,
-              "fused_10": 0.00506842
+              "fused_05": 0.00532069,
+              "fused_10": 0.00471419
             }
           ]
         },
@@ -20982,31 +20982,31 @@
           "race_id": "local-executive-2026-county-eed891611f5f",
           "market_slug": "taoyuan-mayor-election-winner-20260813125857300",
           "source_url": "https://polymarket.com/event/taoyuan-mayor-election-winner-20260813125857300",
-          "quote_as_of": "2026-11-05T09:09:41.470884Z",
-          "market_retrieved_at": "2026-11-05T09:10:38+00:00",
+          "quote_as_of": "2026-11-05T11:33:38.772923Z",
+          "market_retrieved_at": "2026-11-05T11:39:07+00:00",
           "market_stale": false,
-          "liquidity_usd": 139799.10619,
-          "volume_usd": 48624.636506,
+          "liquidity_usd": 142425.87056,
+          "volume_usd": 48638.476506,
           "included": true,
           "reason": "matched_and_quality_checked",
           "candidates": [
             {
               "candidate_id": "local-executive-2026-county-eed891611f5f-cc4deca536ba",
               "name": "黃世杰",
-              "probability": 0.4885,
-              "market_yes": 0.076,
-              "market_aligned": 0.07554672,
-              "fused_05": 0.45786758,
-              "fused_10": 0.42755042
+              "probability": 0.4855,
+              "market_yes": 0.0735,
+              "market_aligned": 0.07324365,
+              "fused_05": 0.4546226,
+              "fused_10": 0.42409028
             },
             {
               "candidate_id": "local-executive-2026-county-eed891611f5f-fc2def8006c2",
               "name": "張善政",
-              "probability": 0.5115,
+              "probability": 0.5145,
               "market_yes": 0.93,
-              "market_aligned": 0.92445328,
-              "fused_05": 0.54213242,
-              "fused_10": 0.57244958
+              "market_aligned": 0.92675635,
+              "fused_05": 0.5453774,
+              "fused_10": 0.57590972
             }
           ]
         },
@@ -21026,7 +21026,7 @@
             {
               "candidate_id": "local-executive-2026-county-f86a4b628d2b-7520ac07da8a",
               "name": "温世政",
-              "probability": 0.458,
+              "probability": 0.4565,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
@@ -21035,7 +21035,7 @@
             {
               "candidate_id": "local-executive-2026-county-f86a4b628d2b-bd7a0fc8fb4b",
               "name": "許淑華",
-              "probability": 0.542,
+              "probability": 0.5435,
               "market_yes": null,
               "market_aligned": null,
               "fused_05": null,
