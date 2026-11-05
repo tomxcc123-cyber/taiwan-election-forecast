@@ -20,7 +20,9 @@ assert.ok(matchItems(index,'台',2).length<=2);
 const scenario={v:3,fingerprint:'synthetic-fingerprint',state:{county:'台北市',
   edits:{"synthetic-race":{boost:2}},constraints:{}}};
 const token=btoa(unescape(encodeURIComponent(JSON.stringify(scenario))));
-const current='https://example.com/elections/?view=polls&county=台北市&level=town&town=大安區&s='+token+'#section';
+const originalURL=new URL('https://example.com/elections/?view=polls&county=台北市&level=town&town=大安區#section');
+originalURL.searchParams.set('s',token);
+const current=originalURL.toString();
 const dest= new URL(buildDestination(current,matchItems(index,'何欣純')[0]));
 assert.equal(dest.searchParams.get('view'),'counties');
 assert.equal(dest.searchParams.get('county'),'台中市');
