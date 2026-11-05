@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-05T08:53:54+00:00",
+  "checked_at": "2026-11-05T09:09:46+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-11-05T08:53:54+00:00",
-  "updated_at": "2026-11-05T08:53:54+00:00",
+  "index_checked_at": "2026-11-05T09:09:46+00:00",
+  "updated_at": "2026-11-05T09:09:46+00:00",
   "latest_fieldwork_date": "2026-11-01",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
@@ -18,10 +18,10 @@
     {
       "name": "美麗島電子報／畢肯",
       "url": "https://www.my-formosa.com.tw/Topical/formosapollster",
-      "discovered": 4,
-      "validated_reports": 0,
-      "index_ok": false,
-      "status": "unavailable",
+      "discovered": 10,
+      "validated_reports": 7,
+      "index_ok": true,
+      "status": "checked",
       "note": "本輪自動擷取通過數不含先前核對的存檔；失敗保留最後有效資料。"
     },
     {
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-05T08:54:15+00:00",
+      "auto_discovery_checked_at": "2026-11-05T09:10:27+00:00",
       "auto_discovered": 6,
       "auto_known": 2,
       "auto_pending": 4,
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-05T08:54:15+00:00",
+      "auto_discovery_checked_at": "2026-11-05T09:10:27+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -92,12 +92,22 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-05T08:54:15+00:00",
+      "auto_discovery_checked_at": "2026-11-05T09:10:27+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
       "registry_pollster_id": "udn-poll-center",
       "auto_promoted": 0
+    },
+    {
+      "name": "信民協會／畢肯",
+      "url": "https://dc579968-5ed9-4902-8454-9871fa44324e.filesusr.com/ugd/3ea6ac_0b4a9fd7880b4b5589bd8f2b4ecc627a.pdf",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 1,
+      "status": "reviewed_seed_only",
+      "method_class": "dual_frame_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
     }
   ],
   "source_review": [
@@ -124,10 +134,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-05T08:54:15+00:00",
-      "last_seen_at": "2026-11-05T08:54:15+00:00",
+      "discovered_at": "2026-11-05T09:10:27+00:00",
+      "last_seen_at": "2026-11-05T09:10:27+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-05T08:54:18+00:00"
+      "last_validation_at": "2026-11-05T09:10:31+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -138,10 +148,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44790",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-05T08:54:15+00:00",
-      "last_seen_at": "2026-11-05T08:54:15+00:00",
+      "discovered_at": "2026-11-05T09:10:27+00:00",
+      "last_seen_at": "2026-11-05T09:10:27+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-05T08:54:18+00:00"
+      "last_validation_at": "2026-11-05T09:10:31+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -152,10 +162,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-05T08:54:15+00:00",
-      "last_seen_at": "2026-11-05T08:54:15+00:00",
+      "discovered_at": "2026-11-05T09:10:27+00:00",
+      "last_seen_at": "2026-11-05T09:10:27+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-05T08:54:18+00:00"
+      "last_validation_at": "2026-11-05T09:10:31+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -166,10 +176,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-05T08:54:15+00:00",
-      "last_seen_at": "2026-11-05T08:54:15+00:00",
+      "discovered_at": "2026-11-05T09:10:27+00:00",
+      "last_seen_at": "2026-11-05T09:10:27+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-05T08:54:18+00:00"
+      "last_validation_at": "2026-11-05T09:10:31+00:00"
     }
   ],
   "records": [
@@ -340,6 +350,68 @@
       "retrieved_at": "2026-11-02T00:00:00+00:00",
       "model_eligible": false,
       "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "bd1c1f1f90a326eb113c3b1d",
+      "county": "台中市",
+      "source": "信民協會／畢肯",
+      "pollster_id": "formosa-bic",
+      "pollster": "畢肯市場研究股份有限公司",
+      "publisher": "台北市信民兩岸研究協會",
+      "source_url": "https://dc579968-5ed9-4902-8454-9871fa44324e.filesusr.com/ugd/3ea6ac_0b4a9fd7880b4b5589bd8f2b4ecc627a.pdf",
+      "verification_urls": [
+        "https://taipeishinmin.wixsite.com/ttda/%E5%8F%B0%E4%B8%AD%E6%B0%91%E8%AA%BF20261103",
+        "https://udn.com/vote2026/story/124652/9853674",
+        "https://news.tvbs.com.tw/politics/4045037"
+      ],
+      "report_title": "信民兩岸研究協會／畢肯：2026台中市長選舉投票意向（10月28—30日）",
+      "field_start": "2026-10-28",
+      "date": "2026-10-30",
+      "published_at": "2026-11-03",
+      "sample_n": 1077,
+      "population": "設籍台中市且年滿20歲民眾",
+      "population_size": null,
+      "method": "電腦輔助電話訪問CATI；住宅電話752人＋行動電話325人雙架構。市話分層隨機及末兩碼RDD；手機前五碼抽樣及末五碼RDD。",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "台中市住宅電話號碼資料庫與行動通信號碼核配字首雙架構隨機抽樣",
+      "weighting": "raking_by_sex_district_age_education",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "台北市信民兩岸研究協會",
+      "supervisor": null,
+      "sample_note": "協會第一手23頁PDF第1頁說明方法與加權，第2頁第3題完整回答：何41.1、洪0.7、江30.4、不投票／廢票7.0、未明確回答20.8。票意向與看好度、候選人適合度、機構自身推估票率不同。完整樣本1077人；不能宣稱無設計效應的±3pp為模型預測誤差。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "何欣純",
+          "support": 41.1,
+          "bloc": "dpp"
+        },
+        {
+          "name": "洪麗華",
+          "support": 0.7,
+          "bloc": "other"
+        },
+        {
+          "name": "江啟臣",
+          "support": 30.4,
+          "bloc": "blue"
+        }
+      ],
+      "undecided": 20.8,
+      "nonvote": 7.0,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-05T09:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
     {
       "id": "720cd56de9dfa23ef225eba8",
@@ -1071,7 +1143,7 @@
       "date": "2026-04-10",
       "sample_n": 1075,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話753、行動電話322；雙架構加權",
+      "method": "CATI；住宅電話與行動電話雙架構",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1094,8 +1166,9 @@
       "undecided": 19.6,
       "nonvote": 10.3,
       "multiple_matchups": false,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "2fe34b896292d4a5997732ae1d4eed61efb4bbfdcd69b6aa9cffb0afe1354fb1",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1111,7 +1184,7 @@
       "date": "2026-03-25",
       "sample_n": 1072,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1134,8 +1207,9 @@
       "undecided": 12.1,
       "nonvote": 16.2,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "2fe6d3d0b7df1591812073ef71eb5bcfdb686dbc16d686094db0877442626dd1",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1151,7 +1225,7 @@
       "date": "2026-03-25",
       "sample_n": 1072,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1174,8 +1248,137 @@
       "undecided": 14.1,
       "nonvote": 15.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "2fe6d3d0b7df1591812073ef71eb5bcfdb686dbc16d686094db0877442626dd1",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "f8d7e8519c18d08d43f78522",
+      "county": "花蓮縣",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "report_title": "美麗島民調：2026花蓮縣長選舉可能人選支持度民調",
+      "field_start": "2026-03-18",
+      "date": "2026-03-20",
+      "sample_n": 1071,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "游淑貞",
+          "support": 28.7,
+          "bloc": "blue"
+        },
+        {
+          "name": "魏嘉賢",
+          "support": 20.2,
+          "bloc": "other"
+        },
+        {
+          "name": "張峻",
+          "support": 19.8,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 23.8,
+      "nonvote": 7.6,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "6ebbdf1dfd132a0f4dbbc67eb4c44b168804364828469d5a1472bd433e4a9fe5",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "9c66996394ea480a81315b8a",
+      "county": "花蓮縣",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "report_title": "美麗島民調：2026花蓮縣長選舉可能人選支持度民調",
+      "field_start": "2026-03-18",
+      "date": "2026-03-20",
+      "sample_n": 1071,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 3,
+      "candidates": [
+        {
+          "name": "游淑貞",
+          "support": 31.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "魏嘉賢",
+          "support": 35.2,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 21.6,
+      "nonvote": 12.2,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "6ebbdf1dfd132a0f4dbbc67eb4c44b168804364828469d5a1472bd433e4a9fe5",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "7c1d79097dbbef9ae4d87849",
+      "county": "花蓮縣",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "report_title": "美麗島民調：2026花蓮縣長選舉可能人選支持度民調",
+      "field_start": "2026-03-18",
+      "date": "2026-03-20",
+      "sample_n": 1071,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 4,
+      "candidates": [
+        {
+          "name": "游淑貞",
+          "support": 44.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "張峻",
+          "support": 28.3,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 16.3,
+      "nonvote": 11.3,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "6ebbdf1dfd132a0f4dbbc67eb4c44b168804364828469d5a1472bd433e4a9fe5",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1276,7 +1479,7 @@
       "date": "2026-03-18",
       "sample_n": 1070,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1304,8 +1507,9 @@
       "undecided": 25.0,
       "nonvote": 7.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "68209019e0f44014717445d67923eef72ada992804cdb4ffd0055a4ac928257a",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1321,7 +1525,7 @@
       "date": "2026-03-18",
       "sample_n": 1070,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1344,8 +1548,9 @@
       "undecided": 23.5,
       "nonvote": 7.7,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "68209019e0f44014717445d67923eef72ada992804cdb4ffd0055a4ac928257a",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1361,7 +1566,7 @@
       "date": "2026-03-18",
       "sample_n": 1070,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1384,8 +1589,9 @@
       "undecided": 25.9,
       "nonvote": 11.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "68209019e0f44014717445d67923eef72ada992804cdb4ffd0055a4ac928257a",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1428,6 +1634,216 @@
       "report_sha256": "286f35e7858045d18101cce46580fe0ac0caa24ab978b71d61191745eab5323c",
       "model_eligible": false,
       "exclusion_reason": "基線日期以前的資料，僅供查閱，避免重複加權"
+    },
+    {
+      "id": "bdafb5a1059435b8b43397af",
+      "county": "新北市",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "report_title": "美麗島民調：2026新北市長選舉可能人選支持度民調",
+      "field_start": "2026-03-09",
+      "date": "2026-03-11",
+      "sample_n": 1070,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 4,
+      "candidates": [
+        {
+          "name": "黃國昌",
+          "support": 28.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 44.4,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 14.8,
+      "nonvote": 12.8,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "58d48ed8d44e1eb48b70c8902baf579dfb16cc098771eb7903bc832dc00b77bf",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "b54223ad064e3d79b6d49778",
+      "county": "新北市",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "report_title": "美麗島民調：2026新北市長選舉可能人選支持度民調",
+      "field_start": "2026-03-09",
+      "date": "2026-03-11",
+      "sample_n": 1070,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 3,
+      "candidates": [
+        {
+          "name": "李四川",
+          "support": 39.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 38.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 15.3,
+      "nonvote": 7.6,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "58d48ed8d44e1eb48b70c8902baf579dfb16cc098771eb7903bc832dc00b77bf",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "4da0738ad0c0a1f93c7fea8b",
+      "county": "新北市",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "report_title": "美麗島民調：2026新北市長選舉可能人選支持度民調",
+      "field_start": "2026-03-09",
+      "date": "2026-03-11",
+      "sample_n": 1070,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "李四川",
+          "support": 32.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 35.7,
+          "bloc": "dpp"
+        },
+        {
+          "name": "黃國昌",
+          "support": 9.8,
+          "bloc": "third"
+        }
+      ],
+      "undecided": 15.5,
+      "nonvote": 7.0,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "58d48ed8d44e1eb48b70c8902baf579dfb16cc098771eb7903bc832dc00b77bf",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "af02701c160b95b4f301fdc1",
+      "county": "新竹縣",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
+      "report_title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調",
+      "field_start": "2026-03-04",
+      "date": "2026-03-06",
+      "sample_n": 1072,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 3,
+      "candidates": [
+        {
+          "name": "陳見賢",
+          "support": 37.6,
+          "bloc": "blue"
+        },
+        {
+          "name": "鄭朝方",
+          "support": 38.2,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 13.9,
+      "nonvote": 10.3,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "7c896e6d736f50fd1ee1063c9eafc7df919b4fff6a9b74c32050be5e5226ab43",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
+    },
+    {
+      "id": "1d493eec1d2a4ff09c92a45e",
+      "county": "新竹縣",
+      "source": "美麗島電子報／畢肯",
+      "pollster_id": "formosa-bic",
+      "publisher": "美麗島電子報",
+      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
+      "report_title": "美麗島民調：2026新竹縣長選舉可能人選支持度民調",
+      "field_start": "2026-03-04",
+      "date": "2026-03-06",
+      "sample_n": 1072,
+      "population": "設籍於該縣市、年滿20歲民眾",
+      "method": "CATI；住宅電話隨機抽樣",
+      "margin_of_error": 3.0,
+      "confidence_level": 95,
+      "funding": "美麗島電子報",
+      "supervisor": "戴立安（問卷設計與分析）",
+      "population_size": null,
+      "sample_note": "加權全體樣本百分比；不投票／廢票與未表態分開保存",
+      "question_number": 2,
+      "candidates": [
+        {
+          "name": "徐欣瑩",
+          "support": 38.5,
+          "bloc": "blue"
+        },
+        {
+          "name": "鄭朝方",
+          "support": 32.2,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 17.2,
+      "nonvote": 12.0,
+      "multiple_matchups": true,
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "7c896e6d736f50fd1ee1063c9eafc7df919b4fff6a9b74c32050be5e5226ab43",
+      "ingestion": "automatic_original_html",
+      "model_eligible": false,
+      "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
     {
       "id": "d7d41d903028a9b5b01d98ad",
@@ -1526,7 +1942,7 @@
       "date": "2026-01-23",
       "sample_n": 1069,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1549,8 +1965,9 @@
       "undecided": 20.3,
       "nonvote": 6.4,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "d0dc023196729036aaa90b6c7bcb0945a81e6d3e8466917ad59d1b82beb034f4",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     },
@@ -1566,7 +1983,7 @@
       "date": "2026-01-23",
       "sample_n": 1069,
       "population": "設籍於該縣市、年滿20歲民眾",
-      "method": "CATI；住宅電話隨機抽樣；加權",
+      "method": "CATI；住宅電話隨機抽樣",
       "margin_of_error": 3.0,
       "confidence_level": 95,
       "funding": "美麗島電子報",
@@ -1589,8 +2006,9 @@
       "undecided": 22.3,
       "nonvote": 11.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-09-08T10:00:00+00:00",
-      "ingestion": "reviewed_original_page_facts",
+      "retrieved_at": "2026-11-05T09:09:46+00:00",
+      "report_sha256": "d0dc023196729036aaa90b6c7bcb0945a81e6d3e8466917ad59d1b82beb034f4",
+      "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
     }
@@ -1656,8 +2074,18 @@
   "failures": [
     {
       "source": "美麗島",
-      "url": "https://www.my-formosa.com.tw/Topical/formosapollster",
-      "message": "'utf-8' codec can't decode byte 0xac in position 471: invalid start byte"
+      "url": "https://my-formosa.com.tw/DOC_229143.htm",
+      "message": "Unsupported or incomplete sampling metadata"
+    },
+    {
+      "source": "美麗島",
+      "url": "https://my-formosa.com.tw/DOC_229138.htm",
+      "message": "Unsupported or incomplete sampling metadata"
+    },
+    {
+      "source": "美麗島",
+      "url": "https://my-formosa.com.tw/DOC_223199.htm",
+      "message": "Unsupported or incomplete sampling metadata"
     },
     {
       "source": "TVBS",
@@ -1735,9 +2163,123 @@
       "parser_version": 3,
       "status": "valid",
       "checked_at": "2026-11-05T08:53:54+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224921.htm": {
+      "sha256": "2fe34b896292d4a5997732ae1d4eed61efb4bbfdcd69b6aa9cffb0afe1354fb1",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224420.htm": {
+      "sha256": "68209019e0f44014717445d67923eef72ada992804cdb4ffd0055a4ac928257a",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224580.htm": {
+      "sha256": "2fe6d3d0b7df1591812073ef71eb5bcfdb686dbc16d686094db0877442626dd1",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_223267.htm": {
+      "sha256": "d0dc023196729036aaa90b6c7bcb0945a81e6d3e8466917ad59d1b82beb034f4",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224538.htm": {
+      "sha256": "6ebbdf1dfd132a0f4dbbc67eb4c44b168804364828469d5a1472bd433e4a9fe5",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224233.htm": {
+      "sha256": "58d48ed8d44e1eb48b70c8902baf579dfb16cc098771eb7903bc832dc00b77bf",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
+    },
+    "https://my-formosa.com.tw/DOC_224158.htm": {
+      "sha256": "7c896e6d736f50fd1ee1063c9eafc7df919b4fff6a9b74c32050be5e5226ab43",
+      "parser_version": 2,
+      "status": "valid",
+      "checked_at": "2026-11-05T09:09:46+00:00"
     }
   },
   "history": [
+    {
+      "date": "2026-11-05T09:10:27+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-05T09:10:27+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-05T09:10:27+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-05T09:10:27+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "台中市",
+      "source_url": "https://dc579968-5ed9-4902-8454-9871fa44324e.filesusr.com/ugd/3ea6ac_0b4a9fd7880b4b5589bd8f2b4ecc627a.pdf",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224921.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "宜蘭縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224420.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224580.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "台中市",
+      "source_url": "https://my-formosa.com.tw/DOC_223267.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "花蓮縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-05T09:09:46+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
+      "kind": "report_updated"
+    },
     {
       "date": "2026-11-05T08:54:15+00:00",
       "county": "新北市",
@@ -2265,85 +2807,13 @@
       "county": "台北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T12:29:09+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T12:29:09+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T11:05:00+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T11:05:00+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T11:05:00+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T11:05:00+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:44:54+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:44:54+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:44:54+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:44:54+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:26:41+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-10-28T10:26:41+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-11-05T08:54:15+00:00",
+  "discovery_checked_at": "2026-11-05T09:10:27+00:00",
   "pollster_registry": {
     "schema_version": 1,
-    "updated_at": "2026-11-02T00:00:00+00:00",
+    "updated_at": "2026-11-05T09:00:00+00:00",
     "registered_pollsters": 8
   }
 }
