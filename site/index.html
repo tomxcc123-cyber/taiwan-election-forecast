@@ -7,7 +7,7 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://wmts.nlsc.gov.tw https://tiles.mapterhorn.com; connect-src 'self' https://wmts.nlsc.gov.tw https://api.nlsc.gov.tw https://tiles.mapterhorn.com; worker-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
   <meta name="ui-build" content="2026-09-16-gis-precision-rc">
-  <title>台灣選舉預測 | Forecast Command Center</title>
+  <title>台灣選舉預測 | 2026 地方選舉 GIS 觀測</title>
   <link rel="stylesheet" href="vendor/maplibre/maplibre-gl.css?v=6.9.0">
   <link rel="stylesheet" href="styles.css?v=20260912-56">
   <link rel="stylesheet" href="motion.css?v=20260912-56">
@@ -22,6 +22,7 @@
   <link rel="stylesheet" href="history-atlas.css?v=20260915-090">
   <link rel="stylesheet" href="market-observatory.css?v=20261028-01">
   <link rel="stylesheet" href="turnout.css?v=20261028-02">
+  <link rel="stylesheet" href="editorial-gis-2026.css?v=20261105-01">
   <style>
     .release-strip{margin:0;border-bottom:1px solid #dfe4eb;font:14px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.release-strip strong{font-weight:800}.release-strip a{color:#174fa8;font-weight:650}@media(max-width:720px){.release-strip{padding:9px 16px!important}}
   </style>
@@ -34,6 +35,7 @@
   <script type="module" src="motion-v2.mjs?v=20260912-56"></script>
   <script type="module" src="motion-v3.mjs?v=20260912-56"></script>
   <script type="module" src="motion-v4.mjs?v=20260912-56"></script>
+  <script type="module" src="editorial-quick-jump.mjs?v=20261105-01"></script>
 </head>
 <body>
   <a class="skip" href="#main">跳至主要內容</a>
@@ -50,12 +52,16 @@
       <a href="?view=validation" data-view="validation">模型驗證</a>
       <a href="?view=methods" data-view="methods">方法</a>
     </nav>
-    <label class="election-selector"><span class="offscreen">選擇選舉</span><select aria-label="選擇選舉"><option>2026 縣市長選舉</option><option disabled>2028 總統選舉（建置中）</option><option disabled>2028 立委選舉（建置中）</option></select></label>
+    <div class="header-actions">
+      <button type="button" id="quickJump" aria-haspopup="dialog" aria-controls="quickPalette" aria-expanded="false" aria-keyshortcuts="Control+K Meta+K"><span class="quick-search-icon" aria-hidden="true"></span><span>搜尋縣市</span><kbd>Ctrl K</kbd></button>
+      <label class="election-selector"><span class="offscreen">選擇選舉</span><select aria-label="選擇選舉"><option>2026 縣市長選舉</option><option disabled>2028 總統選舉（建置中）</option><option disabled>2028 立委選舉（建置中）</option></select></label>
     <button id="share" class="share-control">分享</button>
+    </div>
   </header>
   <div class="release-strip" role="note" data-command-center="true">
-    <strong>History Atlas 0.9.0</strong>
-    <span>歷史選舉 GIS、年份播放與縣市擺動比較</span>
+    <strong>2026 地方選舉觀測</strong>
+    <span>History Atlas 0.9.0 · 歷史選舉 GIS、縣市擺動與模型預測</span>
+    <span class="source-refresh-indicator" id="designStatus" data-quality="unknown" role="status" aria-live="polite">來源資料核對中</span>
     <span class="gov-chip warn">研究預測 · 機率尚未跨屆校準</span>
     <a href="MODEL_CARD_V5_PUBLIC_BETA.md" target="_blank" rel="noopener">查看方法與限制</a>
   </div>
@@ -69,6 +75,15 @@
   </footer>
   <div id="notice" role="status" aria-live="polite"></div>
   <dialog id="shareDialog"><h2>分享目前情境</h2><p>連結包含假設與縣市設定，不包含個人資料。相同資料版本可重現結果；新版資料可能改變結果。</p><label>情境連結<input id="shareUrl" readonly></label><div class="actions"><button id="copyLink">複製連結</button><button id="closeShare">關閉</button></div></dialog>
+  <dialog id="quickPalette" aria-labelledby="paletteTitle">
+    <div class="palette-top">
+      <div class="palette-label"><span id="paletteTitle">快速定位 / NAVIGATE</span><kbd>ESC 關閉</kbd></div>
+      <label class="offscreen" for="paletteInput">搜尋功能、縣市或候選人</label>
+      <input id="paletteInput" type="search" role="combobox" aria-autocomplete="list" aria-controls="paletteResults" aria-expanded="true" autocomplete="off" placeholder="輸入縣市、候選人或網站功能…" spellcheck="false">
+    </div>
+    <div id="paletteResults" role="listbox" aria-label="搜尋結果"></div>
+    <div class="palette-footer"><span>↑ ↓ 選擇　 <b>Enter</b> 開啟</span><span>Ctrl / ⌘ + K 搜尋</span></div>
+  </dialog>
   <noscript>此互動網站需要 JavaScript。可直接前往頁尾的中選會資料庫查閱官方資料。</noscript>
   <dialog id="presetDialog" aria-labelledby="presetTitle"><h2 id="presetTitle">確認實驗假設</h2><p id="presetDescription"></p><p class="warning">此數值是敏感度假設，不是事件的實證效果或真人民調。</p><div class="actions"><button id="applyPreset" class="primary">從基準套用</button><button id="cancelPreset">取消</button></div></dialog>
 </body>
