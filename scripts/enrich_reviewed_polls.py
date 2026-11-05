@@ -17,6 +17,17 @@ from pathlib import Path
 from update_polls import atomic_json, classify, model_rows
 
 ROOT = Path(__file__).resolve().parents[1]
+# Existing automatically promoted publisher reports may predate the commissioning
+# metadata. Restrict this migration to verified funding/pollster pairs; never
+# infer a political preference from a commissioning organization's name.
+KNOWN_EXTERNAL_COMMISSIONERS = {
+    ("formosa-bic", "美麗島電子報"): "formosa-media",
+    ("formosa-bic", "台北市信民兩岸研究協會"): "xinmin-association",
+    ("shanshui", "震傳媒"): "zmedia",
+    ("pearson-data", "鉅聞天下新聞網"): "bigmedia",
+    ("trend-survey", "財團法人凱達格蘭基金會"): "ketagalan-foundation",
+}
+
 SEED_PATH = ROOT / "data" / "reviewed-additional-polls.json"
 FEED_PATH = ROOT / "data" / "polls.json"
 CONFIG_PATH = ROOT / "config.json"
@@ -202,6 +213,18 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
         if seed["id"] not in existing_ids:
             added.append(seed)
 
+    # Retroactively tag previously ingested verified records; same policy
+    # applies to the original media's polls and to the latest Xinmin survey.
+    for row in records:
+        key = (row.get("pollster_id"), row.get("funding"))
+        commissioner = KNOWN_EXTERNAL_COMMISSIONERS.get(key)
+        if commissioner:
+            if row.get("commissioning_type") not in (None, "external_commissioned"):
+                raise ValueError("Commissioning provenance contradicts verified funding")
+            if row.get("commissioner_id") not in (None, commissioner):
+                raise ValueError("Commissioner ID conflicts with original funding")
+            row["commissioning_type"] = "external_commissioned"
+            row["commissioner_id"] = commissioner
     classified = sorted(
         (classify(r, config) for r in records),
         key=lambda r: (r["date"], r["id"]),
