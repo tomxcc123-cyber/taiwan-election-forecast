@@ -18,6 +18,7 @@ assert.deepEqual(sourceState({index_ok:false}),{key:'degraded',label:'來源受�
 
 const feed={
   latest_fieldwork_date:'2026-08-30',
+  checked_at:'2026-09-12T10:35:00+00:00',status:'degraded',failures:[{source:'synthetic',message:'offline'}],stale_after_hours:18,
   pollster_registry:{schema_version:1,registered_pollsters:7,updated_at:'2026-09-12T10:25:00+00:00'},
   sources:[
     {name:'ETtoday 民調雲',url:'https://example.com/e',reviewed_reports:2,validated_reports:0,index_ok:true,status:'checked',method_class:'closed_online_panel',note:'closed panel'},
@@ -29,7 +30,7 @@ const feed={
     {pollster_id:'pearson-data',source:'鉅聞天下／皮爾森數據',title:'2026《鉅聞民調》台北市長選舉／蔣萬安52%對沈伯洋39%',county:'台北市',url:'https://example.com/new',status:'discovered_unverified',reason:'一方站點自動發現；尚未通過完整資料品質校驗，因此不入模。',discovered_at:'2026-09-12T10:30:00+00:00'}
   ],
   records:[
-    {id:'p1',source:'ETtoday 民調雲',pollster_id:'ettoday',method_class:'closed_online_panel'},
+    {id:'p1',source:'ETtoday 民調雲',pollster_id:'ettoday',method_class:'closed_online_panel',published_at:'2026-09-11'},
     {id:'p2',source:'新台灣國策智庫／趨勢民調',pollster_id:'trend-survey',method_class:'telephone_cati'},
     {id:'p3',source:'鉅聞天下／皮爾森數據',pollster_id:'pearson-data',method_class:'online_dmp_panel'}
   ]
@@ -43,6 +44,9 @@ assert.equal(stats.included,3);
 assert.equal(stats.discoveryQueue,1);
 assert.equal(stats.reviewQueue,2);
 assert.equal(stats.latest,'2026-08-30');
+assert.equal(stats.lastPublished,'2026-09-11');
+assert.equal(stats.checkedAt,'2026-09-12T10:35:00+00:00');
+assert.equal(stats.failures,1);
 const queue=discoveryQueueHTML(feed);
 assert.match(queue,/待核驗發現/);
 assert.match(queue,/不影響目前預測/);
@@ -60,6 +64,11 @@ assert.match(html,/4 發現 \/ 0 解析 \/ 2 核驗/);
 assert.match(html,/方法已核對／回應類別不完整/);
 assert.match(html,/fail-closed/);
 assert.match(html,/待核驗發現/);
+assert.match(html,/最近檢查/);
+assert.match(html,/最近發布/);
+assert.match(html,/2026-09-11/);
+assert.match(html,/抓取／解析失敗/);
+assert.match(html,/不代表新資料已入模/);
 assert.ok(!html.includes('未接入</td>'));
 const empty=discoveryQueueHTML({...feed,discovery_queue:[]});
 assert.match(empty,/目前沒有新的/);
