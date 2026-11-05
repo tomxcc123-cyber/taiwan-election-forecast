@@ -150,14 +150,20 @@ function setup(){
     input.focus();
     updateIndex();
   };
+  const dismiss=()=>{
+    // Native dialog close event is asynchronous; update ARIA state now.
+    opener.setAttribute('aria-expanded','false');
+    if(modal.open)modal.close();
+  };
   opener.addEventListener('click',open);
+  modal.addEventListener('cancel',()=>opener.setAttribute('aria-expanded','false'));
   modal.addEventListener('close',()=>{
     opener.setAttribute('aria-expanded','false');
     (lastOpener?.isConnected?lastOpener:opener)?.focus();
   });
   input.addEventListener('input',()=>{selected=0;paint()});
   input.addEventListener('keydown',event=>{
-    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.close();return;}
+    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();dismiss();return;}
     if(event.key==='ArrowDown'){event.preventDefault();choose((selected+1)%Math.max(visible.length,1));}
     if(event.key==='ArrowUp'){event.preventDefault();choose((selected-1+visible.length)%Math.max(visible.length,1));}
     if(event.key==='Enter'&&visible.length){event.preventDefault();window.location.assign(buildDestination(window.location.href,visible[selected]));}
@@ -166,7 +172,7 @@ function setup(){
     const target=event.target;
     const typing=target?.matches?.('input,textarea,select,[contenteditable=true]');
     if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){
-      event.preventDefault();if(modal.open)modal.close();else open();
+      event.preventDefault();if(modal.open)dismiss();else open();
     }else if(event.key==='/'&&!typing&&!modal.open&&!event.ctrlKey&&!event.metaKey&&!event.altKey){
       event.preventDefault();open();
     }
