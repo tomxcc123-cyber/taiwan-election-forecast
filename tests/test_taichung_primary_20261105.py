@@ -29,7 +29,7 @@ class TaichungPrimarySourceTests(unittest.TestCase):
         self.assertEqual((s["sample_n"],s["published_at"]),(1077,"2026-11-03"))
         self.assertEqual((s["field_start"],s["date"]),("2026-10-28","2026-10-30"))
         self.assertEqual(s["method_class"],"dual_frame_cati")
-        self.assertIn("教育",s["weighting"])
+        self.assertIn("education",s["weighting"])
         self.assertEqual(set(s["names"]),{"江啟臣","何欣純","洪麗華"})
         self.assertAlmostEqual(sum(s["supports"])+s["undecided"]+s["nonvote"],100)
         row=reviewed_record(s,s["reviewed_at"],date(2026,11,5))
