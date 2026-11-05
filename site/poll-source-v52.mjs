@@ -27,7 +27,11 @@ export function coverageStats(feed,model){
     included:records.filter(r=>audit.get(r.id)?.included).length,
     reviewQueue:(feed?.source_review||[]).length+(feed?.discovery_queue||[]).length,
     discoveryQueue:(feed?.discovery_queue||[]).length,
-    latest:feed?.latest_fieldwork_date||'無'
+    latest:feed?.latest_fieldwork_date||'無',
+    lastPublished:(records.map(r=>r.published_at).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d||'')).sort().at(-1))||'無',
+    checkedAt:feed?.checked_at||null,
+    failures:(feed?.failures||[]).length,
+    sourceStatus:feed?.status||'unknown'
   };
 }
 function statusChip(key,label){return `<span class="source-chip source-${esc(key)}">${esc(label)}</span>`;}
@@ -101,7 +105,14 @@ export function nonmajorResponseHTML(model){
 export function observatoryHTML(feed,model){
   const s=coverageStats(feed,model),rows=[...(feed.sources||[]).map(x=>recordSourceRow(x,feed,model)),...(feed.source_review||[]).map(reviewSourceRow)];
   const registryText=s.registryCount?`Pollster Registry 已登錄 ${s.registryCount} 個調查機構／狀態。`:'來源登錄正在建立中。';
-  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div><div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${nonmajorHistoricalHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
+  // These are separate clocks: discovery check != latest interview != publication.
+  const checkedTime=s.checkedAt?Date.parse(s.checkedAt):NaN;
+  const staleHours=Number(feed?.stale_after_hours||18);
+  const overdue=Number.isFinite(checkedTime)&&Number.isFinite(staleHours)&&staleHours>0&&Date.now()-checkedTime>staleHours*3600000;
+  const checkedLabel=s.checkedAt?String(s.checkedAt).slice(0,16).replace('T',' ')+' UTC':'未記錄';
+  const healthLabel=overdue?'來源檢查時間已逾設定門檻':s.sourceStatus==='degraded'?'部分來源擷取失敗':'來源檢查紀錄';
+  const healthHTML=`<div class="source-refresh-meta">${statusChip(overdue||s.sourceStatus==='degraded'?'degraded':'checked',healthLabel)}<span><strong>最近檢查</strong> ${esc(checkedLabel)}</span><span><strong>最近發布</strong> ${esc(s.lastPublished)}</span><span><strong>抓取／解析失敗</strong> ${s.failures} 項</span><small>最新訪期僅代表已收錄資料的訪問日期，不能單憑日期判定來源是否漏抓；來源檢查也不代表新資料已入模。</small></div>`;
+  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div>${healthHTML}<div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${nonmajorHistoricalHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
 }
 function recordTags(record,audit){
   const accepted=audit?.included;
