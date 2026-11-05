@@ -7,8 +7,6 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-import numpy as np
-
 from .fundamentals import softmax
 from .joint import infer
 
@@ -20,7 +18,7 @@ def _candidate_means(posterior):
         k = len(race["candidates"])
         shares = softmax(posterior["draws"][:, offset:offset + k])
         out[race["county"]] = {
-            c["candidate_id"]: {"name": c["name"], "mean_pct": float(shares[:, i].mean() * 100)}
+            c["candidate_id"]: {"name": c.get("name", c["candidate_id"]), "mean_pct": float(shares[:, i].mean() * 100)}
             for i, c in enumerate(race["candidates"])
         }
         offset += k
