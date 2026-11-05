@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,nonmajorHistoricalHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,nonmajorHistoricalHTML,commissionerSensitivityHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
@@ -125,4 +125,23 @@ assert.match(holdoutHTML,/台北市/);
 assert.match(holdoutHTML,/研究觀察 · 不調正式預測/);
 assert.match(observatoryHTML(feed,{...model,nonmajor_historical_holdout:noPromotion}),/nonmajorHistoricalValidation/);
 assert.equal(nonmajorHistoricalHTML({nonmajor_historical_holdout:{...noPromotion,promotion_gate:{promote_to_formal_forecast:true}}}),'');
+const commissionAudit={kind:'commissioner_uncertainty_leave_one_group_out_read_only',
+  read_only:true,affects_formal_forecast:false,not_partisan_bias_estimate:true,
+  leave_one_commissioner_out:[{
+    commissioner_id:'xinmin-association',source_labels:['信民協會／畢肯'],report_count:1,
+    counties:[{county:'台中市',max_abs_shift_pp:3.45,candidates:[
+      {name:'何欣純',with_all_pct:42.12,comparison_pct:38.67,difference_pp:3.45},
+      {name:'江啟臣',with_all_pct:46.31,comparison_pct:47.66,difference_pp:-1.35}]}]
+  }]
+};
+const commissionHTML=commissionerSensitivityHTML({commissioner_sensitivity:commissionAudit});
+assert.match(commissionHTML,/委託方敏感度檢查/);
+assert.match(commissionHTML,/台中市/);
+assert.match(commissionHTML,/信民協會／畢肯/);
+assert.match(commissionHTML,/何欣純 42.12% → 38.67%/);
+assert.match(commissionHTML,/3.45 pp/);
+assert.match(commissionHTML,/不是民調偏差估計/);
+assert.match(observatoryHTML(feed,{...model,commissioner_sensitivity:commissionAudit}),/commissionerSensitivityAudit/);
+assert.equal(commissionerSensitivityHTML({commissioner_sensitivity:{...commissionAudit,affects_formal_forecast:true}}),'');
+assert.equal(commissionerSensitivityHTML({}),'');
 console.log('source-v53-ui ok');
