@@ -17,17 +17,27 @@ assert.ok(matchItems(index,'   ').length>0);
 assert.equal(matchItems(index,'不可能的查詢字串').length,0);
 assert.ok(matchItems(index,'台',2).length<=2);
 
-const current='https://example.com/elections/?view=polls&county=台北市&level=town&town=大安區&s=KEEP#section';
+const scenario={v:3,fingerprint:'synthetic-fingerprint',state:{county:'台北市',
+  edits:{"synthetic-race":{boost:2}},constraints:{}}};
+const token=btoa(unescape(encodeURIComponent(JSON.stringify(scenario))));
+const current='https://example.com/elections/?view=polls&county=台北市&level=town&town=大安區&s='+token+'#section';
 const dest= new URL(buildDestination(current,matchItems(index,'何欣純')[0]));
 assert.equal(dest.searchParams.get('view'),'counties');
 assert.equal(dest.searchParams.get('county'),'台中市');
 assert.equal(dest.searchParams.get('level'),'county');
 assert.equal(dest.searchParams.get('election'),'2026-local');
-assert.equal(dest.searchParams.get('s'),'KEEP');
+const restored=JSON.parse(decodeURIComponent(escape(atob(dest.searchParams.get('s')))));
+assert.equal(restored.fingerprint,scenario.fingerprint);
+assert.equal(restored.state.county,'台中市');
+assert.deepEqual(restored.state.edits,scenario.state.edits);
+assert.equal(restored.v,3);
 assert.equal(dest.searchParams.has('town'),false);
 assert.equal(dest.hash,'');
 const other=new URL(buildDestination(current,matchItems(index,'模型驗證')[0]));
 assert.equal(other.searchParams.get('view'),'validation');
+assert.equal(other.searchParams.get('s'),token);
+const corrupt=buildDestination('https://example.com/?view=map&s=invalid',{kind:'county',view:'counties',county:'台中市'});
+assert.equal(new URL(corrupt).searchParams.has('s'),false);
 assert.throws(()=>buildDestination(current,{view:'evil',kind:'section'}),/Invalid/);
 
 const model={feed_checked_at:'2026-11-05T11:38:20+00:00'};
