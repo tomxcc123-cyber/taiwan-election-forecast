@@ -143,6 +143,7 @@ function setup(){
   });
   input.addEventListener('input',()=>{selected=0;paint()});
   input.addEventListener('keydown',event=>{
+    if(event.key==='Escape'){event.preventDefault();event.stopPropagation();modal.close();return;}
     if(event.key==='ArrowDown'){event.preventDefault();choose((selected+1)%Math.max(visible.length,1));}
     if(event.key==='ArrowUp'){event.preventDefault();choose((selected-1+visible.length)%Math.max(visible.length,1));}
     if(event.key==='Enter'&&visible.length){event.preventDefault();window.location.assign(buildDestination(window.location.href,visible[selected]));}
@@ -157,13 +158,24 @@ function setup(){
     }
   });
   if(feedback){
-    Promise.all([fetch('polls.json',{cache:'no-store'}).then(r=>r.ok?r.json():null),
-      fetch('candidate-model.json',{cache:'no-store'}).then(r=>r.ok?r.json():null)]).then(([feed,model])=>{
-      const state=formatFeedStatus(feed,model);
+    // The election application has already verified and loaded both snapshots.
+    // Reuse those in-memory objects instead of downloading two large JSON
+    // bundles again solely to paint a small status label.
+    const repaint=()=>{
+      if(!window.CandidateApp?.data||!window.CandidateApp?.feed)return false;
+      const state=formatFeedStatus(window.CandidateApp.feed,window.CandidateApp.data);
       feedback.textContent=state.text;
       feedback.dataset.quality=state.quality;
       feedback.title='調查來源檢查狀態；不代表選舉結果已校準';
-    }).catch(()=>{feedback.textContent='來源狀態尚未核對';feedback.dataset.quality='unknown'});
+      return true;
+    };
+    if(!repaint()){
+      const observer=new MutationObserver(()=>{
+        if(repaint())observer.disconnect();
+      });
+      observer.observe(document.body,{attributes:true,attributeFilter:['data-ready']});
+    }
+    window.addEventListener('candidate-forecast-refreshed',repaint);
   }
 }
 
