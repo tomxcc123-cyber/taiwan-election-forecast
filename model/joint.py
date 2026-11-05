@@ -5,6 +5,7 @@ from .polling import day, observation_matrices
 SETTINGS = {'design_effect': 2.0, 'poll_extra_sd': .12, 'house_sd': .18,
             'partial_ballot_sd': .25, 'undecided_sd': .5, 'rounded_zero_floor_pct': .05,
             'unreported_mass_sd': 1.5, 'online_dmp_extra_sd': .30,
+            'commissioned_house_sd': .20,
             'local_daily_variance': .0005, 'national_daily_variance': .00012,
             'regional_daily_variance': .00008, 'simulations': 2000, 'seed': 20260908}
 
@@ -56,6 +57,22 @@ def infer(prior_simulation, records, as_of, election_date, settings=None):
             load = a @ party_loadings
             load[np.array(groups) != institution] = 0
             noise += settings['house_sd']**2 * (load@load.T)
+        # Separate *zero-mean* commissioner uncertainty from pollster house effects.
+        # Apply the same rule to every explicitly documented external commission,
+        # regardless of which candidate it favors. A commissioner shared across
+        # waves creates correlated error rather than multiple independent samples.
+        sponsors = [
+            (r.get('commissioner_id') if
+             r.get('commissioning_type') == 'external_commissioned' else None)
+            for r in metadata
+        ]
+        if any(r.get('commissioning_type') == 'external_commissioned' and
+               not r.get('commissioner_id') for r in metadata):
+            raise ValueError('Externally commissioned poll lacks commissioner ID')
+        for commissioner in sorted({s for s in sponsors if s}):
+            load = a @ party_loadings
+            load[np.array(sponsors) != commissioner] = 0
+            noise += settings['commissioned_house_sd']**2 * (load@load.T)
         s = a@covariance@a.T + noise
         innovation = y-a@mean
         solved = np.linalg.solve(s, a@covariance)
@@ -74,4 +91,11 @@ def infer(prior_simulation, records, as_of, election_date, settings=None):
             'diagnostics': {'observation_contrasts': len(y), 'included_reports': len(records),
                             'innovation_mahalanobis': innovation_score, 'horizon_days': horizon,
                             'minimum_eigenvalue': float(values.min()),
+                            'commissioned_reports': sum(
+                                r.get('commissioning_type') == 'external_commissioned' for r in records),
+                            'commissioning_groups': len({
+                                r.get('commissioner_id') for r in records
+                                if r.get('commissioning_type') == 'external_commissioned'}),
+                            'commissioning_uncertainty_kind':
+                                'zero_mean_correlated_random_effect_not_partisan_bias_correction',
                             'inference': 'Gaussian moment approximation; parameter provenance disclosed separately, not probability-calibrated'}}
