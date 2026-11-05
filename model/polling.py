@@ -56,6 +56,8 @@ def match_records(feed, roster, as_of):
             reason = str(error)
         audit.append({'id': row.get('id'), 'county': row.get('county'), 'source': row.get('source'),
                       'date': row.get('date'), 'included': reason is None,
+                      'commissioning_type': row.get('commissioning_type', 'undisclosed'),
+                      'commissioner_id': row.get('commissioner_id'),
                       'response_mass_unreported': row.get('response_mass_unreported', 0),
                       'reason': reason or ('已配對；原始文章未披露完整回答分類，以額外不確定性處理' if row.get('response_mass_unreported',0) else ('已配對；僅觀測題目列出人選的相對支持' if accepted[-1]['partial_ballot'] else '已配對完整名單'))})
     return sorted(accepted, key=lambda r: (r['date'], r['id'])), audit
