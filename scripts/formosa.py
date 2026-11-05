@@ -63,6 +63,8 @@ def record(entry, county, start, end, sample, number, candidates, undecided, non
     identity = '|'.join([url,end,str(number),','.join(sorted(c['name'] for c in candidates))])
     return {'id':hashlib.sha256(identity.encode()).hexdigest()[:24], 'county':county,
         'source':SOURCE,'pollster_id':'formosa-bic','publisher':'美麗島電子報','source_url':url,
+        'commissioning_type':'external_commissioned',
+        'commissioner_id':'formosa-media',
         'report_title':entry['title'],'field_start':start,'date':end,'sample_n':sample,
         'population':'設籍於該縣市、年滿20歲民眾','method':method,
         'margin_of_error':3.0,'confidence_level':95,'funding':'美麗島電子報',
