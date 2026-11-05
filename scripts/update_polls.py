@@ -113,8 +113,8 @@ def roc_dates(text):
     followed by an afternoon time window instead of the older "日至" range.
     Only an explicit date anchored to the 訪問時間 field is accepted.
     """
-    prefix = r'訪問時間\\s*[|｜]\\s*(\\d{2,4})\\s*年\\s*(\\d{1,2})\\s*月\\s*(\\d{1,2})\\s*日'
-    m = re.search(prefix + r'\\s*至\\s*(?:(\\d{1,2})\\s*月\\s*)?(\\d{1,2})\\s*日', text)
+    prefix = r'訪問時間\s*[|｜]\s*(\d{2,4})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日'
+    m = re.search(prefix + r'\s*至\s*(?:(\d{1,2})\s*月\s*)?(\d{1,2})\s*日', text)
     if m:
         y, mo, start_day, end_mo, end_day = m.groups()
         y = int(y) + (1911 if int(y) < 1911 else 0)
@@ -124,7 +124,7 @@ def roc_dates(text):
     # Permit a single-day fieldwork entry only if an explicit time-of-day
     # qualifier or clock time follows it. Do not silently truncate a broken
     # multi-day date range to one day.
-    one = re.search(prefix + r'\\s*(?:(?:上午|下午|晚間|早上|晚上)|\\d{1,2}\\s*[:：]\\s*\\d{2})', text)
+    one = re.search(prefix + r'\s*(?:(?:上午|下午|晚間|早上|晚上)|\d{1,2}\s*[:：]\s*\d{2})', text)
     if one:
         y, mo, day = map(int, one.groups())
         iso = date(y + (1911 if y < 1911 else 0), mo, day).isoformat()
