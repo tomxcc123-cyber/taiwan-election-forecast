@@ -158,6 +158,8 @@ function setup(){
   opener.addEventListener('click',open);
   modal.addEventListener('cancel',()=>opener.setAttribute('aria-expanded','false'));
   modal.addEventListener('close',()=>{
+    // Ignore a stale close event if the command palette was already reopened.
+    if(modal.open)return;
     opener.setAttribute('aria-expanded','false');
     (lastOpener?.isConnected?lastOpener:opener)?.focus();
   });
