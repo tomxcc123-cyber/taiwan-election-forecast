@@ -102,6 +102,24 @@ export function nonmajorResponseHTML(model){
   if(!rows.length)return '';
   return `<section class="source-observatory" id="nonmajorResponseAudit"><div class="source-observatory-head"><div><span class="eyebrow">Nonmajor Evidence · Research Only</span><h3>非藍綠候選人：原始民調回應與模型票池對照</h3><p>只列原始調查<strong>明確交代其他候選人支持上限</strong>的波次。模型數值是選舉日模擬得票，調查數值是訪問當下的回答比例；分母、時間及未表態轉化都不同，<strong>兩者的差距不是預測誤差，更不是模型必須遵守的得票上限</strong>。</p></div></div><div class="table-wrap source-table"><table><thead><tr><th>縣市／訪期結束</th><th>原始調查</th><th>調查其他人選回應</th><th>調查未表態</th><th>模型非藍綠得票池</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><p class="meta">為避免自行將未表態者分票給小黨／無黨籍，本研究僅顯示原始回應比例與模型不確定範圍；正式候選人得票及勝選機率維持既有模型，尚待多期資料與回測確認是否應調整。</p></section>`;
 }
+export function commissionerSensitivityHTML(model){
+  const audit=model?.commissioner_sensitivity;
+  if(!audit||audit.kind!=='commissioner_uncertainty_leave_one_group_out_read_only'
+    ||audit.read_only!==true||audit.affects_formal_forecast!==false
+    ||audit.not_partisan_bias_estimate!==true
+    ||!Array.isArray(audit.leave_one_commissioner_out))return '';
+  const fmt=v=>Number.isFinite(Number(v))?Number(v).toFixed(2):'—';
+  const rows=audit.leave_one_commissioner_out.flatMap(g=>
+    (g.counties||[]).map(c=>{
+      if(!Array.isArray(c.candidates)||!c.candidates.length)return '';
+      const pairs=c.candidates.map(p=>`${esc(p.name)} ${fmt(p.with_all_pct)}% → ${fmt(p.comparison_pct)}%`).join('；');
+      return `<tr><td>${esc(g.source_labels?.join('／')||g.commissioner_id)}<small>委託方 · ${esc(g.commissioner_id)}／入模 ${Number(g.report_count||0)} 波</small></td><td>${esc(c.county)}</td><td>${pairs}</td><td>${fmt(c.max_abs_shift_pp)} pp</td></tr>`;
+    })
+  ).filter(Boolean);
+  if(!rows.length)return '';
+  return `<section class="source-observatory" id="commissionerSensitivityAudit"><div class="source-observatory-head"><div><span class="eyebrow">Read-only · Leave-one-commissioner-out</span><h3>委託方敏感度檢查</h3><p>逐組假設「不採用同一委託方全部已入模波次」，檢查模型平均得票會移動多少；同時保留原始民調與正式預測不變。這是<strong>模型敏感度，不是民調偏差估計，也不證明某委託方政治傾向</strong>。數值是兩次模擬均值差，不是歷史預測誤差。</p></div><div class="table-wrap source-table"><table><thead><tr><th>調查發布來源／委託方</th><th>縣市</th><th>正式模型均值 → 移除該委託方後</th><th>最大移動</th></tr></thead><tbody>${rows.join('')}</tbody></table></div><p class="meta">同一委託方的完整波次一起移除，其他機構、歷史基礎盤、未表態處理與時間規則維持不變；此分析不調整正式預測機率。</p></section>`;
+}
+
 export function observatoryHTML(feed,model){
   const s=coverageStats(feed,model),rows=[...(feed.sources||[]).map(x=>recordSourceRow(x,feed,model)),...(feed.source_review||[]).map(reviewSourceRow)];
   const registryText=s.registryCount?`Pollster Registry 已登錄 ${s.registryCount} 個調查機構／狀態。`:'來源登錄正在建立中。';
@@ -112,11 +130,16 @@ export function observatoryHTML(feed,model){
   const checkedLabel=s.checkedAt?String(s.checkedAt).slice(0,16).replace('T',' ')+' UTC':'未記錄';
   const healthLabel=overdue?'來源檢查時間已逾設定門檻':s.sourceStatus==='degraded'?'部分來源擷取失敗':'來源檢查紀錄';
   const healthHTML=`<div class="source-refresh-meta">${statusChip(overdue||s.sourceStatus==='degraded'?'degraded':'checked',healthLabel)}<span><strong>最近檢查</strong> ${esc(checkedLabel)}</span><span><strong>最近發布</strong> ${esc(s.lastPublished)}</span><span><strong>抓取／解析失敗</strong> ${s.failures} 項</span><small>最新訪期僅代表已收錄資料的訪問日期，不能單憑日期判定來源是否漏抓；來源檢查也不代表新資料已入模。</small></div>`;
-  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div>${healthHTML}<div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${nonmajorHistoricalHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
+  const commissionerSD=Number(model?.settings?.commissioned_house_sd);
+  const externalCount=(feed?.records||[]).filter(r=>r.commissioning_type==='external_commissioned').length;
+  const commissionerHTML=Number.isFinite(commissionerSD)&&commissionerSD>0
+    ? `<div class="source-commission-policy"><strong>委託方不確定性：</strong>已標識 ${externalCount} 筆外部委託調查；同一委託方的波次視為可能共享誤差，對數相對支持尺度加上零均值標準差 ${commissionerSD.toFixed(2)}（尚未經歷史跨機構校準的敏感度假設）。<strong>不扣除任何陣營的支持度，也不是單筆調查固定乘以80%權重。</strong> 信民協會、凱達格蘭基金會、震傳媒及鉅聞天下等具名外部委託均採同一規則；原始民調數字不變。</div>`
+    : '';
+  return `<section class="source-observatory" id="pollSourceObservatory"><div class="source-observatory-head"><div><span class="eyebrow">Poll Ingestion 2.0 · Source Coverage v5.3</span><h2>民調來源觀測站</h2><p>把「自動發現」「資料核驗」「正式入模」拆成三個狀態；刊載媒體不冒充調查機構，資訊不完整時維持 fail-closed。${esc(registryText)}</p></div><span class="source-chip source-policy">發現 ≠ 入模</span></div><div class="source-metrics"><div><small>已識別調查機構</small><strong>${s.sourceCount}</strong></div><div><small>調查方法類型</small><strong>${s.methodCount}</strong></div><div><small>候選人模型納入</small><strong>${s.included}</strong></div><div><small>待核驗／受限來源</small><strong>${s.reviewQueue}</strong></div><div><small>最近訪期結束</small><strong>${esc(s.latest)}</strong></div></div>${healthHTML}${commissionerHTML}<div class="table-wrap source-table"><table><thead><tr><th>來源／pollster</th><th>狀態</th><th>方法類型</th><th>取得方式</th><th>已入模</th><th>限制與說明</th></tr></thead><tbody>${rows.join('')}</tbody></table></div>${nonmajorResponseHTML(model)}${nonmajorHistoricalHTML(model)}${commissionerSensitivityHTML(model)}<p class="meta">同一調查的媒體轉載不建立新的 pollster_id；reviewed seed 只在方法、訪期、樣本與題目口徑足以核驗時收錄，且會被日後同調查的自動原始紀錄取代。</p>${discoveryQueueHTML(feed)}</section>`;
 }
 function recordTags(record,audit){
   const accepted=audit?.included;
-  return `<div class="poll-provenance">${statusChip(accepted?'included':'excluded',accepted?'v5 已納入':'v5 未納入')}${record.pollster_id?statusChip('neutral',`pollster · ${record.pollster_id}`):''}${record.method_class?statusChip('neutral',methodLabel(record.method_class)):''}${statusChip('verify',verificationLabel(record.verification_status||record.ingestion))}</div>`;
+  return `<div class="poll-provenance">${statusChip(accepted?'included':'excluded',accepted?'v5 已納入':'v5 未納入')}${record.pollster_id?statusChip('neutral',`pollster · ${record.pollster_id}`):''}${record.method_class?statusChip('neutral',methodLabel(record.method_class)):''}${record.commissioning_type==='external_commissioned'?statusChip('review','外部委託／加寬誤差'):''}${statusChip('verify',verificationLabel(record.verification_status||record.ingestion))}</div>`;
 }
 function matchRecord(card,feed,used){
   const title=card.querySelector('h3')?.textContent||'',meta=card.querySelector('.meta')?.textContent||'';

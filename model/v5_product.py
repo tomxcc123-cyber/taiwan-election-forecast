@@ -26,6 +26,7 @@ from .joint import infer
 from .partisan_baseline import predict as predict_r4
 from .polling import match_records
 from .nonmajor_poll_audit import build_nonmajor_response_audit
+from .commissioner_audit import build_commissioner_audit
 from .nonmajor_rolling_holdout import build_report as build_nonmajor_rolling_holdout
 from .refinement import select_fit, support_roster
 from .roster import load_roster
@@ -352,8 +353,14 @@ def build_product(root: Path, now, feed, settings=None):
             "投票率未进入当前得票中心：周期中心化后增益近乎为零，且缺乏更早独立周期验证；不得把 aggregate turnout 解释为蓝绿阵营动员率。",
             "2006 原始县市长资料尚未进入可审计仓库；当前可追溯候选人链条从 2009/2010 起，并连接 2014/2018/2022。",
             "2026 地方组织特征仍使用已公开标示的 2022 organization bridge；Fragmentation Gate 仅适用于已纳入、完整名单的 TVBS 强碎片化波次。",
+            "各委託調查（包括信民協會及其他具名外部委託來源）均依同一條零均值相關誤差規則加寬不確定性；0.20對數相對支持尺度是未經跨機構回測驗證的敏感度假設，非實測偏藍／偏綠修正或固定百分比權重。",
         ],
     })
+    # Research-only sensitivity: recompute with commissioner variance removed
+    # and with each commissioning source omitted. Keep all formal forecast
+    # draws/means unmodified; this is not a corrected poll or a bias estimate.
+    scaffold["commissioner_sensitivity"] = build_commissioner_audit(
+        prior, records, posterior, as_of, "2026-11-28")
     training_meta = scaffold.setdefault("training", {})
     training_meta["v5_candidate_offset"] = offset_training
     training_meta["v5_structural"] = structural_training

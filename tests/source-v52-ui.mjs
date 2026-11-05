@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,nonmajorHistoricalHTML} from '../site/poll-source-v52.mjs';
+import {methodLabel,verificationLabel,reviewLabel,ingestionLabel,sourceState,coverageStats,discoveryQueueHTML,observatoryHTML,nonmajorResponseHTML,nonmajorHistoricalHTML,commissionerSensitivityHTML} from '../site/poll-source-v52.mjs';
 
 assert.equal(methodLabel('closed_online_panel'),'封閉式網路樣本');
 assert.equal(methodLabel('telephone_cati'),'電話訪問');
@@ -31,11 +31,11 @@ const feed={
   ],
   records:[
     {id:'p1',source:'ETtoday 民調雲',pollster_id:'ettoday',method_class:'closed_online_panel',published_at:'2026-09-11'},
-    {id:'p2',source:'新台灣國策智庫／趨勢民調',pollster_id:'trend-survey',method_class:'telephone_cati'},
+    {id:'p2',source:'新台灣國策智庫／趨勢民調',pollster_id:'trend-survey',method_class:'telephone_cati',commissioning_type:'external_commissioned',commissioner_id:'ketagalan-foundation'},
     {id:'p3',source:'鉅聞天下／皮爾森數據',pollster_id:'pearson-data',method_class:'online_dmp_panel'}
   ]
 };
-const model={poll_audit:[{id:'p1',included:true},{id:'p2',included:true},{id:'p3',included:true}]};
+const model={poll_audit:[{id:'p1',included:true},{id:'p2',included:true},{id:'p3',included:true}],settings:{commissioned_house_sd:.20}};
 const stats=coverageStats(feed,model);
 assert.equal(stats.sourceCount,3);
 assert.equal(stats.registryCount,7);
@@ -69,6 +69,12 @@ assert.match(html,/最近發布/);
 assert.match(html,/2026-09-11/);
 assert.match(html,/抓取／解析失敗/);
 assert.match(html,/不代表新資料已入模/);
+assert.match(html,/委託方不確定性/);
+assert.match(html,/已標識 1 筆外部委託調查/);
+assert.match(html,/0\.20/);
+assert.match(html,/不是單筆調查固定乘以80%權重/);
+assert.match(html,/原始民調數字不變/);
+
 assert.ok(!html.includes('未接入</td>'));
 const empty=discoveryQueueHTML({...feed,discovery_queue:[]});
 assert.match(empty,/目前沒有新的/);
@@ -119,4 +125,23 @@ assert.match(holdoutHTML,/台北市/);
 assert.match(holdoutHTML,/研究觀察 · 不調正式預測/);
 assert.match(observatoryHTML(feed,{...model,nonmajor_historical_holdout:noPromotion}),/nonmajorHistoricalValidation/);
 assert.equal(nonmajorHistoricalHTML({nonmajor_historical_holdout:{...noPromotion,promotion_gate:{promote_to_formal_forecast:true}}}),'');
+const commissionAudit={kind:'commissioner_uncertainty_leave_one_group_out_read_only',
+  read_only:true,affects_formal_forecast:false,not_partisan_bias_estimate:true,
+  leave_one_commissioner_out:[{
+    commissioner_id:'xinmin-association',source_labels:['信民協會／畢肯'],report_count:1,
+    counties:[{county:'台中市',max_abs_shift_pp:3.45,candidates:[
+      {name:'何欣純',with_all_pct:42.12,comparison_pct:38.67,difference_pp:3.45},
+      {name:'江啟臣',with_all_pct:46.31,comparison_pct:47.66,difference_pp:-1.35}]}]
+  }]
+};
+const commissionHTML=commissionerSensitivityHTML({commissioner_sensitivity:commissionAudit});
+assert.match(commissionHTML,/委託方敏感度檢查/);
+assert.match(commissionHTML,/台中市/);
+assert.match(commissionHTML,/信民協會／畢肯/);
+assert.match(commissionHTML,/何欣純 42.12% → 38.67%/);
+assert.match(commissionHTML,/3.45 pp/);
+assert.match(commissionHTML,/不是民調偏差估計/);
+assert.match(observatoryHTML(feed,{...model,commissioner_sensitivity:commissionAudit}),/commissionerSensitivityAudit/);
+assert.equal(commissionerSensitivityHTML({commissioner_sensitivity:{...commissionAudit,affects_formal_forecast:true}}),'');
+assert.equal(commissionerSensitivityHTML({}),'');
 console.log('source-v53-ui ok');
