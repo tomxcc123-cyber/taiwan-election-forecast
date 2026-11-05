@@ -28,7 +28,7 @@ export function coverageStats(feed,model){
     reviewQueue:(feed?.source_review||[]).length+(feed?.discovery_queue||[]).length,
     discoveryQueue:(feed?.discovery_queue||[]).length,
     latest:feed?.latest_fieldwork_date||'無',
-    lastPublished:(records.map(r=>r.published_at).filter(d=>/^\\d{4}-\\d{2}-\\d{2}$/.test(d||'')).sort().at(-1))||'無',
+    lastPublished:(records.map(r=>r.published_at).filter(d=>/^\d{4}-\d{2}-\d{2}$/.test(d||'')).sort().at(-1))||'無',
     checkedAt:feed?.checked_at||null,
     failures:(feed?.failures||[]).length,
     sourceStatus:feed?.status||'unknown'
