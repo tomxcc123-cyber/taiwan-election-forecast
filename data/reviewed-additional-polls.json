@@ -344,6 +344,96 @@
       "reviewed_at": "2026-11-02T00:00:00+00:00",
       "reported_nonmajor_support_upper_pct": 1,
       "reported_nonmajor_upper_basis": "Original UDN article explicitly states combined other listed candidates below one percent, no name-specific shares; this is survey response, NOT a forecast vote-share cap."
+    },
+    {
+      "title": "TVBS民意調查中心：2026台北市長電視辯論後投票意向（10月31日）",
+      "county": "台北市",
+      "field_start": "2026-10-31",
+      "date": "2026-10-31",
+      "published_at": "2026-10-31",
+      "sample_n": 1666,
+      "population": "設籍台北市、年滿20歲且表示有投票意願的受訪者（投票意向題子樣本）",
+      "method": "台北市市內電話末四碼電腦隨機抽樣、訪員電話訪問；性別、年齡、地區、教育程度加權",
+      "method_class": "telephone_cati",
+      "sampling_frame": "市內電話隨機抽樣；完整訪問1,747人，投票意向題為其中1,666名有投票意願者",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 2.3,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "pollster_id": "tvbs",
+      "pollster": "TVBS 民意調查中心",
+      "publisher": "TVBS",
+      "source": "TVBS 民意調查中心",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        46,
+        42
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 12,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1554/1793451109_1510311___________________________________________________.pdf",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4044014",
+        "https://udn.com/vote2026/pollboard"
+      ],
+      "sample_note": "TVBS原始PDF第2題：有投票意願之台北市民1,666人；完整問卷有效樣本1,747人及公告±2.3%是整體樣本指標，非專為題目子樣本重估之抽樣誤差。即時辯論後調查，不能與全年全體選民調查視為同一母體；候選人模型應保留母體／時點差異。",
+      "reviewed_at": "2026-11-05T08:15:00+00:00"
+    },
+    {
+      "title": "ETtoday民調雲：2026台北市長辯論後封閉式網路問卷（10月31日至11月1日）",
+      "county": "台北市",
+      "field_start": "2026-10-31",
+      "date": "2026-11-01",
+      "published_at": "2026-11-02",
+      "sample_n": 1965,
+      "population": "設籍台北市、年滿20歲的ETtoday封閉式會員樣本；並非一般選民隨機抽樣",
+      "method": "從ETtoday民調雲會員資料庫分層比例邀請；EDM及手機簡訊發送封閉式網路問卷；依性別、年齡、地區與教育程度反覆比例加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "自建會員資料庫353,819位符合抽樣條件之會員；非機率會員招募",
+      "weighting": "raking_by_sex_age_district_education",
+      "margin_of_error": 2.2,
+      "confidence_level": 95,
+      "funding": "東森民調雲股份有限公司",
+      "pollster_id": "ettoday",
+      "pollster": "東森民調雲股份有限公司",
+      "publisher": "ETtoday 新聞雲",
+      "source": "ETtoday 民調雲",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        52,
+        40.7
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 6,
+      "nonvote": 0.9,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 0.5,
+      "response_mass_note": "來源另列郭璽0.3%、林志成0.1%、唐新民0.1%；這0.5百分點是其他候選人的已報數字，並非未決定，暫作未建模的其他人選質量。總和100.1%為發布數字四捨五入；不自行反推餘數，也不把看好度當成支持度。",
+      "multiple_matchups": false,
+      "source_url": "https://udn.com/news/story/124652/9851526",
+      "verification_urls": [
+        "https://newtalk.tw/news/view/2026-11-02/1068760",
+        "https://udn.com/vote2026/pollboard"
+      ],
+      "sample_note": "由兩家獨立刊載來源核對ETtoday原發調查資料；原始ETtoday文章URL本次未直接取得，故標記為reviewed secondary-source，不聲稱完成原站自動擷取。官方公布的±2.2%為名目誤差；非機率會員樣本不應用概率抽樣誤差解釋。",
+      "reviewed_at": "2026-11-05T08:15:00+00:00"
     }
   ],
   "non_admitted_sources": [
