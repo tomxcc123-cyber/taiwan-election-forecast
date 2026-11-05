@@ -64,8 +64,16 @@ class ReviewedSourceEnrichmentTests(unittest.TestCase):
         }
 
     def test_every_reviewed_seed_has_complete_response_mass(self):
-        rows = [reviewed_record(e, self.reviewed["reviewed_at"], date(2026, 11, 2)) for e in self.reviewed["reports"]]
-        self.assertEqual(len(rows), 8)
+        cutoff = date(2026, 11, 2)
+        snapshot = [
+            e for e in self.reviewed["reports"]
+            if date.fromisoformat(e.get("reviewed_at", self.reviewed["reviewed_at"])[:10]) <= cutoff
+        ]
+        rows = [
+            reviewed_record(e, e.get("reviewed_at", self.reviewed["reviewed_at"]), cutoff)
+            for e in snapshot
+        ]
+        self.assertEqual(len(rows), 8)  # Later reviewed records must not rewrite a Nov 2 backtest.
         for row in rows:
             total = sum(c["support"] for c in row["candidates"]) + row["undecided"] + row["nonvote"]
             self.assertLessEqual(abs(total - 100.0), 1.0, row)
