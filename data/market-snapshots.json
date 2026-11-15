@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "source": "Polymarket Gamma public read-only API",
-  "checked_at": "2026-11-14T22:23:05+00:00",
+  "checked_at": "2026-11-15T06:28:14+00:00",
   "status": "ok",
   "registry_count": 19,
   "events": [
@@ -11,32 +11,32 @@
       "event_id": "848407",
       "title": "Taichung Mayor Election Winner",
       "source_url": "https://polymarket.com/event/taichung-mayor-election-winner-20260813125857400",
-      "quote_as_of": "2026-11-14T22:20:11.327379Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 135975.968234,
-      "volume24h_usd": 2695.60072,
-      "liquidity_usd": 121626.15087,
+      "volume_usd": 137451.24721099998,
+      "volume24h_usd": 3581.6589190000004,
+      "liquidity_usd": 117352.10212,
       "outcomes": [
         {
           "name": "Johnny Chiang",
           "market_id": "3581388",
-          "probability": 0.775,
+          "probability": 0.785,
           "best_bid": 0.77,
-          "best_ask": 0.78,
-          "spread": 0.01,
-          "volume_usd": 71327.991695,
-          "liquidity_usd": 42617.8488
+          "best_ask": 0.8,
+          "spread": 0.03,
+          "volume_usd": 72299.046014,
+          "liquidity_usd": 44337.387
         },
         {
           "name": "Ho Hsin-chun",
           "market_id": "3581389",
-          "probability": 0.232,
-          "best_bid": 0.23,
-          "best_ask": 0.234,
-          "spread": 0.004,
-          "volume_usd": 61638.160038999995,
-          "liquidity_usd": 51781.87982
+          "probability": 0.211,
+          "best_bid": 0.204,
+          "best_ask": 0.218,
+          "spread": 0.014,
+          "volume_usd": 62142.384696999994,
+          "liquidity_usd": 49325.19502
         },
         {
           "name": "Yang Chiung-ying",
@@ -46,7 +46,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 3009.8165000000004,
-          "liquidity_usd": 27381.04177
+          "liquidity_usd": 27110.29015
         }
       ],
       "data_quality": "unverified_market_price",
@@ -58,12 +58,12 @@
       "event_id": "848341",
       "title": "Taipei Mayor Election Winner",
       "source_url": "https://polymarket.com/event/taipei-mayor-election-winner-20260813125857100",
-      "quote_as_of": "2026-11-14T22:18:10.369309Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:24:06.475029Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 5216260.07644,
-      "volume24h_usd": 138653.41594299997,
-      "liquidity_usd": 1121462.48467,
+      "volume_usd": 5241099.965484001,
+      "volume24h_usd": 134557.407875,
+      "liquidity_usd": 1297046.10378,
       "outcomes": [
         {
           "name": "Chiang Wan-an",
@@ -72,18 +72,18 @@
           "best_bid": 0.64,
           "best_ask": 0.65,
           "spread": 0.01,
-          "volume_usd": 2375432.639428,
-          "liquidity_usd": 366554.3315
+          "volume_usd": 2385491.924446,
+          "liquidity_usd": 416850.5645
         },
         {
           "name": "Puma Shen",
           "market_id": "3580933",
-          "probability": 0.3515,
-          "best_bid": 0.351,
-          "best_ask": 0.352,
+          "probability": 0.3495,
+          "best_bid": 0.349,
+          "best_ask": 0.35,
           "spread": 0.001,
-          "volume_usd": 2701786.2537390003,
-          "liquidity_usd": 369988.76415
+          "volume_usd": 2716566.857765001,
+          "liquidity_usd": 433943.4538
         },
         {
           "name": "Kuo Hsi",
@@ -93,7 +93,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 139041.18327299997,
-          "liquidity_usd": 457936.47268
+          "liquidity_usd": 445980.55787
         }
       ],
       "data_quality": "unverified_market_price",
@@ -105,12 +105,12 @@
       "event_id": "848481",
       "title": "Taitung County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/taitung-county-magistrate-election-winner-202608131357161300",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 24191.447089999998,
-      "volume24h_usd": 324.555956,
-      "liquidity_usd": 79194.33873,
+      "volume_usd": 24351.44709,
+      "volume24h_usd": 326.355956,
+      "liquidity_usd": 78016.98624,
       "outcomes": [
         {
           "name": "Wu Hsiu-hua",
@@ -119,18 +119,18 @@
           "best_bid": 0.88,
           "best_ask": 0.89,
           "spread": 0.01,
-          "volume_usd": 9980.450138000002,
-          "liquidity_usd": 30007.0801
+          "volume_usd": 9980.450138,
+          "liquidity_usd": 31153.57
         },
         {
           "name": "Chen Ying",
           "market_id": "3581985",
-          "probability": 0.1105,
+          "probability": 0.111,
           "best_bid": 0.11,
-          "best_ask": 0.111,
-          "spread": 0.001,
-          "volume_usd": 10671.961222,
-          "liquidity_usd": 36069.10976
+          "best_ask": 0.112,
+          "spread": 0.002,
+          "volume_usd": 10831.961222,
+          "liquidity_usd": 33992.37453
         },
         {
           "name": "Li Wu Ying-chih",
@@ -140,7 +140,7 @@
           "best_ask": 0.002,
           "spread": 0.001,
           "volume_usd": 3539.03573,
-          "liquidity_usd": 13119.04999
+          "liquidity_usd": 12871.75727
         }
       ],
       "data_quality": "unverified_market_price",
@@ -152,12 +152,12 @@
       "event_id": "848453",
       "title": "Chiayi City Mayor Election Winner",
       "source_url": "https://polymarket.com/event/chiayi-city-mayor-election-winner-202608131357161000",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 33945.569728999995,
-      "volume24h_usd": 865.360438,
-      "liquidity_usd": 83544.24461,
+      "volume_usd": 34209.569729,
+      "volume24h_usd": 387.730787,
+      "liquidity_usd": 80258.62757,
       "outcomes": [
         {
           "name": "Wang Mei-hui",
@@ -166,8 +166,8 @@
           "best_bid": 0.88,
           "best_ask": 0.89,
           "spread": 0.01,
-          "volume_usd": 19050.028170999998,
-          "liquidity_usd": 9153.4912
+          "volume_usd": 19094.028171,
+          "liquidity_usd": 10282.1674
         },
         {
           "name": "Chang Chi-kai",
@@ -176,8 +176,8 @@
           "best_bid": 0.11,
           "best_ask": 0.12,
           "spread": 0.01,
-          "volume_usd": 9483.674065000001,
-          "liquidity_usd": 20462.8643
+          "volume_usd": 9527.674065000001,
+          "liquidity_usd": 16710.2459
         },
         {
           "name": "Chen Chia-ping",
@@ -186,8 +186,8 @@
           "best_bid": 0.001,
           "best_ask": 0.009,
           "spread": 0.008,
-          "volume_usd": 1208.84101,
-          "liquidity_usd": 13178.26599
+          "volume_usd": 1252.84101,
+          "liquidity_usd": 13239.19566
         },
         {
           "name": "Weng Shou-liang",
@@ -196,8 +196,8 @@
           "best_bid": 0.001,
           "best_ask": 0.007,
           "spread": 0.006,
-          "volume_usd": 1627.6129999999998,
-          "liquidity_usd": 13038.04817
+          "volume_usd": 1671.6129999999998,
+          "liquidity_usd": 13457.92502
         },
         {
           "name": "Huang Hung-cheng",
@@ -206,8 +206,8 @@
           "best_bid": 0.001,
           "best_ask": 0.004,
           "spread": 0.003,
-          "volume_usd": 1428.783483,
-          "liquidity_usd": 13112.8336
+          "volume_usd": 1472.783483,
+          "liquidity_usd": 13205.13432
         },
         {
           "name": "Chen Kai-huang",
@@ -216,8 +216,8 @@
           "best_bid": 0.001,
           "best_ask": 0.003,
           "spread": 0.002,
-          "volume_usd": 1146.6299999999999,
-          "liquidity_usd": 13507.36575
+          "volume_usd": 1190.6299999999999,
+          "liquidity_usd": 13363.95927
         }
       ],
       "data_quality": "unverified_market_price",
@@ -229,32 +229,32 @@
       "event_id": "848449",
       "title": "Chiayi County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/chiayi-county-magistrate-election-winner-20260813135716900",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
       "volume_usd": 11834.468654,
       "volume24h_usd": 87.6,
-      "liquidity_usd": 21037.96669,
+      "liquidity_usd": 20343.82737,
       "outcomes": [
         {
           "name": "Tsai Yi-yu",
           "market_id": "3581822",
-          "probability": 0.9725,
+          "probability": 0.974,
           "best_bid": 0.964,
-          "best_ask": 0.981,
-          "spread": 0.017,
+          "best_ask": 0.984,
+          "spread": 0.02,
           "volume_usd": 5879.65511,
-          "liquidity_usd": 6117.9628
+          "liquidity_usd": 6118.36707
         },
         {
           "name": "Wu Pin-jui",
           "market_id": "3581823",
-          "probability": 0.0285,
+          "probability": 0.032,
           "best_bid": 0.02,
-          "best_ask": 0.037,
-          "spread": 0.017,
+          "best_ask": 0.044,
+          "spread": 0.024,
           "volume_usd": 4857.872742,
-          "liquidity_usd": 5010.15652
+          "liquidity_usd": 4428.77484
         },
         {
           "name": "Tsai Sung-yi",
@@ -264,7 +264,7 @@
           "best_ask": 0.002,
           "spread": 0.001,
           "volume_usd": 1096.940802,
-          "liquidity_usd": 9910.20337
+          "liquidity_usd": 9797.04146
         }
       ],
       "data_quality": "unverified_market_price",
@@ -276,12 +276,12 @@
       "event_id": "848410",
       "title": "Keelung Mayor Election Winner",
       "source_url": "https://polymarket.com/event/keelung-mayor-election-winner-20260813135716100",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 26787.976026,
-      "volume24h_usd": 1308.901243,
-      "liquidity_usd": 21097.7639,
+      "volume_usd": 27564.674598,
+      "volume24h_usd": 2057.753335,
+      "liquidity_usd": 30943.8947,
       "outcomes": [
         {
           "name": "Hsieh Kuo-liang",
@@ -290,18 +290,18 @@
           "best_bid": 0.66,
           "best_ask": 0.67,
           "spread": 0.01,
-          "volume_usd": 13262.773607,
-          "liquidity_usd": 10772.6071
+          "volume_usd": 14039.472179,
+          "liquidity_usd": 13122.8527
         },
         {
           "name": "Tung Tzu-wei",
           "market_id": "3581483",
-          "probability": 0.34,
-          "best_bid": 0.33,
+          "probability": 0.345,
+          "best_bid": 0.34,
           "best_ask": 0.35,
-          "spread": 0.02,
+          "spread": 0.01,
           "volume_usd": 13525.202419,
-          "liquidity_usd": 10389.1568
+          "liquidity_usd": 17821.042
         }
       ],
       "data_quality": "unverified_market_price",
@@ -313,32 +313,32 @@
       "event_id": "848417",
       "title": "Yilan County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/yilan-county-magistrate-election-winner-20260813135716200",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 20525.620941999998,
-      "volume24h_usd": 17.241376000000002,
-      "liquidity_usd": 29453.51152,
+      "volume_usd": 20541.240942,
+      "volume24h_usd": 32.861376,
+      "liquidity_usd": 26886.13236,
       "outcomes": [
         {
           "name": "Lin Kuo-chang",
           "market_id": "3581542",
-          "probability": 0.85,
-          "best_bid": 0.83,
+          "probability": 0.845,
+          "best_bid": 0.82,
           "best_ask": 0.87,
-          "spread": 0.04,
-          "volume_usd": 9998.529962999999,
-          "liquidity_usd": 5181.3842
+          "spread": 0.05,
+          "volume_usd": 10014.149963,
+          "liquidity_usd": 4775.3751
         },
         {
           "name": "Wu Tsung-hsien",
           "market_id": "3581541",
           "probability": 0.135,
-          "best_bid": 0.11,
-          "best_ask": 0.16,
-          "spread": 0.05,
+          "best_bid": 0.1,
+          "best_ask": 0.17,
+          "spread": 0.07,
           "volume_usd": 6982.020762999999,
-          "liquidity_usd": 5126.7768
+          "liquidity_usd": 4351.0626
         },
         {
           "name": "Chang Sheng-te",
@@ -348,7 +348,7 @@
           "best_ask": 0.009,
           "spread": 0.008,
           "volume_usd": 1487.2847160000001,
-          "liquidity_usd": 9721.04144
+          "liquidity_usd": 9447.14709
         },
         {
           "name": "Chen Wan-hui",
@@ -358,7 +358,7 @@
           "best_ask": 0.004,
           "spread": 0.001,
           "volume_usd": 2057.7855,
-          "liquidity_usd": 9432.90098
+          "liquidity_usd": 8596.36464
         }
       ],
       "data_quality": "unverified_market_price",
@@ -370,32 +370,32 @@
       "event_id": "848479",
       "title": "Pingtung County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/pingtung-county-magistrate-election-winner-202608131357161100",
-      "quote_as_of": "2026-11-14T22:20:11.327379Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:24:06.475029Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 13032.806815,
-      "volume24h_usd": 0,
-      "liquidity_usd": 13836.85782,
+      "volume_usd": 13092.456815000001,
+      "volume24h_usd": 59.65,
+      "liquidity_usd": 15002.5557,
       "outcomes": [
         {
           "name": "Chou Chun-mi",
           "market_id": "3581924",
-          "probability": 0.945,
+          "probability": 0.955,
           "best_bid": 0.94,
-          "best_ask": 0.95,
-          "spread": 0.01,
-          "volume_usd": 6850.165389,
-          "liquidity_usd": 4349.494
+          "best_ask": 0.97,
+          "spread": 0.03,
+          "volume_usd": 6885.245389,
+          "liquidity_usd": 4313.0864
         },
         {
           "name": "Su Ching-chuan",
           "market_id": "3581923",
-          "probability": 0.011,
-          "best_bid": 0.005,
-          "best_ask": 0.017,
-          "spread": 0.012,
-          "volume_usd": 6182.641426,
-          "liquidity_usd": 9487.23892
+          "probability": 0.0385,
+          "best_bid": 0.007,
+          "best_ask": 0.07,
+          "spread": 0.063,
+          "volume_usd": 6207.211426000002,
+          "liquidity_usd": 10689.15549
         }
       ],
       "data_quality": "unverified_market_price",
@@ -407,12 +407,12 @@
       "event_id": "848438",
       "title": "Changhua County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/changhua-county-magistrate-election-winner-20260813135716600",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:22:07.421531Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
       "volume_usd": 18794.046427,
       "volume24h_usd": 0,
-      "liquidity_usd": 30430.81679,
+      "liquidity_usd": 23966.04779,
       "outcomes": [
         {
           "name": "Chen Su-yueh",
@@ -422,7 +422,7 @@
           "best_ask": 0.92,
           "spread": 0.02,
           "volume_usd": 12021.389158000002,
-          "liquidity_usd": 2627.8439
+          "liquidity_usd": 2623.635
         },
         {
           "name": "Wei Ping-cheng",
@@ -432,7 +432,7 @@
           "best_ask": 0.1,
           "spread": 0.03,
           "volume_usd": 1847.9817429999996,
-          "liquidity_usd": 3024.3059
+          "liquidity_usd": 3157.2831
         },
         {
           "name": "Chiu Chien-fu",
@@ -442,7 +442,7 @@
           "best_ask": 0.011,
           "spread": 0.006,
           "volume_usd": 1192.642895,
-          "liquidity_usd": 6324.38429
+          "liquidity_usd": 848.52919
         },
         {
           "name": "Huang Hsiu-fang",
@@ -452,7 +452,7 @@
           "best_ask": 0.009,
           "spread": 0.007,
           "volume_usd": 1128.871253,
-          "liquidity_usd": 6281.56897
+          "liquidity_usd": 5847.25085
         },
         {
           "name": "Lin Shih-hsien",
@@ -462,7 +462,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1531.11,
-          "liquidity_usd": 6039.47906
+          "liquidity_usd": 5695.14631
         },
         {
           "name": "Hung Jung-chang",
@@ -472,7 +472,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1072.051378,
-          "liquidity_usd": 6133.23417
+          "liquidity_usd": 5794.20334
         }
       ],
       "data_quality": "unverified_market_price",
@@ -484,12 +484,12 @@
       "event_id": "848347",
       "title": "New Taipei Mayor Election Winner",
       "source_url": "https://polymarket.com/event/new-taipei-mayor-election-winner-20260813125857200",
-      "quote_as_of": "2026-11-14T22:20:11.327379Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 454552.643721,
-      "volume24h_usd": 24659.33654,
-      "liquidity_usd": 286002.95017,
+      "volume_usd": 461636.975371,
+      "volume24h_usd": 28889.181560999998,
+      "liquidity_usd": 274159.0393,
       "outcomes": [
         {
           "name": "Su Chiao-hui",
@@ -498,8 +498,8 @@
           "best_bid": 0.61,
           "best_ask": 0.62,
           "spread": 0.01,
-          "volume_usd": 222191.31428700002,
-          "liquidity_usd": 112399.5639
+          "volume_usd": 225211.903317,
+          "liquidity_usd": 112633.6664
         },
         {
           "name": "Lee Shu-chuan",
@@ -508,8 +508,8 @@
           "best_bid": 0.39,
           "best_ask": 0.4,
           "spread": 0.01,
-          "volume_usd": 230017.669434,
-          "liquidity_usd": 121434.0143
+          "volume_usd": 234081.412054,
+          "liquidity_usd": 119459.6218
         },
         {
           "name": "Huang Kuo-chang",
@@ -519,7 +519,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 2343.66,
-          "liquidity_usd": 50292.19697
+          "liquidity_usd": 47730.6223
         }
       ],
       "data_quality": "unverified_market_price",
@@ -531,32 +531,32 @@
       "event_id": "848435",
       "title": "Hsinchu City Mayor Election Winner",
       "source_url": "https://polymarket.com/event/hsinchu-city-mayor-election-winner-20260813135716400",
-      "quote_as_of": "2026-11-14T22:18:10.369309Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 67392.438838,
-      "volume24h_usd": 650.579474,
-      "liquidity_usd": 107456.0299,
+      "volume_usd": 69048.294212,
+      "volume24h_usd": 2097.363152,
+      "liquidity_usd": 114676.58575,
       "outcomes": [
         {
           "name": "Ann Kao",
           "market_id": "3581626",
-          "probability": 0.875,
+          "probability": 0.88,
           "best_bid": 0.87,
-          "best_ask": 0.88,
-          "spread": 0.01,
-          "volume_usd": 50655.12069,
-          "liquidity_usd": 39108.045
+          "best_ask": 0.89,
+          "spread": 0.02,
+          "volume_usd": 51545.900689999995,
+          "liquidity_usd": 45940.3476
         },
         {
           "name": "Chuang Ching-cheng",
           "market_id": "3581627",
-          "probability": 0.1235,
-          "best_bid": 0.12,
-          "best_ask": 0.127,
-          "spread": 0.007,
-          "volume_usd": 13898.461480999998,
-          "liquidity_usd": 47956.0495
+          "probability": 0.1295,
+          "best_bid": 0.122,
+          "best_ask": 0.137,
+          "spread": 0.015,
+          "volume_usd": 14663.536855,
+          "liquidity_usd": 47001.7438
         },
         {
           "name": "Ho Chih-yung",
@@ -566,7 +566,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 2838.856667,
-          "liquidity_usd": 20439.6394
+          "liquidity_usd": 20718.19535
         }
       ],
       "data_quality": "unverified_market_price",
@@ -578,32 +578,32 @@
       "event_id": "848418",
       "title": "Hsinchu County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/hsinchu-county-magistrate-election-winner-20260813135716300",
-      "quote_as_of": "2026-11-14T22:18:10.369309Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 51926.408461000006,
-      "volume24h_usd": 1347.1556890000002,
-      "liquidity_usd": 125872.95487,
+      "volume_usd": 52401.69068400001,
+      "volume24h_usd": 883.844133,
+      "liquidity_usd": 126434.43801,
       "outcomes": [
         {
           "name": "Cheng Chao-fang",
           "market_id": "3581573",
-          "probability": 0.72,
-          "best_bid": 0.71,
+          "probability": 0.715,
+          "best_bid": 0.7,
           "best_ask": 0.73,
-          "spread": 0.02,
-          "volume_usd": 23903.280321000002,
-          "liquidity_usd": 47214.9039
+          "spread": 0.03,
+          "volume_usd": 24248.042544000007,
+          "liquidity_usd": 50165.7557
         },
         {
           "name": "Hsu Hsin-ying",
           "market_id": "3581572",
-          "probability": 0.275,
-          "best_bid": 0.27,
-          "best_ask": 0.28,
-          "spread": 0.01,
-          "volume_usd": 25859.788140000004,
-          "liquidity_usd": 47150.4092
+          "probability": 0.29,
+          "best_bid": 0.28,
+          "best_ask": 0.3,
+          "spread": 0.02,
+          "volume_usd": 25990.30814,
+          "liquidity_usd": 49727.7854
         },
         {
           "name": "Lin Szu-ming",
@@ -613,7 +613,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1268.54,
-          "liquidity_usd": 14512.90765
+          "liquidity_usd": 13290.11076
         },
         {
           "name": "Chen Chien-hsien",
@@ -623,7 +623,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 894.8,
-          "liquidity_usd": 17042.23812
+          "liquidity_usd": 13281.28975
         }
       ],
       "data_quality": "unverified_market_price",
@@ -635,12 +635,12 @@
       "event_id": "848370",
       "title": "Taoyuan Mayor Election Winner",
       "source_url": "https://polymarket.com/event/taoyuan-mayor-election-winner-20260813125857300",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 107803.743485,
-      "volume24h_usd": 2684.863209,
-      "liquidity_usd": 111981.23302,
+      "volume_usd": 109676.923485,
+      "volume24h_usd": 4408.413209,
+      "liquidity_usd": 108774.86168,
       "outcomes": [
         {
           "name": "Chang San-cheng",
@@ -649,18 +649,18 @@
           "best_bid": 0.92,
           "best_ask": 0.93,
           "spread": 0.01,
-          "volume_usd": 56393.032169000006,
-          "liquidity_usd": 27811.6384
+          "volume_usd": 56432.412169,
+          "liquidity_usd": 29696.4726
         },
         {
           "name": "Huang Shih-chieh",
           "market_id": "3581102",
-          "probability": 0.0775,
-          "best_bid": 0.074,
+          "probability": 0.0805,
+          "best_bid": 0.08,
           "best_ask": 0.081,
-          "spread": 0.007,
-          "volume_usd": 50135.024316,
-          "liquidity_usd": 66412.67457
+          "spread": 0.001,
+          "volume_usd": 51968.824316,
+          "liquidity_usd": 67057.57251
         },
         {
           "name": "Perng Shaw-jiin",
@@ -670,7 +670,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1275.6870000000001,
-          "liquidity_usd": 16775.47581
+          "liquidity_usd": 14302.87356
         }
       ],
       "data_quality": "unverified_market_price",
@@ -682,42 +682,42 @@
       "event_id": "848490",
       "title": "Penghu County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/penghu-county-magistrate-election-winner-202608131357161400",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 17380.267473,
-      "volume24h_usd": 0,
-      "liquidity_usd": 28422.15478,
+      "volume_usd": 17729.236045,
+      "volume24h_usd": 348.968572,
+      "liquidity_usd": 62332.18717,
       "outcomes": [
         {
           "name": "Chen Chen-chung",
           "market_id": "3582022",
-          "probability": 0.685,
-          "best_bid": 0.68,
+          "probability": 0.67,
+          "best_bid": 0.65,
           "best_ask": 0.69,
-          "spread": 0.01,
-          "volume_usd": 7104.254307000001,
-          "liquidity_usd": 4229.0784
+          "spread": 0.04,
+          "volume_usd": 7444.362879,
+          "liquidity_usd": 44606.8934
         },
         {
           "name": "Wu Shu-chin",
           "market_id": "3582023",
-          "probability": 0.255,
+          "probability": 0.29,
           "best_bid": 0.25,
-          "best_ask": 0.26,
-          "spread": 0.01,
-          "volume_usd": 6037.500424999999,
-          "liquidity_usd": 3124.4523
+          "best_ask": 0.33,
+          "spread": 0.08,
+          "volume_usd": 6046.360425,
+          "liquidity_usd": 2504.8925
         },
         {
           "name": "Yeh Chu-lin",
           "market_id": "3582024",
-          "probability": 0.009,
-          "best_bid": 0.004,
+          "probability": 0.0095,
+          "best_bid": 0.005,
           "best_ask": 0.014,
-          "spread": 0.01,
+          "spread": 0.009,
           "volume_usd": 896.5312000000001,
-          "liquidity_usd": 5807.81657
+          "liquidity_usd": 3893.73387
         },
         {
           "name": "Chou Ni-an",
@@ -727,7 +727,7 @@
           "best_ask": 0.01,
           "spread": 0.006,
           "volume_usd": 1120.6874,
-          "liquidity_usd": 5705.04147
+          "liquidity_usd": 3799.62648
         },
         {
           "name": "Chen Chin-chuan",
@@ -737,7 +737,7 @@
           "best_ask": 0.01,
           "spread": 0.009,
           "volume_usd": 755.553,
-          "liquidity_usd": 4110.20911
+          "liquidity_usd": 3725.37684
         },
         {
           "name": "Hsu Chih-fu",
@@ -747,7 +747,7 @@
           "best_ask": 0.005,
           "spread": 0.004,
           "volume_usd": 1465.741141,
-          "liquidity_usd": 5425.30191
+          "liquidity_usd": 3801.81405
         }
       ],
       "data_quality": "unverified_market_price",
@@ -759,52 +759,52 @@
       "event_id": "848480",
       "title": "Hualien County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/hualien-county-magistrate-election-winner-202608131357161200",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 14934.736329000001,
-      "volume24h_usd": 317.22999999999996,
-      "liquidity_usd": 47651.57854,
+      "volume_usd": 16153.586329,
+      "volume24h_usd": 1328.85,
+      "liquidity_usd": 44251.39838,
       "outcomes": [
         {
           "name": "Yu Shu-chen",
           "market_id": "3581952",
-          "probability": 0.905,
-          "best_bid": 0.89,
-          "best_ask": 0.92,
-          "spread": 0.03,
-          "volume_usd": 6906.978955999999,
-          "liquidity_usd": 6307.4977
-        },
-        {
-          "name": "Chang Chun",
-          "market_id": "3581954",
-          "probability": 0.0435,
-          "best_bid": 0.009,
-          "best_ask": 0.078,
-          "spread": 0.069,
-          "volume_usd": 2547.605923,
-          "liquidity_usd": 5122.5397
+          "probability": 0.875,
+          "best_bid": 0.87,
+          "best_ask": 0.88,
+          "spread": 0.01,
+          "volume_usd": 8125.828956,
+          "liquidity_usd": 7616.8236
         },
         {
           "name": "Wei Chia-hsien",
           "market_id": "3581953",
-          "probability": 0.04,
-          "best_bid": 0.02,
+          "probability": 0.05,
+          "best_bid": 0.04,
           "best_ask": 0.06,
-          "spread": 0.04,
+          "spread": 0.02,
           "volume_usd": 2246.120173,
-          "liquidity_usd": 13428.1184
+          "liquidity_usd": 12292.4555
+        },
+        {
+          "name": "Chang Chun",
+          "market_id": "3581954",
+          "probability": 0.05,
+          "best_bid": 0.012,
+          "best_ask": 0.088,
+          "spread": 0.076,
+          "volume_usd": 2547.605923,
+          "liquidity_usd": 4318.83775
         },
         {
           "name": "Yeh Yao-hui",
           "market_id": "3581956",
-          "probability": 0.012,
+          "probability": 0.0115,
           "best_bid": 0.004,
-          "best_ask": 0.02,
-          "spread": 0.016,
+          "best_ask": 0.019,
+          "spread": 0.015,
           "volume_usd": 2014.276777,
-          "liquidity_usd": 10224.08065
+          "liquidity_usd": 9540.20516
         },
         {
           "name": "Lo Pei-chin",
@@ -814,7 +814,7 @@
           "best_ask": 0.009,
           "spread": null,
           "volume_usd": 1219.7545,
-          "liquidity_usd": 12509.38592
+          "liquidity_usd": 9177.74922
         }
       ],
       "data_quality": "unverified_market_price",
@@ -826,32 +826,32 @@
       "event_id": "848436",
       "title": "Miaoli County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/miaoli-county-magistrate-election-winner-20260813135716500",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
       "volume_usd": 37398.894909,
-      "volume24h_usd": 33.31,
-      "liquidity_usd": 23012.17643,
+      "volume24h_usd": 0,
+      "liquidity_usd": 22535.33637,
       "outcomes": [
         {
           "name": "Chung Tung-chin",
           "market_id": "3581657",
-          "probability": 0.982,
+          "probability": 0.9815,
           "best_bid": 0.969,
-          "best_ask": 0.995,
-          "spread": 0.026,
+          "best_ask": 0.994,
+          "spread": 0.025,
           "volume_usd": 34080.125033,
-          "liquidity_usd": 5344.17417
+          "liquidity_usd": 5343.74617
         },
         {
           "name": "Chen Pin-an",
           "market_id": "3581658",
-          "probability": 0.017,
-          "best_bid": 0.004,
+          "probability": 0.018,
+          "best_bid": 0.006,
           "best_ask": 0.03,
-          "spread": 0.026,
+          "spread": 0.024,
           "volume_usd": 3318.769876,
-          "liquidity_usd": 17668.00226
+          "liquidity_usd": 17191.5902
         }
       ],
       "data_quality": "unverified_market_price",
@@ -863,32 +863,32 @@
       "event_id": "848492",
       "title": "Lienchiang County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/lienchiang-county-magistrate-election-winner-202608131357161600",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 15171.984378,
-      "volume24h_usd": 455.567013,
-      "liquidity_usd": 21147.18537,
+      "volume_usd": 15171.984378000003,
+      "volume24h_usd": 0,
+      "liquidity_usd": 20904.97683,
       "outcomes": [
         {
           "name": "Wang Chung-ming",
           "market_id": "3582090",
-          "probability": 0.805,
-          "best_bid": 0.78,
-          "best_ask": 0.83,
-          "spread": 0.05,
-          "volume_usd": 10548.551377000002,
-          "liquidity_usd": 4433.1968
+          "probability": 0.79,
+          "best_bid": 0.77,
+          "best_ask": 0.81,
+          "spread": 0.04,
+          "volume_usd": 10548.551377000003,
+          "liquidity_usd": 4528.6464
         },
         {
           "name": "Tsao Erh-yuan",
           "market_id": "3582092",
-          "probability": 0.191,
-          "best_bid": 0.158,
-          "best_ask": 0.224,
-          "spread": 0.066,
-          "volume_usd": 3611.9630009999996,
-          "liquidity_usd": 10670.86811
+          "probability": 0.1995,
+          "best_bid": 0.165,
+          "best_ask": 0.234,
+          "spread": 0.069,
+          "volume_usd": 3611.963000999999,
+          "liquidity_usd": 10153.71386
         },
         {
           "name": "Tsao Erh-chang",
@@ -898,7 +898,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1011.47,
-          "liquidity_usd": 5773.59825
+          "liquidity_usd": 6316.26058
         }
       ],
       "data_quality": "unverified_market_price",
@@ -910,22 +910,22 @@
       "event_id": "848491",
       "title": "Kinmen County Magistrate Election Winner",
       "source_url": "https://polymarket.com/event/kinmen-county-magistrate-election-winner-202608131357161500",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
       "volume_usd": 13965.684084999999,
       "volume24h_usd": 113.38,
-      "liquidity_usd": 35487.29011,
+      "liquidity_usd": 34504.93965,
       "outcomes": [
         {
           "name": "Chen Yu-jen",
           "market_id": "3582055",
-          "probability": 0.959,
+          "probability": 0.962,
           "best_bid": 0.943,
-          "best_ask": 0.975,
-          "spread": 0.032,
+          "best_ask": 0.981,
+          "spread": 0.038,
           "volume_usd": 11511.199026,
-          "liquidity_usd": 5952.34413
+          "liquidity_usd": 5962.72154
         },
         {
           "name": "Liang Wen-tao",
@@ -935,7 +935,7 @@
           "best_ask": 0.053,
           "spread": 0.048,
           "volume_usd": 914.923386,
-          "liquidity_usd": 9960.60446
+          "liquidity_usd": 9646.01372
         },
         {
           "name": "Li Wen-liang",
@@ -945,7 +945,7 @@
           "best_ask": 0.011,
           "spread": 0.006,
           "volume_usd": 778.8247849999999,
-          "liquidity_usd": 9979.45199
+          "liquidity_usd": 9414.73133
         },
         {
           "name": "Yang Cheng-wu",
@@ -955,7 +955,7 @@
           "best_ask": 0.006,
           "spread": 0.005,
           "volume_usd": 760.7368879999999,
-          "liquidity_usd": 9595.20964
+          "liquidity_usd": 9481.80106
         }
       ],
       "data_quality": "unverified_market_price",
@@ -967,32 +967,32 @@
       "event_id": "848409",
       "title": "Kaohsiung Mayor Election Winner",
       "source_url": "https://polymarket.com/event/kaohsiung-mayor-election-winner-20260813125857600",
-      "quote_as_of": "2026-11-14T22:22:10.237708Z",
-      "retrieved_at": "2026-11-14T22:23:05+00:00",
+      "quote_as_of": "2026-11-15T06:28:06.332473Z",
+      "retrieved_at": "2026-11-15T06:28:14+00:00",
       "stale": false,
-      "volume_usd": 232807.381176,
-      "volume24h_usd": 8373.594759,
-      "liquidity_usd": 237770.197,
+      "volume_usd": 237062.72692499997,
+      "volume24h_usd": 9877.272147,
+      "liquidity_usd": 249799.23879,
       "outcomes": [
         {
           "name": "Lai Jui-lung",
           "market_id": "3581450",
-          "probability": 0.855,
-          "best_bid": 0.85,
+          "probability": 0.85,
+          "best_bid": 0.84,
           "best_ask": 0.86,
-          "spread": 0.01,
-          "volume_usd": 106322.309661,
-          "liquidity_usd": 35081.5362
+          "spread": 0.02,
+          "volume_usd": 107365.78216099998,
+          "liquidity_usd": 48197.3126
         },
         {
           "name": "Ko Chih-en",
           "market_id": "3581449",
-          "probability": 0.152,
+          "probability": 0.155,
           "best_bid": 0.15,
-          "best_ask": 0.154,
-          "spread": 0.004,
-          "volume_usd": 121228.778515,
-          "liquidity_usd": 86957.76391
+          "best_ask": 0.16,
+          "spread": 0.01,
+          "volume_usd": 124440.651764,
+          "liquidity_usd": 87719.64207
         },
         {
           "name": "Lin Tai-hua",
@@ -1002,7 +1002,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 663.43,
-          "liquidity_usd": 29409.5977
+          "liquidity_usd": 25917.03165
         },
         {
           "name": "Chiu Yi-ying",
@@ -1012,7 +1012,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 645.2,
-          "liquidity_usd": 29720.89704
+          "liquidity_usd": 25951.97636
         },
         {
           "name": "Hsu Chih-chieh",
@@ -1022,7 +1022,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 2405.38,
-          "liquidity_usd": 29502.37748
+          "liquidity_usd": 28732.61259
         },
         {
           "name": "Chang Ching",
@@ -1032,7 +1032,7 @@
           "best_ask": 0.001,
           "spread": null,
           "volume_usd": 1542.2830000000001,
-          "liquidity_usd": 29090.46501
+          "liquidity_usd": 27956.75602
         }
       ],
       "data_quality": "unverified_market_price",
@@ -40231,6 +40231,574 @@
       "county": "宜蘭縣",
       "name": "Chang Sheng-te",
       "checked_at": "2026-11-14T22:23:05+00:00",
+      "probability": 0.005
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581723",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Wei Ping-cheng",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.085
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581724",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Chen Su-yueh",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.91
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581725",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Chiu Chien-fu",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.008
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581726",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Lin Shih-hsien",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581727",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Huang Hsiu-fang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0055
+    },
+    {
+      "key": "changhua-county-magistrate-election-winner-20260813135716600|3581731",
+      "slug": "changhua-county-magistrate-election-winner-20260813135716600",
+      "county": "彰化縣",
+      "name": "Hung Jung-chang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581858",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Wang Mei-hui",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.885
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581859",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Chang Chi-kai",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.115
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581861",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Huang Hung-cheng",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0025
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581862",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Chen Kai-huang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.002
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581863",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Weng Shou-liang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.004
+    },
+    {
+      "key": "chiayi-city-mayor-election-winner-202608131357161000|3581864",
+      "slug": "chiayi-city-mayor-election-winner-202608131357161000",
+      "county": "嘉義市",
+      "name": "Chen Chia-ping",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.005
+    },
+    {
+      "key": "chiayi-county-magistrate-election-winner-20260813135716900|3581822",
+      "slug": "chiayi-county-magistrate-election-winner-20260813135716900",
+      "county": "嘉義縣",
+      "name": "Tsai Yi-yu",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.974
+    },
+    {
+      "key": "chiayi-county-magistrate-election-winner-20260813135716900|3581823",
+      "slug": "chiayi-county-magistrate-election-winner-20260813135716900",
+      "county": "嘉義縣",
+      "name": "Wu Pin-jui",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.032
+    },
+    {
+      "key": "chiayi-county-magistrate-election-winner-20260813135716900|3581824",
+      "slug": "chiayi-county-magistrate-election-winner-20260813135716900",
+      "county": "嘉義縣",
+      "name": "Tsai Sung-yi",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0015
+    },
+    {
+      "key": "hsinchu-city-mayor-election-winner-20260813135716400|3581626",
+      "slug": "hsinchu-city-mayor-election-winner-20260813135716400",
+      "county": "新竹市",
+      "name": "Ann Kao",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.88
+    },
+    {
+      "key": "hsinchu-city-mayor-election-winner-20260813135716400|3581627",
+      "slug": "hsinchu-city-mayor-election-winner-20260813135716400",
+      "county": "新竹市",
+      "name": "Chuang Ching-cheng",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.1295
+    },
+    {
+      "key": "hsinchu-city-mayor-election-winner-20260813135716400|3581628",
+      "slug": "hsinchu-city-mayor-election-winner-20260813135716400",
+      "county": "新竹市",
+      "name": "Ho Chih-yung",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "hsinchu-county-magistrate-election-winner-20260813135716300|3581572",
+      "slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
+      "county": "新竹縣",
+      "name": "Hsu Hsin-ying",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.29
+    },
+    {
+      "key": "hsinchu-county-magistrate-election-winner-20260813135716300|3581573",
+      "slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
+      "county": "新竹縣",
+      "name": "Cheng Chao-fang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.715
+    },
+    {
+      "key": "hsinchu-county-magistrate-election-winner-20260813135716300|3581574",
+      "slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
+      "county": "新竹縣",
+      "name": "Lin Szu-ming",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "hsinchu-county-magistrate-election-winner-20260813135716300|3581575",
+      "slug": "hsinchu-county-magistrate-election-winner-20260813135716300",
+      "county": "新竹縣",
+      "name": "Chen Chien-hsien",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "hualien-county-magistrate-election-winner-202608131357161200|3581952",
+      "slug": "hualien-county-magistrate-election-winner-202608131357161200",
+      "county": "花蓮縣",
+      "name": "Yu Shu-chen",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.875
+    },
+    {
+      "key": "hualien-county-magistrate-election-winner-202608131357161200|3581953",
+      "slug": "hualien-county-magistrate-election-winner-202608131357161200",
+      "county": "花蓮縣",
+      "name": "Wei Chia-hsien",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.05
+    },
+    {
+      "key": "hualien-county-magistrate-election-winner-202608131357161200|3581954",
+      "slug": "hualien-county-magistrate-election-winner-202608131357161200",
+      "county": "花蓮縣",
+      "name": "Chang Chun",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.05
+    },
+    {
+      "key": "hualien-county-magistrate-election-winner-202608131357161200|3581955",
+      "slug": "hualien-county-magistrate-election-winner-202608131357161200",
+      "county": "花蓮縣",
+      "name": "Lo Pei-chin",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0045
+    },
+    {
+      "key": "hualien-county-magistrate-election-winner-202608131357161200|3581956",
+      "slug": "hualien-county-magistrate-election-winner-202608131357161200",
+      "county": "花蓮縣",
+      "name": "Yeh Yao-hui",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0115
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581449",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Ko Chih-en",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.155
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581450",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Lai Jui-lung",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.85
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581451",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Lin Tai-hua",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581452",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Chiu Yi-ying",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581453",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Hsu Chih-chieh",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "kaohsiung-mayor-election-winner-20260813125857600|3581454",
+      "slug": "kaohsiung-mayor-election-winner-20260813125857600",
+      "county": "高雄市",
+      "name": "Chang Ching",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "keelung-mayor-election-winner-20260813135716100|3581482",
+      "slug": "keelung-mayor-election-winner-20260813135716100",
+      "county": "基隆市",
+      "name": "Hsieh Kuo-liang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.665
+    },
+    {
+      "key": "keelung-mayor-election-winner-20260813135716100|3581483",
+      "slug": "keelung-mayor-election-winner-20260813135716100",
+      "county": "基隆市",
+      "name": "Tung Tzu-wei",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.345
+    },
+    {
+      "key": "kinmen-county-magistrate-election-winner-202608131357161500|3582055",
+      "slug": "kinmen-county-magistrate-election-winner-202608131357161500",
+      "county": "金門縣",
+      "name": "Chen Yu-jen",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.962
+    },
+    {
+      "key": "kinmen-county-magistrate-election-winner-202608131357161500|3582056",
+      "slug": "kinmen-county-magistrate-election-winner-202608131357161500",
+      "county": "金門縣",
+      "name": "Yang Cheng-wu",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0035
+    },
+    {
+      "key": "kinmen-county-magistrate-election-winner-202608131357161500|3582057",
+      "slug": "kinmen-county-magistrate-election-winner-202608131357161500",
+      "county": "金門縣",
+      "name": "Li Wen-liang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.008
+    },
+    {
+      "key": "kinmen-county-magistrate-election-winner-202608131357161500|3582058",
+      "slug": "kinmen-county-magistrate-election-winner-202608131357161500",
+      "county": "金門縣",
+      "name": "Liang Wen-tao",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.029
+    },
+    {
+      "key": "lienchiang-county-magistrate-election-winner-202608131357161600|3582090",
+      "slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
+      "county": "連江縣",
+      "name": "Wang Chung-ming",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.79
+    },
+    {
+      "key": "lienchiang-county-magistrate-election-winner-202608131357161600|3582091",
+      "slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
+      "county": "連江縣",
+      "name": "Tsao Erh-chang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "lienchiang-county-magistrate-election-winner-202608131357161600|3582092",
+      "slug": "lienchiang-county-magistrate-election-winner-202608131357161600",
+      "county": "連江縣",
+      "name": "Tsao Erh-yuan",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.1995
+    },
+    {
+      "key": "miaoli-county-magistrate-election-winner-20260813135716500|3581657",
+      "slug": "miaoli-county-magistrate-election-winner-20260813135716500",
+      "county": "苗栗縣",
+      "name": "Chung Tung-chin",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.9815
+    },
+    {
+      "key": "miaoli-county-magistrate-election-winner-20260813135716500|3581658",
+      "slug": "miaoli-county-magistrate-election-winner-20260813135716500",
+      "county": "苗栗縣",
+      "name": "Chen Pin-an",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.018
+    },
+    {
+      "key": "new-taipei-mayor-election-winner-20260813125857200|3580994",
+      "slug": "new-taipei-mayor-election-winner-20260813125857200",
+      "county": "新北市",
+      "name": "Lee Shu-chuan",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.395
+    },
+    {
+      "key": "new-taipei-mayor-election-winner-20260813125857200|3580995",
+      "slug": "new-taipei-mayor-election-winner-20260813125857200",
+      "county": "新北市",
+      "name": "Su Chiao-hui",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.615
+    },
+    {
+      "key": "new-taipei-mayor-election-winner-20260813125857200|3580996",
+      "slug": "new-taipei-mayor-election-winner-20260813125857200",
+      "county": "新北市",
+      "name": "Huang Kuo-chang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582022",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Chen Chen-chung",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.67
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582023",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Wu Shu-chin",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.29
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582024",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Yeh Chu-lin",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0095
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582025",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Hsu Chih-fu",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.003
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582026",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Chen Chin-chuan",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0055
+    },
+    {
+      "key": "penghu-county-magistrate-election-winner-202608131357161400|3582027",
+      "slug": "penghu-county-magistrate-election-winner-202608131357161400",
+      "county": "澎湖縣",
+      "name": "Chou Ni-an",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.007
+    },
+    {
+      "key": "pingtung-county-magistrate-election-winner-202608131357161100|3581923",
+      "slug": "pingtung-county-magistrate-election-winner-202608131357161100",
+      "county": "屏東縣",
+      "name": "Su Ching-chuan",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0385
+    },
+    {
+      "key": "pingtung-county-magistrate-election-winner-202608131357161100|3581924",
+      "slug": "pingtung-county-magistrate-election-winner-202608131357161100",
+      "county": "屏東縣",
+      "name": "Chou Chun-mi",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.955
+    },
+    {
+      "key": "taichung-mayor-election-winner-20260813125857400|3581388",
+      "slug": "taichung-mayor-election-winner-20260813125857400",
+      "county": "台中市",
+      "name": "Johnny Chiang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.785
+    },
+    {
+      "key": "taichung-mayor-election-winner-20260813125857400|3581389",
+      "slug": "taichung-mayor-election-winner-20260813125857400",
+      "county": "台中市",
+      "name": "Ho Hsin-chun",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.211
+    },
+    {
+      "key": "taichung-mayor-election-winner-20260813125857400|3581390",
+      "slug": "taichung-mayor-election-winner-20260813125857400",
+      "county": "台中市",
+      "name": "Yang Chiung-ying",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "taipei-mayor-election-winner-20260813125857100|3580932",
+      "slug": "taipei-mayor-election-winner-20260813125857100",
+      "county": "台北市",
+      "name": "Chiang Wan-an",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.645
+    },
+    {
+      "key": "taipei-mayor-election-winner-20260813125857100|3580933",
+      "slug": "taipei-mayor-election-winner-20260813125857100",
+      "county": "台北市",
+      "name": "Puma Shen",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.3495
+    },
+    {
+      "key": "taipei-mayor-election-winner-20260813125857100|3580934",
+      "slug": "taipei-mayor-election-winner-20260813125857100",
+      "county": "台北市",
+      "name": "Kuo Hsi",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "taitung-county-magistrate-election-winner-202608131357161300|3581984",
+      "slug": "taitung-county-magistrate-election-winner-202608131357161300",
+      "county": "台東縣",
+      "name": "Wu Hsiu-hua",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.885
+    },
+    {
+      "key": "taitung-county-magistrate-election-winner-202608131357161300|3581985",
+      "slug": "taitung-county-magistrate-election-winner-202608131357161300",
+      "county": "台東縣",
+      "name": "Chen Ying",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.111
+    },
+    {
+      "key": "taitung-county-magistrate-election-winner-202608131357161300|3581986",
+      "slug": "taitung-county-magistrate-election-winner-202608131357161300",
+      "county": "台東縣",
+      "name": "Li Wu Ying-chih",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0015
+    },
+    {
+      "key": "taoyuan-mayor-election-winner-20260813125857300|3581101",
+      "slug": "taoyuan-mayor-election-winner-20260813125857300",
+      "county": "桃園市",
+      "name": "Chang San-cheng",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.925
+    },
+    {
+      "key": "taoyuan-mayor-election-winner-20260813125857300|3581102",
+      "slug": "taoyuan-mayor-election-winner-20260813125857300",
+      "county": "桃園市",
+      "name": "Huang Shih-chieh",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0805
+    },
+    {
+      "key": "taoyuan-mayor-election-winner-20260813125857300|3581103",
+      "slug": "taoyuan-mayor-election-winner-20260813125857300",
+      "county": "桃園市",
+      "name": "Perng Shaw-jiin",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0005
+    },
+    {
+      "key": "yilan-county-magistrate-election-winner-20260813135716200|3581541",
+      "slug": "yilan-county-magistrate-election-winner-20260813135716200",
+      "county": "宜蘭縣",
+      "name": "Wu Tsung-hsien",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.135
+    },
+    {
+      "key": "yilan-county-magistrate-election-winner-20260813135716200|3581542",
+      "slug": "yilan-county-magistrate-election-winner-20260813135716200",
+      "county": "宜蘭縣",
+      "name": "Lin Kuo-chang",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.845
+    },
+    {
+      "key": "yilan-county-magistrate-election-winner-20260813135716200|3581543",
+      "slug": "yilan-county-magistrate-election-winner-20260813135716200",
+      "county": "宜蘭縣",
+      "name": "Chen Wan-hui",
+      "checked_at": "2026-11-15T06:28:14+00:00",
+      "probability": 0.0035
+    },
+    {
+      "key": "yilan-county-magistrate-election-winner-20260813135716200|3581544",
+      "slug": "yilan-county-magistrate-election-winner-20260813135716200",
+      "county": "宜蘭縣",
+      "name": "Chang Sheng-te",
+      "checked_at": "2026-11-15T06:28:14+00:00",
       "probability": 0.005
     }
   ],
