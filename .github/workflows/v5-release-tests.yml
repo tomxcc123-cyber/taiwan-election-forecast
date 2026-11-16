@@ -33,6 +33,9 @@ on:
       - 'scripts/audit_v5_public_beta_release.py'
       - 'scripts/build.py'
       - 'site/index.html'
+      - 'site/editorial-gis-2026.css'
+      - 'site/editorial-quick-jump.mjs'
+      - 'tests/editorial-quick-jump.mjs'
       - 'site/candidate-app.mjs'
       - 'site/turnout-ui.mjs'
       - 'site/turnout-association-ui.mjs'
@@ -135,6 +138,7 @@ jobs:
           node tests/evidence-ui.mjs
           node tests/scenario-studio.mjs
           node tests/source-v52-ui.mjs
+          node tests/editorial-quick-jump.mjs
           node tests/governance-v56-ui.mjs
       - name: Install GIS browser runtime
         run: |
@@ -155,6 +159,9 @@ jobs:
         run: |
           test -f dist/v5.0-public-beta.1.json
           test -f dist/MODEL_CARD_V5_PUBLIC_BETA.md
+          test -f dist/editorial-gis-2026.css
+          test -f dist/editorial-quick-jump.mjs
+          grep -q 'id="quickPalette"' dist/index.html
           test -f dist/governance-v56.mjs
           test -f dist/governance-v56.css
           grep -q 'HB-TLEF v5.0 Public Beta 1' dist/index.html
