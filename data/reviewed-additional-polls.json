@@ -500,6 +500,382 @@
       "reviewed_at": "2026-11-05T09:00:00+00:00",
       "commissioning_type": "external_commissioned",
       "commissioner_id": "xinmin-association"
+    },
+    {
+      "title": "TVBS 2026台北市長封關民調；有投票意願者（11月14—15日）",
+      "county": "台北市",
+      "field_start": "2026-11-14",
+      "date": "2026-11-15",
+      "published_at": "2026-11-16",
+      "sample_n": 1331,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "method": "市話673份＋手機658份，雙底冊訪員電話調查；依性別、年齡、行政區、教育程度加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "台北市市話後四碼隨機抽樣；手機採2019—2026北市訪問累積手機樣本，並非新RDD手機抽樣",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 2.7,
+      "confidence_level": 95,
+      "funding": "TVBS",
+      "pollster_id": "tvbs",
+      "pollster": "TVBS 民意調查中心",
+      "publisher": "TVBS",
+      "source": "TVBS 民意調查中心",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        46,
+        44
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 10,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1555/1794815742_1511141_________________________________.pdf",
+      "verification_urls": [
+        "https://www.tvbs.com.tw/poll-center",
+        "https://news.tvbs.com.tw/politics/4051318"
+      ],
+      "sample_note": "原始TVBS PDF首頁及第二頁。46／44／10是「有投票意願」者的子樣本支持度，1,331份為全卷有效樣本；該支持度子樣本未單獨公布確切n，模型用總n會高估有效樣本、因此保留一般設計效應及TVBS專用額外不確定性。±2.7pp是全體問卷名目抽樣誤差。TVBS AI推估51:49及投票率71%不是受訪者實測支持度，不入模。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "in_house"
+    },
+    {
+      "title": "ETtoday 2026台北市長封關民調（11月13—15日）",
+      "county": "台北市",
+      "field_start": "2026-11-13",
+      "date": "2026-11-15",
+      "published_at": "2026-11-16",
+      "sample_n": 1505,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "method": "以手機簡訊與EDM邀請封閉式網路會員問卷，分層比例抽樣；按性別、年齡、行政區、教育程度raking加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "ETtoday民調雲自建會員符合設籍台北年滿20歲條件350,542人；不是全市選民機率抽樣",
+      "weighting": "sex_age_district_education_raking",
+      "margin_of_error": 2.53,
+      "confidence_level": 95,
+      "funding": "東森民調雲股份有限公司",
+      "pollster_id": "ettoday",
+      "pollster": "東森民調雲股份有限公司",
+      "publisher": "ETtoday",
+      "source": "ETtoday 民調雲",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        48.1,
+        42
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 7.5,
+      "nonvote": 1.1,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "multiple_matchups": false,
+      "source_url": "https://news.tvbs.com.tw/politics/4051264",
+      "verification_urls": [
+        "https://tw.news.yahoo.com/et%E5%B0%81%E9%97%9C%E6%B0%91%E8%AA%BF%E5%87%BA%E7%88%90-%E8%94%A3%E8%90%AC%E5%AE%89-%E6%B2%88%E4%BC%AF%E6%B4%8B%E5%B7%AE%E8%B7%9D6-1%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-042024449.html"
+      ],
+      "sample_note": "獨立媒體核對原始ETtoday調查的完整候選支持、未決定、廢票與方法揭露，待取得ETtoday原始URL；不可把非機率封閉網路會員名目誤差視為真正隨機抽樣95%區間。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "in_house",
+      "response_mass_unreported": 1.4,
+      "response_mass_note": "報告另列郭璽1.0%、蕭文乾0.3%、唐新民0.1%、林志成0.0%，共1.4pp為已公開的其他參選人支持，因原始記錄只建主要兩位候選人對比而在未建模類別中保留；總和100.1%源於四捨五入，不是1.4pp全部未表態。",
+      "supervisor": "謝惠玲"
+    },
+    {
+      "title": "信民兩岸研究協會／畢肯 台北市長封關民調（11月11—13日）",
+      "county": "台北市",
+      "field_start": "2026-11-11",
+      "date": "2026-11-13",
+      "published_at": "2026-11-16",
+      "sample_n": 1072,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "method": "市話750份＋手機322份雙底冊CATI；戴立安設計與分析、畢肯市場研究執行",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍台北市滿20歲住宅電話及行動電話雙底冊",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "台北市信民兩岸研究協會",
+      "pollster_id": "formosa-bic",
+      "pollster": "畢肯市場研究股份有限公司",
+      "publisher": "台北市信民兩岸研究協會",
+      "source": "信民協會／畢肯",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        33.8,
+        48.6
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 12.1,
+      "nonvote": 4.5,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "multiple_matchups": false,
+      "source_url": "https://n.yam.com/Article/20261116444650",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4051143",
+        "https://election2026.rti.org.tw/"
+      ],
+      "sample_note": "信民協會新聞稿經銳傳媒轉載，11/11–13雙架構完成1072份，屬不同委託方的畢肯調查。委託方效應與畢肯執行機構效應分別管理，**沒有**因結果偏綠直接扣減支持度。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "xinmin-association",
+      "response_mass_unreported": 1.1,
+      "response_mass_note": "發布結果另列郭璽1.0%、蕭文乾0.1%、林志成與唐新民0.0%；這1.1pp屬其他已公布候選人，非不表態。已公開完整題目計100.1%為四捨五入。",
+      "supervisor": "戴立安（問卷設計分析）"
+    },
+    {
+      "title": "中國時報／艾普羅台北市長封關民調（11月13—15日）",
+      "county": "台北市",
+      "field_start": "2026-11-13",
+      "date": "2026-11-15",
+      "published_at": "2026-11-17",
+      "sample_n": 1071,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "method": "住宅電話簿分層比例隨機抽樣、末兩碼隨機；依性別、年齡、行政區、教育程度加權",
+      "method_class": "telephone_cati",
+      "sampling_frame": "台北市20歲以上選民住宅電話簿；未含僅手機族",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "中國時報",
+      "pollster_id": "ipro",
+      "pollster": "艾普羅民意調查股份有限公司",
+      "publisher": "中國時報",
+      "source": "中國時報／艾普羅",
+      "names": [
+        "蔣萬安",
+        "沈伯洋"
+      ],
+      "supports": [
+        44.1,
+        37.1
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 15.4,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://news.tvbs.com.tw/politics/4051662",
+      "verification_urls": [
+        "https://www.nownews.com/news/6892926",
+        "https://www.gvm.com.tw/article/134577"
+      ],
+      "sample_note": "2026年11月17日中國時報封關調查被TVBS等媒體轉述並附方法。為二手複核來源而非自動抓取原站表格；民調委託與執行機構分開標記。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "china-times",
+      "response_mass_unreported": 3.4,
+      "response_mass_note": "來源只列兩大候選人及15.4%未表態，合計96.6%，剩餘3.4%回答分類未完整揭露；**不能**將殘額假定為未表態或其他候選人，模型增加未分類質量不確定性。"
+    },
+    {
+      "title": "ETtoday 2026高雄市長封關民調（11月10—13日）",
+      "county": "高雄市",
+      "field_start": "2026-11-10",
+      "date": "2026-11-13",
+      "published_at": "2026-11-17",
+      "sample_n": 1296,
+      "population": "設籍高雄市且年滿20歲之民眾",
+      "method": "ETtoday會員手機簡訊及EDM封閉式網路問卷；自建會員庫分層比例邀請，依性別、年齡、行政區與教育程度raking加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "自建會員資料庫406,464名符合高雄市年滿20歲的登錄會員；非高雄市全體選民隨機樣本",
+      "weighting": "raking_sex_age_district_education",
+      "margin_of_error": 2.72,
+      "confidence_level": 95,
+      "funding": "東森民調雲股份有限公司",
+      "pollster_id": "ettoday",
+      "pollster": "東森民調雲股份有限公司",
+      "publisher": "ETtoday",
+      "source": "ETtoday 民調雲",
+      "names": [
+        "柯志恩",
+        "賴瑞隆"
+      ],
+      "supports": [
+        46.1,
+        44.6
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 7.7,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://news.ebc.net.tw/news/living/581074",
+      "verification_urls": [
+        "https://udn.com/news/story/124652/9883279",
+        "https://news.ebc.net.tw/news/politics/581086"
+      ],
+      "sample_note": "2026年11月17日公布；46.1／44.6／7.7對象為有投票意願者，1296是全卷有效樣本，票意向子樣本確切n未核定，故需對抽樣誤差和代表性保守處理。TVBS等轉述與東森第一方報導一致。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "in_house",
+      "response_mass_unreported": 1.6,
+      "response_mass_note": "已公布這道投票意向題兩名候選人支持度及未表態共98.4%，剩餘1.6%類別未在已核實文章披露，**不可**填成特定小黨候選人或不投票。",
+      "supervisor": "謝惠玲"
+    },
+    {
+      "title": "聯合報系民調中心 2026新北市長投票意向（11月1—7日）",
+      "county": "新北市",
+      "field_start": "2026-11-01",
+      "date": "2026-11-07",
+      "published_at": "2026-11-09",
+      "sample_n": 1114,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "method": "住宅＋手機雙底冊尾數隨機抽樣；依性別、年齡加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍新北市滿20歲住宅與手機電話雙底冊",
+      "weighting": "sex_age",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "聯合報",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source": "聯合報系民意調查中心",
+      "names": [
+        "蘇巧慧",
+        "李四川"
+      ],
+      "supports": [
+        42,
+        39
+      ],
+      "blocs": [
+        "dpp",
+        "blue"
+      ],
+      "undecided": 19,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://udn.com/news/story/124652/9865460",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4047668"
+      ],
+      "sample_note": "聯合報一方11月9日原發稿，蘇輝湟得票意向未逐字列示，只說低於1%，四捨五入後兩大候選人及未決定合計100%；不可推定蘇輝湟支持為0。只建立雙方相對支持，模型partial_ballot對未列小候選人加上額外誤差。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "in_house"
+    },
+    {
+      "title": "台灣研究學會／關鍵調查 新北市長投票意向（11月8—10日）",
+      "county": "新北市",
+      "field_start": "2026-11-08",
+      "date": "2026-11-10",
+      "published_at": "2026-11-13",
+      "sample_n": 1373,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "method": "市話1000份＋手機373份，雙底冊尾數隨機CATI，依戶籍地、性別、年齡、教育程度加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍新北且年滿20歲住宅電話與行動電話雙底冊",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 2.64,
+      "confidence_level": 95,
+      "funding": "李承志律師事務所",
+      "pollster_id": "key-survey",
+      "pollster": "關鍵調查有限公司",
+      "publisher": "台灣研究學會",
+      "source": "台灣研究學會／關鍵調查",
+      "names": [
+        "李四川",
+        "蘇巧慧",
+        "蘇輝湟"
+      ],
+      "supports": [
+        43.1,
+        38.4,
+        2.3
+      ],
+      "blocs": [
+        "blue",
+        "dpp",
+        "other"
+      ],
+      "undecided": 16.3,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://www.crntt.tw/touch/detail.jsp?coluid=192&docid=160288806&kindid=0",
+      "verification_urls": [
+        "https://btw.gais.tw/sona/election/tw_2026_local_head_007"
+      ],
+      "sample_note": "11/13由台灣研究學會公布，李承志律師事務所出資，關鍵調查執行。支持與未表態合計100.1%屬發布舍入，非數據造假。主辦／執行／出資者分別保留。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "lee-legal"
+    },
+    {
+      "title": "鋒燦傳媒 新北市長混合調查（11月4—10日，追問後口徑）",
+      "county": "新北市",
+      "field_start": "2026-11-04",
+      "date": "2026-11-10",
+      "published_at": "2026-11-13",
+      "sample_n": 2033,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "method": "市話1005份全方位市場調查＋台大動態民意研究平台及創市際網路1028份；各占50%合併後按性別、年齡、行政區加權",
+      "method_class": "mixed_phone_online_panel",
+      "sampling_frame": "新北市具投票權者市話行政區分層樣本＋非機率網路會員樣本",
+      "weighting": "phone_web_half_and_half_sex_age_district",
+      "margin_of_error": 2.17,
+      "confidence_level": 95,
+      "funding": "鋒燦傳媒",
+      "pollster_id": "fengcan-mixed",
+      "pollster": "全方位市場調查公司＋台大動態民意平台＋創市際",
+      "publisher": "鋒燦傳媒",
+      "source": "鋒燦傳媒／混合調查",
+      "names": [
+        "蘇巧慧",
+        "李四川"
+      ],
+      "supports": [
+        44,
+        35.6
+      ],
+      "blocs": [
+        "dpp",
+        "blue"
+      ],
+      "undecided": 19.8,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "multiple_matchups": false,
+      "source_url": "https://finance.ftvnews.com.tw/news/detail/2026B13W0316",
+      "verification_urls": [
+        "https://btw.gais.tw/sona/election/tw_2026_local_head_007"
+      ],
+      "sample_note": "台大張佑宗規劃；2026-11-13原發，混合調查中網路非隨機抽樣，公告±2.17pp不能當全概率抽樣誤差；保留額外方法不確定性。",
+      "reviewed_at": "2026-11-17T05:00:00+00:00",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "fengcan-media",
+      "response_mass_unreported": 0.6,
+      "response_mass_note": "已公開來源明列6.0%無意見與13.8%尚未決定合計19.8%；其餘約0.6%回答分類（可能包括蘇輝湟）未完整核定，保留未分類。**採追問後支持度**，與原始未追問口徑42／33不同，絕不能把同一波兩種結果當成兩份民調。"
     }
   ],
   "non_admitted_sources": [
@@ -530,5 +906,6 @@
         "https://udn.com/vote2026/pollboard"
       ]
     }
-  ]
+  ],
+  "last_roundup_note": "2026-11-17中午以前已公開且可核實候選人投票意向的人工審核；不表示所有封關民調已全部收齊或均入模。新台灣國策智庫、鋒燦台北混合題組及其他新調查仍待詳細題目／樣本口徑審核。"
 }
