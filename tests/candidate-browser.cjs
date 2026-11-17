@@ -36,7 +36,19 @@ await page.locator('#countyMap[data-town-vector-ready="true"]').waitFor({timeout
 await page.locator('#historicalResults details').first().locator('summary').click();assert.ok((await page.locator('#historicalResults').innerText()).includes('2022-11-26'));
 await page.locator('.topbar [data-view=validation]').click();assert.equal(await page.locator('.poll-meta strong').first().innerText(),'66 場');assert.ok((await page.locator('#candidateValidation').innerText()).includes('D00237'));assert.ok((await page.locator('#validationReport').innerText()).includes('未完成'));assert.equal(await page.locator('.validation-plot svg').count(),2);
 await page.selectOption('#validationHorizon','14');assert.ok((await page.locator('#historicalValidation').innerText()).includes('6波次／4縣市'));
-await page.locator('.topbar [data-view=polls]').click();await page.selectOption('#pollSource','美麗島電子報／畢肯');assert.equal(await page.locator('.poll-row').count(),8);await page.locator('#includedOnly').check();assert.equal(await page.locator('.poll-row').count(),1);assert.ok((await page.locator('.poll-row').innerText()).includes('不投票／廢票'));await page.locator('#includedOnly').uncheck();await page.selectOption('#pollSource','all');
+await page.locator('.topbar [data-view=polls]').click();
+await page.selectOption('#pollSource','美麗島電子報／畢肯');
+const formosaCount=await page.evaluate(()=>CandidateApp.feed.records.filter(r=>r.source==='美麗島電子報／畢肯').length);
+assert.ok(formosaCount>=1,'Published original source has at least one archive record');
+assert.equal(await page.locator('.poll-row').count(),formosaCount);
+await page.locator('#includedOnly').check();
+const admittedFormosa=await page.evaluate(()=>{
+  const ids=new Set(CandidateApp.data.poll_audit.filter(a=>a.included).map(a=>a.id));
+  return CandidateApp.feed.records.filter(r=>r.source==='美麗島電子報／畢肯'&&ids.has(r.id)).length;
+});
+assert.equal(await page.locator('.poll-row').count(),admittedFormosa);
+await page.locator('#includedOnly').uncheck();
+await page.selectOption('#pollSource','all');
 await page.locator('#historicalPollTab').click();assert.equal(await page.locator('#historicalPolls tbody tr').count(),28);await page.selectOption('#historyCounty','台北市');assert.equal(await page.locator('#historicalPolls tbody tr').count(),8);assert.equal(await page.locator('.historical-chart svg').count(),1);await page.locator('#historyEligible').check();assert.equal(await page.locator('#historicalPolls tbody tr').count(),1);
 await page.setViewportSize({width:390,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'historical polls overflow');await page.screenshot({path:path.join(qa,'historical-polls-mobile.png'),fullPage:true});await page.setViewportSize({width:1440,height:1000});await page.screenshot({path:path.join(qa,'historical-polls-desktop.png'),fullPage:true});await page.locator('#currentPollTab').click();
 const hashes=await page.evaluate(async()=>{const r=await fetch('candidate-validation.json').then(r=>r.json());return [r.data_hash,CandidateApp.data.training_data_hash];});assert.equal(hashes[0],hashes[1]);
