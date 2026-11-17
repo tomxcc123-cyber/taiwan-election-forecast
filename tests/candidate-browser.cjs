@@ -38,13 +38,14 @@ await page.locator('.topbar [data-view=validation]').click();assert.equal(await 
 await page.selectOption('#validationHorizon','14');assert.ok((await page.locator('#historicalValidation').innerText()).includes('6波次／4縣市'));
 await page.locator('.topbar [data-view=polls]').click();
 await page.selectOption('#pollSource','美麗島電子報／畢肯');
-const formosaCount=await page.evaluate(()=>CandidateApp.feed.records.filter(r=>r.source==='美麗島電子報／畢肯').length);
+const formosaCount=await page.evaluate(async()=>{const feed=await fetch('polls.json').then(r=>r.json());return feed.records.filter(r=>r.source==='美麗島電子報／畢肯').length;});
 assert.ok(formosaCount>=1,'Published original source has at least one archive record');
 assert.equal(await page.locator('.poll-row').count(),formosaCount);
 await page.locator('#includedOnly').check();
-const admittedFormosa=await page.evaluate(()=>{
+const admittedFormosa=await page.evaluate(async()=>{
   const ids=new Set(CandidateApp.data.poll_audit.filter(a=>a.included).map(a=>a.id));
-  return CandidateApp.feed.records.filter(r=>r.source==='美麗島電子報／畢肯'&&ids.has(r.id)).length;
+  const feed=await fetch('polls.json').then(r=>r.json());
+  return feed.records.filter(r=>r.source==='美麗島電子報／畢肯'&&ids.has(r.id)).length;
 });
 assert.equal(await page.locator('.poll-row').count(),admittedFormosa);
 await page.locator('#includedOnly').uncheck();
