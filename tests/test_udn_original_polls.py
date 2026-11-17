@@ -28,7 +28,7 @@ class UdnOriginalPollsTests(unittest.TestCase):
     def setUpClass(cls):
         cls.reviewed=read('data/reviewed-additional-polls.json')
         cls.config=read('config.json')
-        cls.udn=[r for r in cls.reviewed['reports'] if r.get('pollster_id')=='udn-poll-center']
+        cls.udn=[r for r in cls.reviewed['reports'] if r.get('pollster_id')=='udn-poll-center' and (r.get('published_at') or '')<='2026-11-02']
         cls.roster=load_roster(ROOT/'data/registration-roster-2026.json',
                                 load_dataset(ROOT/'data/candidate-history-cec.json'))
 

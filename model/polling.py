@@ -84,7 +84,13 @@ def observation_matrices(records, candidates, settings):
         tvbs = row.get('pollster_id','').lower() == 'tvbs' or row.get('source') == 'TVBS'
         extra_sd = settings.get('tvbs_poll_extra_sd',settings['poll_extra_sd']) if tvbs else settings['poll_extra_sd']
         unknown_sd = row.get('response_mass_unreported', 0) / 100 * settings.get('unreported_mass_sd', 1.5)
-        online_sd = settings.get('online_dmp_extra_sd', .30) if row.get('method_class') == 'online_dmp_panel' else 0
+        # Closed membership-panel recruitment does not become probability
+        # sampling merely because its results are subsequently raked.
+        # Apply the same nonprobability uncertainty penalty to all ETtoday
+        # panel records, not just the historical online_dmp_panel alias.
+        online_sd = settings.get('online_dmp_extra_sd', .30) if row.get('method_class') in (
+            'online_dmp_panel', 'closed_online_panel', 'mixed_phone_online_panel'
+        ) else 0
         variance += np.eye(k-1)*(extra_sd**2
                     + (row['undecided']/100 * settings['undecided_sd'])**2
                     + (settings['partial_ballot_sd']**2 if row['partial_ballot'] else 0)

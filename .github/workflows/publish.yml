@@ -7,6 +7,9 @@ on:
     paths-ignore: ['README.md', 'qa/**']
   schedule:
     - cron: '17 */6 * * *'
+    # One-off safety deployment at 19:17 Taiwan time on 17 November 2026:
+    # after the 19:00 preview cutoff, 4h43m before the legal 18 Nov embargo.
+    - cron: '17 11 17 11 *'
 
 concurrency:
   group: public-election-site
@@ -123,6 +126,26 @@ jobs:
           fi
       - name: Build publication artifact
         run: python scripts/build.py
+      - name: Show source-backed pre-blackout forecast audit (only while public)
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('dist/candidate-model.json')
+          f=pathlib.Path('dist/polls.json')
+          if not (p.exists() and f.exists()):
+              print('Polling forecast publication paused; no forecast data printed.')
+          else:
+              model=json.loads(p.read_text(encoding='utf-8'))
+              feed=json.loads(f.read_text(encoding='utf-8'))
+              admitted={a.get('id') for a in model.get('poll_audit',[]) if a.get('included')}
+              new=[r for r in feed.get('records',[]) if r.get('published_at','')>='2026-11-09']
+              print('PUBLIC SNAPSHOT as-of',model.get('generated_at'))
+              print('Feed:',feed.get('checked_at'),len(feed.get('records',[])),'records; recent',len(new),'admitted',sum(r.get('id') in admitted for r in new))
+              print('Latest fieldwork:',feed.get('latest_fieldwork_date'))
+              for race in model.get('counties',[]):
+                  if race.get('name') in ('台北市','新北市','台中市','高雄市','台南市','桃園市'):
+                      print('RACE',race['name'],[(c.get('name'),round(c.get('mean',0),2),round(c.get('probability',0)*100,2)) for c in race.get('candidates',[])])
+          PY
       - name: Check market observer module syntax
         run: node --check site/market-observatory.mjs && node --check site/market-fusion.mjs && node --check site/market-joint-shadow.mjs && node --check site/turnout-sensitivity.mjs && node --check site/precinct-turnout-ui.mjs && node --check site/turnout-district-panel.mjs && node --check site/turnout-association-ui.mjs && node --check site/turnout-shadow-ui.mjs && node --check site/turnout-two-cycle-ui.mjs && node --check site/turnout-three-year-ui.mjs && node --check site/turnout-ui.mjs && node --check site/candidate-app.mjs && node --check scripts/archive_market_fusion.mjs && node --check scripts/evaluate_market_fusion.mjs && node tests/market-observatory.mjs && node tests/market-fusion.mjs && node tests/market-fusion-evidence.mjs && node tests/market-joint-shadow.mjs && node tests/turnout-sensitivity.mjs && node tests/precinct-turnout.mjs && node tests/turnout-district-panel.mjs && node tests/turnout-association-ui.mjs && node tests/turnout-shadow-ui.mjs && node tests/turnout-two-cycle-ui.mjs && node tests/turnout-three-year-ui.mjs
       - name: Validate reproducible forecast model

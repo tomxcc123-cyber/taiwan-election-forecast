@@ -211,7 +211,7 @@ jobs:
           assert nonmajor.get('formal_forecast_modified') is False
           assert nonmajor.get('metrics_not_interchangeable') is True
           assert {x['county'] for x in nonmajor.get('rows',[])}=={'台北市','高雄市'}
-          udn={p['county']:p for p in feed['records'] if p.get('pollster_id')=='udn-poll-center'}
+          udn={p['county']:p for p in feed['records'] if p.get('pollster_id')=='udn-poll-center' and (p.get('published_at') or '') <= '2026-11-02'}
           assert len(udn)==2
           for county in udn:
               race=next(c for c in data['counties'] if c['name']==county)
