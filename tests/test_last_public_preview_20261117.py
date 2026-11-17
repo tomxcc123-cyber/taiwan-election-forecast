@@ -36,7 +36,6 @@ class LastPublicPreviewTests(unittest.TestCase):
             with self.subTest(p=p["title"]):
                 self.assertGreaterEqual(len(p.get("verification_urls",[])),1)
                 self.assertIn("2026",p["published_at"])
-                self.assertIn("非",p["sample_note"]+"非")  # free-text limitations must exist
                 self.assertGreater(len(p["sample_note"]),60)
                 self.assertEqual(p["confidence_level"],95)
                 d=reviewed_record(p,p["reviewed_at"],date(2026,11,17))
@@ -49,6 +48,7 @@ class LastPublicPreviewTests(unittest.TestCase):
         base={"records":[],"sources":[],"polls":[],"history":[],"failures":[],"source_review":[],"checked_at":"2026-11-17T05:00:00+00:00"}
         prev=enrich(base,self.config,self.archive,date(2026,11,16))
         self.assertFalse(any(r.get("retrieved_at","").startswith("2026-11-17") for r in prev["records"]))
+        self.assertNotIn("last_roundup_note",prev)
         now=enrich(base,self.config,self.archive,date(2026,11,17))
         got=[r for r in now["records"] if r.get("retrieved_at","").startswith("2026-11-17")]
         self.assertEqual(len(got),8)
