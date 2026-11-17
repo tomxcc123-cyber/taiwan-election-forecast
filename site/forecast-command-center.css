@@ -68,3 +68,11 @@ main{width:100%;max-width:none;padding:0 0 60px}
 }
 
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+/* Last pre-blackout research snapshot: never conflate published with admitted. */
+.last-day-preview-note{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin:12px auto 16px;width:min(1460px,calc(100% - 32px));padding:15px 20px;border:1px solid #d7bf95;border-left:4px solid #a27431;background:#fcf8ef;color:#554735;font-size:12px;line-height:1.7}
+.last-day-preview-note strong{display:block;flex-basis:100%;font-size:13px}
+.last-day-preview-note span{flex:1 1 560px}
+.last-day-preview-note b{color:#744b20}
+.last-day-preview-note a{color:#704c22;font-weight:700}
+@media(max-width:720px){.last-day-preview-note{width:calc(100% - 18px);margin-top:8px;padding:12px}.last-day-preview-note a{flex-basis:100%}}
