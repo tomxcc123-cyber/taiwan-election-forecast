@@ -876,6 +876,54 @@
       "commissioner_id": "fengcan-media",
       "response_mass_unreported": 0.6,
       "response_mass_note": "已公開來源明列6.0%無意見與13.8%尚未決定合計19.8%；其餘約0.6%回答分類（可能包括蘇輝湟）未完整核定，保留未分類。**採追問後支持度**，與原始未追問口徑42／33不同，絕不能把同一波兩種結果當成兩份民調。"
+    },
+    {
+      "title": "中國時報／艾普羅 2026新北市長封關民調（11月11—13日）",
+      "county": "新北市",
+      "field_start": "2026-11-11",
+      "date": "2026-11-13",
+      "published_at": "2026-11-16",
+      "sample_n": 1083,
+      "population": "設籍新北市且年滿20歲之選民",
+      "method": "住宅電話簿分層比例隨機抽樣，號碼末兩碼隨機，訪員電話調查；依性別、年齡、行政區、教育程度加權",
+      "method_class": "telephone_cati",
+      "sampling_frame": "新北市住宅電話簿，未涵蓋未配市話選民",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 3,
+      "confidence_level": 95,
+      "funding": "中國時報",
+      "pollster_id": "ipro",
+      "pollster": "艾普羅民意調查股份有限公司",
+      "publisher": "中國時報",
+      "source": "中國時報／艾普羅",
+      "names": [
+        "李四川",
+        "蘇巧慧"
+      ],
+      "supports": [
+        37,
+        33.4
+      ],
+      "blocs": [
+        "blue",
+        "dpp"
+      ],
+      "undecided": 14.6,
+      "nonvote": 0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 15,
+      "response_mass_note": "公開報導僅提供李四川37.0%、蘇巧慧33.4%及尚未決定14.6%，合計85.0%，其餘15.0個百分點未披露完整選項；不可擅自標記為不投票、廢票、第三位候選人蘇輝湟或其他未表態。投票意願子樣本38.9%與36.1%屬同一份問卷的另一個統計母體，不可當第二波獨立觀測。",
+      "multiple_matchups": false,
+      "source_url": "https://news.tvbs.com.tw/politics/4051117",
+      "verification_urls": [
+        "https://news.nextapple.com/politics/20261116/47AC8C6FDE8CECEDE4D5160E27742797",
+        "https://tw.news.yahoo.com/%E4%B8%AD%E6%99%82-%E6%96%B0%E5%8C%97%E5%B8%82%E9%95%B7%E5%B0%81%E9%97%9C%E6%B0%91%E8%AA%BF-%E6%9D%8E%E5%9B%9B%E5%B7%9D%E9%A0%98%E5%85%88%E7%B6%A0%E7%87%9F%E5%B0%8D%E6%89%8B3-6-021305350.html"
+      ],
+      "sample_note": "中國時報11月15日晚網路首發、11月16日見報；目前由TVBS、壹蘋與CTWANT三個二手公開媒體交叉核對，不宣稱已取得中國時報原始完整問卷。正式納入模型的只有全體受訪者投票意向37.0／33.4，相對支持對比；未公開15.0%回答分類原樣保留並加寬誤差。不把看好度28.9／27.3、投票意願子樣本38.9／36.1當作受訪支持度替代。",
+      "reviewed_at": "2026-11-17T06:10:00+00:00",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "china-times"
     }
   ],
   "non_admitted_sources": [
@@ -907,5 +955,5 @@
       ]
     }
   ],
-  "last_roundup_note": "2026-11-17中午以前已公開且可核實候選人投票意向的人工審核；不表示所有封關民調已全部收齊或均入模。新台灣國策智庫、鋒燦台北混合題組及其他新調查仍待詳細題目／樣本口徑審核。"
+  "last_roundup_note": "2026-11-17已補中時／艾普羅新北封關調查：中國時報台北與新北、ETtoday台北與高雄均已核對。現有11月中旬資料尚非全台所有封關民調；未見完整問卷的15.0pp新北剩餘回答分類仍依未公開質量加寬誤差，不可憑空分配。"
 }
