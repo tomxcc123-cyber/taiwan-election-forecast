@@ -1,10 +1,10 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-16T21:59:49+00:00",
+  "checked_at": "2026-11-17T06:07:08+00:00",
   "last_success_at": null,
-  "index_checked_at": "2026-11-16T21:59:49+00:00",
-  "updated_at": "2026-11-16T21:59:49+00:00",
-  "latest_fieldwork_date": "2026-11-01",
+  "index_checked_at": "2026-11-17T06:07:08+00:00",
+  "updated_at": "2026-11-17T06:07:08+00:00",
+  "latest_fieldwork_date": "2026-11-15",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
   "sources": [
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-16T22:00:15+00:00",
+      "auto_discovery_checked_at": "2026-11-17T06:07:31+00:00",
       "auto_discovered": 6,
       "auto_known": 2,
       "auto_pending": 4,
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-16T22:00:15+00:00",
+      "auto_discovery_checked_at": "2026-11-17T06:07:31+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -86,13 +86,13 @@
       "url": "https://udn.com/news/story/124652/9840910",
       "discovered": 0,
       "validated_reports": 0,
-      "reviewed_reports": 2,
+      "reviewed_reports": 3,
       "status": "reviewed_seed_only",
       "method_class": "dual_frame_cati",
-      "note": "本輪一方站點自動發現受限；保留既有核驗資料，不把抓取失敗當成無新民調。",
+      "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
-      "auto_discovery_status": "degraded",
-      "auto_discovery_checked_at": "2026-11-16T22:00:15+00:00",
+      "auto_discovery_status": "checked",
+      "auto_discovery_checked_at": "2026-11-17T06:07:31+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
@@ -104,9 +104,39 @@
       "url": "https://dc579968-5ed9-4902-8454-9871fa44324e.filesusr.com/ugd/3ea6ac_0b4a9fd7880b4b5589bd8f2b4ecc627a.pdf",
       "discovered": 0,
       "validated_reports": 0,
+      "reviewed_reports": 2,
+      "status": "reviewed_seed_only",
+      "method_class": "dual_frame_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+    },
+    {
+      "name": "中國時報／艾普羅",
+      "url": "https://news.tvbs.com.tw/politics/4051662",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 1,
+      "status": "reviewed_seed_only",
+      "method_class": "telephone_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+    },
+    {
+      "name": "台灣研究學會／關鍵調查",
+      "url": "https://www.crntt.tw/touch/detail.jsp?coluid=192&docid=160288806&kindid=0",
+      "discovered": 0,
+      "validated_reports": 0,
       "reviewed_reports": 1,
       "status": "reviewed_seed_only",
       "method_class": "dual_frame_cati",
+      "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
+    },
+    {
+      "name": "鋒燦傳媒／混合調查",
+      "url": "https://finance.ftvnews.com.tw/news/detail/2026B13W0316",
+      "discovered": 0,
+      "validated_reports": 0,
+      "reviewed_reports": 1,
+      "status": "reviewed_seed_only",
+      "method_class": "mixed_phone_online_panel",
       "note": "多來源核對後收錄；不是本輪自動抓取成功。若日後取得同pollster、同縣市、同訪期的自動原始資料，優先使用自動紀錄。"
     }
   ],
@@ -134,10 +164,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-16T22:00:15+00:00",
-      "last_seen_at": "2026-11-16T22:00:15+00:00",
+      "discovered_at": "2026-11-17T06:07:31+00:00",
+      "last_seen_at": "2026-11-17T06:07:31+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-16T22:00:23+00:00"
+      "last_validation_at": "2026-11-17T06:07:34+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -148,10 +178,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44790",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-16T22:00:15+00:00",
-      "last_seen_at": "2026-11-16T22:00:15+00:00",
+      "discovered_at": "2026-11-17T06:07:31+00:00",
+      "last_seen_at": "2026-11-17T06:07:31+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-16T22:00:23+00:00"
+      "last_validation_at": "2026-11-17T06:07:34+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -162,10 +192,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-16T22:00:15+00:00",
-      "last_seen_at": "2026-11-16T22:00:15+00:00",
+      "discovered_at": "2026-11-17T06:07:31+00:00",
+      "last_seen_at": "2026-11-17T06:07:31+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-16T22:00:23+00:00"
+      "last_validation_at": "2026-11-17T06:07:34+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -176,13 +206,478 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-16T22:00:15+00:00",
-      "last_seen_at": "2026-11-16T22:00:15+00:00",
+      "discovered_at": "2026-11-17T06:07:31+00:00",
+      "last_seen_at": "2026-11-17T06:07:31+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-16T22:00:23+00:00"
+      "last_validation_at": "2026-11-17T06:07:34+00:00"
     }
   ],
   "records": [
+    {
+      "id": "e5b88ed0ec42d2f39520ad88",
+      "county": "台北市",
+      "source": "ETtoday 民調雲",
+      "pollster_id": "ettoday",
+      "pollster": "東森民調雲股份有限公司",
+      "publisher": "ETtoday",
+      "source_url": "https://news.tvbs.com.tw/politics/4051264",
+      "verification_urls": [
+        "https://tw.news.yahoo.com/et%E5%B0%81%E9%97%9C%E6%B0%91%E8%AA%BF%E5%87%BA%E7%88%90-%E8%94%A3%E8%90%AC%E5%AE%89-%E6%B2%88%E4%BC%AF%E6%B4%8B%E5%B7%AE%E8%B7%9D6-1%E5%80%8B%E7%99%BE%E5%88%86%E9%BB%9E-042024449.html"
+      ],
+      "report_title": "ETtoday 2026台北市長封關民調（11月13—15日）",
+      "field_start": "2026-11-13",
+      "date": "2026-11-15",
+      "published_at": "2026-11-16",
+      "sample_n": 1505,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "以手機簡訊與EDM邀請封閉式網路會員問卷，分層比例抽樣；按性別、年齡、行政區、教育程度raking加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "ETtoday民調雲自建會員符合設籍台北年滿20歲條件350,542人；不是全市選民機率抽樣",
+      "weighting": "sex_age_district_education_raking",
+      "margin_of_error": 2.53,
+      "confidence_level": 95.0,
+      "funding": "東森民調雲股份有限公司",
+      "commissioning_type": "in_house",
+      "commissioner_id": null,
+      "supervisor": "謝惠玲",
+      "sample_note": "獨立媒體核對原始ETtoday調查的完整候選支持、未決定、廢票與方法揭露，待取得ETtoday原始URL；不可把非機率封閉網路會員名目誤差視為真正隨機抽樣95%區間。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 48.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 42.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 7.5,
+      "nonvote": 1.1,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 1.4,
+      "response_mass_note": "報告另列郭璽1.0%、蕭文乾0.3%、唐新民0.1%、林志成0.0%，共1.4pp為已公開的其他參選人支持，因原始記錄只建主要兩位候選人對比而在未建模類別中保留；總和100.1%源於四捨五入，不是1.4pp全部未表態。",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "55de18c2f745b0e04dbb0006",
+      "county": "台北市",
+      "source": "中國時報／艾普羅",
+      "pollster_id": "ipro",
+      "pollster": "艾普羅民意調查股份有限公司",
+      "publisher": "中國時報",
+      "source_url": "https://news.tvbs.com.tw/politics/4051662",
+      "verification_urls": [
+        "https://www.nownews.com/news/6892926",
+        "https://www.gvm.com.tw/article/134577"
+      ],
+      "report_title": "中國時報／艾普羅台北市長封關民調（11月13—15日）",
+      "field_start": "2026-11-13",
+      "date": "2026-11-15",
+      "published_at": "2026-11-17",
+      "sample_n": 1071,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "住宅電話簿分層比例隨機抽樣、末兩碼隨機；依性別、年齡、行政區、教育程度加權",
+      "method_class": "telephone_cati",
+      "sampling_frame": "台北市20歲以上選民住宅電話簿；未含僅手機族",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "中國時報",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "china-times",
+      "supervisor": null,
+      "sample_note": "2026年11月17日中國時報封關調查被TVBS等媒體轉述並附方法。為二手複核來源而非自動抓取原站表格；民調委託與執行機構分開標記。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 44.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 37.1,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 15.4,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 3.4,
+      "response_mass_note": "來源只列兩大候選人及15.4%未表態，合計96.6%，剩餘3.4%回答分類未完整揭露；**不能**將殘額假定為未表態或其他候選人，模型增加未分類質量不確定性。",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "232640c1e0bd1ba218891d08",
+      "county": "台北市",
+      "source": "TVBS 民意調查中心",
+      "pollster_id": "tvbs",
+      "pollster": "TVBS 民意調查中心",
+      "publisher": "TVBS",
+      "source_url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1555/1794815742_1511141_________________________________.pdf",
+      "verification_urls": [
+        "https://www.tvbs.com.tw/poll-center",
+        "https://news.tvbs.com.tw/politics/4051318"
+      ],
+      "report_title": "TVBS 2026台北市長封關民調；有投票意願者（11月14—15日）",
+      "field_start": "2026-11-14",
+      "date": "2026-11-15",
+      "published_at": "2026-11-16",
+      "sample_n": 1331,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "市話673份＋手機658份，雙底冊訪員電話調查；依性別、年齡、行政區、教育程度加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "台北市市話後四碼隨機抽樣；手機採2019—2026北市訪問累積手機樣本，並非新RDD手機抽樣",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 2.7,
+      "confidence_level": 95.0,
+      "funding": "TVBS",
+      "commissioning_type": "in_house",
+      "commissioner_id": null,
+      "supervisor": null,
+      "sample_note": "原始TVBS PDF首頁及第二頁。46／44／10是「有投票意願」者的子樣本支持度，1,331份為全卷有效樣本；該支持度子樣本未單獨公布確切n，模型用總n會高估有效樣本、因此保留一般設計效應及TVBS專用額外不確定性。±2.7pp是全體問卷名目抽樣誤差。TVBS AI推估51:49及投票率71%不是受訪者實測支持度，不入模。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 46.0,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 44.0,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 10.0,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": true,
+      "exclusion_reason": null
+    },
+    {
+      "id": "a825c26fcb81e15fe9539872",
+      "county": "台北市",
+      "source": "信民協會／畢肯",
+      "pollster_id": "formosa-bic",
+      "pollster": "畢肯市場研究股份有限公司",
+      "publisher": "台北市信民兩岸研究協會",
+      "source_url": "https://n.yam.com/Article/20261116444650",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4051143",
+        "https://election2026.rti.org.tw/"
+      ],
+      "report_title": "信民兩岸研究協會／畢肯 台北市長封關民調（11月11—13日）",
+      "field_start": "2026-11-11",
+      "date": "2026-11-13",
+      "published_at": "2026-11-16",
+      "sample_n": 1072,
+      "population": "設籍台北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "市話750份＋手機322份雙底冊CATI；戴立安設計與分析、畢肯市場研究執行",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍台北市滿20歲住宅電話及行動電話雙底冊",
+      "weighting": "sex_age_district_education",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "台北市信民兩岸研究協會",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "xinmin-association",
+      "supervisor": "戴立安（問卷設計分析）",
+      "sample_note": "信民協會新聞稿經銳傳媒轉載，11/11–13雙架構完成1072份，屬不同委託方的畢肯調查。委託方效應與畢肯執行機構效應分別管理，**沒有**因結果偏綠直接扣減支持度。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蔣萬安",
+          "support": 33.8,
+          "bloc": "blue"
+        },
+        {
+          "name": "沈伯洋",
+          "support": 48.6,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 12.1,
+      "nonvote": 4.5,
+      "undecided_reported": true,
+      "nonvote_reported": true,
+      "response_mass_unreported": 1.1,
+      "response_mass_note": "發布結果另列郭璽1.0%、蕭文乾0.1%、林志成與唐新民0.0%；這1.1pp屬其他已公布候選人，非不表態。已公開完整題目計100.1%為四捨五入。",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "74634eaf772d1a119cf7a683",
+      "county": "高雄市",
+      "source": "ETtoday 民調雲",
+      "pollster_id": "ettoday",
+      "pollster": "東森民調雲股份有限公司",
+      "publisher": "ETtoday",
+      "source_url": "https://news.ebc.net.tw/news/living/581074",
+      "verification_urls": [
+        "https://udn.com/news/story/124652/9883279",
+        "https://news.ebc.net.tw/news/politics/581086"
+      ],
+      "report_title": "ETtoday 2026高雄市長封關民調（11月10—13日）",
+      "field_start": "2026-11-10",
+      "date": "2026-11-13",
+      "published_at": "2026-11-17",
+      "sample_n": 1296,
+      "population": "設籍高雄市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "ETtoday會員手機簡訊及EDM封閉式網路問卷；自建會員庫分層比例邀請，依性別、年齡、行政區與教育程度raking加權",
+      "method_class": "closed_online_panel",
+      "sampling_frame": "自建會員資料庫406,464名符合高雄市年滿20歲的登錄會員；非高雄市全體選民隨機樣本",
+      "weighting": "raking_sex_age_district_education",
+      "margin_of_error": 2.72,
+      "confidence_level": 95.0,
+      "funding": "東森民調雲股份有限公司",
+      "commissioning_type": "in_house",
+      "commissioner_id": null,
+      "supervisor": "謝惠玲",
+      "sample_note": "2026年11月17日公布；46.1／44.6／7.7對象為有投票意願者，1296是全卷有效樣本，票意向子樣本確切n未核定，故需對抽樣誤差和代表性保守處理。TVBS等轉述與東森第一方報導一致。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "柯志恩",
+          "support": 46.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "賴瑞隆",
+          "support": 44.6,
+          "bloc": "dpp"
+        }
+      ],
+      "undecided": 7.7,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 1.6,
+      "response_mass_note": "已公布這道投票意向題兩名候選人支持度及未表態共98.4%，剩餘1.6%類別未在已核實文章披露，**不可**填成特定小黨候選人或不投票。",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "cfe5ffded3312f8e2f4be366",
+      "county": "新北市",
+      "source": "鋒燦傳媒／混合調查",
+      "pollster_id": "fengcan-mixed",
+      "pollster": "全方位市場調查公司＋台大動態民意平台＋創市際",
+      "publisher": "鋒燦傳媒",
+      "source_url": "https://finance.ftvnews.com.tw/news/detail/2026B13W0316",
+      "verification_urls": [
+        "https://btw.gais.tw/sona/election/tw_2026_local_head_007"
+      ],
+      "report_title": "鋒燦傳媒 新北市長混合調查（11月4—10日，追問後口徑）",
+      "field_start": "2026-11-04",
+      "date": "2026-11-10",
+      "published_at": "2026-11-13",
+      "sample_n": 2033,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "市話1005份全方位市場調查＋台大動態民意研究平台及創市際網路1028份；各占50%合併後按性別、年齡、行政區加權",
+      "method_class": "mixed_phone_online_panel",
+      "sampling_frame": "新北市具投票權者市話行政區分層樣本＋非機率網路會員樣本",
+      "weighting": "phone_web_half_and_half_sex_age_district",
+      "margin_of_error": 2.17,
+      "confidence_level": 95.0,
+      "funding": "鋒燦傳媒",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "fengcan-media",
+      "supervisor": null,
+      "sample_note": "台大張佑宗規劃；2026-11-13原發，混合調查中網路非隨機抽樣，公告±2.17pp不能當全概率抽樣誤差；保留額外方法不確定性。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蘇巧慧",
+          "support": 44.0,
+          "bloc": "dpp"
+        },
+        {
+          "name": "李四川",
+          "support": 35.6,
+          "bloc": "blue"
+        }
+      ],
+      "undecided": 19.8,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.6,
+      "response_mass_note": "已公開來源明列6.0%無意見與13.8%尚未決定合計19.8%；其餘約0.6%回答分類（可能包括蘇輝湟）未完整核定，保留未分類。**採追問後支持度**，與原始未追問口徑42／33不同，絕不能把同一波兩種結果當成兩份民調。",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology_partial_response",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "來源未披露完整回答分類；僅供候選人模型以額外測量誤差處理"
+    },
+    {
+      "id": "198d7dbdf686a062bdf1c7d9",
+      "county": "新北市",
+      "source": "台灣研究學會／關鍵調查",
+      "pollster_id": "key-survey",
+      "pollster": "關鍵調查有限公司",
+      "publisher": "台灣研究學會",
+      "source_url": "https://www.crntt.tw/touch/detail.jsp?coluid=192&docid=160288806&kindid=0",
+      "verification_urls": [
+        "https://btw.gais.tw/sona/election/tw_2026_local_head_007"
+      ],
+      "report_title": "台灣研究學會／關鍵調查 新北市長投票意向（11月8—10日）",
+      "field_start": "2026-11-08",
+      "date": "2026-11-10",
+      "published_at": "2026-11-13",
+      "sample_n": 1373,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "市話1000份＋手機373份，雙底冊尾數隨機CATI，依戶籍地、性別、年齡、教育程度加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍新北且年滿20歲住宅電話與行動電話雙底冊",
+      "weighting": "district_sex_age_education",
+      "margin_of_error": 2.64,
+      "confidence_level": 95.0,
+      "funding": "李承志律師事務所",
+      "commissioning_type": "external_commissioned",
+      "commissioner_id": "lee-legal",
+      "supervisor": null,
+      "sample_note": "11/13由台灣研究學會公布，李承志律師事務所出資，關鍵調查執行。支持與未表態合計100.1%屬發布舍入，非數據造假。主辦／執行／出資者分別保留。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "李四川",
+          "support": 43.1,
+          "bloc": "blue"
+        },
+        {
+          "name": "蘇巧慧",
+          "support": 38.4,
+          "bloc": "dpp"
+        },
+        {
+          "name": "蘇輝湟",
+          "support": 2.3,
+          "bloc": "other"
+        }
+      ],
+      "undecided": 16.3,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": false,
+      "exclusion_reason": "候選人組合與模型基線不一致"
+    },
+    {
+      "id": "8981f5478d2a4bf39fc70a7a",
+      "county": "新北市",
+      "source": "聯合報系民意調查中心",
+      "pollster_id": "udn-poll-center",
+      "pollster": "聯合報系民意調查中心",
+      "publisher": "聯合報",
+      "source_url": "https://udn.com/news/story/124652/9865460",
+      "verification_urls": [
+        "https://news.tvbs.com.tw/politics/4047668"
+      ],
+      "report_title": "聯合報系民調中心 2026新北市長投票意向（11月1—7日）",
+      "field_start": "2026-11-01",
+      "date": "2026-11-07",
+      "published_at": "2026-11-09",
+      "sample_n": 1114,
+      "population": "設籍新北市且年滿20歲之民眾",
+      "population_size": null,
+      "method": "住宅＋手機雙底冊尾數隨機抽樣；依性別、年齡加權",
+      "method_class": "dual_frame_cati",
+      "sampling_frame": "設籍新北市滿20歲住宅與手機電話雙底冊",
+      "weighting": "sex_age",
+      "margin_of_error": 3.0,
+      "confidence_level": 95.0,
+      "funding": "聯合報",
+      "commissioning_type": "in_house",
+      "commissioner_id": null,
+      "supervisor": null,
+      "sample_note": "聯合報一方11月9日原發稿，蘇輝湟得票意向未逐字列示，只說低於1%，四捨五入後兩大候選人及未決定合計100%；不可推定蘇輝湟支持為0。只建立雙方相對支持，模型partial_ballot對未列小候選人加上額外誤差。",
+      "multiple_matchups": false,
+      "question_number": 1,
+      "candidates": [
+        {
+          "name": "蘇巧慧",
+          "support": 42.0,
+          "bloc": "dpp"
+        },
+        {
+          "name": "李四川",
+          "support": 39.0,
+          "bloc": "blue"
+        }
+      ],
+      "undecided": 19.0,
+      "nonvote": 0.0,
+      "undecided_reported": true,
+      "nonvote_reported": false,
+      "response_mass_unreported": 0.0,
+      "response_mass_note": "",
+      "reported_nonmajor_support_upper_pct": null,
+      "reported_nonmajor_upper_basis": null,
+      "verification_status": "reviewed_multi_source_methodology",
+      "ingestion": "reviewed_multi_source_methodology",
+      "retrieved_at": "2026-11-17T05:00:00+00:00",
+      "model_eligible": true,
+      "exclusion_reason": null
+    },
     {
       "id": "43bf09a281d4df8ce9c7c4b8",
       "county": "台北市",
@@ -1196,8 +1691,8 @@
       "undecided": 19.6,
       "nonvote": 10.3,
       "multiple_matchups": false,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "f01bb37bcdfa955fcd6bc7925e917fb0b63fc3a668c846768b250ec2519e5022",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "45684e3055b6fac87c8e3cc8bc5262731b4dc1487dbf733a27b179b7f12799eb",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1239,8 +1734,8 @@
       "undecided": 12.1,
       "nonvote": 16.2,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "10c380f444f514ac42a8cdaccdacdcccf24bff063b900c507df4046eebe36fe9",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "2d8d3ef30456972c6fb28e2b8d868724540bddbfa0b5f0cbb6879ccecdda3192",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1282,8 +1777,8 @@
       "undecided": 14.1,
       "nonvote": 15.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "10c380f444f514ac42a8cdaccdacdcccf24bff063b900c507df4046eebe36fe9",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "2d8d3ef30456972c6fb28e2b8d868724540bddbfa0b5f0cbb6879ccecdda3192",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1330,8 +1825,8 @@
       "undecided": 23.8,
       "nonvote": 7.6,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "5f28974ff8da557abc0cfe35883fa6e178b70ca0237cc0b425f8f85c56795428",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "3e02126cd1b6f0be37d5be719836ab433d2f0a4e9b789d9f20325265fa040b43",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1373,8 +1868,8 @@
       "undecided": 21.6,
       "nonvote": 12.2,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "5f28974ff8da557abc0cfe35883fa6e178b70ca0237cc0b425f8f85c56795428",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "3e02126cd1b6f0be37d5be719836ab433d2f0a4e9b789d9f20325265fa040b43",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1416,8 +1911,8 @@
       "undecided": 16.3,
       "nonvote": 11.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "5f28974ff8da557abc0cfe35883fa6e178b70ca0237cc0b425f8f85c56795428",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "3e02126cd1b6f0be37d5be719836ab433d2f0a4e9b789d9f20325265fa040b43",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1549,8 +2044,8 @@
       "undecided": 25.0,
       "nonvote": 7.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "78368c9bc05489fbb72a61c00cce070b336d933c2e44d7f3f195742deb5a6706",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "c7e90940060781c5fb78f3aa88fc7515b7474d159b7d29a66a556b225b7c7141",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1592,8 +2087,8 @@
       "undecided": 23.5,
       "nonvote": 7.7,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "78368c9bc05489fbb72a61c00cce070b336d933c2e44d7f3f195742deb5a6706",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "c7e90940060781c5fb78f3aa88fc7515b7474d159b7d29a66a556b225b7c7141",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1635,8 +2130,8 @@
       "undecided": 25.9,
       "nonvote": 11.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "78368c9bc05489fbb72a61c00cce070b336d933c2e44d7f3f195742deb5a6706",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "c7e90940060781c5fb78f3aa88fc7515b7474d159b7d29a66a556b225b7c7141",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1718,8 +2213,8 @@
       "undecided": 14.8,
       "nonvote": 12.8,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "e6612f47ea0c664b9b244877c5ce3339bfee70c75c937f978ff8171e79d2e2df",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "55957b0f9d2aedc89eaf0519dc18255fd88491794daf811afe3978a5bf8632fa",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1761,8 +2256,8 @@
       "undecided": 15.3,
       "nonvote": 7.6,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "e6612f47ea0c664b9b244877c5ce3339bfee70c75c937f978ff8171e79d2e2df",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "55957b0f9d2aedc89eaf0519dc18255fd88491794daf811afe3978a5bf8632fa",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1809,8 +2304,8 @@
       "undecided": 15.5,
       "nonvote": 7.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "e6612f47ea0c664b9b244877c5ce3339bfee70c75c937f978ff8171e79d2e2df",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "55957b0f9d2aedc89eaf0519dc18255fd88491794daf811afe3978a5bf8632fa",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1852,8 +2347,8 @@
       "undecided": 13.9,
       "nonvote": 10.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "4295021ae985d50e2c15c9b25cba77093a6bdb88a7909f3abe5f04f9008ce7ee",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "f2ab1cbed586d7ff38ec7a9ef7398f55f4b88d52cad5cc1dc1dee4b4d3361975",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1895,8 +2390,8 @@
       "undecided": 17.2,
       "nonvote": 12.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "4295021ae985d50e2c15c9b25cba77093a6bdb88a7909f3abe5f04f9008ce7ee",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "f2ab1cbed586d7ff38ec7a9ef7398f55f4b88d52cad5cc1dc1dee4b4d3361975",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2023,8 +2518,8 @@
       "undecided": 20.3,
       "nonvote": 6.4,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "7dcc2687bd7a30ca9dabd954ea2c3453c52009d1b01f2836327834e5ef4e078d",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "8853ecf470e49912d4de09e9f704b5b7320aa9aedadf38013abfa3ab5411710d",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2066,8 +2561,8 @@
       "undecided": 22.3,
       "nonvote": 11.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-16T21:59:49+00:00",
-      "report_sha256": "7dcc2687bd7a30ca9dabd954ea2c3453c52009d1b01f2836327834e5ef4e078d",
+      "retrieved_at": "2026-11-17T06:07:08+00:00",
+      "report_sha256": "8853ecf470e49912d4de09e9f704b5b7320aa9aedadf38013abfa3ab5411710d",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2117,16 +2612,30 @@
       "other": 0
     },
     {
-      "id": "f64079d9660ebce9d064bd66",
+      "id": "8981f5478d2a4bf39fc70a7a",
+      "county": "新北市",
+      "source": "聯合報系民意調查中心",
+      "date": "2026-11-07",
+      "sample_n": 1114,
+      "undecided": 19.0,
+      "pollster_id": "udn-poll-center",
+      "method_class": "dual_frame_cati",
+      "blue": 39.0,
+      "dpp": 42.0,
+      "third": 0,
+      "other": 0
+    },
+    {
+      "id": "232640c1e0bd1ba218891d08",
       "county": "台北市",
       "source": "TVBS 民意調查中心",
-      "date": "2026-10-31",
-      "sample_n": 1666,
-      "undecided": 12.0,
+      "date": "2026-11-15",
+      "sample_n": 1331,
+      "undecided": 10.0,
       "pollster_id": "tvbs",
-      "method_class": "telephone_cati",
+      "method_class": "dual_frame_cati",
       "blue": 46.0,
-      "dpp": 42.0,
+      "dpp": 44.0,
       "third": 0,
       "other": 0
     }
@@ -2181,11 +2690,6 @@
       "source": "TVBS",
       "url": "https://www-asset.tvbs.com.tw/poll_center/2025/20251208/f76262efaa46dd37ae3df58e65b2d1eb.pdf",
       "message": "Vote-intention question has an unsupported table header"
-    },
-    {
-      "source": "聯合報系民意調查中心 discovery",
-      "url": "https://udn.com/vote2026/pollboard",
-      "message": "HTTP Error 404: Not Found"
     }
   ],
   "reports": {
@@ -2220,50 +2724,164 @@
       "checked_at": "2026-11-05T08:53:54+00:00"
     },
     "https://my-formosa.com.tw/DOC_224921.htm": {
-      "sha256": "f01bb37bcdfa955fcd6bc7925e917fb0b63fc3a668c846768b250ec2519e5022",
+      "sha256": "45684e3055b6fac87c8e3cc8bc5262731b4dc1487dbf733a27b179b7f12799eb",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_224420.htm": {
-      "sha256": "78368c9bc05489fbb72a61c00cce070b336d933c2e44d7f3f195742deb5a6706",
+      "sha256": "c7e90940060781c5fb78f3aa88fc7515b7474d159b7d29a66a556b225b7c7141",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_224580.htm": {
-      "sha256": "10c380f444f514ac42a8cdaccdacdcccf24bff063b900c507df4046eebe36fe9",
+      "sha256": "2d8d3ef30456972c6fb28e2b8d868724540bddbfa0b5f0cbb6879ccecdda3192",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_223267.htm": {
-      "sha256": "7dcc2687bd7a30ca9dabd954ea2c3453c52009d1b01f2836327834e5ef4e078d",
+      "sha256": "8853ecf470e49912d4de09e9f704b5b7320aa9aedadf38013abfa3ab5411710d",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_224538.htm": {
-      "sha256": "5f28974ff8da557abc0cfe35883fa6e178b70ca0237cc0b425f8f85c56795428",
+      "sha256": "3e02126cd1b6f0be37d5be719836ab433d2f0a4e9b789d9f20325265fa040b43",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_224233.htm": {
-      "sha256": "e6612f47ea0c664b9b244877c5ce3339bfee70c75c937f978ff8171e79d2e2df",
+      "sha256": "55957b0f9d2aedc89eaf0519dc18255fd88491794daf811afe3978a5bf8632fa",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     },
     "https://my-formosa.com.tw/DOC_224158.htm": {
-      "sha256": "4295021ae985d50e2c15c9b25cba77093a6bdb88a7909f3abe5f04f9008ce7ee",
+      "sha256": "f2ab1cbed586d7ff38ec7a9ef7398f55f4b88d52cad5cc1dc1dee4b4d3361975",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-16T21:59:49+00:00"
+      "checked_at": "2026-11-17T06:07:08+00:00"
     }
   },
   "history": [
     {
+      "date": "2026-11-17T06:07:31+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-17T06:07:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-17T06:07:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-17T06:07:31+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新北市",
+      "source_url": "https://finance.ftvnews.com.tw/news/detail/2026B13W0316",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新北市",
+      "source_url": "https://www.crntt.tw/touch/detail.jsp?coluid=192&docid=160288806&kindid=0",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新北市",
+      "source_url": "https://udn.com/news/story/124652/9865460",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "高雄市",
+      "source_url": "https://news.ebc.net.tw/news/living/581074",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "台北市",
+      "source_url": "https://news.tvbs.com.tw/politics/4051662",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "台北市",
+      "source_url": "https://n.yam.com/Article/20261116444650",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "台北市",
+      "source_url": "https://news.tvbs.com.tw/politics/4051264",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "台北市",
+      "source_url": "https://www-asset.tvbs.com.tw/uploads/opinion-polls/1555/1794815742_1511141_________________________________.pdf",
+      "kind": "reviewed_additional_poll_added"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224921.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "宜蘭縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224420.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224580.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "台中市",
+      "source_url": "https://my-formosa.com.tw/DOC_223267.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "花蓮縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-17T06:07:08+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
+      "kind": "report_updated"
+    },
+    {
       "date": "2026-11-16T22:00:15+00:00",
       "county": "新北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
@@ -2747,125 +3365,12 @@
       "date": "2026-11-13T19:43:34+00:00",
       "county": "台北市",
       "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "新北市",
-      "source_url": "https://my-formosa.com.tw/DOC_224921.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "宜蘭縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224420.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "新竹縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224580.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "台中市",
-      "source_url": "https://my-formosa.com.tw/DOC_223267.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "花蓮縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "新北市",
-      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T19:40:04+00:00",
-      "county": "新竹縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:57+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-13T06:42:57+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-13T06:42:57+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-13T06:42:57+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "新北市",
-      "source_url": "https://my-formosa.com.tw/DOC_224921.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "宜蘭縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224420.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "新竹縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224580.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "台中市",
-      "source_url": "https://my-formosa.com.tw/DOC_223267.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "花蓮縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "新北市",
-      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-13T06:42:23+00:00",
-      "county": "新竹縣",
-      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
-      "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-12T23:37:34+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "kind": "poll_source_discovered_unverified"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
-  "discovery_checked_at": "2026-11-16T22:00:15+00:00",
+  "last_roundup_note": "2026-11-17中午以前已公開且可核實候選人投票意向的人工審核；不表示所有封關民調已全部收齊或均入模。新台灣國策智庫、鋒燦台北混合題組及其他新調查仍待詳細題目／樣本口徑審核。",
+  "discovery_checked_at": "2026-11-17T06:07:31+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-11-05T09:00:00+00:00",
