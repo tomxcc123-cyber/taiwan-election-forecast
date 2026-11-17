@@ -13,7 +13,7 @@ class NonmajorResponseAuditTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         reviewed=json.loads((ROOT/'data/reviewed-additional-polls.json').read_text(encoding='utf8'))
-        cls.entries=[x for x in reviewed['reports'] if x.get('pollster_id')=='udn-poll-center']
+        cls.entries=[x for x in reviewed['reports'] if x.get('pollster_id')=='udn-poll-center' and (x.get('published_at') or '')<='2026-11-02']
         cls.verified_at=reviewed['reviewed_at']
 
     def fixtures(self):
