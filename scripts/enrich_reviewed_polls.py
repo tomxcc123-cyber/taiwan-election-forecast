@@ -284,6 +284,8 @@ def enrich(feed: dict, config: dict, reviewed: dict, today: date | None = None) 
     addition = "另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。"
     if addition not in coverage:
         out["coverage_note"] = (coverage + (" " if coverage else "") + addition).strip()
+    if reviewed.get("last_roundup_note"):
+        out["last_roundup_note"] = reviewed["last_roundup_note"]
 
     if added:
         history = list(out.get("history", []))
