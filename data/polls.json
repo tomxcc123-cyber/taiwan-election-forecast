@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "checked_at": "2026-11-19T20:33:41+00:00",
+  "checked_at": "2026-11-20T07:12:22+00:00",
   "last_success_at": null,
   "index_checked_at": "2026-11-17T07:52:48+00:00",
-  "updated_at": "2026-11-19T20:33:41+00:00",
+  "updated_at": "2026-11-20T07:12:22+00:00",
   "latest_fieldwork_date": "2026-11-15",
   "status": "degraded",
   "baseline_cutoff": "2026-06-27",
@@ -56,7 +56,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-19T20:34:00+00:00",
+      "auto_discovery_checked_at": "2026-11-20T07:12:35+00:00",
       "auto_discovered": 6,
       "auto_known": 2,
       "auto_pending": 4,
@@ -74,7 +74,7 @@
       "note": "一方站點已自動掃描；新頁面先進入待核驗佇列，完整方法學與回應品質校驗通過前不自動入模。",
       "auto_discovery": true,
       "auto_discovery_status": "checked",
-      "auto_discovery_checked_at": "2026-11-19T20:34:00+00:00",
+      "auto_discovery_checked_at": "2026-11-20T07:12:35+00:00",
       "auto_discovered": 2,
       "auto_known": 2,
       "auto_pending": 0,
@@ -92,7 +92,7 @@
       "note": "本輪一方站點自動發現受限；保留既有核驗資料，不把抓取失敗當成無新民調。",
       "auto_discovery": true,
       "auto_discovery_status": "degraded",
-      "auto_discovery_checked_at": "2026-11-19T20:34:00+00:00",
+      "auto_discovery_checked_at": "2026-11-20T07:12:35+00:00",
       "auto_discovered": 0,
       "auto_known": 0,
       "auto_pending": 0,
@@ -164,10 +164,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44350",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-19T20:34:00+00:00",
-      "last_seen_at": "2026-11-19T20:34:00+00:00",
+      "discovered_at": "2026-11-20T07:12:35+00:00",
+      "last_seen_at": "2026-11-20T07:12:35+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-19T20:34:08+00:00"
+      "last_validation_at": "2026-11-20T07:12:42+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -178,10 +178,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44790",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-19T20:34:00+00:00",
-      "last_seen_at": "2026-11-19T20:34:00+00:00",
+      "discovered_at": "2026-11-20T07:12:35+00:00",
+      "last_seen_at": "2026-11-20T07:12:35+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-19T20:34:08+00:00"
+      "last_validation_at": "2026-11-20T07:12:42+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -192,10 +192,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44792",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-19T20:34:00+00:00",
-      "last_seen_at": "2026-11-19T20:34:00+00:00",
+      "discovered_at": "2026-11-20T07:12:35+00:00",
+      "last_seen_at": "2026-11-20T07:12:35+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-19T20:34:08+00:00"
+      "last_validation_at": "2026-11-20T07:12:42+00:00"
     },
     {
       "pollster_id": "shanshui",
@@ -206,10 +206,10 @@
       "url": "https://www.zmedia.com.tw/Document/Detail/44349",
       "status": "discovered_unverified",
       "reason": "一方站點自動發現；尚未通過完整訪期、樣本、方法、回應品質與候選人題目校驗，因此不入模。",
-      "discovered_at": "2026-11-19T20:34:00+00:00",
-      "last_seen_at": "2026-11-19T20:34:00+00:00",
+      "discovered_at": "2026-11-20T07:12:35+00:00",
+      "last_seen_at": "2026-11-20T07:12:35+00:00",
       "last_validation_error": "Article is not a general vote-intention poll",
-      "last_validation_at": "2026-11-19T20:34:08+00:00"
+      "last_validation_at": "2026-11-20T07:12:42+00:00"
     }
   ],
   "records": [
@@ -1749,8 +1749,8 @@
       "undecided": 19.6,
       "nonvote": 10.3,
       "multiple_matchups": false,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "ce9d278659fc1acb8fe9b39b3c74845af3c6266352e0db45247dec75624db35c",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e34aa53f53964e0dfd1a4ab2d92cf26dc2c3a9469d0a42bb8f06b65f1e9a7aea",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1792,8 +1792,8 @@
       "undecided": 12.1,
       "nonvote": 16.2,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "f73f59b1d631f1115032777569322839b00bb839ad319809114026e0385e0add",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "ccf4cf694b587c1284dc1244718638a0ff1e9e88801a689e6c8a5c0b246e3cf0",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1835,8 +1835,8 @@
       "undecided": 14.1,
       "nonvote": 15.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "f73f59b1d631f1115032777569322839b00bb839ad319809114026e0385e0add",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "ccf4cf694b587c1284dc1244718638a0ff1e9e88801a689e6c8a5c0b246e3cf0",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1883,8 +1883,8 @@
       "undecided": 23.8,
       "nonvote": 7.6,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "12a69b3f46a0b067c68015708bf7de61ecc277f6dc3d28cac65dad632f2fd6a6",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "86e33bd5346578349cc231d7e15067ef3c4bd7714abeb88427134c5303ad2099",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1926,8 +1926,8 @@
       "undecided": 21.6,
       "nonvote": 12.2,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "12a69b3f46a0b067c68015708bf7de61ecc277f6dc3d28cac65dad632f2fd6a6",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "86e33bd5346578349cc231d7e15067ef3c4bd7714abeb88427134c5303ad2099",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -1969,8 +1969,8 @@
       "undecided": 16.3,
       "nonvote": 11.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "12a69b3f46a0b067c68015708bf7de61ecc277f6dc3d28cac65dad632f2fd6a6",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "86e33bd5346578349cc231d7e15067ef3c4bd7714abeb88427134c5303ad2099",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2102,8 +2102,8 @@
       "undecided": 25.0,
       "nonvote": 7.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "6759daaa29a5083308eaa765f3ea082c3f1da7f4014fadb2d87309583e5ad2b3",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "915af379dae11191d600f0cca76e0ef9072380c34a0c5b26882b7236d5a4736b",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2145,8 +2145,8 @@
       "undecided": 23.5,
       "nonvote": 7.7,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "6759daaa29a5083308eaa765f3ea082c3f1da7f4014fadb2d87309583e5ad2b3",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "915af379dae11191d600f0cca76e0ef9072380c34a0c5b26882b7236d5a4736b",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2188,8 +2188,8 @@
       "undecided": 25.9,
       "nonvote": 11.5,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "6759daaa29a5083308eaa765f3ea082c3f1da7f4014fadb2d87309583e5ad2b3",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "915af379dae11191d600f0cca76e0ef9072380c34a0c5b26882b7236d5a4736b",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2271,8 +2271,8 @@
       "undecided": 14.8,
       "nonvote": 12.8,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "a6368eceef2038a668948e3e6d24691e5a78ad8c11b6c8ebce23c2cc9b7707ae",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e24e069a61cfcf82f2453e6ac0b0a18ddbfc7aa85eec1319bd43f5bc29ab8155",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2314,8 +2314,8 @@
       "undecided": 15.3,
       "nonvote": 7.6,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "a6368eceef2038a668948e3e6d24691e5a78ad8c11b6c8ebce23c2cc9b7707ae",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e24e069a61cfcf82f2453e6ac0b0a18ddbfc7aa85eec1319bd43f5bc29ab8155",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2362,8 +2362,8 @@
       "undecided": 15.5,
       "nonvote": 7.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "a6368eceef2038a668948e3e6d24691e5a78ad8c11b6c8ebce23c2cc9b7707ae",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e24e069a61cfcf82f2453e6ac0b0a18ddbfc7aa85eec1319bd43f5bc29ab8155",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2405,8 +2405,8 @@
       "undecided": 13.9,
       "nonvote": 10.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "e2903e47a485ee85d92ec0bc3e4090a890360607b944dd5b7a5f96ed82d73534",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e6a8c04c81074a40ac104fb3fd82f42dd1f555a2c2f410c6752a70298e21cb5c",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2448,8 +2448,8 @@
       "undecided": 17.2,
       "nonvote": 12.0,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "e2903e47a485ee85d92ec0bc3e4090a890360607b944dd5b7a5f96ed82d73534",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "e6a8c04c81074a40ac104fb3fd82f42dd1f555a2c2f410c6752a70298e21cb5c",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2576,8 +2576,8 @@
       "undecided": 20.3,
       "nonvote": 6.4,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "d38a3770b4e1b612e1b5159e067cc13f3ef7218cb3dc711a0c80fc7a99f08292",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "94f0b63cbfee9e481b39bf511d67fb7258b10a823874efc26764fa4ae044d466",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2619,8 +2619,8 @@
       "undecided": 22.3,
       "nonvote": 11.3,
       "multiple_matchups": true,
-      "retrieved_at": "2026-11-19T20:33:41+00:00",
-      "report_sha256": "d38a3770b4e1b612e1b5159e067cc13f3ef7218cb3dc711a0c80fc7a99f08292",
+      "retrieved_at": "2026-11-20T07:12:22+00:00",
+      "report_sha256": "94f0b63cbfee9e481b39bf511d67fb7258b10a823874efc26764fa4ae044d466",
       "ingestion": "automatic_original_html",
       "model_eligible": false,
       "exclusion_reason": "舊版三方模型不支援獨立不投票類別；候選人模型另行檢查"
@@ -2752,49 +2752,115 @@
       "checked_at": "2026-11-05T08:53:54+00:00"
     },
     "https://my-formosa.com.tw/DOC_224921.htm": {
-      "sha256": "ce9d278659fc1acb8fe9b39b3c74845af3c6266352e0db45247dec75624db35c",
+      "sha256": "e34aa53f53964e0dfd1a4ab2d92cf26dc2c3a9469d0a42bb8f06b65f1e9a7aea",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_224420.htm": {
-      "sha256": "6759daaa29a5083308eaa765f3ea082c3f1da7f4014fadb2d87309583e5ad2b3",
+      "sha256": "915af379dae11191d600f0cca76e0ef9072380c34a0c5b26882b7236d5a4736b",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_224580.htm": {
-      "sha256": "f73f59b1d631f1115032777569322839b00bb839ad319809114026e0385e0add",
+      "sha256": "ccf4cf694b587c1284dc1244718638a0ff1e9e88801a689e6c8a5c0b246e3cf0",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_223267.htm": {
-      "sha256": "d38a3770b4e1b612e1b5159e067cc13f3ef7218cb3dc711a0c80fc7a99f08292",
+      "sha256": "94f0b63cbfee9e481b39bf511d67fb7258b10a823874efc26764fa4ae044d466",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_224538.htm": {
-      "sha256": "12a69b3f46a0b067c68015708bf7de61ecc277f6dc3d28cac65dad632f2fd6a6",
+      "sha256": "86e33bd5346578349cc231d7e15067ef3c4bd7714abeb88427134c5303ad2099",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_224233.htm": {
-      "sha256": "a6368eceef2038a668948e3e6d24691e5a78ad8c11b6c8ebce23c2cc9b7707ae",
+      "sha256": "e24e069a61cfcf82f2453e6ac0b0a18ddbfc7aa85eec1319bd43f5bc29ab8155",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     },
     "https://my-formosa.com.tw/DOC_224158.htm": {
-      "sha256": "e2903e47a485ee85d92ec0bc3e4090a890360607b944dd5b7a5f96ed82d73534",
+      "sha256": "e6a8c04c81074a40ac104fb3fd82f42dd1f555a2c2f410c6752a70298e21cb5c",
       "parser_version": 2,
       "status": "valid",
-      "checked_at": "2026-11-19T20:33:41+00:00"
+      "checked_at": "2026-11-20T07:12:22+00:00"
     }
   },
   "history": [
+    {
+      "date": "2026-11-20T07:12:35+00:00",
+      "county": "新北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-20T07:12:35+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-20T07:12:35+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-20T07:12:35+00:00",
+      "county": "台北市",
+      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
+      "kind": "poll_source_discovered_unverified"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224921.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "宜蘭縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224420.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224580.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "台中市",
+      "source_url": "https://my-formosa.com.tw/DOC_223267.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "花蓮縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224538.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "新北市",
+      "source_url": "https://my-formosa.com.tw/DOC_224233.htm",
+      "kind": "report_updated"
+    },
+    {
+      "date": "2026-11-20T07:12:22+00:00",
+      "county": "新竹縣",
+      "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
+      "kind": "report_updated"
+    },
     {
       "date": "2026-11-19T20:34:00+00:00",
       "county": "新北市",
@@ -3328,77 +3394,11 @@
       "county": "新竹縣",
       "source_url": "https://my-formosa.com.tw/DOC_224158.htm",
       "kind": "report_updated"
-    },
-    {
-      "date": "2026-11-17T06:07:31+00:00",
-      "county": "新北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44349",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-17T06:07:31+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44350",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-17T06:07:31+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44790",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-17T06:07:31+00:00",
-      "county": "台北市",
-      "source_url": "https://www.zmedia.com.tw/Document/Detail/44792",
-      "kind": "poll_source_discovered_unverified"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "新北市",
-      "source_url": "https://finance.ftvnews.com.tw/news/detail/2026B13W0316",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "新北市",
-      "source_url": "https://www.crntt.tw/touch/detail.jsp?coluid=192&docid=160288806&kindid=0",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "新北市",
-      "source_url": "https://udn.com/news/story/124652/9865460",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "高雄市",
-      "source_url": "https://news.ebc.net.tw/news/living/581074",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "台北市",
-      "source_url": "https://news.tvbs.com.tw/politics/4051662",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "台北市",
-      "source_url": "https://n.yam.com/Article/20261116444650",
-      "kind": "reviewed_additional_poll_added"
-    },
-    {
-      "date": "2026-11-17T06:07:08+00:00",
-      "county": "台北市",
-      "source_url": "https://news.tvbs.com.tw/politics/4051264",
-      "kind": "reviewed_additional_poll_added"
     }
   ],
   "coverage_note": "來源包括TVBS、美麗島與ETtoday民調雲。自動來源失敗時保留最後核對資料；ETtoday新文章若尚未通過完整方法與候選人解析，會列為已發現／待核驗，而不是靜默遺漏。 另含核實的聯合報系民意調查中心原創台北／高雄民調與趨勢、山水、皮爾森來源；同份調查轉載不重複計權；未公開回應類別保持未分類。 山水與皮爾森一方索引已加入自動發現；新文章先列待核驗佇列，未通過完整校驗前不入模。",
   "last_roundup_note": "2026-11-17已補中時／艾普羅新北封關調查：中國時報台北與新北、ETtoday台北與高雄均已核對。現有11月中旬資料尚非全台所有封關民調；未見完整問卷的15.0pp新北剩餘回答分類仍依未公開質量加寬誤差，不可憑空分配。",
-  "discovery_checked_at": "2026-11-19T20:34:00+00:00",
+  "discovery_checked_at": "2026-11-20T07:12:35+00:00",
   "pollster_registry": {
     "schema_version": 1,
     "updated_at": "2026-11-05T09:00:00+00:00",
