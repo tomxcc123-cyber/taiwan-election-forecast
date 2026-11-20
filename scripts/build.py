@@ -66,6 +66,7 @@ def build(now=None):
         'forecast.mjs', 'charts.mjs', 'app.mjs',
         'candidate-research.mjs', 'candidate-app.mjs', 'candidate-engine.mjs',
         'history-atlas.css', 'history-atlas.mjs',
+        't3-chronological-ui.mjs',
         'historical-polls-ui.mjs', 'evidence-ui.mjs', 'scenario-rules.mjs',
          'market-observatory.mjs', 'market-observatory.css',
          'market-fusion.mjs',
@@ -227,6 +228,20 @@ def build(now=None):
             raise ValueError('Historical turnout national total mismatch')
     (dist / 'turnout-history-2018-2022.json').write_text(
         json.dumps(turnout, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
+
+    # Research-only chronological T3 audit: guard against historical leakage
+    # and report a separate 2018-development / 2022-development assessment.
+    # No resulting value is fed back into model.v5_product or the 2026 posterior.
+    from scripts.evaluate_t3_chronological_bias import evaluate as evaluate_t3
+    t3_audit = evaluate_t3(ROOT)
+    if (t3_audit['kind'] != 't3_chronological_nonmajor_bias_development_diagnostic'
+            or t3_audit['governance']['official_forecast_modified'] is not False
+            or t3_audit['governance']['release_gate'] !=
+                    'blocked_until_independent_roster_and_probability_validation'
+            or set(t3_audit['cycles']) != {'2018', '2022'}):
+        raise ValueError('T3 chronological audit promotion guard failed')
+    (dist/'t3-chronological-bias-audit.json').write_text(
+        json.dumps(t3_audit, ensure_ascii=False, indent=2, allow_nan=False), encoding='utf-8')
 
     from model.v5_product import build_product
     product = build_product(ROOT, now, feed)
