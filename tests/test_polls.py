@@ -1,6 +1,7 @@
 import copy
 import importlib.util
 import json
+import shutil
 import tempfile
 import unittest
 from datetime import date, datetime
@@ -203,15 +204,34 @@ class PollTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             (root / 'data').mkdir()
+            (root / 'site/vendor').mkdir(parents=True)
             (root / 'dist/vendor').mkdir(parents=True)
             (root / 'dist/polls.json').write_text('old private data')
+            (root / 'dist/candidate-model.json').write_text('old model')
             (root / 'dist/vendor/old.js').write_text('old model')
             (root / 'config.json').write_text(json.dumps(config))
             (root / 'data/polls.json').write_text(json.dumps({'schema_version': 1, 'records': []}))
+            for file in ('candidate-history-cec.json','turnout-history-2018-2022.json'):
+                shutil.copy2(original_root/'data'/file,root/'data'/file)
+            for file in ('archive-landing.html','archive.css','archive.mjs'):
+                shutil.copy2(original_root/'site'/file,root/'site'/file)
+            for file in ('d3.min.js','topojson.min.js','counties.json','town-results.json'):
+                shutil.copy2(original_root/'site/vendor'/file,root/'site/vendor'/file)
+            shutil.copytree(original_root/'site/vendor/towns',root/'site/vendor/towns')
             try:
                 b.ROOT = root
                 b.build(datetime.fromisoformat('2026-11-17T00:00:00+08:00'))
-                self.assertEqual({p.name for p in (root / 'dist').iterdir()}, {'index.html', '.nojekyll'})
+                dist=root/'dist'
+                self.assertEqual({p.name for p in dist.iterdir()}, {
+                    'index.html','.nojekyll','archive.css','archive.mjs','archive-results.json','archive-turnout.json','vendor'})
+                self.assertFalse((dist/'candidate-model.json').exists())
+                self.assertFalse((dist/'polls.json').exists())
+                self.assertFalse((dist/'vendor/old.js').exists())
+                self.assertIn('歷史選舉 GIS',(dist/'index.html').read_text())
+                doc=json.loads((dist/'archive-results.json').read_text())
+                self.assertEqual(doc['kind'],'historical_elections_only_no_current_opinion_polls')
+                self.assertEqual(len(doc['races']),66)
+                self.assertTrue(all(r['year'] in (2014,2018,2022) for r in doc['races']))
             finally:
                 b.ROOT = original_root
 
