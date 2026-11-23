@@ -23,6 +23,10 @@ const server=http.createServer((req,res)=>{
   const page=await browser.newPage({viewport:{width:1300,height:900}});
   const errors=[];
   page.on('pageerror',e=>errors.push(e.message));
+  // The full-model browser test uses a pinned pre-blackout snapshot.
+  // The actual public website continues to honor the current legal blackout.
+  if(process.env.REFERENCE_PRE_BLACKOUT_E2E==='1')await page.clock.setFixedTime(new Date('2026-11-17T10:00:00Z'));
+
   try{
     await page.goto('http://127.0.0.1:'+server.address().port+'/?view=turnout',
       {waitUntil:'networkidle'});
