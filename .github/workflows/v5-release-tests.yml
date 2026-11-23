@@ -124,10 +124,24 @@ jobs:
         run: python scripts/audit_v5_public_beta_release.py
       - name: Enrich exact Pages input with reviewed sources
         run: python scripts/enrich_reviewed_polls.py
-      - name: Build exact Pages artifact
+      - name: Validate blackout-safe public history GIS build
         env:
           PYTHONPATH: .
-        run: python scripts/build.py
+        run: |
+          python scripts/build.py --at 2026-11-23T15:00:00+08:00
+          test -f dist/archive-results.json
+          test -f dist/vendor/counties.json
+          test -f dist/vendor/towns/towns-63000.json
+          test ! -f dist/candidate-model.json
+          test ! -f dist/polls.json
+          test ! -f dist/forecast-history.json
+          node --check dist/archive.mjs
+          mkdir -p qa/blackout-site
+          cp -R dist/. qa/blackout-site/
+      - name: Build full reference product for historical regression (never deployed)
+        env:
+          PYTHONPATH: .
+        run: python scripts/build.py --at 2026-11-17T18:00:00+08:00
       - name: Validate browser model artifacts
         run: |
           node tests/model.mjs
@@ -140,6 +154,8 @@ jobs:
         run: |
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
+      - name: Validate historical GIS and poll-data firewall in browser
+        run: node tests/archive-browser.cjs
       - name: Validate GIS product in browser
         run: node tests/candidate-browser.cjs
       - name: Validate real-browser CEC turnout research GIS and source gates
