@@ -157,8 +157,12 @@ jobs:
       - name: Validate historical GIS and poll-data firewall in browser
         run: node tests/archive-browser.cjs
       - name: Validate GIS product in browser
+        env:
+          REFERENCE_PRE_BLACKOUT_E2E: '1'
         run: node tests/candidate-browser.cjs
       - name: Validate real-browser CEC turnout research GIS and source gates
+        env:
+          REFERENCE_PRE_BLACKOUT_E2E: '1'
         run: node tests/turnout-browser.cjs
       - name: Upload GIS visual QA
         if: always()
