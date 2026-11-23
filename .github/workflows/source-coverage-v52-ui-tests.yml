@@ -35,10 +35,12 @@ jobs:
         run: node tests/source-v52-ui.mjs
       - name: Validate queue-only discovery logic
         run: python -m unittest discover -s tests -p 'test_pollster_registry_discovery.py' -v
-      - name: Build exact public product
+      - name: Build pre-blackout full product for internal model regression only
         env:
           PYTHONPATH: .
-        run: python scripts/build.py
+        # Internal CI snapshot, not deployed. Public Pages during blackout
+        # instead ship the strict historical-data allowlist.
+        run: python scripts/build.py --at 2026-11-17T18:00:00+08:00
       - name: Validate existing browser artifacts
         run: |
           node tests/model.mjs
