@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="台灣選舉 GIS：2014、2018、2022 縣市長歷史計票、2022 鄉鎮市區分布與2018至2022投票率。2026當期民調及預測在選前禁發期間暫停公開。">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="color-scheme" content="light">
+<title>台灣選舉預測｜歷史選舉 GIS</title>
+<link rel="stylesheet" href="archive.css">
+<script defer src="vendor/d3.min.js"></script>
+<script defer src="vendor/topojson.min.js"></script>
+<script type="module" src="archive.mjs"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳至主內容</a>
+<header class="site-header">
+  <a class="identity" href="./" aria-label="台灣選舉預測首頁">
+    <span class="identity-mark" aria-hidden="true">T<span>.</span></span>
+    <span class="identity-text"><strong>台灣選舉預測</strong><small>TAIWAN ELECTION OBSERVATORY</small></span>
+  </a>
+  <nav aria-label="頁面導覽">
+    <a class="nav-active" href="#atlas">歷史地圖</a>
+    <a href="#result">選舉資料</a>
+    <a href="#method">資料來源</a>
+  </nav>
+  <span class="edition-label">HISTORY ATLAS <b>2026</b></span>
+</header>
+<div class="legal-strip" role="note">
+  <span class="legal-dot" aria-hidden="true"></span>
+  <span><strong>選前有限公開模式</strong>　目前開放歷史選舉地圖、計票及投票率。2026 當期民調與模型勝選機率暫停公開。</span>
+  <a href="#method">查看說明</a>
+</div>
+<main id="main">
+<section class="intro" aria-labelledby="page-title">
+ <div class="intro-copy">
+  <div class="eyebrow">GEOGRAPHY × ELECTION DATA / 01</div>
+  <h1 id="page-title">從選舉地理，<br><em>閱讀台灣。</em></h1>
+  <p>沿著2014、2018、2022三屆地方選舉，查看22縣市的歷史政治版圖。地圖保留點選、放大、縣市鑽取與2022年鄉鎮市區比較，不顯示當期選情推估。</p>
+ </div>
+ <div class="intro-aside">
+  <div class="aside-line"><span>觀測範圍</span><strong>22 <small>縣市</small></strong></div>
+  <div class="aside-line"><span>歷史選舉</span><strong>03 <small>屆</small></strong></div>
+  <div class="aside-line"><span>資料時間</span><strong>2014—2022</strong></div>
+  <p>所有百分比均為已發生選舉的歷史統計，非2026候選人民調或勝率。</p>
+ </div>
+</section>
+<section class="atlas-shell" id="atlas" aria-labelledby="atlas-title">
+ <div class="atlas-heading">
+  <div><span class="eyebrow">INTERACTIVE GIS / 02</span><h2 id="atlas-title">歷屆地方選舉地圖</h2><p>選擇年份與指標，點擊縣市進入鄉鎮市區（2022年）</p></div>
+  <div class="state-note" id="mapState" role="status" aria-live="polite">歷史地理資料載入中</div>
+ </div>
+ <div class="atlas-layout">
+  <div class="map-panel">
+   <div class="map-toolbar">
+    <fieldset class="choice-set" id="yearControl"><legend>選舉年度</legend><button type="button" data-year="2014">2014</button><button type="button" data-year="2018">2018</button><button type="button" data-year="2022" aria-pressed="true">2022</button></fieldset>
+    <fieldset class="choice-set secondary" id="metricControl"><legend>呈現指標</legend><button type="button" data-metric="winner" aria-pressed="true">當選政黨</button><button type="button" data-metric="turnout">投票率</button></fieldset>
+   </div>
+   <div class="map-surface" id="mapSurface">
+    <div class="map-top"><span id="mapScope">TAIWAN · 22 COUNTIES</span><button type="button" id="backTaiwan" hidden>返回全台</button></div>
+    <svg id="atlasMap" viewBox="0 0 900 700" role="img" aria-label="台灣縣市歷史選舉互動地圖；可按地理區域選擇"></svg>
+    <div class="map-controls"><button id="zoomIn" type="button" aria-label="放大地圖">+</button><button id="zoomOut" type="button" aria-label="縮小地圖">−</button><button id="resetMap" type="button" aria-label="重設地圖檢視">⌖</button></div>
+    <div id="mapTooltip" class="map-tooltip" hidden></div>
+    <div class="map-legend" id="mapLegend" aria-label="地圖圖例"></div>
+   </div>
+   <div class="map-footer"><span>資料層：縣市長歷史計票 · 2022鄉鎮得票</span><span>滑鼠滾輪縮放 · 拖曳平移 · 點擊查看詳情</span></div>
+  </div>
+  <aside class="inspector" aria-labelledby="inspectorTitle">
+   <div class="inspector-overline">ELECTION PROFILE / 03</div>
+   <label class="county-select-label" for="countySelect">快速定位縣市</label>
+   <select id="countySelect"><option value="">選擇縣市</option></select>
+   <div id="result" class="profile">
+    <p class="profile-year" id="resultYear">2022 / LOCAL EXECUTIVE</p>
+    <h2 id="inspectorTitle">選取一個縣市</h2>
+    <p class="profile-hint" id="profileHint">點選地圖上的縣市，查看該次歷史選舉之候選人得票與投票率。</p>
+    <div id="profileSummary" class="profile-summary"></div>
+    <div id="candidateList" class="candidate-list"></div>
+    <div class="town-pane" id="townPane" hidden>
+      <h3>2022 鄉鎮市區結果</h3><p id="townDescription"></p>
+      <div id="townList" class="town-list"></div>
+    </div>
+   </div>
+  </aside>
+ </div>
+</section>
+<section class="interpretation" id="method">
+ <div><span class="eyebrow">SOURCE NOTES / 04</span><h2>資料可信度與公開邊界</h2></div>
+ <div class="method-copy">
+  <p>本頁歷史縣市候選人得票採用研究專案保存的中選會選舉結果工作簿，票數與比例已於專案內部復算；來源工作簿尚未全部獨立比對中選會線上原檔。投票率採中選會地方選舉統計報告；2022鄉鎮市區資料來自同專案既有歷史圖層。此版本不提供2026當期民調、選區預測、模擬勝率、賭盤訊號或可還原此類資料的檔案。</p>
+  <p>依《公職人員選舉罷免法》第53條，選前十日禁發候選人或選舉民意調查資料。本網站預計於 <strong>2026年11月28日16:00（台灣時間）之後的成功部署</strong>恢復完整研究版本；實際開放仍以網站部署為準。若歷史選舉資料與當期選情存在差異，不應將歷史勝負直接視作本屆預測。</p>
+  <div class="method-links"><a href="https://law.cec.gov.tw/LawContent.aspx?id=GL000292" target="_blank" rel="noopener noreferrer">選罷法第53條 ↗</a><a href="https://db.cec.gov.tw/ElecTable" target="_blank" rel="noopener noreferrer">中選會選舉資料庫 ↗</a><a href="https://github.com/tomxcc123-cyber/taiwan-election-forecast" target="_blank" rel="noopener noreferrer">研究專案程式碼 ↗</a></div>
+ </div>
+</section>
+</main>
+<footer class="site-footer"><span>TAIWAN ELECTION OBSERVATORY · ARCHIVE EDITION</span><span>獨立研究專案，非中選會官方網站。僅供歷史資料查閱。</span></footer>
+</body>
+</html>
