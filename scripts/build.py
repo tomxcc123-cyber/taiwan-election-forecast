@@ -19,13 +19,98 @@ def paused(config, now):
     return datetime.fromisoformat(config['publication_pause_start']) <= now < datetime.fromisoformat(config['publication_pause_end'])
 
 
+def build_historical_atlas(root: Path, dist: Path) -> None:
+    """Publish only pre-2026 historical election data during the poll blackout.
+
+    This is an allowlist, not a sanitised copy of the normal forecast artifact:
+    it cannot accidentally ship polls, forecasts, model histories, or 2026
+    candidate probabilities. Only authenticated public repo source is used.
+    """
+    history = json.loads((root / 'data/candidate-history-cec.json').read_text(encoding='utf-8'))
+    turnout = json.loads((root / 'data/turnout-history-2018-2022.json').read_text(encoding='utf-8'))
+    counties = json.loads((root / 'site/vendor/counties.json').read_text(encoding='utf-8'))
+    historical_races = history.get('races', [])
+    keys = {(r.get('year'), r.get('county')) for r in historical_races}
+    expected_years = {2014, 2018, 2022}
+    if (history.get('schema_version') != 1 or len(historical_races) != 66 or
+        len(keys) != 66 or {r.get('year') for r in historical_races} != expected_years or
+        len({r.get('county') for r in historical_races}) != 22):
+        raise ValueError('Historical election archive failed the completeness gate')
+    for race in historical_races:
+        candidates = race.get('candidates', [])
+        if (len(candidates) < 2 or sum(1 for c in candidates if c.get('winner')) != 1 or
+            abs(sum(c.get('share_pct', 0) for c in candidates) - 100) > 1.0 or
+            not 0 <= race.get('turnout_pct', -1) <= 100):
+            raise ValueError('Unverified historical election totals: refusing atlas release')
+    if (counties.get('type') != 'Topology' or
+        len(counties.get('objects', {}).get('map', {}).get('geometries', [])) != 22):
+        raise ValueError('Historical GIS county outlines failed the completeness gate')
+    if (turnout.get('schema_version') != 1 or
+        len(turnout.get('records', [])) != 22 or
+        {str(year) for r in turnout['records'] for year in r.get('years', {})} != {'2018', '2022'}):
+        raise ValueError('Historical turnout archive failed the completeness gate')
+
+    # No 2026 polling archives, respondent aggregates, candidate rosters,
+    # forecast histories, market odds or current candidate projections.
+    payload = {'schema_version': 1,
+               'kind': 'historical_elections_only_no_current_opinion_polls',
+               'years': [2014, 2018, 2022],
+               'source_note': '專案保存之中選會選舉結果表格；內部復算，尚未逐一對照中選會原檔',
+               'races': [{
+                   'year': r['year'],
+                   'county': r['county'],
+                   'turnout_pct': r['turnout_pct'],
+                   'valid_votes': r['valid_votes'],
+                   'candidates': [{
+                       'name': c['name'],
+                       'votes': c['votes'],
+                       'share_pct': c['share_pct'],
+                       'party': c.get('party'),
+                       'party_name': c.get('party_name'),
+                       'legacy_bloc': c.get('legacy_bloc'),
+                       'winner': c['winner'],
+                   } for c in r['candidates']]
+               } for r in historical_races]}
+    (dist / 'index.html').write_text(
+        (root / 'site/archive-landing.html').read_text(encoding='utf-8'),
+        encoding='utf-8')
+    (dist / 'archive.css').write_text(
+        (root / 'site/archive.css').read_text(encoding='utf-8'),
+        encoding='utf-8')
+    (dist / 'archive.mjs').write_text(
+        (root / 'site/archive.mjs').read_text(encoding='utf-8'),
+        encoding='utf-8')
+    (dist / 'archive-results.json').write_text(
+        json.dumps(payload, ensure_ascii=False, allow_nan=False), encoding='utf-8')
+    (dist / 'archive-turnout.json').write_text(
+        json.dumps(turnout, ensure_ascii=False, allow_nan=False), encoding='utf-8')
+    vendor = dist / 'vendor'
+    vendor.mkdir()
+    for filename in ('d3.min.js','topojson.min.js','counties.json','town-results.json'):
+        shutil.copy2(root/'site/vendor'/filename, vendor/filename)
+    source_towns = root/'site/vendor/towns'
+    target_towns = vendor/'towns'
+    target_towns.mkdir()
+    expected = {str(g['properties']['id']) for g in counties['objects']['map']['geometries']}
+    for county_id in expected:
+        if not re.fullmatch(r'[0-9]{5}', county_id):
+            raise ValueError('Unverified historical county GIS ID')
+        source = source_towns/f'towns-{county_id}.json'
+        if not source.is_file():
+            raise ValueError('Missing historical township GIS layer: '+county_id)
+        shutil.copy2(source,target_towns/source.name)
+    # Never add dynamic directories/files other than the vetted allowlist.
+    permitted = {
+        '.nojekyll','index.html','archive.css','archive.mjs',
+        'archive-results.json','archive-turnout.json','vendor'
+    }
+    if {p.name for p in dist.iterdir()} != permitted:
+        raise ValueError('Unexpected file in blackout-safe historical site')
+
+
 def build(now=None):
     now = now or datetime.now(timezone.utc)
     config = json.loads((ROOT / 'config.json').read_text(encoding='utf-8'))
-    feed_path = ROOT / 'data/polls.json'
-    feed = json.loads(feed_path.read_text(encoding='utf-8'))
-    if feed.get('schema_version') != 1 or not isinstance(feed.get('records'), list):
-        raise ValueError('Invalid poll archive; refusing to replace public site')
     dist = ROOT / 'dist'
     if dist.exists():
         assert dist.resolve().parent == ROOT.resolve() and dist.name == 'dist'
@@ -33,9 +118,13 @@ def build(now=None):
     dist.mkdir()
     (dist / '.nojekyll').touch()
     if paused(config, now):
-        (dist / 'index.html').write_text('<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>選舉資料暫停公開</title><main style="max-width:640px;margin:15vh auto;padding:24px;font-family:system-ui"><h1>選舉資料暫停公開</h1><p>選前暫停發布民調及相關預測。投票結束後恢復。</p><a href="https://www.cec.gov.tw/">中央選舉委員會</a></main></html>', encoding='utf-8')
-        print('Built paused publication: no forecast assets or polls in artifact')
+        build_historical_atlas(ROOT, dist)
+        print('Built blackout-safe historical GIS: no 2026 polls, forecasts or model assets in artifact')
         return
+    feed_path = ROOT / 'data/polls.json'
+    feed = json.loads(feed_path.read_text(encoding='utf-8'))
+    if feed.get('schema_version') != 1 or not isinstance(feed.get('records'), list):
+        raise ValueError('Invalid poll archive; refusing to replace public site')
     source = (ROOT / 'site/base.html').read_text(encoding='utf-8')
     start = source.index('async function loadExternalPolls(manual=false){')
     end = source.index('function clearExternalPolls(){', start)
