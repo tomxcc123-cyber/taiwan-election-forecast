@@ -1,0 +1,105 @@
+/* No external fonts: all typography is local. */
+:root{--paper:#f5f4f0;--ink:#172c3a;--deep:#12344a;--accent:#b2835c;--blue:#2d658b;--rule:#d8e1e4;--muted:#6e7d85;--white:#fff;--dpp:#268369;--kmt:#366c9b;--other:#8e8f96;font-family:system-ui,-apple-system,"Noto Sans TC","Microsoft JhengHei",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:138px}
+body{margin:0;background:var(--paper);color:var(--ink);line-height:1.5;font-size:14px}
+a{color:inherit}a:hover{color:var(--blue)}
+button,select{font:inherit}
+button{cursor:pointer}
+button:focus-visible,select:focus-visible,a:focus-visible,svg path:focus-visible{outline:3px solid #d19b4c;outline-offset:3px}
+.skip{position:absolute;z-index:1000;left:-999px;top:4px;background:white;padding:12px}.skip:focus{left:8px}
+.site-header{height:88px;display:flex;align-items:center;gap:32px;padding:0 clamp(20px,4.2vw,76px);background:rgba(255,255,255,.98);border-bottom:1px solid var(--rule)}
+.identity{display:flex;gap:12px;align-items:center;text-decoration:none;min-width:0;flex:1}
+.identity-mark{display:grid;place-items:center;background:var(--deep);width:43px;height:45px;flex:none;color:white;font:700 29px/1 Georgia,serif;letter-spacing:-.1em}
+.identity-mark span{color:#d2a77c}
+.identity-text{display:grid;gap:1px}.identity-text strong{font:700 19px/1.3 Georgia,"Noto Serif TC","Songti TC",serif;letter-spacing:.045em;white-space:nowrap}
+.identity-text small{font-size:9px;letter-spacing:.16em;color:#79909e;white-space:nowrap}
+.site-header nav{display:flex;gap:8px;align-items:center}
+.site-header nav a{text-decoration:none;font-size:12px;font-weight:750;color:#61727d;white-space:nowrap;padding:10px 13px;border-radius:5px}
+.site-header nav a:hover{background:#edf3f6;color:var(--blue)}
+.site-header nav .nav-active{color:var(--deep);background:#e6edf1}
+.edition-label{border-left:1px solid var(--rule);padding-left:25px;font-size:10px;letter-spacing:.12em;color:#71828d;white-space:nowrap}.edition-label b{display:block;font-size:12px;letter-spacing:.04em;color:#274f6a;margin-top:3px}
+.legal-strip{min-height:47px;display:flex;align-items:center;gap:13px;padding:11px clamp(20px,4.2vw,76px);background:#e9eff1;color:#4c6270;border-bottom:1px solid #d5e0e6;font-size:12px;line-height:1.65}
+.legal-strip>span:nth-child(2){flex:1}.legal-strip strong{color:#26465d}.legal-strip a{flex:none;font-weight:750;color:#315d7e;text-underline-offset:3px}
+.legal-dot{display:inline-block;width:7px;height:7px;background:#b8915a;border-radius:50%;flex:none}
+main{max-width:1650px;margin:auto}
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,355px);gap:clamp(30px,5.5vw,96px);align-items:end;min-height:342px;padding:clamp(42px,6vw,84px) clamp(20px,5vw,78px) 53px}
+.eyebrow{font-size:10px;letter-spacing:.19em;font-weight:800;color:#8b8276}
+.intro h1{font-family:Georgia,"Noto Serif TC","Source Han Serif TC",serif;font-size:clamp(46px,5.4vw,80px);line-height:1.17;letter-spacing:-.035em;font-weight:750;margin:21px 0}
+.intro h1 em{font-weight:600;color:#3a6d8d;font-style:normal}
+.intro-copy>p{max-width:680px;font-size:14px;line-height:1.9;color:#62717d;margin:0}
+.intro-aside{border-top:2px solid #334e64;padding-top:6px;align-self:end}
+.aside-line{display:flex;align-items:baseline;justify-content:space-between;border-bottom:1px solid #dce1e2;padding:7px 0;gap:20px}
+.aside-line span{font-size:11px;color:#84919a}.aside-line strong{font:700 30px/1.3 Georgia,serif;color:#254b62;letter-spacing:-.02em}
+.aside-line strong small{font:650 12px system-ui;color:#6e808a}
+.aside-line:last-of-type strong{font-size:20px}.intro-aside>p{color:#7e878c;font-size:11px;line-height:1.8;margin:13px 0 0}
+.atlas-shell{margin:0 clamp(12px,3vw,48px);border:1px solid var(--rule);background:white;border-radius:13px;box-shadow:0 20px 60px rgba(23,49,67,.06);overflow:hidden}
+.atlas-heading{padding:27px clamp(20px,3vw,46px) 23px;display:flex;align-items:end;gap:24px;justify-content:space-between;border-bottom:1px solid var(--rule)}
+.atlas-heading h2{font:700 clamp(25px,2.5vw,34px)/1.24 Georgia,"Noto Serif TC",serif;margin:8px 0}
+.atlas-heading p{margin:0;color:#7a8992;font-size:12px}
+.state-note{font:600 10px system-ui;color:#738995;letter-spacing:.035em;text-align:right}
+.atlas-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,.72fr)}
+.map-panel{border-right:1px solid var(--rule);min-width:0}
+.map-toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;padding:20px 28px 12px}
+.choice-set{display:flex;align-items:center;gap:6px;border:0;margin:0;padding:0;min-width:0}
+.choice-set legend{display:inline;margin:0 12px 0 0;float:left;font-size:11px;font-weight:800;color:#87939b;line-height:39px}
+.choice-set button{min-height:37px;padding:7px 15px;border:1px solid #d9e3e8;border-radius:5px;background:#f6f9fa;color:#607381;font-weight:750;font-size:12px;min-width:60px}
+.choice-set button:hover{border-color:#94b4c7;color:#234c68}
+.choice-set button[aria-pressed=true]{background:#285471;border-color:#285471;color:white}
+.choice-set.secondary button{min-width:75px}
+.map-surface{position:relative;min-height:680px;background:radial-gradient(ellipse at 65% 45%,#e6f0f2 0%,#edf4f4 48%,#e8f0f2 100%);overflow:hidden}
+.map-surface::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(116,153,168,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(116,153,168,.075) 1px,transparent 1px);background-size:54px 54px;pointer-events:none}
+.map-top{position:absolute;z-index:5;top:21px;left:26px;display:flex;gap:15px;align-items:center;pointer-events:none}
+.map-top span{font:700 10px system-ui;letter-spacing:.18em;color:#628093;background:rgba(243,249,249,.88);padding:9px 12px;border:1px solid #d9e8ec;border-radius:5px}
+.map-top button{pointer-events:auto;padding:8px 12px;background:white;border:1px solid #bbd0dc;border-radius:5px;color:#2c5875;font-size:11px;font-weight:800}
+#atlasMap{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}
+#atlasMap:active{cursor:grabbing}
+.map-county{stroke:#f7fbfb;stroke-width:1.3;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:opacity .14s,fill .14s;cursor:pointer}
+.map-county:hover,.map-county.is-selected{stroke:#183d59;stroke-width:2.2;opacity:1}
+.map-label{pointer-events:none;paint-order:stroke;stroke:#eef5f5;stroke-width:2.5px;stroke-linejoin:round;font:700 12px system-ui;fill:#224355;letter-spacing:.04em}
+.map-watermark{font:700 62px Georgia,serif;letter-spacing:-.04em;fill:rgba(52,93,111,.06);pointer-events:none}
+.map-tooltip{position:absolute;z-index:9;pointer-events:none;padding:9px 12px;border-radius:5px;background:#173e59;color:#fff;font-size:11px;max-width:240px;box-shadow:0 6px 20px rgba(15,47,63,.19)}
+.map-legend{position:absolute;bottom:25px;left:25px;z-index:3;display:flex;flex-wrap:wrap;align-items:center;gap:11px 16px;padding:10px 15px;background:rgba(255,255,255,.94);border:1px solid #dae6e8;border-radius:6px;color:#667989;font-size:10px}
+.legend-item{display:flex;align-items:center;gap:6px}.legend-swatch{width:10px;height:10px;border-radius:2px;flex:none}
+.legend-note{color:#527186;font-weight:700}
+.map-controls{position:absolute;right:19px;bottom:24px;z-index:5;display:grid;gap:4px}
+.map-controls button{width:37px;height:37px;border:1px solid #c5d5de;background:rgba(255,255,255,.96);border-radius:5px;font-size:21px;color:#335a72;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.map-controls button:hover{background:#e9f3f6}
+.map-footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;padding:13px 24px;border-top:1px solid #d9e4e8;color:#84929a;font-size:10px}
+.inspector{min-width:0;padding:28px clamp(18px,3vw,40px) 38px}
+.inspector-overline{font-size:10px;font-weight:800;letter-spacing:.19em;color:#8b847b;margin-bottom:29px}
+.county-select-label{display:block;font-weight:700;font-size:11px;color:#6e7c87;margin-bottom:9px}
+#countySelect{display:block;width:100%;min-height:43px;background:#f7f9f9;border:1px solid #d9e2e6;border-radius:6px;color:#23465f;padding:8px 11px;margin:0 0 27px}
+.profile{border-top:2px solid #2f526b;padding-top:21px}
+.profile-year{font-size:10px;color:#82929c;letter-spacing:.11em;font-weight:750}
+.profile h2{font:700 31px/1.3 Georgia,"Noto Serif TC",serif;color:#193f5a;margin:12px 0}
+.profile-hint{color:#7b8a93;line-height:1.75;font-size:12px}
+.profile-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:25px 0 16px}
+.profile-stat{border:1px solid #dbe4e9;background:#f7fafb;padding:14px 15px;border-radius:5px;min-width:0}
+.profile-stat span{display:block;font-size:10px;color:#85949b;line-height:1.4}.profile-stat strong{display:block;margin-top:7px;font-size:25px;color:#31556c;font-weight:750;font-variant-numeric:tabular-nums}.profile-stat small{font-size:10px;margin-left:3px;font-weight:600}
+.candidate-list{border-top:1px solid #d7e2e7;margin-top:14px}
+.candidate-item{padding:15px 0 16px;border-bottom:1px solid #e1e8eb}
+.candidate-head{display:flex;align-items:center;gap:10px}
+.candidate-dot{width:8px;height:8px;border-radius:2px;flex:none}
+.candidate-name{font-size:13px;font-weight:750;flex:1}.candidate-party{font-size:10px;color:#83939e}.candidate-share{font:700 17px/1 Georgia,serif;font-variant-numeric:tabular-nums;color:#294b61}
+.candidate-track{height:4px;background:#e8eef0;margin-top:12px;border-radius:3px;overflow:hidden}
+.candidate-track>span{display:block;height:100%;border-radius:3px}
+.candidate-votes{display:block;margin-top:5px;color:#90a0aa;font-size:10px;font-variant-numeric:tabular-nums}
+.town-pane{border-top:2px solid #294d66;margin-top:25px;padding-top:18px}
+.town-pane h3{font-size:14px;margin:0 0 6px}.town-pane>p{font-size:11px;line-height:1.75;color:#788995;margin:0 0 13px}
+.town-list{max-height:350px;overflow:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.town-list button{border:1px solid #e0e8ed;border-radius:5px;text-align:left;background:#f8fafb;min-height:37px;padding:7px 9px;font-size:11px;color:#466174}
+.town-list button:hover,.town-list button[aria-pressed=true]{border-color:#9abacb;background:#eaf1f5}
+.town-list button span{float:right;font-size:10px;font-weight:750}
+.interpretation{padding:65px clamp(24px,5vw,80px) 72px;display:grid;grid-template-columns:minmax(180px,350px) minmax(0,1fr);gap:5vw}
+.interpretation h2{font:700 clamp(25px,2.6vw,34px)/1.4 Georgia,"Noto Serif TC",serif;margin:11px 0}
+.method-copy p{font-size:13px;color:#667884;line-height:2.05;margin:0 0 17px}
+.method-copy strong{color:#1c4159}
+.method-links{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.method-links a{border:1px solid #cddbe2;border-radius:5px;background:white;padding:9px 13px;color:#345773;font-size:12px;font-weight:700;text-decoration:none}
+.method-links a:hover{background:#e8f0f5}
+.site-footer{max-width:1650px;margin:auto;border-top:1px solid #d9e1e3;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:25px clamp(24px,5vw,80px) 34px;font-size:10px;color:#7b8b94;letter-spacing:.04em}
+@media(max-width:1180px){.atlas-layout{grid-template-columns:minmax(0,1.3fr) minmax(300px,.8fr)}.map-toolbar{padding-inline:15px}.choice-set legend{display:none}.map-surface{min-height:620px}}
+@media(max-width:900px){.site-header{height:75px;padding-inline:19px;gap:16px}.edition-label{display:none}.intro{grid-template-columns:1fr;min-height:auto;gap:30px;padding:46px 25px}.intro-aside{display:grid;grid-template-columns:repeat(3,1fr);gap:0 16px}.aside-line{align-items:center}.intro-aside>p{grid-column:1/-1}.atlas-layout{grid-template-columns:1fr}.map-panel{border-right:0;border-bottom:1px solid var(--rule)}.map-surface{min-height:620px}.inspector{padding:25px}.profile-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.interpretation{grid-template-columns:1fr;gap:13px}}
+@media(max-width:640px){html{scroll-padding-top:115px}.site-header{padding:0 12px;height:64px}.identity-mark{width:32px;height:34px;font-size:22px}.identity{gap:8px}.identity-text strong{font-size:14px}.identity-text small{font-size:7px;letter-spacing:.05em}.site-header nav{gap:2px}.site-header nav a{padding:7px 6px;font-size:10px}.site-header nav a:last-child{display:none}.legal-strip{padding:8px 12px;font-size:10px;gap:8px;align-items:flex-start}.legal-strip a{display:none}.legal-dot{margin-top:5px}.intro{padding:39px 17px 31px;gap:22px}.intro h1{font-size:43px;margin:16px 0}.intro-copy>p{font-size:12px;line-height:1.8}.aside-line strong{font-size:21px}.aside-line:last-of-type strong{font-size:13px}.aside-line span{font-size:10px}.intro-aside>p{font-size:10px}.atlas-shell{margin-inline:0;border-left:0;border-right:0;border-radius:0}.atlas-heading{padding:22px 15px 15px;display:block}.atlas-heading h2{font-size:25px}.atlas-heading p{font-size:11px}.state-note{text-align:left;margin-top:9px}.map-toolbar{padding:12px;gap:8px}.choice-set{gap:4px}.choice-set button{min-width:52px;padding:6px 10px;min-height:35px;font-size:11px}.choice-set.secondary button{min-width:65px}.map-surface{min-height:480px}.map-top{top:10px;left:10px}.map-top span{font-size:8px;padding:8px}.map-legend{bottom:13px;left:10px;right:54px;padding:7px 9px;gap:6px;font-size:9px}.map-controls{right:9px;bottom:13px}.map-controls button{width:35px;height:35px}.map-footer{padding:10px 12px;font-size:9px}.inspector{padding:22px 16px}.interpretation{padding:43px 17px}.method-copy p{font-size:12px}.site-footer{padding:20px 17px 25px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.map-county{transition:none}}
