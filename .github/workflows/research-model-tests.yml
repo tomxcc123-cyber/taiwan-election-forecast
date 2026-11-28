@@ -95,6 +95,10 @@ jobs:
         env:
           PYTHONPATH: .
         run: python scripts/validate_release_candidate.py
+      - name: Audit T3 third-party vote-pool chronological bias without promoting results
+        env:
+          PYTHONPATH: .
+        run: python scripts/evaluate_t3_chronological_bias.py
       - name: Validate conservative release candidate v2
         env:
           PYTHONPATH: .
